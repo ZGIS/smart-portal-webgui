@@ -1,8 +1,8 @@
-/*
- * copyright (c) 2015 Interfaculty Department of Geoinformatics - Z_GIS (http://www.zgis.at),
- *                     University of Salzburg (http://www.uni-salzburg.at) in the
- *                     New Zealand SMART Aquifer Characterisation Programme (http://www.smart-project.info)
- *                     funded by the Ministry of Business, Innovation and Employment (http://www.mbie.govt.nz/)
+/**
+ * Copyright (C) 2011-2017 Interfaculty Department of Geoinformatics, University of
+ * Salzburg (Z_GIS) & Institute of Geological and Nuclear Sciences Limited (GNS Science)
+ * in the SMART Aquifer Characterisation (SAC) programme funded by the New Zealand
+ * Ministry of Business, Innovation and Employment (MBIE)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {AppComponent} from './app.component'

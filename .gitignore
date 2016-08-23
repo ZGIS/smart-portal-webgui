@@ -1,3 +1,15 @@
+##intellij
+.idea/
+/.idea_modules
+*.iml
+*.eml
+
+##eclipse items
+/.eclipse
+/.classpath
+/.project
+/.settings
+
 # Logs
 logs
 *.log
