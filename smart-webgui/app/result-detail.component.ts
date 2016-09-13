@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import {Result} from "./result"
+import {Result} from './result';
 
 
 @Component({

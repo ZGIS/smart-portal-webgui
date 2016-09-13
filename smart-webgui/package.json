@@ -32,7 +32,6 @@
     "@angular/router": "3.0.0-rc.2",
     "@angular/upgrade": "2.0.0-rc.6",
     "angular2-in-memory-web-api": "0.0.18",
-
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "ng2-bootstrap": "^1.1.2",
@@ -42,22 +41,23 @@
     "zone.js": "^0.6.21"
   },
   "devDependencies": {
-    "concurrently": "^2.2.0",
-    "lite-server": "^2.2.0",
-    "typescript": "^1.8.10",
-    "typings": "^1.0.4",
     "canonical-path": "0.0.2",
+    "codelyzer": "0.0.28",
+    "concurrently": "^2.2.0",
     "http-server": "^0.9.0",
-    "tslint": "^3.7.4",
-    "lodash": "^4.11.1",
     "jasmine-core": "~2.4.1",
     "karma": "^1.2.0",
     "karma-chrome-launcher": "^0.2.3",
     "karma-cli": "^0.1.2",
     "karma-htmlfile-reporter": "^0.2.2",
     "karma-jasmine": "^0.3.8",
+    "lite-server": "^2.2.0",
+    "lodash": "^4.11.1",
     "protractor": "^3.3.0",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.5.2",
+    "tslint": "^3.7.4",
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4"
   },
   "repository": {}
 }

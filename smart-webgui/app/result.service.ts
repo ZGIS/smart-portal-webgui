@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {MOCK_RESULTS} from "./mock-results";
-import {Result} from "./result";
+import {MOCK_RESULTS} from './mock-results';
+import {Result} from './result';
 
 @Injectable()
 export class ResultService {

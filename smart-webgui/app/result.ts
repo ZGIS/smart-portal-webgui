@@ -1,3 +1,3 @@
 export class Result {
-  title: string
+  title: string;
 }

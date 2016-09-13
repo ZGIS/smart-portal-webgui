@@ -1,22 +1,21 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit} from '@angular/core';
 
-import {Result} from "./result"
-import {ResultDetailComponent} from "./result-detail.component"
-import {ResultService} from "./result.service";
+import {Result} from './result';
+import {ResultService} from './result.service';
 
 @Component({
   selector: 'my-app',
   templateUrl: 'app/app.component.html'
 })
 
-export class AppComponent implements OnInit{
-  title = 'SMART webgui'
+export class AppComponent implements OnInit {
+  title = 'SMART webgui';
   search: Search = {
     query: '*:*',
     fromDate: '1970-01-01',
     toDate: '2020-01-01',
     bboxWkt: ''
-  }
+  };
   results: Result[];
   selectedResult: Result;
 
@@ -31,7 +30,7 @@ export class AppComponent implements OnInit{
   }
 
   getResults(): void {
-    this.resultService.getResults().then(results => this.results = results)
+    this.resultService.getResults().then(results => this.results = results);
   }
 }
 
