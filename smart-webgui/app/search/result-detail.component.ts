@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Result} from '../result';
+import {Result, IGeoFeature} from '../result';
 
 
 @Component({
@@ -9,5 +9,5 @@ import {Result} from '../result';
 
 export class ResultDetailComponent {
   @Input()
-  result: Result;
+  result: IGeoFeature;
 }

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {DROPDOWN_DIRECTIVES} from "ng2-bootstrap/ng2-bootstrap";
+import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
   directives: [DROPDOWN_DIRECTIVES],

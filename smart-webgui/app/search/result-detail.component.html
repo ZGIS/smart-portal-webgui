@@ -1,7 +1,8 @@
 <div *ngIf="result" class="panel panel-default">
-  <div class="panel-heading">Details for {{result.title}}</div>
+  <div class="panel-heading">Details for {{result.properties.fileIdentifier}}</div>
   <div class="panel-body">
-        <div><label>title: </label><input [(ngModel)]="result.title" disabled/></div>
+        <div><label>title: </label><span>{{result.properties.title}}</span></div>
+        <div><label>abstract: </label><p>{{result.properties.abstrakt}}</p></div>
   </div>
 </div>
 
