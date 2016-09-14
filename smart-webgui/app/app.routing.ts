@@ -1,9 +1,8 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import {HomeComponent} from "./home/home.component";
-import {WaterbudgetComponent} from './waterbudget/waterbudget.component';
-import {SearchComponent} from './search/search.component';
+import {DashboardHomeComponent, DashboardWaterbudgetComponent} from "./dashboards";
+import {SearchComponent} from './search';
 
 const appRoutes: Routes = [
   {
@@ -13,11 +12,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: DashboardHomeComponent
   },
   {
     path: 'waterbudget',
-    component: WaterbudgetComponent
+    component: DashboardWaterbudgetComponent
   },
   {
     path: 'search',
