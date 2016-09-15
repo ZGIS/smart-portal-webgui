@@ -13,8 +13,8 @@ env:
 before_script:
   - sh -e /etc/init.d/xvfb start
 install:
-  - cd smart-webgui && npm install
+  - cd smart-webgui && npm install && cd ..
 script:
-  - cd smart-webgui && npm run lint
-  - cd smart-webgui && npm run test-once 
-  - cd smart-webgui && npm run e2e
+  - cd smart-webgui && npm run lint && cd ..
+  - cd smart-webgui && npm run test-once && cd .. 
+  - cd smart-webgui && npm run e2e && cd ..
