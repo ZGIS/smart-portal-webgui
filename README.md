@@ -1,6 +1,7 @@
 # smart-portal-webgui
 
-## SMART Portal Web Frontend license
+## SMART Portal Web Frontend license [![Build Status](https://travis-ci.org/ZGIS/smart-portal-webgui.svg?branch=master)](https://travis-ci.org/ZGIS/smart-portal-webgui)
+
 
 Copyright (C) 2011-2017 Interfaculty Department of Geoinformatics, University of
 Salzburg (Z_GIS) & Institute of Geological and Nuclear Sciences Limited (GNS Science)
