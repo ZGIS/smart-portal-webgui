@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Result, IGeoFeature} from '../result';
+import {IGeoFeature} from '../result';
 
 
 @Component({

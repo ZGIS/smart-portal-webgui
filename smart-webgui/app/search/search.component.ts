@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {IGeoFeature} from '../result';
 import {ResultService} from '../result.service';
 
-import { DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
-
 import * as moment from 'moment';
 
 
@@ -37,8 +35,8 @@ export class SearchComponent implements OnInit {
   getResults(): void {
     this.resultService.getResults(
           this.search.query,
-          moment(this.search.fromDate).format("YYYY-MM-DD"),
-          moment(this.search.toDate).format("YYYY-MM-DD"),
+          moment(this.search.fromDate).format('YYYY-MM-DD'),
+          moment(this.search.toDate).format('YYYY-MM-DD'),
           this.search.bboxWkt)
       .then(results => this.results = results);
   }
