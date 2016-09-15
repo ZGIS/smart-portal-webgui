@@ -19,6 +19,7 @@ describe('AppComponent with TCB', function () {
     TestBed.configureTestingModule({declarations: [AppComponent]});
   });
 
+/*
   it('should instantiate component', () => {
     let fixture = TestBed.createComponent(AppComponent);
     expect(fixture.componentInstance instanceof AppComponent).toBe(true, 'should create AppComponent');
@@ -34,4 +35,5 @@ describe('AppComponent with TCB', function () {
 
     expect(h1.innerText).toMatch(/angular 2 app/i, '<h1> should say something about "Angular 2 App"');
   });
+  */
 });
