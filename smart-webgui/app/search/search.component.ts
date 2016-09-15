@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {IGeoFeature} from '../result';
+import {IGeoFeature, IGeoFeatureCollection} from '../result';
 import {ResultService} from '../result.service';
-
 import * as moment from 'moment';
 
 
@@ -18,14 +17,18 @@ export class SearchComponent implements OnInit {
     toDate: new Date(),
     bboxWkt: ''
   };
-  results: IGeoFeature[];
+  results: IGeoFeatureCollection;
   selectedResult: IGeoFeature;
 
   constructor(private resultService: ResultService) {
   }
 
   ngOnInit(): void {
-    this.results = [];
+    this.results = {
+      'type': 'FeatureCollection',
+      'crs': {'type': 'name', 'properties': {'name': 'urn:ogc:def:crs:OGC:1.3:CRS84'}},
+      'features': []
+    };
   }
 
   onSelect(result: IGeoFeature): void {
@@ -34,11 +37,16 @@ export class SearchComponent implements OnInit {
 
   getResults(): void {
     this.resultService.getResults(
-          this.search.query,
-          moment(this.search.fromDate).format('YYYY-MM-DD'),
-          moment(this.search.toDate).format('YYYY-MM-DD'),
-          this.search.bboxWkt)
+      this.search.query,
+      moment(this.search.fromDate).format('YYYY-MM-DD'),
+      moment(this.search.toDate).format('YYYY-MM-DD'),
+      this.search.bboxWkt)
       .then(results => this.results = results);
+  }
+
+  bboxChanged($event: any) {
+    console.log(`bbox changed to '${$event}'`);
+    this.search.bboxWkt = $event;
   }
 }
 
