@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+              aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">SAC GROUNDWATER HUB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/home"><span class="fa fa-home"></span></a></li>
+        <li routerLinkActive="active"><a routerLink="/waterbudget">waterbudget</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active"><a routerLink="/search"><i class="fa fa-search"></i></a></li>
+
+        <li dropdown>
+          <a dropdownToggle><span class="fa-stack">
+                              <i class="fa fa-circle fa-stack-2x" style="color:#EEEEEE"></i>
+                              <i class="fa fa-ellipsis-v fa-stack-1x"></i>
+                          </span>
+          </a>
+          <ul class="dropdown-menu" dropdownMenu>
+            <li role="menuitem"><a class="dropdown-item">Login</a></li>
+            <li role="menuitem"><a class="dropdown-item">About</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+</nav>
