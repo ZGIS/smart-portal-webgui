@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { IGeoFeature } from '../result';
 
-let ol = require('openlayers');
+let ol = require('../../../node_modules/openlayers/dist/ol.js');
 
 // declare var ol: any;
 
