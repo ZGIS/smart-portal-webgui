@@ -235,4 +235,4 @@ module.exports = function(options) {
     }
 
   };
-}
+};

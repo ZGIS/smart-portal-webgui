@@ -61,6 +61,7 @@ module.exports = function(env) {
        * See: http://webpack.github.io/docs/configuration.html#output-path
        */
       path: helpers.root('dist'),
+      publicPath: '/',
 
       /**
        * Specifies the name of each output file on disk.
@@ -68,7 +69,7 @@ module.exports = function(env) {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-filename
        */
-      filename: '[name].[chunkhash].bundle.js',
+      filename: '[name].[hash].js',
 
       /**
        * The filename of the SourceMaps for the JavaScript files.
@@ -76,7 +77,7 @@ module.exports = function(env) {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename
        */
-      sourceMapFilename: '[name].[chunkhash].bundle.map',
+      sourceMapFilename: '[name].[hash].chunk.map',
 
       /**
        * The filename of non-entry chunks as relative path
@@ -84,8 +85,27 @@ module.exports = function(env) {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
        */
-      chunkFilename: '[id].[chunkhash].chunk.js'
+      chunkFilename: '[id].[hash].chunk.js'
 
+    },
+
+    /**
+     * Html loader advanced options
+     *
+     * See: https://github.com/webpack/html-loader#advanced-options
+     */
+    // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
+    // minimize: false // workaround for ng2
+    htmlLoader: {
+      minimize: false,
+      removeAttributeQuotes: false,
+      caseSensitive: true,
+      customAttrSurround: [
+        [/#/, /(?:)/],
+        [/\*/, /(?:)/],
+        [/\[?\(?/, /(?:)/]
+      ],
+      customAttrAssign: [/\)?\]?=/]
     },
 
     /**
@@ -156,7 +176,6 @@ module.exports = function(env) {
         // }, // debug
         // comments: true, //debug
 
-
         beautify: false, //prod
         mangle: { screw_ie8 : true, keep_fnames: true }, //prod
         compress: { screw_ie8: true }, //prod
@@ -172,8 +191,8 @@ module.exports = function(env) {
 
       new NormalModuleReplacementPlugin(
         /angular2-hmr/,
-        helpers.root('config/modules/angular2-hmr-prod.js')
-      ),
+        helpers.root('config/angular2-hmr-prod.js')
+      )
 
       /**
        * Plugin: IgnorePlugin
@@ -211,24 +230,6 @@ module.exports = function(env) {
       resourcePath: 'src'
     },
 
-    /**
-     * Html loader advanced options
-     *
-     * See: https://github.com/webpack/html-loader#advanced-options
-     */
-    // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
-    htmlLoader: {
-      minimize: true,
-      removeAttributeQuotes: false,
-      caseSensitive: true,
-      customAttrSurround: [
-        [/#/, /(?:)/],
-        [/\*/, /(?:)/],
-        [/\[?\(?/, /(?:)/]
-      ],
-      customAttrAssign: [/\)?\]?=/]
-    },
-
     /*
      * Include polyfills or mocks for various node stuff
      * Description: Node configuration
@@ -245,4 +246,4 @@ module.exports = function(env) {
     }
 
   });
-}
+};

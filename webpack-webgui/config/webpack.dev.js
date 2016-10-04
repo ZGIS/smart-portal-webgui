@@ -148,16 +148,19 @@ module.exports = function(options) {
      * which reacts to those events.
      *
      * See: https://webpack.github.io/docs/webpack-dev-server.html
+     *
+     * outputPath: helpers.root('dist')
+     *
      */
     devServer: {
       port: METADATA.port,
       host: METADATA.host,
       historyApiFallback: true,
+      stats: 'minimal',
       watchOptions: {
         aggregateTimeout: 300,
         poll: 1000
-      },
-      outputPath: helpers.root('dist')
+      }
     },
 
     /*
@@ -176,4 +179,4 @@ module.exports = function(options) {
     }
 
   });
-}
+};

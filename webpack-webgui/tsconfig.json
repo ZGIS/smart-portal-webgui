@@ -27,10 +27,8 @@
       "selenium-webdriver",
       "source-map",
       "uglify-js",
-      "webpack"
-
-      // "core-js"
-      // "angular-protractor"
+      "webpack",
+      "core-js"
     ]
   },
   "exclude": [
