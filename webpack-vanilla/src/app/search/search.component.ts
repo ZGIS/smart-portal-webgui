@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {IGeoFeature, IGeoFeatureCollection} from '../result';
-import {ResultService} from '../result.service';
+import { Component, OnInit } from '@angular/core';
+import { IGeoFeature, IGeoFeatureCollection } from '../result';
+import { ResultService } from '../result.service';
 import * as moment from 'moment';
 
 

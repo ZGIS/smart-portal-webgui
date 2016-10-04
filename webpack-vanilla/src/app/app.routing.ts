@@ -1,8 +1,8 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import {DashboardHomeComponent, DashboardWaterbudgetComponent} from "./dashboards";
-import {SearchComponent} from './search';
+import { DashboardHomeComponent, DashboardWaterbudgetComponent } from './dashboards';
+import { SearchComponent } from './search';
 
 const appRoutes: Routes = [
   {

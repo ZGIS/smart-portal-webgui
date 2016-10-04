@@ -13,7 +13,8 @@ import 'rxjs';
 
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
-import 'bootstrap';
+// import 'jquery';
+// import 'bootstrap';
 import 'ng2-bootstrap';
 import 'moment';
 

@@ -1,4 +1,4 @@
-import {Result} from './result';
+import { Result } from './result';
 
 export const MOCK_RESULTS: Result[] = [
   {title: 'title1'},

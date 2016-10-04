@@ -15,9 +15,18 @@
   "scripts": {
     "start": "webpack-dev-server --inline --progress --port 8080",
     "test": "karma start",
+    "test-once": "karma start karma.conf.js --single-run",
+    "e2e:live": "npm run e2e -- --elementExplorer",
+    "e2e": "npm run protractor",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
     "postinstall": "typings install",
-    "lint": "tslint ./src/app/**/*.ts -t verbose"
+    "typedocs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./src/",
+    "tslint": "tslint ./src/app/**/*.ts -t verbose",
+    "webpack-validate:dev" : "webpack-validator config/webpack.dev.js",
+    "webpack-validate:test" : "webpack-validator config/webpack.test.js",
+    "webpack-validate:prod" : "webpack-validator config/webpack.prod.js",
+    "webdriver:start": "npm run webdriver-manager start",
+    "webdriver:update": "npm run webdriver-manager update"
   },
   "dependencies": {
     "@angular/common": "2.0.0",
@@ -86,6 +95,7 @@
     "source-map-loader": "^0.1.5",
     "string-replace-loader": "1.0.5",
     "style-loader": "^0.13.1",
+    "ts-helpers": "1.1.1",
     "tslint": "3.15.1",
     "tslint-loader": "^2.1.3",
     "typedoc": "^0.4.5",
