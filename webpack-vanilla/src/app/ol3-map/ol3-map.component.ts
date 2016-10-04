@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { IGeoFeature } from '../result';
 
-declare var ol: any;
+let ol = require('openlayers');
+
+// declare var ol: any;
 
 @Component({
   selector: 'sac-gwh-ol3-map',
@@ -15,6 +17,7 @@ export class Ol3MapComponent implements OnInit {
 
   // public members need to be declared before private ones -> TSLINT (member-ordering)
   vectorSource = new ol.source.Vector({});
+
 
   @Output() onBboxChange = new EventEmitter<string>();
 
