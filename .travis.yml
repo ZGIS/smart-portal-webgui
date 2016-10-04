@@ -19,7 +19,7 @@ before_script:
 install:
   - cd webpack-vanilla && npm install && cd ..
 script:
-  - cd webpack-vanilla && npm run lint && cd ..
+  - cd webpack-vanilla && npm run tslint && cd ..
   - cd webpack-vanilla && npm run test && cd ..
   - cd webpack-vanilla && npm run build && cd ..
   # - cd webpack-vanilla && npm run test-once && cd ..
