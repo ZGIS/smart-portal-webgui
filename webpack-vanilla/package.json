@@ -29,11 +29,13 @@
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/router": "3.0.0",
     "@angular/upgrade": "2.0.0",
+    "angular-in-memory-web-api": "0.1.1",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "font-awesome": "^4.6.3",
     "ie-shim": "^0.1.0",
     "ng2-bootstrap": "~1.1.5",
+    "moment": "^2.15.0",
     "openlayers": "^3.18.2",
     "reflect-metadata": "^0.1.3",
     "rxjs": "5.0.0-beta.12",
@@ -49,7 +51,6 @@
     "@types/webpack": "^1.12.34",
     "@types/core-js": "^0.9.7",
     "angular2-template-loader": "^0.5.0",
-    "angular-in-memory-web-api": "0.1.1",
     "awesome-typescript-loader": "^2.2.4",
     "assets-webpack-plugin": "^3.4.0",
     "canonical-path": "0.0.2",
@@ -94,5 +95,16 @@
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.14.0",
     "webpack-validator": "^2.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZGIS/smart-portal-webgui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ZGIS/smart-portal-webgui/issues"
+  },
+  "engines": {
+    "node": ">= 4.2.1",
+    "npm": ">= 3"
   }
 }

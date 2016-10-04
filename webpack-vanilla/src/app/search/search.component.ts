@@ -6,8 +6,8 @@ import * as moment from 'moment';
 
 @Component({
   selector: 'sac-gwh-home',
-  templateUrl: 'app/search/search.component.html',
-  styleUrls: ['app/search/search.component.css']
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
 })
 
 export class SearchComponent implements OnInit {

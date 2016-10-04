@@ -4,8 +4,8 @@ import {Component} from '@angular/core';
 @Component({
 //  directives: [DROPDOWN_DIRECTIVES],
   selector: 'sac-gwh-navigation',
-  templateUrl: 'app/navigation/navigation.component.html'
-//  styleUrls: [ 'app/navigation/navigation.component.css' ]
+  templateUrl: './navigation.component.html'
+//  styleUrls: [ './navigation.component.css' ]
 })
 
 export class NavigationComponent {

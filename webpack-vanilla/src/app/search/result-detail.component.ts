@@ -4,7 +4,7 @@ import {IGeoFeature} from '../result';
 
 @Component({
   selector: 'my-result-detail',
-  templateUrl: 'app/search/result-detail.component.html'
+  templateUrl: './result-detail.component.html'
 })
 
 export class ResultDetailComponent {
