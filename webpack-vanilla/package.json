@@ -7,7 +7,7 @@
     "webpack",
     "typescript"
   ],
-  "author": ["Steffen  <grmpfhmbl@googlemail.com>",
+  "contributors": ["Steffen  <grmpfhmbl@googlemail.com>",
     "Alex  <allixender@googlemail.com>"
   ],
   "homepage": "https://github.com/ZGIS/smart-portal-webgui",

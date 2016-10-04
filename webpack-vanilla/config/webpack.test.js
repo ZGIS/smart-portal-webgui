@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('./helpers');
 
 module.exports = {
@@ -22,15 +24,17 @@ module.exports = {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
                 loader: 'null'
             },
+            /*
             {
                 test: /\.css$/,
                 exclude: helpers.root('src', 'app'),
                 loader: 'null'
             },
+            */
             {
-                test: /\.css$/,
-                include: helpers.root('src', 'app'),
-                loader: 'raw'
+                test: /.css$/,
+                exclude: helpers.root('src', 'app'),
+                loaders:[ExtractTextPlugin.extract('style', 'css-loader'), 'to-string', 'css']
             }
         ]
     }
