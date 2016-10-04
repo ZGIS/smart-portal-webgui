@@ -10,11 +10,17 @@ env:
     - DBUS_SESSION_BUS_ADDRESS=/dev/null
     - DISPLAY=:99.0
     - CHROME_BIN=chromium-browser
+# before_install:
 before_script:
   - sh -e /etc/init.d/xvfb start
+  - sleep 3
+  # Updating NPM to relevant version >= 3 on Node.JS LTS
+  # - npm i -g npm@^3
 install:
-  - cd smart-webgui && npm install && cd ..
+  - npm install
 script:
-  - cd smart-webgui && npm run lint && cd ..
-  - cd smart-webgui && npm run test-once && cd .. 
-  - cd smart-webgui && npm run e2e && cd ..
+  - npm run lint
+  - npm run test
+  - npm run build
+  # - npm run test-once
+  # - npm run e2e
