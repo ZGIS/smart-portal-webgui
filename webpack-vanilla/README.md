@@ -20,3 +20,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
+## testing
+
+`unset QT_QPA_PLATFORM`on Arch Linux, otherwise PhantomJS doesn't start properly / wrong QT libs something ..

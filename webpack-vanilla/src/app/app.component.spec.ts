@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { NavigationComponent } from  './navigation/navigation.component';
 
 // import { By }             from '@angular/platform-browser';
 
@@ -14,11 +16,28 @@ describe('Smoke test', () => {
 
 describe('App', () => {
     beforeEach(() => {
-        TestBed.configureTestingModule({ declarations: [AppComponent]});
+        TestBed.configureTestingModule({
+          declarations: [
+            AppComponent, NavigationComponent
+          ],
+          providers : [
+            // ...
+          ],
+          imports : [
+            RouterTestingModule
+            /*RouterTestingModule.withRoutes([
+              {
+                path: '/home',
+                component: NavigationComponent
+              }
+            ]),*/
+          ]
+        }).compileComponents();
     });
 
     it ('should work', () => {
         let fixture = TestBed.createComponent(AppComponent);
+
         expect(fixture.componentInstance instanceof AppComponent)
             .toBe(true, 'should create AppComponent');
     });
@@ -26,7 +45,17 @@ describe('App', () => {
 
 describe('AppComponent with TCB', function () {
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [AppComponent]});
+    TestBed.configureTestingModule({
+      declarations: [
+        AppComponent
+      ],
+      providers : [
+        // ...
+      ],
+      imports : [
+        RouterTestingModule
+      ]
+    });
   });
 
   /*
