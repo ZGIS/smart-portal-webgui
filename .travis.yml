@@ -20,7 +20,8 @@ install:
   - cd webpack-vanilla && npm install && cd ..
 script:
   - cd webpack-vanilla && npm run tslint && cd ..
+  - cd webpack-vanilla && npm run webpack-validate:dev && cd ..
+  - cd webpack-vanilla && npm run webpack-validate:test && cd ..
   - cd webpack-vanilla && npm run test && cd ..
+  - cd webpack-vanilla && npm run webdriver:update && cd ..
   - cd webpack-vanilla && npm run build && cd ..
-  # - cd webpack-vanilla && npm run test-once && cd ..
-  # - cd webpack-vanilla && npm run e2e && cd ..

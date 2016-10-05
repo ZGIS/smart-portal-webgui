@@ -20,7 +20,8 @@ install:
   - npm install
 script:
   - npm run tslint
+  - npm run webpack-validate:dev
+  - npm run webpack-validate:test
   - npm run test
+  - npm run webdriver:update
   - npm run build
-  # - npm run test-once
-  # - npm run e2e

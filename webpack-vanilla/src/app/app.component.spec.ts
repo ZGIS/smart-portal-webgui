@@ -14,7 +14,7 @@ describe('Smoke test', () => {
   });
 });
 
-describe('App', () => {
+describe('App Component', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
           declarations: [
