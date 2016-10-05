@@ -24,4 +24,4 @@ script:
   - cd webpack-vanilla && npm run webpack-validate:test && cd ..
   - cd webpack-vanilla && npm run test && cd ..
   - cd webpack-vanilla && npm run webdriver:update && cd ..
-  - cd webpack-vanilla && npm run build && cd ..
+  - cd webpack-vanilla && npm run e2e:ci && cd ..

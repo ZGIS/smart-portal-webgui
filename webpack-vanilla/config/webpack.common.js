@@ -88,10 +88,10 @@ module.exports = {
        *
        * See: https://github.com/webpack/json-loader
 
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
+       {
+       test: /\.json$/,
+       loader: 'json-loader'
+       },
        */
 
       /* Raw loader support for *.html for component templates (the index.html is a special thing)
@@ -145,6 +145,8 @@ module.exports = {
         exclude: helpers.root('src', 'app'),
         loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
       },
+
+      // didn't extract background images from css?
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
@@ -158,22 +160,22 @@ module.exports = {
        * Returns file content as string
        *
 
-      {
-        test: /\.css$/,
-        include: helpers.root('src', 'app'),
-        loaders: ['to-string-loader', 'css-loader']
-      },
+       {
+       test: /\.css$/,
+       include: helpers.root('src', 'app'),
+       loaders: ['to-string-loader', 'css-loader']
+       },
        */
 
       // other stuff I found and I am not quite sure how it works
 
-      /*
-       {
-       test: /\.css$/,
-       include: helpers.root('src', 'app'),
-       loader: "style!css"
-       },
-       */
+
+      {
+        test: /\.css$/,
+        include: helpers.root('src', 'app'),
+        loader: "style!css"
+      },
+
 
       /*
        {

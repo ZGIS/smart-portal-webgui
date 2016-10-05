@@ -14,6 +14,14 @@ import 'rxjs';
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
 
+import '../node_modules/openlayers/dist/ol.css';
+
+/*
+ * is picked up by webpack css loader, needs to resolve glyphicons,
+ * so I'll copy them into public folder too
+ */
+import '../public/css/theme.min.css';
+
 import '../node_modules/bootstrap/dist/css/bootstrap-theme.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 

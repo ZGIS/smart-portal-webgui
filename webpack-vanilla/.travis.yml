@@ -24,4 +24,4 @@ script:
   - npm run webpack-validate:test
   - npm run test
   - npm run webdriver:update
-  - npm run build
+  - npm run e2e:ci

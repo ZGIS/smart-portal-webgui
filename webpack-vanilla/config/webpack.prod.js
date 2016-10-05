@@ -41,7 +41,6 @@ module.exports = webpackMerge(commonConfig, {
     /**
      * ExtractTextPlugin - extracts embedded css as external files, adding cache-busting hash to the filename.
      *
-     * I would love if that would actually work
      */
     new ExtractTextPlugin('[name].[hash].css'),
 
