@@ -13,11 +13,9 @@ import 'rxjs';
 
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
-// import 'jquery';
-// import 'bootstrap';
-// import '../node_modules/openlayers/dist/ol.css';
-// import '../node_modules/bootstrap/dist/css/bootstrap-theme.min.css';
-// import '../node_modules/font-awesome/css/font-awesome.min.css';
+
+import '../node_modules/bootstrap/dist/css/bootstrap-theme.min.css';
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 import 'ng2-bootstrap';
 import 'moment';

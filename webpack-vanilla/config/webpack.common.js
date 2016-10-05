@@ -221,10 +221,11 @@ module.exports = {
       template: 'src/index.html',
       favicon: 'public/images/favicon.png',
       minify: false,
-      title: 'SAC Groundwater Hub',
+      // seems not to be picked up title: 'SAC Groundwater Hub',
       // chunksSortMode: 'dependency'
     }),
 
+    // only in dev or prod mode, not in test
     // new ExtractTextPlugin("[name].[hash].css")
   ]
 };
