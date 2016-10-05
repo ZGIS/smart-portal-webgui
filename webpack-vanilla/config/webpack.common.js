@@ -87,60 +87,85 @@ module.exports = {
        * Json loader support for *.json files.
        *
        * See: https://github.com/webpack/json-loader
-       */
+
       {
         test: /\.json$/,
         loader: 'json-loader'
       },
+       */
 
-      /* Raw loader support for *.html
+      /* Raw loader support for *.html for component templates (the index.html is a special thing)
        * Returns file content as string
        *
        * See: https://github.com/webpack/html-loader
        */
       {
         test: /\.html$/,
-        loader: 'html',
+        loader: 'html'
       },
 
-      /* File loader for supporting images, for example, in CSS files.
+      /* File loader for supporting images, for example referenced in CSS and html component files.
+       * Images and fonts are bundled and hashed.
        */
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
         loader: 'file?name=assets/[name].[hash].[ext]'
-        // loader: 'file'
       },
+      // workaround to resolve font files from font-awesome node_module referencing
       {
         test: /\.(svg|woff|woff2|ttf|eot)\?v=4\.6\.3$/,
         loader: 'file?name=assets/[name].[hash].[ext]'
-        // loader: 'file'
       },
 
       /*
+       * From here now CSS maniac mansion:
+       *
+       * - one problem is that webpack/angular builder expects styles as arrays
+       * - another problem are global styles (like bootstrap theme etc and ol
+       *   that we want almost everywhere
+       *
+       */
+
+      /*
+       * from angular.io webpack example intro
+       * The first pattern matches application-wide styles,
+       * The first pattern excludes .css files within the /src/app directories where our
+       * component-scoped styles sit. It includes only .css files located at or above /src;
+       * these are the application-wide styles. The ExtractTextPlugin (described below)
+       * applies the style and css loaders to these files.
+       *
+       * the second handles component-scoped styles (the ones specified in a component's
+       * styleUrls metadata property).
+       * The second pattern filters for component-scoped styles and loads them as strings via the
+       * raw loader,        * which is what Angular expects to do with styles specified in a
+       * styleUrls metadata property.
+       */
+      {
+        test: /\.css$/,
+        exclude: helpers.root('src', 'app'),
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
+      },
+      {
+        test: /\.css$/,
+        include: helpers.root('src', 'app'),
+        loader: 'raw'
+      },
+
+      /*
+       * from AngualrClass various snippets
+       *
        * to string and css loader support for *.css files
        * Returns file content as string
        *
-       */
+
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         loaders: ['to-string-loader', 'css-loader']
       },
-      /*
-       {
-       test: /\.css$/,
-       exclude: helpers.root('src', 'app'),
-       loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
-       },
        */
 
-      /*
-       {
-       test: /\.css$/,
-       include: helpers.root('src', 'app'),
-       loader: 'raw'
-       },
-       */
+      // other stuff I found and I am not quite sure how it works
 
       /*
        {
@@ -150,11 +175,13 @@ module.exports = {
        },
        */
 
+      /*
        {
        test: /.css$/,
        exclude: helpers.root('src', 'app'),
        loaders:[ExtractTextPlugin.extract('style', 'css-loader'), 'to-string', 'css']
        }
+       */
     ],
 
     postLoaders: []
@@ -166,6 +193,10 @@ module.exports = {
      * Plugin: CommonsChunkPlugin
      * Description: Shares common code between the pages.
      * It identifies common modules and put them into a commons chunk.
+     * We want the app.js bundle to contain only app code and the vendor.js bundle to contain only
+     * the vendor code.
+     * Our application code imports vendor code. Webpack is not smart enough to keep the vendor
+     * code out of the app.js bundle. We rely on the CommonsChunkPlugin to do that job.
      *
      * See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
      * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
@@ -180,16 +211,20 @@ module.exports = {
      * This is especially useful for webpack bundles that include a hash in the filename
      * which changes every compilation.
      *
+     * Webpack generates a number of js and css files. We could insert them into our
+     * index.html manually. That would be tedious and error-prone.
+     * Webpack can inject those scripts and links for us with the HtmlWebpackPlugin.
+     *
      * See: https://github.com/ampedandwired/html-webpack-plugin
      */
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      favicon: 'src/public/images/favicon.png',
+      favicon: 'public/images/favicon.png',
       minify: false,
       title: 'SAC Groundwater Hub',
       // chunksSortMode: 'dependency'
     }),
 
-    new ExtractTextPlugin("[name].[hash].css")
+    // new ExtractTextPlugin("[name].[hash].css")
   ]
 };

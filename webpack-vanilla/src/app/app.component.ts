@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import '../..7public/css/theme.min.css';
+// import '../../public/css/theme.min.css';
 
 @Component({
   selector: 'sac-gwh-app',

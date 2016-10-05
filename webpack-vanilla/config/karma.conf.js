@@ -2,6 +2,7 @@ var webpackConfig = require('./webpack.test');
 var spec = require('jasmine-spec-reporter');
 
 module.exports = function (config) {
+
   var _config = {
 
     // base path that will be used to resolve all patterns (e.g. files, exclude)
@@ -23,7 +24,7 @@ module.exports = function (config) {
      */
 
     // list of files to exclude
-    exclude: [ ],
+    exclude: [],
 
     /*
      * list of files / patterns to load in the browser
@@ -72,7 +73,7 @@ module.exports = function (config) {
      *
      * available reporters: https://npmjs.org/browse/keyword/karma-reporter
      */
-    reporters: ['progress', 'spec', 'coverage', 'remap-coverage' ],
+    reporters: ['progress', 'spec', 'coverage', 'remap-coverage'],
 
     // web server port
     port: 9876,
@@ -112,8 +113,8 @@ module.exports = function (config) {
     singleRun: false
   };
 
-  if (process.env.TRAVIS){
-    configuration.browsers = [
+  if (process.env.TRAVIS) {
+    _config.browsers = [
       'ChromeTravisCi',
       'PhantomJS'
     ];
