@@ -17,11 +17,11 @@ before_script:
   # Updating NPM to relevant version >= 3 on Node.JS LTS
   # - npm i -g npm@^3
 install:
-  - cd webpack-vanilla && npm install && cd ..
+  - npm install
 script:
-  - cd webpack-vanilla && npm run tslint && cd ..
-  - cd webpack-vanilla && npm run webpack-validate:dev && cd ..
-  - cd webpack-vanilla && npm run webpack-validate:test && cd ..
-  - cd webpack-vanilla && npm run test && cd ..
-  - cd webpack-vanilla && npm run webdriver:update && cd ..
-  - cd webpack-vanilla && npm run e2e:ci && cd ..
+  - npm run tslint
+  - npm run webpack-validate:dev
+  - npm run webpack-validate:test
+  - npm run test
+  - npm run webdriver:update
+  - npm run e2e:ci
