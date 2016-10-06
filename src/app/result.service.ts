@@ -8,7 +8,16 @@ import { IGeoFeatureCollection } from './result';
 
 @Injectable()
 export class ResultService {
-  private url = 'http://localhost:9000/query';
+
+  /**
+   * TODO we need to inject this, maybe even based on prod/test/dev env like webpack does support
+   *
+   * The Service URL
+   *
+   * @type {string}
+   */
+  private url = 'http://dev.smart-project.info/cswi-api/query';
+  // private url = 'http://localhost:9000/query';
 
   constructor(private http: Http) {}
 
