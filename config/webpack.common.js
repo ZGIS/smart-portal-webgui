@@ -140,21 +140,32 @@ module.exports = {
        * raw loader,        * which is what Angular expects to do with styles specified in a
        * styleUrls metadata property.
        */
+
+      // yusss for application wide css
       {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
         loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
       },
 
-      // didn't extract background images from css?
+      // yusssssss for component/templates extract
+      {
+        test: /\.css$/,
+        include: helpers.root('src', 'app'),
+        loaders: ['to-string-loader', 'css-loader']
+      },
+
+      /* from angular.io webpack example,
+       * didn't extract background images from component css
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         loader: 'raw'
       },
+      */
 
       /*
-       * from AngualrClass various snippets
+       * from AngualarClass various snippets
        *
        * to string and css loader support for *.css files
        * Returns file content as string
@@ -167,17 +178,17 @@ module.exports = {
        },
        */
 
-      // other stuff I found and I am not quite sure how it works
+      // other stuff I found and I am not quite sure how or if it works
 
-
+      /*
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         loader: "style!css"
       },
+       */
 
-
-      /*
+       /*
        {
        test: /.css$/,
        exclude: helpers.root('src', 'app'),
