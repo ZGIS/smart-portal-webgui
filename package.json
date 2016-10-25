@@ -22,7 +22,7 @@
     "e2e:watch": "npm run e2e -- --elementExplorer",
     "e2e:ci": "npm run build && concurrently --kill-others --success first \"http-server -p 8080 ./dist\" \"npm run e2e\"",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
-    "gh-pages-push": "gh-pages -d dist",
+    "gh-pages-push": "gh-pages -d dist -r git@github.com:ZGIS/smart-portal-webgui.git",
     "tslint": "tslint ./src/app/**/*.ts -t verbose",
     "typedoc": "typedoc",
     "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./src/",

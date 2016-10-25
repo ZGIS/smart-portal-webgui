@@ -27,6 +27,7 @@ script:
 - npm run e2e:ci
 after_success:
 - chmod 600 ghpages_ecdsa_sacgui && eval `ssh-agent -s` && ssh-add ghpages_ecdsa_sacgui
+- git remote -v
 - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run build && npm run gh-pages-push
 notifications:
   email:
