@@ -120,11 +120,11 @@
   },
   "gh-pages-deploy": {
     "staticpath": "dist",
-    "noprompt": true
+    "noprompt": false
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZGIS/smart-portal-webgui.git"
+    "url": "git@github.com:ZGIS/smart-portal-webgui.git"
   },
   "bugs": {
     "url": "https://github.com/ZGIS/smart-portal-webgui/issues"
