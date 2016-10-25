@@ -45,7 +45,7 @@
     "angular-in-memory-web-api": "0.1.1",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
-    "font-awesome": "^4.6.3",
+    "font-awesome": "~4.6.3",
     "ie-shim": "^0.1.0",
     "ng2-bootstrap": "1.1.5",
     "moment": "^2.15.0",
