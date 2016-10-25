@@ -118,6 +118,10 @@
     "webpack-merge": "^0.14.0",
     "webpack-validator": "^2.1.0"
   },
+  "gh-pages-deploy": {
+    "staticpath": "dist",
+    "noprompt": true
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ZGIS/smart-portal-webgui.git"
