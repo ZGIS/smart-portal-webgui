@@ -24,7 +24,8 @@ script:
 - npm run webpack-validate:test
 - npm run test
 - npm run webdriver:update
-- npm run e2e:ci
+- npm run build
+  # - npm run e2e:ci
 after_success:
 - chmod 600 ghpages_ecdsa_sacgui && eval `ssh-agent -s` && ssh-add ghpages_ecdsa_sacgui
 - git remote -v
