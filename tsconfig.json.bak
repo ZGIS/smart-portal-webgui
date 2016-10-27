@@ -11,7 +11,17 @@
     "suppressImplicitAnyIndexErrors": true,
     "baseUrl": "./src",
     "paths": {
-    }
+    },
+    "types": [
+      "jasmine",
+      "node",
+      "protractor",
+      "selenium-webdriver",
+      "source-map",
+      "uglify-js",
+      "webpack",
+      "core-js"
+    ]
   },
   "exclude": [
     "node_modules",
@@ -20,7 +30,16 @@
   ],
   "filesGlob": [
     "**/*.ts",
+    "**/*.tsx",
     "!node_modules/**"
+  ],
+  "files": [
+    "globals.ts",
+    "linter.ts",
+    "main/atom/atomUtils.ts",
+    "main/atom/autoCompleteProvider.ts",
+    "worker/messages.ts",
+    "worker/parent.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
