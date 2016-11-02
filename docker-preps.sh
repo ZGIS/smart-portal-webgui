@@ -13,4 +13,4 @@ ls -lh config/docker/
 
 cd config/docker/ && test -f Dockerfile && tar -cvzf ${APPNAME}-${TRAVIS_BUILD_NUMBER}-docker.tgz *
 
-ls -lh . config/docker/
+ls -lh
