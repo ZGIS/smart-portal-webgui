@@ -16,8 +16,8 @@ export class ResultService {
    *
    * @type {string}
    */
-  private url = 'http://dev.smart-project.info/cswi-api/query';
-  // private url = 'http://localhost:9000/query';
+  //private url = 'http://dev.smart-project.info/cswi-api/query';
+  private url = 'http://localhost:9000/query';
 
   constructor(private http: Http) {}
 

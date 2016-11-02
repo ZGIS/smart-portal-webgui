@@ -17,7 +17,7 @@ let ol = require('../../../node_modules/openlayers/dist/ol.js');
 export class Ol3MapComponent implements OnInit {
 
   // public members need to be declared before private ones -> TSLINT (member-ordering)
-  vectorSource = new ol.source.Vector({});
+  vectorSource = new ol.source.Vector({"wrapX": false});
 
 
   @Output() onBboxChange = new EventEmitter<string>();
@@ -88,13 +88,6 @@ export class Ol3MapComponent implements OnInit {
       if (Math.abs(temp[0] - temp[2]) >= 360) {
         temp[0] = -180;
         temp[2] = 180;
-      } else {
-        if (temp[0] < -180 || temp[0] > 180) {
-          temp[0] = /*-1 * */Math.sign(temp[0]) * 180; // + temp[0] % 180;
-        }
-        if (temp[2] < -180 || temp[2] > 180) {
-          temp[2] = /*-1 * */Math.sign(temp[2]) * 180; // + temp[2] % 180;
-        }
       }
 
       if (temp[1] < -90 || temp[1] > 90) {
