@@ -29,8 +29,8 @@ script:
 after_success:
 - chmod 600 ghpages_ecdsa_sacgui && eval `ssh-agent -s` && ssh-add ghpages_ecdsa_sacgui
 - git remote -v
-- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run
-  build && npm run gh-pages-push
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run build && sh -c $TRAVIS_BUILD_DIR/docker-preps.sh
+
 deploy:
   provider: gcs
   access_key_id: GOOGZDYY4PCU7QXHJ5GS
