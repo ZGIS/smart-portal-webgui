@@ -17,7 +17,7 @@ let ol = require('../../../node_modules/openlayers/dist/ol.js');
 export class Ol3MapComponent implements OnInit {
 
   // public members need to be declared before private ones -> TSLINT (member-ordering)
-  vectorSource = new ol.source.Vector({"wrapX": false});
+  vectorSource = new ol.source.Vector({'wrapX': false});
 
 
   @Output() onBboxChange = new EventEmitter<string>();
