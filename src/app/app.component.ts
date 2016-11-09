@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from './account/account.service';
 
 @Component({
   selector: 'sac-gwh-app',
@@ -8,4 +9,7 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'Groundwater Hub';
+
+  constructor(private accountService: AccountService) {
+  }
 }

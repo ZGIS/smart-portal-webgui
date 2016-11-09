@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from '../account/account.service';
 // import {DropdownModule} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
@@ -9,6 +10,11 @@ import { Component } from '@angular/core';
 })
 
 export class NavigationComponent {
+
   // FIXME make this an enum or so
   currentNav: string;
+
+  constructor(private accountService: AccountService) {
+  };
+
 }

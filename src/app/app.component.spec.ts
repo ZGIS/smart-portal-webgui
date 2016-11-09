@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from  './navigation/navigation.component';
+import { AccountService } from './account/account.service';
 
 // import { By }             from '@angular/platform-browser';
 
@@ -21,7 +22,7 @@ describe('App Component', () => {
             AppComponent, NavigationComponent
           ],
           providers : [
-            // ...
+            AccountService
           ],
           imports : [
             RouterTestingModule
@@ -50,7 +51,7 @@ describe('AppComponent with TCB', function () {
         AppComponent
       ],
       providers : [
-        // ...
+        AccountService
       ],
       imports : [
         RouterTestingModule

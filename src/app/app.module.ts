@@ -10,6 +10,9 @@ import { routing } from './app.routing';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardHomeComponent, DashboardWaterbudgetComponent } from './dashboards';
 import { Ol3MapComponent } from './ol3-map/ol3-map.component';
+import { LoginComponent } from './account/login.component';
+import { RegisterComponent } from './account/register.component';
+import { AccountService } from './account/account.service';
 
 @NgModule({
   imports: [BrowserModule,
@@ -23,8 +26,17 @@ import { Ol3MapComponent } from './ol3-map/ol3-map.component';
     DashboardWaterbudgetComponent,
     NavigationComponent,
     SearchComponent,
-    Ol3MapComponent],
-  providers: [ResultService],
+    Ol3MapComponent,
+    LoginComponent,
+    RegisterComponent],
+  providers: [
+    // 'http://localhost:9000/query'
+    { provide: 'cswiApi', useValue: 'http://dev.smart-project.info/cswi-api/query' },
+    // 'http://localhost:9000/api/v1'
+    { provide: 'portalApi', useValue: 'http://dev.smart-project.info/api/v1' },
+    ResultService,
+    AccountService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

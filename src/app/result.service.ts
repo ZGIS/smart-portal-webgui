@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
@@ -12,14 +12,14 @@ export class ResultService {
   /**
    * TODO we need to inject this, maybe even based on prod/test/dev env like webpack does support
    *
-   * The Service URL
+   * The Service URL inject from app.module as central inject of app constants
    *
    * @type {string}
    */
-  //private url = 'http://dev.smart-project.info/cswi-api/query';
-  private url = 'http://localhost:9000/query';
-
-  constructor(private http: Http) {}
+  constructor(
+    @Inject('cswiApi') private cswiApi: string,
+    private http: Http
+  ) {}
 
   /**
    * Queries the csw-ingester
@@ -39,7 +39,7 @@ export class ResultService {
     params.set('toDate', toDate);
     params.set('bbox', bboxWkt);
 
-    return this.http.get(this.url, {search: params})
+    return this.http.get(this.cswiApi, {search: params})
       .toPromise()
       /* FIXME not sure if I'm happy with this so far
       http://stackoverflow.com/questions/22875636/how-do-i-cast-a-json-object-to-a-typescript-class
