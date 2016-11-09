@@ -10,8 +10,8 @@ import { AccountService } from './account.service';
 export class LoginComponent {
   @Output() flash = new EventEmitter();
 
-  loginSubmit(email: string, password: string) {
-    console.log('login: ' + email + ' ' + password);
+  onSubmit(formRef: any) {
+    console.log(formRef);
   };
 
   gconnectLogin() {

@@ -3,23 +3,34 @@
     <div class="panel panel-default">
       <div class="panel-heading">Sign up</div>
       <div class="panel-body">
-        <form class="form-signup">
+        <form class="form-signup" #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
           <label for="email" class="sr-only">Email address</label>
-          <input #emailRef [(ngModel)]="email" type="email" id="email" name="email" class="form-control" placeholder="email address" required autofocus>
+          <input #emailRef [(ngModel)]="email" type="email" id="email" name="email" class="form-control"
+                 placeholder="email address" required autofocus>
+          <div *ngIf="emailRef.errors?.required">This field is required</div>
 
           <label for="username" class="sr-only">Username</label>
-          <input #usernameRef [(ngModel)]="username" type="text" id="username" name="username" class="form-control" placeholder="username" required>
+          <input #usernameRef [(ngModel)]="username" type="text" id="username" name="username" class="form-control"
+                 placeholder="username" required>
+          <div *ngIf="usernameRef.errors?.required">This field is required</div>
 
           <label for="firstname" class="sr-only">First name</label>
-          <input #firstnameRef [(ngModel)]="firstname" type="text" id="firstname" name="firstname" class="form-control" placeholder="firstname" required>
+          <input #firstnameRef [(ngModel)]="firstname" type="text" id="firstname" name="firstname" class="form-control"
+                 placeholder="firstname" required>
+          <div *ngIf="firstnameRef.errors?.required">This field is required</div>
 
           <label for="lastname" class="sr-only">Last name</label>
-          <input #lastnameRef [(ngModel)]="lastname" type="text" id="lastname" name="lastname" class="form-control" placeholder="lastname" required>
+          <input #lastnameRef [(ngModel)]="lastname" type="text" id="lastname" name="lastname" class="form-control"
+                 placeholder="lastname" required>
+          <div *ngIf="lastnameRef.errors?.required">This field is required</div>
 
           <label for="password" class="sr-only">Password</label>
-          <input #passwordRef [(ngModel)]="password" type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+          <input #passwordRef [(ngModel)]="password" type="password" id="password" name="password" class="form-control"
+                 placeholder="Password" required minlength="8">
+          <div *ngIf="passwordRef.errors?.required">This field is required</div>
+          <div *ngIf="passwordRef.minlength?.required">Password length should be 8 or more</div>
 
-          <button class="btn btn-info btn-block" (click)="submit()" type="submit">Submit registration</button>
+          <button class="btn btn-info btn-block" type="submit">Submit registration</button>
 
         </form>
 

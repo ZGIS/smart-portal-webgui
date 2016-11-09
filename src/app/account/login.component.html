@@ -3,15 +3,16 @@
     <div class="panel panel-default">
       <div class="panel-heading">Please sign in</div>
       <div class="panel-body">
-        <form class="form-signin">
-          <label></label>
+        <form class="form-signin" #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+          <fieldset ngModelGroup="login">
+          <label *ngIf="flash?.message">{{ flash.message }}</label>
           <label for="inputEmail" class="sr-only">Email address</label>
-          <input #email type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+          <input ngModel name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
 
           <label for="inputPassword" class="sr-only">Password</label>
-          <input #password type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
-          <button class="btn btn-primary btn-block" type="submit" (click)="loginSubmit(email.value, password.value)">Sign in</button>
+          <input ngModel name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          </fieldset>
+          <button class="btn btn-primary btn-block" type="submit">Sign in</button>
 
         </form>
       </div>
