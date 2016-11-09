@@ -4,13 +4,22 @@
       <div class="panel-heading">Sign up</div>
       <div class="panel-body">
         <form class="form-signup">
-          <label for="inputEmail" class="sr-only">Email address</label>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+          <label for="email" class="sr-only">Email address</label>
+          <input #emailRef [(ngModel)]="email" type="email" id="email" name="email" class="form-control" placeholder="email address" required autofocus>
 
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <label for="username" class="sr-only">Username</label>
+          <input #usernameRef [(ngModel)]="username" type="text" id="username" name="username" class="form-control" placeholder="username" required>
 
-          <button class="btn btn-info btn-block" type="submit">Submit registration</button>
+          <label for="firstname" class="sr-only">First name</label>
+          <input #firstnameRef [(ngModel)]="firstname" type="text" id="firstname" name="firstname" class="form-control" placeholder="firstname" required>
+
+          <label for="lastname" class="sr-only">Last name</label>
+          <input #lastnameRef [(ngModel)]="lastname" type="text" id="lastname" name="lastname" class="form-control" placeholder="lastname" required>
+
+          <label for="password" class="sr-only">Password</label>
+          <input #passwordRef [(ngModel)]="password" type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+
+          <button class="btn btn-info btn-block" (click)="submit()" type="submit">Submit registration</button>
 
         </form>
 

@@ -14,6 +14,8 @@ export class NavigationComponent {
   // FIXME make this an enum or so
   currentNav: string;
 
+  username = this.accountService.isLoggedIn() ? this.accountService.getUsername() : 'guest';
+
   constructor(private accountService: AccountService) {
   };
 

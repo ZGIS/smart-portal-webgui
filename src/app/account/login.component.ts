@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { AccountService } from './account.service';
 
 @Component({
@@ -8,9 +8,7 @@ import { AccountService } from './account.service';
 })
 
 export class LoginComponent {
-
-  constructor(private accountService: AccountService) {
-  };
+  @Output() flash = new EventEmitter();
 
   loginSubmit(email: string, password: string) {
     console.log('login: ' + email + ' ' + password);
@@ -18,6 +16,9 @@ export class LoginComponent {
 
   gconnectLogin() {
     console.log('gconnect login clicked!');
+  };
+
+  constructor(private accountService: AccountService) {
   };
 
 }
