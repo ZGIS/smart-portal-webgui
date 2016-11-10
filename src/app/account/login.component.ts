@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { AccountService } from './account.service';
+import { Router }   from '@angular/router';
 
 @Component({
   selector: 'sac-gwh-login',
@@ -12,13 +13,15 @@ export class LoginComponent {
 
   onSubmit(formRef: any) {
     console.log(formRef);
+    this.accountService.authenticate(formRef);
+    this.router.navigateByUrl('/dashboard');
   };
 
   gconnectLogin() {
     console.log('gconnect login clicked!');
   };
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private router: Router) {
   };
 
 }

@@ -1,7 +1,7 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardHomeComponent, DashboardWaterbudgetComponent } from './dashboards';
+import { DashboardHomeComponent, DashboardCategoryComponent } from './dashboards';
 import { SearchComponent } from './search';
 import { LoginComponent } from './account';
 import { RegisterComponent } from './account';
@@ -9,16 +9,16 @@ import { RegisterComponent } from './account';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   },
   {
-    path: 'home',
+    path: 'dashboard',
     component: DashboardHomeComponent
   },
   {
-    path: 'waterbudget',
-    component: DashboardWaterbudgetComponent
+    path: 'dashboard/:category',
+    component: DashboardCategoryComponent
   },
   {
     path: 'search',

@@ -8,7 +8,7 @@ import { ResultService } from './result.service';
 import { ResultDetailComponent, SearchComponent } from './search/';
 import { routing } from './app.routing';
 import { NavigationComponent } from './navigation/navigation.component';
-import { DashboardHomeComponent, DashboardWaterbudgetComponent } from './dashboards';
+import { DashboardHomeComponent, DashboardCategoryComponent } from './dashboards';
 import { Ol3MapComponent } from './ol3-map/ol3-map.component';
 import { LoginComponent } from './account/login.component';
 import { RegisterComponent } from './account/register.component';
@@ -23,7 +23,7 @@ import { AccountService } from './account/account.service';
   declarations: [AppComponent,
     ResultDetailComponent,
     DashboardHomeComponent,
-    DashboardWaterbudgetComponent,
+    DashboardCategoryComponent,
     NavigationComponent,
     SearchComponent,
     Ol3MapComponent,

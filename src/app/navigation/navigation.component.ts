@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AccountService } from '../account/account.service';
+import { ActivatedRoute }   from '@angular/router';
 // import {DropdownModule} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
@@ -15,8 +16,13 @@ export class NavigationComponent {
   currentNav: string;
 
   username = this.accountService.isLoggedIn() ? this.accountService.getUsername() : 'guest';
+  category = 'main';
 
-  constructor(private accountService: AccountService) {
+  logout() {
+    this.accountService.logout();
+  }
+
+  constructor(private accountService: AccountService, private route: ActivatedRoute) {
   };
 
 }

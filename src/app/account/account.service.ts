@@ -33,8 +33,6 @@ export function createProfile(profileConf: UserProfile): {
 @Injectable()
 export class AccountService {
 
-  username: string = 'guest';
-
   profileNoPass = createProfile({
     email: 'alex@example.com',
     username: 'alex',
@@ -50,6 +48,8 @@ export class AccountService {
     password: 'testpass123'
   });
 
+  private loggedInState = false;
+
   getProfile(): UserProfile {
     return this.profileNoPass;
   };
@@ -58,10 +58,18 @@ export class AccountService {
     return this.profileNoPass.username;
   };
 
+  authenticate(credentials: any) {
+    this.loggedInState = true;
+  }
+
   isLoggedIn(): boolean {
-    return false;
+    return this.loggedInState;
   };
 
+  logout() {
+    this.loggedInState = false;
+  }
   constructor() {
   };
+
 }
