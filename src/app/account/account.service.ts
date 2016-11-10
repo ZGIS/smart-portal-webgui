@@ -60,14 +60,17 @@ export class AccountService {
 
   authenticate(credentials: any) {
     this.loggedInState = true;
+    this.profileNoPass.username = credentials.login.email;
   }
 
   isLoggedIn(): boolean {
+    console.log(this.loggedInState);
     return this.loggedInState;
   };
 
   logout() {
     this.loggedInState = false;
+    this.profileNoPass.username = 'guest';
   }
   constructor() {
   };

@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { IGeoFeature } from '../result';
 
-
 let ol = require('../../../node_modules/openlayers/dist/ol.js');
 
 // declare var ol: any;
@@ -32,11 +31,24 @@ export class Ol3MapComponent implements OnInit {
   }
 
   // private ol: any;
-  private center: any = [174.7633, 36.8485];
+  private center: any = [174.7633, -36.8485];
 
-  private defaultExtent: any = [-180, -90, 180, 90]; // [165, -53.1, 360 - 175, -28.8];
+  // private defaultExtent: any = [-180, -90, 180, 90];
+  private nzExtent: any = [168, -50, 180, -33];
   private map: any;
 
+  /*
+   * private ESRI_STREET = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/' +
+   'MapServer/tile/${z}/${y}/${x}.jpg';
+   private ESRI_IMAGERY = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/' +
+   'MapServer/tile/${z}/${y}/${x}.jpg';
+
+   *  private ESRI_ATTRIBUTION1 = '&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX,' +
+   ' GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+   private const ESRI_ATTRIBUTION2 = '&copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, ' +
+   'Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom,
+   2012';
+   */
   // public member functions need to be declared before private ones -> TSLINT (member-ordering)
   ngOnInit(): void {
     let vectorLayer = new ol.layer.Vector({
@@ -45,22 +57,19 @@ export class Ol3MapComponent implements OnInit {
         stroke: new ol.style.Stroke({
           color: 'blue',
           lineDash: [4],
-          width: 3
+          width: 2
         }),
         fill: new ol.style.Fill({
-          color: 'rgba(0, 0, 255, 0.1)'
+          color: 'rgba(0, 0, 255, 0.01)'
         })
       })
     });
 
+    /** {olx.control.AttributionOptions} */
     this.map = new ol.Map({
-      controls: ol.control.defaults({
-        attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
-          collapsible: false
-        })
-      }).extend([
+      controls: ol.control.defaults().extend([
         new ol.control.ZoomToExtent({
-          extent: this.defaultExtent
+          extent: this.nzExtent
         })
       ])
       ,
@@ -78,7 +87,7 @@ export class Ol3MapComponent implements OnInit {
       })
     });
 
-    this.map.getView().fit(this.defaultExtent, this.map.getSize());
+    // this.map.getView().fit(this.defaultExtent, this.map.getSize());
     this.map.on('moveend', this.onMoveend, this);
   }
 

@@ -11,6 +11,7 @@
         <sac-gwh-ol3-map (onBboxChange)="bboxChanged($event)" [searchResults]="results"></sac-gwh-ol3-map>
       </div>
     </div>
+    <my-result-detail [result]="selectedResult"></my-result-detail>
   </div>
   <div class="col-md-3">
     <div class="panel panel-default">
@@ -82,4 +83,4 @@
 </div>
 
 
-<my-result-detail [result]="selectedResult"></my-result-detail>
+
