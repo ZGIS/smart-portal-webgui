@@ -34,4 +34,5 @@ const appRoutes: Routes = [
   }
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+// useHash: true https://angular.io/docs/ts/latest/guide/router.html#!#browser-url-styles
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, { useHash: true });

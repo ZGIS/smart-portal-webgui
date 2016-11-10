@@ -13,6 +13,7 @@ import { Ol3MapComponent } from './ol3-map/ol3-map.component';
 import { LoginComponent } from './account/login.component';
 import { RegisterComponent } from './account/register.component';
 import { AccountService } from './account/account.service';
+import { API_URL_PROVIDERS } from './app.tokens';
 
 @NgModule({
   imports: [BrowserModule,
@@ -30,12 +31,17 @@ import { AccountService } from './account/account.service';
     LoginComponent,
     RegisterComponent],
   providers: [
-    // 'http://localhost:9000/query'
-    { provide: 'cswiApi', useValue: 'http://dev.smart-project.info/cswi-api/query' },
-    // 'http://localhost:9000/api/v1'
-    { provide: 'portalApi', useValue: 'http://dev.smart-project.info/api/v1' },
     ResultService,
-    AccountService
+    AccountService,
+    {
+      provide: 'cswiApiUrl',
+      useValue: 'http://dev.smart-project.info/cswi-api/query'
+    },
+    {
+      provide: 'portalApiUrl',
+      useValue: 'http://dev.smart-project.info/api/v1'
+    },
+    API_URL_PROVIDERS
   ],
   bootstrap: [AppComponent]
 })

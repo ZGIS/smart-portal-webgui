@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
+import { Http } from '@angular/http';
+import { PORTAL_API_URL } from '../app.tokens';
 
 export interface UserProfile {
   email: string;
@@ -64,7 +66,7 @@ export class AccountService {
   }
 
   isLoggedIn(): boolean {
-    console.log(this.loggedInState);
+    // console.log(this.loggedInState);
     return this.loggedInState;
   };
 
@@ -72,7 +74,9 @@ export class AccountService {
     this.loggedInState = false;
     this.profileNoPass.username = 'guest';
   }
-  constructor() {
-  };
+  constructor(
+    @Inject(PORTAL_API_URL) private portalApiUrl: string,
+    private http: Http
+  ) {}
 
 }
