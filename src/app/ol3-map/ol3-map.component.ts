@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { IGeoFeature } from '../result';
+import { IGeoFeature } from '../search/result';
 
 let ol = require('../../../node_modules/openlayers/dist/ol.js');
 

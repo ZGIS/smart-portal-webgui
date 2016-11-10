@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { CSWI_API_URL } from './app.tokens';
+import { CSWI_API_URL } from '../app.tokens';
 import { IGeoFeatureCollection } from './result';
 // import {MOCK_RESULTS} from './mock-results';
 

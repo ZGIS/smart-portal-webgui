@@ -5,6 +5,8 @@ import { DashboardHomeComponent, DashboardCategoryComponent } from './dashboards
 import { SearchComponent } from './search';
 import { LoginComponent } from './account';
 import { RegisterComponent } from './account';
+import { MetadataEditorComponent } from './workbench/metadata-editor.component';
+import { AccountComponent } from './account/account.component';
 
 const appRoutes: Routes = [
   {
@@ -31,6 +33,14 @@ const appRoutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'account',
+    component: AccountComponent
+  },
+  {
+    path: 'workbench/add-data',
+    component: MetadataEditorComponent
   }
 ];
 

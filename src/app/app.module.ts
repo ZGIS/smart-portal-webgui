@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { AppComponent } from './app.component';
-import { ResultService } from './result.service';
+import { ResultService } from './search/result.service';
 import { ResultDetailComponent, SearchComponent } from './search/';
 import { routing } from './app.routing';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -13,6 +13,8 @@ import { Ol3MapComponent } from './ol3-map/ol3-map.component';
 import { LoginComponent } from './account/login.component';
 import { RegisterComponent } from './account/register.component';
 import { AccountService } from './account/account.service';
+import { AccountComponent } from './account';
+import { MetadataEditorComponent } from './workbench';
 import { API_URL_PROVIDERS } from './app.tokens';
 
 @NgModule({
@@ -29,7 +31,10 @@ import { API_URL_PROVIDERS } from './app.tokens';
     SearchComponent,
     Ol3MapComponent,
     LoginComponent,
-    RegisterComponent],
+    RegisterComponent,
+    AccountComponent,
+    MetadataEditorComponent
+  ],
   providers: [
     ResultService,
     AccountService,

@@ -15,6 +15,9 @@
         <li *ngIf="!category==='main'">{{ category }}</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active" *ngIf="accountService.isLoggedIn()">
+          <a routerLink="/workbench/add-data"><i class="fa fa-edit"></i></a>
+        </li>
         <li routerLinkActive="active"><a routerLink="/search"><i class="fa fa-search"></i></a></li>
 
         <li dropdown>
