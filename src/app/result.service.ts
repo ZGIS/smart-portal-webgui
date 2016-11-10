@@ -1,10 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
-
 import 'rxjs/add/operator/toPromise';
-
-// import {MOCK_RESULTS} from './mock-results';
+import { CSWI_API_URL } from './app.tokens';
 import { IGeoFeatureCollection } from './result';
+// import {MOCK_RESULTS} from './mock-results';
 
 @Injectable()
 export class ResultService {
@@ -17,7 +16,7 @@ export class ResultService {
    * @type {string}
    */
   constructor(
-    @Inject('cswiApiUrl') private cswiApiUrl: string,
+    @Inject(CSWI_API_URL) private cswiApiUrl: string,
     private http: Http
   ) {}
 

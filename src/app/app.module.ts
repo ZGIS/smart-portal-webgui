@@ -33,14 +33,6 @@ import { API_URL_PROVIDERS } from './app.tokens';
   providers: [
     ResultService,
     AccountService,
-    {
-      provide: 'cswiApiUrl',
-      useValue: 'http://dev.smart-project.info/cswi-api/query'
-    },
-    {
-      provide: 'portalApiUrl',
-      useValue: 'http://dev.smart-project.info/api/v1'
-    },
     API_URL_PROVIDERS
   ],
   bootstrap: [AppComponent]
