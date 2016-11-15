@@ -9,7 +9,7 @@
 /*FIXME SR get the size out of bootstrap itself. */
 @media (min-width: 992px) {
   .slide01 {
-    background: url(../../../public/images/slide01-gw.jpg) center no-repeat;
+    background: url(../../../public/images/0-bg-main.jpg) center no-repeat;
     background-size: cover;
   }
 }

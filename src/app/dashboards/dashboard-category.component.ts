@@ -9,6 +9,7 @@ import { ActivatedRoute, Params }   from '@angular/router';
 
 export class DashboardCategoryComponent implements OnInit {
 
+  // query=groundwater&bbox=ENVELOPE(155.0,180.0,-30.0,-55.0)
   category = 'waterbudget';
 
   ngOnInit(): void {
