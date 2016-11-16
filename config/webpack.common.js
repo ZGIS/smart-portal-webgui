@@ -153,14 +153,17 @@ module.exports = {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         loaders: ['to-string-loader', 'css-loader']
-      },
+      }
 
       // need that categories file
+      /*
       {
+
         test: /\.json$/,
         include: helpers.root('public'),
-        loader: 'file'
+        loader: 'json'
       },
+       */
 
       /* from angular.io webpack example,
        * didn't extract background images from component css
