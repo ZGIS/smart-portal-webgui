@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-3">
     <div class="panel panel-default">
       <div class="panel-heading">Please sign in</div>
       <div class="panel-body">
@@ -19,12 +19,21 @@
       <div class="panel-body">
 
         <div class="form-group">
-          <label for="google.oauth">Sign in with Google</label>
-          <button class="btn btn-danger" (click)="gconnectLogin()" id="google.oauth">Google+ Sign in</button>
+          <label for="signInButton">Sign in with Google</label>
+          <div id="signInButton">
+            <div class="g-signin2"
+                 data-scope="https://www.googleapis.com/auth/plus.login"
+                 data-clientid="988846878323-bkja0j1tgep5ojthfr2e92ao8n7iksab.apps.googleusercontent.com"
+                 data-redirecturi="postmessage"
+                 data-accesstype="offline"
+                 data-onsuccess="gconnectLogin"
+                 data-onfailure="handleFailure">
+            </div>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="register.account">Or register a new account</label>
+          <label for="register.account">Or register a new account</label><br>
           <a routerLink="/register" class="btn btn-info" type="submit" id="register.account">Register</a>
         </div>
       </div>

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-3">
     <div class="panel panel-default">
       <div class="panel-heading">Sign up</div>
       <div class="panel-body">
@@ -30,7 +30,11 @@
           <div *ngIf="passwordRef.errors?.required">This field is required</div>
           <div *ngIf="passwordRef.minlength?.required">Password length should be 8 or more</div>
 
-          <button class="btn btn-info btn-block" type="submit">Submit registration</button>
+          <div id="g-recaptcha" class="g-recaptcha" data-callback="recaptchaCallback"
+               data-sitekey="6Le5RQsUAAAAAM_YjqAXzrJVLwqbYFl4hNmQ4n3Z"></div>
+
+          <button class="btn btn-info btn-block" onclick="recaptchaCallback()"
+                  type="submit">Submit registration</button>
 
         </form>
 
@@ -38,8 +42,17 @@
       <div class="panel-body">
 
         <div class="form-group">
-          <label for="google.oauth">Sign up with Google</label>
-          <button class="btn btn-danger" (click)="gconnectReg($event)" id="google.oauth">Google+ Sign up</button>
+          <label for="signInButton">Sign up with Google</label>
+          <div id="signInButton">
+            <div class="g-signin2"
+                 data-scope="https://www.googleapis.com/auth/plus.login"
+                 data-clientid="988846878323-bkja0j1tgep5ojthfr2e92ao8n7iksab.apps.googleusercontent.com"
+                 data-redirecturi="postmessage"
+                 data-accesstype="offline"
+                 data-onsuccess="gconnectReg"
+                 data-onfailure="handleFailure">
+            </div>
+          </div>
         </div>
 
       </div>
