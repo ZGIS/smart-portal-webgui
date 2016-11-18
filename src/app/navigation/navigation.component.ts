@@ -4,7 +4,7 @@ import { ActivatedRoute }   from '@angular/router';
 // import {DropdownModule} from 'ng2-bootstrap/ng2-bootstrap';
 
 // Google's login API namespace
-declare var gapi: any;
+// declare var gapi: any;
 
 @Component({
 //  directives: [DROPDOWN_DIRECTIVES],

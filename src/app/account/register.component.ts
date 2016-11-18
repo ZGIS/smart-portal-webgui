@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { AccountService, UserProfile, createProfile } from './account.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AccountService, createProfile } from './account.service';
 import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 
 // Google's login API namespace
-declare var gapi: any;
-declare var grecaptcha: any;
+// declare var gapi: any;
+// declare var grecaptcha: any;
 
 @Component({
   selector: 'sac-gwh-register',
@@ -14,9 +14,12 @@ declare var grecaptcha: any;
   styleUrls: ['./register.component.css']
 })
 
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
-  private recaptureSecret = '6Le5RQsUAAAAAMcRg_--U2VTqG4t9EyxVjCb_5WL';
+  model: any = {};
+  loading = false;
+  error = '';
+  @Output() flash = new EventEmitter();
 
   constructor(private accountService: AccountService, private router: Router, private http: Http) {
     window['gconnectReg'] = this.gconnectReg.bind(this);
@@ -25,7 +28,7 @@ export class RegisterComponent {
     window['recaptchaCallback'] = this.recaptchaCallback.bind(this);
   };
 
-  ngAfterViewInit() {
+  ngOnInit() {
     // Converts the Google login button stub to an actual button.
     // done thourhg navigation component before we arrive here, when we got to dashboard or
     // login immediately by link, it dies
@@ -63,26 +66,50 @@ export class RegisterComponent {
     grecaptcha.render(
       'g-recaptcha',
       {
-        'sitekey' : '6Le5RQsUAAAAAM_YjqAXzrJVLwqbYFl4hNmQ4n3Z',
-        'theme' : 'light'
+        'sitekey': '6Le5RQsUAAAAAM_YjqAXzrJVLwqbYFl4hNmQ4n3Z',
+        'theme': 'light',
+        'callback': this.recaptchaCallback
       }
     );
   };
 
-  onSubmit(formValue: UserProfile) {
-    let regProfile = createProfile(formValue);
+  onSubmit() {
+    this.loading = true;
+    console.log(this.model);
+
+    let regProfile = createProfile({
+      email: this.model.email,
+      username: this.model.email,
+      firstname: this.model.firstname,
+      lastname: this.model.lastname,
+      password: this.model.password
+    });
 
     console.log('submit register form clicked!');
     console.log(regProfile);
+
+    // should validate recaptcha
+    // recaptchaCallback()
+
+    this.accountService.register(regProfile)
+      .subscribe(result => {
+        if (result === true) {
+          // login successful
+          this.router.navigateByUrl('/dashboard');
+        } else {
+          // login failed
+          this.error = 'Username or password is incorrect';
+          this.loading = false;
+        }
+      });
   };
 
   recaptchaCallback(captchaChallenge: string) {
     console.log(captchaChallenge);
+    const recaptureSecret = 'xxx';
     const gvUrl = 'https://www.google.com/recaptcha/api/siteverify';
-    let paramUrl = gvUrl + '?' + this.recaptureSecret + '&' + captchaChallenge;
-    Promise.resolve(this.http.post(paramUrl, {})
-      .map(this.verifyReCaptcha)
-      .catch(this.handleFailure));
+    let paramUrl = gvUrl + '?' + recaptureSecret + '&' + captchaChallenge;
+    console.log(paramUrl);
   };
 
   signInCallback(authResult: any) {
@@ -101,14 +128,6 @@ export class RegisterComponent {
     console.log('gconnect register clicked!');
     // this.auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(this.signInCallback);
     console.log(data);
-  };
-
-  private verifyReCaptcha(res: Response) {
-    let body = res.json();
-    // return body.data || {};
-    console.log('verifyReCaptcha');
-    console.log(body.data);
-    return body.data;
   };
 
   private handleFailure(error: Response | any) {

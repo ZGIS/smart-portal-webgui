@@ -1,12 +1,10 @@
-import { ModuleWithProviders }  from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { DashboardHomeComponent, DashboardCategoryComponent } from './dashboards';
 import { SearchComponent } from './search';
-import { LoginComponent } from './account';
-import { RegisterComponent } from './account';
-import { MetadataEditorComponent } from './workbench/metadata-editor.component';
-import { AccountComponent } from './account/account.component';
+import { LoginComponent, RegisterComponent, AccountComponent } from './account';
+import { MetadataEditorComponent } from './workbench';
+import { AuthGuard } from './_guards';
 
 const appRoutes: Routes = [
   {
@@ -36,12 +34,17 @@ const appRoutes: Routes = [
   },
   {
     path: 'account',
-    component: AccountComponent
+    component: AccountComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'workbench/add-data',
-    component: MetadataEditorComponent
-  }
+    component: MetadataEditorComponent,
+    canActivate: [AuthGuard]
+  },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '/dashboard' }
 ];
 
 // useHash: true https://angular.io/docs/ts/latest/guide/router.html#!#browser-url-styles

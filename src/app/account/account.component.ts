@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AccountService, UserProfile } from './account.service';
 
 @Component({
@@ -6,17 +6,24 @@ import { AccountService, UserProfile } from './account.service';
   templateUrl: './account.component.html'
 })
 
-export class AccountComponent {
+export class AccountComponent implements OnInit {
 
-  userProfile: UserProfile;
+  public userProfile: UserProfile;
 
   constructor(private accountService: AccountService) {
   };
 
+  ngOnInit() {
+    // get users from secure api end point
+    this.accountService.getProfile()
+      .subscribe(user => {
+        this.userProfile = user;
+      });
+  }
+
   setProfile() {
     let profile = this.accountService.getProfile();
     console.log(profile);
-    this.userProfile = profile;
+    // this.userProfile = profile;
   }
-
 }

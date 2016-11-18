@@ -1,11 +1,11 @@
-import { Component, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { AccountService } from './account.service';
 import { Router }   from '@angular/router';
 import { Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 
 // Google's login API namespace
-declare var gapi: any;
+// declare var gapi: any;
 
 @Component({
   selector: 'sac-gwh-login',
@@ -13,16 +13,23 @@ declare var gapi: any;
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements AfterViewInit {
+export class LoginComponent implements OnInit {
+
+  model: any = {};
+  loading = false;
+  error = '';
   @Output() flash = new EventEmitter();
 
-  ngAfterViewInit() {
+  ngOnInit() {
     // Converts the Google login button stub to an actual button.
     // done thourhg navigation component before we arrive here, when we got to dashboard or
     // login immediately by link, it dies
     // this.initialiseAuth2();
 
     this.renderButton();
+
+    // reset login status
+    // this.accountService.logout();
   };
 
   // initialise auth2 object
@@ -54,6 +61,21 @@ export class LoginComponent implements AfterViewInit {
     this.accountService.authenticate(formRef);
     this.router.navigateByUrl('/dashboard');
   };
+
+  login() {
+    this.loading = true;
+    this.accountService.login(this.model.username, this.model.password)
+      .subscribe(result => {
+        if (result === true) {
+          // login successful
+          this.router.navigateByUrl('/dashboard');
+        } else {
+          // login failed
+          this.error = 'Username or password is incorrect';
+          this.loading = false;
+        }
+      });
+  }
 
   signInCallback(authResult: any) {
     if (authResult['code']) {

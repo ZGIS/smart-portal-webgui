@@ -1,8 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Router }   from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 import { PORTAL_API_URL } from '../app.tokens';
+import 'rxjs/add/operator/map';
 
 export interface UserProfile {
   email: string;
@@ -37,6 +38,8 @@ export function createProfile(profileConf: UserProfile): {
 @Injectable()
 export class AccountService {
 
+  public token: string;
+
   profileNoPass = createProfile({
     email: 'alex@example.com',
     username: 'alex',
@@ -52,14 +55,34 @@ export class AccountService {
     password: 'testpass123'
   });
 
-  private loggedInState = false;
+  private loggedInState: boolean = false;
 
-  getProfile(): UserProfile {
-    return this.profileNoPass;
+  constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
+              private http: Http, private router: Router) {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.token = currentUser && currentUser.token;
   };
 
+  getProfile(): Observable<UserProfile> {
+    // add authorization header with jwt token
+    let headers = new Headers({
+      'Authorization': 'Bearer ' + this.token,
+      'X-XSRF-TOKEN': this.token
+    });
+    let options = new RequestOptions({headers: headers});
+
+    // get users from api
+    return this.http.get('api/v1/users/self', options)
+      .map((response: Response) => response.json());
+  }
+
   getUsername(): string {
-    return this.profileNoPass.username;
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+      return currentUser.token;
+    } else {
+      return 'guest';
+    }
   };
 
   authenticate(credentials: any) {
@@ -72,10 +95,71 @@ export class AccountService {
     return this.loggedInState;
   };
 
-  logout() {
+  logout(): void {
     this.loggedInState = false;
     this.profileNoPass.username = 'guest';
-  }
+    // clear token remove user from local storage to log user out
+    this.token = null;
+    localStorage.removeItem('currentUser');
+  };
+
+
+  login(username: string, password: string): Observable<boolean> {
+    let loginUri = this.portalApiUrl + '/login';
+    return this.http.post(loginUri, JSON.stringify({username: username, password: password}))
+      .map((response: Response) => {
+        // login successful if there's a xsrf token in the response
+        let token = response.json() && response.json().token;
+        if (token) {
+          // set token property
+          this.token = token;
+          this.loggedInState = true;
+
+          // store username and xsrf token in local storage to keep user logged in between page
+          // refreshes
+          localStorage.setItem('currentUser', JSON.stringify({username: username, token: token}));
+
+          // return true to indicate successful login
+          return true;
+        } else {
+          // return false to indicate failed login
+          // should also remove token?
+          this.loggedInState = false;
+          return false;
+        }
+      });
+  };
+
+  register(userprofile: UserProfile): Observable<boolean> {
+    let regUri = this.portalApiUrl + '/users/register';
+
+    // JSON.stringify({username: username, password: password}))
+    return this.http.post(regUri, userprofile)
+      .map((response: Response) => {
+        // login successful if there's a xsrf token in the response
+        let token = response.json() && response.json().token;
+        if (token) {
+          // set token property
+          this.token = token;
+          this.loggedInState = true;
+
+          // store username and xsrf token in local storage to keep user logged in between page
+          // refreshes
+          localStorage.setItem('currentUser', JSON.stringify({
+            username: userprofile.username,
+            token: token
+          }));
+
+          // return true to indicate successful login
+          return true;
+        } else {
+          // return false to indicate failed login
+          // should also remove token?
+          this.loggedInState = false;
+          return false;
+        }
+      });
+  };
 
   /*
    // Hide the sign-in button now that the user is authorize
@@ -110,7 +194,7 @@ export class AccountService {
    */
   gconnectHandle(authRequester: string, authResult: any) {
     console.log('gconnectHandle account coming from ' + authRequester);
-    let gconnectPortalUri = this.portalApiUrl + '/api/v1/login/gconnect';
+    let gconnectPortalUri = this.portalApiUrl + '/login/gconnect';
     let data = authResult['code'];
     console.log(data);
     // here we could already also get XSRF-TOKEN from localstorage if available?
@@ -119,9 +203,6 @@ export class AccountService {
       .catch(this.handleGoogleSignInError);
   };
 
-  constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
-              private http: Http, private router: Router) {
-  }
 
   private extractGoogleSignInData(res: Response) {
     let body = res.json();
