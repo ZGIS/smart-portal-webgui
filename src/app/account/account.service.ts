@@ -65,14 +65,16 @@ export class AccountService {
 
   getProfile(): Observable<UserProfile> {
     // add authorization header with jwt token
+    let profileUri = this.portalApiUrl + '/users/self';
+    console.log('token: ' + this.token);
     let headers = new Headers({
-      'Authorization': 'Bearer ' + this.token,
+      // 'Authorization': 'Bearer ' + this.token,
       'X-XSRF-TOKEN': this.token
     });
-    let options = new RequestOptions({headers: headers});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
 
     // get users from api
-    return this.http.get('api/v1/users/self', options)
+    return this.http.get(profileUri, options)
       .map((response: Response) => response.json());
   }
 
@@ -106,13 +108,17 @@ export class AccountService {
 
   login(username: string, password: string): Observable<boolean> {
     let loginUri = this.portalApiUrl + '/login';
-    return this.http.post(loginUri, JSON.stringify({username: username, password: password}))
+    let data = JSON.stringify({username: username, password: password});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    return this.http.post(loginUri, data, options)
       .map((response: Response) => {
         // login successful if there's a xsrf token in the response
         let token = response.json() && response.json().token;
         if (token) {
           // set token property
           this.token = token;
+          console.log('token: ' + token);
           this.loggedInState = true;
 
           // store username and xsrf token in local storage to keep user logged in between page
@@ -125,6 +131,7 @@ export class AccountService {
           // return false to indicate failed login
           // should also remove token?
           this.loggedInState = false;
+          console.log('login failed');
           return false;
         }
       });

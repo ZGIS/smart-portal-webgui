@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     // login immediately by link, it dies
     // this.initialiseAuth2();
 
-    this.renderButton();
+    // this.renderButton();
 
     // reset login status
     // this.accountService.logout();
@@ -41,11 +41,14 @@ export class LoginComponent implements OnInit {
         'scope': 'profile email'
       });
       console.log(obj);
+      return obj;
     });
   }
 
   // Converts the Google login button stub to an actual button.
   renderButton() {
+    let auth2 = this.initialiseAuth2();
+
     gapi.signin2.render('signInButton',
       {
         'scope': 'openid email',
@@ -54,6 +57,8 @@ export class LoginComponent implements OnInit {
         'onsuccess': this.gconnectLogin,
         'onfailure': this.handleFailure
       });
+
+    console.log(auth2);
   };
 
   onSubmit(formRef: any) {
@@ -100,6 +105,7 @@ export class LoginComponent implements OnInit {
     window['gconnectLogin'] = this.gconnectLogin.bind(this);
     window['signInCallback'] = this.signInCallback.bind(this);
     window['handleFailure'] = this.handleFailure.bind(this);
+    window['renderButton'] = this.renderButton.bind(this);
   };
 
   private handleFailure(error: Response | any) {

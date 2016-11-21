@@ -5,43 +5,45 @@
       <div class="panel-body">
         <form class="form-signup" #formRef="ngForm" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
           <div class="form-group">
-          <label for="email" class="sr-only">Email address</label>
+            <label for="email" class="sr-only">Email address</label>
 
-          <input [(ngModel)]="model.email" type="email" id="email" name="email" #email="ngModel"
-                 class="form-control" [ngClass]="{ 'has-error': f.submitted && !email.valid }"
-                 placeholder="email address" required autofocus>
-          <div *ngIf="f.errors?.required">This field is required</div>
+            <input [(ngModel)]="model.email" type="email" id="email" name="email" #email="ngModel"
+                   class="form-control" [ngClass]="{ 'has-error': f.submitted && !email.valid }"
+                   placeholder="email address" required autofocus>
+            <div *ngIf="f.errors?.required">This field is required</div>
 
-          <label for="firstname" class="sr-only">First name</label>
+            <label for="firstname" class="sr-only">First name</label>
 
-          <input [(ngModel)]="model.firstname" type="text" id="firstname" #firstname="ngModel"
-                 name="firstname" class="form-control"
-                 [ngClass]="{ 'has-error': f.submitted && !firstname.valid }"
-                 placeholder="firstname" required>
-          <div *ngIf="f.errors?.required">This field is required</div>
+            <input [(ngModel)]="model.firstname" type="text" id="firstname" #firstname="ngModel"
+                   name="firstname" class="form-control"
+                   [ngClass]="{ 'has-error': f.submitted && !firstname.valid }"
+                   placeholder="firstname" required>
+            <div *ngIf="f.errors?.required">This field is required</div>
 
-          <label for="lastname" class="sr-only">Last name</label>
-          <input [(ngModel)]="model.lastname" type="text" id="lastname" name="lastname"
-                 #lastname="ngModel"
-                 class="form-control" [ngClass]="{ 'has-error': f.submitted && !lastname.valid }"
-                 placeholder="lastname" required>
-          <div *ngIf="f.errors?.required">This field is required</div>
+            <label for="lastname" class="sr-only">Last name</label>
+            <input [(ngModel)]="model.lastname" type="text" id="lastname" name="lastname"
+                   #lastname="ngModel"
+                   class="form-control" [ngClass]="{ 'has-error': f.submitted && !lastname.valid }"
+                   placeholder="lastname" required>
+            <div *ngIf="f.errors?.required">This field is required</div>
 
-          <label for="password" class="sr-only">Password</label>
-          <input [(ngModel)]="model.password" type="password" id="password" #password="ngModel"
-                 name="password"
-                 class="form-control" [ngClass]="{ 'has-error': f.submitted && !password.valid }"
-                 placeholder="Password" required minlength="8">
-          <div *ngIf="f.errors?.required">This field is required</div>
-          <div *ngIf="f.minlength?.required">Password length should be 8 or more</div>
+            <label for="password" class="sr-only">Password</label>
+            <input [(ngModel)]="model.password" type="password" id="password" #password="ngModel"
+                   name="password"
+                   class="form-control" [ngClass]="{ 'has-error': f.submitted && !password.valid }"
+                   placeholder="Password" required minlength="8">
+            <div *ngIf="f.errors?.required">This field is required</div>
+            <div *ngIf="f.minlength?.required">Password length should be 8 or more</div>
           </div>
           <div class="form-group">
-          <div id="g-recaptcha" class="g-recaptcha" data-callback="recaptchaCallback"
-               data-sitekey="6Le5RQsUAAAAAM_YjqAXzrJVLwqbYFl4hNmQ4n3Z"></div>
+
+            <div id="g-recaptcha" class="g-recaptcha" data-callback="recaptchaCallback"
+                 data-sitekey="6Le5RQsUAAAAAM_YjqAXzrJVLwqbYFl4hNmQ4n3Z"></div>
           </div>
           <div class="form-group">
-            <button [disabled]="loading" class="btn btn-info">Login</button>
-            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <button [disabled]="loading" class="btn btn-info">Register</button>
+            <img *ngIf="loading"
+                 src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
           </div>
           <div *ngIf="error" class="alert alert-danger">{{error}}</div>
 
@@ -51,6 +53,7 @@
       <div class="panel-body">
 
         <div class="form-group">
+
           <label for="signInButton">Sign up with Google</label>
           <div id="signInButton">
             <div class="g-signin2"

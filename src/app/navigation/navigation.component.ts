@@ -25,19 +25,19 @@ export class NavigationComponent implements AfterViewInit {
     // prepares gapi and auth2 thing for login and register components, but dies if we go
     // directly there by link
     // only from full frsh load and nav start from http://localhost:8080/ it works
-    this.initialiseAuth2();
+    // this.initialiseAuth2();
   };
 
-  initialiseAuth2() {
-    gapi.load('auth2', function () {
-      let obj = gapi.auth2.init({
-        'client_id': '988846878323-bkja0j1tgep5ojthfr2e92ao8n7iksab.apps.googleusercontent.com',
-        // Scopes to request in addition to 'profile' and 'email'
-        'scope': 'profile email'
-      });
-      console.log(obj);
-    });
-  }
+  /*  initialiseAuth2() {
+   gapi.load('auth2', function () {
+   let obj = gapi.auth2.init({
+   'client_id': '988846878323-bkja0j1tgep5ojthfr2e92ao8n7iksab.apps.googleusercontent.com',
+   // Scopes to request in addition to 'profile' and 'email'
+   'scope': 'profile email'
+   });
+   console.log(obj);
+   });
+   }*/
 
   logout() {
     this.accountService.logout();
