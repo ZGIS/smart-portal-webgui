@@ -2,7 +2,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardHomeComponent, DashboardCategoryComponent } from './dashboards';
 import { SearchComponent } from './search';
-import { LoginComponent, RegisterComponent, AccountComponent } from './account';
+import { LoginComponent, RegisterComponent, AccountComponent, ResetPassComponent } from './account';
 import { MetadataEditorComponent } from './workbench';
 import { AuthGuard } from './_guards';
 
@@ -31,6 +31,10 @@ const appRoutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'resetpass',
+    component: ResetPassComponent
   },
   {
     path: 'account',

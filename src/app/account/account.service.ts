@@ -156,6 +156,10 @@ export class AccountService {
       });
   };
 
+  requestPasswordReset(email: string): Observable<boolean> {
+    return Observable.from([true]);
+  }
+
   /*
    // Hide the sign-in button now that the user is authorize
    $.ajax({

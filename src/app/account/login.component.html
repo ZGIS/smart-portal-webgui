@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-md-3">
     <div class="panel panel-default">
-      <div class="panel-heading">Please sign in</div>
+      <div class="panel-heading">Please sign in <a routerLink="/resetpass"
+                                                   tooltip="Forgot password, request password reset"><i class="fa fa-repeat"
+                                                                              aria-hidden="true"></i></a></div>
       <div class="panel-body">
 
         <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>

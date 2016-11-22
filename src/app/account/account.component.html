@@ -9,10 +9,20 @@
       <!-- Table -->
       <table class="table">
         <tr>
-          <td>Name: {{ userProfile.firstname}}</td>
+          <td>Name: {{ userProfile.firstname}} {{ userProfile.lastname }}</td>
         </tr>
         <tr>
           <td>Email: {{ userProfile.email}}</td>
+        </tr>
+        <tr>
+          <td>
+            <button class="btn btn-info" id="changedetails"
+                    onclick="alert('not implemented yet')">Change user info or email address</button></td>
+        </tr>
+        <tr>
+          <td>
+            <button class="btn btn-default" id="changepass"
+                    onclick="alert('not implemented yet')">Change password</button></td>
         </tr>
       </table>
 

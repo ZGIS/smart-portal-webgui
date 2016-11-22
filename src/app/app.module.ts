@@ -12,6 +12,7 @@ import { Ol3MapComponent } from './ol3-map';
 import {
   LoginComponent,
   RegisterComponent,
+  ResetPassComponent,
   AccountService,
   AccountComponent
 } from './account';
@@ -34,6 +35,7 @@ import { AuthGuard } from './_guards';
     Ol3MapComponent,
     LoginComponent,
     RegisterComponent,
+    ResetPassComponent,
     AccountComponent,
     MetadataEditorComponent
   ],
