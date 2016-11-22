@@ -40,19 +40,12 @@ export class AccountService {
 
   public token: string;
 
-  profileNoPass = createProfile({
-    email: 'alex@example.com',
-    username: 'alex',
-    firstname: 'Alex',
-    lastname: 'K'
-  });
-  // loginTest = {'username': 'alex', 'password': 'testpass123'};
   guestProfile = createProfile({
-    email: 'alex@example.com',
-    username: 'akmoch',
-    firstname: 'Alex',
-    lastname: 'K',
-    password: 'testpass123'
+    email: 'guest@example.com',
+    username: 'guest',
+    firstname: 'Guest',
+    lastname: 'User',
+    password: 'xxx'
   });
 
   private loggedInState: boolean = false;
@@ -83,14 +76,9 @@ export class AccountService {
     if (currentUser) {
       return currentUser.token;
     } else {
-      return 'guest';
+      return this.guestProfile.username;
     }
   };
-
-  authenticate(credentials: any) {
-    this.loggedInState = true;
-    this.profileNoPass.username = credentials.login.email;
-  }
 
   isLoggedIn(): boolean {
     // console.log(this.loggedInState);
@@ -99,17 +87,15 @@ export class AccountService {
 
   logout(): void {
     this.loggedInState = false;
-    this.profileNoPass.username = 'guest';
     // clear token remove user from local storage to log user out
     this.token = null;
     localStorage.removeItem('currentUser');
   };
 
-
   login(username: string, password: string): Observable<boolean> {
     let loginUri = this.portalApiUrl + '/login';
     let data = JSON.stringify({username: username, password: password});
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.post(loginUri, data, options)
       .map((response: Response) => {
@@ -197,6 +183,47 @@ export class AccountService {
    // Send the one-time-use code to the server, if the server responds,
    // write a 'login successful' message to the web page and then redirect back to the main
    // restaurants page
+
+   // initialise auth2 object
+   initialiseAuth2() {
+   gapi.load('auth2', function () {
+   let obj = gapi.auth2.init({
+   'client_id': '988846878323-bkja0j1tgep5ojthfr2e92ao8n7iksab.apps.googleusercontent.com',
+   // Scopes to request in addition to 'profile' and 'email'
+   'scope': 'profile email'
+   });
+   console.log(obj);
+   return obj;
+   });
+   }
+
+   // Converts the Google login button stub to an actual button.
+   renderButton() {
+   let auth2 = this.initialiseAuth2();
+
+   gapi.signin2.render('signInButton',
+   {
+   'scope': 'openid email',
+   'width': 200,
+   'height': 50,
+   'onsuccess': this.gconnectLogin,
+   'onfailure': this.handleFailure
+   });
+
+   console.log(auth2);
+   };
+
+   // Converts the Google login button stub to an actual button.
+   renderReCaptchaButton() {
+   grecaptcha.render(
+   'g-recaptcha',
+   {
+   'sitekey': '6Le5RQsUAAAAAM_YjqAXzrJVLwqbYFl4hNmQ4n3Z',
+   'theme': 'light',
+   'callback': this.recaptchaCallback
+   }
+   );
+   };
 
    */
   gconnectHandle(authRequester: string, authResult: any) {

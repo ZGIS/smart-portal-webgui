@@ -1,8 +1,8 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { AccountService } from './account.service';
-import { Router }   from '@angular/router';
+import { Router } from '@angular/router';
 import { Response } from '@angular/http';
-import { Observable }     from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 // Google's login API namespace
 // declare var gapi: any;
@@ -20,66 +20,46 @@ export class LoginComponent implements OnInit {
   error = '';
   @Output() flash = new EventEmitter();
 
+  constructor(private accountService: AccountService,
+              private router: Router) {
+    window['gconnectLogin'] = this.gconnectLogin.bind(this);
+    window['signInCallback'] = this.signInCallback.bind(this);
+    window['handleFailure'] = this.handleFailure.bind(this);
+  };
+
   ngOnInit() {
     // Converts the Google login button stub to an actual button.
     // done thourhg navigation component before we arrive here, when we got to dashboard or
     // login immediately by link, it dies
-    // this.initialiseAuth2();
+    // Converts the Google login button stub to an actual button.
+    // done thourhg navigation component before we arrive here, when we got to dashboard or
+    // login immediately by link, it dies
 
-    // this.renderButton();
+    // this.accountService.initialiseAuth2();
+    // this.accountService.renderButton();
+    // this.accountService.renderReCaptchaButton();
 
-    // reset login status
-    // this.accountService.logout();
-  };
-
-  // initialise auth2 object
-  initialiseAuth2() {
-    gapi.load('auth2', function () {
-      let obj = gapi.auth2.init({
-        'client_id': '988846878323-bkja0j1tgep5ojthfr2e92ao8n7iksab.apps.googleusercontent.com',
-        // Scopes to request in addition to 'profile' and 'email'
-        'scope': 'profile email'
-      });
-      console.log(obj);
-      return obj;
-    });
-  }
-
-  // Converts the Google login button stub to an actual button.
-  renderButton() {
-    let auth2 = this.initialiseAuth2();
-
-    gapi.signin2.render('signInButton',
-      {
-        'scope': 'openid email',
-        'width': 200,
-        'height': 50,
-        'onsuccess': this.gconnectLogin,
-        'onfailure': this.handleFailure
-      });
-
-    console.log(auth2);
-  };
-
-  onSubmit(formRef: any) {
-    console.log(formRef);
-    this.accountService.authenticate(formRef);
-    this.router.navigateByUrl('/dashboard');
   };
 
   login() {
     this.loading = true;
     this.accountService.login(this.model.username, this.model.password)
-      .subscribe(result => {
-        if (result === true) {
-          // login successful
-          this.router.navigateByUrl('/dashboard');
-        } else {
-          // login failed
-          this.error = 'Username or password is incorrect';
+      .subscribe(
+        result => {
+          if (result === true) {
+            // login successful
+            this.loading = false;
+            this.router.navigateByUrl('/dashboard');
+          } else {
+            // login failed
+            this.error = 'Username or password is incorrect';
+            this.loading = false;
+          }
+        },
+        error => {
           this.loading = false;
-        }
-      });
+          this.error = <any>error;
+        });
   }
 
   signInCallback(authResult: any) {
@@ -98,14 +78,6 @@ export class LoginComponent implements OnInit {
     console.log('gconnect login clicked!');
     // this.oauthObj.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(this.signInCallback);
     console.log(data);
-  };
-
-  constructor(private accountService: AccountService,
-              private router: Router) {
-    window['gconnectLogin'] = this.gconnectLogin.bind(this);
-    window['signInCallback'] = this.signInCallback.bind(this);
-    window['handleFailure'] = this.handleFailure.bind(this);
-    window['renderButton'] = this.renderButton.bind(this);
   };
 
   private handleFailure(error: Response | any) {
