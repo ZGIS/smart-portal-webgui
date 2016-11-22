@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService, UserProfile } from './account.service';
+import { error } from 'util';
 
 @Component({
   selector: 'sac-gwh-useraccount',
@@ -8,7 +9,7 @@ import { AccountService, UserProfile } from './account.service';
 
 export class AccountComponent implements OnInit {
 
-  public userProfile: UserProfile;
+  userProfile: UserProfile = this.accountService.guestProfile;
 
   constructor(private accountService: AccountService) {
   };
@@ -16,14 +17,14 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     // get users from secure api end point
     this.accountService.getProfile()
-      .subscribe(user => {
-        this.userProfile = user;
+      .subscribe(
+        user => {
+          this.userProfile = user;
+        },
+      error => {
+        console.log(<any>error);
+        this.userProfile = this.accountService.guestProfile;
       });
   }
 
-  setProfile() {
-    let profile = this.accountService.getProfile();
-    console.log(profile);
-    // this.userProfile = profile;
-  }
 }
