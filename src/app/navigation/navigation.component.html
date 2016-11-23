@@ -15,7 +15,7 @@
         <li *ngIf="!category==='main'">{{ category }}</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li routerLinkActive="active" *ngIf="accountService.isLoggedIn()">
+        <li routerLinkActive="active" *ngIf="checkLoggedIn">
           <a routerLink="/workbench/add-data"><i class="fa fa-edit"></i></a>
         </li>
         <li routerLinkActive="active"><a routerLink="/search"><i class="fa fa-search"></i></a></li>
@@ -28,13 +28,13 @@
           </a>
           <ul class="dropdown-menu" dropdownMenu>
 
-            <li role="menuitem" *ngIf="accountService.isLoggedIn()">
+            <li role="menuitem" *ngIf="checkLoggedIn">
               <a class="dropdown-item" routerLink="/account">{{ userProfile.firstname }} Account</a>
             </li>
-            <li role="menuitem" *ngIf="!accountService.isLoggedIn()">
+            <li role="menuitem" *ngIf="!checkLoggedIn">
               <a class="dropdown-item" routerLink="/login">Login</a>
             </li>
-            <li role="menuitem" *ngIf="accountService.isLoggedIn()">
+            <li role="menuitem" *ngIf="checkLoggedIn">
               <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
             </li>
 

@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 // import { Observable }     from 'rxjs/Observable';
 import { Observable } from 'rxjs/Rx';
+import { BehaviorSubject } from 'rxjs/Rx';
 import { CookieService } from 'angular2-cookie/core';
 import { PORTAL_API_URL } from '../app.tokens';
 import 'rxjs/add/operator/map';
@@ -51,13 +52,14 @@ export class AccountService {
     password: 'xxx'
   });
 
-  private loggedInState: boolean = false;
+  private _loggedInState: BehaviorSubject<boolean>;
 
   constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
               private http: Http, private router: Router, private _cookieService: CookieService) {
 
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    let cookieToken = _cookieService.get('XSRF-TOKEN');
+    let cookieToken = this._cookieService.get('XSRF-TOKEN');
+    this._loggedInState = new BehaviorSubject(false);
 
     if (currentUser && cookieToken) {
       // and here we could also check for cookie, if cookie and token are available we could check
@@ -65,7 +67,7 @@ export class AccountService {
       // logged in (maybe OnInit and not in constructor?)
       this.token = currentUser.token;
       if (currentUser.token === cookieToken) {
-        console.log('Restoring user from tokens...');
+        console.log('Trying to restore user from tokens...');
 
         let profileUri = this.portalApiUrl + '/users/self';
         console.log('token: ' + this.token);
@@ -80,13 +82,21 @@ export class AccountService {
             (response: Response) => {
               if (response.status === 200) {
                 console.log('succesfully verified current session');
-                this.loggedInState = true;
+                let userProfileJson = response.json();
+                if (userProfileJson) {
+                  let userProfile = createProfile(userProfileJson);
+                  console.log(userProfile);
+                  localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
+                }
+                this._loggedInState.next(true);
               } else {
-                this.loggedInState = false;
+                console.log('could not verify current session');
+                this._loggedInState.next(false);
                 // clear token remove user from local storage to log user out
                 this.token = null;
                 localStorage.removeItem('currentUser');
-                _cookieService.remove('XSRF-TOKEN');
+                localStorage.removeItem('currentUserProfile');
+                this._cookieService.remove('XSRF-TOKEN');
                 this.handleHttpFailure(response);
               }
             }
@@ -95,10 +105,22 @@ export class AccountService {
 
       } else {
         console.log('auth token and cookie mismatch, not a valid session ...');
+        this._loggedInState.next(false);
+        // clear token remove user from local storage to log user out
+        this.token = null;
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentUserProfile');
+        this._cookieService.remove('XSRF-TOKEN');
 
       }
     } else {
       console.log('either auth token or cookie missing, not a valid session ...');
+      this._loggedInState.next(false);
+      // clear token remove user from local storage to log user out
+      this.token = null;
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('currentUserProfile');
+      this._cookieService.remove('XSRF-TOKEN');
     }
   };
 
@@ -115,23 +137,34 @@ export class AccountService {
     // get users from api
     return this.http.get(profileUri, options)
       .map(
-        (response: Response) => response.json()
+        (response: Response) => {
+          if (response.status === 200) {
+            let userProfileJson = response.json();
+            if (userProfileJson) {
+              let userProfile = createProfile(userProfileJson);
+              console.log(userProfile);
+              localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
+            }
+            return response.json();
+          } else {
+            // indicates failed self retrieve / authenticated session
+            // should also remove token and invalidate angular session?
+            this._loggedInState.next(false);
+            // clear token remove user from local storage to log user out
+            this.token = null;
+            localStorage.removeItem('currentUser');
+            localStorage.removeItem('currentUserProfile');
+            this._cookieService.remove('XSRF-TOKEN');
+            return Observable.throw('invalid session');
+          }
+        }
       )
       .catch(this.handleHttpFailureWithLogout);
-  }
-
-  getUsername(): string {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-      return currentUser.username;
-    } else {
-      return this.guestProfile.username;
-    }
   };
 
-  isLoggedIn(): boolean {
+  isLoggedIn(): Observable<boolean> {
     // console.log(this.loggedInState);
-    return this.loggedInState;
+    return this._loggedInState.asObservable();
   };
 
   logout(): Observable<boolean> {
@@ -144,12 +177,13 @@ export class AccountService {
     return this.http.get(logoutUri, options)
       .map((response: Response) => {
         // logout
-        let token = response.json() && response.json().status;
-        if (token === 'OK') {
-          this.loggedInState = false;
+        if (response.status === 200) {
+          this._loggedInState.next(false);
           // clear token remove user from local storage to log user out
           this.token = null;
           localStorage.removeItem('currentUser');
+          localStorage.removeItem('currentUserProfile');
+          this._cookieService.remove('XSRF-TOKEN');
           // return true to indicate successful logout
           return true;
         } else {
@@ -158,7 +192,7 @@ export class AccountService {
           console.log('logout failed');
           return false;
         }
-      }).catch(this.handleHttpFailure);
+      }).catch(this.handleHttpFailureWithLogout);
   };
 
   login(username: string, password: string): Observable<boolean> {
@@ -173,19 +207,25 @@ export class AccountService {
         if (token) {
           // set token property
           this.token = token;
-          console.log('token: ' + token);
-          this.loggedInState = true;
+          console.log('login received token: ' + token);
+          this._loggedInState.next(true);
 
           // store username and xsrf token in local storage to keep user logged in between page
           // refreshes
           localStorage.setItem('currentUser', JSON.stringify({username: username, token: token}));
 
+          let userProfileJson = response.json().userprofile;
+          if (userProfileJson) {
+            let userProfile = createProfile(userProfileJson);
+            console.log(userProfile);
+            localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
+          }
           // return true to indicate successful login
           return true;
         } else {
           // return false to indicate failed login
           // should also remove token?
-          this.loggedInState = false;
+          this._loggedInState.next(false);
           console.log('login failed');
           return false;
         }
@@ -198,26 +238,16 @@ export class AccountService {
     // JSON.stringify({username: username, password: password}))
     return this.http.post(regUri, userprofile)
       .map((response: Response) => {
-        // login successful if there's a xsrf token in the response
-        let token = response.json() && response.json().token;
-        if (token) {
-          // set token property
-          this.token = token;
-          this.loggedInState = true;
+        if (response.status === 200) {
 
-          // store username and xsrf token in local storage to keep user logged in between page
-          // refreshes
-          localStorage.setItem('currentUser', JSON.stringify({
-            username: userprofile.username,
-            token: token
-          }));
-
-          // return true to indicate successful login
+          let userProfileJson = response.json() && response.json().userprofile;
+          if (userProfileJson) {
+            let userProfile = createProfile(userProfileJson);
+            console.log(userProfile);
+            localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
+          }
           return true;
         } else {
-          // return false to indicate failed login
-          // should also remove token?
-          this.loggedInState = false;
           return false;
         }
       }).catch(this.handleHttpFailure);
@@ -356,10 +386,11 @@ export class AccountService {
       const err = body.status || JSON.stringify(body);
       if (error.status === 401) {
         // 401 unauthorized
-        this.loggedInState = false;
+        this._loggedInState.next(false);
         // clear token remove user from local storage to log user out
         this.token = null;
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentUserProfile');
         this._cookieService.remove('XSRF-TOKEN');
       }
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AccountService } from './account.service';
 import { Router } from '@angular/router';
 
@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   error = '';
-  @Output() flash = new EventEmitter();
 
   constructor(private accountService: AccountService,
               private router: Router) {

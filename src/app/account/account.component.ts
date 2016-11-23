@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AccountService, UserProfile } from './account.service';
 
 @Component ({
@@ -8,7 +8,7 @@ import { AccountService, UserProfile } from './account.service';
 
 export class AccountComponent implements OnInit {
 
-  userProfile: UserProfile = this.accountService.guestProfile;
+  @Input() userProfile: UserProfile = this.accountService.guestProfile;
 
   constructor ( private accountService: AccountService ) {
   };
