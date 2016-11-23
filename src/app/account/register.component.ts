@@ -1,8 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AccountService, createProfile } from './account.service';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 
 // Google's login API namespace
 // declare var gapi: any;
@@ -24,9 +23,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(private accountService: AccountService, private router: Router,
               private http: Http) {
-    window['gconnectReg'] = this.gconnectReg.bind(this);
-    window['signInCallback'] = this.signInCallback.bind(this);
-    window['handleFailure'] = this.handleFailure.bind(this);
+    // window['gconnectReg'] = this.gconnectReg.bind(this);
+    // window['signInCallback'] = this.signInCallback.bind(this);
+    // window['handleFailure'] = this.handleFailure.bind(this);
     window['recaptchaCallback'] = this.recaptchaCallback.bind(this);
 
   };
@@ -65,7 +64,7 @@ export class RegisterComponent implements OnInit {
           if (result === true) {
             // login successful
             this.loading = false;
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/login');
           } else {
             // login failed
             this.error = 'Registration failed: message / status';
@@ -86,36 +85,38 @@ export class RegisterComponent implements OnInit {
     console.log(paramUrl);
   };
 
-  signInCallback(authResult: any) {
-    if (authResult['code']) {
-      console.log('signInCallback register component');
-      console.log(authResult);
-      this.accountService.gconnectHandle('REGISTER', authResult);
-      this.router.navigateByUrl('/dashboard');
-    } else {
-      console.log('error gconnect re signin');
-      console.log(authResult);
-    }
-  };
+  /*
+   signInCallback(authResult: any) {
+   if (authResult['code']) {
+   console.log('signInCallback register component');
+   console.log(authResult);
+   this.accountService.gconnectHandle('REGISTER', authResult);
+   this.router.navigateByUrl('/dashboard');
+   } else {
+   console.log('error gconnect re signin');
+   console.log(authResult);
+   }
+   };
 
-  gconnectReg(data: any) {
-    console.log('gconnect register clicked!');
-    // this.auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(this.signInCallback);
-    console.log(data);
-  };
+   gconnectReg(data: any) {
+   console.log('gconnect register clicked!');
+   // this.auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(this.signInCallback);
+   console.log(data);
+   };
 
-  private handleFailure(error: Response | any) {
-    // In a real world app, we might use a remote logging infrastructure
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
-  };
+   private handleFailure(error: Response | any) {
+   // In a real world app, we might use a remote logging infrastructure
+   let errMsg: string;
+   if (error instanceof Response) {
+   const body = error.json() || '';
+   const err = body.error || JSON.stringify(body);
+   errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+   } else {
+   errMsg = error.message ? error.message : error.toString();
+   }
+   console.error(errMsg);
+   return Observable.throw(errMsg);
+   };
+   */
 
 }

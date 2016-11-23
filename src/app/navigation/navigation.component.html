@@ -29,7 +29,7 @@
           <ul class="dropdown-menu" dropdownMenu>
 
             <li role="menuitem" *ngIf="accountService.isLoggedIn()">
-              <a class="dropdown-item" routerLink="/account">{{ username }} Account</a>
+              <a class="dropdown-item" routerLink="/account">{{ userProfile.firstname }} Account</a>
             </li>
             <li role="menuitem" *ngIf="!accountService.isLoggedIn()">
               <a class="dropdown-item" routerLink="/login">Login</a>

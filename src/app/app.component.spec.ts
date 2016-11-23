@@ -6,6 +6,7 @@ import { AccountService } from './account/account.service';
 import { API_URL_PROVIDERS } from './app.tokens';
 import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 // import { By }             from '@angular/platform-browser';
 
@@ -30,6 +31,7 @@ describe('App Component', () => {
         AppComponent, NavigationComponent
       ],
       providers: [
+        CookieService,
         AccountService,
         API_URL_PROVIDERS,
         MockBackend,
@@ -70,6 +72,7 @@ describe('AppComponent with TCB', function () {
         AppComponent
       ],
       providers: [
+        CookieService,
         AccountService,
         API_URL_PROVIDERS,
         Http

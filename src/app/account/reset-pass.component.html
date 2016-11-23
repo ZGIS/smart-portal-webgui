@@ -4,7 +4,7 @@
       <div class="panel-heading">Please enter your email address for your account</div>
       <div class="panel-body">
 
-        <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <label for="email">email</label>
             <input type="email" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel"

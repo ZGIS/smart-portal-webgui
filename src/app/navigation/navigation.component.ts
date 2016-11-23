@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { AccountService, UserProfile } from '../account/account.service';
-import { ActivatedRoute }   from '@angular/router';
+import { ActivatedRoute, Router }   from '@angular/router';
 // import {DropdownModule} from 'ng2-bootstrap/ng2-bootstrap';
 
 // Google's login API namespace
@@ -13,31 +13,47 @@ import { ActivatedRoute }   from '@angular/router';
 //  styleUrls: [ './navigation.component.css' ]
 })
 
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnChanges {
 
   // FIXME make this an enum or so
   currentNav: string;
 
   public userProfile: UserProfile;
 
-  username = this.accountService.isLoggedIn() ? this.accountService.getUsername() : 'guest';
+  // username = this.accountService.isLoggedIn() ? this.accountService.getUsername() : 'guest';
   category = 'main';
 
-  ngOnInit() {
-
-    this.accountService.getProfile()
-      .subscribe(user => {
-        this.userProfile = user;
-      });
-
+  ngOnChanges() {
   };
 
-
   logout() {
-    this.accountService.logout();
+    this.accountService.logout()
+      .subscribe(
+        result => {
+          if (result === true) {
+            // login successful
+            this.router.navigateByUrl('/login');
+          } else {
+            // logout failed?
+            this.router.navigateByUrl('/account');
+          }
+        },
+        error => {
+          console.log(<any>error);
+        });
   }
 
-  constructor(private accountService: AccountService, private route: ActivatedRoute) {
+  constructor(private accountService: AccountService, private route: ActivatedRoute,
+              private router: Router) {
+    this.accountService.getProfile()
+      .subscribe(
+        user => {
+          this.userProfile = user;
+        },
+        error => {
+          console.log(<any>error);
+          this.userProfile = this.accountService.guestProfile;
+        });
   };
 
 }

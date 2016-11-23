@@ -41,6 +41,7 @@ const appRoutes: Routes = [
     component: AccountComponent,
     canActivate: [AuthGuard]
   },
+  // also think about CanActivateChild for the whiole workbench thing
   {
     path: 'workbench/add-data',
     component: MetadataEditorComponent,

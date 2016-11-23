@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 // import { Observable }     from 'rxjs/Observable';
 import { Observable } from 'rxjs/Rx';
+import { CookieService } from 'angular2-cookie/core';
 import { PORTAL_API_URL } from '../app.tokens';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -15,7 +16,7 @@ export interface UserProfile {
   password?: string;
 }
 
-export function createProfile ( profileConf: UserProfile ): {
+export function createProfile(profileConf: UserProfile): {
   email: string,
   username: string,
   firstname: string,
@@ -37,12 +38,12 @@ export function createProfile ( profileConf: UserProfile ): {
   return profileObj;
 }
 
-@Injectable ()
+@Injectable()
 export class AccountService {
 
   public token: string;
 
-  guestProfile = createProfile ({
+  guestProfile = createProfile({
     email: 'guest@example.com',
     username: 'guest',
     firstname: 'Guest',
@@ -52,66 +53,132 @@ export class AccountService {
 
   private loggedInState: boolean = false;
 
-  constructor ( @Inject (PORTAL_API_URL) private portalApiUrl: string,
-                private http: Http, private router: Router ) {
-    let currentUser = JSON.parse (localStorage.getItem ('currentUser'));
-    this.token = currentUser && currentUser.token;
+  constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
+              private http: Http, private router: Router, private _cookieService: CookieService) {
+
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let cookieToken = _cookieService.get('XSRF-TOKEN');
+
+    if (currentUser && cookieToken) {
+      // and here we could also check for cookie, if cookie and token are available we could check
+      // if we are still have valid session on server, too, only then we are like really really
+      // logged in (maybe OnInit and not in constructor?)
+      this.token = currentUser.token;
+      if (currentUser.token === cookieToken) {
+        console.log('Restoring user from tokens...');
+
+        let profileUri = this.portalApiUrl + '/users/self';
+        console.log('token: ' + this.token);
+        let headers = new Headers({
+          // 'Authorization': 'Bearer ' + this.token,
+          'X-XSRF-TOKEN': this.token
+        });
+        let options = new RequestOptions({headers: headers, withCredentials: true});
+
+        this.http.get(profileUri, options)
+          .map(
+            (response: Response) => {
+              if (response.status === 200) {
+                console.log('succesfully verified current session');
+                this.loggedInState = true;
+              } else {
+                this.loggedInState = false;
+                // clear token remove user from local storage to log user out
+                this.token = null;
+                localStorage.removeItem('currentUser');
+                _cookieService.remove('XSRF-TOKEN');
+                this.handleHttpFailure(response);
+              }
+            }
+          )
+          .catch(this.handleHttpFailureWithLogout);
+
+      } else {
+        console.log('auth token and cookie mismatch, not a valid session ...');
+
+      }
+    } else {
+      console.log('either auth token or cookie missing, not a valid session ...');
+    }
   };
 
-  getProfile (): Observable<UserProfile> {
+  getProfile(): Observable<UserProfile> {
     // add authorization header with jwt token
     let profileUri = this.portalApiUrl + '/users/self';
-    console.log ('token: ' + this.token);
-    let headers = new Headers ({
+    console.log('token: ' + this.token);
+    let headers = new Headers({
       // 'Authorization': 'Bearer ' + this.token,
       'X-XSRF-TOKEN': this.token
     });
-    let options = new RequestOptions ({headers: headers, withCredentials: true});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
 
     // get users from api
-    return this.http.get (profileUri, options)
-      .map (( response: Response ) => response.json ());
+    return this.http.get(profileUri, options)
+      .map(
+        (response: Response) => response.json()
+      )
+      .catch(this.handleHttpFailureWithLogout);
   }
 
-  getUsername (): string {
-    let currentUser = JSON.parse (localStorage.getItem ('currentUser'));
+  getUsername(): string {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser) {
-      return currentUser.token;
+      return currentUser.username;
     } else {
       return this.guestProfile.username;
     }
   };
 
-  isLoggedIn (): boolean {
+  isLoggedIn(): boolean {
     // console.log(this.loggedInState);
     return this.loggedInState;
   };
 
-  logout (): void {
-    this.loggedInState = false;
-    // clear token remove user from local storage to log user out
-    this.token = null;
-    localStorage.removeItem ('currentUser');
+  logout(): Observable<boolean> {
+    let logoutUri = this.portalApiUrl + '/logout';
+    let headers = new Headers({
+      // 'Authorization': 'Bearer ' + this.token,
+      'X-XSRF-TOKEN': this.token
+    });
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    return this.http.get(logoutUri, options)
+      .map((response: Response) => {
+        // logout
+        let token = response.json() && response.json().status;
+        if (token === 'OK') {
+          this.loggedInState = false;
+          // clear token remove user from local storage to log user out
+          this.token = null;
+          localStorage.removeItem('currentUser');
+          // return true to indicate successful logout
+          return true;
+        } else {
+          // return false to indicate failed logout
+          // should also remove token and invalid angular session?
+          console.log('logout failed');
+          return false;
+        }
+      }).catch(this.handleHttpFailure);
   };
 
-  login ( username: string, password: string ): Observable<boolean> {
+  login(username: string, password: string): Observable<boolean> {
     let loginUri = this.portalApiUrl + '/login';
-    let data = JSON.stringify ({username: username, password: password});
-    let headers = new Headers ({'Content-Type': 'application/json'});
-    let options = new RequestOptions ({headers: headers, withCredentials: true});
-    return this.http.post (loginUri, data, options)
-      .map (( response: Response ) => {
+    let data = JSON.stringify({username: username, password: password});
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    return this.http.post(loginUri, data, options)
+      .map((response: Response) => {
         // login successful if there's a xsrf token in the response
-        let token = response.json () && response.json ().token;
+        let token = response.json() && response.json().token;
         if (token) {
           // set token property
           this.token = token;
-          console.log ('token: ' + token);
+          console.log('token: ' + token);
           this.loggedInState = true;
 
           // store username and xsrf token in local storage to keep user logged in between page
           // refreshes
-          localStorage.setItem ('currentUser', JSON.stringify ({username: username, token: token}));
+          localStorage.setItem('currentUser', JSON.stringify({username: username, token: token}));
 
           // return true to indicate successful login
           return true;
@@ -119,20 +186,20 @@ export class AccountService {
           // return false to indicate failed login
           // should also remove token?
           this.loggedInState = false;
-          console.log ('login failed');
+          console.log('login failed');
           return false;
         }
-      });
+      }).catch(this.handleHttpFailure);
   };
 
-  register ( userprofile: UserProfile ): Observable<boolean> {
+  register(userprofile: UserProfile): Observable<boolean> {
     let regUri = this.portalApiUrl + '/users/register';
 
     // JSON.stringify({username: username, password: password}))
-    return this.http.post (regUri, userprofile)
-      .map (( response: Response ) => {
+    return this.http.post(regUri, userprofile)
+      .map((response: Response) => {
         // login successful if there's a xsrf token in the response
-        let token = response.json () && response.json ().token;
+        let token = response.json() && response.json().token;
         if (token) {
           // set token property
           this.token = token;
@@ -140,7 +207,7 @@ export class AccountService {
 
           // store username and xsrf token in local storage to keep user logged in between page
           // refreshes
-          localStorage.setItem ('currentUser', JSON.stringify ({
+          localStorage.setItem('currentUser', JSON.stringify({
             username: userprofile.username,
             token: token
           }));
@@ -153,7 +220,7 @@ export class AccountService {
           this.loggedInState = false;
           return false;
         }
-      });
+      }).catch(this.handleHttpFailure);
   };
 
   requestPasswordReset(email: string): Observable<boolean> {
@@ -231,39 +298,76 @@ export class AccountService {
    );
    };
 
+   gconnectHandle(authRequester: string, authResult: any) {
+   console.log('gconnectHandle account coming from ' + authRequester);
+   let gconnectPortalUri = this.portalApiUrl + '/login/gconnect';
+   let data = authResult['code'];
+   console.log(data);
+   // here we could already also get XSRF-TOKEN from localstorage if available?
+   return this.http.post(gconnectPortalUri, data)
+   .map(this.extractGoogleSignInData)
+   .catch(this.handleGoogleSignInError);
+   };
+
+
+   private extractGoogleSignInData(res: Response) {
+   let body = res.json();
+   // return body.data || {};
+   console.log('extractGoogleSignInData');
+   console.log(body.data);
+   return body.data;
+   };
+
+   private handleGoogleSignInError(error: Response | any) {
+   // In a real world app, we might use a remote logging infrastructure
+   let errMsg: string;
+   if (error instanceof Response) {
+   const body = error.json() || '';
+   const err = body.error || JSON.stringify(body);
+   errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+   } else {
+   errMsg = error.message ? error.message : error.toString();
+   }
+   console.error(errMsg);
+   return Observable.throw(errMsg);
+   }
+
    */
-  gconnectHandle ( authRequester: string, authResult: any ) {
-    console.log ('gconnectHandle account coming from ' + authRequester);
-    let gconnectPortalUri = this.portalApiUrl + '/login/gconnect';
-    let data = authResult[ 'code' ];
-    console.log (data);
-    // here we could already also get XSRF-TOKEN from localstorage if available?
-    return this.http.post (gconnectPortalUri, data)
-      .map (this.extractGoogleSignInData)
-      .catch (this.handleGoogleSignInError);
-  };
 
-
-  private extractGoogleSignInData ( res: Response ) {
-    let body = res.json ();
-    // return body.data || {};
-    console.log ('extractGoogleSignInData');
-    console.log (body.data);
-    return body.data;
-  };
-
-  private handleGoogleSignInError ( error: Response | any ) {
+  private handleHttpFailure(error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
-      const body = error.json () || '';
-      const err = body.error || JSON.stringify (body);
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
     } else {
-      errMsg = error.message ? error.message : error.toString ();
+      errMsg = error.message ? error.message : error.toString();
     }
-    console.error (errMsg);
-    return Observable.throw (errMsg);
-  }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+  };
+
+  private handleHttpFailureWithLogout(error: Response | any) {
+    // In a real world app, we might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.status || JSON.stringify(body);
+      if (error.status === 401) {
+        // 401 unauthorized
+        this.loggedInState = false;
+        // clear token remove user from local storage to log user out
+        this.token = null;
+        localStorage.removeItem('currentUser');
+        this._cookieService.remove('XSRF-TOKEN');
+      }
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+  };
 
 }
