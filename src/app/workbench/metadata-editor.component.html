@@ -1,444 +1,435 @@
 <div class="row">
-  <div class="col-md-7">
+  <div class="col-md-12">
     <div class="panel panel-default">
-      <div class="panel-heading">Add new data</div>
+      <div class="panel-heading">Add new Metadata record</div>
 
       <div class="panel-body">
+        <tabset>
+          <tab heading='What?'>
 
-        <div class="list-group">
-          <fieldset>
+            <div class="list-group">
+              <fieldset>
 
-            <div class="control-group list-group-item">
-              <label class="control-label"
-                     for="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
-                     data-toggle="tooltip" title="Title of the resource">Title*:</label>
-              <div class="controls">
-                <input type="text"
-                       name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
-                       id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
-                       placeholder="horowhenua 3D geological model">
-              </div>
-            </div>
+                <div class="control-group list-group-item">
+                  <label class="control-label"
+                         for="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
+                         data-toggle="tooltip" title="Title of the resource">Title*:</label>
+                  <div class="controls">
+                    <input type="text"
+                           name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
+                           id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
+                           placeholder="horowhenua 3D geological model">
+                  </div>
+                </div>
 
-            <div class="control-group list-group-item">
-              <label class="control-label" for="keywords" data-toggle="tooltip"
-                     title="Comma-separated list of useful thematic keywords.">Keywords (multiple,
-                comma separated)*:</label>
-              <div class="controls">
-                <input type="text" name="keywords" id="keywords"
-                       placeholder="hydrology, groundwater levels">
-              </div>
-            </div>
+                <div class="control-group list-group-item">
+                  <label class="control-label" for="keywords" data-toggle="tooltip"
+                         title="Comma-separated list of useful thematic keywords.">Keywords (multiple,
+                    comma separated)*:</label>
+                  <div class="controls">
+                    <input type="text" name="keywords" id="keywords"
+                           placeholder="hydrology, groundwater levels">
+                  </div>
+                </div>
 
-            <div class="control-group list-group-item">
-              <label class="control-label"
-                     for="gmd_identificationInfo_MD_DataIdentification_abstract"
-                     data-toggle="tooltip" title="Abstract/Description for the resource">Abstract/Description*:</label>
-              <div class="controls">
+                <div class="control-group list-group-item">
+                  <label class="control-label"
+                         for="gmd_identificationInfo_MD_DataIdentification_abstract"
+                         data-toggle="tooltip" title="Abstract/Description for the resource">Abstract/Description*:</label>
+                  <div class="controls">
                   <textarea name="gmd_identificationInfo_MD_DataIdentification_abstract"
                             id="gmd_identificationInfo_MD_DataIdentification_abstract"></textarea>
-              </div>
+                  </div>
+                </div>
+
+                <div class="control-group list-group-item">
+                  <label class="control-label"
+                         for="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
+                         data-toggle="tooltip"
+                         title="Topic Category from suggested ISO category of the resource.">Topic (ISO
+                    Category)*:</label>
+                  <div class="controls">
+                    <select class="span5"
+                            name="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
+                            id="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode">
+                      <!-- TODO SR create a "allowed values" enum in the backend and push that to frontend-->
+                      <option value="environment" selected>environment</option>
+                      <option value="inlandWaters">inlandWaters</option>
+                      <option value="geoscientificInformation">geoscientificInformation</option>
+                      <option value="farming">farming</option>
+                      <option value="biota">biota</option>
+                      <option value="boundaries">boundaries</option>
+                      <option value="climatologyMeteorologyAtmosphere">climatologyMeteorologyAtmosphere
+                      </option>
+                      <option value="oceans">oceans</option>
+                      <option value="imageryBaseMapsEarthCover">imageryBaseMapsEarthCover</option>
+                      <option value="location">location</option>
+                      <option value="economy">economy</option>
+                      <option value="elevation">elevation</option>
+                      <option value="health">health</option>
+                      <option value="society">society</option>
+                      <option value="planningCadastre">planningCadastre</option>
+                      <option value="structure">structure</option>
+                      <option value="transportation">transportation</option>
+                      <option value="utilitiesCommunication">utilitiesCommunication</option>
+                      <option value="intelligenceMilitary">intelligenceMilitary</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="control-group list-group-item">
+                  <label class="control-label" for="gmd_hierarchyLevelName" data-toggle="tooltip"
+                         title="Type of resource (dataset, service ...).">Type of Resource*:</label>
+                  <div class="controls">
+                    <select class="span5" name="gmd_hierarchyLevelName"
+                            id="gmd_hierarchyLevelName">
+                      <!-- TODO SR create a "allowed values" enum in the backend and push that to frontend-->
+                      <option value="dataset" selected>dataset</option>
+                      <option value="service">service</option>
+                      <option value="software">software</option>
+                      <option value="model">model</option>
+                      <option value="sensor">sensor</option>
+                      <option value="series">series</option>
+                      <option value="nonGeographicDataset">nonGeographicDataset</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="control-group list-group-item">
+                  <label class="control-label"
+                         for="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
+                         data-toggle="tooltip" title="EquivalentScale denominator, e.g. 1:50000">Geographical
+                    Scale*:</label>
+                  <div class="controls">
+                    <select class="span5"
+                            name="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
+                            id="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator">
+                      <option value="5000">1:5000 or smaller</option>
+                      <option value="10000">1:10000</option>
+                      <option value="25000" selected>1:25000</option>
+                      <option value="50000">1:50000</option>
+                      <option value="250000">1:250000</option>
+                      <option value="1000000">1:1000000 or larger</option>
+                    </select>
+                  </div>
+                </div>
+
+              </fieldset>
             </div>
 
-            <div class="control-group list-group-item">
-              <label class="control-label"
-                     for="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
-                     data-toggle="tooltip"
-                     title="Topic Category from suggested ISO category of the resource.">Topic (ISO
-                Category)*:</label>
-              <div class="controls">
-                <select class="span5"
-                        name="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
-                        id="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode">
-                  <option value="environment" selected>environment</option>
-                  <option value="inlandWaters">inlandWaters</option>
-                  <option value="geoscientificInformation">geoscientificInformation</option>
-                  <option value="farming">farming</option>
-                  <option value="biota">biota</option>
-                  <option value="boundaries">boundaries</option>
-                  <option value="climatologyMeteorologyAtmosphere">climatologyMeteorologyAtmosphere
-                  </option>
-                  <option value="oceans">oceans</option>
-                  <option value="imageryBaseMapsEarthCover">imageryBaseMapsEarthCover</option>
-                  <option value="location">location</option>
-                  <option value="economy">economy</option>
-                  <option value="elevation">elevation</option>
-                  <option value="health">health</option>
-                  <option value="society">society</option>
-                  <option value="planningCadastre">planningCadastre</option>
-                  <option value="structure">structure</option>
-                  <option value="transportation">transportation</option>
-                  <option value="utilitiesCommunication">utilitiesCommunication</option>
-                  <option value="intelligenceMilitary">intelligenceMilitary</option>
-                </select>
+
+          </tab>
+
+
+
+          <tab heading='Where?'>
+            <fieldset>
+              <div class="control-group list-group-item">
+                <label class="control-label"
+                       for="gmd_identificationInfo_MD_DataIdentification_extent_Description"
+                       data-toggle="tooltip"
+                       title="Location, region or placename related to the resource.">Location
+                  Description:</label>
+                <div class="controls">
+                  <input class="span7" type="text"
+                         id="gmd_identificationInfo_MD_DataIdentification_extent_Description"
+                         name="gmd_identificationInfo_MD_DataIdentification_extent_Description"
+                         placeholder="Manawatu-Wanganui (Horizons)">
+                </div>
               </div>
-            </div>
 
-            <div class="control-group list-group-item">
-              <label class="control-label" for="gmd_hierarchyLevelName" data-toggle="tooltip"
-                     title="Type of resource (dataset, service ...).">Type of Resource*:</label>
-              <div class="controls">
-                <select class="span5" name="gmd_hierarchyLevelName"
-                        id="gmd_hierarchyLevelName">
-                  <option value="dataset" selected>dataset</option>
-                  <option value="service">service</option>
-                  <option value="software">software</option>
-                  <option value="model">model</option>
-                  <option value="sensor">sensor</option>
-                  <option value="series">series</option>
-                  <option value="nonGeographicDataset">nonGeographicDataset</option>
-                </select>
+              <div class="control-group list-group-item">
+                <label class="control-label" for="gmd_referenceSystemInfo" data-toggle="tooltip"
+                       title="Geographic Reference System related to the resource.">Reference
+                  System*:</label>
+                <div class="controls">
+                  <select class="span5" name="gmd_referenceSystemInfo" id="gmd_referenceSystemInfo">
+                    <option value="urn:ogc:def:crs:EPSG::2193">NZGD2000 / New Zealand Transverse
+                      Mercator 2000 (EPSG:2193)
+                    </option>
+                    <option value="urn:ogc:def:crs:EPSG::4959">NZGD2000 (EPSG:4959)</option>
+                    <option value="urn:ogc:def:crs:EPSG::27200">NZGD49 / New Zealand Map Grid
+                      (EPSG:27200)
+                    </option>
+                    <option value="urn:ogc:def:crs:EPSG::4272">NZGD49 (EPSG:4272)</option>
+                    <option value="urn:ogc:def:crs:EPSG::4328" selected>WGS 84 (EPSG:4328)</option>
+                    <option value="urn:ogc:def:crs:EPSG::0000">other / unkown</option>
+                  </select>
+                </div>
               </div>
-            </div>
 
-          </fieldset>
-        </div>
-
-      </div>
-
-      <div class="panel-body">
-        <div class="list-group">
-          <fieldset>
-
-            <div class="control-group list-group-item">
-              <label class="control-label"
-                     for="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
-                     data-toggle="tooltip" title="EquivalentScale denominator, e.g. 1:50000">Geographical
-                Scale*:</label>
-              <div class="controls">
-                <select class="span5"
-                        name="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
-                        id="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator">
-                  <option value="5000">1:5000 or smaller</option>
-                  <option value="10000">1:10000</option>
-                  <option value="25000" selected>1:25000</option>
-                  <option value="50000">1:50000</option>
-                  <option value="250000">1:250000</option>
-                  <option value="1000000">1:1000000 or larger</option>
-                </select>
+              <div class="control-group list-group-item">
+                <label class="control-label" for="mapExtentCoordinates" data-toggle="tooltip"
+                       title="Draw a box on map or zoom into the area of interest.">Geographical
+                  Extent:</label>
+                <div class="controls">
+                  <input class="span7" type="text" id="mapExtentCoordinates"
+                         name="mapExtentCoordinates"
+                         placeholder="bbox - coordinates">
+                </div>
               </div>
-            </div>
+            </fieldset>
+          </tab>
 
-            <div class="control-group list-group-item">
-              <label class="control-label"
-                     for="gmd_identificationInfo_MD_DataIdentification_extent_Description"
-                     data-toggle="tooltip"
-                     title="Location, region or placename related to the resource.">Location
-                Description:</label>
-              <div class="controls">
-                <input class="span7" type="text"
-                       id="gmd_identificationInfo_MD_DataIdentification_extent_Description"
-                       name="gmd_identificationInfo_MD_DataIdentification_extent_Description"
-                       placeholder="Manawatu-Wanganui (Horizons)">
+
+          <tab heading='When?'>
+            <fieldset>
+
+
+              <div class="control-group list-group-item">
+                <label class="control-label"
+                       for="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
+                       data-toggle="tooltip"
+                       title="Date and type of that date in relation to the resource.">Date and
+                  Type*:</label>
+                <div class="controls">
+                  <input class="span3" type="text"
+                         id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
+                         name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date">
+                  <select class="span3"
+                          name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType"
+                          id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType">
+                    <option value="creation">creation</option>
+                    <option value="publication" selected>publication</option>
+                    <option value="revision">revision</option>
+                  </select>
+                </div>
               </div>
-            </div>
 
-            <div class="control-group list-group-item">
-              <label class="control-label" for="gmd_referenceSystemInfo" data-toggle="tooltip"
-                     title="Geographic Reference System related to the resource.">Reference
-                System*:</label>
-              <div class="controls">
-                <select class="span5" name="gmd_referenceSystemInfo" id="gmd_referenceSystemInfo">
-                  <option value="urn:ogc:def:crs:EPSG::2193">NZGD2000 / New Zealand Transverse
-                    Mercator 2000 (EPSG:2193)
-                  </option>
-                  <option value="urn:ogc:def:crs:EPSG::4959">NZGD2000 (EPSG:4959)</option>
-                  <option value="urn:ogc:def:crs:EPSG::27200">NZGD49 / New Zealand Map Grid
-                    (EPSG:27200)
-                  </option>
-                  <option value="urn:ogc:def:crs:EPSG::4272">NZGD49 (EPSG:4272)</option>
-                  <option value="urn:ogc:def:crs:EPSG::4328" selected>WGS 84 (EPSG:4328)</option>
-                  <option value="urn:ogc:def:crs:EPSG::0000">other / unkown</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="control-group list-group-item">
-              <label class="control-label" for="mapExtentCoordinates" data-toggle="tooltip"
-                     title="Draw a box on map or zoom into the area of interest.">Geographical
-                Extent:</label>
-              <div class="controls">
-                <input class="span7" type="text" id="mapExtentCoordinates"
-                       name="mapExtentCoordinates"
-                       placeholder="bbox - coordinates">
-              </div>
-            </div>
-
-          </fieldset>
-        </div>
-
-      </div>
-
-      <div class="panel-body">
-
-        <div class="list-group">
-          <fieldset>
-
-
-            <div class="control-group list-group-item">
-              <label class="control-label"
-                     for="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
-                     data-toggle="tooltip"
-                     title="Date and type of that date in relation to the resource.">Date and
-                Type*:</label>
-              <div class="controls">
-                <input class="span3" type="text"
-                       id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
-                       name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date">
-                <select class="span3"
-                        name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType"
-                        id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType">
-                  <option value="creation">creation</option>
-                  <option value="publication" selected>publication</option>
-                  <option value="revision">revision</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="control-group list-group-item">
-              <label class="control-label" for="gmd_dataQualityInfo_LI_Lineage_statement"
-                     data-toggle="tooltip"
-                     title="Do you know anything about the lineage of the resource?In doubt leave blank">Lineage
-                Information of the Resource:</label>
-              <div class="controls">
+              <div class="control-group list-group-item">
+                <label class="control-label" for="gmd_dataQualityInfo_LI_Lineage_statement"
+                       data-toggle="tooltip"
+                       title="Do you know anything about the lineage of the resource? In doubt leave blank">Lineage
+                  Information of the Resource:</label>
+                <div class="controls">
               <textarea id="gmd_dataQualityInfo_LI_Lineage_statement"
                         name="gmd_dataQualityInfo_LI_Lineage_statement" class="span7"
                         rows="3"></textarea>
+                </div>
               </div>
-            </div>
 
-
-            <div class="control-group list-group-item">
-              <label class="control-label"
-                     for="gmd_identificationInfo_MD_DataIdentification_extent_temporalElement"
-                     data-toggle="tooltip"
-                     title="Do you want to specify a temporal extent of the resource?">Use a
-                Temporal
-                Extent for the Resource:</label>
-              <div class="controls">
-                <input type="checkbox"
-                       name="gmd_identificationInfo_MD_DataIdentification_extent_temporalElement"
-                       id="gmd_identificationInfo_MD_DataIdentification_extent_temporalElement">
+              <div class="control-group list-group-item">
+                <label class="control-label"
+                       for="gmd_identificationInfo_MD_DataIdentification_extent_temporalElement"
+                       data-toggle="tooltip"
+                       title="Do you want to specify a temporal extent of the resource?">Use a
+                  Temporal
+                  Extent for the Resource:</label>
+                <div class="controls">
+                  <input type="checkbox"
+                         name="gmd_identificationInfo_MD_DataIdentification_extent_temporalElement"
+                         id="gmd_identificationInfo_MD_DataIdentification_extent_temporalElement">
+                </div>
               </div>
-            </div>
 
-            <div class="control-group list-group-item">
-              <label class="control-label" for="resTemporalExtent" data-toggle="tooltip"
-                     title="You can adjust temporal extent with the slider.">Temporal
-                Extent:</label>
-              <div class="controls">
-                <input class="span6" type="text" id="resTemporalExtent" name="resTemporalExtent"
-                       placeholder="1950-2013">
+              <div class="control-group list-group-item">
+                <label class="control-label" for="resTemporalExtent" data-toggle="tooltip"
+                       title="You can adjust temporal extent with the slider.">Temporal
+                  Extent:</label>
+                <div class="controls">
+                  <input class="span6" type="text" id="resTemporalExtent" name="resTemporalExtent"
+                         placeholder="1950-2013">
+                </div>
+                <div class="controls">
+                  <br/>
+                </div>
+                <div class="controls">
+                  <div id="time-range" class="span6"></div>
+                </div>
               </div>
-              <div class="controls">
-                <br/>
-              </div>
-              <div class="controls">
-                <div id="time-range" class="span6"></div>
-              </div>
-            </div>
 
-          </fieldset>
-        </div>
+            </fieldset>
+          </tab>
 
+          <tab heading='Who?'>
+            <fieldset>
+              <div class="control-group list-group-item">
+                <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_individualName"
+                       data-toggle="tooltip"
+                       title="Name of contact person for the resource or in doubt your name.">Name of
+                  Contact Person for the Resource*:</label>
+                <div class="controls">
+                  <input type="text" id="gmd_Contact_CI_ResponsibleParty_ci_individualName"
+                         name="gmd_Contact_CI_ResponsibleParty_ci_individualName">
+                </div>
+              </div>
+
+              <div class="control-group list-group-item">
+                <label class="control-label"
+                       for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone"
+                       data-toggle="tooltip"
+                       title="A phone number of contact person for the resource or in doubt your number">Phone:</label>
+                <div class="controls">
+                  <input class="span7" type="text"
+                         id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone"
+                         name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone"
+                         placeholder="phone">
+                </div>
+              </div>
+
+              <div class="control-group list-group-item">
+                <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
+                       data-toggle="tooltip"
+                       title="An email address of contact person for the resource or in doubt your email address.">Email
+                  Address*:</label>
+                <div class="controls">
+                  <input type="text" id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
+                         name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
+                         placeholder="email">
+                </div>
+              </div>
+
+              <div class="control-group list-group-item">
+                <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
+                       data-toggle="tooltip"
+                       title="The role of the contact person for the resource. In doubt choose pointOfContact.">The
+                  Role of the Person in Relation to the Resource*:</label>
+                <div class="controls">
+                  <select class="span3" name="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
+                          id="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact">
+                    <option value="author">author</option>
+                    <option value="pointOfContact" selected>pointOfContact</option>
+                    <option value="publisher">publisher</option>
+                    <option value="owner">owner</option>
+                    <option value="originator">originator</option>
+                    <option value="processor">processor</option>
+                    <option value="principalInvestigator">principalInvestigator</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="control-group list-group-item">
+                <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_organisationName"
+                       data-toggle="tooltip"
+                       title="Organisation of contact person for the resource or in doubt your organisation or leave blank.">Organisation
+                  (and/or Position) of the Contact Person:</label>
+                <div class="controls">
+                  <input class="span7" type="text"
+                         id="gmd_Contact_CI_ResponsibleParty_ci_organisationName"
+                         name="gmd_Contact_CI_ResponsibleParty_ci_organisationName"
+                         placeholder="organisation">
+                </div>
+              </div>
+
+              <div class="control-group list-group-item">
+                <label class="control-label"
+                       for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
+                       data-toggle="tooltip"
+                       title="A weblink (URL) for your organisation or a related link.">A Weblink
+                  (URL)
+                  for the Organisation*:</label>
+                <div class="controls">
+                  <input class="span7" type="text"
+                         id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
+                         name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
+                         placeholder="http://">
+                </div>
+              </div>
+            </fieldset>
+          </tab>
+
+          <tab heading='Distribution'>
+            <fieldset>
+              <div class="control-group list-group-item">
+                <label class="control-label"
+                       for="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
+                       data-toggle="tooltip"
+                       title="License or any other use and distribution contraints regarding the resource.">License
+                  or other Constraints:</label>
+                <div class="controls">
+                  <select class="span7"
+                          name="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
+                          id="gmd_metadataConstraints_MD_LegalConstraints_useLimitation">
+                    <option value="Check with source agency" selected>Check with data provider
+                    </option>
+                    <option value="Creative Commons Attribution 3.0 New Zealand license" selected>
+                      Creative Commons Attribution 3.0 New Zealand license
+                    </option>
+                    <option
+                      value="Creative Commons Attribution-No Derivative Works 3.0 New Zealand license">
+                      Creative Commons Attribution-No Derivative Works 3.0 New Zealand license
+                    </option>
+                    <option
+                      value="Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 New Zealand license">
+                      Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 New Zealand
+                      license
+                    </option>
+                    <option value="Creative Commons Attribution-Share Alike 3.0 New Zealand license">
+                      Creative Commons Attribution-Share Alike 3.0 New Zealand license
+                    </option>
+                    <option
+                      value="Creative Commons Attribution-Noncommercial-Share Alike 3.0 New Zealand license">
+                      Creative Commons Attribution-Noncommercial-Share Alike 3.0 New Zealand license
+                    </option>
+                    <option value="No restrictions">No restrictions</option>
+                    <option value="I don't know">I don't know</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="control-group list-group-item">
+                <label class="control-label" for="gmd_distributionInfo_MD_Distribution_formatName"
+                       data-toggle="tooltip"
+                       title="The type of distribution format of the resource, e.g. file type or web service.">Type
+                  of Distribution Format:</label>
+                <div class="controls">
+                  <input class="span5" type="text"
+                         id="gmd_distributionInfo_MD_Distribution_formatName"
+                         id="gmd_distributionInfo_MD_Distribution_formatName">
+                  <select class="span3" ngForm="createNewMetadataForm"
+                          name="gmd_distributionInfo_MD_Distribution_formatVersion"
+                          id="gmd_distributionInfo_MD_Distribution_formatVersion">
+                    <option value="file formats" selected>file formats</option>
+                    <option value="web service type">web service type</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="control-group list-group-item">
+                <label class="control-label"
+                       for="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
+                       data-toggle="tooltip"
+                       title="A web link (URL) to access the dataset, if applicable.">Distribution
+                  Link:</label>
+                <div class="controls">
+                  <input type="text"
+                         id="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
+                         name="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
+                         placeholder="http://">
+                </div>
+              </div>
+
+              <div class="control-group list-group-item">
+                <label class="control-label" for="gmd_metadataStandardName" data-toggle="tooltip"
+                       title="Preferred metadata format you want to create with this form">Preferred
+                  Metadata Standard:</label>
+                <div class="controls">
+                  <select class="span3" name="gmd_metadataStandardName" id="gmd_metadataStandardName">
+                    <option value="ISO 19115:2003/19139 1.0" selected>ISO 19115:2003/19139</option>
+                    <option value="ANZLIC Metadata Profile 1.1">ANZLIC Metadata Profile 1.1</option>
+                  </select>
+                  <input type="hidden" value="true" name="isCreateNewRecordRequest">
+                </div>
+              </div>
+            </fieldset>
+          </tab>
+        </tabset>
       </div>
 
-      <div class="panel-body">
 
-        <div class="list-group">
-          <fieldset>
+      <div class="panel-footer">
+        <alert *ngIf="insertResponse.status" dismissible="true" (close)="closeAlert()">
+          <p style="color:black">{{insertResponse.message}}</p>
+        </alert>
 
-
-            <div class="control-group list-group-item">
-              <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_individualName"
-                     data-toggle="tooltip"
-                     title="Name of contact person for the resource or in doubt your name.">Name of
-                Contact Person for the Resource*:</label>
-              <div class="controls">
-                <input type="text" id="gmd_Contact_CI_ResponsibleParty_ci_individualName"
-                       name="gmd_Contact_CI_ResponsibleParty_ci_individualName">
-              </div>
-            </div>
-
-            <div class="control-group list-group-item">
-              <label class="control-label"
-                     for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone"
-                     data-toggle="tooltip"
-                     title="A phone number of contact person for the resource or in doubt your number">Phone:</label>
-              <div class="controls">
-                <input class="span7" type="text"
-                       id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone"
-                       name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone"
-                       placeholder="phone">
-              </div>
-            </div>
-
-            <div class="control-group list-group-item">
-              <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
-                     data-toggle="tooltip"
-                     title="An email address of contact person for the resource or in doubt your email address.">Email
-                Address*:</label>
-              <div class="controls">
-                <input type="text" id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
-                       name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
-                       placeholder="email">
-              </div>
-            </div>
-
-            <div class="control-group list-group-item">
-              <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
-                     data-toggle="tooltip"
-                     title="The role of the contact person for the resource. In doubt choose pointOfContact.">The
-                Role of the Person in Relation to the Resource*:</label>
-              <div class="controls">
-                <select class="span3" name="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
-                        id="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact">
-                  <option value="author">author</option>
-                  <option value="pointOfContact" selected>pointOfContact</option>
-                  <option value="publisher">publisher</option>
-                  <option value="owner">owner</option>
-                  <option value="originator">originator</option>
-                  <option value="processor">processor</option>
-                  <option value="principalInvestigator">principalInvestigator</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="control-group list-group-item">
-              <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_organisationName"
-                     data-toggle="tooltip"
-                     title="Organisation of contact person for the resource or in doubt your organisation or leave blank.">Organisation
-                (and/or Position) of the Contact Person:</label>
-              <div class="controls">
-                <input class="span7" type="text"
-                       id="gmd_Contact_CI_ResponsibleParty_ci_organisationName"
-                       name="gmd_Contact_CI_ResponsibleParty_ci_organisationName"
-                       placeholder="organisation">
-              </div>
-            </div>
-
-            <div class="control-group list-group-item">
-              <label class="control-label"
-                     for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
-                     data-toggle="tooltip"
-                     title="A weblink (URL) for your organisation or a related link.">A Weblink
-                (URL)
-                for the Organisation*:</label>
-              <div class="controls">
-                <input class="span7" type="text"
-                       id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
-                       name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
-                       placeholder="http://">
-              </div>
-            </div>
-
-          </fieldset>
-        </div>
-
-      </div>
-
-      <div class="panel-body">
-
-        <div class="list-group">
-          <fieldset>
-
-            <div class="control-group list-group-item">
-              <label class="control-label"
-                     for="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
-                     data-toggle="tooltip"
-                     title="License or any other use and distribution contraints regarding the resource.">License
-                or other Constraints:</label>
-              <div class="controls">
-                <select class="span7"
-                        name="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
-                        id="gmd_metadataConstraints_MD_LegalConstraints_useLimitation">
-                  <option value="Check with source agency" selected>Check with data provider
-                  </option>
-                  <option value="Creative Commons Attribution 3.0 New Zealand license" selected>
-                    Creative Commons Attribution 3.0 New Zealand license
-                  </option>
-                  <option
-                    value="Creative Commons Attribution-No Derivative Works 3.0 New Zealand license">
-                    Creative Commons Attribution-No Derivative Works 3.0 New Zealand license
-                  </option>
-                  <option
-                    value="Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 New Zealand license">
-                    Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 New Zealand
-                    license
-                  </option>
-                  <option value="Creative Commons Attribution-Share Alike 3.0 New Zealand license">
-                    Creative Commons Attribution-Share Alike 3.0 New Zealand license
-                  </option>
-                  <option
-                    value="Creative Commons Attribution-Noncommercial-Share Alike 3.0 New Zealand license">
-                    Creative Commons Attribution-Noncommercial-Share Alike 3.0 New Zealand license
-                  </option>
-                  <option value="No restrictions">No restrictions</option>
-                  <option value="I don't know">I don't know</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="control-group list-group-item">
-              <label class="control-label" for="gmd_distributionInfo_MD_Distribution_formatName"
-                     data-toggle="tooltip"
-                     title="The type of distribution format of the resource, e.g. file type or web service.">Type
-                of Distribution Format:</label>
-              <div class="controls">
-                <input class="span5" type="text"
-                       id="gmd_distributionInfo_MD_Distribution_formatName"
-                       id="gmd_distributionInfo_MD_Distribution_formatName">
-                <select class="span3" ngForm="createNewMetadataForm"
-                        name="gmd_distributionInfo_MD_Distribution_formatVersion"
-                        id="gmd_distributionInfo_MD_Distribution_formatVersion">
-                  <option value="file formats" selected>file formats</option>
-                  <option value="web service type">web service type</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="control-group list-group-item">
-              <label class="control-label"
-                     for="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
-                     data-toggle="tooltip"
-                     title="A web link (URL) to access the dataset, if applicable.">Distribution
-                Link:</label>
-              <div class="controls">
-                <input type="text"
-                       id="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
-                       name="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
-                       placeholder="http://">
-              </div>
-            </div>
-
-            <div class="control-group list-group-item">
-              <label class="control-label" for="gmd_metadataStandardName" data-toggle="tooltip"
-                     title="Preferred metadata format you want to create with this form">Preferred
-                Metadata Standard:</label>
-              <div class="controls">
-                <select class="span3" name="gmd_metadataStandardName" id="gmd_metadataStandardName">
-                  <option value="ISO 19115:2003/19139 1.0" selected>ISO 19115:2003/19139</option>
-                  <option value="ANZLIC Metadata Profile 1.1">ANZLIC Metadata Profile 1.1</option>
-                </select>
-                <input type="hidden" value="true" name="isCreateNewRecordRequest">
-              </div>
-            </div>
-
-
-          </fieldset>
-        </div>
-
-        <div class="list-group">
-          <div class="control-group list-group-item">
-            <div class="controls">
-              <button type="submit" class="btn btn-primary">Submit</button>
-              <a class="btn" href="#">
-                Cancel
-              </a>
-            </div>
+        <div class="control-group list-group-item">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary" (click)="submitForm()">Submit</button>
+            <a class="btn" href="#">
+              Cancel
+            </a>
           </div>
         </div>
-
       </div>
     </div>
   </div>

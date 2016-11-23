@@ -8,10 +8,12 @@ export const PORTAL_API_URL = new OpaqueToken('portalApiUrl');
 export const API_URL_PROVIDERS = [
   {
     provide: CSWI_API_URL,
-    useValue: 'https://dev.smart-project.info/cswi-api/query'
+    // useValue: 'http://dev.smart-project.info/cswi-api/query'
+    useValue: 'http://localhost:9001/query'
   },
   {
     provide: PORTAL_API_URL,
-    useValue: 'https://dev.smart-project.info/api/v1'
+    // useValue: 'https://dev.smart-project.info/api/v1'
+    useValue: 'http://localhost:9000/api/v1'
   }
 ];

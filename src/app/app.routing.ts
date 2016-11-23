@@ -45,7 +45,7 @@ const appRoutes: Routes = [
   {
     path: 'workbench/add-data',
     component: MetadataEditorComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
 
   // otherwise redirect to home
