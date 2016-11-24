@@ -1,0 +1,5 @@
+<div class="row" style="position:fixed; z-index: 9999; width:100%">
+  <div class="container">
+    <alert *ngFor="let alert of alerts;let i = index" [type]="alert.type" dismissible="true" (close)="dismissAlert(i)">{{alert.message}}</alert>
+  </div>
+</div>

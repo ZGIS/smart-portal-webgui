@@ -3,6 +3,7 @@ import { PORTAL_API_URL } from '../app.tokens';
 import { GeoMetadata, GeoExtent, GeoCitation,
   GeoContact, GeoDistribution, InsertResponse } from './metadata.ts';
 import { Http } from '@angular/http';
+import {AlertService} from '../alerts/alert.service';
 
 @Component({
   selector: 'sac-gwh-metadata',
@@ -11,16 +12,13 @@ import { Http } from '@angular/http';
 
 @Injectable()
 export class MetadataEditorComponent implements OnInit {
-  insertResponse: InsertResponse;
-
   constructor(
     @Inject(PORTAL_API_URL) private portalApiUrl: string,
-    private http: Http) {
+    private http: Http,
+    private alertService: AlertService) {
   };
 
-  ngOnInit() {
-    this.insertResponse = {status: '', message: ''};
-  }
+  ngOnInit() {}
 
   submitForm() {
     let metadata = <GeoMetadata>{
@@ -61,14 +59,10 @@ export class MetadataEditorComponent implements OnInit {
       .then(response => {
         console.log(response.toString());
         console.log(response.json());
-        this.insertResponse = <InsertResponse>(response.json() || {status: '', message: ''});
+        let insertResponse = <InsertResponse>(response.json() || {type: '', message: ''});
+        this.alertService.addAlert(insertResponse);
       })
       .catch(this.handleError);
-  }
-
-  closeAlert() {
-    this.insertResponse.status = '';
-    this.insertResponse.message = '';
   }
 
   private handleError(error: any): Promise<any> {

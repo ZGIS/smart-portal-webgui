@@ -418,10 +418,6 @@
 
 
       <div class="panel-footer">
-        <alert *ngIf="insertResponse.status" dismissible="true" (close)="closeAlert()">
-          <p style="color:black">{{insertResponse.message}}</p>
-        </alert>
-
         <div class="control-group list-group-item">
           <div class="controls">
             <button type="submit" class="btn btn-primary" (click)="submitForm()">Submit</button>

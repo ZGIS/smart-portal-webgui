@@ -46,6 +46,6 @@ export class GeoDistribution {
 }
 
 export class InsertResponse {
-  status: string;
+  type: string;
   message: string;
 }
