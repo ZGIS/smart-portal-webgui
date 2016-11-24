@@ -6,10 +6,8 @@
       <div class="panel-body">
         <tabset>
           <tab heading='What?'>
-
             <div class="list-group">
               <fieldset>
-
                 <div class="control-group list-group-item">
                   <label class="control-label"
                          for="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
@@ -18,7 +16,8 @@
                     <input type="text"
                            name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
                            id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
-                           placeholder="horowhenua 3D geological model">
+                           [(ngModel)]="metadata.title"
+                           placeholder="enter a title here">
                   </div>
                 </div>
 
@@ -28,7 +27,8 @@
                     comma separated)*:</label>
                   <div class="controls">
                     <input type="text" name="keywords" id="keywords"
-                           placeholder="hydrology, groundwater levels">
+                           placeholder="hydrology, groundwater levels"
+                           [(ngModel)]="metadata.keywords">
                   </div>
                 </div>
 
@@ -38,7 +38,9 @@
                          data-toggle="tooltip" title="Abstract/Description for the resource">Abstract/Description*:</label>
                   <div class="controls">
                   <textarea name="gmd_identificationInfo_MD_DataIdentification_abstract"
-                            id="gmd_identificationInfo_MD_DataIdentification_abstract"></textarea>
+                            id="gmd_identificationInfo_MD_DataIdentification_abstract"
+                            [(ngModel)]="metadata.abstrakt"
+                  ></textarea>
                   </div>
                 </div>
 
@@ -51,7 +53,9 @@
                   <div class="controls">
                     <select class="span5"
                             name="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
-                            id="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode">
+                            id="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
+                            [(ngModel)]="metadata.topicCategoryCode"
+                    >
                       <!-- TODO SR create a "allowed values" enum in the backend and push that to frontend-->
                       <option value="environment" selected>environment</option>
                       <option value="inlandWaters">inlandWaters</option>
@@ -82,7 +86,9 @@
                          title="Type of resource (dataset, service ...).">Type of Resource*:</label>
                   <div class="controls">
                     <select class="span5" name="gmd_hierarchyLevelName"
-                            id="gmd_hierarchyLevelName">
+                            id="gmd_hierarchyLevelName"
+                            [(ngModel)]="metadata.hierarchyLevelName"
+                    >
                       <!-- TODO SR create a "allowed values" enum in the backend and push that to frontend-->
                       <option value="dataset" selected>dataset</option>
                       <option value="service">service</option>
@@ -103,7 +109,9 @@
                   <div class="controls">
                     <select class="span5"
                             name="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
-                            id="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator">
+                            id="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
+                            [(ngModel)]="metadata.scale"
+                    >
                       <option value="5000">1:5000 or smaller</option>
                       <option value="10000">1:10000</option>
                       <option value="25000" selected>1:25000</option>
@@ -116,11 +124,7 @@
 
               </fieldset>
             </div>
-
-
           </tab>
-
-
 
           <tab heading='Where?'>
             <fieldset>
@@ -134,7 +138,9 @@
                   <input class="span7" type="text"
                          id="gmd_identificationInfo_MD_DataIdentification_extent_Description"
                          name="gmd_identificationInfo_MD_DataIdentification_extent_Description"
-                         placeholder="Manawatu-Wanganui (Horizons)">
+                         placeholder="Manawatu-Wanganui (Horizons)"
+                         [(ngModel)]="metadata.extent.description"
+                  >
                 </div>
               </div>
 
@@ -143,7 +149,9 @@
                        title="Geographic Reference System related to the resource.">Reference
                   System*:</label>
                 <div class="controls">
-                  <select class="span5" name="gmd_referenceSystemInfo" id="gmd_referenceSystemInfo">
+                  <select class="span5" name="gmd_referenceSystemInfo" id="gmd_referenceSystemInfo"
+                          [(ngModel)]="metadata.extent.referenceSystem"
+                  >
                     <option value="urn:ogc:def:crs:EPSG::2193">NZGD2000 / New Zealand Transverse
                       Mercator 2000 (EPSG:2193)
                     </option>
@@ -165,7 +173,9 @@
                 <div class="controls">
                   <input class="span7" type="text" id="mapExtentCoordinates"
                          name="mapExtentCoordinates"
-                         placeholder="bbox - coordinates">
+                         placeholder="bbox - coordinates"
+                         [(ngModel)]="metadata.extent.mapExtentCoordinates"
+                  >
                 </div>
               </div>
             </fieldset>

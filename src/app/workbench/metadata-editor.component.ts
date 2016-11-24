@@ -1,9 +1,9 @@
 import { Component, Injectable, Inject, OnInit } from '@angular/core';
 import { PORTAL_API_URL } from '../app.tokens';
 import { GeoMetadata, GeoExtent, GeoCitation,
-  GeoContact, GeoDistribution, InsertResponse } from './metadata.ts';
+  GeoContact, GeoDistribution, InsertResponse } from './metadata';
 import { Http } from '@angular/http';
-import { AlertService } from '../alerts/alert.service';
+import { NotificationService } from '../notifications/notification.service';
 
 @Component({
   selector: 'sac-gwh-metadata',
@@ -12,23 +12,24 @@ import { AlertService } from '../alerts/alert.service';
 
 @Injectable()
 export class MetadataEditorComponent implements OnInit {
+
+  metadata: GeoMetadata;
+
   constructor(
     @Inject(PORTAL_API_URL) private portalApiUrl: string,
     private http: Http,
-    private alertService: AlertService) {
+    private notificationService: NotificationService) {
   };
 
-  ngOnInit() {}
-
-  submitForm() {
-    let metadata = <GeoMetadata>{
+  ngOnInit() {
+    this.metadata = <GeoMetadata>{
       'fileIdentifier': '',
       'title': 'Test Title',
       'abstrakt': 'This is an abstract abstract',
-      'keywords': ['test', 'abstract'],
-      'topicCategoryCode': 'environment',
+      'keywords': ['test keyword one', 'keyword test two'],
+      'topicCategoryCode': 'boundaries',
       'hierarchyLevelName': 'nonGeographicDataset',
-      'scale': '1:20000',
+      'scale': '1000000',
       'extent': <GeoExtent> {
         'description': 'World',
         'referenceSystem': 'urn:ogc:def:crs:EPSG::4328',
@@ -54,13 +55,17 @@ export class MetadataEditorComponent implements OnInit {
       }
     };
 
-    this.http.post(this.portalApiUrl + '/csw/insert', {metadata: metadata})
+  }
+
+  submitForm() {
+
+    this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata})
       .toPromise()
       .then(response => {
         console.log(response.toString());
         console.log(response.json());
         let insertResponse = <InsertResponse>(response.json() || {type: '', message: ''});
-        this.alertService.addAlert(insertResponse);
+        this.notificationService.addNotification(insertResponse);
       })
       .catch(this.handleError);
   }

@@ -20,8 +20,8 @@ import {
 import { MetadataEditorComponent } from './workbench';
 import { API_URL_PROVIDERS } from './app.tokens';
 import { AuthGuard } from './_guards';
-import {AlertComponent} from './alerts/alert.component';
-import {AlertService} from './alerts/alert.service';
+import { NotificationComponent } from './notifications/notification.component';
+import { NotificationService } from './notifications/notification.service';
 
 @NgModule({
   imports: [BrowserModule,
@@ -41,14 +41,14 @@ import {AlertService} from './alerts/alert.service';
     ResetPassComponent,
     AccountComponent,
     MetadataEditorComponent,
-    AlertComponent
+    NotificationComponent
   ],
   providers: [
     CookieService,
     AuthGuard,
     ResultService,
     AccountService,
-    AlertService,
+    NotificationService,
     API_URL_PROVIDERS
   ],
   bootstrap: [AppComponent]

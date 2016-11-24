@@ -7,6 +7,9 @@ import { API_URL_PROVIDERS } from './app.tokens';
 import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { NotificationService } from './notifications/notification.service';
+import { NotificationComponent } from './notifications/notification.component';
+import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 // import { By }             from '@angular/platform-browser';
 
@@ -28,11 +31,12 @@ describe('App Component', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent, NavigationComponent
+        AppComponent, NavigationComponent, NotificationComponent
       ],
       providers: [
         CookieService,
         AccountService,
+        NotificationService,
         API_URL_PROVIDERS,
         MockBackend,
         BaseRequestOptions,
@@ -46,7 +50,8 @@ describe('App Component', () => {
         }
       ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        Ng2BootstrapModule
         /*RouterTestingModule.withRoutes([
          {
          path: '/home',
@@ -69,11 +74,12 @@ describe('AppComponent with TCB', function () {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent, NotificationComponent
       ],
       providers: [
         CookieService,
         AccountService,
+        NotificationService,
         API_URL_PROVIDERS,
         Http
       ],
