@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AlertService, SacGwhAlert} from './alert.service';
+import { AlertService, SacGwhAlert } from './alert.service';
 
 
 @Component({

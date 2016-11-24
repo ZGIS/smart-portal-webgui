@@ -3,7 +3,7 @@ import { PORTAL_API_URL } from '../app.tokens';
 import { GeoMetadata, GeoExtent, GeoCitation,
   GeoContact, GeoDistribution, InsertResponse } from './metadata.ts';
 import { Http } from '@angular/http';
-import {AlertService} from '../alerts/alert.service';
+import { AlertService } from '../alerts/alert.service';
 
 @Component({
   selector: 'sac-gwh-metadata',

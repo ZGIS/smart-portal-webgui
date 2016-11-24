@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 export class SacGwhAlert {
   type: string;
@@ -18,7 +18,7 @@ export class AlertService {
   }
 
   dismissAlert(i: number) {
-    if (i>0 && i<this.alerts.length) {
+    if (i > 0 && i < this.alerts.length) {
       this.alerts.splice(i, 1);
     }
   }
