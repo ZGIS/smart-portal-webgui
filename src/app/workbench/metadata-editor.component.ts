@@ -45,13 +45,17 @@ export class MetadataEditorComponent implements OnInit {
       'responsibleParty': <GeoContact> {
         individualName: 'Hans Wurst',
         telephone: '+01 2334 5678910',
-        email: 'wurst.hand@test.com',
-        pointOfContact: 'pointOfContact',
+        email: 'wurst.hans@test.com',
+        pointOfContact: 'publisher',
         orgName: 'Test Org',
         orgWebLinkage: 'http://www.test.com'
       },
       distribution: <GeoDistribution> {
-        'license': 'public domain'
+        useLimitation: 'I don\'t know',
+        formatName: 'CSW',
+        formatVersion: 'web service type',
+        onlineResourceLinkage: 'http://www.test.com/?service=CSW' +
+                               '&version=2.0.2&request=GetCapabilities'
       }
     };
 

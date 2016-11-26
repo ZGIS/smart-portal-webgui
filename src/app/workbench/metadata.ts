@@ -41,8 +41,11 @@ export class GeoContact {
 }
 
 export class GeoDistribution {
-  license: string;
-
+  useLimitation: string;    // gmd_metadataConstraints_MD_LegalConstraints_useLimitation
+  formatName: string;       // gmd_distributionInfo_MD_Distribution_formatName
+  formatVersion: string;    // gmd_distributionInfo_MD_Distribution_formatVersion
+  onlineResourceLinkage: string;
+        // gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage
 }
 
 export class InsertResponse {
