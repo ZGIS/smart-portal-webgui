@@ -4,6 +4,7 @@ import { GeoMetadata, GeoExtent, GeoCitation,
   GeoContact, GeoDistribution, InsertResponse } from './metadata';
 import { Http } from '@angular/http';
 import { NotificationService } from '../notifications/notification.service';
+import {Ol3MapExtent} from '../ol3-map/ol3-map.component';
 
 @Component({
   selector: 'sac-gwh-metadata',
@@ -62,7 +63,6 @@ export class MetadataEditorComponent implements OnInit {
   }
 
   submitForm() {
-
     this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata})
       .toPromise()
       .then(response => {
@@ -77,5 +77,10 @@ export class MetadataEditorComponent implements OnInit {
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
+  }
+
+  bboxChanged($event: any) {
+    console.log(`bbox changed to '${$event}'`);
+    this.metadata.extent.mapExtentCoordinates = (<Ol3MapExtent>$event).bbox;
   }
 }

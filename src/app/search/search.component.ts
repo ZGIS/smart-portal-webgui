@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IGeoFeature, IGeoFeatureCollection } from './result';
 import { ResultService } from './result.service';
 import * as moment from 'moment';
+import {Ol3MapExtent} from '../ol3-map/ol3-map.component';
 
 
 @Component({
@@ -44,9 +45,9 @@ export class SearchComponent implements OnInit {
       .then(results => this.results = results);
   }
 
-  bboxChanged($event: any) {
-    console.log(`bbox changed to '${$event}'`);
-    this.search.bboxWkt = $event;
+  bboxChanged($event: Ol3MapExtent) {
+    console.log(`bbox changed to '${$event.bboxWkt}'`);
+    this.search.bboxWkt = $event.bboxWkt;
   }
 }
 

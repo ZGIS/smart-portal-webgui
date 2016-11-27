@@ -171,11 +171,10 @@
                        title="Draw a box on map or zoom into the area of interest.">Geographical
                   Extent:</label>
                 <div class="controls">
-                  <input class="span7" type="text" id="mapExtentCoordinates"
-                         name="mapExtentCoordinates"
-                         placeholder="bbox - coordinates"
-                         [(ngModel)]="metadata.extent.mapExtentCoordinates"
-                  >
+                  <div id="mapExtentCoordinates" style="border:1px solid red; width:640px; height:360px">
+                    <sac-gwh-ol3-map (onBboxChange)="bboxChanged($event)" [mapExtent]="metadata.extent.mapExtentCoordinates"></sac-gwh-ol3-map>
+                  </div>
+
                 </div>
               </div>
             </fieldset>
