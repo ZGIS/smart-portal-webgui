@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IGeoFeature, IGeoFeatureCollection } from './result';
 import { ResultService } from './result.service';
 import * as moment from 'moment';
-import {Ol3MapExtent} from '../ol3-map/ol3-map.component';
+import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 
 
 @Component({

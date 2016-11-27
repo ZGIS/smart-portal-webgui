@@ -6,8 +6,8 @@ let ol = require('../../../node_modules/openlayers/dist/ol.js');
 // declare var ol: any;
 
 export class Ol3MapExtent {
-  bbox: number[]
-  bboxWkt: string
+  bbox: number[];
+  bboxWkt: string;
 }
 
 @Component({
@@ -44,7 +44,7 @@ export class Ol3MapComponent implements OnInit {
   // private ol: any;
   private center: any = [174.7633, -36.8485];
 
-  //TODO SR make this configuratble in "constructor"
+  // TODO SR make this configuratble in "constructor"
   // private defaultExtent: any = [-180, -90, 180, 90];
   private nzExtent: any = [168, -50, 180, -33];
   private map: any;
@@ -106,7 +106,6 @@ export class Ol3MapComponent implements OnInit {
   private getMapExtent(): Ol3MapExtent {
     if (this.map) {
       let temp = this.map.getView().calculateExtent(this.map.getSize());
-      let wkt = '';
 
       if (Math.abs(temp[0] - temp[2]) >= 360) {
         temp[0] = -180;
@@ -122,12 +121,12 @@ export class Ol3MapComponent implements OnInit {
       return <Ol3MapExtent> {
         bbox: temp,
         bboxWkt: `ENVELOPE(${temp[0]},${temp[2]},${temp[3]},${temp[1]})`
-      }
+      };
     } else {
       return <Ol3MapExtent> {
         bbox: [-180, -90, 180, 90],
         bboxWkt: 'ENVELOPE(-180,180,90,-90)'
-      }
+      };
     }
   }
 
