@@ -5,10 +5,13 @@ import moment = require('moment');
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+// let smallPlaceHolderImg = require('file!./../../../public/images/icon_folder_640.png');
+// let largePaceHolderImg = require('file!./../../../public/images/icon_folder_1280.png');
 
 @Component({
   selector: 'my-result-cards',
-  templateUrl: './result-cards.component.html'
+  templateUrl: './result-cards.component.html',
+  styleUrls: ['./result-cards.component.css']
 })
 
 export class ResultCardsComponent implements OnInit, OnDestroy {
