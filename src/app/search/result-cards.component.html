@@ -1,0 +1,29 @@
+<div class="row">
+  <div *ngFor="let feature of results.features" class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading"
+           style="background-image:url('../../../public/images/icon_folder_640.png');
+           background-size: contain;
+           background-repeat: no-repeat;
+           background-position: center top;
+           height: 130px;
+           display:flex;
+           padding:0;
+           ">
+        <div style="background-color: rgba(255,255,255,0.5);
+                    align-self:flex-end;
+                    dislay:flex;
+                    width:100%;
+                    padding:5px 10px;">
+          <h5 style="font-size: 18px;">{{feature.properties.title}}</h5>
+        </div>
+      </div>
+      <div class="panel-body" style="height:260px; overflow:scroll">
+        <p style="text-align:justify">{{feature.properties.abstrakt}}</p>
+      </div>
+      <div class="panel-footer">&nbsp;
+        <div class="pull-right"><a href="#"><i class="fa fa-download"></i></a></div>
+      </div>
+    </div>
+  </div>
+</div>

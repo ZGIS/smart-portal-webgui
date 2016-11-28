@@ -5,6 +5,7 @@ import { SearchComponent } from './search';
 import { LoginComponent, RegisterComponent, AccountComponent, ResetPassComponent } from './account';
 import { MetadataEditorComponent } from './workbench';
 import { AuthGuard } from './_guards';
+import { ResultCardsComponent } from './search/result-cards.component';
 
 const appRoutes: Routes = [
   {
@@ -23,6 +24,10 @@ const appRoutes: Routes = [
   {
     path: 'search',
     component: SearchComponent
+  },
+  {
+    path: 'search/cards',
+    component: ResultCardsComponent
   },
   {
     path: 'login',

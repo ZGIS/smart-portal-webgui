@@ -22,6 +22,7 @@ import { API_URL_PROVIDERS } from './app.tokens';
 import { AuthGuard } from './_guards';
 import { NotificationComponent } from './notifications/notification.component';
 import { NotificationService } from './notifications/notification.service';
+import { ResultCardsComponent } from './search/result-cards.component';
 
 @NgModule({
   imports: [BrowserModule,
@@ -35,6 +36,7 @@ import { NotificationService } from './notifications/notification.service';
     DashboardCategoryComponent,
     NavigationComponent,
     SearchComponent,
+    ResultCardsComponent,
     Ol3MapComponent,
     LoginComponent,
     RegisterComponent,
