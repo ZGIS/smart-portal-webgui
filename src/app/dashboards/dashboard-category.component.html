@@ -1,56 +1,52 @@
 <div class="jumbotron">
   <p>{{ category }}  <i class="fa fa-tint" aria-hidden="true"></i> {{ description }}</p>
 </div>
-<div class="slide02">
-  <div class="row">
+<div class="slide02" >
+  <div class="row" id="row-1">
     <div class="col-md-2"><a routerLink="/dashboard" class="thumbnail" tooltip="back to main dashboard"><i class="fa fa-arrow-left"
                                                                           aria-hidden="true"></i><img
       src="../../../public/images/0-bg-main.jpg"></a></div>
 
     <div class="col-md-2">&nbsp;</div>
 
-    <div class="col-md-2"><a routerLink="/search" class="thumbnail" tooltip="placeholder"><img src="../../../public/images/0-placeholder-water-icon.jpg"></a>
+    <div class="col-md-2"> </div>
+
+    <div class="col-md-2"><a [routerLink]="['/search/cards']" [queryParams]="{'query': children[0] ? children[0].item_name : category }" class="thumbnail" tooltip="{{ children[0] ? children[0].item_name : category }}"><img src="../../../public/images/4-3-gw-inflow.jpg"></a>
     </div>
 
-    <div class="col-md-2"><a routerLink="/search" class="thumbnail" tooltip="{{ category }}"><img src="../../../public/images/4-3-gw-inflow.jpg"></a>
+    <div class="col-md-2"><a [routerLink]="['/search/cards']" [queryParams]="{'query': children[1] ? children[1].item_name : category }" class="thumbnail" tooltip="{{ children[1] ? children[1].item_name : category }}"><img src="../../../public/images/4-4-recharge.jpg"></a>
     </div>
 
-    <div class="col-md-2"><a routerLink="/search" class="thumbnail" tooltip="{{ category }}"><img src="../../../public/images/4-4-recharge.jpg"></a>
-    </div>
-
-    <div class="col-md-2"><a routerLink="/search" class="thumbnail" tooltip="placeholder"><img src="../../../public/images/0-placeholder-water-icon.jpg"></a>
-    </div>
+    <div class="col-md-2"> </div>
   </div>
 
-  <div class="row">
+  <div class="row" id="row-2">
     <div class="col-md-10">&nbsp;</div>
-    <div class="col-md-2"><a routerLink="/search" class="thumbnail" tooltip="{{ category }}"><img src="../../../public/images/4-5-gw-lakes.jpg"></a>
+    <div class="col-md-2"><a [routerLink]="['/search/cards']" [queryParams]="{'query': children[2] ? children[2].item_name : category }" class="thumbnail" tooltip="{{ children[2] ? children[2].item_name : category }}"><img src="../../../public/images/4-5-gw-lakes.jpg"></a>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-2"><a routerLink="/search" class="thumbnail" tooltip="{{ category }}"><img
+  <div class="row" id="row-3">
+    <div class="col-md-2"><a [routerLink]="['/search/cards']" [queryParams]="{'query': children[3] ? children[3].item_name : category }" class="thumbnail" tooltip="{{ children[3] ? children[3].item_name : category }}"><img
       src="../../../public/images/4-9-gw-interaction.jpg"></a></div>
 
     <div class="col-md-8">&nbsp;</div>
 
-    <div class="col-md-2"><a routerLink="/search" class="thumbnail" tooltip="{{ category }}"><img src="../../../public/images/4-6-gw-models.jpg"></a>
+    <div class="col-md-2"><a [routerLink]="['/search/cards']" [queryParams]="{'query': children[4] ? children[4].item_name : category }" class="thumbnail" tooltip="{{ children[4] ? children[4].item_name : category }}"><img src="../../../public/images/4-6-gw-models.jpg"></a>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-2"><a routerLink="/search" class="thumbnail" tooltip="placeholder"><img src="../../../public/images/0-placeholder-water-icon.jpg"></a>
-    </div>
+  <div class="row" id="row-4">
+    <div class="col-md-2"> </div>
 
-    <div class="col-md-2"><a routerLink="/search" class="thumbnail" tooltip="{{ category }}"><img
+    <div class="col-md-2"><a [routerLink]="['/search/cards']" [queryParams]="{'query': children[5] ? children[5].item_name : category }" class="thumbnail" tooltip="{{ children[5] ? children[5].item_name : category }}"><img
       src="../../../public/images/4-8-gw-use.jpg"></a></div>
 
     <div class="col-md-4">&nbsp;</div>
 
-    <div class="col-md-2"><a routerLink="/search" class="thumbnail" tooltip="{{ category }}"><img
-      src="../../../public/images/4-7-discharge-sea.jpg"></a></div>
+    <div class="col-md-2"><a [routerLink]="['/search/cards']" [queryParams]="{'query': children[6] ? children[6].item_name : category }" class="thumbnail" tooltip="{{ children[6] ? children[6].item_name : category }}"><img
+      src="../../../public/images/4-9-gw-interaction.jpg"></a></div>
 
-    <div class="col-md-2"><a routerLink="/search" class="thumbnail" tooltip="placeholder"><img src="../../../public/images/0-placeholder-water-icon.jpg"></a>
-    </div>
+    <div class="col-md-2"> </div>
   </div>
 </div>

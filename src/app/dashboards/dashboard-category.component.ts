@@ -16,6 +16,7 @@ export class DashboardCategoryComponent implements OnInit {
   category = '';
   description = '';
   bgImage = placeHolderImg;
+  children: any[] = [];
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
@@ -27,6 +28,11 @@ export class DashboardCategoryComponent implements OnInit {
           this.category = catObj.item_name;
           this.description = catObj.description;
           this.bgImage = catObj.bg_icon;
+
+          catObj.children.forEach( (childObj: any) => {
+            this.children.push(childObj);
+            console.log(childObj.item_name);
+          });
         }
       });
 
