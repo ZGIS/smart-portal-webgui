@@ -1,6 +1,6 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {IGeoFeatureCollection} from './result';
-import {ResultService} from './result.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { IGeoFeatureCollection } from './result';
+import { ResultService } from './result.service';
 import moment = require('moment');
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -36,9 +36,9 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
           query,
           '1970-01-01',
           moment().format('YYYY-MM-DD'),
-          "ENVELOPE(147.7369328125,201.7896671875,-23.1815078125,-50.5154921875)")
+          'ENVELOPE(147.7369328125,201.7896671875,-23.1815078125,-50.5154921875)')
           .then(results => {
-            this.results = results
+            this.results = results;
           });
       });
   }
