@@ -23,6 +23,7 @@ import { AuthGuard } from './_guards';
 import { NotificationComponent } from './notifications/notification.component';
 import { NotificationService } from './notifications/notification.service';
 import { ResultCardsComponent } from './search/result-cards.component';
+import { FeatureOriginPipe } from './search/featureOriginFilter.pipe';
 
 @NgModule({
   imports: [BrowserModule,
@@ -43,7 +44,8 @@ import { ResultCardsComponent } from './search/result-cards.component';
     ResetPassComponent,
     AccountComponent,
     MetadataEditorComponent,
-    NotificationComponent
+    NotificationComponent,
+    FeatureOriginPipe
   ],
   providers: [
     CookieService,
