@@ -109,12 +109,13 @@ module.exports = {
        */
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        exclude: helpers.root('src', 'app', 'public', 'images', 'dashboard'),
         loader: 'file?name=assets/[name].[hash].[ext]'
       },
       // workaround to resolve font files from font-awesome node_module referencing
       {
         test: /\.(svg|woff|woff2|ttf|eot)\?v=4\.6\.3$/,
-        loader: 'file?name=assets/[name].[hash].[ext]'
+        loader: 'file?name=icons/[name].[hash].[ext]'
       },
 
       /*

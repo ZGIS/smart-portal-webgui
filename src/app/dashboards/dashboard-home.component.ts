@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+const myCategories = require('json!./../../../public/categories.json');
 
 @Component({
   selector: 'sac-gwh-dashboard-home',
@@ -6,5 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard-home.component.css']
 })
 
-export class DashboardHomeComponent {
+export class DashboardHomeComponent implements OnInit {
+
+  categoryObjs: any[] = [];
+  categoryImgs: string[] = [];
+
+  ngOnInit(): void {
+    myCategories.categories.forEach(( catObj: any ) => {
+
+      let imgUrl = '/public/images/' + catObj.icon;
+      this.categoryImgs.push(imgUrl);
+      this.categoryObjs.push(catObj);
+
+    });
+  }
 }
