@@ -20,7 +20,7 @@ describe('E2E Test Welcome Dashboard', function () {
 
 describe('E2E Test Dashboard Category', function () {
 
-  const expectedMsg = 'Maps and two-dimensional (map) datasets';
+  const expectedMsg = 'Maps Maps and two-dimensional (map) datasets that are used in groundwater resource assessments';
 
 
   beforeEach(function () {

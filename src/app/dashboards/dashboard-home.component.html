@@ -3,56 +3,115 @@
 </div>
 
 <div class="slide01">
-  <div class="row">
+  <div class="row" id="row-1">
+
     <div class="col-md-4">&nbsp;</div>
 
-    <div class="col-md-2"><a routerLink="/dashboard/1-maps" class="thumbnail"
-                             tooltip="Maps &amp; spatial Datasets"><img
-      src="../../../public/images/1-maps.jpg"></a></div>
-
-    <div class="col-md-2"><a routerLink="/dashboard/2-climate" class="thumbnail"
-                             tooltip="Climate"><img src="../../../public/images/2-climate.jpg"></a>
+    <div class="col-md-2" id="category-0">
+      <div *ngIf="categoryObjs[0]">
+        <a [routerLink]="['/dashboard/' + categoryObjs[0].query_string ]"
+           class="thumbnail" tooltip="{{ categoryObjs[0] ? categoryObjs[0].item_name : '' }}"><img
+          src="{{ categoryImgs[0] }}">
+          {{ categoryObjs[0] ? categoryObjs[1].item_name : '' }}
+        </a>
+      </div>
     </div>
+
+    <div class="col-md-2" id="category-1">
+      <div *ngIf="categoryObjs[1]">
+        <a [routerLink]="['/dashboard/' + categoryObjs[1].query_string ]"
+           class="thumbnail" tooltip="{{ categoryObjs[1] ? categoryObjs[1].item_name : '' }}"><img
+          src="{{ categoryImgs[1] }}">
+          {{ categoryObjs[1] ? categoryObjs[1].item_name : '' }}
+        </a>
+      </div>
+    </div>
+
     <div class="col-md-4">&nbsp;</div>
+
   </div>
 
-  <div class="row">
-    <div class="col-md-2"><a routerLink="/dashboard/8-gw-use" class="thumbnail"
-                             tooltip="Groundwater use"><img
-      src="../../../public/images/8-gw-use.jpg"></a></div>
+  <div class="row" id="row-2">
+
+    <div class="col-md-2" id="category-7">
+      <div *ngIf="categoryObjs[7]">
+        <a [routerLink]="['/dashboard/' + categoryObjs[7].query_string ]"
+           class="thumbnail" tooltip="{{ categoryObjs[7] ? categoryObjs[1].item_name : '' }}"><img
+          src="{{ categoryImgs[7] }}">
+          {{ categoryObjs[7] ? categoryObjs[7].item_name : '' }}
+        </a>
+      </div>
+    </div>
 
     <div class="col-md-8">&nbsp;</div>
 
-    <div class="col-md-2"><a routerLink="/dashboard/3-policy" class="thumbnail"
-                             tooltip="Policy"><img src="../../../public/images/3-policy.jpg"></a>
+    <div class="col-md-2" id="category-2">
+      <div *ngIf="categoryObjs[2]">
+        <a [routerLink]="['/dashboard/' + categoryObjs[2].query_string ]"
+           class="thumbnail" tooltip="{{ categoryObjs[2] ? categoryObjs[2].item_name : '' }}"><img
+          src="{{ categoryImgs[2] }}">
+          {{ categoryObjs[2] ? categoryObjs[2].item_name : '' }}
+        </a>
+      </div>
     </div>
+
   </div>
 
-  <div class="row">
-    <div class="col-md-2"><a routerLink="/dashboard/7-gw-age" class="thumbnail"
-                             tooltip="Groundwater Age"><img
-      src="../../../public/images/7-gw-age.jpg"></a></div>
+  <div class="row" id="row-3">
+
+    <div class="col-md-2" id="category-6">
+      <div *ngIf="categoryObjs[6]">
+        <a [routerLink]="['/dashboard/' + categoryObjs[6].query_string ]"
+           class="thumbnail" tooltip="{{ categoryObjs[6] ? categoryObjs[6].item_name : '' }}"><img
+          src="{{ categoryImgs[6] }}">
+          {{ categoryObjs[6] ? categoryObjs[6].item_name : '' }}
+        </a>
+      </div>
+    </div>
 
     <div class="col-md-8">&nbsp;</div>
 
-    <div class="col-md-2"><a routerLink="/dashboard/4-water-budget" class="thumbnail"
-                             tooltip="Water Budget"><img
-      src="../../../public/images/4-water-budget.jpg"></a></div>
+    <div class="col-md-2" id="category-3">
+      <div *ngIf="categoryObjs[3]">
+        <a [routerLink]="['/dashboard/' + categoryObjs[3].query_string ]"
+           class="thumbnail" tooltip="{{ categoryObjs[3] ? categoryObjs[3].item_name : '' }}"><img
+          src="{{ categoryImgs[3] }}">
+          {{ categoryObjs[3] ? categoryObjs[3].item_name : '' }}
+        </a>
+      </div>
+    </div>
+
   </div>
 
-  <div class="row">
+  <div class="row" id="row-4">
+
     <div class="col-md-2">&nbsp;</div>
 
-    <div class="col-md-2"><a routerLink="/dashboard/6-geol-models" class="thumbnail"
-                             tooltip="Geological models"><img
-      src="../../../public/images/6-geol-models.jpg"></a></div>
+    <div class="col-md-2" id="category-5">
+      <div *ngIf="categoryObjs[5]">
+        <a [routerLink]="['/dashboard/' + categoryObjs[5].query_string ]"
+           class="thumbnail" tooltip="{{ categoryObjs[5] ? categoryObjs[5].item_name : '' }}"><img
+          src="{{ categoryImgs[5] }}">
+          {{ categoryObjs[5] ? categoryObjs[5].item_name : '' }}
+        </a>
+      </div>
+    </div>
 
     <div class="col-md-4">&nbsp;</div>
 
-    <div class="col-md-2"><a routerLink="/dashboard/5-gw-chemistry" class="thumbnail"
-                             tooltip="Groundwater chemistry"><img
-      src="../../../public/images/5-gw-chemistry.jpg"></a></div>
+    <div class="col-md-2" id="category-4">
+      <div *ngIf="categoryObjs[4]">
+        <a [routerLink]="['/dashboard/' + categoryObjs[4].query_string ]"
+           class="thumbnail" tooltip="{{ categoryObjs[4] ? categoryObjs[4].item_name : '' }}"><img
+          src="{{ categoryImgs[4] }}">
+          {{ categoryObjs[4] ? categoryObjs[4].item_name : '' }}
+        </a>
+      </div>
+    </div>
 
-    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-2">
+
+    </div>
+
   </div>
 </div>
