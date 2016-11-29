@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IGeoFeatureCollection } from './result';
+import { IGeoFeatureCollection, IGeoFeature } from './result';
 import { ResultService } from './result.service';
-import moment = require('moment');
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import moment = require('moment');
+// import { FeatureOriginPipe } from './featureOriginFilter.pipe';
 
 // let smallPlaceHolderImg = require('file!./../../../public/images/icon_folder_640.png');
 // let largePaceHolderImg = require('file!./../../../public/images/icon_folder_1280.png');
@@ -11,17 +12,19 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'my-result-cards',
   templateUrl: './result-cards.component.html',
-  styleUrls: ['./result-cards.component.css']
+  styleUrls: ['./result-cards.component.css'],
 })
 
 export class ResultCardsComponent implements OnInit, OnDestroy {
 
   results: IGeoFeatureCollection;
+  resultsGroups: String[];
 
   private subscription: Subscription;
 
   constructor(private resultService: ResultService,
-              private activatedRoute: ActivatedRoute) {}
+              private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.results = {
@@ -29,11 +32,16 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
       'crs': {'type': 'name', 'properties': {'name': 'urn:ogc:def:crs:OGC:1.3:CRS84'}},
       'features': []
     };
+    this.resultsGroups = [];
 
     // subscribe to router event
     this.subscription = this.activatedRoute.queryParams.subscribe(
       (param: any) => {
         let query = param['query'];
+
+        if (!query) {
+          query = '*:*';
+        }
 
         this.resultService.getResults(
           query,
@@ -42,6 +50,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
           'ENVELOPE(147.7369328125,201.7896671875,-23.1815078125,-50.5154921875)')
           .then(results => {
             this.results = results;
+            this.resultsGroups = this.getCataloguesOfResults();
           });
       });
   }
@@ -49,5 +58,23 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // prevent memory leak by unsubscribing
     this.subscription.unsubscribe();
+  }
+
+  /**
+   * gets all origin catalogues out of the resuls
+   *  and returns them as string array
+   */
+  private getCataloguesOfResults() {
+    let cat = this.results.features.map(
+      (feature: IGeoFeature) => {
+        return feature.properties.origin;
+      }
+    );
+    console.log(JSON.stringify(cat));
+    let uniqueCat = cat.filter(function (item, pos, self) {
+      return self.indexOf(item) === pos;
+    });
+    console.log(uniqueCat);
+    return uniqueCat;
   }
 }

@@ -15,7 +15,11 @@ export interface IGeoFeature {
 }
 
 export interface IGeoFeatureProperties {
+  // TODO SR put all exposed properties in here
   fileIdentifier: string;
   title: string;
   abstrakt: string;
+  keywords: string[];
+  linkage: string[];
+  origin: string;
 }
