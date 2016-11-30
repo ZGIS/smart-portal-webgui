@@ -5,7 +5,7 @@ import { SearchComponent } from './search';
 import { LoginComponent, RegisterComponent, AccountComponent, ResetPassComponent } from './account';
 import { MetadataEditorComponent } from './workbench';
 import { AuthGuard } from './_guards';
-import { ResultCardsComponent } from './search/result-cards.component';
+import { ResultCardsComponent } from './dashboards/result-cards.component';
 
 const appRoutes: Routes = [
   {
@@ -22,12 +22,12 @@ const appRoutes: Routes = [
     component: DashboardCategoryComponent
   },
   {
-    path: 'search',
-    component: SearchComponent
+    path: 'dashboard/:category/cards',
+    component: ResultCardsComponent
   },
   {
-    path: 'search/cards',
-    component: ResultCardsComponent
+    path: 'search',
+    component: SearchComponent
   },
   {
     path: 'login',

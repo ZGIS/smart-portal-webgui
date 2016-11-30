@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IGeoFeatureCollection, IGeoFeature } from './result';
-import { ResultService } from './result.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import moment = require('moment');
-// import { FeatureOriginPipe } from './featureOriginFilter.pipe';
+import { IGeoFeatureCollection, IGeoFeature } from '../search/result';
+import { ResultService } from '../search/result.service';
 
 // let smallPlaceHolderImg = require('file!./../../../public/images/icon_folder_640.png');
 // let largePaceHolderImg = require('file!./../../../public/images/icon_folder_1280.png');

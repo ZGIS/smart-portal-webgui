@@ -76,7 +76,7 @@
           <a *ngFor="let feature of results.features"
              class="list-group-item"
              [class.active]="feature===selectedResult"
-             (click)="onSelect(feature)">
+             (click)="resultDetailModal.show(feature)">
             <span class="badge">{{feature.properties.fileIdentifier}}</span> {{feature.properties.title}}
           </a>
         </div>
@@ -84,6 +84,8 @@
     </div>
   </div>
 </div>
+
+<result-detail-modal #resultDetailModal></result-detail-modal>
 
 
 

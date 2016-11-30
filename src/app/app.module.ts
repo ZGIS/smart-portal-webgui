@@ -22,8 +22,9 @@ import { API_URL_PROVIDERS } from './app.tokens';
 import { AuthGuard } from './_guards';
 import { NotificationComponent } from './notifications/notification.component';
 import { NotificationService } from './notifications/notification.service';
-import { ResultCardsComponent } from './search/result-cards.component';
 import { FeatureOriginPipe } from './search/featureOriginFilter.pipe';
+import { ResultDetailModalComponent } from './search/result-detail-modal.component';
+import { ResultCardsComponent } from './dashboards/result-cards.component';
 
 @NgModule({
   imports: [BrowserModule,
@@ -45,7 +46,8 @@ import { FeatureOriginPipe } from './search/featureOriginFilter.pipe';
     AccountComponent,
     MetadataEditorComponent,
     NotificationComponent,
-    FeatureOriginPipe
+    FeatureOriginPipe,
+    ResultDetailModalComponent
   ],
   providers: [
     CookieService,

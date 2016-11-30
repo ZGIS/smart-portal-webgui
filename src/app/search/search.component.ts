@@ -32,10 +32,6 @@ export class SearchComponent implements OnInit {
     };
   }
 
-  onSelect(result: IGeoFeature): void {
-    this.selectedResult = result;
-  }
-
   getResults(): void {
     this.resultService.getResults(
       this.search.query,
