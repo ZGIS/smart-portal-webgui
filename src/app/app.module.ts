@@ -6,9 +6,20 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-import { ResultService, ResultDetailComponent, SearchComponent } from './search';
+import {
+  ResultService,
+  ResultDetailComponent,
+  SearchComponent,
+  FeatureOriginPipe,
+  ResultDetailModalComponent
+} from './search';
 import { NavigationComponent } from './navigation';
-import { DashboardHomeComponent, DashboardCategoryComponent } from './dashboards';
+import {
+  DashboardHomeComponent,
+  DashboardCategoryComponent,
+  ResultCardsComponent,
+  DashboardButtonComponent
+} from './dashboards';
 import { Ol3MapComponent } from './ol3-map';
 import {
   LoginComponent,
@@ -20,12 +31,7 @@ import {
 import { MetadataEditorComponent } from './workbench';
 import { API_URL_PROVIDERS } from './app.tokens';
 import { AuthGuard } from './_guards';
-import { NotificationComponent } from './notifications/notification.component';
-import { NotificationService } from './notifications/notification.service';
-import { FeatureOriginPipe } from './search/featureOriginFilter.pipe';
-import { ResultDetailModalComponent } from './search/result-detail-modal.component';
-import { ResultCardsComponent } from './dashboards/result-cards.component';
-import { DashboardButtonComponent } from './dashboards/dashboard-button.component';
+import { NotificationComponent, NotificationService } from './notifications';
 
 @NgModule({
   imports: [BrowserModule,

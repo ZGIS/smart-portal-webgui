@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { IGeoFeatureCollection, IGeoFeature, ResultService } from '../search';
 import moment = require('moment');
-import { IGeoFeatureCollection, IGeoFeature } from '../search/result';
-import { ResultService } from '../search/result.service';
 
 // let smallPlaceHolderImg = require('file!./../../../public/images/icon_folder_640.png');
 // let largePaceHolderImg = require('file!./../../../public/images/icon_folder_1280.png');

@@ -5,7 +5,7 @@ import { SearchComponent } from './search';
 import { LoginComponent, RegisterComponent, AccountComponent, ResetPassComponent } from './account';
 import { MetadataEditorComponent } from './workbench';
 import { AuthGuard } from './_guards';
-import { ResultCardsComponent } from './dashboards/result-cards.component';
+import { ResultCardsComponent } from './dashboards';
 
 const appRoutes: Routes = [
   {
