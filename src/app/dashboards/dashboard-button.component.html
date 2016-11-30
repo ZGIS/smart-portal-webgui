@@ -1,0 +1,8 @@
+<div *ngIf="category">
+  <a [routerLink]="category.parent !== 'main' ? ['./cards'] : ['/dashboard/' + category.query_string ]"
+     [queryParams]="category.parent !== 'main' ? {'query': category ? category.item_name : category }:{}"
+     class="thumbnail" tooltip="{{ category ? category.item_name : '' }}"><img
+     src="{{ categoryImg }}">
+    {{ category ? category.item_name : '' }}
+  </a>
+</div>

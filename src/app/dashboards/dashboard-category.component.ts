@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 
+// TODO SR make service out of that?
 const myCategories = require('json!./../../../public/categories.json');
 
 @Component({

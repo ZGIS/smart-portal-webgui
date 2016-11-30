@@ -8,23 +8,11 @@
     <div class="col-md-4">&nbsp;</div>
 
     <div class="col-md-2" id="category-0">
-      <div *ngIf="categoryObjs[0]">
-        <a [routerLink]="['/dashboard/' + categoryObjs[0].query_string ]"
-           class="thumbnail" tooltip="{{ categoryObjs[0] ? categoryObjs[0].item_name : '' }}"><img
-          src="{{ categoryImgs[0] }}">
-          {{ categoryObjs[0] ? categoryObjs[0].item_name : '' }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="categoryObjs[0]" [categoryImg]="categoryImgs[0]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-2" id="category-1">
-      <div *ngIf="categoryObjs[1]">
-        <a [routerLink]="['/dashboard/' + categoryObjs[1].query_string ]"
-           class="thumbnail" tooltip="{{ categoryObjs[1] ? categoryObjs[1].item_name : '' }}"><img
-          src="{{ categoryImgs[1] }}">
-          {{ categoryObjs[1] ? categoryObjs[1].item_name : '' }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="categoryObjs[1]" [categoryImg]="categoryImgs[1]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-4">&nbsp;</div>
@@ -34,25 +22,13 @@
   <div class="row" id="row-2">
 
     <div class="col-md-2" id="category-7">
-      <div *ngIf="categoryObjs[7]">
-        <a [routerLink]="['/dashboard/' + categoryObjs[7].query_string ]"
-           class="thumbnail" tooltip="{{ categoryObjs[7] ? categoryObjs[1].item_name : '' }}"><img
-          src="{{ categoryImgs[7] }}">
-          {{ categoryObjs[7] ? categoryObjs[7].item_name : '' }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="categoryObjs[7]" [categoryImg]="categoryImgs[7]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-8">&nbsp;</div>
 
     <div class="col-md-2" id="category-2">
-      <div *ngIf="categoryObjs[2]">
-        <a [routerLink]="['/dashboard/' + categoryObjs[2].query_string ]"
-           class="thumbnail" tooltip="{{ categoryObjs[2] ? categoryObjs[2].item_name : '' }}"><img
-          src="{{ categoryImgs[2] }}">
-          {{ categoryObjs[2] ? categoryObjs[2].item_name : '' }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="categoryObjs[2]" [categoryImg]="categoryImgs[2]"></sac-gwh-dashboard-button>
     </div>
 
   </div>
@@ -60,25 +36,13 @@
   <div class="row" id="row-3">
 
     <div class="col-md-2" id="category-6">
-      <div *ngIf="categoryObjs[6]">
-        <a [routerLink]="['/dashboard/' + categoryObjs[6].query_string ]"
-           class="thumbnail" tooltip="{{ categoryObjs[6] ? categoryObjs[6].item_name : '' }}"><img
-          src="{{ categoryImgs[6] }}">
-          {{ categoryObjs[6] ? categoryObjs[6].item_name : '' }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="categoryObjs[6]" [categoryImg]="categoryImgs[6]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-8">&nbsp;</div>
 
     <div class="col-md-2" id="category-3">
-      <div *ngIf="categoryObjs[3]">
-        <a [routerLink]="['/dashboard/' + categoryObjs[3].query_string ]"
-           class="thumbnail" tooltip="{{ categoryObjs[3] ? categoryObjs[3].item_name : '' }}"><img
-          src="{{ categoryImgs[3] }}">
-          {{ categoryObjs[3] ? categoryObjs[3].item_name : '' }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="categoryObjs[3]" [categoryImg]="categoryImgs[3]"></sac-gwh-dashboard-button>
     </div>
 
   </div>
@@ -88,25 +52,13 @@
     <div class="col-md-2">&nbsp;</div>
 
     <div class="col-md-2" id="category-5">
-      <div *ngIf="categoryObjs[5]">
-        <a [routerLink]="['/dashboard/' + categoryObjs[5].query_string ]"
-           class="thumbnail" tooltip="{{ categoryObjs[5] ? categoryObjs[5].item_name : '' }}"><img
-          src="{{ categoryImgs[5] }}">
-          {{ categoryObjs[5] ? categoryObjs[5].item_name : '' }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="categoryObjs[5]" [categoryImg]="categoryImgs[5]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-4">&nbsp;</div>
 
     <div class="col-md-2" id="category-4">
-      <div *ngIf="categoryObjs[4]">
-        <a [routerLink]="['/dashboard/' + categoryObjs[4].query_string ]"
-           class="thumbnail" tooltip="{{ categoryObjs[4] ? categoryObjs[4].item_name : '' }}"><img
-          src="{{ categoryImgs[4] }}">
-          {{ categoryObjs[4] ? categoryObjs[4].item_name : '' }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="categoryObjs[4]" [categoryImg]="categoryImgs[4]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-2">

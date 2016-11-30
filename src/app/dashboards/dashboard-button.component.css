@@ -1,0 +1,7 @@
+.thumbnail > img {
+  height: 130px;
+}
+.thumbnail.disabled > img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}

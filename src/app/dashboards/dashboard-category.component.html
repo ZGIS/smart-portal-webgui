@@ -14,47 +14,19 @@
     <div class="col-md-2">&nbsp;</div>
 
     <div class="col-md-2"  id="category-7">
-      <div *ngIf="children[7]">
-        <a [routerLink]="['./cards']"
-           [queryParams]="{'query': children[7] ? children[7].item_name : category }"
-           class="thumbnail" tooltip="{{ children[7] ? children[7].item_name : category }}"><img
-          src="{{ childrenImg[7] }}">
-          {{ children[7] ? children[7].item_name : category }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="children[7]" [categoryImg]="childrenImg[7]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-2" id="category-0">
-      <div *ngIf="children[0]">
-        <a [routerLink]="['./cards']"
-           [queryParams]="{'query': children[0] ? children[0].item_name : category }"
-           class="thumbnail" tooltip="{{ children[0] ? children[0].item_name : category }}"><img
-          src="{{ childrenImg[0] }}">
-          {{ children[0] ? children[0].item_name : category }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="children[0]" [categoryImg]="childrenImg[0]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-2" id="category-1">
-      <div *ngIf="children[1]">
-        <a [routerLink]="['./cards']"
-           [queryParams]="{'query': children[1] ? children[1].item_name : category }"
-           class="thumbnail" tooltip="{{ children[1] ? children[1].item_name : category }}"><img
-          src="{{ childrenImg[1] }}">
-          {{ children[1] ? children[1].item_name : category }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="children[1]" [categoryImg]="childrenImg[1]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-2"  id="category-8">
-      <div *ngIf="children[8]">
-        <a [routerLink]="['./cards']"
-           [queryParams]="{'query': children[8] ? children[8].item_name : category }"
-           class="thumbnail" tooltip="{{ children[8] ? children[8].item_name : category }}"><img
-          src="{{ childrenImg[8] }}">
-        {{ children[8] ? children[8].item_name : category }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="children[8]" [categoryImg]="childrenImg[8]"></sac-gwh-dashboard-button>
     </div>
   </div>
 
@@ -63,14 +35,7 @@
     <div class="col-md-10"></div>
 
     <div class="col-md-2" id="category-2">
-      <div *ngIf="children[2]">
-        <a [routerLink]="['./cards']"
-           [queryParams]="{'query': children[2] ? children[2].item_name : category }"
-           class="thumbnail" tooltip="{{ children[2] ? children[2].item_name : category }}"><img
-          src="{{ childrenImg[2] }}">
-          {{ children[2] ? children[2].item_name : category }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="children[2]" [categoryImg]="childrenImg[2]"></sac-gwh-dashboard-button>
     </div>
 
   </div>
@@ -78,76 +43,34 @@
   <div class="row" id="row-3">
 
     <div class="col-md-2"  id="category-3">
-      <div *ngIf="children[3]">
-        <a [routerLink]="['./cards']"
-           [queryParams]="{'query': children[3] ? children[3].item_name : category }"
-           class="thumbnail" tooltip="{{ children[8] ? children[3].item_name : category }}"><img
-          src="{{ childrenImg[3] }}">
-          {{ children[3] ? children[3].item_name : category }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="children[3]" [categoryImg]="childrenImg[3]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-8">&nbsp;</div>
 
     <div class="col-md-2" id="category-4">
-      <div *ngIf="children[4]">
-        <a [routerLink]="['./cards']"
-           [queryParams]="{'query': children[4] ? children[4].item_name : category }"
-           class="thumbnail" tooltip="{{ children[4] ? children[4].item_name : category }}"><img
-          src="{{ childrenImg[4] }}">
-          {{ children[4] ? children[4].item_name : category }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="children[4]" [categoryImg]="childrenImg[4]"></sac-gwh-dashboard-button>
     </div>
   </div>
 
   <div class="row" id="row-4">
 
     <div class="col-md-2"  id="category-10">
-      <div *ngIf="children[10]">
-        <a [routerLink]="['./cards']"
-           [queryParams]="{'query': children[10] ? children[10].item_name : category }"
-           class="thumbnail" tooltip="{{ children[10] ? children[10].item_name : category }}"><img
-          src="{{ childrenImg[10] }}">
-        {{ children[10] ? children[10].item_name : category }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="children[10]" [categoryImg]="childrenImg[10]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-2"  id="category-5">
-      <div *ngIf="children[5]">
-        <a [routerLink]="['./cards']"
-           [queryParams]="{'query': children[5] ? children[5].item_name : category }"
-           class="thumbnail" tooltip="{{ children[5] ? children[5].item_name : category }}"><img
-          src="{{ childrenImg[5] }}">
-          {{ children[5] ? children[5].item_name : category }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="children[5]" [categoryImg]="childrenImg[5]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-4">&nbsp;</div>
 
     <div class="col-md-2"  id="category-6">
-      <div *ngIf="children[6]">
-        <a [routerLink]="['./cards']"
-           [queryParams]="{'query': children[6] ? children[6].item_name : category }"
-           class="thumbnail" tooltip="{{ children[6] ? children[6].item_name : category }}"><img
-          src="{{ childrenImg[6] }}">
-          {{ children[6] ? children[6].item_name : category }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="children[6]" [categoryImg]="childrenImg[6]"></sac-gwh-dashboard-button>
     </div>
 
     <div class="col-md-2"  id="category-9">
-      <div *ngIf="children[9]">
-        <a [routerLink]="['./cards']"
-           [queryParams]="{'query': children[9] ? children[9].item_name : category }"
-           class="thumbnail" tooltip="{{ children[9] ? children[9].item_name : category }}"><img
-          src="{{ childrenImg[9] }}">
-          {{ children[9] ? children[9].item_name : category }}
-        </a>
-      </div>
+      <sac-gwh-dashboard-button [category]="children[9]" [categoryImg]="childrenImg[9]"></sac-gwh-dashboard-button>
     </div>
   </div>
 </div>

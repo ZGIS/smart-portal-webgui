@@ -25,6 +25,7 @@ import { NotificationService } from './notifications/notification.service';
 import { FeatureOriginPipe } from './search/featureOriginFilter.pipe';
 import { ResultDetailModalComponent } from './search/result-detail-modal.component';
 import { ResultCardsComponent } from './dashboards/result-cards.component';
+import { DashboardButtonComponent } from './dashboards/dashboard-button.component';
 
 @NgModule({
   imports: [BrowserModule,
@@ -47,7 +48,8 @@ import { ResultCardsComponent } from './dashboards/result-cards.component';
     MetadataEditorComponent,
     NotificationComponent,
     FeatureOriginPipe,
-    ResultDetailModalComponent
+    ResultDetailModalComponent,
+    DashboardButtonComponent
   ],
   providers: [
     CookieService,
