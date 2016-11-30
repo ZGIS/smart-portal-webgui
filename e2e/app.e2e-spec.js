@@ -18,9 +18,9 @@ describe('E2E Test Welcome Dashboard', function () {
 
 });
 
-describe('E2E Test Dashboard Category', function () {
+describe('E2E Test Dashboard Maps Category', function () {
 
-  const expectedMsg = 'Maps Maps and two-dimensional (map) datasets that are used in groundwater resource assessments';
+  const expectedMsg = 'Maps and Spatial Datasets Maps and two-dimensional (map) datasets that are used in groundwater resource assessments';
 
 
   beforeEach(function () {
@@ -37,3 +37,4 @@ describe('E2E Test Dashboard Category', function () {
   });
 
 });
+
