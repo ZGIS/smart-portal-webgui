@@ -16,7 +16,7 @@ export class DashboardHomeComponent implements OnInit {
   ngOnInit(): void {
     myCategories.categories.forEach(( catObj: any ) => {
 
-      let imgUrl = '/public/images/' + catObj.icon;
+      let imgUrl = '/public/images/dashboard/' + catObj.icon;
       this.categoryImgs.push(imgUrl);
       this.categoryObjs.push(catObj);
 

@@ -3,13 +3,13 @@
     {
       "hierarchy_number": "1.0",
       "id": "1",
-      "item_name": "Maps",
+      "item_name": "Maps and Spatial Datasets",
       "parent": "main",
       "contact_person": "Rogier",
       "query_string": "1-maps",
       "keyword_tag": "",
-      "bg_icon": "1-bg-maps.jpg",
-      "icon": "1-maps.jpg",
+      "bg_icon": "1.0_maps_background.png ",
+      "icon": "1.0_maps_spatial_datasets_square_small.png",
       "research_programmes": "Various GNS and outside GNS",
       "description": "Maps and two-dimensional (map) datasets that are used in groundwater resource assessments",
       "children": [
@@ -21,7 +21,7 @@
           "contact_person": "Conny",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "1-bg-maps.jpg",
+          "bg_icon": "1.0_maps_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "GWR",
           "description": "Digital maps of New Zealand surface geology with links to historic maps and relevant publications. Other resources include links to international maps."
@@ -34,7 +34,7 @@
           "contact_person": "Conny",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "1-bg-maps.jpg",
+          "bg_icon": "1.0_maps_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "GWR",
           "description": "Digital maps of New Zealand aquifer boundaries with links to historic maps and relevant publications. Other resources include links to international maps of aquifer edistribution."
@@ -47,7 +47,7 @@
           "contact_person": "Rogier",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "1-bg-maps.jpg",
+          "bg_icon": "1.0_maps_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "SAC",
           "description": "Digital maps of the New Zealand water table map with regional water table maps and and piezometric surfaces and links to releavnt publications. "
@@ -60,7 +60,7 @@
           "contact_person": "Conny",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "1-bg-maps.jpg",
+          "bg_icon": "1.0_maps_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to Landcare Research digital soil maps."
@@ -73,7 +73,7 @@
           "contact_person": "Paul",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "1-bg-maps.jpg",
+          "bg_icon": "1.0_maps_background.png",
           "icon": "1-5-hydrology.jpg",
           "research_programmes": "",
           "description": "Links to  resources for mapping surface hydrology. These include data held by Ministry for the Environment, National Institute of Water and Atmospheric Research resources and regional councils."
@@ -86,7 +86,7 @@
           "contact_person": "Paul",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "1-bg-maps.jpg",
+          "bg_icon": "1.0_maps_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to  water resources-reated infrastructure data. These include regional council and and district council data, e.g., well locations and drainage networks."
@@ -99,7 +99,7 @@
           "contact_person": "Conny",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "1-bg-maps.jpg",
+          "bg_icon": "1.0_maps_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to Landcare Research digital land cover maps."
@@ -112,7 +112,7 @@
           "contact_person": "Rogier",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "1-bg-maps.jpg",
+          "bg_icon": "1.0_maps_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "SAC",
           "description": "Links to  resources for mapping surface hydrology. These include data held by Ministry for the Environment and the National Institute of Water and Atmospheric Research."
@@ -125,7 +125,7 @@
           "contact_person": "Paul",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "1-bg-maps.jpg",
+          "bg_icon": "1.0_maps_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "SAC",
           "description": "Digital maps of rainfall recharge in New Zealand with links to historic maps and relevant publications. These include Other resources include links to international maps."
@@ -138,7 +138,7 @@
           "contact_person": "Magali",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "1-bg-maps.jpg",
+          "bg_icon": "1.0_maps_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "GWR",
           "description": "Locations of chemistry measurements and maps of determinands "
@@ -151,7 +151,7 @@
           "contact_person": "Zara",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "1-bg-maps.jpg",
+          "bg_icon": "1.0_maps_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "SAC",
           "description": "Maps of geophysical paramaters."
@@ -166,8 +166,8 @@
       "contact_person": "Rogier",
       "query_string": "2-climate",
       "keyword_tag": "",
-      "bg_icon": "2-bg-climate.jpg",
-      "icon": "2-climate.jpg",
+      "bg_icon": "2.0_climate_background.png",
+      "icon": "2.0_climate_square_small.png",
       "research_programmes": "Outside GNS",
       "description": "Climatic variables important to groundwater resources, particularly rainfall and evaporation  ",
       "children": [
@@ -179,7 +179,7 @@
           "contact_person": "Paul",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "2-bg-climate.jpg",
+          "bg_icon": "2.0_climate_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to  resources, including data and models, on rainfall at a range of scales held by the National Institute of Water and Atmospheric Research resources and regional councils."
@@ -192,7 +192,7 @@
           "contact_person": "Rogier",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "2-bg-climate.jpg",
+          "bg_icon": "2.0_climate_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to  resources, including data and models, on evaporation and transpiration at a range of scales held by the National Institute of Water and Atmospheric Research resources and regional councils."
@@ -205,7 +205,7 @@
           "contact_person": "Rogier",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "2-bg-climate.jpg",
+          "bg_icon": "2.0_climate_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to international and national research on the carbon cycle at a range of scales"
@@ -218,7 +218,7 @@
           "contact_person": "Rogier",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "2-bg-climate.jpg",
+          "bg_icon": "2.0_climate_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to international and national research on the carbon cycle at a range of scales"
@@ -231,7 +231,7 @@
           "contact_person": "Rogier",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "2-bg-climate.jpg",
+          "bg_icon": "2.0_climate_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to international and national research on climatic extremes"
@@ -244,7 +244,7 @@
           "contact_person": "Rogier",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "2-bg-climate.jpg",
+          "bg_icon": "2.0_climate_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to international and national research on climatic extremes"
@@ -259,8 +259,8 @@
       "contact_person": "Paul",
       "query_string": "3-policy",
       "keyword_tag": "",
-      "bg_icon": "3-bg-policy.jpg",
-      "icon": "3-policy.jpg",
+      "bg_icon": "3.0_policy_background.png",
+      "icon": "3.0_policy_square_small.png",
       "research_programmes": "GWR",
       "description": "Policies associated with groundwater resources. These policies include water and land managment policies (national and regional) and drinking-water  ",
       "children": [
@@ -272,7 +272,7 @@
           "contact_person": "Abi",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "3-bg-policy.jpg",
+          "bg_icon": "3.0_policy_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to water and land policies of regional councils that are relevant to groundwater resources"
@@ -285,7 +285,7 @@
           "contact_person": "Abi",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "3-bg-policy.jpg",
+          "bg_icon": "3.0_policy_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to water and land policies of central government that are relevant to groundwater resources"
@@ -298,7 +298,7 @@
           "contact_person": "Abi",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "3-bg-policy.jpg",
+          "bg_icon": "3.0_policy_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to water and land policies of district councils that are relevant to groundwater resources"
@@ -311,7 +311,7 @@
           "contact_person": "Magali",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "3-bg-policy.jpg",
+          "bg_icon": "3.0_policy_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to land and water policies in countries outside New Zealand that are relevant to groundwater resources"
@@ -324,7 +324,7 @@
           "contact_person": "Paul",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "3-bg-policy.jpg",
+          "bg_icon": "3.0_policy_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Synthesis of water and land policy aims relevant to groundwater management in New Zealand"
@@ -339,8 +339,8 @@
       "contact_person": "Paul",
       "query_string": "4-water-budget",
       "keyword_tag": "",
-      "bg_icon": "4-bg-water-budget.jpg",
-      "icon": "4-water-budget.jpg",
+      "bg_icon": "4.0_water_budget_background.png",
+      "icon": "4.0_water_budget_square_small.png",
       "research_programmes": "SAM",
       "description": "Understand groundwater inflows, groundwater outflows and the interaction between surface water and groundwater",
       "children": [
@@ -352,7 +352,7 @@
           "contact_person": "Paul",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "4-bg-water-budget.jpg",
+          "bg_icon": "4.0_water_budget_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to  resources, including data and models, on rainfall at a range of scales held by the National Institute of Water and Atmospheric Research resources and regional councils."
@@ -365,7 +365,7 @@
           "contact_person": "Rogier",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "4-bg-water-budget.jpg",
+          "bg_icon": "4.0_water_budget_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": "Links to  resources, including data and models, on evaporation and transpiration at a range of scales held by the National Institute of Water and Atmospheric Research resources and regional councils."
@@ -378,7 +378,7 @@
           "contact_person": "Paul",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "4-bg-water-budget.jpg",
+          "bg_icon": "4.0_water_budget_background.png",
           "icon": "4-3-gw-inflow.jpg",
           "research_programmes": "",
           "description": ""
@@ -391,7 +391,7 @@
           "contact_person": "Rogier",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "4-bg-water-budget.jpg",
+          "bg_icon": "4.0_water_budget_background.png",
           "icon": "4-4-recharge.jpg",
           "research_programmes": "",
           "description": ""
@@ -404,7 +404,7 @@
           "contact_person": "Paul",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "4-bg-water-budget.jpg",
+          "bg_icon": "4.0_water_budget_background.png",
           "icon": "4-5-gw-lakes.jpg",
           "research_programmes": "",
           "description": ""
@@ -417,7 +417,7 @@
           "contact_person": "Mike T",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "4-bg-water-budget.jpg",
+          "bg_icon": "4.0_water_budget_background.png",
           "icon": "4-6-gw-models.jpg",
           "research_programmes": "",
           "description": ""
@@ -430,7 +430,7 @@
           "contact_person": "Mike F",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "4-bg-water-budget.jpg",
+          "bg_icon": "4.0_water_budget_background.png",
           "icon": "4-7-discharge-sea.jpg",
           "research_programmes": "",
           "description": ""
@@ -443,7 +443,7 @@
           "contact_person": "Paul",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "4-bg-water-budget.jpg",
+          "bg_icon": "4.0_water_budget_background.png",
           "icon": "4-8-gw-use.jpg",
           "research_programmes": "",
           "description": ""
@@ -456,7 +456,7 @@
           "contact_person": "Catherine",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "4-bg-water-budget.jpg",
+          "bg_icon": "4.0_water_budget_background.png",
           "icon": "4-9-gw-interaction.jpg",
           "research_programmes": "",
           "description": ""
@@ -469,7 +469,7 @@
           "contact_person": "Conny",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "4-bg-water-budget.jpg",
+          "bg_icon": "4.0_water_budget_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -482,7 +482,7 @@
           "contact_person": "Catherine",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "4-bg-water-budget.jpg",
+          "bg_icon": "4.0_water_budget_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "SAC",
           "description": ""
@@ -492,13 +492,13 @@
     {
       "hierarchy_number": "5.0",
       "id": "5",
-      "item_name": "Groundwater chemistry",
+      "item_name": "Groundwater Chemistry",
       "parent": "main",
       "contact_person": "Magali",
       "query_string": "5-gw-chemistry",
       "keyword_tag": "",
-      "bg_icon": "5-bg-gw-chemistry.jpg",
-      "icon": "5-gw-chemistry.jpg",
+      "bg_icon": "5.0_groundwater_chemistry_background.png",
+      "icon": "5.0_groundwater_chemistry_square_small.png",
       "research_programmes": "NGMP, GWR, TVH",
       "description": "Field data collection, databases, modelling and applications",
       "children": [
@@ -510,7 +510,7 @@
           "contact_person": "Magali",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "5-bg-gw-chemistry.jpg",
+          "bg_icon": "5.0_groundwater_chemistry_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -523,7 +523,7 @@
           "contact_person": "Magali",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "5-bg-gw-chemistry.jpg",
+          "bg_icon": "5.0_groundwater_chemistry_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -536,7 +536,7 @@
           "contact_person": "Magali",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "5-bg-gw-chemistry.jpg",
+          "bg_icon": "5.0_groundwater_chemistry_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -549,7 +549,7 @@
           "contact_person": "Magali",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "5-bg-gw-chemistry.jpg",
+          "bg_icon": "5.0_groundwater_chemistry_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -562,7 +562,7 @@
           "contact_person": "Magali",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "5-bg-gw-chemistry.jpg",
+          "bg_icon": "5.0_groundwater_chemistry_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -575,7 +575,7 @@
           "contact_person": "Magali",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "5-bg-gw-chemistry.jpg",
+          "bg_icon": "5.0_groundwater_chemistry_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -588,7 +588,7 @@
           "contact_person": "Magali",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "5-bg-gw-chemistry.jpg",
+          "bg_icon": "5.0_groundwater_chemistry_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -601,7 +601,7 @@
           "contact_person": "Magali",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "5-bg-gw-chemistry.jpg",
+          "bg_icon": "5.0_groundwater_chemistry_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -614,7 +614,7 @@
           "contact_person": "Magali",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "5-bg-gw-chemistry.jpg",
+          "bg_icon": "5.0_groundwater_chemistry_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -627,7 +627,7 @@
           "contact_person": "Magali",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "5-bg-gw-chemistry.jpg",
+          "bg_icon": "5.0_groundwater_chemistry_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -640,7 +640,7 @@
           "contact_person": "Catherine",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "5-bg-gw-chemistry.jpg",
+          "bg_icon": "5.0_groundwater_chemistry_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -650,13 +650,13 @@
     {
       "hierarchy_number": "6.0",
       "id": "6",
-      "item_name": "3D models",
+      "item_name": "3D Geological Models",
       "parent": "main",
       "contact_person": "Paul",
       "query_string": "6-geol-models",
       "keyword_tag": "",
-      "bg_icon": "6-bg-geol-models.jpg",
-      "icon": "6-geol-models.jpg",
+      "bg_icon": "6.0_geological_models_background.png",
+      "icon": "6.0_geological_models_square_small.png",
       "research_programmes": "Various GNS and outside GNS",
       "description": "Sub-surface properties of groundwater systems including geology, flow and chemistry",
       "children": [
@@ -668,7 +668,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "6-bg-geol-models.jpg",
+          "bg_icon": "6.0_geological_models_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -681,7 +681,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "6-bg-geol-models.jpg",
+          "bg_icon": "6.0_geological_models_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -694,7 +694,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "6-bg-geol-models.jpg",
+          "bg_icon": "6.0_geological_models_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -707,7 +707,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "6-bg-geol-models.jpg",
+          "bg_icon": "6.0_geological_models_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -720,7 +720,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "6-bg-geol-models.jpg",
+          "bg_icon": "6.0_geological_models_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -733,7 +733,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "6-bg-geol-models.jpg",
+          "bg_icon": "6.0_geological_models_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -746,7 +746,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "6-bg-geol-models.jpg",
+          "bg_icon": "6.0_geological_models_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -761,8 +761,8 @@
       "contact_person": "Uwe",
       "query_string": "7-gw-age",
       "keyword_tag": "",
-      "bg_icon": "7-bg-gw-age.jpg",
-      "icon": "7-gw-age.jpg",
+      "bg_icon": "7.0_groundwater_age_background.png",
+      "icon": "7.0_groundwater_age_square_small.png",
       "research_programmes": "SAC, NGMP, GWR, TVH",
       "description": "Field data collection, databases, measurement and modelling",
       "children": [
@@ -774,7 +774,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "7-bg-gw-age.jpg",
+          "bg_icon": "7.0_groundwater_age_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -787,7 +787,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "7-bg-gw-age.jpg",
+          "bg_icon": "7.0_groundwater_age_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -800,7 +800,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "7-bg-gw-age.jpg",
+          "bg_icon": "7.0_groundwater_age_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -813,7 +813,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "7-bg-gw-age.jpg",
+          "bg_icon": "7.0_groundwater_age_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -826,7 +826,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "7-bg-gw-age.jpg",
+          "bg_icon": "7.0_groundwater_age_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -839,7 +839,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "7-bg-gw-age.jpg",
+          "bg_icon": "7.0_groundwater_age_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -852,7 +852,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "7-bg-gw-age.jpg",
+          "bg_icon": "7.0_groundwater_age_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -867,8 +867,8 @@
       "contact_person": "Abi",
       "query_string": "8-gw-use",
       "keyword_tag": "",
-      "bg_icon": "8-bg-gw-use.jpg",
-      "icon": "8-gw-use.jpg",
+      "bg_icon": "8.0_groundwater_use_background.png",
+      "icon": "8.0_groundwater_use_square_small.png",
       "research_programmes": "",
       "description": "The where and why of groundwater use and engineering approaches to well assessments",
       "children": [
@@ -880,7 +880,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "8-bg-gw-use.jpg",
+          "bg_icon": "8.0_groundwater_use_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -893,7 +893,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "8-bg-gw-use.jpg",
+          "bg_icon": "8.0_groundwater_use_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -906,7 +906,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "8-bg-gw-use.jpg",
+          "bg_icon": "8.0_groundwater_use_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -919,7 +919,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "8-bg-gw-use.jpg",
+          "bg_icon": "8.0_groundwater_use_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -932,7 +932,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "8-bg-gw-use.jpg",
+          "bg_icon": "8.0_groundwater_use_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -945,7 +945,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "8-bg-gw-use.jpg",
+          "bg_icon": "8.0_groundwater_use_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -958,7 +958,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "8-bg-gw-use.jpg",
+          "bg_icon": "8.0_groundwater_use_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""
@@ -971,7 +971,7 @@
           "contact_person": "",
           "query_string": "",
           "keyword_tag": "",
-          "bg_icon": "8-bg-gw-use.jpg",
+          "bg_icon": "8.0_groundwater_use_background.png",
           "icon": "0-placeholder-water-icon.jpg",
           "research_programmes": "",
           "description": ""

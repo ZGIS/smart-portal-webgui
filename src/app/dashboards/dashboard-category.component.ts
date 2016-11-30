@@ -16,7 +16,7 @@ export class DashboardCategoryComponent implements OnInit {
   bgImage: any = {};
   children: any[] = [];
   childrenImg: string[] = [];
-  placeHolderImg: string = '/public/images/0-placeholder-water-icon.jpg';
+  placeHolderImg: string = '/public/images/dashboard/0-placeholder-water-icon.jpg';
 
   ngOnInit(): void {
     this.route.params.forEach(( params: Params ) => {
@@ -28,13 +28,13 @@ export class DashboardCategoryComponent implements OnInit {
           this.category = catObj.item_name;
           this.description = catObj.description;
 
-          let imgUrl = '/public/images/' + catObj.bg_icon;
+          let imgUrl = '/public/images/dashboard/' + catObj.bg_icon;
           this.bgImage.imgUrl = imgUrl;
 
           catObj.children.forEach(( childObj: any ) => {
             this.children.push(childObj);
 
-            let imgUrl = '/public/images/' + childObj.icon;
+            let imgUrl = '/public/images/dashboard/' + childObj.icon;
             this.childrenImg.push(imgUrl);
           });
         }
@@ -44,7 +44,7 @@ export class DashboardCategoryComponent implements OnInit {
   }
 
   constructor( private route: ActivatedRoute ) {
-    this.bgImage.imgUrl = '/public/images/0-bg-main.jpg';
+    this.bgImage.imgUrl = '/public/images/dashboard/0.0_main_background.png';
   };
 
 }

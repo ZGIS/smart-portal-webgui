@@ -12,7 +12,7 @@
         <a [routerLink]="['/dashboard/' + categoryObjs[0].query_string ]"
            class="thumbnail" tooltip="{{ categoryObjs[0] ? categoryObjs[0].item_name : '' }}"><img
           src="{{ categoryImgs[0] }}">
-          {{ categoryObjs[0] ? categoryObjs[1].item_name : '' }}
+          {{ categoryObjs[0] ? categoryObjs[0].item_name : '' }}
         </a>
       </div>
     </div>
