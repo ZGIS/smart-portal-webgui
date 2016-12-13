@@ -1,3 +1,14 @@
+.back-button {
+  text-align:center;
+  /*width:100%;*/
+}
+.thumbnail {
+  background-color:rgba(0,0,0,0.1);
+}
+.thumbnail:hover {
+  background-color:rgba(215, 164, 84, 0.5);
+  border-color: #D7A454;
+}
 .thumbnail > img {
   height: 130px;
 }
@@ -14,3 +25,4 @@
     background-size: cover;
   }
 }
+
