@@ -6,6 +6,23 @@ import { Http } from '@angular/http';
 import { NotificationService } from '../notifications/notification.service';
 import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 
+export interface SelectEntry {
+  value: String;
+  description: String;
+  selected: boolean;
+}
+
+export interface ValidValues {
+  topicCategory: Array<SelectEntry>;
+  hierarchyLevelName: Array<SelectEntry>;
+  scale: Array<SelectEntry>;
+  referenceSystem: Array<SelectEntry>;
+  ciDateType: Array<SelectEntry>;
+  pointOfContact: Array<SelectEntry>;
+  useLimitation: Array<SelectEntry>;
+  formatVersion: Array<SelectEntry>;
+}
+
 @Component({
   selector: 'sac-gwh-metadata',
   templateUrl: './metadata-editor.component.html'
@@ -15,6 +32,16 @@ import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 export class MetadataEditorComponent implements OnInit {
 
   metadata: GeoMetadata;
+  validValues: ValidValues = {
+    topicCategory: [],
+    hierarchyLevelName: [],
+    scale: [],
+    referenceSystem: [],
+    ciDateType: [],
+    pointOfContact: [],
+    useLimitation: [],
+    formatVersion: []
+  };
 
   constructor(
     @Inject(PORTAL_API_URL) private portalApiUrl: string,
@@ -60,6 +87,11 @@ export class MetadataEditorComponent implements OnInit {
       }
     };
 
+    // iterate through interface properties of validValues and load them from backend
+    Object.getOwnPropertyNames(this.validValues).forEach(property => {
+      console.log(`Loading data for ${property}`);
+      this.loadValidValues(property);
+    });
   }
 
   submitForm() {
@@ -82,5 +114,27 @@ export class MetadataEditorComponent implements OnInit {
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
+  }
+
+  private loadValidValues(topic: string) {
+    this.http.get(this.portalApiUrl + '/csw/get-valid-values-for/' + topic)
+      .toPromise()
+      .then(response => {
+        console.log(`response for ${topic}`);
+        console.log(response.json());
+        let foobar = response.json();
+        if (!foobar.descriptions || foobar.descriptions.length === 0) {
+          foobar.descriptions = foobar.values;
+        }
+        for (let i = 0; i < foobar.values.length; i++) {
+          this.validValues[topic].push({
+              value: foobar.values[i],
+              description: foobar.descriptions[i],
+              selected: i === foobar.standardValue
+            });
+        }
+      })
+      // TODO SR handle errors properly!
+      .catch(this.handleError);
   }
 }

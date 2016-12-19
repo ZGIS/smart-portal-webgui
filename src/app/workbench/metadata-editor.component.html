@@ -57,26 +57,11 @@
                             [(ngModel)]="metadata.topicCategoryCode"
                     >
                       <!-- TODO SR create a "allowed values" enum in the backend and push that to frontend-->
-                      <option value="environment" selected>environment</option>
-                      <option value="inlandWaters">inlandWaters</option>
-                      <option value="geoscientificInformation">geoscientificInformation</option>
-                      <option value="farming">farming</option>
-                      <option value="biota">biota</option>
-                      <option value="boundaries">boundaries</option>
-                      <option value="climatologyMeteorologyAtmosphere">climatologyMeteorologyAtmosphere
+                      <option *ngFor="let topicCategory of validValues.topicCategory"
+                              [ngValue]="topicCategory.value"
+                              [selected]="topicCategory.selected">
+                        {{topicCategory.description}}
                       </option>
-                      <option value="oceans">oceans</option>
-                      <option value="imageryBaseMapsEarthCover">imageryBaseMapsEarthCover</option>
-                      <option value="location">location</option>
-                      <option value="economy">economy</option>
-                      <option value="elevation">elevation</option>
-                      <option value="health">health</option>
-                      <option value="society">society</option>
-                      <option value="planningCadastre">planningCadastre</option>
-                      <option value="structure">structure</option>
-                      <option value="transportation">transportation</option>
-                      <option value="utilitiesCommunication">utilitiesCommunication</option>
-                      <option value="intelligenceMilitary">intelligenceMilitary</option>
                     </select>
                   </div>
                 </div>
@@ -89,14 +74,11 @@
                             id="gmd_hierarchyLevelName"
                             [(ngModel)]="metadata.hierarchyLevelName"
                     >
-                      <!-- TODO SR create a "allowed values" enum in the backend and push that to frontend-->
-                      <option value="dataset" selected>dataset</option>
-                      <option value="service">service</option>
-                      <option value="software">software</option>
-                      <option value="model">model</option>
-                      <option value="sensor">sensor</option>
-                      <option value="series">series</option>
-                      <option value="nonGeographicDataset">nonGeographicDataset</option>
+                      <option *ngFor="let hierarchyLevelName of validValues.hierarchyLevelName"
+                              [ngValue]="hierarchyLevelName.value"
+                              [selected]="hierarchyLevelName.selected">
+                        {{hierarchyLevelName.description}}
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -112,12 +94,11 @@
                             id="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
                             [(ngModel)]="metadata.scale"
                     >
-                      <option value="5000">1:5000 or smaller</option>
-                      <option value="10000">1:10000</option>
-                      <option value="25000" selected>1:25000</option>
-                      <option value="50000">1:50000</option>
-                      <option value="250000">1:250000</option>
-                      <option value="1000000">1:1000000 or larger</option>
+                      <option *ngFor="let scale of validValues.scale"
+                              [ngValue]="scale.value"
+                              [selected]="scale.selected">
+                        {{scale.description}}
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -152,16 +133,11 @@
                   <select class="span5" name="gmd_referenceSystemInfo" id="gmd_referenceSystemInfo"
                           [(ngModel)]="metadata.extent.referenceSystem"
                   >
-                    <option value="urn:ogc:def:crs:EPSG::2193">NZGD2000 / New Zealand Transverse
-                      Mercator 2000 (EPSG:2193)
+                    <option *ngFor="let referenceSystem of validValues.referenceSystem"
+                            [ngValue]="referenceSystem.value"
+                            [selected]="referenceSystem.selected">
+                      {{referenceSystem.description}}
                     </option>
-                    <option value="urn:ogc:def:crs:EPSG::4959">NZGD2000 (EPSG:4959)</option>
-                    <option value="urn:ogc:def:crs:EPSG::27200">NZGD49 / New Zealand Map Grid
-                      (EPSG:27200)
-                    </option>
-                    <option value="urn:ogc:def:crs:EPSG::4272">NZGD49 (EPSG:4272)</option>
-                    <option value="urn:ogc:def:crs:EPSG::4328" selected>WGS 84 (EPSG:4328)</option>
-                    <option value="urn:ogc:def:crs:EPSG::0000">other / unkown</option>
                   </select>
                 </div>
               </div>
@@ -200,9 +176,11 @@
                           name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType"
                           id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType"
                           [(ngModel)]="metadata.citation.ciDateType">
-                    <option value="creation">creation</option>
-                    <option value="publication" selected>publication</option>
-                    <option value="revision">revision</option>
+                    <option *ngFor="let ciDateType of validValues.ciDateType"
+                            [ngValue]="ciDateType.value"
+                            [selected]="ciDateType.selected">
+                      {{ciDateType.description}}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -299,13 +277,11 @@
                   <select class="span3" name="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
                           id="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
                           [(ngModel)]="metadata.responsibleParty.pointOfContact">
-                    <option value="author">author</option>
-                    <option value="pointOfContact" selected>pointOfContact</option>
-                    <option value="publisher">publisher</option>
-                    <option value="owner">owner</option>
-                    <option value="originator">originator</option>
-                    <option value="processor">processor</option>
-                    <option value="principalInvestigator">principalInvestigator</option>
+                    <option *ngFor="let pointOfContact of validValues.pointOfContact"
+                            [ngValue]="pointOfContact.value"
+                            [selected]="pointOfContact.selected">
+                      {{pointOfContact.description}}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -355,29 +331,11 @@
                           name="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
                           id="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
                           [(ngModel)]="metadata.distribution.useLimitation">
-                    <option value="Check with source agency" selected>Check with data provider
+                    <option *ngFor="let useLimitation of validValues.useLimitation"
+                            [ngValue]="useLimitation.value"
+                            [selected]="useLimitation.selected">
+                      {{useLimitation.description}}
                     </option>
-                    <option value="Creative Commons Attribution 3.0 New Zealand license" selected>
-                      Creative Commons Attribution 3.0 New Zealand license
-                    </option>
-                    <option
-                      value="Creative Commons Attribution-No Derivative Works 3.0 New Zealand license">
-                      Creative Commons Attribution-No Derivative Works 3.0 New Zealand license
-                    </option>
-                    <option
-                      value="Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 New Zealand license">
-                      Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 New Zealand
-                      license
-                    </option>
-                    <option value="Creative Commons Attribution-Share Alike 3.0 New Zealand license">
-                      Creative Commons Attribution-Share Alike 3.0 New Zealand license
-                    </option>
-                    <option
-                      value="Creative Commons Attribution-Noncommercial-Share Alike 3.0 New Zealand license">
-                      Creative Commons Attribution-Noncommercial-Share Alike 3.0 New Zealand license
-                    </option>
-                    <option value="No restrictions">No restrictions</option>
-                    <option value="I don't know">I don't know</option>
                   </select>
                 </div>
               </div>
@@ -396,8 +354,11 @@
                           name="gmd_distributionInfo_MD_Distribution_formatVersion"
                           id="gmd_distributionInfo_MD_Distribution_formatVersion"
                           [(ngModel)]="metadata.distribution.formatVersion">
-                    <option value="file formats" selected>file formats</option>
-                    <option value="web service type">web service type</option>
+                    <option *ngFor="let formatVersion of validValues.formatVersion"
+                            [ngValue]="formatVersion.value"
+                            [selected]="formatVersion.selected">
+                      {{formatVersion.description}}
+                    </option>
                   </select>
                 </div>
               </div>
