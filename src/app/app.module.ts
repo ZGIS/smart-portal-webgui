@@ -28,7 +28,7 @@ import {
   AccountService,
   AccountComponent
 } from './account';
-import { MetadataEditorComponent } from './workbench';
+import { MetadataEditorComponent, CollectionsService, CollectionsComponent } from './workbench';
 import { API_URL_PROVIDERS } from './app.tokens';
 import { AuthGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
@@ -55,7 +55,8 @@ import { NotificationComponent, NotificationService } from './notifications';
     NotificationComponent,
     FeatureOriginPipe,
     ResultDetailModalComponent,
-    DashboardButtonComponent
+    DashboardButtonComponent,
+    CollectionsComponent
   ],
   providers: [
     CookieService,
@@ -63,6 +64,7 @@ import { NotificationComponent, NotificationService } from './notifications';
     ResultService,
     AccountService,
     NotificationService,
+    CollectionsService,
     API_URL_PROVIDERS
   ],
   bootstrap: [AppComponent]

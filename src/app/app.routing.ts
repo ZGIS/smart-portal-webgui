@@ -1,11 +1,14 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardHomeComponent, DashboardCategoryComponent } from './dashboards';
+import {
+  DashboardHomeComponent,
+  DashboardCategoryComponent,
+  ResultCardsComponent
+} from './dashboards';
 import { SearchComponent } from './search';
 import { LoginComponent, RegisterComponent, AccountComponent, ResetPassComponent } from './account';
-import { MetadataEditorComponent } from './workbench';
+import { MetadataEditorComponent, CollectionsComponent } from './workbench';
 import { AuthGuard } from './_guards';
-import { ResultCardsComponent } from './dashboards';
 
 const appRoutes: Routes = [
   {
@@ -50,6 +53,11 @@ const appRoutes: Routes = [
   {
     path: 'workbench/add-data',
     component: MetadataEditorComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'workbench/my-data',
+    component: CollectionsComponent,
     canActivate: [AuthGuard]
   },
 

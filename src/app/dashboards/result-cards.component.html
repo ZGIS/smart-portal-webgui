@@ -24,11 +24,9 @@
       <div class="panel-footer">
         <a (click)="resultDetailModal.show(feature)">see full details...</a>
         <div class="pull-right">
-          <a *ngFor="let link of feature.properties.linkage" [href]="link" target="_blank"><i
-            class="fa fa-download"></i></a>
-          <a
-            href="https://storage.googleapis.com/smart-deploy-artefacts/demo/HP%20Presentation%202016-11-28_quicksummary.pptx"><i
-            class="fa fa-download"></i></a>
+          <a *ngFor="let link of feature.properties.linkage" [href]="link" target="_blank">
+            <i class="fa fa-download"></i>
+          </a>
         </div>
       </div>
     </div>

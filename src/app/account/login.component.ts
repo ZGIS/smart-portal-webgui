@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './account.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../notifications';
 
 // Google's login API namespace
 // declare var gapi: any;
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   error = '';
 
   constructor(private accountService: AccountService,
-              private router: Router) {
+              private router: Router, private _notificationService: NotificationService) {
     // window['gconnectLogin'] = this.gconnectLogin.bind(this);
     // window['signInCallback'] = this.signInCallback.bind(this);
     // window['handleFailure'] = this.handleFailure.bind(this);

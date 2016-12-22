@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AccountService, createProfile } from './account.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
+import { NotificationService } from '../notifications';
 
 // Google's login API namespace
 // declare var gapi: any;
@@ -22,7 +23,7 @@ export class RegisterComponent implements OnInit {
   @Output() flash = new EventEmitter();
 
   constructor(private accountService: AccountService, private router: Router,
-              private http: Http) {
+              private http: Http, private _notificationService: NotificationService) {
     // window['gconnectReg'] = this.gconnectReg.bind(this);
     // window['signInCallback'] = this.signInCallback.bind(this);
     // window['handleFailure'] = this.handleFailure.bind(this);
@@ -62,12 +63,21 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         result => {
           if (result === true) {
-            // login successful
+            // register successful
+            this._notificationService.addNotification({
+              type: 'INFO',
+              message: 'Thank you. Please check your emails and activate your account by' +
+              ' clicking on th provided link.'
+            });
             this.loading = false;
             this.router.navigateByUrl('/login');
           } else {
             // login failed
-            this.error = 'Registration failed: message / status';
+            this._notificationService.addNotification({
+              type: 'ERR',
+              message: 'Registration failed: message / status.'
+            });
+            this.error = 'Registration failed: message / status.';
             this.loading = false;
           }
         },
