@@ -143,6 +143,7 @@ export class AccountService {
             if (userProfileJson) {
               let userProfile = createProfile(userProfileJson);
               console.log(userProfile);
+              this._loggedInState.next(true);
               localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
             }
             return response.json();
