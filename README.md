@@ -1,7 +1,6 @@
-# smart-portal-webgui [![OpenHUB](https://www.openhub.net/p/smart-portal-webgui/widgets/project_thin_badge.gif)](https://www.openhub.net/p/smart-portal-webgui)
+# smart-portal-webgui [![OpenHUB](https://www.openhub.net/p/smart-portal-webgui/widgets/project_thin_badge.gif)](https://www.openhub.net/p/smart-portal-webgui) [![Build Status](https://travis-ci.org/ZGIS/smart-portal-webgui.svg?branch=master)](https://travis-ci.org/ZGIS/smart-portal-webgui)
 
-## SMART Portal Web Frontend license [![Build Status](https://travis-ci.org/ZGIS/smart-portal-webgui.svg?branch=master)](https://travis-ci.org/ZGIS/smart-portal-webgui)
-
+## SMART Portal Web Frontend license
 
 Copyright (C) 2011-2017 Interfaculty Department of Geoinformatics, University of
 Salzburg (Z_GIS) & Institute of Geological and Nuclear Sciences Limited (GNS Science)
