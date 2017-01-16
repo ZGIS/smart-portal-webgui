@@ -87,7 +87,7 @@ export class RegisterComponent implements OnInit {
   // TODO should validate recaptcha, activate when backend is online
   recaptchaCallback(captchaChallenge: string) {
     this.recaptchaValid = true;
-/*    this.accountService.testReCaptcha(captchaChallenge).subscribe(
+    this.accountService.testReCaptcha(captchaChallenge).subscribe(
       result => {
         console.log(result);
         if (result === true) {
@@ -101,7 +101,7 @@ export class RegisterComponent implements OnInit {
         this.loading = false;
         this.recaptchaValid = false;
         this.error = <any>error;
-      });*/
+      });
   };
 
   /*
