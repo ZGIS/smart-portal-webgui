@@ -1,5 +1,7 @@
 export * from './account.component'
 export * from './account.service'
 export * from './login.component'
+export * from './recaptcha.component'
+export * from './recaptcha.service'
 export * from './register.component'
 export * from './reset-pass.component'

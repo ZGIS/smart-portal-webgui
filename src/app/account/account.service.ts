@@ -22,7 +22,8 @@ export function createProfile(profileConf: UserProfile): {
   username: string,
   firstname: string,
   lastname: string,
-  password?: string } {
+  password?: string
+} {
 
   let profileObj = {
     email: profileConf.email,
@@ -257,6 +258,31 @@ export class AccountService {
   requestPasswordReset(email: string): Observable<boolean> {
     return Observable.from([true]);
   }
+
+  // needs to happen server-side
+  testReCaptcha(captchaChallenge: string): Observable<boolean> {
+
+    const reCaptchaSecret = '6Le5RQsUAAAAAMcRg_--U2VTqG4t9EyxVjCb_5WL';
+    const gvUrl = 'https://www.google.com/recaptcha/api/siteverify';
+    let paramUrl = gvUrl + '?secret=' + reCaptchaSecret + '&response=' + captchaChallenge;
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+
+    return this.http.post(paramUrl, null, options)
+      .map((response: Response) => {
+        if (response.status === 200) {
+
+          let success = response.json() && response.json().success;
+          if (success) {
+            console.log(success);
+            return true;
+          }
+          return false;
+        } else {
+          return false;
+        }
+      }).catch(this.handleHttpFailure);
+  };
 
   /*
    // Hide the sign-in button now that the user is authorize

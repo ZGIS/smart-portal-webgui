@@ -25,6 +25,8 @@ import {
   LoginComponent,
   RegisterComponent,
   ResetPassComponent,
+  ReCaptchaComponent,
+  ReCaptchaService,
   AccountService,
   AccountComponent
 } from './account';
@@ -48,6 +50,7 @@ import { NotificationComponent, NotificationService } from './notifications';
     ResultCardsComponent,
     Ol3MapComponent,
     LoginComponent,
+    ReCaptchaComponent,
     RegisterComponent,
     ResetPassComponent,
     AccountComponent,
@@ -63,6 +66,7 @@ import { NotificationComponent, NotificationService } from './notifications';
     AuthGuard,
     ResultService,
     AccountService,
+    ReCaptchaService,
     NotificationService,
     CollectionsService,
     API_URL_PROVIDERS

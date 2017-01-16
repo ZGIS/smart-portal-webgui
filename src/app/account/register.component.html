@@ -45,8 +45,8 @@
           </div>
 
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !recaptchaValid }">
-            <div id="g-recaptcha" class="g-recaptcha" data-callback="recaptchaCallback"
-                 data-sitekey="6Le5RQsUAAAAAM_YjqAXzrJVLwqbYFl4hNmQ4n3Z"></div>
+            <re-captcha (captchaResponse)="recaptchaCallback($event)"
+                        siteKey="6Le5RQsUAAAAAM_YjqAXzrJVLwqbYFl4hNmQ4n3Z"></re-captcha>
             <div *ngIf="f.submitted && !recaptchaValid" class="help-block">ReCaptcha is
               required</div>
           </div>
@@ -65,11 +65,11 @@
 
         <div class="form-group">
 
-          <label for="signInButton">Sign up with Google</label><br>
+          <label for="google.oauth">Sign up with Google</label><br>
           <button class="btn btn-danger" id="google.oauth"
-                  onclick="alert('not implemented yet')">Use Google to Sign
-            up</button>
-          <div id="signInButton">
+                  href="gauth.html">Use Google to Sign up</button>
+
+          <!--<div id="signInButton">
             <div class="g-signin2"
                  data-scope="https://www.googleapis.com/auth/plus.login"
                  data-clientid="988846878323-bkja0j1tgep5ojthfr2e92ao8n7iksab.apps.googleusercontent.com"
@@ -78,7 +78,8 @@
                  data-onsuccess="gconnectReg"
                  data-onfailure="handleFailure">
             </div>
-          </div>
+          </div>-->
+
         </div>
 
       </div>

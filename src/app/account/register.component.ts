@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
 
   model: any = {};
   loading = false;
-  recaptchaValid = true;
+  recaptchaValid = false;
   error = '';
   @Output() flash = new EventEmitter();
 
@@ -56,9 +56,6 @@ export class RegisterComponent implements OnInit {
     console.log('submit register form clicked!');
     console.log(regProfile);
 
-    // should validate recaptcha
-    // recaptchaCallback()
-
     this.accountService.register(regProfile)
       .subscribe(
         result => {
@@ -87,12 +84,25 @@ export class RegisterComponent implements OnInit {
         });
   };
 
+  // should validate recaptcha
   recaptchaCallback(captchaChallenge: string) {
     console.log(captchaChallenge);
-    const recaptureSecret = 'xxx';
-    const gvUrl = 'https://www.google.com/recaptcha/api/siteverify';
-    let paramUrl = gvUrl + '?' + recaptureSecret + '&' + captchaChallenge;
-    console.log(paramUrl);
+    this.recaptchaValid = true;
+/*    this.accountService.testReCaptcha(captchaChallenge).subscribe(
+      result => {
+        console.log(result);
+        if (result === true) {
+          this.recaptchaValid = true;
+        } else {
+          this.recaptchaValid = false;
+          console.log('error recapture not valid');
+        }
+      },
+      error => {
+        this.loading = false;
+        this.recaptchaValid = false;
+        this.error = <any>error;
+      });*/
   };
 
   /*
