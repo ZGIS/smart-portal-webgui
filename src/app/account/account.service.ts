@@ -260,15 +260,12 @@ export class AccountService {
   }
 
   // needs to happen server-side
-  testReCaptcha(captchaChallenge: string): Observable<boolean> {
+  testReCaptcha(recaptchaChallenge: string): Observable<boolean> {
+    let paramUrl = this.portalApiUrl + '/recaptcha/validate' +
+      '?recaptcaChallenge=' + recaptchaChallenge;
+    let options = new RequestOptions({withCredentials: true});
 
-    const reCaptchaSecret = '6Le5RQsUAAAAAMcRg_--U2VTqG4t9EyxVjCb_5WL';
-    const gvUrl = 'https://www.google.com/recaptcha/api/siteverify';
-    let paramUrl = gvUrl + '?secret=' + reCaptchaSecret + '&response=' + captchaChallenge;
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers, withCredentials: true});
-
-    return this.http.post(paramUrl, null, options)
+    return this.http.get(paramUrl, options)
       .map((response: Response) => {
         if (response.status === 200) {
 
