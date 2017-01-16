@@ -31,19 +31,8 @@
 
         <div class="form-group">
 
-          <label for="signInButton">Sign in with Google</label><br>
-          <button class="btn btn-danger" id="google.oauth"
-                  onclick="alert('not implemented yet')">Google+ Sign in</button>
-          <div id="signInButton">
-            <div class="g-signin2"
-                 data-scope="https://www.googleapis.com/auth/plus.login"
-                 data-clientid="988846878323-bkja0j1tgep5ojthfr2e92ao8n7iksab.apps.googleusercontent.com"
-                 data-redirecturi="postmessage"
-                 data-accesstype="offline"
-                 data-onsuccess="gconnectLogin"
-                 data-onfailure="handleFailure">
-            </div>
-          </div>
+          <label>Log in with your Google account</label><br>
+          <g-signin></g-signin>
         </div>
 
         <div class="form-group">

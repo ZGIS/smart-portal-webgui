@@ -28,7 +28,9 @@ import {
   ReCaptchaComponent,
   ReCaptchaService,
   AccountService,
-  AccountComponent
+  AccountComponent,
+  GApiAuthComponent,
+  GApiAuthService
 } from './account';
 import { MetadataEditorComponent, CollectionsService, CollectionsComponent } from './workbench';
 import { API_URL_PROVIDERS } from './app.tokens';
@@ -51,6 +53,7 @@ import { NotificationComponent, NotificationService } from './notifications';
     Ol3MapComponent,
     LoginComponent,
     ReCaptchaComponent,
+    GApiAuthComponent,
     RegisterComponent,
     ResetPassComponent,
     AccountComponent,
@@ -67,6 +70,7 @@ import { NotificationComponent, NotificationService } from './notifications';
     ResultService,
     AccountService,
     ReCaptchaService,
+    GApiAuthService,
     NotificationService,
     CollectionsService,
     API_URL_PROVIDERS

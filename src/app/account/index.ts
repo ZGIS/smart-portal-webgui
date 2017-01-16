@@ -1,5 +1,7 @@
 export * from './account.component'
 export * from './account.service'
+export * from './gapi-auth.component'
+export * from './gapi-auth.service'
 export * from './login.component'
 export * from './recaptcha.component'
 export * from './recaptcha.service'
