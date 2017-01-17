@@ -9,13 +9,20 @@ import {
 } from '@angular/core';
 import { GApiAuthService } from './gapi-auth.service';
 
+/**
+ *
+ */
 @Component({
   selector: 'g-signin',
   template: '<div #oauth2>' +
-  '<button class="btn btn-danger" id="google.oauth">Google Sign-in</button>' +
+  '<button class="btn btn-danger" id="google.oauth" (click)="sighInClick($event)">Google' +
+  ' Sign-in</button>' +
   '</div>'
 })
 
+/**
+ *
+ */
 export class GApiAuthComponent implements AfterViewInit {
 
   @ViewChild('oauth2') targetRef: ElementRef;
@@ -24,11 +31,18 @@ export class GApiAuthComponent implements AfterViewInit {
   @Output()
   signinResponse = new EventEmitter<string>();
 
+  /**
+   *
+   * @param _zone
+   * @param _gapiAuthService
+   */
   constructor(private _zone: NgZone,
               private _gapiAuthService: GApiAuthService) {
-    window['gSignInButtonClicked'] = this.gSignInButtonClicked.bind(this);
   }
 
+  /**
+   *
+   */
   ngAfterViewInit() {
     this._gapiAuthService.getReady().subscribe(
       (ready) => {
@@ -39,51 +53,82 @@ export class GApiAuthComponent implements AfterViewInit {
       });
   }
 
+  /**
+   *
+   */
   public googleInit() {
     let that = this;
     gapi.load('auth2', function () {
       that.auth2 = gapi.auth2.init({
         client_id: '988846878323-bkja0j1tgep5ojthfr2e92ao8n7iksab.apps.googleusercontent.com',
-        cookie_policy: 'single_host_origin',
+        // cookie_policy: 'single_host_origin',
         scope: 'profile email'
       });
-      that.attachSignin(document.getElementById('google.oauth'));
+      // that.attachSignin(document.getElementById('google.oauth'));
     });
   }
 
+  /**
+   *
+   * @param element
+   */
   public attachSignin(element: any) {
     let that = this;
+
     this.auth2.attachClickHandler(element, {},
       function (googleUser: any) {
 
+        googleUser.grantOfflineAccess();
         let profile = googleUser.getBasicProfile();
-        console.log('Token || ' + googleUser.getAuthResponse().id_token);
+        let token = googleUser.getAuthResponse().id_token;
         console.log('ID: ' + profile.getId());
         console.log('Name: ' + profile.getName());
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail());
         // YOUR CODE HERE
+        console.log('attachClickHandler signinResponse');
+        that.signinResponse.emit(token);
 
       }, function (error: any) {
-        alert(JSON.stringify(error, undefined, 2));
+        console.log(JSON.stringify(error, undefined, 2));
       });
   }
 
-  private gSignInButtonClicked() {
+  /**
+   *
+   * @param element
+   */
+  public attachSigninGrantOffline(element: any) {
     let that = this;
-    that.auth2.grantOfflineAccess(
-      {'redirect_uri': 'postmessage'}
-    ).then(this.signInCallback);
+    element.addEventListener('click', function () {
+      that.auth2.grantOfflineAccess({'redirect_uri': 'postmessage'})
+        .then(function (authResult: any) {
+          if (authResult.code) {
+            let token: string = authResult.code;
+            console.log('attachSigninOfflineAccess: ' + token);
+            that.signinResponse.emit(token);
+          } else {
+            console.log('there was an error with google sign in at signInCallback');
+          }
+        });
+    });
   }
 
-  private signInCallback(authResult: any) {
-    if (authResult['code']) {
-
-      this.signinResponse.emit(authResult);
-
-    } else {
-      // There was an error.
-      console.log('there was an error with google sign in at signInCallback');
-    }
+  /**
+   *
+   * @param element
+   */
+  public sighInClick(element: any) {
+    let that = this;
+    that.auth2.grantOfflineAccess({'redirect_uri': 'postmessage'})
+      .then(function (authResult: any) {
+        if (authResult.code) {
+          let token: string = authResult.code;
+          console.log('attachSigninOfflineAccess: ' + token);
+          that.signinResponse.emit(token);
+        } else {
+          console.log('there was an error with google sign in at signInCallback');
+        }
+      });
   }
 }

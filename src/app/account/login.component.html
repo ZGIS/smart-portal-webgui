@@ -32,7 +32,7 @@
         <div class="form-group">
 
           <label>Log in with your Google account</label><br>
-          <g-signin></g-signin>
+          <g-signin (signinResponse)="getOAuthResponse($event)"></g-signin>
         </div>
 
         <div class="form-group">

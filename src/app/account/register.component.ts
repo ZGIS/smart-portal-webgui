@@ -1,20 +1,22 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { AccountService, createProfile } from './account.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
 
-// Google's login API namespace
-// declare var gapi: any;
-// declare var grecaptcha: any;
-
+/**
+ *
+ */
 @Component({
   selector: 'sac-gwh-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 
-export class RegisterComponent implements OnInit {
+/**
+ *
+ */
+export class RegisterComponent {
 
   model: any = {};
   loading = false;
@@ -22,25 +24,21 @@ export class RegisterComponent implements OnInit {
   error = '';
   @Output() flash = new EventEmitter();
 
+  /**
+   *
+   * @param accountService
+   * @param router
+   * @param http
+   * @param _notificationService
+   */
   constructor(private accountService: AccountService, private router: Router,
               private http: Http, private _notificationService: NotificationService) {
-    // window['gconnectReg'] = this.gconnectReg.bind(this);
-    // window['signInCallback'] = this.signInCallback.bind(this);
-    // window['handleFailure'] = this.handleFailure.bind(this);
     window['recaptchaCallback'] = this.recaptchaCallback.bind(this);
-
   };
 
-  ngOnInit() {
-    // Converts the Google login button stub to an actual button.
-    // done thourhg navigation component before we arrive here, when we got to dashboard or
-    // login immediately by link, it dies
-
-    // this.accountService.initialiseAuth2();
-    // this.accountService.renderButton();
-    // this.accountService.renderReCaptchaButton();
-  };
-
+  /**
+   *
+   */
   onSubmit() {
     this.loading = true;
     console.log(this.model);
@@ -53,8 +51,8 @@ export class RegisterComponent implements OnInit {
       password: this.model.password
     });
 
-    console.log('submit register form clicked!');
-    console.log(regProfile);
+    // console.log('submit register form clicked!');
+    // console.log(regProfile);
 
     this.accountService.register(regProfile)
       .subscribe(
@@ -81,10 +79,18 @@ export class RegisterComponent implements OnInit {
         error => {
           this.loading = false;
           this.error = <any>error;
+          this._notificationService.addNotification({
+            type: 'ERR',
+            message: 'Uncaught registration process error.'
+          });
         });
   };
 
-  // TODO should validate recaptcha, activate when backend is online
+  /**
+   * validate recaptcha via backend
+   *
+   * @param captchaChallenge
+   */
   recaptchaCallback(captchaChallenge: string) {
     this.recaptchaValid = true;
     this.accountService.testReCaptcha(captchaChallenge).subscribe(
@@ -95,47 +101,62 @@ export class RegisterComponent implements OnInit {
         } else {
           this.recaptchaValid = false;
           console.log('error recapture not valid');
+          this._notificationService.addNotification({
+            type: 'ERR',
+            message: 'Recapture not valid.'
+          });
         }
       },
       error => {
         this.loading = false;
         this.recaptchaValid = false;
         this.error = <any>error;
+        this._notificationService.addNotification({
+          type: 'ERR',
+          message: 'Uncaught Recapture error.'
+        });
       });
   };
 
-  /*
-   signInCallback(authResult: any) {
-   if (authResult['code']) {
-   console.log('signInCallback register component');
-   console.log(authResult);
-   this.accountService.gconnectHandle('REGISTER', authResult);
-   this.router.navigateByUrl('/dashboard');
-   } else {
-   console.log('error gconnect re signin');
-   console.log(authResult);
-   }
-   };
-
-   gconnectReg(data: any) {
-   console.log('gconnect register clicked!');
-   // this.auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(this.signInCallback);
-   console.log(data);
-   };
-
-   private handleFailure(error: Response | any) {
-   // In a real world app, we might use a remote logging infrastructure
-   let errMsg: string;
-   if (error instanceof Response) {
-   const body = error.json() || '';
-   const err = body.error || JSON.stringify(body);
-   errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-   } else {
-   errMsg = error.message ? error.message : error.toString();
-   }
-   console.error(errMsg);
-   return Observable.throw(errMsg);
-   };
+  /**
+   *
+   * @param authCode
    */
-
+  getOAuthResponse(authCode: string) {
+    this.loading = true;
+    if (authCode) {
+      // console.log('getOAuthResponse register component');
+      // console.log(authCode);
+      this.accountService.gconnectHandle('REGISTER', authCode).subscribe(
+        result => {
+          if (result === true) {
+            // login successful
+            this.loading = false;
+            this.router.navigateByUrl('/dashboard');
+          } else {
+            // login failed
+            this.error = 'Google Login failed.';
+            this._notificationService.addNotification({
+              type: 'ERR',
+              message: 'Registration failed, could not use Google account.'
+            });
+            this.loading = false;
+          }
+        },
+        error => {
+          this.loading = false;
+          this.error = <any>error;
+          this._notificationService.addNotification({
+            type: 'ERR',
+            message: 'Uncaught gConnect Registration Error.'
+          });
+        });
+    } else {
+      console.log('error gconnect signin for registration');
+      this._notificationService.addNotification({
+        type: 'ERR',
+        message: 'Uncaught gConnect Registration Error. No authCode provided.'
+      });
+    }
+  };
 }

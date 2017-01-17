@@ -4,11 +4,15 @@ import { Router } from '@angular/router';
 // import { Observable }     from 'rxjs/Observable';
 import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/Rx';
-import { CookieService } from 'angular2-cookie/core';
-import { PORTAL_API_URL } from '../app.tokens';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CookieService } from 'angular2-cookie/core';
+import { PORTAL_API_URL } from '../app.tokens';
+import { NotificationService } from '../notifications';
 
+/**
+ *
+ */
 export interface UserProfile {
   email: string;
   username: string;
@@ -17,6 +21,12 @@ export interface UserProfile {
   password?: string;
 }
 
+/**
+ *
+ * @param profileConf
+ * @returns {{email: string, username: string, firstname: string,
+ *  lastname: string, password: string}}
+ */
 export function createProfile(profileConf: UserProfile): {
   email: string,
   username: string,
@@ -40,6 +50,9 @@ export function createProfile(profileConf: UserProfile): {
   return profileObj;
 }
 
+/**
+ *
+ */
 @Injectable()
 export class AccountService {
 
@@ -55,8 +68,18 @@ export class AccountService {
 
   private _loggedInState: BehaviorSubject<boolean>;
 
+  /**
+   *
+   * @param portalApiUrl
+   * @param http
+   * @param router
+   * @param _cookieService
+   * @param _notificationService
+   */
   constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
-              private http: Http, private router: Router, private _cookieService: CookieService) {
+              private http: Http, private router: Router,
+              private _cookieService: CookieService,
+              private _notificationService: NotificationService) {
 
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let cookieToken = this._cookieService.get('XSRF-TOKEN');
@@ -125,6 +148,10 @@ export class AccountService {
     }
   };
 
+  /**
+   *
+   * @returns {Observable<R>}
+   */
   getProfile(): Observable<UserProfile> {
     // add authorization header with jwt token
     let profileUri = this.portalApiUrl + '/users/self';
@@ -164,11 +191,19 @@ export class AccountService {
       .catch(this.handleHttpFailureWithLogout);
   };
 
+  /**
+   *
+   * @returns {Observable<T>}
+   */
   isLoggedIn(): Observable<boolean> {
     // console.log(this.loggedInState);
     return this._loggedInState.asObservable();
   };
 
+  /**
+   *
+   * @returns {Observable<R>}
+   */
   logout(): Observable<boolean> {
     let logoutUri = this.portalApiUrl + '/logout';
     let headers = new Headers({
@@ -197,6 +232,12 @@ export class AccountService {
       }).catch(this.handleHttpFailureWithLogout);
   };
 
+  /**
+   *
+   * @param username
+   * @param password
+   * @returns {Observable<R>}
+   */
   login(username: string, password: string): Observable<boolean> {
     let loginUri = this.portalApiUrl + '/login';
     let data = JSON.stringify({username: username, password: password});
@@ -234,6 +275,11 @@ export class AccountService {
       }).catch(this.handleHttpFailure);
   };
 
+  /**
+   *
+   * @param userprofile
+   * @returns {Observable<R>}
+   */
   register(userprofile: UserProfile): Observable<boolean> {
     let regUri = this.portalApiUrl + '/users/register';
 
@@ -255,11 +301,22 @@ export class AccountService {
       }).catch(this.handleHttpFailure);
   };
 
+  /**
+   * TODO
+   *
+   * @param email
+   * @returns {any}
+   */
   requestPasswordReset(email: string): Observable<boolean> {
     return Observable.from([true]);
   }
 
-  // needs to happen server-side
+  /**
+   * server-side validation
+   *
+   * @param recaptchaChallenge
+   * @returns {Observable<R>}
+   */
   testReCaptcha(recaptchaChallenge: string): Observable<boolean> {
     let paramUrl = this.portalApiUrl + '/recaptcha/validate' +
       '?recaptcaChallenge=' + recaptchaChallenge;
@@ -281,113 +338,62 @@ export class AccountService {
       }).catch(this.handleHttpFailure);
   };
 
-  /*
-   // Hide the sign-in button now that the user is authorize
-   $.ajax({
-   type: 'POST',
-   url: '/admin/gconnect?state={{STATE}}',
-   processData: false,
-   data: authResult['code'],
-   contentType: 'application/octet-stream; charset=utf-8',
-   success: function(result) {
-
-   // Handle or verify the server response if necessary.
-   if (result) {
-   $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
-   setTimeout(function() {
-   window.location.href = '/admin/apps';
-   }, 4000);
-
-   } else if (authResult['error']) {
-   console.log('There was an error: ' + authResult['error']);
-   } else {
-   $('#result').html('Failed to make a server-side call. Check your configuration and console.');
-   }
-   }
-
-   });
-
-   // Send the one-time-use code to the server, if the server responds,
-   // write a 'login successful' message to the web page and then redirect back to the main
-   // restaurants page
-
-   // initialise auth2 object
-   initialiseAuth2() {
-   gapi.load('auth2', function () {
-   let obj = gapi.auth2.init({
-   'client_id': '988846878323-bkja0j1tgep5ojthfr2e92ao8n7iksab.apps.googleusercontent.com',
-   // Scopes to request in addition to 'profile' and 'email'
-   'scope': 'profile email'
-   });
-   console.log(obj);
-   return obj;
-   });
-   }
-
-   // Converts the Google login button stub to an actual button.
-   renderButton() {
-   let auth2 = this.initialiseAuth2();
-
-   gapi.signin2.render('signInButton',
-   {
-   'scope': 'openid email',
-   'width': 200,
-   'height': 50,
-   'onsuccess': this.gconnectLogin,
-   'onfailure': this.handleFailure
-   });
-
-   console.log(auth2);
-   };
-
-   // Converts the Google login button stub to an actual button.
-   renderReCaptchaButton() {
-   grecaptcha.render(
-   'g-recaptcha',
-   {
-   'sitekey': '6Le5RQsUAAAAAM_YjqAXzrJVLwqbYFl4hNmQ4n3Z',
-   'theme': 'light',
-   'callback': this.recaptchaCallback
-   }
-   );
-   };
-
-   gconnectHandle(authRequester: string, authResult: any) {
-   console.log('gconnectHandle account coming from ' + authRequester);
-   let gconnectPortalUri = this.portalApiUrl + '/login/gconnect';
-   let data = authResult['code'];
-   console.log(data);
-   // here we could already also get XSRF-TOKEN from localstorage if available?
-   return this.http.post(gconnectPortalUri, data)
-   .map(this.extractGoogleSignInData)
-   .catch(this.handleGoogleSignInError);
-   };
-
-
-   private extractGoogleSignInData(res: Response) {
-   let body = res.json();
-   // return body.data || {};
-   console.log('extractGoogleSignInData');
-   console.log(body.data);
-   return body.data;
-   };
-
-   private handleGoogleSignInError(error: Response | any) {
-   // In a real world app, we might use a remote logging infrastructure
-   let errMsg: string;
-   if (error instanceof Response) {
-   const body = error.json() || '';
-   const err = body.error || JSON.stringify(body);
-   errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-   } else {
-   errMsg = error.message ? error.message : error.toString();
-   }
-   console.error(errMsg);
-   return Observable.throw(errMsg);
-   }
-
+  /**
+   *
+   * @param authRequester
+   * @param authCode
+   * @returns {Observable<R>}
    */
+  gconnectHandle(authRequester: string, authCode: string) {
+    console.log('gconnectHandle account coming from ' + authRequester);
+    let gconnectPortalUri = this.portalApiUrl + '/login/gconnect';
+    let data = JSON.stringify({authcode: authCode, accesstype: authRequester});
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    console.log(data);
 
+    return this.http.post(gconnectPortalUri, data, options)
+      .map((response: Response) => {
+        // login successful if there's a xsrf token in the response
+        let token = response.json() && response.json().token;
+        if (token) {
+          // set token property
+          this.token = token;
+          console.log('login received token: ' + token);
+          this._loggedInState.next(true);
+
+          // store username and xsrf token in local storage to keep user logged in between page
+          // refreshes
+          let username = response.json().username;
+          localStorage.setItem('currentUser', JSON.stringify({username: username, token: token}));
+
+          let userProfileJson = response.json().userprofile;
+          if (userProfileJson) {
+            let userProfile = createProfile(userProfileJson);
+            console.log(userProfile);
+            localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
+          }
+          // return true to indicate successful login
+          return true;
+        } else {
+          // return false to indicate failed login
+          // should also remove token?
+          this._loggedInState.next(false);
+          console.log('login failed');
+          this._notificationService.addNotification({
+            type: 'ERR',
+            message: 'login failed'
+          });
+          return false;
+        }
+      }).catch(this.handleHttpFailureWithLogout);
+  };
+
+  /**
+   *
+   * @param error
+   * @returns {any}
+   */
   private handleHttpFailure(error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
@@ -399,9 +405,18 @@ export class AccountService {
       errMsg = error.message ? error.message : error.toString();
     }
     console.error(errMsg);
+    this._notificationService.addNotification({
+      type: 'ERR',
+      message: 'Uncaught Http Error: ' + errMsg
+    });
     return Observable.throw(errMsg);
   };
 
+  /**
+   *
+   * @param error
+   * @returns {any}
+   */
   private handleHttpFailureWithLogout(error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
@@ -422,6 +437,10 @@ export class AccountService {
       errMsg = error.message ? error.message : error.toString();
     }
     console.error(errMsg);
+    this._notificationService.addNotification({
+      type: 'ERR',
+      message: 'You have been logged out due to an uncaught Http Error: ' + errMsg
+    });
     return Observable.throw(errMsg);
   };
 

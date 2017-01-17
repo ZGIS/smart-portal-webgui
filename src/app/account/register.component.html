@@ -66,7 +66,7 @@
         <div class="form-group">
 
           <label>You can also sign up with your Google account</label><br>
-          <g-signin></g-signin>
+          <g-signin (signinResponse)="getOAuthResponse($event)"></g-signin>
 
         </div>
 

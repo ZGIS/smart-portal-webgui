@@ -1,44 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AccountService } from './account.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
 
-// Google's login API namespace
-// declare var gapi: any;
-
+/**
+ *
+ */
 @Component({
   selector: 'sac-gwh-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements OnInit {
+/**
+ *
+ */
+export class LoginComponent {
 
   model: any = {};
   loading = false;
   error = '';
 
+  /**
+   *
+   * @param accountService
+   * @param router
+   * @param _notificationService
+   */
   constructor(private accountService: AccountService,
               private router: Router, private _notificationService: NotificationService) {
-    // window['gconnectLogin'] = this.gconnectLogin.bind(this);
-    // window['signInCallback'] = this.signInCallback.bind(this);
-    // window['handleFailure'] = this.handleFailure.bind(this);
   };
 
-  ngOnInit() {
-    // Converts the Google login button stub to an actual button.
-    // done thourhg navigation component before we arrive here, when we got to dashboard or
-    // login immediately by link, it dies
-    // Converts the Google login button stub to an actual button.
-    // done thourhg navigation component before we arrive here, when we got to dashboard or
-    // login immediately by link, it dies
-
-    // this.accountService.initialiseAuth2();
-    // this.accountService.renderButton();
-    // this.accountService.renderReCaptchaButton();
-
-  };
-
+  /**
+   *
+   */
   login() {
     this.loading = true;
     this.accountService.login(this.model.username, this.model.password)
@@ -51,47 +46,62 @@ export class LoginComponent implements OnInit {
           } else {
             // login failed
             this.error = 'Username or password is incorrect';
+            this._notificationService.addNotification({
+              type: 'ERR',
+              message: 'Username or password is incorrect.'
+            });
             this.loading = false;
           }
         },
         error => {
           this.loading = false;
           this.error = <any>error;
+          this._notificationService.addNotification({
+            type: 'ERR',
+            message: 'Uncaught Login Error.'
+          });
         });
   }
 
-  /*
-   signInCallback(authResult: any) {
-   if (authResult['code']) {
-   console.log('signInCallback login component');
-   console.log(authResult);
-   this.accountService.gconnectHandle('LOGIN', authResult);
-   this.router.navigateByUrl('/dashboard');
-   } else {
-   console.log('error gconnect signin');
-   console.log(authResult);
-   }
-   };
-
-   gconnectLogin(data: any) {
-   console.log('gconnect login clicked!');
-   // this.oauthObj.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(this.signInCallback);
-   console.log(data);
-   };
-
-   private handleFailure(error: Response | any) {
-   // In a real world app, we might use a remote logging infrastructure
-   let errMsg: string;
-   if (error instanceof Response) {
-   const body = error.json() || '';
-   const err = body.error || JSON.stringify(body);
-   errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-   } else {
-   errMsg = error.message ? error.message : error.toString();
-   }
-   console.error(errMsg);
-   return Observable.throw(errMsg);
-   };
+  /**
+   *
+   * @param authCode
    */
-
+  getOAuthResponse(authCode: string) {
+    this.loading = true;
+    if (authCode) {
+      // console.log('getOAuthResponse login component');
+      // console.log(authCode);
+      this.accountService.gconnectHandle('LOGIN', authCode).subscribe(
+        result => {
+          if (result === true) {
+            // login successful
+            this.loading = false;
+            this.router.navigateByUrl('/dashboard');
+          } else {
+            // login failed
+            this.error = 'Google Login failed.';
+            this._notificationService.addNotification({
+              type: 'ERR',
+              message: 'Google Login failed.'
+            });
+            this.loading = false;
+          }
+        },
+        error => {
+          this.loading = false;
+          this.error = <any>error;
+          this._notificationService.addNotification({
+            type: 'ERR',
+            message: 'Uncaught gConnect Login Error.'
+          });
+        });
+    } else {
+      console.log('error gconnect signin');
+      this._notificationService.addNotification({
+        type: 'ERR',
+        message: 'Uncaught gConnect Login Error. No authCode provided.'
+      });
+    }
+  };
 }
