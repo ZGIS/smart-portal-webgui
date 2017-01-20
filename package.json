@@ -4,6 +4,7 @@
   "author": "SAC",
   "description": "SMART Portal Web Frontend",
   "main": "src/app/main.ts",
+  "browser": "src/app/main.ts",
   "keywords": [
     "angular2",
     "webpack",
@@ -24,8 +25,8 @@
     "test:ci": "npm test -- --ci",
     "prebuild": "npm run clean:build",
     "serve:build": "run-s build serve",
-    "build:dll": "webpack --config config/webpack/webpack.dll.js --progress --profile --bail",
-    "build:jit": "webpack --config config/webpack/webpack.prod-jit.js --progress --profile --bail",
+    "build:dll": "webpack --config config/webpack/webpack.dll.js --progress --profile --bail --display-error-details",
+    "build:jit": "webpack --config config/webpack/webpack.prod-jit.js --progress --profile --bail --display-error-details",
     "build": "rimraf dist && webpack --config config/webpack/webpack.prod.js --progress --profile --bail",
     "clean": "run-p clean:*",
     "clean:build": "rimraf dist",

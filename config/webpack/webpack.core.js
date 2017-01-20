@@ -21,7 +21,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.ts'],
-    modules: ['node_modules', helpers.root('src')]
+    modules: ['node_modules', helpers.root('src')],
   },
   plugins: [
     new webpack.DefinePlugin({

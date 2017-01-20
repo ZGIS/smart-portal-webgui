@@ -16,7 +16,7 @@ module.exports = webpackMerge(coreconfig, {
 
     // The name of the global variable which the library's
     // require() function will be assigned to
-    library: '[name]',
+    library: '[name]'
   },
 
   plugins: [
@@ -30,5 +30,5 @@ module.exports = webpackMerge(coreconfig, {
       // output.library option above
       name: '[name]'
     })
-  ],
+  ]
 });

@@ -30,7 +30,7 @@ script:
 - npm run stat
 - npm test -- --ci
 - npm run build:jit
-- npm run build
+# - npm run build
 after_script:
 # - npm run coveralls
 after_success:

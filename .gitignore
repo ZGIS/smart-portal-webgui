@@ -52,3 +52,4 @@ jspm_packages
 dll-dist/
 src/**/**.js
 src/**/**.js.map
+.env
