@@ -45,8 +45,8 @@
           </div>
 
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !recaptchaValid }">
-            <re-captcha (captchaResponse)="recaptchaCallback($event)"
-                        siteKey="6Le5RQsUAAAAAM_YjqAXzrJVLwqbYFl4hNmQ4n3Z"></re-captcha>
+            <app-recaptcha (captchaResponse)="recaptchaCallback($event)"
+                           siteKey="6Le5RQsUAAAAAM_YjqAXzrJVLwqbYFl4hNmQ4n3Z"></app-recaptcha>
             <div *ngIf="f.submitted && !recaptchaValid" class="help-block">ReCaptcha is
               required</div>
           </div>
@@ -66,7 +66,7 @@
         <div class="form-group">
 
           <label>You can also sign up with your Google account</label><br>
-          <g-signin (signinResponse)="getOAuthResponse($event)"></g-signin>
+          <app-google-signin (signinResponse)="getOAuthResponse($event)"></app-google-signin>
 
         </div>
 

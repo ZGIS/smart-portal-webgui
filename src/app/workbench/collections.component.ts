@@ -6,7 +6,7 @@ import { IOwcDocument } from './';
 import { CollectionsService } from './';
 
 @Component({
-  selector: 'sac-gwh-collections',
+  selector: 'app-sac-gwh-collections',
   templateUrl: 'collections.component.html',
   styleUrls: []
 })

@@ -42,7 +42,7 @@
     "webdriver:start": "npm run webdriver-manager start",
     "webdriver:update": "npm run webdriver-manager update",
     "gh-pages-push": "gh-pages -d dist -r git@github.com:ZGIS/smart-portal-webgui.git",
-    "coveralls": "coveralls < ./coverage/lcov.info",
+    "server": "http-server -p 8080 ./dist",
     "stat": "node ./config/dashboard"
   },
   "dependencies": {

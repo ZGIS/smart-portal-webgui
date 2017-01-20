@@ -6,7 +6,7 @@ import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 
 
 @Component({
-  selector: 'sac-gwh-home',
+  selector: 'app-sac-gwh-search',
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.css']
 })

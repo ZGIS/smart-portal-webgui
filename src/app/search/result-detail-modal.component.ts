@@ -1,19 +1,20 @@
 import { Component, ViewChild } from '@angular/core';
-import { ModalDirective } from 'ng2-bootstrap';
+import { ModalDirective } from 'ng2-bootstrap/modal';
 import { IGeoFeature } from './result';
 
 @Component({
-  selector: 'result-detail-modal',
-  templateUrl: 'result-detail.component.html'
+  selector: 'app-sac-gwh-result-detail-modal',
+  templateUrl: 'result-detail-modal.component.html'
 })
 
 export class ResultDetailModalComponent {
-  result: IGeoFeature;
-  @ViewChild('lgModal') modal: ModalDirective;
+  feature: IGeoFeature;
+  // @ViewChild('lgModal') public modal: ModalDirective;
+  @ViewChild('resultModalRef') public modal: ModalDirective;
 
-  show(result: IGeoFeature) {
-    if (result !== undefined) {
-      this.result = result;
+  showFeatureModal(geoFeature: IGeoFeature) {
+    if (geoFeature !== undefined) {
+      this.feature = geoFeature;
       this.modal.show();
     }
   }

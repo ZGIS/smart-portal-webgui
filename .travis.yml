@@ -26,16 +26,13 @@ install:
 script:
 - cp config/internal/.env.travis .env
 - npm run tslint
-- npm run webpack-validate:dev
-- npm run webpack-validate:test
-- npm run webpack-validate:prod
 - npm run webdriver:update
 - npm run stat
 - npm test -- --ci
 - npm run build:jit
 - npm run build
 after_script:
-  - npm run coveralls
+# - npm run coveralls
 after_success:
 - chmod 600 ghpages_ecdsa_sacgui && eval `ssh-agent -s` && ssh-add ghpages_ecdsa_sacgui
 - git remote -v

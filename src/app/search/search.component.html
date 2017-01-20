@@ -8,10 +8,10 @@
     <div class="panel panel-default">
       <div class="panel-heading">map</div>
       <div class="panel-body" style="padding:0">
-        <sac-gwh-ol3-map (onBboxChange)="bboxChanged($event)" [searchResults]="results"></sac-gwh-ol3-map>
+        <app-sac-gwh-ol3-map (onBboxChange)="bboxChanged($event)" [searchResults]="results"></app-sac-gwh-ol3-map>
       </div>
     </div>
-    <my-result-detail [result]="selectedResult"></my-result-detail>
+    <app-sac-gwh-result-detail [feature]="selectedResult"></app-sac-gwh-result-detail>
   </div>
   <div class="col-md-3">
     <div class="panel panel-default">
@@ -78,7 +78,7 @@
           <a *ngFor="let feature of results.features"
              class="list-group-item"
              [class.active]="feature===selectedResult"
-             (click)="resultDetailModal.show(feature)">
+             (click)="searchResultDetailRef.showFeatureModal(feature)">
             <span class="badge">{{feature.properties.fileIdentifier}}</span> {{feature.properties.title}}
           </a>
         </div>
@@ -87,7 +87,9 @@
   </div>
 </div>
 
-<result-detail-modal #resultDetailModal></result-detail-modal>
+<app-sac-gwh-result-detail-modal #searchResultDetailRef>
+
+</app-sac-gwh-result-detail-modal>
 
 
 

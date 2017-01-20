@@ -1,6 +1,6 @@
 @media (min-width: 992px) {
   .folder-bg {
-    background: url(../../public/images/icon_folder_640.png);
+    background: url(/images/icon_folder_640.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center top;

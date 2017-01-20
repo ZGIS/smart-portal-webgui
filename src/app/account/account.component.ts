@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AccountService, UserProfile } from './account.service';
 
 @Component ({
-  selector: 'sac-gwh-useraccount',
+  selector: 'app-sac-gwh-useraccount',
   templateUrl: 'account.component.html'
 })
 

@@ -23,7 +23,7 @@ import '@angularclass/hmr';
 
 // Global packages
 import 'angular2-cookie/core';
-import 'angular2-cookie/services'
+import 'angular2-cookie/services';
 import 'ng2-bootstrap';
 
 import 'bootstrap/dist/js/bootstrap';

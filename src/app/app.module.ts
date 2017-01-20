@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { CookieService, CookieOptions } from 'angular2-cookie/services';
+import { ANGULAR2_COOKIE_PROVIDERS } from 'angular2-cookie/core';
 import {
   DropdownModule,
   ModalModule,
   DatepickerModule,
   AlertModule,
   TabsModule,
-  TooltipModule
+  TooltipModule,
+  Ng2BootstrapModule
 } from 'ng2-bootstrap';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -48,6 +49,7 @@ import { NotificationComponent, NotificationService } from './notifications';
   imports: [BrowserModule,
     FormsModule,
     HttpModule,
+    Ng2BootstrapModule,
     DropdownModule.forRoot(),
     ModalModule.forRoot(),
     DatepickerModule.forRoot(),
@@ -77,8 +79,7 @@ import { NotificationComponent, NotificationService } from './notifications';
     CollectionsComponent
   ],
   providers: [
-    CookieService,
-    CookieOptions,
+    ANGULAR2_COOKIE_PROVIDERS,
     AuthGuard,
     ResultService,
     AccountService,

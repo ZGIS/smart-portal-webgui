@@ -9,7 +9,7 @@ let moment = require('moment');
 // let largePaceHolderImg = require('file!./../../../public/images/icon_folder_1280.png');
 
 @Component({
-  selector: 'my-result-cards',
+  selector: 'app-sac-gwh-result-cards',
   templateUrl: 'result-cards.component.html',
   styleUrls: ['result-cards.component.css'],
 })

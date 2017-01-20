@@ -22,7 +22,7 @@
         <p style="text-align:justify">{{feature.properties.abstrakt}}</p>
       </div>
       <div class="panel-footer">
-        <a (click)="resultDetailModal.show(feature)">see full details...</a>
+        <a (click)="resultCardDetailRef.showFeatureModal(feature)">see full details...</a>
         <div class="pull-right">
           <a *ngFor="let link of feature.properties.linkage" [href]="link" target="_blank">
             <i class="fa fa-download"></i>
@@ -33,5 +33,7 @@
   </div>
 </div>
 
-<result-detail-modal #resultDetailModal></result-detail-modal>
+<app-sac-gwh-result-detail-modal #resultCardDetailRef>
+
+</app-sac-gwh-result-detail-modal>
 

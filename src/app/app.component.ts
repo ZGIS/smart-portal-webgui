@@ -2,7 +2,7 @@ import { Component, ViewContainerRef } from '@angular/core';
 import { AccountService } from './account/account.service';
 
 @Component({
-  selector: 'sac-gwh-app',
+  selector: 'app-sac-gwh',
   templateUrl: 'app.component.html'
 })
 

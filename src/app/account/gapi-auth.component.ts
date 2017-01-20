@@ -13,7 +13,7 @@ import { GApiAuthService } from './gapi-auth.service';
  *
  */
 @Component({
-  selector: 'g-signin',
+  selector: 'app-google-signin',
   template: '<div #oauth2>' +
   '<button class="btn btn-danger" id="google.oauth" (click)="sighInClick($event)">Google' +
   ' Sign-in</button>' +

@@ -11,7 +11,7 @@ export class Ol3MapExtent {
 }
 
 @Component({
-  selector: 'sac-gwh-ol3-map',
+  selector: 'app-sac-gwh-ol3-map',
   template: '<div id="map" class="map"></div>'
 })
 

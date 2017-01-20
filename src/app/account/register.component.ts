@@ -8,7 +8,7 @@ import { NotificationService } from '../notifications';
  *
  */
 @Component({
-  selector: 'sac-gwh-register',
+  selector: 'app-sac-gwh-register',
   templateUrl: 'register.component.html'
 })
 

@@ -10,9 +10,6 @@ export class NotificationService {
 
   notifications: SacGwhNotification[] = [];
 
-
-  constructor() {}
-
   addNotification(notification: SacGwhNotification) {
     this.notifications.push(notification);
   }

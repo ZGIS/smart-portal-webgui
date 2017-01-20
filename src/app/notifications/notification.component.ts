@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService, SacGwhNotification } from './notification.service';
 
 @Component({
-  selector: 'sac-gwh-notification',
+  selector: 'app-sac-gwh-notification',
   templateUrl: 'notification.component.html'
 })
 

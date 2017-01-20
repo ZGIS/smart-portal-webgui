@@ -24,7 +24,7 @@ export interface ValidValues {
 }
 
 @Component({
-  selector: 'sac-gwh-metadata',
+  selector: 'app-sac-gwh-metadata',
   templateUrl: './metadata-editor.component.html'
 })
 

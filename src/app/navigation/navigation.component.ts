@@ -3,7 +3,7 @@ import { AccountService, UserProfile, createProfile } from '../account';
 import { ActivatedRoute, Router }   from '@angular/router';
 
 @Component({
-  selector: 'sac-gwh-navigation',
+  selector: 'app-sac-gwh-navigation',
   templateUrl: 'navigation.component.html'
 })
 

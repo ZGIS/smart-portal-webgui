@@ -17,7 +17,7 @@ import { ReCaptchaService } from './recaptcha.service';
  */
 
 @Component({
-  selector: 're-captcha',
+  selector: 'app-recaptcha',
   template: '<div #target></div>'
 })
 
