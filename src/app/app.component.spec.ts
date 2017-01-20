@@ -9,7 +9,7 @@ import { MockBackend } from '@angular/http/testing';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { NotificationService } from './notifications/notification.service';
 import { NotificationComponent } from './notifications/notification.component';
-import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { Ng2BootstrapModule } from 'ng2-bootstrap';
 
 // import { By }             from '@angular/platform-browser';
 
@@ -51,7 +51,7 @@ describe('App Component', () => {
       ],
       imports: [
         RouterTestingModule,
-        Ng2BootstrapModule
+        Ng2BootstrapModule.forRoot()
         /*RouterTestingModule.withRoutes([
          {
          path: '/home',

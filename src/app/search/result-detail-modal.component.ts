@@ -2,12 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap';
 import { IGeoFeature } from './result';
 
-// webpack html imports
-let template = require('./result-detail-modal.component.html');
-
 @Component({
   selector: 'result-detail-modal',
-  template: template
+  templateUrl: 'result-detail.component.html'
 })
 
 export class ResultDetailModalComponent {

@@ -8,8 +8,7 @@ import { NotificationService } from '../notifications';
  */
 @Component({
   selector: 'sac-gwh-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: 'login.component.html'
 })
 
 /**

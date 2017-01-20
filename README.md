@@ -27,6 +27,9 @@ limitations under the License.
 # no need for typings install, @types npm packages are the new hype in ts2
 npm install
 
+// Build DLL first, run this once after adding new package
+npm run build:dll
+
 # get started immediately, webpack-dev-server manages everything etc
 npm run start
 
@@ -48,7 +51,7 @@ npm run webdriver:update
 unset QT_QPA_PLATFORM 
 
 # karma/jsmine tests, webpack loads all up behind the scenes, no tsc precompile necessary
-npm run test
+npm test
 
 # if you don't have the npm run start going or the local web server in dist on port 8080, run this
 npm run e2e:ci

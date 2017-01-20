@@ -7,7 +7,7 @@ import { NotificationService } from '../notifications';
 
 @Component({
   selector: 'sac-gwh-reset-pass',
-  templateUrl: './reset-pass.component.html',
+  templateUrl: 'reset-pass.component.html',
   styleUrls: []
 })
 

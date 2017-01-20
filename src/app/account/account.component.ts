@@ -3,7 +3,7 @@ import { AccountService, UserProfile } from './account.service';
 
 @Component ({
   selector: 'sac-gwh-useraccount',
-  templateUrl: './account.component.html'
+  templateUrl: 'account.component.html'
 })
 
 export class AccountComponent implements OnInit {

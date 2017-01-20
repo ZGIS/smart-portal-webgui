@@ -7,8 +7,8 @@ import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 
 @Component({
   selector: 'sac-gwh-home',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  templateUrl: 'search.component.html',
+  styleUrls: ['search.component.css']
 })
 
 export class SearchComponent implements OnInit {

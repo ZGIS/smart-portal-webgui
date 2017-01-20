@@ -9,8 +9,7 @@ import { NotificationService } from '../notifications';
  */
 @Component({
   selector: 'sac-gwh-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  templateUrl: 'register.component.html'
 })
 
 /**
@@ -33,7 +32,7 @@ export class RegisterComponent {
    */
   constructor(private accountService: AccountService, private router: Router,
               private http: Http, private _notificationService: NotificationService) {
-    window['recaptchaCallback'] = this.recaptchaCallback.bind(this);
+    window[<any>'recaptchaCallback'] = <any>this.recaptchaCallback.bind(this);
   };
 
   /**

@@ -3,8 +3,7 @@ import { NotificationService, SacGwhNotification } from './notification.service'
 
 @Component({
   selector: 'sac-gwh-notification',
-  templateUrl: './notification.component.html'
-//  styleUrls: ['./notifications.component.css']
+  templateUrl: 'notification.component.html'
 })
 
 export class NotificationComponent implements OnInit {

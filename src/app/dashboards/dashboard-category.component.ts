@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 
 // TODO SR make service out of that?
-const myCategories = require('json!./../../../public/categories.json');
+const myCategories = require('json-loader!./../../public/categories.json');
 
 @Component({
   selector: 'sac-gwh-dashboard-category',
-  templateUrl: './dashboard-category.component.html',
-  styleUrls: [ './dashboard-category.component.css' ]
+  templateUrl: 'dashboard-category.component.html',
+  styleUrls: [ 'dashboard-category.component.css' ]
 })
 
 export class DashboardCategoryComponent implements OnInit {
@@ -35,8 +35,8 @@ export class DashboardCategoryComponent implements OnInit {
           catObj.children.forEach(( childObj: any ) => {
             this.children.push(childObj);
 
-            let imgUrl = '/public/images/dashboard/' + childObj.icon;
-            this.childrenImg.push(imgUrl);
+            let subImgUrl = '/public/images/dashboard/' + childObj.icon;
+            this.childrenImg.push(subImgUrl);
           });
         }
       });

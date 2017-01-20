@@ -1,7 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
-
 @Injectable()
 export class GApiAuthService {
 

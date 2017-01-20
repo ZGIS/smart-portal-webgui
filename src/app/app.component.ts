@@ -3,8 +3,7 @@ import { AccountService } from './account/account.service';
 
 @Component({
   selector: 'sac-gwh-app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: 'app.component.html'
 })
 
 export class AppComponent {

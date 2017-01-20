@@ -2,15 +2,16 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IGeoFeatureCollection, IGeoFeature, ResultService } from '../search';
-import moment = require('moment');
+
+let moment = require('moment');
 
 // let smallPlaceHolderImg = require('file!./../../../public/images/icon_folder_640.png');
 // let largePaceHolderImg = require('file!./../../../public/images/icon_folder_1280.png');
 
 @Component({
   selector: 'my-result-cards',
-  templateUrl: './result-cards.component.html',
-  styleUrls: ['./result-cards.component.css'],
+  templateUrl: 'result-cards.component.html',
+  styleUrls: ['result-cards.component.css'],
 })
 
 export class ResultCardsComponent implements OnInit, OnDestroy {

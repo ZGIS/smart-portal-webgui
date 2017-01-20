@@ -1,16 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AccountService, UserProfile, createProfile } from '../account';
 import { ActivatedRoute, Router }   from '@angular/router';
-// import {DropdownModule} from 'ng2-bootstrap/ng2-bootstrap';
-
-// Google's login API namespace
-// declare var gapi: any;
 
 @Component({
-//  directives: [DROPDOWN_DIRECTIVES],
   selector: 'sac-gwh-navigation',
-  templateUrl: './navigation.component.html'
-//  styleUrls: [ './navigation.component.css' ]
+  templateUrl: 'navigation.component.html'
 })
 
 export class NavigationComponent implements OnInit {

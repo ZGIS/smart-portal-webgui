@@ -2,8 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
-import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { CookieService, CookieOptions } from 'angular2-cookie/services';
+import {
+  DropdownModule,
+  ModalModule,
+  DatepickerModule,
+  AlertModule,
+  TabsModule,
+  TooltipModule
+} from 'ng2-bootstrap';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import {
@@ -41,7 +48,12 @@ import { NotificationComponent, NotificationService } from './notifications';
   imports: [BrowserModule,
     FormsModule,
     HttpModule,
-    Ng2BootstrapModule,
+    DropdownModule.forRoot(),
+    ModalModule.forRoot(),
+    DatepickerModule.forRoot(),
+    AlertModule.forRoot(),
+    TabsModule.forRoot(),
+    TooltipModule.forRoot(),
     routing],
   declarations: [AppComponent,
     ResultDetailComponent,
@@ -66,6 +78,7 @@ import { NotificationComponent, NotificationService } from './notifications';
   ],
   providers: [
     CookieService,
+    CookieOptions,
     AuthGuard,
     ResultService,
     AccountService,

@@ -7,7 +7,7 @@ import { CollectionsService } from './';
 
 @Component({
   selector: 'sac-gwh-collections',
-  templateUrl: './collections.component.html',
+  templateUrl: 'collections.component.html',
   styleUrls: []
 })
 
