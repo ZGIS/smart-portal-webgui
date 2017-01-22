@@ -1,4 +1,18 @@
-# smart-portal-webgui [![OpenHUB](https://www.openhub.net/p/smart-portal-webgui/widgets/project_thin_badge.gif)](https://www.openhub.net/p/smart-portal-webgui) [![Build Status](https://travis-ci.org/ZGIS/smart-portal-webgui.svg?branch=master)](https://travis-ci.org/ZGIS/smart-portal-webgui)
+# smart-portal-webgui [![OpenHUB](https://www.openhub
+.net/p/smart-portal-webgui/widgets/project_thin_badge.gif)](https://www.openhub
+.net/p/smart-portal-webgui)
+
+## Build and Dependencies
+
+- [![Build Status Master](https://travis-ci.org/ZGIS/smart-portal-webgui.svg?branch=master)](https://travis-ci.org/ZGIS/smart-portal-webgui?branch=master)
+- [![Build Status Dev Branch](https://travis-ci.org/ZGIS/smart-portal-webgui.svg?branch=dev)](https://travis-ci.org/ZGIS/smart-portal-webgui?branch=dev)
+
+- [![NPM Master Dependencies](https://david-dm.org/ZGIS/smart-portal-webgui.svg?branch=master)](https://david-dm.org/ZGIS/smart-portal-webgui?branch=master)
+- [![NPM Master DevDependencies](https://david-dm.org/ZGIS/smart-portal-webgui.svg?branch=master&type=dev)](https://david-dm.org/ZGIS/smart-portal-webgui?branch=master&type=dev)
+
+- [![NPM Dev Branch Dependencies](https://david-dm.org/ZGIS/smart-portal-webgui.svg?branch=dev)](https://david-dm.org/ZGIS/smart-portal-webgui?branch=dev)
+- [![NPM Dev Branch DevDependencies](https://david-dm.org/ZGIS/smart-portal-webgui.svg?branch=dev&type=dev)](https://david-dm.org/ZGIS/smart-portal-webgui?branch=dev&type=dev)
+
 
 ## SMART Portal Web Frontend license
 
@@ -32,6 +46,9 @@ npm run build:dll
 
 # get started immediately, webpack-dev-server manages everything etc
 npm run start
+
+# alternatively 
+npm run start:dll
 
 # mean as linter rules
 npm run tslint
