@@ -15,6 +15,14 @@ if (!envMap.APP_ENV) {
   console.log('APP_ENV is ' + chalk[color]('%s'), envMap.APP_ENV);
 }
 
+if (envMap.CSWI_API_URL && envMap.PORTAL_API_URL) {
+  const color = constants.ENV_COLOR[env.APP_ENV] || 'bgMagenta';
+  console.log('CSWI_API_URL is ' + chalk[color]('%s'), envMap.CSWI_API_URL);
+  console.log('PORTAL_API_URL is ' + chalk[color]('%s'), envMap.PORTAL_API_URL);
+} else {
+  console.log('No API URL Providers found in ENV, using defaults');
+}
+
 module.exports = {
   performance: {
     hints: false
