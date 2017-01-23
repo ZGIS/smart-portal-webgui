@@ -20,6 +20,7 @@ export class SearchComponent implements OnInit {
   };
   results: IGeoFeatureCollection;
   selectedResult: IGeoFeature;
+  loading = false;
 
   constructor(private resultService: ResultService) {
   }
@@ -33,12 +34,16 @@ export class SearchComponent implements OnInit {
   }
 
   getResults(): void {
+    this.loading = true;
     this.resultService.getResults(
       this.search.query,
       moment(this.search.fromDate).format('YYYY-MM-DD'),
       moment(this.search.toDate).format('YYYY-MM-DD'),
       this.search.bboxWkt)
-      .then(results => this.results = results);
+      .then(results => {
+        this.results = results;
+        this.loading = false;
+      });
   }
 
   bboxChanged($event: Ol3MapExtent) {
