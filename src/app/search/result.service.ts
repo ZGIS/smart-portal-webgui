@@ -1,8 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
+import { Http, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { CSWI_API_URL } from '../app.tokens';
 import { IGeoFeatureCollection } from './result';
+import { NotificationService } from '../notifications';
 // import {MOCK_RESULTS} from './mock-results';
 
 @Injectable()
@@ -15,10 +16,10 @@ export class ResultService {
    *
    * @type {string}
    */
-  constructor(
-    @Inject(CSWI_API_URL) private cswiApiUrl: string,
-    private http: Http
-  ) {}
+  constructor(@Inject(CSWI_API_URL) private cswiApiUrl: string,
+              private http: Http,
+              private notificationService: NotificationService) {
+  }
 
   /**
    * Queries the csw-ingester
@@ -41,14 +42,27 @@ export class ResultService {
     return this.http.get(this.cswiApiUrl, {search: params})
       .toPromise()
       /* FIXME not sure if I'm happy with this so far
-      http://stackoverflow.com/questions/22875636/how-do-i-cast-a-json-object-to-a-typescript-class
-      */
-      .then(response => <IGeoFeatureCollection>response.json() )
+       http://stackoverflow.com/questions/22875636/how-do-i-cast-a-json-object-to-a-typescript-class
+       */
+      .then(response => <IGeoFeatureCollection>response.json())
       .catch(this.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
+  private handleError(error: Response | any): Promise<any> {
+    // In a real world app, we might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || 'An error occurred'} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    this.notificationService.addNotification({
+      type: 'warning',
+      message: 'An error occurred: ' + errMsg
+    });
     return Promise.reject(error.message || error);
-  }
+  };
 }

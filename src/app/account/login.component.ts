@@ -46,7 +46,7 @@ export class LoginComponent {
             // login failed
             this.error = 'User email or password is incorrect';
             this.notificationService.addNotification({
-              type: 'ERR',
+              type: 'info',
               message: 'User email or password is incorrect.'
             });
             this.loading = false;
@@ -56,7 +56,7 @@ export class LoginComponent {
           this.loading = false;
           this.error = <any>error;
           this.notificationService.addNotification({
-            type: 'ERR',
+            type: 'warning',
             message: 'Uncaught Login Error.'
           });
         });
@@ -81,7 +81,7 @@ export class LoginComponent {
             // login failed
             this.error = 'Google Login failed.';
             this.notificationService.addNotification({
-              type: 'ERR',
+              type: 'warning',
               message: 'Google Login failed.'
             });
             this.loading = false;
@@ -91,14 +91,14 @@ export class LoginComponent {
           this.loading = false;
           this.error = <any>error;
           this.notificationService.addNotification({
-            type: 'ERR',
+            type: 'danger',
             message: 'Uncaught gConnect Login Error.'
           });
         });
     } else {
       console.log('error gconnect signin');
       this.notificationService.addNotification({
-        type: 'ERR',
+        type: 'danger',
         message: 'Uncaught gConnect Login Error. No authCode provided.'
       });
     }

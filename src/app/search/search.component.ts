@@ -45,6 +45,12 @@ export class SearchComponent implements OnInit {
     console.log(`bbox changed to '${$event.bboxWkt}'`);
     this.search.bboxWkt = $event.bboxWkt;
   }
+
+  onEnter(event) {
+    if (event.keyCode === 13) {
+      this.getResults();
+    }
+  }
 }
 
 export class Search {

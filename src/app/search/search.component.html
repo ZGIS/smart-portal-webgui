@@ -18,26 +18,28 @@
       <div class="panel-heading">Search query</div>
       <div class="panel-body">
 
-        <form name="form" (submit)="getResults()" #f="ngForm" novalidate>
+        <form name="form" (ngSubmit)="getResults()" (keydown)="onEnter($event)" #f="ngForm" novalidate>
 
           <div class="form-group">
             <label for="search.query">query</label>
-            <input [(ngModel)]="search.query" placeholder="search query" id="search.query"
-                   [ngModelOptions]="{standalone: true}"
-                   class="form-control"/>
+            <input type="text" class="form-control" [(ngModel)]="search.query"
+                   name="search.query" #searchquery="ngModel"
+                   placeholder="search query" id="search.query"/>
           </div>
 
           <div class="form-group">
             <label for="search.date.from">date from</label>
             <div class="input-group" dropdown autoClose="outsideClick">
-              <input type="text" class="form-control" placeholder="{{search.fromDate}}" id="search.date.from" disabled>
+              <input type="text" class="form-control" placeholder="{{search.fromDate}}"
+                      id="search.date.from" disabled>
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
               </span>
               <div class="dropdown-menu datepicker-dropdown" dropdownMenu aria-labelledby="split-button">
                 <div style="display:inline-block;" class="collapse">
-                  <datepicker [(ngModel)]="search.fromDate" [showWeeks]="true" [maxDate]="search.toDate"
-                              [ngModelOptions]="{standalone: true}"></datepicker>
+                  <datepicker [(ngModel)]="search.fromDate" name="search.date.from"
+                              #searchdatefrom="ngModel" [showWeeks]="true"
+                              [maxDate]="search.toDate"></datepicker>
                 </div>
               </div>
             </div><!-- /input-group -->
@@ -45,14 +47,16 @@
           <div class="form-group">
             <label for="search.date.to">date to</label>
             <div class="input-group" dropdown autoClose="outsideClick">
-              <input type="text" class="form-control" placeholder="{{search.toDate}}" id="search.date.to" disabled>
+              <input type="text" class="form-control" placeholder="{{search.toDate}}"
+                     id="search.date.to" name="search.date.to" disabled>
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
               </span>
               <div class="dropdown-menu datepicker-dropdown" dropdownMenu aria-labelledby="split-button">
                 <div style="display:inline-block;" class="collapse">
-                  <datepicker [(ngModel)]="search.toDate" [showWeeks]="true" [minDate]="search.fromDate"
-                              [ngModelOptions]="{standalone: true}"></datepicker>
+                  <datepicker [(ngModel)]="search.toDate" name="search.date.to"
+                              #searchdateto="ngModel"
+                              [showWeeks]="true" [minDate]="search.fromDate"></datepicker>
                 </div>
               </div>
             </div>
@@ -60,7 +64,8 @@
           <div class="form-group">
             <label for="search.bboxwkt">bboxWkt</label>
             <input [(ngModel)]="search.bboxWkt" placeholder="ENVELOPE(-180,180,90,-90)" id="search.bboxwkt"
-                   [ngModelOptions]="{standalone: true}"
+                   name="search.bboxwkt"
+                   #searchbboxWkt="ngModel"
                    class="form-control"
                    disabled/>
           </div>

@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 
+/**
+ * Alert type. Provides one of four bootstrap supported contextual classes:
+ * `success` -> green, `info` -> blue, `warning` -> orange and `danger` -> red
+ */
 export class SacGwhNotification {
   type: string;
   message: string;

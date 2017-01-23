@@ -39,7 +39,7 @@ export class CollectionsService {
           } else {
             // indicates failed self retrieve
             this._notificationService.addNotification({
-              type: 'ERR',
+              type: 'warning',
               message: 'Error receiving collection'
             });
             return Observable.throw('Error receiving collection');
@@ -61,7 +61,7 @@ export class CollectionsService {
     }
     console.error(errMsg);
     this._notificationService.addNotification({
-      type: 'ERR',
+      type: 'danger',
       message: errMsg
     });
     return Observable.throw(errMsg);

@@ -59,7 +59,7 @@ export class RegisterComponent {
           if (result === true) {
             // register successful
             this.notificationService.addNotification({
-              type: 'INFO',
+              type: 'success',
               message: 'Thank you. Please check your emails and activate your account by' +
               ' clicking on th provided link.'
             });
@@ -68,10 +68,10 @@ export class RegisterComponent {
           } else {
             // login failed
             this.notificationService.addNotification({
-              type: 'ERR',
-              message: 'Registration failed: message / status.'
+              type: 'warning',
+              message: 'Registration failed.'
             });
-            this.error = 'Registration failed: message / status.';
+            this.error = 'Registration failed.';
             this.loading = false;
           }
         },
@@ -79,7 +79,7 @@ export class RegisterComponent {
           this.loading = false;
           this.error = <any>error;
           this.notificationService.addNotification({
-            type: 'ERR',
+            type: 'danger',
             message: 'Uncaught registration process error.'
           });
         });
@@ -101,7 +101,7 @@ export class RegisterComponent {
           this.recaptchaValid = false;
           console.log('error recapture not valid');
           this.notificationService.addNotification({
-            type: 'ERR',
+            type: 'warning',
             message: 'Recapture not valid.'
           });
         }
@@ -111,7 +111,7 @@ export class RegisterComponent {
         this.recaptchaValid = false;
         this.error = <any>error;
         this.notificationService.addNotification({
-          type: 'ERR',
+          type: 'danger',
           message: 'Uncaught Recapture error.'
         });
       });
@@ -131,7 +131,7 @@ export class RegisterComponent {
           if (result === true) {
             // register successful
             this.notificationService.addNotification({
-              type: 'INFO',
+              type: 'success',
               message: 'Thank you. Please check your emails and activate your account by' +
               ' clicking on th provided link.'
             });
@@ -141,7 +141,7 @@ export class RegisterComponent {
             // registration failed
             this.error = 'Google Registration failed.';
             this.notificationService.addNotification({
-              type: 'ERR',
+              type: 'warning',
               message: 'Registration failed, could not use Google account.'
             });
             this.loading = false;
@@ -151,14 +151,14 @@ export class RegisterComponent {
           this.loading = false;
           this.error = <any>error;
           this.notificationService.addNotification({
-            type: 'ERR',
+            type: 'danger',
             message: 'Uncaught gConnect Registration Error.'
           });
         });
     } else {
       console.log('error gconnect signin for registration');
       this.notificationService.addNotification({
-        type: 'ERR',
+        type: 'danger',
         message: 'Uncaught gConnect Registration Error. No authCode provided.'
       });
     }

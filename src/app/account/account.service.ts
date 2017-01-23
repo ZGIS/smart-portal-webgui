@@ -430,7 +430,7 @@ export class AccountService {
           this.loggedInState.next(false);
           console.log('google login failed');
           this.notificationService.addNotification({
-            type: 'ERR',
+            type: 'warning',
             message: 'Google login failed'
           });
           return false;
@@ -455,7 +455,7 @@ export class AccountService {
     }
     console.error(errMsg);
     this.notificationService.addNotification({
-      type: 'ERR',
+      type: 'danger',
       message: 'Uncaught Http Error: ' + errMsg
     });
     return Observable.throw(errMsg);
@@ -487,7 +487,7 @@ export class AccountService {
     }
     console.error(errMsg);
     this.notificationService.addNotification({
-      type: 'ERR',
+      type: 'danger',
       message: 'You have been logged out due to an uncaught Http Error: ' + errMsg
     });
     return Observable.throw(errMsg);

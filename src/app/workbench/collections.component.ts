@@ -15,20 +15,20 @@ export class CollectionsComponent implements OnInit {
 
   myCollection: IOwcDocument;
 
-  constructor(private _collectionsService: CollectionsService, private router: Router,
-              private http: Http, private _notificationService: NotificationService) {
+  constructor(private collectionsService: CollectionsService, private router: Router,
+              private http: Http, private notificationService: NotificationService) {
   }
 
   ngOnInit() {
     // get owcDoc from secure api end point
-    this._collectionsService.getDefaultCollection()
+    this.collectionsService.getDefaultCollection()
       .subscribe(
         owcDoc => {
           this.myCollection = owcDoc;
         },
         error => {
           console.log(<any>error);
-          this._notificationService.addNotification({type: 'ERR', message: error.toString()});
+          this.notificationService.addNotification({type: 'warning', message: error.toString()});
         });
   }
 }

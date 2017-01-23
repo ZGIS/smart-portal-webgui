@@ -32,7 +32,7 @@ export class ResetPassComponent {
             // login successful
             this.loading = false;
             this.notificationService.addNotification({
-              type: 'INFO',
+              type: 'success',
               message: 'Thank you. Please check your emails and reset your password by' +
               ' clicking on th provided link..'
             });
@@ -40,7 +40,7 @@ export class ResetPassComponent {
           } else {
             // login failed
             this.notificationService.addNotification({
-              type: 'ERR',
+              type: 'info',
               message: 'Email not known to us.'
             });
             this.error = 'Email not known to us.';

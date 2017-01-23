@@ -2,7 +2,7 @@ import { Component, Injectable, Inject, OnInit } from '@angular/core';
 import { PORTAL_API_URL } from '../app.tokens';
 import { GeoMetadata, GeoExtent, GeoCitation,
   GeoContact, GeoDistribution, InsertResponse } from './metadata';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { NotificationService } from '../notifications/notification.service';
 import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 
@@ -111,10 +111,23 @@ export class MetadataEditorComponent implements OnInit {
     this.metadata.extent.mapExtentCoordinates = (<Ol3MapExtent>$event).bbox;
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
+  private handleError(error: Response | any): Promise<any> {
+    // In a real world app, we might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || 'An error occurred'} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    this.notificationService.addNotification({
+      type: 'warning',
+      message: 'An error occurred: ' + errMsg
+    });
     return Promise.reject(error.message || error);
-  }
+  };
 
   private loadValidValues(topic: string) {
     this.http.get(this.portalApiUrl + '/csw/get-valid-values-for/' + topic)
