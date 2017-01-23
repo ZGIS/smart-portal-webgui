@@ -15,7 +15,7 @@ import { NotificationService } from '../notifications';
  */
 export interface UserProfile {
   email: string;
-  username: string;
+  accountSubject: string;
   firstname: string;
   lastname: string;
   password?: string;
@@ -24,12 +24,12 @@ export interface UserProfile {
 /**
  *
  * @param profileConf
- * @returns {{email: string, username: string, firstname: string,
+ * @returns {{email: string, accountSubject: string, firstname: string,
  *  lastname: string, password: string}}
  */
 export function createProfile(profileConf: UserProfile): {
   email: string,
-  username: string,
+  accountSubject: string,
   firstname: string,
   lastname: string,
   password?: string
@@ -37,7 +37,7 @@ export function createProfile(profileConf: UserProfile): {
 
   let profileObj = {
     email: profileConf.email,
-    username: profileConf.username,
+    accountSubject: profileConf.accountSubject,
     firstname: profileConf.firstname,
     lastname: profileConf.lastname,
     password: '***'
@@ -59,31 +59,31 @@ export class AccountService {
   public token: string;
 
   guestProfile = createProfile({
-    email: 'guest@example.com',
-    username: 'guest',
+    email: 'Your Account',
+    accountSubject: 'guest',
     firstname: 'Guest',
     lastname: 'User',
     password: 'xxx'
   });
 
-  private _loggedInState: BehaviorSubject<boolean>;
+  private loggedInState: BehaviorSubject<boolean>;
 
   /**
    *
    * @param portalApiUrl
    * @param http
    * @param router
-   * @param _cookieService
-   * @param _notificationService
+   * @param cookieService
+   * @param notificationService
    */
   constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
               private http: Http, private router: Router,
-              private _cookieService: CookieService,
-              private _notificationService: NotificationService) {
+              private cookieService: CookieService,
+              private notificationService: NotificationService) {
 
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    let cookieToken = this._cookieService.get('XSRF-TOKEN');
-    this._loggedInState = new BehaviorSubject(false);
+    let cookieToken = this.cookieService.get('XSRF-TOKEN');
+    this.loggedInState = new BehaviorSubject(false);
 
     if (currentUser && cookieToken) {
       // and here we could also check for cookie, if cookie and token are available we could check
@@ -112,15 +112,15 @@ export class AccountService {
                   console.log(userProfile);
                   localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
                 }
-                this._loggedInState.next(true);
+                this.loggedInState.next(true);
               } else {
                 console.log('could not verify current session');
-                this._loggedInState.next(false);
+                this.loggedInState.next(false);
                 // clear token remove user from local storage to log user out
                 this.token = null;
                 localStorage.removeItem('currentUser');
                 localStorage.removeItem('currentUserProfile');
-                this._cookieService.remove('XSRF-TOKEN');
+                this.cookieService.remove('XSRF-TOKEN');
                 this.handleHttpFailure(response);
               }
             }
@@ -129,22 +129,22 @@ export class AccountService {
 
       } else {
         console.log('auth token and cookie mismatch, not a valid session ...');
-        this._loggedInState.next(false);
+        this.loggedInState.next(false);
         // clear token remove user from local storage to log user out
         this.token = null;
         localStorage.removeItem('currentUser');
         localStorage.removeItem('currentUserProfile');
-        this._cookieService.remove('XSRF-TOKEN');
+        this.cookieService.remove('XSRF-TOKEN');
 
       }
     } else {
       console.log('either auth token or cookie missing, not a valid session ...');
-      this._loggedInState.next(false);
+      this.loggedInState.next(false);
       // clear token remove user from local storage to log user out
       this.token = null;
       localStorage.removeItem('currentUser');
       localStorage.removeItem('currentUserProfile');
-      this._cookieService.remove('XSRF-TOKEN');
+      this.cookieService.remove('XSRF-TOKEN');
     }
   };
 
@@ -171,19 +171,19 @@ export class AccountService {
             if (userProfileJson) {
               let userProfile = createProfile(userProfileJson);
               console.log(userProfile);
-              this._loggedInState.next(true);
+              this.loggedInState.next(true);
               localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
             }
             return response.json();
           } else {
             // indicates failed self retrieve / authenticated session
             // should also remove token and invalidate angular session?
-            this._loggedInState.next(false);
+            this.loggedInState.next(false);
             // clear token remove user from local storage to log user out
             this.token = null;
             localStorage.removeItem('currentUser');
             localStorage.removeItem('currentUserProfile');
-            this._cookieService.remove('XSRF-TOKEN');
+            this.cookieService.remove('XSRF-TOKEN');
             return Observable.throw('invalid session');
           }
         }
@@ -197,7 +197,7 @@ export class AccountService {
    */
   isLoggedIn(): Observable<boolean> {
     // console.log(this.loggedInState);
-    return this._loggedInState.asObservable();
+    return this.loggedInState.asObservable();
   };
 
   /**
@@ -215,12 +215,12 @@ export class AccountService {
       .map((response: Response) => {
         // logout
         if (response.status === 200) {
-          this._loggedInState.next(false);
+          this.loggedInState.next(false);
           // clear token remove user from local storage to log user out
           this.token = null;
           localStorage.removeItem('currentUser');
           localStorage.removeItem('currentUserProfile');
-          this._cookieService.remove('XSRF-TOKEN');
+          this.cookieService.remove('XSRF-TOKEN');
           // return true to indicate successful logout
           return true;
         } else {
@@ -234,13 +234,13 @@ export class AccountService {
 
   /**
    *
-   * @param username
+   * @param email
    * @param password
    * @returns {Observable<R>}
    */
-  login(username: string, password: string): Observable<boolean> {
+  login(email: string, password: string): Observable<boolean> {
     let loginUri = this.portalApiUrl + '/login';
-    let data = JSON.stringify({username: username, password: password});
+    let data = JSON.stringify({email: email, password: password});
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.post(loginUri, data, options)
@@ -251,11 +251,11 @@ export class AccountService {
           // set token property
           this.token = token;
           console.log('login received token: ' + token);
-          this._loggedInState.next(true);
+          this.loggedInState.next(true);
 
-          // store username and xsrf token in local storage to keep user logged in between page
+          // store accountSubject and xsrf token in local storage to keep user logged in between page
           // refreshes
-          localStorage.setItem('currentUser', JSON.stringify({username: username, token: token}));
+          localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));
 
           let userProfileJson = response.json().userprofile;
           if (userProfileJson) {
@@ -268,7 +268,7 @@ export class AccountService {
         } else {
           // return false to indicate failed login
           // should also remove token?
-          this._loggedInState.next(false);
+          this.loggedInState.next(false);
           console.log('login failed');
           return false;
         }
@@ -283,7 +283,7 @@ export class AccountService {
   register(userprofile: UserProfile): Observable<boolean> {
     let regUri = this.portalApiUrl + '/users/register';
 
-    // JSON.stringify({username: username, password: password}))
+    // JSON.stringify({email: email, password: password}))
     return this.http.post(regUri, userprofile)
       .map((response: Response) => {
         if (response.status === 200) {
@@ -345,9 +345,58 @@ export class AccountService {
    * @returns {Observable<R>}
    */
   gconnectHandle(authRequester: string, authCode: string) {
-    console.log('gconnectHandle account coming from ' + authRequester);
+    if (authRequester === 'REGISTER') {
+      console.log(authRequester);
+      return this.gconnectHandleRegistration(authCode);
+    } else if (authRequester === 'LOGIN') {
+      console.log(authRequester);
+      return this.gconnectHandleLogin(authCode);
+    } else { // or else if, doesn't matter
+      console.log('error, authCode not recognised');
+      let error = ({message: 'error, authCode not recognised'});
+      return this.handleHttpFailureWithLogout(error);
+    }
+
+
+  };
+
+  /**
+   *
+   * @param authCode
+   * @returns {Observable<R>}
+   */
+  private gconnectHandleRegistration(authCode: string) {
     let gconnectPortalUri = this.portalApiUrl + '/login/gconnect';
-    let data = JSON.stringify({authcode: authCode, accesstype: authRequester});
+    let data = JSON.stringify({authcode: authCode, accesstype: 'REGISTER'});
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    console.log(data);
+
+    return this.http.post(gconnectPortalUri, data, options)
+      .map((response: Response) => {
+        if (response.status === 200) {
+
+          let userProfileJson = response.json() && response.json().userprofile;
+          if (userProfileJson) {
+            let userProfile = createProfile(userProfileJson);
+            console.log(userProfile);
+            localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
+          }
+          return true;
+        } else {
+          return false;
+        }
+      }).catch(this.handleHttpFailure);
+  }
+
+  /**
+   *
+   * @param authCode
+   * @returns {Observable<R>}
+   */
+  private gconnectHandleLogin(authCode: string) {
+    let gconnectPortalUri = this.portalApiUrl + '/login/gconnect';
+    let data = JSON.stringify({authcode: authCode, accesstype: 'LOGIN'});
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers, withCredentials: true});
     console.log(data);
@@ -360,12 +409,12 @@ export class AccountService {
           // set token property
           this.token = token;
           console.log('login received token: ' + token);
-          this._loggedInState.next(true);
+          this.loggedInState.next(true);
 
-          // store username and xsrf token in local storage to keep user logged in between page
+          // store accountSubject and xsrf token in local storage to keep user logged in between page
           // refreshes
-          let username = response.json().username;
-          localStorage.setItem('currentUser', JSON.stringify({username: username, token: token}));
+          let email = response.json().email;
+          localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));
 
           let userProfileJson = response.json().userprofile;
           if (userProfileJson) {
@@ -378,16 +427,16 @@ export class AccountService {
         } else {
           // return false to indicate failed login
           // should also remove token?
-          this._loggedInState.next(false);
-          console.log('login failed');
-          this._notificationService.addNotification({
+          this.loggedInState.next(false);
+          console.log('google login failed');
+          this.notificationService.addNotification({
             type: 'ERR',
-            message: 'login failed'
+            message: 'Google login failed'
           });
           return false;
         }
       }).catch(this.handleHttpFailureWithLogout);
-  };
+  }
 
   /**
    *
@@ -405,7 +454,7 @@ export class AccountService {
       errMsg = error.message ? error.message : error.toString();
     }
     console.error(errMsg);
-    this._notificationService.addNotification({
+    this.notificationService.addNotification({
       type: 'ERR',
       message: 'Uncaught Http Error: ' + errMsg
     });
@@ -425,19 +474,19 @@ export class AccountService {
       const err = body.status || JSON.stringify(body);
       if (error.status === 401) {
         // 401 unauthorized
-        this._loggedInState.next(false);
+        this.loggedInState.next(false);
         // clear token remove user from local storage to log user out
         this.token = null;
         localStorage.removeItem('currentUser');
         localStorage.removeItem('currentUserProfile');
-        this._cookieService.remove('XSRF-TOKEN');
+        this.cookieService.remove('XSRF-TOKEN');
       }
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
     console.error(errMsg);
-    this._notificationService.addNotification({
+    this.notificationService.addNotification({
       type: 'ERR',
       message: 'You have been logged out due to an uncaught Http Error: ' + errMsg
     });

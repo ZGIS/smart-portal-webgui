@@ -29,13 +29,15 @@
           <ul class="dropdown-menu" dropdownMenu>
 
             <li role="menuitem" *ngIf="checkLoggedIn">
-              <a class="dropdown-item" routerLink="/account">{{ userProfile.firstname }} Account</a>
+              <a class="dropdown-item" routerLink="/account"><i class="fa fa-user"></i>
+                {{ userProfile.email }}</a>
             </li>
             <li role="menuitem" *ngIf="!checkLoggedIn">
-              <a class="dropdown-item" routerLink="/login">Login</a>
+              <a class="dropdown-item" routerLink="/login"><i class="fa fa-sign-in"></i> Login</a>
             </li>
             <li role="menuitem" *ngIf="checkLoggedIn">
-              <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
+              <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-sign-out"></i>
+                Logout</a>
             </li>
 
             <li role="menuitem"><a class="dropdown-item">About</a></li>

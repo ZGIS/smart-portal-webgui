@@ -28,10 +28,10 @@ export class RegisterComponent {
    * @param accountService
    * @param router
    * @param http
-   * @param _notificationService
+   * @param notificationService
    */
   constructor(private accountService: AccountService, private router: Router,
-              private http: Http, private _notificationService: NotificationService) {
+              private http: Http, private notificationService: NotificationService) {
     window[<any>'recaptchaCallback'] = <any>this.recaptchaCallback.bind(this);
   };
 
@@ -44,7 +44,7 @@ export class RegisterComponent {
 
     let regProfile = createProfile({
       email: this.model.email,
-      username: this.model.email,
+      accountSubject: 'local:' + this.model.email,
       firstname: this.model.firstname,
       lastname: this.model.lastname,
       password: this.model.password
@@ -58,7 +58,7 @@ export class RegisterComponent {
         result => {
           if (result === true) {
             // register successful
-            this._notificationService.addNotification({
+            this.notificationService.addNotification({
               type: 'INFO',
               message: 'Thank you. Please check your emails and activate your account by' +
               ' clicking on th provided link.'
@@ -67,7 +67,7 @@ export class RegisterComponent {
             this.router.navigateByUrl('/login');
           } else {
             // login failed
-            this._notificationService.addNotification({
+            this.notificationService.addNotification({
               type: 'ERR',
               message: 'Registration failed: message / status.'
             });
@@ -78,7 +78,7 @@ export class RegisterComponent {
         error => {
           this.loading = false;
           this.error = <any>error;
-          this._notificationService.addNotification({
+          this.notificationService.addNotification({
             type: 'ERR',
             message: 'Uncaught registration process error.'
           });
@@ -100,7 +100,7 @@ export class RegisterComponent {
         } else {
           this.recaptchaValid = false;
           console.log('error recapture not valid');
-          this._notificationService.addNotification({
+          this.notificationService.addNotification({
             type: 'ERR',
             message: 'Recapture not valid.'
           });
@@ -110,7 +110,7 @@ export class RegisterComponent {
         this.loading = false;
         this.recaptchaValid = false;
         this.error = <any>error;
-        this._notificationService.addNotification({
+        this.notificationService.addNotification({
           type: 'ERR',
           message: 'Uncaught Recapture error.'
         });
@@ -129,13 +129,18 @@ export class RegisterComponent {
       this.accountService.gconnectHandle('REGISTER', authCode).subscribe(
         result => {
           if (result === true) {
-            // login successful
+            // register successful
+            this.notificationService.addNotification({
+              type: 'INFO',
+              message: 'Thank you. Please check your emails and activate your account by' +
+              ' clicking on th provided link.'
+            });
             this.loading = false;
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/login');
           } else {
-            // login failed
-            this.error = 'Google Login failed.';
-            this._notificationService.addNotification({
+            // registration failed
+            this.error = 'Google Registration failed.';
+            this.notificationService.addNotification({
               type: 'ERR',
               message: 'Registration failed, could not use Google account.'
             });
@@ -145,14 +150,14 @@ export class RegisterComponent {
         error => {
           this.loading = false;
           this.error = <any>error;
-          this._notificationService.addNotification({
+          this.notificationService.addNotification({
             type: 'ERR',
             message: 'Uncaught gConnect Registration Error.'
           });
         });
     } else {
       console.log('error gconnect signin for registration');
-      this._notificationService.addNotification({
+      this.notificationService.addNotification({
         type: 'ERR',
         message: 'Uncaught gConnect Registration Error. No authCode provided.'
       });

@@ -15,7 +15,7 @@ export class NavigationComponent implements OnInit {
   @Input() public userProfile: UserProfile;
   @Input() public checkLoggedIn: boolean;
 
-  // username = this.accountService.isLoggedIn() ? this.accountService.getUsername() : 'guest';
+  // accountSubject = this.accountService.isLoggedIn() ? this.accountService.getUsername() : 'guest';
   category = 'main';
 
   logout() {
@@ -57,7 +57,7 @@ export class NavigationComponent implements OnInit {
         user => {
           this.userProfile = user;
           console.log('user profile change ' + this.userProfile.firstname);
-          if (user.username === this.accountService.guestProfile.username) {
+          if (user.accountSubject === this.accountService.guestProfile.email) {
             // refresh this.checkLoggedIn to false
             this.checkLoggedIn = false;
           } else {
@@ -69,7 +69,7 @@ export class NavigationComponent implements OnInit {
           // console.log(<any>error);
           this.userProfile = this.accountService.guestProfile;
           this.checkLoggedIn = false;
-          console.log('user profile change error ' + this.userProfile.firstname);
+          console.log('user profile change error ' + this.userProfile.email);
         });
 
     this.accountService.isLoggedIn()

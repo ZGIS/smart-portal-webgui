@@ -19,7 +19,7 @@ export class ResetPassComponent {
   @Output() flash = new EventEmitter();
 
   constructor( private accountService: AccountService, private router: Router,
-               private http: Http, private _notificationService: NotificationService ) {
+               private http: Http, private notificationService: NotificationService ) {
 
   };
 
@@ -31,7 +31,7 @@ export class ResetPassComponent {
           if (result === true) {
             // login successful
             this.loading = false;
-            this._notificationService.addNotification({
+            this.notificationService.addNotification({
               type: 'INFO',
               message: 'Thank you. Please check your emails and reset your password by' +
               ' clicking on th provided link..'
@@ -39,7 +39,7 @@ export class ResetPassComponent {
             this.router.navigateByUrl('/login');
           } else {
             // login failed
-            this._notificationService.addNotification({
+            this.notificationService.addNotification({
               type: 'ERR',
               message: 'Email not known to us.'
             });

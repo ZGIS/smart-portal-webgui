@@ -24,10 +24,10 @@ export class LoginComponent {
    *
    * @param accountService
    * @param router
-   * @param _notificationService
+   * @param notificationService
    */
   constructor(private accountService: AccountService,
-              private router: Router, private _notificationService: NotificationService) {
+              private router: Router, private notificationService: NotificationService) {
   };
 
   /**
@@ -35,7 +35,7 @@ export class LoginComponent {
    */
   login() {
     this.loading = true;
-    this.accountService.login(this.model.username, this.model.password)
+    this.accountService.login(this.model.email, this.model.password)
       .subscribe(
         result => {
           if (result === true) {
@@ -44,10 +44,10 @@ export class LoginComponent {
             this.router.navigateByUrl('/dashboard');
           } else {
             // login failed
-            this.error = 'Username or password is incorrect';
-            this._notificationService.addNotification({
+            this.error = 'User email or password is incorrect';
+            this.notificationService.addNotification({
               type: 'ERR',
-              message: 'Username or password is incorrect.'
+              message: 'User email or password is incorrect.'
             });
             this.loading = false;
           }
@@ -55,7 +55,7 @@ export class LoginComponent {
         error => {
           this.loading = false;
           this.error = <any>error;
-          this._notificationService.addNotification({
+          this.notificationService.addNotification({
             type: 'ERR',
             message: 'Uncaught Login Error.'
           });
@@ -80,7 +80,7 @@ export class LoginComponent {
           } else {
             // login failed
             this.error = 'Google Login failed.';
-            this._notificationService.addNotification({
+            this.notificationService.addNotification({
               type: 'ERR',
               message: 'Google Login failed.'
             });
@@ -90,14 +90,14 @@ export class LoginComponent {
         error => {
           this.loading = false;
           this.error = <any>error;
-          this._notificationService.addNotification({
+          this.notificationService.addNotification({
             type: 'ERR',
             message: 'Uncaught gConnect Login Error.'
           });
         });
     } else {
       console.log('error gconnect signin');
-      this._notificationService.addNotification({
+      this.notificationService.addNotification({
         type: 'ERR',
         message: 'Uncaught gConnect Login Error. No authCode provided.'
       });
