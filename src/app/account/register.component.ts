@@ -21,7 +21,6 @@ export class RegisterComponent {
   loading = false;
   recaptchaValid = false;
   error = '';
-  @Output() flash = new EventEmitter();
 
   /**
    *

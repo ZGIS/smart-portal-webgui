@@ -51,7 +51,7 @@ export class SearchComponent implements OnInit {
     this.search.bboxWkt = $event.bboxWkt;
   }
 
-  onEnter(event) {
+  onEnter(event: any) {
     if (event.keyCode === 13) {
       this.getResults();
     }

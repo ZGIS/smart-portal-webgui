@@ -9,19 +9,43 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "outDir": "lib",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "outDir": "aot",
     "rootDir": ".",
     "mapRoot": "",
     "baseUrl": "",
     "skipLibCheck": true,
     "typeRoots": [
-      "../node_modules/@types"
+      "node_modules/@types"
+    ],
+    "types": [
+      "jasmine",
+      "node",
+      "source-map",
+      "uglify-js",
+      "webpack",
+      "gapi",
+      "gapi.auth2",
+      "openlayers"
     ]
   },
   "exclude": [
     "**/*.spec.ts",
-    "main.ts"
+    "main.ts",
+    "node_modules",
+    "coverage",
+    "config",
+    "dist",
+    "report"
   ],
+  "angularCompilerOptions": {
+    "genDir": "aot",
+    "entryModule": "./src/app/app.module#AppModule",
+    "skipMetadataEmit" : true
+  },
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true,
     "forkChecker": true,

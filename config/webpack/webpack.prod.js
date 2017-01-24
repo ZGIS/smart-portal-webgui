@@ -3,7 +3,8 @@ const webpackMerge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const ngtools = require('@ngtools/webpack');
+// const ngtools = require('@ngtools/webpack');
+const AotPlugin = require('@ngtools/webpack').AotPlugin;
 
 const commonConfig = require('./webpack.common.js');
 const helpers = require('./helpers');
@@ -29,16 +30,21 @@ module.exports = webpackMerge(commonConfig, {
   },
 
   plugins: [
-    new ngtools.AotPlugin({
-      tsConfigPath: "./src/tsconfig-aot.json",
-      mainPath: "main.ts"
+
+    new AotPlugin({
+      tsConfigPath: helpers.root('tsconfig-aot.json'),
+      entryModule: helpers.root('src','app','app.module#AppModule')
     }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangle: {
+        screw_ie8: true,
         keep_fnames: true
       },
-      compress: {screw_ie8: true},
+      compress: {
+        warnings: false,
+        screw_ie8: true
+      },
       comments: false
     }),
     new ExtractTextPlugin({

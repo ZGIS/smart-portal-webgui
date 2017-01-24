@@ -38,6 +38,8 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 dist
+dist_compare
+aot
 
 # Dependency directories
 node_modules

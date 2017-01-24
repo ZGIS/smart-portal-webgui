@@ -53,9 +53,13 @@ module.exports = webpackMerge(commonConfig, {
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangle: {
+        screw_ie8: true,
         keep_fnames: true
       },
-      compress: {screw_ie8: true},
+      compress: {
+        warnings: false,
+        screw_ie8: true
+      },
       comments: false
     }),
     new ExtractTextPlugin({

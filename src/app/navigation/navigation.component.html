@@ -12,7 +12,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li routerLinkActive="active"><a routerLink="/dashboard"><span class="fa fa-home"></span></a></li>
-        <li *ngIf="!category==='main'">{{ category }}</li>
+        <li *ngIf="!(category==='main')">{{ category }}</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li routerLinkActive="active" *ngIf="checkLoggedIn">
