@@ -7,7 +7,6 @@ describe('E2E Test Welcome Dashboard', function () {
     browser.get('/');
   });
 
-
   it('should display: ' + expectedMsg, function () {
     expect(
       element(
