@@ -44,5 +44,5 @@ appList.forEach(function(type) {
     const files = glob.sync('src/app/**/*.' + type +'.ts');
     console.log(chalk[mainColor]('- %s: ') + chalk[defaultValueColor](' %s '), type, files.length);
 });
-const files = glob.sync('e2e/**/*.spec.ts');
+const files = glob.sync('e2e/**/*e2e-spec.js');
 console.log(chalk[mainColor]('- %s: ') + chalk[defaultValueColor](' %s '), 'e2e spec', files.length);

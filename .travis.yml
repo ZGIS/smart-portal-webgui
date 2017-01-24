@@ -32,7 +32,7 @@ script:
 - npm test -- --ci
 - npm run e2e:ci:jit
 - npm run clean:build
-- npm run build
+- npm run e2e:ci
 after_script:
 # - npm run coveralls
 after_success:
