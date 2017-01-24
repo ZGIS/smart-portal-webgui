@@ -1,8 +1,16 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { IGeoFeature } from '../search/result';
+import {
+  source,
+  format,
+  layer,
+  style,
+  control,
+  Map,
+  View
+} from 'openlayers';
 
-let ol = require('../../../node_modules/openlayers/dist/ol.js');
-
+// let ol = require('../../../node_modules/openlayers/dist/ol.js');
 // declare var ol: any;
 
 export class Ol3MapExtent {
@@ -21,7 +29,7 @@ export class Ol3MapExtent {
 export class Ol3MapComponent implements OnInit {
 
   // public members need to be declared before private ones -> TSLINT (member-ordering)
-  vectorSource = new ol.source.Vector({'wrapX': false});
+  vectorSource = new source.Vector({'wrapX': false});
 
 
   @Output() onBboxChange = new EventEmitter<Ol3MapExtent>();
@@ -38,7 +46,7 @@ export class Ol3MapComponent implements OnInit {
     }
 
     this.vectorSource.clear();
-    this.vectorSource.addFeatures((new ol.format.GeoJSON()).readFeatures(features));
+    this.vectorSource.addFeatures((new format.GeoJSON()).readFeatures(features));
   }
 
   // private ol: any;
@@ -63,36 +71,36 @@ export class Ol3MapComponent implements OnInit {
    */
   // public member functions need to be declared before private ones -> TSLINT (member-ordering)
   ngOnInit(): void {
-    let vectorLayer = new ol.layer.Vector({
+    let vectorLayer = new layer.Vector({
       source: this.vectorSource,
-      style: new ol.style.Style({
-        stroke: new ol.style.Stroke({
+      style: new style.Style({
+        stroke: new style.Stroke({
           color: 'blue',
           lineDash: [4],
           width: 2
         }),
-        fill: new ol.style.Fill({
+        fill: new style.Fill({
           color: 'rgba(0, 0, 255, 0.01)'
         })
       })
     });
 
     /** {olx.control.AttributionOptions} */
-    this.map = new ol.Map({
-      controls: ol.control.defaults().extend([
-        new ol.control.ZoomToExtent({
+    this.map = new Map({
+      controls: control.defaults().extend([
+        new control.ZoomToExtent({
           extent: this.nzExtent
         })
       ])
       ,
       layers: [
-        new ol.layer.Tile({
-          source: new ol.source.OSM()
+        new layer.Tile({
+          source: new source.OSM()
         }),
         vectorLayer
       ],
       target: 'map',
-      view: new ol.View({
+      view: new View({
         projection: 'EPSG:4326',
         center: this.center,
         zoom: 5
