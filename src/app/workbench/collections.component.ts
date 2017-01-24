@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
-import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
 import { IOwcDocument } from './';
 import { CollectionsService } from './';
@@ -15,8 +13,8 @@ export class CollectionsComponent implements OnInit {
 
   myCollection: IOwcDocument;
 
-  constructor(private collectionsService: CollectionsService, private router: Router,
-              private http: Http, private notificationService: NotificationService) {
+  constructor(private collectionsService: CollectionsService,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
