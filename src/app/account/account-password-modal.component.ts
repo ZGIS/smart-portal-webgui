@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/modal';
-import { AccountService } from './account.service';
+import { AccountService, UserProfile } from './account.service';
 import { NotificationService } from '../notifications';
 
 @Component ({
@@ -11,6 +11,7 @@ import { NotificationService } from '../notifications';
 export class AccountPasswordModalComponent {
   @ViewChild('passwordUpdateModalRef') public modal: ModalDirective;
 
+  currentProfile: UserProfile = this.accountService.guestProfile;
   passwordsAreSync = true;
   oldPassIsNotNewPass = true;
   model: any = {};
@@ -27,7 +28,8 @@ export class AccountPasswordModalComponent {
     this.oldPassIsNotNewPass = this.model.password !== this.model.passwordCurrent;
   }
 
-  showUpdateModal() {
+  showUpdateModal(userProfile: UserProfile) {
+    this.currentProfile = userProfile;
     this.modal.show();
   }
 
@@ -37,7 +39,7 @@ export class AccountPasswordModalComponent {
 
   onSubmit() {
     this.loading = true;
-    this.accountService.updatePassword(this.model.email, this.model.password)
+    this.accountService.updatePassword(this.currentProfile.email, this.model.password)
       .subscribe(
         result => {
           if (result === true) {
