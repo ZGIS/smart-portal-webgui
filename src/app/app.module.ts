@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+// import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService, BaseCookieOptions, CookieOptions } from 'angular2-cookie/core';
 import {
   DropdownModule,
   ModalModule,
@@ -45,6 +46,10 @@ import { API_URL_PROVIDERS } from './app.tokens';
 import { AuthGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
 
+export function cookieServiceFactory() {
+  return new CookieService();
+}
+
 @NgModule({
   imports: [BrowserModule,
     FormsModule,
@@ -79,7 +84,7 @@ import { NotificationComponent, NotificationService } from './notifications';
     CollectionsComponent
   ],
   providers: [
-    CookieService,
+    { provide: CookieService, useFactory: cookieServiceFactory },
     AuthGuard,
     ResultService,
     AccountService,
