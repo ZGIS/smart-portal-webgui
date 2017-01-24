@@ -304,6 +304,80 @@ export class AccountService {
   /**
    *
    * @param email
+   * @param password
+   * @returns {Observable<R>}
+   */
+  updatePassword(email: string, password: string): Observable<boolean> {
+    let updatePassUri = this.portalApiUrl + '/users/updatepass';
+
+    let data = JSON.stringify({email: email, password: password});
+    let headers = new Headers({
+      // 'Authorization': 'Bearer ' + this.token,
+      'X-XSRF-TOKEN': this.token,
+      'Content-Type': 'application/json'
+    });
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+
+    return this.http.post(updatePassUri, data, options)
+      .map((response: Response) => {
+        // login successful if there's a xsrf token in the response
+        let token = response.json() && response.json().token;
+        if (token) {
+          // set token property
+          this.token = token;
+          console.log('login received token: ' + token);
+          this.loggedInState.next(true);
+
+          // store accountSubject and xsrf token in local storage to keep user logged in between page
+          // refreshes
+          localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));
+
+          // return true to indicate successful login
+          return true;
+        } else {
+          // return false to indicate failed login
+          // should also remove token?
+          console.log('password update failed');
+          return false;
+        }
+      }).catch(this.handleHttpFailure);
+  };
+
+  /**
+   *
+   * @param userprofile
+   * @returns {Observable<R>}
+   */
+  updateProfile(userprofile: UserProfile): Observable<boolean> {
+    let updateProfileUri = this.portalApiUrl + '/users/update/' + userprofile.email;
+
+    let headers = new Headers({
+      // 'Authorization': 'Bearer ' + this.token,
+      'X-XSRF-TOKEN': this.token,
+      'Content-Type': 'application/json'
+    });
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+
+    return this.http.post(updateProfileUri, userprofile, options)
+      .map((response: Response) => {
+        if (response.status === 200) {
+
+          let userProfileJson = response.json();
+          if (userProfileJson) {
+            let userProfile = createProfile(userProfileJson);
+            console.log(userProfile);
+            localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
+          }
+          return true;
+        } else {
+          return false;
+        }
+      }).catch(this.handleHttpFailure);
+  };
+
+  /**
+   *
+   * @param email
    * @returns {Observable<R>}
    */
   requestPasswordReset(email: string): Observable<boolean> {
