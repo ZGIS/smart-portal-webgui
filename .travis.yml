@@ -27,7 +27,7 @@ script:
 - cp config/internal/.env.travis .env
 - npm run tslint
 - npm run webdriver:update
-- node node_modules\protractor\bin\webdriver-manager update
+- node node_modules/protractor/bin/webdriver-manager update
 - npm run stat
 - npm test -- --ci
 - npm run e2e:ci:jit
