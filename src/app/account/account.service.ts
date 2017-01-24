@@ -302,13 +302,50 @@ export class AccountService {
   };
 
   /**
-   * TODO
    *
    * @param email
-   * @returns {any}
+   * @returns {Observable<R>}
    */
   requestPasswordReset(email: string): Observable<boolean> {
-    return Observable.from([true]);
+    let regUri = this.portalApiUrl + '/users/resetpass';
+
+    let data = JSON.stringify({email: email, password: 'PASSWORDRESET'});
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    return this.http.post(regUri, data, options)
+      .map((response: Response) => {
+        if (response.status === 200) {
+          let info = response.json() && response.json().message;
+          console.log(info);
+          return true;
+        } else {
+          return false;
+        }
+      }).catch(this.handleHttpFailure);
+  }
+
+  /**
+   *
+   * @param email
+   * @param password
+   * @returns {Observable<R>}
+   */
+  redeemPasswordReset(email: string, password: string, redeemlink: string): Observable<boolean> {
+    let regUri = this.portalApiUrl + '/users/resetpass/' + redeemlink;
+
+    let data = JSON.stringify({email: email, password: password});
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    return this.http.post(regUri, data, options)
+      .map((response: Response) => {
+        if (response.status === 200) {
+          let info = response.json() && response.json().message;
+          console.log(info);
+          return true;
+        } else {
+          return false;
+        }
+      }).catch(this.handleHttpFailureWithLogout);
   }
 
   /**

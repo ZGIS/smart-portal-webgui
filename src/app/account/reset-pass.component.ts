@@ -1,6 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { AccountService } from './account.service';
-import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
 
@@ -16,10 +15,9 @@ export class ResetPassComponent {
   model: any = {};
   loading = false;
   error = '';
-  @Output() flash = new EventEmitter();
 
   constructor( private accountService: AccountService, private router: Router,
-               private http: Http, private notificationService: NotificationService ) {
+               private notificationService: NotificationService ) {
 
   };
 

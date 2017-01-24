@@ -6,8 +6,16 @@ import {
   ResultCardsComponent
 } from './dashboards';
 import { SearchComponent } from './search';
-import { LoginComponent, RegisterComponent, AccountComponent, ResetPassComponent } from './account';
-import { MetadataEditorComponent, CollectionsComponent } from './workbench';
+import {
+  LoginComponent,
+  RegisterComponent,
+  AccountComponent,
+  ResetPassComponent,
+  ResetPassRedeemComponent
+} from './account';
+import {
+  MetadataEditorComponent,
+  CollectionsComponent } from './workbench';
 import { AuthGuard } from './_guards';
 
 const appRoutes: Routes = [
@@ -43,6 +51,10 @@ const appRoutes: Routes = [
   {
     path: 'resetpass',
     component: ResetPassComponent
+  },
+  {
+    path: 'resetpass/:redeemlink',
+    component: ResetPassRedeemComponent
   },
   {
     path: 'account',

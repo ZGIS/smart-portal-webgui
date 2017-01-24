@@ -21,6 +21,7 @@ export class RegisterComponent {
   loading = false;
   recaptchaValid = false;
   error = '';
+  passwordsAreSync = true;
 
   /**
    *
@@ -34,6 +35,9 @@ export class RegisterComponent {
     window[<any>'recaptchaCallback'] = <any>this.recaptchaCallback.bind(this);
   };
 
+  validatePasswordSync( event: any ) {
+    this.passwordsAreSync = this.model.password === this.model.passwordConfirm;
+  }
   /**
    *
    */
