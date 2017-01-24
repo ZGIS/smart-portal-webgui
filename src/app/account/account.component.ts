@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AccountService, UserProfile } from './account.service';
 
 @Component ({
-  selector: 'app-sac-gwh-useraccount',
+  selector: 'app-sac-gwh-account',
   templateUrl: 'account.component.html'
 })
 
@@ -25,5 +25,8 @@ export class AccountComponent implements OnInit {
           this.userProfile = this.accountService.guestProfile;
         });
   }
+
+
+
 
 }

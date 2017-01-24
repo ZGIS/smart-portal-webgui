@@ -1,0 +1,54 @@
+<div bsModal #profileUpdateModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="profile-change" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideUpdateModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title pull-left">Edit profile info</h4>
+
+      </div>
+      <div class="modal-body">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">{{ currentProfile.email }}</div>
+          <div class="panel-body">
+
+            <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"
+                  novalidate>
+
+              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstname.valid }">
+                <label for="firstname">First name</label>
+                <input [(ngModel)]="currentProfile.firstname" type="text" #firstname="ngModel"
+                       name="firstname" class="form-control" required>
+                <div *ngIf="f.submitted && !firstname.valid" class="help-block">firstname is required</div>
+              </div>
+
+              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastname.valid }">
+                <label for="lastname">Last name</label>
+                <input [(ngModel)]="currentProfile.lastname" type="text" name="lastname"
+                       #lastname="ngModel"
+                       class="form-control" required>
+                <div *ngIf="f.submitted && !lastname.valid" class="help-block">lastname is required</div>
+              </div>
+
+              <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">Submit profile edits</button>
+                <img *ngIf="loading"
+                     src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+              </div>
+              <div class="form-group">
+                <label for="abort">Back to account</label><br>
+                <button type="button" class="btn btn-info" (click)="hideUpdateModal()" id="abort"
+                        aria-label="close">Cancel</button>
+              </div>
+              <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

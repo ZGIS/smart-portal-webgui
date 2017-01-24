@@ -39,6 +39,8 @@ import {
   ReCaptchaService,
   AccountService,
   AccountComponent,
+  AccountProfileModalComponent,
+  AccountPasswordModalComponent,
   GApiAuthComponent,
   GApiAuthService
 } from './account';
@@ -78,6 +80,8 @@ export function cookieServiceFactory() {
     ResetPassComponent,
     ResetPassRedeemComponent,
     AccountComponent,
+    AccountProfileModalComponent,
+    AccountPasswordModalComponent,
     MetadataEditorComponent,
     NotificationComponent,
     FeatureOriginPipe,

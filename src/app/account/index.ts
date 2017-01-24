@@ -1,4 +1,6 @@
 export * from './account.component'
+export * from './account-password-modal.component'
+export * from './account-profile-modal.component'
 export * from './account.service'
 export * from './gapi-auth.component'
 export * from './gapi-auth.service'

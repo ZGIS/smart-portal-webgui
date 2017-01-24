@@ -3,29 +3,37 @@
     <div class="panel panel-default">
       <div class="panel-heading">Account details</div>
       <div class="panel-body">
-        <p>latest info: lorem ipsum dolor </p>
+        <!-- Table -->
+        <table class="table">
+          <tr>
+            <td>Name: {{ userProfile.firstname}} {{ userProfile.lastname }}</td>
+          </tr>
+          <tr>
+            <td>Email: {{ userProfile.email}}</td>
+          </tr>
+          <tr>
+            <td>
+              <button class="btn btn-info" id="changedetails"
+                      (click)="profileUpdateModalRef.showUpdateModal(userProfile)">Change user info</button></td>
+          </tr>
+          <tr>
+            <td>
+              <button class="btn btn-default" id="changepass"
+                      (click)="passwordUpdateModalRef.showUpdateModal()">Change password</button></td>
+          </tr>
+        </table>
       </div>
+      <div class="panel-footer panel-info">
 
-      <!-- Table -->
-      <table class="table">
-        <tr>
-          <td>Name: {{ userProfile.firstname}} {{ userProfile.lastname }}</td>
-        </tr>
-        <tr>
-          <td>Email: {{ userProfile.email}}</td>
-        </tr>
-        <tr>
-          <td>
-            <button class="btn btn-info" id="changedetails"
-                    onclick="alert('not implemented yet')">Change user info or email address</button></td>
-        </tr>
-        <tr>
-          <td>
-            <button class="btn btn-default" id="changepass"
-                    onclick="alert('not implemented yet')">Change password</button></td>
-        </tr>
-      </table>
-
+      </div>
     </div>
   </div>
 </div>
+
+<app-sac-gwh-account-profile-modal #profileUpdateModalRef>
+
+</app-sac-gwh-account-profile-modal>
+
+<app-sac-gwh-account-password-modal #passwordUpdateModalRef>
+
+</app-sac-gwh-account-password-modal>

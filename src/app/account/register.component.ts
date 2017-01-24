@@ -38,6 +38,7 @@ export class RegisterComponent {
   validatePasswordSync( event: any ) {
     this.passwordsAreSync = this.model.password === this.model.passwordConfirm;
   }
+
   /**
    *
    */
