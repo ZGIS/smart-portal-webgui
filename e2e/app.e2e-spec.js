@@ -10,7 +10,7 @@ describe('E2E Test Welcome Dashboard', function () {
   it('should display: ' + expectedMsg, function () {
     expect(
       element(
-        by.css('p')
+        by.id('dashboard-home')
       ).getText()
     ).toEqual(expectedMsg);
   });
@@ -31,7 +31,7 @@ describe('E2E Test Dashboard Maps Category', function () {
   it('should display: ' + expectedMsg, function () {
     expect(
       element(
-        by.css('p')
+        by.id('dashboard-category')
       ).getText()
     ).toEqual(expectedMsg);
   });
