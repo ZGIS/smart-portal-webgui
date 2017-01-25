@@ -1,48 +1,231 @@
 <nav class="navbar navbar-default">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-              aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">SAC GROUNDWATER HUB</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="/dashboard"><span class="fa fa-home"></span></a></li>
-        <li *ngIf="!(category==='main')">{{ category }}</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li routerLinkActive="active" *ngIf="checkLoggedIn">
-          <a routerLink="/workbench/add-data"><i class="fa fa-edit"></i></a>
-        </li>
-        <li routerLinkActive="active"><a routerLink="/search"><i class="fa fa-search"></i></a></li>
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+            aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/">SAC GROUNDWATER HUB</a>
+  </div>
+  <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+      <li routerLinkActive="active"><a routerLink="/dashboard"><span class="fa fa-home"></span></a></li>
+      <li *ngIf="!(category==='main')">{{ category }}</li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
 
-        <li dropdown>
-          <a dropdownToggle><span class="fa-stack">
+      <li dropdown>
+        <a dropdownToggle>DATA <i class="fa fa-th-list"></i></a>
+        <ul class="dropdown-menu" role="menu" dropdownMenu>
+          <li role="menuitem" *ngIf="checkLoggedIn">
+            <a routerLink="/workbench/my-data">My documents <i class="fa fa-folder-o"></i></a>
+          </li>
+          <li role="menuitem" *ngIf="!checkLoggedIn">
+            <a class="dropdown-item" routerLink="/login"><i class="fa fa-sign-in"></i> Sign in to manage your data</a>
+          </li>
+          <li role="menuitem" *ngIf="checkLoggedIn">
+            <a routerLink="/workbench/add-data">Add metadata record <i class="fa fa-edit"></i></a>
+          </li>
+          <li class="divider dropdown-divider" *ngIf="checkLoggedIn"></li>
+
+          <li class="navbar-text">Related Sensorweb Case Studies</li>
+          <li>
+            <a href="https://portal.smart-project.info/smart/sensorweb/rangitaiki" target="_blank">Upper Rangitaiki Station Testbed</a>
+          </li>
+          <li>
+            <a href="http://mondseewebgis.hermannklug.com/landscapelab/sensorweb" target="_blank">Koppl/Austria Sensors Testbed</a>
+          </li>
+          <li>
+            <a href="https://portal.smart-project.info/smart/sensorweb/ngmp/mapfeatures" target="_blank">NGMP EODP Testbed</a>
+          </li>
+          <li>
+            <a href="https://portal.smart-project.info/smart/sensorweb/hilltop/wfssites" target="_blank">Horizons Hilltop EODP Testbed</a>
+          </li>
+
+        </ul>
+      </li>
+
+      <li routerLinkActive="active"><a routerLink="/search">SEARCH <i class="fa fa-search"></i></a></li>
+
+      <li dropdown>
+        <a dropdownToggle><span class="fa-stack">
                               <i class="fa fa-circle fa-stack-2x" style="color:#EEEEEE"></i>
                               <i class="fa fa-ellipsis-v fa-stack-1x"></i>
                           </span>
-          </a>
-          <ul class="dropdown-menu" dropdownMenu>
+        </a>
+        <ul class="dropdown-menu" dropdownMenu>
 
-            <li role="menuitem" *ngIf="checkLoggedIn">
-              <a class="dropdown-item" routerLink="/account"><i class="fa fa-user"></i>
-                {{ userProfile.email }}</a>
-            </li>
-            <li role="menuitem" *ngIf="!checkLoggedIn">
-              <a class="dropdown-item" routerLink="/login"><i class="fa fa-sign-in"></i> Login</a>
-            </li>
-            <li role="menuitem" *ngIf="checkLoggedIn">
-              <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-sign-out"></i>
-                Logout</a>
-            </li>
+          <li role="menuitem" *ngIf="checkLoggedIn">
+            <a class="dropdown-item" routerLink="/account"><i class="fa fa-user"></i>
+              {{ userProfile.email }}</a>
+          </li>
+          <li role="menuitem" *ngIf="!checkLoggedIn">
+            <a class="dropdown-item" routerLink="/login"><i class="fa fa-sign-in"></i> Login</a>
+          </li>
+          <li role="menuitem" *ngIf="checkLoggedIn">
+            <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-sign-out"></i>
+              Logout</a>
+          </li>
+          <li class="divider dropdown-divider" *ngIf="checkLoggedIn"></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="showDisclaimerModal()">Dicsclaimer</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="showAboutModal()">About</a></li>
+          <li class="navbar-text ">External Links</li>
+          <li>
+            <a
+              href="http://www.gns.cri.nz/Home/Our-Science/Energy-Resources/Groundwater/Research/SMART-Aquifer-Characterisation"
+              target="_blank">SMART@GNS</a>
+          </li>
+          <li>
+            <a href="http://ggw.gns.cri.nz/ggwdata/" target="_blank">GNS GGW/NGMP</a>
+          </li>
+          <li>
+            <a href="http://data.gns.cri.nz/ebof/" target="_blank">GNS EBOF</a>
+          </li>
 
-            <li role="menuitem"><a class="dropdown-item">About</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!--/.nav-collapse -->
+        </ul>
+      </li>
+
+    </ul>
+  </div><!--/.nav-collapse -->
 </nav>
+
+<div bsModal #disclaimerModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="disclaimer" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideDisclaimerModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title pull-left">Disclaimer</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+          <b>A. STATEMENT</b>
+          <p align="justify">
+            This website is being developed and maintained through the
+            <a href="http://www.smart-project.info" target="_blank">SMART Aquifer Characterisation programme (SAC)</a>
+            research aim "Data Synthesis and Visualisation".
+            If not stated otherwise, we assume data on this portal is licensed under the
+            <a href="http://creativecommons.org/licenses/by-sa/3.0/nz/" target="_blank">
+              Creative Commons Attribution 3.0 New Zealand (CC BY SA 3.0 NZ)</a> license.
+            <img class="alignleft wp-image-164" style="margin-top: 0px;
+            margin-bottom: 10px;" title="by-sa" src="http://creativecommons.org.nz/wp-content/uploads/2012/05/by-sa.png" alt="" width="88" height="31">
+          </p>
+
+          <b>B. TERMS OF USE OF THE SMART Groundwater Portal</b>
+          <p align="justify">
+            We encourage you to use and share information from this website,
+            provided that:
+          </p>
+          <ul>
+            <li>the source in any copy you make is clearly acknowledged;</li>
+            <li>no modification to the material is made without the express permission of the copyright owner.</li>
+          </ul>
+          <p align="justify">
+          You may use the SMART Groundwater Portal for legal purposes only. If a third party claims any material you
+          have contributed or linked is unlawful, you will bear the burden of
+          establishing that the material complies with all applicable laws. By adding content,
+          you'll make sure to comply to the use constraints and license of such content and state these in return. This
+          website must not be used to disseminate unsolicited advertising or promotional
+          material of any kind.
+          </p>
+
+          <b>C. DISCLAIMER</b>
+          <p align="justify">
+            The SMART Groundwater Portal is provided "as is". We are not responsible for, and expressly disclaim all
+            liability for,
+            damages of any kind arising out of use, reference to, or reliance on any
+            information contained within the site. While the information contained within the
+            site is periodically updated, no guarantee is given that the information provided in
+            this Web site is correct, complete, and up-to-date. We do not warrant, and hereby disclaim any warranties,
+            either expressed or implied, including (without limitation) warranties of accuracy,
+            completeness, non-infringement, merchantability or fitness for a particular purpose
+            in relation to any information obtained from a another website or a link to it. We also do not warrant
+            that the SMART Groundwater Portal will operate in an uninterrupted or error-free manner or that it is free
+            of viruses or to other harmful components.
+
+            Although the SMART Groundwater Portal may include links providing direct access to other
+            Internet resources, including Web sites and Data services, we are not responsible for the accuracy or
+            content of information
+            contained in these sites. Links from the SMART Groundwater Portal to third-party sites do not
+            constitute an endorsement of the parties or their products and services.
+          </p>
+
+          <p align="justify">
+            The user acknowledges that neither GNS nor any of its Representatives has made or makes any representation
+            or
+            warranty, express or implied, as to the accuracy or completeness of the Information. GNS accepts no
+            responsibility for
+            any use or reliance on any contents of the Information and shall not be liable to any person, on any ground,
+            for any
+            loss, damage or expense arising from such use or reliance. Any party using or relying on the Information
+            will be
+            regarded as having accepted the terms of this disclaimer.
+
+            If the user employes the information in this portal for any purpose other than for internal purposes,
+            or makes the information available to any third party (either in full or in part) and at any event without
+            the
+            disclaimer of liability to third parties the recipient indemnifies and
+            holds harmless GNS for any event arising from such use or supply.
+          </p>
+
+
+          <b>D. ENQUIRIES</b>
+          <p align="justify">
+            Other information relating to this website may be obtained by contacting us
+            via the GNS <a href="https://www.gns.cri.nz/Home/Contact-Us/General-inquiries">contact form</a>.
+          </p>
+          <p align="justify">
+            We will not use your personal information for the purpose of sending
+            unsolicited email or mail, nor will we ever pass your details on to third parties.
+          </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #aboutModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="about" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideAboutModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title pull-left">About us</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <b>SMART Aquifer Characterisation Programme (SAC)</b>
+
+            <p>The SMART Aquifer Characterisation (SAC) research programme aims to develop a suite of innovative methods
+            for rapid and cost-effective characterisation of New Zealand’s groundwater systems. SMART is an acronym
+            for the driving ideals of the SAC programme:<br />
+            Save Money and Reduce Time, but be Specific, Measurable, Achievable, Realistic and Time-bound.</p>
+
+            <p>Funded by the Ministry of Business, Innovation &amp; Employment -	Project Duration 2011-2017</p>
+
+            <p>Programme Leader: Dr Stewart Cameron</p>
+
+            <p><i class="fa fa-phone-square" aria-hidden="true"></i> +64 7 1234567</p>
+
+            <p><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:s.cameron@gns.cri.nz?Subject=SAC%20programme" target="_top">s.cameron@gns.cri.nz</a></p>
+
+            <p>Programme Manager: Zara Rawlinson</p>
+
+            <p><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:z.rawlinson@gns.cri.nz?Subject=SAC%20programme" target="_top">z.rawlinson@gns.cri.nz</a></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -29,3 +29,4 @@ import 'ng2-bootstrap';
 import 'bootstrap/dist/js/bootstrap';
 import 'moment';
 import 'openlayers';
+import 'x3dom';

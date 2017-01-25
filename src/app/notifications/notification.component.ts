@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NotificationService, SacGwhNotification } from './notification.service';
 
 @Component({
   selector: 'app-sac-gwh-notification',
-  templateUrl: 'notification.component.html'
+  templateUrl: 'notification.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 
 export class NotificationComponent implements OnInit {

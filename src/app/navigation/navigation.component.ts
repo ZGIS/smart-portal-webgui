@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ng2-bootstrap/modal';
 import { AccountService, UserProfile, createProfile } from '../account';
 import { ActivatedRoute, Router }   from '@angular/router';
 
@@ -15,8 +16,27 @@ export class NavigationComponent implements OnInit {
   @Input() public userProfile: UserProfile;
   @Input() public checkLoggedIn: boolean;
 
+  @ViewChild('disclaimerModalRef') public disclaimerModal: ModalDirective;
+  @ViewChild('aboutModalRef') public aboutModal: ModalDirective;
+
   // accountSubject = this.accountService.isLoggedIn() ? this.accountService.getUsername() : 'guest';
   category = 'main';
+
+  showDisclaimerModal() {
+    this.disclaimerModal.show();
+  };
+
+  hideDisclaimerModal() {
+    this.disclaimerModal.hide();
+  };
+
+  showAboutModal() {
+    this.aboutModal.show();
+  };
+
+  hideAboutModal() {
+    this.aboutModal.hide();
+  };
 
   logout() {
     this.accountService.logout()

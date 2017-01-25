@@ -10,9 +10,6 @@ import {
   View
 } from 'openlayers';
 
-// let ol = require('../../../node_modules/openlayers/dist/ol.js');
-// declare var ol: any;
-
 export class Ol3MapExtent {
   bbox: number[];
   bboxWkt: string;
