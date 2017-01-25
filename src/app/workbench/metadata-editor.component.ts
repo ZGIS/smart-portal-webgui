@@ -52,16 +52,16 @@ export class MetadataEditorComponent implements OnInit {
   ngOnInit() {
     this.metadata = <GeoMetadata>{
       'fileIdentifier': '',
-      'title': 'Test Title',
-      'abstrakt': 'This is an abstract abstract',
-      'keywords': ['test keyword one', 'keyword test two'],
-      'topicCategoryCode': 'boundaries',
-      'hierarchyLevelName': 'nonGeographicDataset',
+      'title': '',
+      'abstrakt': '',
+      'keywords': [],
+      'topicCategoryCode': 'geoscientificInformation',
+      'hierarchyLevelName': 'dataset',
       'scale': '1000000',
       'extent': <GeoExtent> {
-        'description': 'World',
+        'description': 'New Zealand',
         'referenceSystem': 'urn:ogc:def:crs:EPSG::4328',
-        'mapExtentCoordinates': [180, -180, -90, 90],
+        'mapExtentCoordinates': [162, 180, -50, -25],
         'temporalExtent': ''
       },
       'citation': <GeoCitation> {
@@ -71,19 +71,18 @@ export class MetadataEditorComponent implements OnInit {
 
       'lineageStatement': '',
       'responsibleParty': <GeoContact> {
-        individualName: 'Hans Wurst',
-        telephone: '+01 2334 5678910',
-        email: 'wurst.hans@test.com',
+        individualName: '',
+        telephone: '',
+        email: '',
         pointOfContact: 'publisher',
-        orgName: 'Test Org',
-        orgWebLinkage: 'http://www.test.com'
+        orgName: '',
+        orgWebLinkage: ''
       },
       distribution: <GeoDistribution> {
-        useLimitation: 'I don\'t know',
-        formatName: 'CSW',
-        formatVersion: 'web service type',
-        onlineResourceLinkage: 'http://www.test.com/?service=CSW' +
-                               '&version=2.0.2&request=GetCapabilities'
+        useLimitation: 'Check with source agency',
+        formatName: '',
+        formatVersion: '',
+        onlineResourceLinkage: ''
       }
     };
 

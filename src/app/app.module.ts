@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 // import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { CookieService, BaseCookieOptions, CookieOptions } from 'angular2-cookie/core';
 import {
+  AccordionModule,
   DropdownModule,
   ModalModule,
   DatepickerModule,
@@ -58,6 +59,7 @@ export function cookieServiceFactory() {
     FormsModule,
     HttpModule,
     Ng2BootstrapModule,
+    AccordionModule.forRoot(),
     DropdownModule.forRoot(),
     ModalModule.forRoot(),
     DatepickerModule.forRoot(),

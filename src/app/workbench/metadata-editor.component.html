@@ -4,178 +4,180 @@
       <div class="panel-heading">Add new Metadata record</div>
 
       <div class="panel-body">
-        <tabset>
-          <tab heading='What?'>
-            <div class="list-group">
-              <fieldset>
-                <div class="control-group list-group-item">
-                  <label class="control-label"
-                         for="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
-                         data-toggle="tooltip" title="Title of the resource">Title*:</label>
-                  <div class="controls">
-                    <input type="text"
-                           name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
-                           id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
-                           [(ngModel)]="metadata.title"
-                           placeholder="enter a title here">
-                  </div>
-                </div>
+        <form name="form" (ngSubmit)="f.form.valid && submitForm()" #f="ngForm"
+              novalidate>
+          <tabset>
 
-                <div class="control-group list-group-item">
-                  <label class="control-label" for="keywords" data-toggle="tooltip"
-                         title="Comma-separated list of useful thematic keywords.">Keywords (multiple,
-                    comma separated)*:</label>
-                  <div class="controls">
-                    <input type="text" name="keywords" id="keywords"
-                           placeholder="hydrology, groundwater levels"
-                           [(ngModel)]="metadata.keywords">
+            <tab heading='What?'>
+              <div class="list-group">
+                <fieldset>
+                  <div class="control-group list-group-item">
+                    <label class="control-label"
+                           for="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
+                           tooltip="Title of the resource">Title*:</label>
+                    <div class="controls">
+                      <input type="text"
+                             name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
+                             id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
+                             [(ngModel)]="metadata.title"
+                             placeholder="enter a title here"
+                             #gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title="ngModel"
+                             class="form-control" required>
+                    </div>
                   </div>
-                </div>
 
-                <div class="control-group list-group-item">
-                  <label class="control-label"
-                         for="gmd_identificationInfo_MD_DataIdentification_abstract"
-                         data-toggle="tooltip" title="Abstract/Description for the resource">Abstract/Description*:</label>
-                  <div class="controls">
+                  <div class="control-group list-group-item">
+                    <label class="control-label" for="keywords"
+                           tooltip="Comma-separated list of useful thematic keywords.">Keywords (multiple,
+                      comma separated)*:</label>
+                    <div class="controls">
+                      <input type="text" name="keywords" id="keywords"
+                             placeholder="hydrology, groundwater levels"
+                             [(ngModel)]="metadata.keywords"
+                             #keywords="ngModel" class="form-control" required>
+                    </div>
+                  </div>
+
+                  <div class="control-group list-group-item">
+                    <label class="control-label"
+                           for="gmd_identificationInfo_MD_DataIdentification_abstract"
+                           tooltip="Abstract/Description for the resource">Abstract/Description*:</label>
+                    <div class="controls">
                   <textarea name="gmd_identificationInfo_MD_DataIdentification_abstract"
                             id="gmd_identificationInfo_MD_DataIdentification_abstract"
                             [(ngModel)]="metadata.abstrakt"
-                  ></textarea>
+                            #gmd_identificationInfo_MD_DataIdentification_abstract="ngModel" class="form-control"
+                            required></textarea>
+                    </div>
                   </div>
-                </div>
 
+                  <div class="control-group list-group-item">
+                    <label class="control-label"
+                           for="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
+
+                           tooltip="Topic Category from suggested ISO category of the resource.">Topic (ISO
+                      Category)*:</label>
+                    <div class="controls">
+                      <select class="span5 form-control"
+                              name="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
+                              id="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
+                              [(ngModel)]="metadata.topicCategoryCode"
+                              #gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode="ngModel" required>
+                        <!-- TODO SR create a "allowed values" enum in the backend and push that to frontend-->
+                        <option *ngFor="let topicCategory of validValues.topicCategory"
+                                [ngValue]="topicCategory.value"
+                                [selected]="topicCategory.selected">
+                          {{topicCategory.description}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="control-group list-group-item">
+                    <label class="control-label" for="gmd_hierarchyLevelName"
+                           tooltip="Type of resource (dataset, service ...).">Type of Resource*:</label>
+                    <div class="controls">
+                      <select class="span5 form-control" name="gmd_hierarchyLevelName"
+                              id="gmd_hierarchyLevelName"
+                              [(ngModel)]="metadata.hierarchyLevelName"
+                              #gmd_hierarchyLevelName="ngModel" required>
+                        <option *ngFor="let hierarchyLevelName of validValues.hierarchyLevelName"
+                                [ngValue]="hierarchyLevelName.value"
+                                [selected]="hierarchyLevelName.selected">
+                          {{hierarchyLevelName.description}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="control-group list-group-item">
+                    <label class="control-label"
+                           for="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
+                           tooltip="EquivalentScale denominator, e.g. 1:50000">Geographical
+                      Scale*:</label>
+                    <div class="controls">
+                      <select class="span5 form-control"
+                              name="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
+                              id="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
+                              [(ngModel)]="metadata.scale"
+                              #gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator="ngModel"
+                              required>
+                        <option *ngFor="let scale of validValues.scale"
+                                [ngValue]="scale.value"
+                                [selected]="scale.selected">
+                          {{scale.description}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                </fieldset>
+              </div>
+            </tab>
+
+            <tab heading='Where?'>
+              <fieldset>
                 <div class="control-group list-group-item">
                   <label class="control-label"
-                         for="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
-                         data-toggle="tooltip"
-                         title="Topic Category from suggested ISO category of the resource.">Topic (ISO
-                    Category)*:</label>
+                         for="gmd_identificationInfo_MD_DataIdentification_extent_Description"
+                         tooltip="Location, region or placename related to the resource.">Location
+                    Description:</label>
                   <div class="controls">
-                    <select class="span5"
-                            name="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
-                            id="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
-                            [(ngModel)]="metadata.topicCategoryCode"
-                    >
-                      <!-- TODO SR create a "allowed values" enum in the backend and push that to frontend-->
-                      <option *ngFor="let topicCategory of validValues.topicCategory"
-                              [ngValue]="topicCategory.value"
-                              [selected]="topicCategory.selected">
-                        {{topicCategory.description}}
+                    <input class="span7 form-control" type="text"
+                           id="gmd_identificationInfo_MD_DataIdentification_extent_Description"
+                           name="gmd_identificationInfo_MD_DataIdentification_extent_Description"
+                           placeholder="Manawatu-Wanganui (Horizons)"
+                           [(ngModel)]="metadata.extent.description"
+                           #gmd_identificationInfo_MD_DataIdentification_extent_Description="ngModel">
+                  </div>
+                </div>
+
+                <div class="control-group list-group-item">
+                  <label class="control-label" for="gmd_referenceSystemInfo"
+                         tooltip="Geographic Reference System related to the resource.">Reference
+                    System*:</label>
+                  <div class="controls">
+                    <select class="span5 form-control" name="gmd_referenceSystemInfo" id="gmd_referenceSystemInfo"
+                            [(ngModel)]="metadata.extent.referenceSystem"
+                            #gmd_referenceSystemInfo="ngModel" required>
+                      <option *ngFor="let referenceSystem of validValues.referenceSystem"
+                              [ngValue]="referenceSystem.value"
+                              [selected]="referenceSystem.selected">
+                        {{referenceSystem.description}}
                       </option>
                     </select>
                   </div>
                 </div>
 
                 <div class="control-group list-group-item">
-                  <label class="control-label" for="gmd_hierarchyLevelName" data-toggle="tooltip"
-                         title="Type of resource (dataset, service ...).">Type of Resource*:</label>
+                  <label class="control-label" for="mapExtentCoordinates"
+                         tooltip="Zoom the map to include into the area of interest.">Geographical
+                    Extent:</label>
                   <div class="controls">
-                    <select class="span5" name="gmd_hierarchyLevelName"
-                            id="gmd_hierarchyLevelName"
-                            [(ngModel)]="metadata.hierarchyLevelName"
-                    >
-                      <option *ngFor="let hierarchyLevelName of validValues.hierarchyLevelName"
-                              [ngValue]="hierarchyLevelName.value"
-                              [selected]="hierarchyLevelName.selected">
-                        {{hierarchyLevelName.description}}
-                      </option>
-                    </select>
+                    <div id="mapExtentCoordinates" style="border:1px solid red; width:640px; height:360px">
+                      <app-sac-gwh-ol3-map (onBboxChange)="bboxChanged($event)"
+                                           [mapExtent]="metadata.extent.mapExtentCoordinates"></app-sac-gwh-ol3-map>
+                    </div>
+
                   </div>
                 </div>
-
-                <div class="control-group list-group-item">
-                  <label class="control-label"
-                         for="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
-                         data-toggle="tooltip" title="EquivalentScale denominator, e.g. 1:50000">Geographical
-                    Scale*:</label>
-                  <div class="controls">
-                    <select class="span5"
-                            name="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
-                            id="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
-                            [(ngModel)]="metadata.scale"
-                    >
-                      <option *ngFor="let scale of validValues.scale"
-                              [ngValue]="scale.value"
-                              [selected]="scale.selected">
-                        {{scale.description}}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-
               </fieldset>
-            </div>
-          </tab>
-
-          <tab heading='Where?'>
-            <fieldset>
-              <div class="control-group list-group-item">
-                <label class="control-label"
-                       for="gmd_identificationInfo_MD_DataIdentification_extent_Description"
-                       data-toggle="tooltip"
-                       title="Location, region or placename related to the resource.">Location
-                  Description:</label>
-                <div class="controls">
-                  <input class="span7" type="text"
-                         id="gmd_identificationInfo_MD_DataIdentification_extent_Description"
-                         name="gmd_identificationInfo_MD_DataIdentification_extent_Description"
-                         placeholder="Manawatu-Wanganui (Horizons)"
-                         [(ngModel)]="metadata.extent.description"
-                  >
-                </div>
-              </div>
-
-              <div class="control-group list-group-item">
-                <label class="control-label" for="gmd_referenceSystemInfo" data-toggle="tooltip"
-                       title="Geographic Reference System related to the resource.">Reference
-                  System*:</label>
-                <div class="controls">
-                  <select class="span5" name="gmd_referenceSystemInfo" id="gmd_referenceSystemInfo"
-                          [(ngModel)]="metadata.extent.referenceSystem"
-                  >
-                    <option *ngFor="let referenceSystem of validValues.referenceSystem"
-                            [ngValue]="referenceSystem.value"
-                            [selected]="referenceSystem.selected">
-                      {{referenceSystem.description}}
-                    </option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="control-group list-group-item">
-                <label class="control-label" for="mapExtentCoordinates" data-toggle="tooltip"
-                       title="Draw a box on map or zoom into the area of interest.">Geographical
-                  Extent:</label>
-                <div class="controls">
-                  <div id="mapExtentCoordinates" style="border:1px solid red; width:640px; height:360px">
-                    <app-sac-gwh-ol3-map (onBboxChange)="bboxChanged($event)" [mapExtent]="metadata.extent.mapExtentCoordinates"></app-sac-gwh-ol3-map>
-                  </div>
-
-                </div>
-              </div>
-            </fieldset>
-          </tab>
+            </tab>
 
 
-          <tab heading='When?'>
-            <fieldset>
+            <tab heading='When?'>
+              <fieldset>
 
-
-              <div class="control-group list-group-item">
-                <label class="control-label"
-                       for="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
-                       data-toggle="tooltip"
-                       title="Date and type of that date in relation to the resource.">Date and
-                  Type*:</label>
-                <div class="controls">
-                  <input class="span3" type="text"
-                         id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
-                         name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
-                         [(ngModel)]="metadata.citation.ciDate">
-                  <select class="span3"
+                <div class="control-group list-group-item">
+                  <label class="control-label"
+                         for="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType"
+                         tooltip="Choose a type for a date in relation to the resource.">Type*:</label>
+                  <select class="span3 form-control"
                           name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType"
                           id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType"
-                          [(ngModel)]="metadata.citation.ciDateType">
+                          [(ngModel)]="metadata.citation.ciDateType"
+                          #gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType="ngModel"
+                          required>
                     <option *ngFor="let ciDateType of validValues.ciDateType"
                             [ngValue]="ciDateType.value"
                             [selected]="ciDateType.selected">
@@ -183,177 +185,208 @@
                     </option>
                   </select>
                 </div>
-              </div>
 
-              <div class="control-group list-group-item">
-                <label class="control-label" for="gmd_dataQualityInfo_LI_Lineage_statement"
-                       data-toggle="tooltip"
-                       title="Do you know anything about the lineage of the resource? In doubt leave blank">Lineage
-                  Information of the Resource:</label>
-                <div class="controls">
+                <div class="control-group list-group-item">
+
+                  <label class="control-label"
+                         for="showDate"
+                         tooltip="Date to the resource.">Date and
+                    Type*:</label>
+
+                  <div class="input-group" dropdown autoClose="outsideClick">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
+                    </span>
+
+                    <div class="dropdown-menu datepicker-dropdown" dropdownMenu aria-labelledby="split-button">
+                      <div style="display:inline-block;" class="collapse">
+                        <datepicker id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
+                                    name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
+                                    [(ngModel)]="metadata.citation.ciDate"
+                                    #gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date="ngModel"
+                                    [showWeeks]="true"></datepicker>
+                      </div>
+                    </div>
+
+                    <input class="span3 form-control" type="text" name="showDate" id="showDate" value="{{ metadata.citation.ciDate }}"
+                           required disabled>
+
+                  </div>
+                </div>
+
+                <div class="control-group list-group-item">
+                  <label class="control-label" for="gmd_dataQualityInfo_LI_Lineage_statement"
+                         tooltip="Do you know anything about the lineage (origin or re-used data) of the resource? In doubt leave blank">Lineage
+                    Information of the Resource:</label>
+                  <div class="controls">
               <textarea id="gmd_dataQualityInfo_LI_Lineage_statement"
-                        name="gmd_dataQualityInfo_LI_Lineage_statement" class="span7"
+                        name="gmd_dataQualityInfo_LI_Lineage_statement" class="span7 form-control"
                         rows="3"
-                        [(ngModel)]="metadata.lineageStatement"></textarea>
+                        [(ngModel)]="metadata.lineageStatement"
+                        #gmd_dataQualityInfo_LI_Lineage_statement="ngModel"></textarea>
+                  </div>
                 </div>
-              </div>
 
-              <div class="control-group list-group-item">
-                <label class="control-label"
-                       for="gmd_identificationInfo_MD_DataIdentification_extent_temporalElement"
-                       data-toggle="tooltip"
-                       title="Do you want to specify a temporal extent of the resource?">Use a
-                  Temporal
-                  Extent for the Resource:</label>
-                <div class="controls">
-                  <input type="checkbox"
-                         name="gmd_identificationInfo_MD_DataIdentification_extent_temporalElement"
-                         id="gmd_identificationInfo_MD_DataIdentification_extent_temporalElement"
-                         >
+                <div class="control-group list-group-item">
+                  <label class="control-label"
+                         for="gmd_identificationInfo_MD_DataIdentification_extent_temporalElement"
+                         tooltip="Do you want to specify a temporal extent of the resource?">Use a
+                    Temporal
+                    Extent for the Resource:</label>
+                  <div class="controls">
+                    <input type="checkbox" class="form-control"
+                           name="gmd_identificationInfo_MD_DataIdentification_extent_temporalElement"
+                           id="gmd_identificationInfo_MD_DataIdentification_extent_temporalElement">
+                  </div>
                 </div>
-              </div>
 
-              <div class="control-group list-group-item">
-                <label class="control-label" for="resTemporalExtent" data-toggle="tooltip"
-                       title="You can adjust temporal extent with the slider.">Temporal
-                  Extent:</label>
-                <div class="controls">
-                  <input class="span6" type="text" id="resTemporalExtent" name="resTemporalExtent"
-                         placeholder="1950-2013"
-                         [(ngModel)]="metadata.extent.temporalExtent">
+                <div class="control-group list-group-item">
+                  <label class="control-label" for="resTemporalExtent"
+                         tooltip="You can adjust temporal extent with the slider.">Temporal
+                    Extent:</label>
+                  <div class="controls">
+                    <input class="span6" type="text" id="resTemporalExtent" name="resTemporalExtent"
+                           placeholder="1950-2013"
+                           [(ngModel)]="metadata.extent.temporalExtent">
+                  </div>
                 </div>
-              </div>
 
-            </fieldset>
-          </tab>
+              </fieldset>
+            </tab>
 
-          <tab heading='Who?'>
-            <fieldset>
-              <div class="control-group list-group-item">
-                <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_individualName"
-                       data-toggle="tooltip"
-                       title="Name of contact person for the resource or in doubt your name.">Name of
-                  Contact Person for the Resource*:</label>
-                <div class="controls">
-                  <input type="text" id="gmd_Contact_CI_ResponsibleParty_ci_individualName"
-                         name="gmd_Contact_CI_ResponsibleParty_ci_individualName"
-                         [(ngModel)]="metadata.responsibleParty.individualName">
+            <tab heading='Who?'>
+              <fieldset>
+                <div class="control-group list-group-item">
+                  <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_individualName"
+
+                         tooltip="Name of contact person for the resource or in doubt your name.">Name of
+                    Contact Person for the Resource*:</label>
+                  <div class="controls">
+                    <input type="text" id="gmd_Contact_CI_ResponsibleParty_ci_individualName"
+                           name="gmd_Contact_CI_ResponsibleParty_ci_individualName"
+                           [(ngModel)]="metadata.responsibleParty.individualName"
+                           #gmd_Contact_CI_ResponsibleParty_ci_individualName="ngModel" class="form-control"
+                           required>
+                  </div>
                 </div>
-              </div>
 
-              <div class="control-group list-group-item">
-                <label class="control-label"
-                       for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone"
-                       data-toggle="tooltip"
-                       title="A phone number of contact person for the resource or in doubt your number">Phone:</label>
-                <div class="controls">
-                  <input class="span7" type="text"
-                         id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone"
-                         name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone"
-                         placeholder="phone"
-                         [(ngModel)]="metadata.responsibleParty.telephone">
+                <div class="control-group list-group-item">
+                  <label class="control-label"
+                         for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone"
+
+                         tooltip="A phone number of contact person for the resource or in doubt your number">Phone:</label>
+                  <div class="controls">
+                    <input class="span7 form-control" type="text"
+                           id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone"
+                           name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone"
+                           placeholder="phone"
+                           [(ngModel)]="metadata.responsibleParty.telephone"
+                           #gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_telephone="ngModel">
+                  </div>
                 </div>
-              </div>
 
-              <div class="control-group list-group-item">
-                <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
-                       data-toggle="tooltip"
-                       title="An email address of contact person for the resource or in doubt your email address.">Email
-                  Address*:</label>
-                <div class="controls">
-                  <input type="text" id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
-                         name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
-                         placeholder="email"
-                         [(ngModel)]="metadata.responsibleParty.email">
+                <div class="control-group list-group-item">
+                  <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
+
+                         tooltip="An email address of contact person for the resource or in doubt your email address.">Email
+                    Address*:</label>
+                  <div class="controls">
+                    <input type="text" id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
+                           name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
+                           placeholder="email"
+                           [(ngModel)]="metadata.responsibleParty.email"
+                           #gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email="ngModel" class="form-control"
+                           required>
+                  </div>
                 </div>
-              </div>
 
-              <div class="control-group list-group-item">
-                <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
-                       data-toggle="tooltip"
-                       title="The role of the contact person for the resource. In doubt choose pointOfContact.">The
-                  Role of the Person in Relation to the Resource*:</label>
-                <div class="controls">
-                  <select class="span3" name="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
-                          id="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
-                          [(ngModel)]="metadata.responsibleParty.pointOfContact">
-                    <option *ngFor="let pointOfContact of validValues.pointOfContact"
-                            [ngValue]="pointOfContact.value"
-                            [selected]="pointOfContact.selected">
-                      {{pointOfContact.description}}
-                    </option>
-                  </select>
+                <div class="control-group list-group-item">
+                  <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
+
+                         tooltip="The role of the contact person for the resource. In doubt choose pointOfContact.">The
+                    Role of the Person in Relation to the Resource*:</label>
+                  <div class="controls">
+                    <select class="span3 form-control" name="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
+                            id="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
+                            [(ngModel)]="metadata.responsibleParty.pointOfContact"
+                            #gmd_Contact_CI_ResponsibleParty_ci_pointOfContact="ngModel" required>
+                      <option *ngFor="let pointOfContact of validValues.pointOfContact"
+                              [ngValue]="pointOfContact.value"
+                              [selected]="pointOfContact.selected">
+                        {{pointOfContact.description}}
+                      </option>
+                    </select>
+                  </div>
                 </div>
-              </div>
 
-              <div class="control-group list-group-item">
-                <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_organisationName"
-                       data-toggle="tooltip"
-                       title="Organisation of contact person for the resource or in doubt your organisation or leave blank.">Organisation
-                  (and/or Position) of the Contact Person:</label>
-                <div class="controls">
-                  <input class="span7" type="text"
-                         id="gmd_Contact_CI_ResponsibleParty_ci_organisationName"
-                         name="gmd_Contact_CI_ResponsibleParty_ci_organisationName"
-                         placeholder="organisation"
-                         [(ngModel)]="metadata.responsibleParty.orgName">
+                <div class="control-group list-group-item">
+                  <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_organisationName"
+
+                         tooltip="Organisation of contact person for the resource or in doubt your organisation or leave blank.">Organisation
+                    (and/or Position) of the Contact Person:</label>
+                  <div class="controls">
+                    <input class="span7 form-control" type="text"
+                           id="gmd_Contact_CI_ResponsibleParty_ci_organisationName"
+                           name="gmd_Contact_CI_ResponsibleParty_ci_organisationName"
+                           placeholder="organisation"
+                           [(ngModel)]="metadata.responsibleParty.orgName"
+                           #gmd_Contact_CI_ResponsibleParty_ci_organisationName="ngModel">
+                  </div>
                 </div>
-              </div>
 
-              <div class="control-group list-group-item">
-                <label class="control-label"
-                       for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
-                       data-toggle="tooltip"
-                       title="A weblink (URL) for your organisation or a related link.">A Weblink
-                  (URL)
-                  for the Organisation*:</label>
-                <div class="controls">
-                  <input class="span7" type="text"
-                         id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
-                         name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
-                         placeholder="http://"
-                         [(ngModel)]="metadata.responsibleParty.orgWebLinkage">
+                <div class="control-group list-group-item">
+                  <label class="control-label"
+                         for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
+
+                         tooltip="A weblink (URL) for your organisation or a related link.">A Weblink
+                    (URL)
+                    for the Organisation*:</label>
+                  <div class="controls">
+                    <input class="span7 form-control" type="text"
+                           id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
+                           name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
+                           placeholder="http://"
+                           [(ngModel)]="metadata.responsibleParty.orgWebLinkage"
+                           #gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage="ngModel" required>
+                  </div>
                 </div>
-              </div>
-            </fieldset>
-          </tab>
+              </fieldset>
+            </tab>
 
-          <tab heading='Distribution'>
-            <fieldset>
-              <div class="control-group list-group-item">
-                <label class="control-label"
-                       for="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
-                       data-toggle="tooltip"
-                       title="License or any other use and distribution contraints regarding the resource.">License
-                  or other Constraints:</label>
-                <div class="controls">
-                  <select class="span7"
-                          name="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
-                          id="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
-                          [(ngModel)]="metadata.distribution.useLimitation">
-                    <option *ngFor="let useLimitation of validValues.useLimitation"
-                            [ngValue]="useLimitation.value"
-                            [selected]="useLimitation.selected">
-                      {{useLimitation.description}}
-                    </option>
-                  </select>
+            <tab heading='Distribution'>
+              <fieldset>
+                <div class="control-group list-group-item">
+                  <label class="control-label"
+                         for="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
+                         tooltip="The default data license or other use and distribution constraints regarding the resource.">License
+                    or other Constraints*:</label>
+                  <div class="controls">
+                    <select class="span7 form-control"
+                            name="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
+                            id="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
+                            [(ngModel)]="metadata.distribution.useLimitation"
+                            #gmd_metadataConstraints_MD_LegalConstraints_useLimitation="ngModel" required>
+                      <option *ngFor="let useLimitation of validValues.useLimitation"
+                              [ngValue]="useLimitation.value"
+                              [selected]="useLimitation.selected">
+                        {{useLimitation.description}}
+                      </option>
+                    </select>
+                  </div>
                 </div>
-              </div>
 
-              <div class="control-group list-group-item">
-                <label class="control-label" for="gmd_distributionInfo_MD_Distribution_formatName"
-                       data-toggle="tooltip"
-                       title="The type of distribution format of the resource, e.g. file type or web service.">Type
-                  of Distribution Format:</label>
-                <div class="controls">
-                  <input class="span5" type="text"
-                         id="gmd_distributionInfo_MD_Distribution_formatName"
-                         id="gmd_distributionInfo_MD_Distribution_formatName"
-                         [(ngModel)]="metadata.distribution.formatName">
-                  <select class="span3" ngForm="createNewMetadataForm"
+                <div class="control-group list-group-item">
+
+                  <label class="control-label" for="gmd_distributionInfo_MD_Distribution_formatVersion"
+                         tooltip="The type of distribution for the resource, e.g. is a normal file for download
+                         or is it a web service (e.g. OGC Web Map or Web Feature Service) hosting the resource.">Type
+                    of Distribution*:</label>
+
+                  <select class="span3 form-control"
                           name="gmd_distributionInfo_MD_Distribution_formatVersion"
                           id="gmd_distributionInfo_MD_Distribution_formatVersion"
-                          [(ngModel)]="metadata.distribution.formatVersion">
+                          [(ngModel)]="metadata.distribution.formatVersion"
+                          #gmd_distributionInfo_MD_Distribution_formatVersion="ngModel">
                     <option *ngFor="let formatVersion of validValues.formatVersion"
                             [ngValue]="formatVersion.value"
                             [selected]="formatVersion.selected">
@@ -361,38 +394,52 @@
                     </option>
                   </select>
                 </div>
-              </div>
 
-              <div class="control-group list-group-item">
-                <label class="control-label"
-                       for="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
-                       data-toggle="tooltip"
-                       title="A web link (URL) to access the dataset, if applicable.">Distribution
-                  Link:</label>
-                <div class="controls">
-                  <input type="text"
-                         id="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
-                         name="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
-                         placeholder="http://"
-                         [(ngModel)]="metadata.distribution.onlineResourceLinkage">
-                </div>
-              </div>
+                <div class="control-group list-group-item">
 
-              <div class="control-group list-group-item">
-                <label class="control-label" for="gmd_metadataStandardName" data-toggle="tooltip"
-                       title="Preferred metadata format you want to create with this form">Preferred
-                  Metadata Standard:</label>
-                <div class="controls">
-                  <select class="span3" name="gmd_metadataStandardName" id="gmd_metadataStandardName">
-                    <option value="ISO 19115:2003/19139 1.0" selected>ISO 19115:2003/19139</option>
-                    <option value="ANZLIC Metadata Profile 1.1">ANZLIC Metadata Profile 1.1</option>
-                  </select>
-                  <input type="hidden" value="true" name="isCreateNewRecordRequest">
+                  <label class="control-label" for="gmd_distributionInfo_MD_Distribution_formatName"
+                         tooltip="The distribution format of the resource, e.g. the file type (e.g. ZIP, PDF, SHP, GeoTIFF, NetCDF)
+                         or if it is a web service, what type (e.g. WMS, WFS, SOS, WCS, CSW ..).">Distribution Format*:</label>
+
+                    <input class="span5 form-control" type="text"
+                           name="gmd_distributionInfo_MD_Distribution_formatName"
+                           id="gmd_distributionInfo_MD_Distribution_formatName"
+                           [(ngModel)]="metadata.distribution.formatName"
+                           #gmd_distributionInfo_MD_Distribution_formatName="ngModel">
+
                 </div>
-              </div>
-            </fieldset>
-          </tab>
-        </tabset>
+
+                <div class="control-group list-group-item">
+                  <label class="control-label"
+                         for="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
+
+                         tooltip="A web link (URL) to access the dataset or we bservice, if applicable.">Distribution
+                    Link:</label>
+                  <div class="controls">
+                    <input type="text"
+                           id="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
+                           name="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
+                           placeholder="http://"
+                           [(ngModel)]="metadata.distribution.onlineResourceLinkage"
+                           #gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage="ngModel" class="form-control">
+                  </div>
+                </div>
+
+                <div class="control-group list-group-item">
+                  <label class="control-label" for="gmd_metadataStandardName"
+                         tooltip="Preferred metadata format you want to create with this form">Metadata Format:</label>
+                  <div class="controls">
+                    <select class="span3 form-control" name="gmd_metadataStandardName" id="gmd_metadataStandardName" required>
+                      <option value="ISO 19115:2003/19139 1.0">ISO 19115:2003/19139</option>
+                      <option value="ANZLIC Metadata Profile 1.1" selected>ANZLIC Metadata Profile 1.1</option>
+                    </select>
+                    <input type="hidden" value="true" name="isCreateNewRecordRequest">
+                  </div>
+                </div>
+              </fieldset>
+            </tab>
+          </tabset>
+        </form>
       </div>
 
       <div class="panel-footer">
