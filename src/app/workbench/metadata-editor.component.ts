@@ -43,6 +43,8 @@ export class MetadataEditorComponent implements OnInit {
     formatVersion: []
   };
 
+  loading = false;
+
   constructor(
     @Inject(PORTAL_API_URL) private portalApiUrl: string,
     private http: Http,

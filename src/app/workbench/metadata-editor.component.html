@@ -22,7 +22,9 @@
                              [(ngModel)]="metadata.title"
                              placeholder="enter a title here"
                              #gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title="ngModel"
-                             class="form-control" required>
+                             class="form-control" required minlength="1">
+                      <div *ngIf="f.submitted && !gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title.valid"
+                           class="help-block">Title is required</div>
                     </div>
                   </div>
 
@@ -34,8 +36,10 @@
                       <input type="text" name="keywords" id="keywords"
                              placeholder="hydrology, groundwater levels"
                              [(ngModel)]="metadata.keywords"
-                             #keywords="ngModel" class="form-control" required>
+                             #keywords="ngModel" class="form-control" required minlength="1">
                     </div>
+                    <div *ngIf="f.submitted && !keywords.valid"
+                         class="help-block">Keywords are required</div>
                   </div>
 
                   <div class="control-group list-group-item">
@@ -47,16 +51,17 @@
                             id="gmd_identificationInfo_MD_DataIdentification_abstract"
                             [(ngModel)]="metadata.abstrakt"
                             #gmd_identificationInfo_MD_DataIdentification_abstract="ngModel" class="form-control"
-                            required></textarea>
+                            required minlength="1"></textarea>
                     </div>
+                    <div *ngIf="f.submitted && !gmd_identificationInfo_MD_DataIdentification_abstract.valid"
+                         class="help-block">Abstract is required</div>
                   </div>
 
                   <div class="control-group list-group-item">
                     <label class="control-label"
                            for="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
 
-                           tooltip="Topic Category from suggested ISO category of the resource.">Topic (ISO
-                      Category)*:</label>
+                           tooltip="Topic Category as general theme of the resource from suggested ISO/ANZLIC categories.">Topic Category*:</label>
                     <div class="controls">
                       <select class="span5 form-control"
                               name="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
@@ -71,6 +76,8 @@
                         </option>
                       </select>
                     </div>
+                    <div *ngIf="f.submitted && !gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode.valid"
+                         class="help-block">General topic theme of  is required</div>
                   </div>
 
                   <div class="control-group list-group-item">
@@ -88,6 +95,8 @@
                         </option>
                       </select>
                     </div>
+                    <div *ngIf="f.submitted && !gmd_hierarchyLevelName.valid"
+                         class="help-block">Type of resource is required</div>
                   </div>
 
                   <div class="control-group list-group-item">
@@ -109,6 +118,8 @@
                         </option>
                       </select>
                     </div>
+                    <div *ngIf="f.submitted && !gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator.valid"
+                         class="help-block">A scale indication is required</div>
                   </div>
 
                 </fieldset>
@@ -147,6 +158,8 @@
                       </option>
                     </select>
                   </div>
+                  <div *ngIf="f.submitted && !gmd_referenceSystemInfo.valid"
+                       class="help-block">Geographic Reference System / Coordinate System is required</div>
                 </div>
 
                 <div class="control-group list-group-item">
@@ -171,7 +184,7 @@
                 <div class="control-group list-group-item">
                   <label class="control-label"
                          for="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType"
-                         tooltip="Choose a type for a date in relation to the resource.">Type*:</label>
+                         tooltip="Choose a type for a date in relation to the resource.">Date Type*:</label>
                   <select class="span3 form-control"
                           name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType"
                           id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType"
@@ -184,14 +197,15 @@
                       {{ciDateType.description}}
                     </option>
                   </select>
+                  <div *ngIf="f.submitted && !gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType.valid"
+                       class="help-block">Date type is required</div>
                 </div>
 
                 <div class="control-group list-group-item">
 
                   <label class="control-label"
                          for="showDate"
-                         tooltip="Date to the resource.">Date and
-                    Type*:</label>
+                         tooltip="Date to the resource.">Date*:</label>
 
                   <div class="input-group" dropdown autoClose="outsideClick">
                     <span class="input-group-btn">
@@ -212,6 +226,9 @@
                            required disabled>
 
                   </div>
+
+                  <div *ngIf="f.submitted && !gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date.valid"
+                       class="help-block">A valid date is required</div>
                 </div>
 
                 <div class="control-group list-group-item">
@@ -268,6 +285,8 @@
                            #gmd_Contact_CI_ResponsibleParty_ci_individualName="ngModel" class="form-control"
                            required>
                   </div>
+                  <div *ngIf="f.submitted && !gmd_Contact_CI_ResponsibleParty_ci_individualName.valid"
+                       class="help-block">Name of a contact person is required</div>
                 </div>
 
                 <div class="control-group list-group-item">
@@ -291,13 +310,15 @@
                          tooltip="An email address of contact person for the resource or in doubt your email address.">Email
                     Address*:</label>
                   <div class="controls">
-                    <input type="text" id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
+                    <input type="email" id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
                            name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
                            placeholder="email"
                            [(ngModel)]="metadata.responsibleParty.email"
                            #gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email="ngModel" class="form-control"
                            required>
                   </div>
+                  <div *ngIf="f.submitted && !gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email.valid"
+                       class="help-block">A valid email for the contact person is required</div>
                 </div>
 
                 <div class="control-group list-group-item">
@@ -317,6 +338,8 @@
                       </option>
                     </select>
                   </div>
+                  <div *ngIf="f.submitted && !gmd_Contact_CI_ResponsibleParty_ci_pointOfContact.valid"
+                       class="help-block">The role of the contact person is required</div>
                 </div>
 
                 <div class="control-group list-group-item">
@@ -338,17 +361,19 @@
                   <label class="control-label"
                          for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
 
-                         tooltip="A weblink (URL) for your organisation or a related link.">A Weblink
+                         tooltip="A weblink (URL) for the contact organisation / person or a related link, include the http:// or https://.">A weblink
                     (URL)
-                    for the Organisation*:</label>
+                    for the organisation or the contact person*:</label>
                   <div class="controls">
                     <input class="span7 form-control" type="text"
                            id="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
                            name="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
-                           placeholder="http://"
+                           placeholder="http(s)://"
                            [(ngModel)]="metadata.responsibleParty.orgWebLinkage"
-                           #gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage="ngModel" required>
+                           #gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage="ngModel" required minlength="11">
                   </div>
+                  <div *ngIf="f.submitted && !gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage.valid"
+                       class="help-block">A weblink for the contact is required</div>
                 </div>
               </fieldset>
             </tab>
@@ -373,6 +398,8 @@
                       </option>
                     </select>
                   </div>
+                  <div *ngIf="f.submitted && !gmd_metadataConstraints_MD_LegalConstraints_useLimitation.valid"
+                       class="help-block">A license or distribution constraint indication is required</div>
                 </div>
 
                 <div class="control-group list-group-item">
@@ -386,13 +413,16 @@
                           name="gmd_distributionInfo_MD_Distribution_formatVersion"
                           id="gmd_distributionInfo_MD_Distribution_formatVersion"
                           [(ngModel)]="metadata.distribution.formatVersion"
-                          #gmd_distributionInfo_MD_Distribution_formatVersion="ngModel">
+                          #gmd_distributionInfo_MD_Distribution_formatVersion="ngModel" required>
                     <option *ngFor="let formatVersion of validValues.formatVersion"
                             [ngValue]="formatVersion.value"
                             [selected]="formatVersion.selected">
                       {{formatVersion.description}}
                     </option>
                   </select>
+
+                  <div *ngIf="f.submitted && !gmd_distributionInfo_MD_Distribution_formatVersion.valid"
+                       class="help-block">Indication of access type for the resource is required</div>
                 </div>
 
                 <div class="control-group list-group-item">
@@ -405,7 +435,10 @@
                            name="gmd_distributionInfo_MD_Distribution_formatName"
                            id="gmd_distributionInfo_MD_Distribution_formatName"
                            [(ngModel)]="metadata.distribution.formatName"
-                           #gmd_distributionInfo_MD_Distribution_formatName="ngModel">
+                           #gmd_distributionInfo_MD_Distribution_formatName="ngModel" required minlength="1">
+
+                  <div *ngIf="f.submitted && !gmd_distributionInfo_MD_Distribution_formatName.valid"
+                       class="help-block">An indication for the distribution format is required</div>
 
                 </div>
 
@@ -413,7 +446,7 @@
                   <label class="control-label"
                          for="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
 
-                         tooltip="A web link (URL) to access the dataset or we bservice, if applicable.">Distribution
+                         tooltip="A web link (URL) to access the dataset or web service, if applicable.">Distribution
                     Link:</label>
                   <div class="controls">
                     <input type="text"
@@ -425,17 +458,6 @@
                   </div>
                 </div>
 
-                <div class="control-group list-group-item">
-                  <label class="control-label" for="gmd_metadataStandardName"
-                         tooltip="Preferred metadata format you want to create with this form">Metadata Format:</label>
-                  <div class="controls">
-                    <select class="span3 form-control" name="gmd_metadataStandardName" id="gmd_metadataStandardName" required>
-                      <option value="ISO 19115:2003/19139 1.0">ISO 19115:2003/19139</option>
-                      <option value="ANZLIC Metadata Profile 1.1" selected>ANZLIC Metadata Profile 1.1</option>
-                    </select>
-                    <input type="hidden" value="true" name="isCreateNewRecordRequest">
-                  </div>
-                </div>
               </fieldset>
             </tab>
           </tabset>
@@ -445,10 +467,13 @@
       <div class="panel-footer">
         <div class="control-group list-group-item">
           <div class="controls">
-            <button type="submit" class="btn btn-primary" (click)="submitForm()">Submit</button>
+            <button type="submit" [disabled]="loading" class="btn btn-primary">Submit</button><!-- (click)="submitForm() -->
             <a class="btn" href="#">
               Cancel
             </a>
+            <img *ngIf="loading"
+                 src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+
           </div>
         </div>
       </div>
