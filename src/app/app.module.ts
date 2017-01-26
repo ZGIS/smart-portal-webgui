@@ -23,7 +23,7 @@ import {
   FeatureOriginPipe,
   ResultDetailModalComponent
 } from './search';
-import { NavigationComponent, FooterComponent } from './navigation';
+import { NavigationComponent } from './navigation';
 import {
   DashboardHomeComponent,
   DashboardCategoryComponent,
@@ -72,7 +72,6 @@ export function cookieServiceFactory() {
     DashboardHomeComponent,
     DashboardCategoryComponent,
     NavigationComponent,
-    FooterComponent,
     SearchComponent,
     ResultCardsComponent,
     Ol3MapComponent,
