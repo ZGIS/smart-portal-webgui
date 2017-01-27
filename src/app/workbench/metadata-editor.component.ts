@@ -1,10 +1,11 @@
-import { Component, Injectable, Inject, OnInit } from '@angular/core';
+import { Component, Injectable, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PORTAL_API_URL } from '../app.tokens';
 import { GeoMetadata, GeoExtent, GeoCitation,
   GeoContact, GeoDistribution, InsertResponse } from './metadata';
 import { Http, Response } from '@angular/http';
 import { NotificationService } from '../notifications/notification.service';
 import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
+import { Router } from '@angular/router';
 
 export interface SelectEntry {
   value: String;
@@ -25,11 +26,20 @@ export interface ValidValues {
 
 @Component({
   selector: 'app-sac-gwh-metadata',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './metadata-editor.component.html'
 })
 
 @Injectable()
 export class MetadataEditorComponent implements OnInit {
+
+  public tabs: any[] = [
+    {title: 'What?', active: true},
+    {title: 'Where?', active: false},
+    {title: 'When?', active: false},
+    {title: 'Who?', active: false},
+    {title: 'Distribution', active: false}
+  ];
 
   metadata: GeoMetadata;
   validValues: ValidValues = {
@@ -44,11 +54,13 @@ export class MetadataEditorComponent implements OnInit {
   };
 
   loading = false;
+  error = '';
 
   constructor(
     @Inject(PORTAL_API_URL) private portalApiUrl: string,
     private http: Http,
-    private notificationService: NotificationService) {
+    private notificationService: NotificationService,
+    private router: Router) {
   };
 
   ngOnInit() {
@@ -95,7 +107,13 @@ export class MetadataEditorComponent implements OnInit {
     });
   }
 
+  public setNextTab(last: number, next: number): void {
+    this.tabs[last].active = false;
+    this.tabs[next].active = true;
+  }
+
   submitForm() {
+    this.loading = true;
     this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata})
       .toPromise()
       .then(response => {
@@ -103,6 +121,8 @@ export class MetadataEditorComponent implements OnInit {
         console.log(response.json());
         let insertResponse = <InsertResponse>(response.json() || {type: '', message: ''});
         this.notificationService.addNotification(insertResponse);
+        this.loading = false;
+        this.router.navigateByUrl('/workbench/my-data');
       })
       .catch(this.handleError);
   }
@@ -114,6 +134,7 @@ export class MetadataEditorComponent implements OnInit {
 
   private handleError(error: Response | any): Promise<any> {
     // In a real world app, we might use a remote logging infrastructure
+    this.loading = false;
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';

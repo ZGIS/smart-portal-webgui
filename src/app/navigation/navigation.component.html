@@ -17,7 +17,7 @@
     <ul class="nav navbar-nav navbar-right">
 
       <li dropdown>
-        <a dropdownToggle>DATA <i class="fa fa-database"></i></a>
+        <a role="button" dropdownToggle>DATA <i class="fa fa-database"></i></a>
         <ul class="dropdown-menu" role="menu" dropdownMenu>
           <li role="menuitem" *ngIf="checkLoggedIn">
             <a routerLink="/workbench/my-data">My documents <i class="fa fa-folder-o"></i></a>
@@ -50,7 +50,7 @@
       <li routerLinkActive="active"><a routerLink="/search">SEARCH <i class="fa fa-search"></i></a></li>
 
       <li dropdown>
-        <a dropdownToggle><span class="fa-stack">
+        <a role="button" dropdownToggle><span class="fa-stack">
                               <i class="fa fa-circle fa-stack-2x" style="color:#EEEEEE"></i>
                               <i class="fa fa-ellipsis-v fa-stack-1x"></i>
                           </span>
@@ -69,8 +69,8 @@
               Logout</a>
           </li>
           <li class="divider dropdown-divider" *ngIf="checkLoggedIn"></li>
-          <li role="menuitem"><a class="dropdown-item" (click)="showDisclaimerModal()">Dicsclaimer</a></li>
-          <li role="menuitem"><a class="dropdown-item" (click)="showAboutModal()">About</a></li>
+          <li role="menuitem"><a role="button" class="dropdown-item" (click)="showDisclaimerModal()">Disclaimer</a></li>
+          <li role="menuitem"><a role="button" class="dropdown-item" (click)="showAboutModal()">About</a></li>
           <li class="navbar-text ">External Links</li>
           <li>
             <a

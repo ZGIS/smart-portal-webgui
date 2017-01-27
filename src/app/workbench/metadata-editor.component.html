@@ -4,14 +4,14 @@
       <div class="panel-heading">Add new Metadata record</div>
 
       <div class="panel-body">
-        <form name="form" (ngSubmit)="f.form.valid && submitForm()" #f="ngForm"
+        <form name="form" id="metaform" (ngSubmit)="f.form.valid && submitForm()" #f="ngForm"
               novalidate>
           <tabset>
-
-            <tab heading='What?'>
+            <tab [heading]="tabs[0].title" [active]="tabs[0].active"  (select)="tabs[0].active = true"
+                 (deselect)="tabs[0].active = false">
               <div class="list-group">
-                <fieldset>
-                  <div class="control-group list-group-item">
+
+                  <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title.valid }">
                     <label class="control-label"
                            for="gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title"
                            tooltip="Title of the resource">Title*:</label>
@@ -28,7 +28,7 @@
                     </div>
                   </div>
 
-                  <div class="control-group list-group-item">
+                  <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !keywords.valid }">
                     <label class="control-label" for="keywords"
                            tooltip="Comma-separated list of useful thematic keywords.">Keywords (multiple,
                       comma separated)*:</label>
@@ -42,7 +42,7 @@
                          class="help-block">Keywords are required</div>
                   </div>
 
-                  <div class="control-group list-group-item">
+                  <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_identificationInfo_MD_DataIdentification_abstract.valid }">
                     <label class="control-label"
                            for="gmd_identificationInfo_MD_DataIdentification_abstract"
                            tooltip="Abstract/Description for the resource">Abstract/Description*:</label>
@@ -57,7 +57,7 @@
                          class="help-block">Abstract is required</div>
                   </div>
 
-                  <div class="control-group list-group-item">
+                  <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode.valid }">
                     <label class="control-label"
                            for="gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode"
 
@@ -80,7 +80,7 @@
                          class="help-block">General topic theme of  is required</div>
                   </div>
 
-                  <div class="control-group list-group-item">
+                  <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_hierarchyLevelName.valid }">
                     <label class="control-label" for="gmd_hierarchyLevelName"
                            tooltip="Type of resource (dataset, service ...).">Type of Resource*:</label>
                     <div class="controls">
@@ -99,7 +99,7 @@
                          class="help-block">Type of resource is required</div>
                   </div>
 
-                  <div class="control-group list-group-item">
+                  <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator.valid }">
                     <label class="control-label"
                            for="gmd_identificationInfo_MD_DataIdentification_MD_Resolution_scaleDenominator"
                            tooltip="EquivalentScale denominator, e.g. 1:50000">Geographical
@@ -122,12 +122,17 @@
                          class="help-block">A scale indication is required</div>
                   </div>
 
-                </fieldset>
+                <div class="control-group list-group-item">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(0, 1)">next <i class="fa fa-chevron-right"></i></button>
+                </div>
+              </div>
               </div>
             </tab>
 
-            <tab heading='Where?'>
-              <fieldset>
+            <tab [heading]="tabs[1].title" [active]="tabs[1].active"  (select)="tabs[1].active = true"
+                 (deselect)="tabs[1].active = false">
+
                 <div class="control-group list-group-item">
                   <label class="control-label"
                          for="gmd_identificationInfo_MD_DataIdentification_extent_Description"
@@ -143,7 +148,7 @@
                   </div>
                 </div>
 
-                <div class="control-group list-group-item">
+                <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_referenceSystemInfo.valid }">
                   <label class="control-label" for="gmd_referenceSystemInfo"
                          tooltip="Geographic Reference System related to the resource.">Reference
                     System*:</label>
@@ -162,7 +167,7 @@
                        class="help-block">Geographic Reference System / Coordinate System is required</div>
                 </div>
 
-                <div class="control-group list-group-item">
+                <div class="control-group list-group-item" >
                   <label class="control-label" for="mapExtentCoordinates"
                          tooltip="Zoom the map to include into the area of interest.">Geographical
                     Extent:</label>
@@ -174,14 +179,21 @@
 
                   </div>
                 </div>
-              </fieldset>
+
+              <div class="control-group list-group-item">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(1, 0)">back <i class="fa fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(1, 2)">next <i class="fa fa-chevron-right"></i></button>
+              </div>
+              </div>
             </tab>
 
 
-            <tab heading='When?'>
-              <fieldset>
+            <tab [heading]="tabs[2].title" [active]="tabs[2].active"  (select)="tabs[2].active = true"
+                 (deselect)="tabs[2].active = false">
 
-                <div class="control-group list-group-item">
+
+                <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted  && !gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType.valid }">
                   <label class="control-label"
                          for="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType"
                          tooltip="Choose a type for a date in relation to the resource.">Date Type*:</label>
@@ -201,7 +213,7 @@
                        class="help-block">Date type is required</div>
                 </div>
 
-                <div class="control-group list-group-item">
+                <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date.valid }">
 
                   <label class="control-label"
                          for="showDate"
@@ -268,12 +280,18 @@
                   </div>
                 </div>
 
-              </fieldset>
+              <div class="control-group list-group-item">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(2, 1)">back <i class="fa fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(2, 3)">next <i class="fa fa-chevron-right"></i></button>
+              </div>
+              </div>
             </tab>
 
-            <tab heading='Who?'>
-              <fieldset>
-                <div class="control-group list-group-item">
+            <tab [heading]="tabs[3].title" [active]="tabs[3].active" (select)="tabs[3].active = true"
+                 (deselect)="tabs[3].active = false">
+
+                <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_Contact_CI_ResponsibleParty_ci_individualName.valid }">
                   <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_individualName"
 
                          tooltip="Name of contact person for the resource or in doubt your name.">Name of
@@ -304,7 +322,7 @@
                   </div>
                 </div>
 
-                <div class="control-group list-group-item">
+                <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email.valid }">
                   <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_email"
 
                          tooltip="An email address of contact person for the resource or in doubt your email address.">Email
@@ -321,7 +339,7 @@
                        class="help-block">A valid email for the contact person is required</div>
                 </div>
 
-                <div class="control-group list-group-item">
+                <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_Contact_CI_ResponsibleParty_ci_pointOfContact.valid }">
                   <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_pointOfContact"
 
                          tooltip="The role of the contact person for the resource. In doubt choose pointOfContact.">The
@@ -357,7 +375,7 @@
                   </div>
                 </div>
 
-                <div class="control-group list-group-item">
+                <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage.valid }">
                   <label class="control-label"
                          for="gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage"
 
@@ -375,12 +393,18 @@
                   <div *ngIf="f.submitted && !gmd_Contact_CI_ResponsibleParty_CI_Contact_ci_onlineLinkage.valid"
                        class="help-block">A weblink for the contact is required</div>
                 </div>
-              </fieldset>
+              <div class="control-group list-group-item">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(3, 2)">back <i class="fa fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(3, 4)">next <i class="fa fa-chevron-right"></i></button>
+              </div>
+              </div>
             </tab>
 
-            <tab heading='Distribution'>
-              <fieldset>
-                <div class="control-group list-group-item">
+            <tab [heading]="tabs[4].title" [active]="tabs[4].active"  (select)="tabs[4].active = true"
+                 (deselect)="tabs[4].active = false">
+
+                <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_metadataConstraints_MD_LegalConstraints_useLimitation.valid }">
                   <label class="control-label"
                          for="gmd_metadataConstraints_MD_LegalConstraints_useLimitation"
                          tooltip="The default data license or other use and distribution constraints regarding the resource.">License
@@ -402,7 +426,7 @@
                        class="help-block">A license or distribution constraint indication is required</div>
                 </div>
 
-                <div class="control-group list-group-item">
+                <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_distributionInfo_MD_Distribution_formatVersion.valid }">
 
                   <label class="control-label" for="gmd_distributionInfo_MD_Distribution_formatVersion"
                          tooltip="The type of distribution for the resource, e.g. is a normal file for download
@@ -425,7 +449,7 @@
                        class="help-block">Indication of access type for the resource is required</div>
                 </div>
 
-                <div class="control-group list-group-item">
+                <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_distributionInfo_MD_Distribution_formatName.valid }">
 
                   <label class="control-label" for="gmd_distributionInfo_MD_Distribution_formatName"
                          tooltip="The distribution format of the resource, e.g. the file type (e.g. ZIP, PDF, SHP, GeoTIFF, NetCDF)
@@ -457,25 +481,34 @@
                            #gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage="ngModel" class="form-control">
                   </div>
                 </div>
-
-              </fieldset>
+              <div class="control-group list-group-item">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(4, 3)">back <i class="fa fa-chevron-left"></i></button>
+              </div>
+              </div>
             </tab>
           </tabset>
+
+          <div class="control-group list-group-item">
+            <div class="controls">
+              <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+            </div>
+            <div class="controls">
+              <button type="submit" [disabled]="loading" class="btn btn-primary">Submit</button><!-- (click)="submitForm() -->
+              <a class="btn" href="#">
+                Cancel
+              </a>
+              <img *ngIf="loading"
+                   src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+
+            </div>
+          </div>
+
         </form>
       </div>
 
       <div class="panel-footer">
-        <div class="control-group list-group-item">
-          <div class="controls">
-            <button type="submit" [disabled]="loading" class="btn btn-primary">Submit</button><!-- (click)="submitForm() -->
-            <a class="btn" href="#">
-              Cancel
-            </a>
-            <img *ngIf="loading"
-                 src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
 
-          </div>
-        </div>
       </div>
     </div>
   </div>
