@@ -1,9 +1,11 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { AccountService } from './account/account.service';
 
 @Component({
   selector: 'app-sac-gwh',
-  templateUrl: 'app.component.html'
+  templateUrl: 'app.component.html',
+  styleUrls: [ 'theme.min.css' ],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class AppComponent {
