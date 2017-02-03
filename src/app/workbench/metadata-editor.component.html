@@ -35,7 +35,7 @@
                     <div class="controls">
                       <input type="text" name="keywords" id="keywords"
                              placeholder="hydrology, groundwater levels"
-                             [(ngModel)]="metadata.keywords"
+                             [(ngModel)]="metadataKeywordString"
                              #keywords="ngModel" class="form-control" required minlength="1">
                     </div>
                     <div *ngIf="f.submitted && !keywords.valid"

@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="header" (click)="headerClicked()">
+    <!--<img src="http://us.123rf.com/450wm/violetkaipa/violetkaipa1409/violetkaipa140900052/31266340-man-drawing-a-graph-on-a-glass-wall.jpg" />-->
+    <!--<img src="https://www.rabobank.com/en/images/A%20Kerndocumenten.jpg" />-->
+    <img src="{{cardImage}}" />
+    <h4>{{ title }}</h4>
+  </div>
+  <div class="card-content">
+    <div>
+      {{ getFirstWords(bodyText, 100)}}
+    </div>
+    <div class="gradient"></div>
+  </div>
+  <div class="card-read-more">
+    <a class="btn btn-link btn-block" (click)="readMoreClicked()">see full details...</a>
+  </div>
+</div>

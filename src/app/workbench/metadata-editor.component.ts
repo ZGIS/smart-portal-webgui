@@ -41,6 +41,8 @@ export class MetadataEditorComponent implements OnInit {
     {title: 'Distribution', active: false}
   ];
 
+  metadataKeywordString: String;
+
   metadata: GeoMetadata;
   validValues: ValidValues = {
     topicCategory: [],
@@ -114,6 +116,8 @@ export class MetadataEditorComponent implements OnInit {
 
   submitForm() {
     this.loading = true;
+    //FIXME SR either find a smooth solution to hook into the data-binding to do that, or use different input! This kinda sux, but should work.
+    this.metadata.keywords = this.metadataKeywordString.split(',')
     this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata})
       .toPromise()
       .then(response => {
