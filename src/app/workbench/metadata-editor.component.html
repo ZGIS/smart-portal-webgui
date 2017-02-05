@@ -484,7 +484,40 @@
               <div class="control-group list-group-item">
               <div class="btn-group">
                 <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(4, 3)">back <i class="fa fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(4, 5)">next <i class="fa fa-chevron-right"></i></button>
               </div>
+              </div>
+            </tab>
+
+            <tab [heading]="tabs[5].title" [active]="tabs[5].active"  (select)="tabs[5].active = true"
+                 (deselect)="tabs[5].active = false">
+              <div class="control-group list-group-item">
+                <div class="control-group list-group-item">
+<!--             TODO SR this needs a custom validator!
+http://stackoverflow.com/questions/42038099/validation-on-a-list-of-checkboxes-angular-2
+https://stackoverflow.com/questions/39277283/angular2-group-of-checkboxes-with-required-attribute#
+                <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !smartCategory.valid }">
+-->
+                  <label class="control-label" for="smartCategory"
+                         tooltip="Select at least one of the following categories.">SMART Categories (select at least one)*:</label>
+                  <div class="controls" id="smartCategory">
+                    <div class = "checkbox"
+                         *ngFor = "let cat of validValues.smartCategory; let i = index">
+                      <label><input type="checkbox" [checked]="validValues.smartCategory[i].selected" (click)="checkboxClicked(i)"/>
+                        {{cat['description']}} {{cat.selected}}
+                      </label>
+                    </div>
+                  </div>
+<!--
+                  <div *ngIf="f.submitted && !smartCategory.valid"
+                       class="help-block">Please select at least one category.</div>
+-->
+                </div>
+              </div>
+              <div class="control-group list-group-item">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(5, 4)">back <i class="fa fa-chevron-left"></i></button>
+                </div>
               </div>
             </tab>
           </tabset>
@@ -500,7 +533,6 @@
               </a>
               <img *ngIf="loading"
                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-
             </div>
           </div>
 

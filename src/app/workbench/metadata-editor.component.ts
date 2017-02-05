@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 export interface SelectEntry {
-  value: String;
-  description: String;
+  value: string;
+  description: string;
   selected: boolean;
 }
 
@@ -23,6 +23,7 @@ export interface ValidValues {
   pointOfContact: Array<SelectEntry>;
   useLimitation: Array<SelectEntry>;
   formatVersion: Array<SelectEntry>;
+  smartCategory: Array<SelectEntry>;
 }
 
 @Component({
@@ -39,7 +40,8 @@ export class MetadataEditorComponent implements OnInit {
     {title: 'Where?', active: false},
     {title: 'When?', active: false},
     {title: 'Who?', active: false},
-    {title: 'Distribution', active: false}
+    {title: 'Distribution', active: false},
+    {title: 'SMART Category', active: false}
   ];
 
   metadataKeywordString: String;
@@ -53,7 +55,8 @@ export class MetadataEditorComponent implements OnInit {
     ciDateType: [],
     pointOfContact: [],
     useLimitation: [],
-    formatVersion: []
+    formatVersion: [],
+    smartCategory: []
   };
 
   loading = false;
@@ -73,6 +76,7 @@ export class MetadataEditorComponent implements OnInit {
       'title': '',
       'abstrakt': '',
       'keywords': [],
+      'smartCategory': [],
       'topicCategoryCode': 'geoscientificInformation',
       'hierarchyLevelName': 'dataset',
       'scale': '1000000',
@@ -130,7 +134,10 @@ export class MetadataEditorComponent implements OnInit {
 
 
     //FIXME SR either find a smooth solution to hook into the data-binding to do that, or use different input! This kinda sux, but should work.
-    this.metadata.keywords = this.metadataKeywordString.split(',')
+    this.metadata.keywords = this.metadataKeywordString.split(',');
+    this.metadata.smartCategory = this.validValues.smartCategory
+      .filter(function(value, index,array) {return (value.selected == true)})
+      .map(function(value, index, array){return value.value});
     this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata}, options)
       .toPromise()
       .then(response => {
@@ -147,6 +154,11 @@ export class MetadataEditorComponent implements OnInit {
   bboxChanged($event: any) {
     console.log(`bbox changed to '${$event}'`);
     this.metadata.extent.mapExtentCoordinates = (<Ol3MapExtent>$event).bbox;
+  }
+
+  checkboxClicked(index: number) {
+    console.log(this.validValues.smartCategory);
+    this.validValues.smartCategory[index].selected = !this.validValues.smartCategory[index].selected;
   }
 
   private handleError(error: Response | any): Promise<any> {

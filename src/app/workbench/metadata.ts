@@ -3,6 +3,7 @@ export class GeoMetadata {
   title: string;              // gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title
   abstrakt: string;           // gmd_identificationInfo_MD_DataIdentification_abstract
   keywords: string[];         // TODO SR MD_Metadata path?
+  smartCategory: string[];
   // TODO SR create a "allowed values" enum in the backend and push that to frontend
   topicCategoryCode: string;  // gmd_identificationInfo_MD_DataIdentification_TopicCategoryCode
   hierarchyLevelName: string; // gmd_hierarchyLevelName
