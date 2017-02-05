@@ -2,10 +2,11 @@ import { Component, Injectable, Inject, OnInit, ChangeDetectionStrategy } from '
 import { PORTAL_API_URL } from '../app.tokens';
 import { GeoMetadata, GeoExtent, GeoCitation,
   GeoContact, GeoDistribution, InsertResponse } from './metadata';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { NotificationService } from '../notifications/notification.service';
 import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 import { Router } from '@angular/router';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 export interface SelectEntry {
   value: String;
@@ -61,6 +62,7 @@ export class MetadataEditorComponent implements OnInit {
   constructor(
     @Inject(PORTAL_API_URL) private portalApiUrl: string,
     private http: Http,
+    private cookieService: CookieService,
     private notificationService: NotificationService,
     private router: Router) {
   };
@@ -116,9 +118,20 @@ export class MetadataEditorComponent implements OnInit {
 
   submitForm() {
     this.loading = true;
+
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let cookieToken = this.cookieService.get('XSRF-TOKEN');
+
+    let headers = new Headers({
+      // 'Authorization': 'Bearer ' + this.token,
+      'X-XSRF-TOKEN': cookieToken
+    });
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+
+
     //FIXME SR either find a smooth solution to hook into the data-binding to do that, or use different input! This kinda sux, but should work.
     this.metadata.keywords = this.metadataKeywordString.split(',')
-    this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata})
+    this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata}, options)
       .toPromise()
       .then(response => {
         console.log(response.toString());
