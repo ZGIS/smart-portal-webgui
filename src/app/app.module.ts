@@ -28,6 +28,7 @@ import {
   DashboardHomeComponent,
   DashboardCategoryComponent,
   ResultCardsComponent,
+  CardComponent,
   DashboardButtonComponent
 } from './dashboards';
 import { Ol3MapComponent } from './ol3-map';
@@ -89,7 +90,8 @@ export function cookieServiceFactory() {
     FeatureOriginPipe,
     ResultDetailModalComponent,
     DashboardButtonComponent,
-    CollectionsComponent
+    CollectionsComponent,
+    CardComponent
   ],
   providers: [
     { provide: CookieService, useFactory: cookieServiceFactory },

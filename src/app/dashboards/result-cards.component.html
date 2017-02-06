@@ -7,7 +7,40 @@
 <div *ngFor="let origin of resultsGroups" class="row">
   <div class="col-md-12"><h3>Results in catalogue: {{origin}}</h3></div>
 
-  <div *ngFor="let feature of (results.features | featureOrigin:origin)" class="col-md-2">
+  <div *ngFor="let feature of (results.features | featureOrigin:origin)" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+
+    <app-sac-card (headerClick)="resultCardDetailRef.showFeatureModal(feature)"
+                  (readMoreClick)="resultCardDetailRef.showFeatureModal(feature)"
+                  cardImage='https://www.rabobank.com/en/images/A%20Kerndocumenten.jpg'
+                  [bodyText]="feature.properties.abstrakt"
+                  [title]="feature.properties.title"
+    ></app-sac-card>
+
+<!--
+    <div class="card">
+      <a class="img-card" (click)="resultCardDetailRef.showFeatureModal(feature)">
+        &lt;!&ndash;<img src="http://us.123rf.com/450wm/violetkaipa/violetkaipa1409/violetkaipa140900052/31266340-man-drawing-a-graph-on-a-glass-wall.jpg" />&ndash;&gt;
+        &lt;!&ndash;<img src="https://www.rabobank.com/en/images/A%20Kerndocumenten.jpg" />&ndash;&gt;
+        <img src="https://filebound.files.wordpress.com/2014/01/files.jpg" />
+      </a>
+      <br />
+      <div class="card-content">
+        <h4 class="card-title">
+          <a href="http://www.fostrap.com/">
+            {{feature.properties.title}}
+          </a>
+        </h4>
+        <div class="card-body">
+          {{feature.properties.abstrakt.substring(0, 400)}}
+        </div>
+      </div>
+      <div class="card-read-more">
+        <a class="btn btn-link btn-block" (click)="resultCardDetailRef.showFeatureModal(feature)">see full details...</a>
+      </div>
+    </div>
+-->
+
+<!--
     <div class="panel panel-default">
       <div class="panel-heading folder-bg">
         <div style="background-color: rgba(240,240,240,0.7);
@@ -30,6 +63,7 @@
         </div>
       </div>
     </div>
+-->
   </div>
 </div>
 

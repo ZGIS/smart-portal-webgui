@@ -7,22 +7,21 @@ export const PORTAL_API_URL = new OpaqueToken('portalApiUrl');
 const envCswiApiUrl = APP_CSWI_API_URL ? APP_CSWI_API_URL : 'https://dev.smart-project.info/cswi-api/query';
 const envPortalApiUrl = APP_PORTAL_API_URL ? APP_PORTAL_API_URL : 'https://dev.smart-project.info/api/v1';
 
-if (APP_CSWI_API_URL && APP_PORTAL_API_URL) {
-  console.log(APP_CSWI_API_URL);
-  console.log(APP_PORTAL_API_URL);
-} else {
-  console.log('No API URL Providers found in ENV, using defaults');
-  console.log(this.envCswiApiUrl);
-  console.log(this.envPortalApiUrl);
+if (!(APP_CSWI_API_URL && APP_PORTAL_API_URL)) {
+  console.warn('No API URL Providers found in ENV, using defaults');
 }
+
+console.log('API providers:');
+console.log(envCswiApiUrl);
+console.log(envPortalApiUrl);
 
 export const API_URL_PROVIDERS = [
   {
     provide: CSWI_API_URL,
-    useValue: APP_CSWI_API_URL
+    useValue: envCswiApiUrl
   },
   {
     provide: PORTAL_API_URL,
-    useValue: APP_PORTAL_API_URL
+    useValue: envPortalApiUrl
   }
 ];

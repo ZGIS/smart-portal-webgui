@@ -2,14 +2,15 @@ import { Component, Injectable, Inject, OnInit, ChangeDetectionStrategy } from '
 import { PORTAL_API_URL } from '../app.tokens';
 import { GeoMetadata, GeoExtent, GeoCitation,
   GeoContact, GeoDistribution, InsertResponse } from './metadata';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { NotificationService } from '../notifications/notification.service';
 import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 import { Router } from '@angular/router';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 export interface SelectEntry {
-  value: String;
-  description: String;
+  value: string;
+  description: string;
   selected: boolean;
 }
 
@@ -22,6 +23,7 @@ export interface ValidValues {
   pointOfContact: Array<SelectEntry>;
   useLimitation: Array<SelectEntry>;
   formatVersion: Array<SelectEntry>;
+  smartCategory: Array<SelectEntry>;
 }
 
 @Component({
@@ -38,8 +40,11 @@ export class MetadataEditorComponent implements OnInit {
     {title: 'Where?', active: false},
     {title: 'When?', active: false},
     {title: 'Who?', active: false},
-    {title: 'Distribution', active: false}
+    {title: 'Distribution', active: false},
+    {title: 'SMART Category', active: false}
   ];
+
+  metadataKeywordString: String;
 
   metadata: GeoMetadata;
   validValues: ValidValues = {
@@ -50,7 +55,8 @@ export class MetadataEditorComponent implements OnInit {
     ciDateType: [],
     pointOfContact: [],
     useLimitation: [],
-    formatVersion: []
+    formatVersion: [],
+    smartCategory: []
   };
 
   loading = false;
@@ -59,6 +65,7 @@ export class MetadataEditorComponent implements OnInit {
   constructor(
     @Inject(PORTAL_API_URL) private portalApiUrl: string,
     private http: Http,
+    private cookieService: CookieService,
     private notificationService: NotificationService,
     private router: Router) {
   };
@@ -69,6 +76,7 @@ export class MetadataEditorComponent implements OnInit {
       'title': '',
       'abstrakt': '',
       'keywords': [],
+      'smartCategory': [],
       'topicCategoryCode': 'geoscientificInformation',
       'hierarchyLevelName': 'dataset',
       'scale': '1000000',
@@ -114,7 +122,23 @@ export class MetadataEditorComponent implements OnInit {
 
   submitForm() {
     this.loading = true;
-    this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata})
+
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let cookieToken = this.cookieService.get('XSRF-TOKEN');
+
+    let headers = new Headers({
+      // 'Authorization': 'Bearer ' + this.token,
+      'X-XSRF-TOKEN': cookieToken
+    });
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+
+
+    //FIXME SR either find a smooth solution to hook into the data-binding to do that, or use different input! This kinda sux, but should work.
+    this.metadata.keywords = this.metadataKeywordString.split(',');
+    this.metadata.smartCategory = this.validValues.smartCategory
+      .filter(function(value, index,array) {return (value.selected == true)})
+      .map(function(value, index, array){return value.value});
+    this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata}, options)
       .toPromise()
       .then(response => {
         console.log(response.toString());
@@ -130,6 +154,11 @@ export class MetadataEditorComponent implements OnInit {
   bboxChanged($event: any) {
     console.log(`bbox changed to '${$event}'`);
     this.metadata.extent.mapExtentCoordinates = (<Ol3MapExtent>$event).bbox;
+  }
+
+  checkboxClicked(index: number) {
+    console.log(this.validValues.smartCategory);
+    this.validValues.smartCategory[index].selected = !this.validValues.smartCategory[index].selected;
   }
 
   private handleError(error: Response | any): Promise<any> {
