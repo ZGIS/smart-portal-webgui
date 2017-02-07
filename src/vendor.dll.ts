@@ -25,6 +25,7 @@ import '@angularclass/hmr';
 import 'angular2-cookie/core';
 import 'angular2-cookie/services';
 import 'ng2-bootstrap';
+import 'ng2-file-upload';
 
 import 'bootstrap/dist/js/bootstrap';
 import 'moment';

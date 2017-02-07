@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-// import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { CookieService, BaseCookieOptions, CookieOptions } from 'angular2-cookie/core';
 import {
   AccordionModule,
@@ -14,6 +13,7 @@ import {
   TooltipModule,
   Ng2BootstrapModule
 } from 'ng2-bootstrap';
+import { FileUploadModule } from 'ng2-file-upload';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import {
@@ -46,7 +46,12 @@ import {
   GApiAuthComponent,
   GApiAuthService
 } from './account';
-import { MetadataEditorComponent, CollectionsService, CollectionsComponent } from './workbench';
+import {
+  MetadataEditorComponent,
+  CollectionsService,
+  CollectionsComponent,
+  BasicFileUploadComponent
+} from './workbench';
 import { API_URL_PROVIDERS } from './app.tokens';
 import { AuthGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
@@ -67,6 +72,7 @@ export function cookieServiceFactory() {
     AlertModule.forRoot(),
     TabsModule.forRoot(),
     TooltipModule.forRoot(),
+    FileUploadModule,
     routing],
   declarations: [AppComponent,
     ResultDetailComponent,
@@ -91,6 +97,7 @@ export function cookieServiceFactory() {
     ResultDetailModalComponent,
     DashboardButtonComponent,
     CollectionsComponent,
+    BasicFileUploadComponent,
     CardComponent
   ],
   providers: [
