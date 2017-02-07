@@ -1,12 +1,9 @@
 import { Inject, Component } from '@angular/core';
 import { Headers, RequestOptions } from '@angular/http';
-import { AccountService } from '../account';
-import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
 import { FileUploader } from 'ng2-file-upload';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { PORTAL_API_URL } from '../app.tokens';
-
 
 @Component({
   selector: 'app-sac-gwh-upload-basic',
@@ -19,25 +16,16 @@ import { PORTAL_API_URL } from '../app.tokens';
  */
 export class BasicFileUploadComponent {
 
-  model: any = {};
-  loading = false;
-  error = '';
-
   public uploader: FileUploader;
   public hasBaseDropZoneOver: boolean = false;
-  public hasAnotherDropZoneOver: boolean = false;
 
   /**
    *
    * @param portalApiUrl
-   * @param accountService
-   * @param router
    * @param notificationService
    * @param cookieService
    */
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
-               private accountService: AccountService,
-               private router: Router,
                private cookieService: CookieService,
                private notificationService: NotificationService ) {
 
@@ -59,16 +47,5 @@ export class BasicFileUploadComponent {
   public fileOverBase( e: any ): void {
     this.hasBaseDropZoneOver = e;
   }
-
-  public fileOverAnother( e: any ): void {
-    this.hasAnotherDropZoneOver = e;
-  }
-
-  /**
-   *
-   */
-  upload() {
-    this.loading = true;
-  };
 
 }

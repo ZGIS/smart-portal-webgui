@@ -1,7 +1,10 @@
 <div class="row">
   <div class="col-md-5">
     <div class="panel panel-default" *ngIf="myCollection">
-      <div class="panel-heading">My documents</div>
+      <div class="panel-heading">My documents <a routerLink="/workbench/my-data"
+                                                 tooltip="Refresh My Documents collection">
+        Reload <i class="fa fa-repeat"
+                                 aria-hidden="true"></i></a></div>
       <div class="panel-body">
         <accordion>
           <accordion-group #defaultGroup>
