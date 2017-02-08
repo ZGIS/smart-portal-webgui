@@ -133,11 +133,11 @@ export class MetadataEditorComponent implements OnInit {
     let options = new RequestOptions({headers: headers, withCredentials: true});
 
 
-    //FIXME SR either find a smooth solution to hook into the data-binding to do that, or use different input! This kinda sux, but should work.
+    // FIXME SR either find a smooth solution to hook into the data-binding to do that, or use different input!
     this.metadata.keywords = this.metadataKeywordString.split(',');
     this.metadata.smartCategory = this.validValues.smartCategory
-      .filter(function(value, index,array) {return (value.selected == true)})
-      .map(function(value, index, array){return value.value});
+      .filter(function(value, index, array) { return (value.selected === true); })
+      .map(function(value, index, array) { return value.value; });
     this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata}, options)
       .toPromise()
       .then(response => {

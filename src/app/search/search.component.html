@@ -7,7 +7,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">map</div>
       <div class="panel-body" style="padding:0">
-        <app-sac-gwh-ol3-map (onBboxChange)="bboxChanged($event)" [searchResults]="results"></app-sac-gwh-ol3-map>
+        <app-sac-gwh-ol3-map [mapExtent]="search.bbox"  (onBboxChange)="bboxChanged($event)" [searchResults]="results"></app-sac-gwh-ol3-map>
       </div>
     </div>
     <app-sac-gwh-result-detail [feature]="selectedResult"></app-sac-gwh-result-detail>
@@ -17,7 +17,7 @@
       <div class="panel-heading">Search query</div>
       <div class="panel-body">
 
-        <form name="form" (ngSubmit)="getResults()" (keydown)="onEnter($event)" #f="ngForm" novalidate>
+        <form name="form" (ngSubmit)="getResults()" (keydown)="onKeydownSearchform($event)" #f="ngForm" novalidate>
 
           <div class="form-group">
             <label for="search.query">query</label>
@@ -29,7 +29,7 @@
           <div class="form-group">
             <label for="search.date.from">date from</label>
             <div class="input-group" dropdown autoClose="outsideClick">
-              <input type="text" class="form-control" placeholder="{{search.fromDate}}"
+              <input type="text" class="form-control" placeholder="{{ formatDate(search.fromDate) }}"
                       id="search.date.from" disabled>
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
@@ -46,7 +46,7 @@
           <div class="form-group">
             <label for="search.date.to">date to</label>
             <div class="input-group" dropdown autoClose="outsideClick">
-              <input type="text" class="form-control" placeholder="{{search.toDate}}"
+              <input type="text" class="form-control" placeholder="{{ formatDate(search.toDate) }}"
                      id="search.date.to" name="search.date.to" disabled>
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
@@ -68,14 +68,14 @@
                    class="form-control"
                    disabled/>
           </div>
-          <button (click)="getResults()" type="button" class="btn btn-default">search</button>
+          <button (click)="doSearch()" type="button" class="btn btn-default">search</button>
         </form>
       </div>
 
     </div>
 
 
-    <div class="panel panel-default">
+    <div class="panel panel-default" *ngIf="results">
       <div class="panel-heading">Search Results - {{results.features.length}} <img *ngIf="loading"
                                                                                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/></div>
       <div class="panel-body">
