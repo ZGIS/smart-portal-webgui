@@ -1,83 +1,86 @@
-<div class="jumbotron">
-  <p id="search-form"><i class="fa fa-th-list"></i> Individual search</p>
-</div>
-
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-12">
     <div class="panel panel-default">
-      <div class="panel-heading">map</div>
-      <div class="panel-body" style="padding:0">
-        <app-sac-gwh-ol3-map [mapExtent]="search.bbox"  (onBboxChange)="bboxChanged($event)" [searchResults]="results"></app-sac-gwh-ol3-map>
-      </div>
-    </div>
-    <app-sac-gwh-result-detail [feature]="selectedResult"></app-sac-gwh-result-detail>
-  </div>
-  <div class="col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-heading">Search query</div>
+      <div class="panel-heading"><i class="fa fa-th-list"></i> Individual search</div>
       <div class="panel-body">
 
-        <form name="form" (ngSubmit)="getResults()" (keydown)="onKeydownSearchform($event)" #f="ngForm" novalidate>
+        <form name="form" class="form-inline row" (ngSubmit)="getResults()" (keydown)="onKeydownSearchform($event)"
+              #f="ngForm" novalidate>
 
-          <div class="form-group">
-            <label for="search.query">query</label>
-            <input type="text" class="form-control" [(ngModel)]="search.query"
-                   name="search.query" #searchquery="ngModel"
-                   placeholder="search query" id="search.query"/>
+          <div class="form-group col-md-8">
+            <label class="control-label sr-only"
+                   for="search.query">
+              search for </label>
+            <div style="position:relative;width:100%">
+              <input type="text"
+                     id="search.query"
+                     name="search.query"
+                     class="form-control"
+                     [(ngModel)]="search.query"
+                     #searchquery="ngModel"
+                     placeholder="search query"
+                     tooltip="Query supports Lucene Syntax. For 'all' documents use '*:*'"
+                     style="width:100%"/>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="search.date.from">date from</label>
-            <div class="input-group" dropdown autoClose="outsideClick">
-              <input type="text" class="form-control" placeholder="{{ formatDate(search.fromDate) }}"
-                      id="search.date.from" disabled>
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
-              </span>
-              <div class="dropdown-menu datepicker-dropdown" dropdownMenu aria-labelledby="split-button">
+          <div class="form-group col-md-2">
+            <label class="control-label sr-only"
+                   for="search.date.range">
+              select date range</label>
+            <p class="form-control-static" id="search.date.range"
+            tooltip="The date range to serch for. Click on the calendar to change">{{ formatDate(search.fromDate) }} - {{
+              formatDate(search.toDate) }}</p>
+
+            <div class="btn-group" role="group" aria-label="..." dropdown autoClose="outsideClick"
+                 tooltip="The date range to serch for. Click on the calendar to change">
+              <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
+              <div class="dropdown-menu datepicker-dropdown dropdown-menu-right" dropdownMenu aria-labelledby="split-button">
                 <div style="display:inline-block;" class="collapse">
                   <datepicker [(ngModel)]="search.fromDate" name="search.date.from"
                               #searchdatefrom="ngModel" [showWeeks]="true"
                               [maxDate]="search.toDate"></datepicker>
-                </div>
-              </div>
-            </div><!-- /input-group -->
-          </div> <!-- /form-group -->
-          <div class="form-group">
-            <label for="search.date.to">date to</label>
-            <div class="input-group" dropdown autoClose="outsideClick">
-              <input type="text" class="form-control" placeholder="{{ formatDate(search.toDate) }}"
-                     id="search.date.to" name="search.date.to" disabled>
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
-              </span>
-              <div class="dropdown-menu datepicker-dropdown" dropdownMenu aria-labelledby="split-button">
-                <div style="display:inline-block;" class="collapse">
-                  <datepicker [(ngModel)]="search.toDate" name="search.date.to"
-                              #searchdateto="ngModel"
-                              [showWeeks]="true" [minDate]="search.fromDate"></datepicker>
+
+                  <div style="display:inline-block;" class="collapse">
+                    <datepicker [(ngModel)]="search.toDate" name="search.date.to"
+                                #searchdateto="ngModel"
+                                [showWeeks]="true" [minDate]="search.fromDate"></datepicker>
+                  </div>
                 </div>
               </div>
             </div>
+<!--
+            <div class="btn-group" role="group" aria-label="..." dropdown>
+              <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
+              <div class="dropdown-menu datepicker-dropdown" dropdownMenu aria-labelledby="split-button">
+              </div>
+            </div>
+-->
           </div> <!-- /form-group -->
-          <div class="form-group">
-            <label for="search.bboxwkt">bboxWkt</label>
-            <input [(ngModel)]="search.bboxWkt" placeholder="ENVELOPE(-180,180,90,-90)" id="search.bboxwkt"
-                   name="search.bboxwkt"
-                   #searchbboxWkt="ngModel"
-                   class="form-control"
-                   disabled/>
+          <div class="form-group  col-md-1">
+            <button (click)="doSearch()" type="button" class="btn btn-default">search</button>
           </div>
-          <button (click)="doSearch()" type="button" class="btn btn-default">search</button>
         </form>
       </div>
-
     </div>
-
-
+  </div>
+</div> <!-- row -->
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">map</div>
+      <div class="panel-body" style="padding:0">
+        <app-sac-gwh-ol3-map [mapExtent]="search.bbox" (onBboxChange)="bboxChanged($event)"
+                             [searchResults]="results"></app-sac-gwh-ol3-map>
+      </div>
+    </div>
+    <app-sac-gwh-result-detail [feature]="selectedResult"></app-sac-gwh-result-detail>
+  </div>
+  <div class="col-md-4">
     <div class="panel panel-default" *ngIf="results">
       <div class="panel-heading">Search Results - {{results.features.length}} <img *ngIf="loading"
-                                                                                   src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/></div>
+                                                                                   src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+      </div>
       <div class="panel-body">
         <div class="list-group">
           <a *ngFor="let feature of results.features"

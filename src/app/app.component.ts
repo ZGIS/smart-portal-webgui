@@ -4,7 +4,7 @@ import { AccountService } from './account/account.service';
 @Component({
   selector: 'app-sac-gwh',
   templateUrl: 'app.component.html',
-  styleUrls: [ 'theme.min.css' ],
+  styleUrls: [ /*'theme.min.css'*/ ],
   encapsulation: ViewEncapsulation.None
 })
 
