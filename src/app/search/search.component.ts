@@ -5,8 +5,6 @@ import * as moment from 'moment';
 import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { isNullOrUndefined } from 'util';
-import { routing } from '../app.routing';
-
 
 @Component({
   selector: 'app-sac-gwh-search',
@@ -64,7 +62,7 @@ export class SearchComponent implements OnInit, OnDestroy {
           clearTimeout(this.timeoutId);
         }
 
-        this.timeoutId = setTimeout(() => {
+        this.timeoutId = window.setTimeout(() => {
           this.getResults();
         }, 250);
       }
