@@ -17,7 +17,7 @@ export class DashboardCategoryComponent implements OnInit {
   bgImage: any = {};
   children: any[] = [];
   childrenImg: string[] = [];
-  placeHolderImg: string = '/images/dashboard/0-placeholder-water-icon.jpg';
+  placeHolderImg = '/images/dashboard/0-placeholder-water-icon.jpg';
 
   ngOnInit(): void {
     this.route.params.forEach(( params: Params ) => {

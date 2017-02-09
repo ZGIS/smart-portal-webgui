@@ -17,7 +17,7 @@ import { PORTAL_API_URL } from '../app.tokens';
 export class BasicFileUploadComponent {
 
   public uploader: FileUploader;
-  public hasBaseDropZoneOver: boolean = false;
+  public hasBaseDropZoneOver = false;
 
   /**
    *

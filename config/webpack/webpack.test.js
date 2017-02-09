@@ -18,7 +18,8 @@ if (isCI) {
 module.exports = webpackMerge(coreConfig, {
   devtool: 'inline-source-map',
 
-  entry: {},
+  // entry: 'src/app/main.ts',
+  entry: function(){return {}} ,
 
   module: {
     rules: [
