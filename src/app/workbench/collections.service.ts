@@ -14,14 +14,14 @@ import { NotificationService } from '../notifications';
 export class CollectionsService {
 
   constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
-              private http: Http, private router: Router, private _accountService: AccountService,
-              private _notificationService: NotificationService) {
+              private http: Http, private router: Router, private accountService: AccountService,
+              private notificationService: NotificationService) {
   }
 
   getDefaultCollection(): Observable<IOwcDocument> {
     // add authorization header with jwt token
     let defaultCollectionsUri = this.portalApiUrl + '/collections/default';
-    let token = this._accountService.token;
+    let token = this.accountService.token;
     console.log('token: ' + token);
     let headers = new Headers({'X-XSRF-TOKEN': token});
     let options = new RequestOptions({headers: headers, withCredentials: true});
@@ -31,14 +31,14 @@ export class CollectionsService {
       .map(
         (response: Response) => {
           if (response.status === 200) {
-            let userProfileJson = response.json();
-            if (<IOwcDocument>userProfileJson) {
-              console.log(userProfileJson);
+            let userCollectionJson = response.json();
+            if (<IOwcDocument>userCollectionJson) {
+              console.log(userCollectionJson);
             }
             return response.json();
           } else {
             // indicates failed self retrieve
-            this._notificationService.addNotification({
+            this.notificationService.addNotification({
               type: 'warning',
               message: 'Error receiving collection'
             });
@@ -60,7 +60,7 @@ export class CollectionsService {
       errMsg = error.message ? error.message : error.toString();
     }
     console.error(errMsg);
-    this._notificationService.addNotification({
+    this.notificationService.addNotification({
       type: 'danger',
       message: errMsg
     });

@@ -17,7 +17,7 @@ import {
   MetadataEditorComponent,
   CollectionsComponent,
   BasicFileUploadComponent } from './workbench';
-import { AuthGuard } from './_guards';
+import { AuthGuard, RegisteredGuard } from './_guards';
 
 const appRoutes: Routes = [
   {
@@ -66,17 +66,17 @@ const appRoutes: Routes = [
   {
     path: 'workbench/add-data',
     component: MetadataEditorComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RegisteredGuard]
   },
   {
     path: 'workbench/upload-file',
     component: BasicFileUploadComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RegisteredGuard]
   },
   {
     path: 'workbench/my-data',
     component: CollectionsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RegisteredGuard]
   },
 
   // otherwise redirect to home

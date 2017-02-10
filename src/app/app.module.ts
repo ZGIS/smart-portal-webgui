@@ -53,7 +53,7 @@ import {
   BasicFileUploadComponent
 } from './workbench';
 import { API_URL_PROVIDERS } from './app.tokens';
-import { AuthGuard } from './_guards';
+import { AuthGuard, RegisteredGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
 
 export function cookieServiceFactory() {
@@ -103,6 +103,7 @@ export function cookieServiceFactory() {
   providers: [
     { provide: CookieService, useFactory: cookieServiceFactory },
     AuthGuard,
+    RegisteredGuard,
     ResultService,
     AccountService,
     ReCaptchaService,
