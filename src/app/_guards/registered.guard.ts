@@ -23,7 +23,7 @@ export class RegisteredGuard implements CanActivate {
       this.router.navigate(['/account']);
       this.notificationService.addNotification({
         type: 'warning',
-        message: 'Please confirm your registration email first to access your documents collection.'
+        message: 'Cannot access your documents collection. Are you logged in? Did you confirm the registration email?'
       });
       return Observable.of(false);
 

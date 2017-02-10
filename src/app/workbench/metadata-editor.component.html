@@ -132,6 +132,39 @@
 
             <tab [heading]="tabs[1].title" [active]="tabs[1].active"  (select)="tabs[1].active = true"
                  (deselect)="tabs[1].active = false">
+              <div class="control-group list-group-item">
+                <div class="control-group list-group-item">
+                  <!--             TODO SR this needs a custom validator!
+                  http://stackoverflow.com/questions/42038099/validation-on-a-list-of-checkboxes-angular-2
+                  https://stackoverflow.com/questions/39277283/angular2-group-of-checkboxes-with-required-attribute#
+                                  <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !smartCategory.valid }">
+                  -->
+                  <label class="control-label" for="smartCategory"
+                         tooltip="Select at least one of the following categories.">SMART Categories (select at least one)*:</label>
+                  <div class="controls" id="smartCategory">
+                    <div class = "checkbox"
+                         *ngFor = "let cat of validValues.smartCategory; let i = index">
+                      <label><input type="checkbox" [checked]="validValues.smartCategory[i].selected" (click)="checkboxClicked(i)"/>
+                        {{cat['description']}} {{cat.selected}}
+                      </label>
+                    </div>
+                  </div>
+                  <!--
+                                    <div *ngIf="f.submitted && !smartCategory.valid"
+                                         class="help-block">Please select at least one category.</div>
+                  -->
+                </div>
+              </div>
+              <div class="control-group list-group-item">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(1, 0)">back <i class="fa fa-chevron-left"></i></button>
+                  <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(1, 2)">next <i class="fa fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </tab>
+
+            <tab [heading]="tabs[2].title" [active]="tabs[2].active"  (select)="tabs[2].active = true"
+                 (deselect)="tabs[2].active = false">
 
                 <div class="control-group list-group-item">
                   <label class="control-label"
@@ -182,15 +215,15 @@
 
               <div class="control-group list-group-item">
               <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(1, 0)">back <i class="fa fa-chevron-left"></i></button>
-                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(1, 2)">next <i class="fa fa-chevron-right"></i></button>
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(2, 1)">back <i class="fa fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(2, 3)">next <i class="fa fa-chevron-right"></i></button>
               </div>
               </div>
             </tab>
 
 
-            <tab [heading]="tabs[2].title" [active]="tabs[2].active"  (select)="tabs[2].active = true"
-                 (deselect)="tabs[2].active = false">
+            <tab [heading]="tabs[3].title" [active]="tabs[3].active"  (select)="tabs[3].active = true"
+                 (deselect)="tabs[3].active = false">
 
 
                 <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted  && !gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date_dateType.valid }">
@@ -282,14 +315,14 @@
 
               <div class="control-group list-group-item">
               <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(2, 1)">back <i class="fa fa-chevron-left"></i></button>
-                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(2, 3)">next <i class="fa fa-chevron-right"></i></button>
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(3, 2)">back <i class="fa fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(3, 4)">next <i class="fa fa-chevron-right"></i></button>
               </div>
               </div>
             </tab>
 
-            <tab [heading]="tabs[3].title" [active]="tabs[3].active" (select)="tabs[3].active = true"
-                 (deselect)="tabs[3].active = false">
+            <tab [heading]="tabs[4].title" [active]="tabs[4].active" (select)="tabs[4].active = true"
+                 (deselect)="tabs[4].active = false">
 
                 <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_Contact_CI_ResponsibleParty_ci_individualName.valid }">
                   <label class="control-label" for="gmd_Contact_CI_ResponsibleParty_ci_individualName"
@@ -395,14 +428,27 @@
                 </div>
               <div class="control-group list-group-item">
               <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(3, 2)">back <i class="fa fa-chevron-left"></i></button>
-                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(3, 4)">next <i class="fa fa-chevron-right"></i></button>
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(4, 3)">back <i class="fa fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(4, 5)">next <i class="fa fa-chevron-right"></i></button>
               </div>
               </div>
             </tab>
 
-            <tab [heading]="tabs[4].title" [active]="tabs[4].active"  (select)="tabs[4].active = true"
-                 (deselect)="tabs[4].active = false">
+            <tab [heading]="tabs[5].title" [active]="tabs[5].active"  (select)="tabs[5].active = true"
+                 (deselect)="tabs[5].active = false">
+              <div class="control-group list-group-item">
+                <app-sac-gwh-upload-basic></app-sac-gwh-upload-basic>
+              </div>
+              <div class="control-group list-group-item">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(5, 4)">back <i class="fa fa-chevron-left"></i></button>
+                  <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(5, 6)">next <i class="fa fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </tab>
+
+            <tab [heading]="tabs[6].title" [active]="tabs[6].active"  (select)="tabs[6].active = true"
+                 (deselect)="tabs[6].active = false">
 
                 <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !gmd_metadataConstraints_MD_LegalConstraints_useLimitation.valid }">
                   <label class="control-label"
@@ -483,43 +529,14 @@
                 </div>
               <div class="control-group list-group-item">
               <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(4, 3)">back <i class="fa fa-chevron-left"></i></button>
-                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(4, 5)">next <i class="fa fa-chevron-right"></i></button>
+                <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(6, 5)">back <i class="fa fa-chevron-left"></i></button>
               </div>
               </div>
             </tab>
 
-            <tab [heading]="tabs[5].title" [active]="tabs[5].active"  (select)="tabs[5].active = true"
-                 (deselect)="tabs[5].active = false">
-              <div class="control-group list-group-item">
-                <div class="control-group list-group-item">
-<!--             TODO SR this needs a custom validator!
-http://stackoverflow.com/questions/42038099/validation-on-a-list-of-checkboxes-angular-2
-https://stackoverflow.com/questions/39277283/angular2-group-of-checkboxes-with-required-attribute#
-                <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !smartCategory.valid }">
--->
-                  <label class="control-label" for="smartCategory"
-                         tooltip="Select at least one of the following categories.">SMART Categories (select at least one)*:</label>
-                  <div class="controls" id="smartCategory">
-                    <div class = "checkbox"
-                         *ngFor = "let cat of validValues.smartCategory; let i = index">
-                      <label><input type="checkbox" [checked]="validValues.smartCategory[i].selected" (click)="checkboxClicked(i)"/>
-                        {{cat['description']}} {{cat.selected}}
-                      </label>
-                    </div>
-                  </div>
-<!--
-                  <div *ngIf="f.submitted && !smartCategory.valid"
-                       class="help-block">Please select at least one category.</div>
--->
-                </div>
-              </div>
-              <div class="control-group list-group-item">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm" (click)="setNextTab(5, 4)">back <i class="fa fa-chevron-left"></i></button>
-                </div>
-              </div>
-            </tab>
+
+
+
           </tabset>
 
           <div class="control-group list-group-item">

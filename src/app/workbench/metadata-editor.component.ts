@@ -37,11 +37,13 @@ export class MetadataEditorComponent implements OnInit {
 
   public tabs: any[] = [
     {title: 'What?', active: true},
+    {title: 'SAC Category', active: false},
     {title: 'Where?', active: false},
     {title: 'When?', active: false},
     {title: 'Who?', active: false},
-    {title: 'Distribution', active: false},
-    {title: 'SMART Category', active: false}
+    {title: 'Upload files?', active: false},
+    {title: 'Distribution', active: false}
+
   ];
 
   metadataKeywordString: String;
