@@ -15,6 +15,8 @@ export interface IOwcDocumentProperties {
   rights: string;
   authors: IOwcAuthor[];
   contributors: IOwcAuthor[];
+  creator: string;
+  publisher: string;
   categories: IOwcCategory[];
   links: IOwcLink[];
 }
@@ -30,15 +32,17 @@ export interface IOwcEntryProperties {
   lang: string;
   title: string;
   subtitle: string;
-  content: any; // content and subtitle, not sure about the current data model
   updated: any;
   generator: string;
   rights: string;
   authors: IOwcAuthor[];
   contributors: IOwcAuthor[];
+  creator: string;
+  publisher: string;
   categories: IOwcCategory[];
   links: IOwcLink[];
   offerings: IOwcOffering[];
+  content: any; // content and subtitle, not sure about the current data model
 }
 
 export interface IOwcAuthor {

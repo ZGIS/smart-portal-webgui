@@ -50,6 +50,7 @@ import {
   MetadataEditorComponent,
   CollectionsService,
   CollectionsComponent,
+  OwcEntryDetailModalComponent,
   BasicFileUploadComponent
 } from './workbench';
 import { API_URL_PROVIDERS } from './app.tokens';
@@ -97,6 +98,7 @@ export function cookieServiceFactory() {
     ResultDetailModalComponent,
     DashboardButtonComponent,
     CollectionsComponent,
+    OwcEntryDetailModalComponent,
     BasicFileUploadComponent,
     CardComponent
   ],
