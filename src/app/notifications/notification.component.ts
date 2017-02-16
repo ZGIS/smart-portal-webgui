@@ -4,6 +4,7 @@ import { NotificationService, SacGwhNotification } from './notification.service'
 @Component({
   selector: 'app-sac-gwh-notification',
   templateUrl: 'notification.component.html',
+  styleUrls: ['notification.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 

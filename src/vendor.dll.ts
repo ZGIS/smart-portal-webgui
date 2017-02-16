@@ -26,6 +26,7 @@ import 'angular2-cookie/core';
 import 'angular2-cookie/services';
 import 'ng2-bootstrap';
 import 'ng2-file-upload';
+import 'ngx-clipboard';
 
 import 'bootstrap/dist/js/bootstrap';
 import 'moment';

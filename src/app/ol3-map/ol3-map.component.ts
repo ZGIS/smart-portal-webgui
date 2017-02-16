@@ -1,14 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { IGeoFeature } from '../search/result';
-import {
-  source,
-  format,
-  layer,
-  style,
-  control,
-  Map,
-  View
-} from 'openlayers';
+import { source, format, layer, style, control, Map, View } from 'openlayers';
+import { isNullOrUndefined } from 'util';
 
 export class Ol3MapExtent {
   bbox: number[];
@@ -17,7 +10,8 @@ export class Ol3MapExtent {
 
 @Component({
   selector: 'app-sac-gwh-ol3-map',
-  template: '<div id="map" class="map"></div>'
+  template: '<div id="map" class="map"></div>',
+  styleUrls: ['ol3-map.component.css']
 })
 
 /**
@@ -25,15 +19,13 @@ export class Ol3MapExtent {
  */
 export class Ol3MapComponent implements OnInit {
 
-  // public members need to be declared before private ones -> TSLINT (member-ordering)
-  vectorSource = new source.Vector({'wrapX': false});
-
-
   @Output() onBboxChange = new EventEmitter<Ol3MapExtent>();
 
   @Input() set mapExtent(bbox: number[]) {
+    this._mapExtent = bbox;
+
     if (this.map) {
-      this.map.getView().fit(bbox, this.map.getSize());
+      this.map.getView().fit(this._mapExtent, this.map.getSize());
     }
   }
 
@@ -42,15 +34,31 @@ export class Ol3MapComponent implements OnInit {
       return;
     }
 
+    this._features = features;
     this.vectorSource.clear();
-    this.vectorSource.addFeatures((new format.GeoJSON()).readFeatures(features));
+    this.vectorSource.addFeatures((new format.GeoJSON()).readFeatures(this._features));
   }
 
-  // private ol: any;
-  private center: any = [174.7633, -36.8485];
+  @Input() set highlightFeature(feature: IGeoFeature) {
+    if (!this._features || this._features.length === 0) {
+      return;
+    }
 
-  // TODO SR make this configuratble in "constructor"
-  // private defaultExtent: any = [-180, -90, 180, 90];
+    this.highlightSource.clear();
+    console.log(feature);
+    if (!isNullOrUndefined(feature)) {
+      this.highlightSource.addFeature((new format.GeoJSON()).readFeature(feature));
+    }
+  }
+
+
+  private vectorSource = new source.Vector({'wrapX': false});
+  private highlightSource = new source.Vector({'wrapX': false});
+  private _mapExtent: number[];
+  private _features: IGeoFeature[];
+
+  // TODO SR make this configurable in constructor
+  private center: any = [174.7633, -36.8485];
   private nzExtent: any = [168, -50, 180, -33];
   private map: any;
 
@@ -66,7 +74,6 @@ export class Ol3MapComponent implements OnInit {
    'Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom,
    2012';
    */
-  // public member functions need to be declared before private ones -> TSLINT (member-ordering)
   ngOnInit(): void {
     let vectorLayer = new layer.Vector({
       source: this.vectorSource,
@@ -78,6 +85,20 @@ export class Ol3MapComponent implements OnInit {
         }),
         fill: new style.Fill({
           color: 'rgba(0, 0, 255, 0.01)'
+        })
+      })
+    });
+
+    let highlightLayer = new layer.Vector({
+      source: this.highlightSource,
+      style: new style.Style({
+        stroke: new style.Stroke({
+          color: 'orange',
+          lineDash: [1],
+          width: 2
+        }),
+        fill: new style.Fill({
+          color: 'rgba(255, 255, 0, 0.5)'
         })
       })
     });
@@ -94,7 +115,8 @@ export class Ol3MapComponent implements OnInit {
         new layer.Tile({
           source: new source.OSM()
         }),
-        vectorLayer
+        vectorLayer,
+        highlightLayer
       ],
       target: 'map',
       view: new View({
@@ -104,10 +126,13 @@ export class Ol3MapComponent implements OnInit {
       })
     });
 
+    this.map.getView().fit(this._mapExtent, this.map.getSize());
     this.map.on('moveend', this.onMoveEnd, this);
   }
 
-  /** get an object with the current map extent */
+  /**
+   * Gets the current map extent and normalizes it to WORLD if out of bounds.
+   */
   private getMapExtent(): Ol3MapExtent {
     if (this.map) {
       let temp = this.map.getView().calculateExtent(this.map.getSize());
@@ -135,9 +160,12 @@ export class Ol3MapComponent implements OnInit {
     }
   }
 
+  /**
+   * Event Handler when map move ends. Fires BboxChange event to listeners
+   */
   private onMoveEnd() {
-    let mapExtent = this.getMapExtent();
-    this.onBboxChange.emit(mapExtent);
+    this._mapExtent = this.getMapExtent().bbox;
+    this.onBboxChange.emit(this.getMapExtent());
   }
 
 }

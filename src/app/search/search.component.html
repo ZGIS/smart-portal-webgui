@@ -7,20 +7,19 @@
         <form name="form" class="form-inline row" (ngSubmit)="getResults()" (keydown)="onKeydownSearchform($event)"
               #f="ngForm" novalidate>
 
-          <div class="form-group col-md-8">
+          <div class="form-group col-md-9">
             <label class="control-label sr-only"
                    for="search.query">
               search for </label>
-            <div style="position:relative;width:100%">
+            <div class="full-width">
               <input type="text"
                      id="search.query"
                      name="search.query"
-                     class="form-control"
+                     class="form-control full-width"
                      [(ngModel)]="search.query"
                      #searchquery="ngModel"
                      placeholder="search query"
-                     tooltip="Query supports Lucene Syntax. For 'all' documents use '*:*'"
-                     style="width:100%"/>
+                     tooltip="Query supports Lucene Syntax. For 'all' documents use '*:*'"/>
             </div>
           </div>
 
@@ -32,8 +31,7 @@
             tooltip="The date range to serch for. Click on the calendar to change">{{ formatDate(search.fromDate) }} - {{
               formatDate(search.toDate) }}</p>
 
-            <div class="btn-group" role="group" aria-label="..." dropdown autoClose="outsideClick"
-                 tooltip="The date range to serch for. Click on the calendar to change">
+            <div class="btn-group" role="group" aria-label="..." dropdown autoClose="outsideClick">
               <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
               <div class="dropdown-menu datepicker-dropdown dropdown-menu-right" dropdownMenu aria-labelledby="split-button">
                 <div style="display:inline-block;" class="collapse">
@@ -49,16 +47,9 @@
                 </div>
               </div>
             </div>
-<!--
-            <div class="btn-group" role="group" aria-label="..." dropdown>
-              <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
-              <div class="dropdown-menu datepicker-dropdown" dropdownMenu aria-labelledby="split-button">
-              </div>
-            </div>
--->
           </div> <!-- /form-group -->
-          <div class="form-group  col-md-1">
-            <button (click)="doSearch()" type="button" class="btn btn-default">search</button>
+          <div class="form-group col-md-1">
+            <button (click)="doSearch()" type="button" class="btn btn-default full-width">search</button>
           </div>
         </form>
       </div>
@@ -67,37 +58,51 @@
 </div> <!-- row -->
 <div class="row">
   <div class="col-md-8">
-    <div class="panel panel-default">
+    <div class="panel panel-default panel-fixed-height">
       <div class="panel-heading">map</div>
-      <div class="panel-body" style="padding:0">
-        <app-sac-gwh-ol3-map [mapExtent]="search.bbox" (onBboxChange)="bboxChanged($event)"
-                             [searchResults]="results"></app-sac-gwh-ol3-map>
+      <div class="panel-body">
+        <div class="panel-body-inner-wrapper">
+          <app-sac-gwh-ol3-map [mapExtent]="search.bbox" (onBboxChange)="bboxChanged($event)"
+                               [searchResults]="results" [highlightFeature]="selectedResult"></app-sac-gwh-ol3-map>
+        </div>
       </div>
     </div>
-    <app-sac-gwh-result-detail [feature]="selectedResult"></app-sac-gwh-result-detail>
+    <!--<app-sac-gwh-result-detail [feature]="selectedResult"></app-sac-gwh-result-detail>-->
   </div>
   <div class="col-md-4">
-    <div class="panel panel-default" *ngIf="results">
-      <div class="panel-heading">Search Results - {{results.features.length}} <img *ngIf="loading"
-                                                                                   src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+    <div class="panel panel-default panel-fixed-height" *ngIf="results">
+      <div class="panel-heading">Search Results - {{results.count}} of {{results.countMatched}}
+        <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="isLoading"></i><span class="sr-only">Loading...</span>
+        <span class="pull-right">
+          <i class="fa fa-eye" [ngClass]="{disabled:(results.count == results.countMatched), clickable:(results.count != results.countMatched)}"
+             tooltip="click to show all results"
+             routerLink="/search" [queryParams]="getQueryParams(-1)"></i><span class="sr-only">show all results</span>
+          <i class="fa fa-clipboard clickable" tooltip="click to copy url to clipboard"
+             ngxClipboard [cbContent]="currentUrl"
+             (cbOnSuccess)="notificationService.addNotification({message: 'URL successfully copied to clipboard', type: 'success'})"></i>
+          <span class="sr-only">copy url to clipboard</span>
+        </span>
       </div>
       <div class="panel-body">
-        <div class="list-group">
-          <a *ngFor="let feature of results.features"
-             class="list-group-item"
-             [class.active]="feature===selectedResult"
-             (click)="searchResultDetailRef.showFeatureModal(feature)">
-            <span class="badge">{{feature.properties.fileIdentifier}}</span> {{feature.properties.title}}
-          </a>
+        <div class="panel-body-inner-wrapper panel-body-inner-wrapper-margins">
+          <div class="list-group">
+            <a *ngFor="let feature of results.features"
+               class="list-group-item"
+               [class.active]="feature===selectedResult"
+               (click)="searchResultDetailRef.showFeatureModal(feature)"
+               (mouseover)="selectedResult = feature"
+               (mouseout)="selectedResult = undefined"
+                >
+               {{feature.properties.title}}
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<app-sac-gwh-result-detail-modal #searchResultDetailRef>
-
-</app-sac-gwh-result-detail-modal>
+<app-sac-gwh-result-detail-modal #searchResultDetailRef></app-sac-gwh-result-detail-modal>
 
 
 

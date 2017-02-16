@@ -9,7 +9,6 @@ import { IGeoFeature } from './result';
 
 export class ResultDetailModalComponent {
   feature: IGeoFeature;
-  // @ViewChild('lgModal') public modal: ModalDirective;
   @ViewChild('resultModalRef') public modal: ModalDirective;
 
   showFeatureModal(geoFeature: IGeoFeature) {

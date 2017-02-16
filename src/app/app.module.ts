@@ -56,6 +56,7 @@ import {
 import { API_URL_PROVIDERS } from './app.tokens';
 import { AuthGuard, RegisteredGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
+import { ClipboardModule } from 'ngx-clipboard';
 
 export function cookieServiceFactory() {
   return new CookieService();
@@ -74,6 +75,7 @@ export function cookieServiceFactory() {
     TabsModule.forRoot(),
     TooltipModule.forRoot(),
     FileUploadModule,
+    ClipboardModule,
     routing],
   declarations: [AppComponent,
     ResultDetailComponent,

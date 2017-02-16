@@ -2,23 +2,21 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { CSWI_API_URL } from '../app.tokens';
-import { IGeoFeatureCollection } from './result';
-import { NotificationService } from '../notifications';
+import { IGeoFeatureCollection, IErrorResult } from './result';
+import { Observable } from 'rxjs';
+import { isNullOrUndefined } from 'util';
 // import {MOCK_RESULTS} from './mock-results';
 
 @Injectable()
 export class ResultService {
 
   /**
-   * TODO we need to inject this, maybe even based on prod/test/dev env like webpack does support
-   *
    * The Service URL inject from app.module as central inject of app constants
    *
    * @type {string}
    */
   constructor(@Inject(CSWI_API_URL) private cswiApiUrl: string,
-              private http: Http,
-              private notificationService: NotificationService) {
+              private http: Http) {
   }
 
   /**
@@ -27,42 +25,41 @@ export class ResultService {
    * @param fromDate
    * @param toDate
    * @param bboxWkt
-   * @returns {Promise<IGeoFeature[]>}
+   * @returns {Observable<IGeoFeatureCollection>}
    */
   getResults(query: string,
              fromDate: string,
              toDate: string,
-             bboxWkt: string): Promise<IGeoFeatureCollection> {
+             bboxWkt: string,
+             maxNumberOfResults?: number): Observable<IGeoFeatureCollection> {
     let params: URLSearchParams = new URLSearchParams();
     params.set('query', query);
     params.set('fromDate', fromDate);
     params.set('toDate', toDate);
     params.set('bbox', bboxWkt);
+    if (!isNullOrUndefined(maxNumberOfResults)) {
+      params.set('maxNumberOfResults', maxNumberOfResults.toString());
+    }
 
     return this.http.get(this.cswiApiUrl, {search: params})
-      .toPromise()
-      /* FIXME not sure if I'm happy with this so far
-       http://stackoverflow.com/questions/22875636/how-do-i-cast-a-json-object-to-a-typescript-class
-       */
-      .then(response => <IGeoFeatureCollection>response.json())
-      .catch(this.handleError);
+    /* FIXME not sure if I'm happy with this so far
+     http://stackoverflow.com/questions/22875636/how-do-i-cast-a-json-object-to-a-typescript-class
+     */
+      .map((response: Response) => <IGeoFeatureCollection>response.json())
+      .catch((errorResponse: Response) => this.handleError(errorResponse));
   }
 
-  private handleError(error: Response | any): Promise<any> {
-    // In a real world app, we might use a remote logging infrastructure
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || 'An error occurred'} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    this.notificationService.addNotification({
-      type: 'warning',
-      message: 'An error occurred: ' + errMsg
-    });
-    return Promise.reject(error.message || error);
+  /**
+   *
+   * @param error
+   * @returns {any}
+   */
+  private handleError(errorResponse: Response) {
+    console.log(errorResponse);
+
+    let errorResult: IErrorResult = <IErrorResult>errorResponse.json();
+    let message: String = `${errorResponse.statusText} while querying ingester: ${errorResult.message}`;
+
+    return Observable.throw(<IErrorResult>{message: message, details: errorResult.details});
   };
 }

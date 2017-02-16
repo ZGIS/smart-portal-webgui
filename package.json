@@ -71,7 +71,8 @@
     "typescript": "~2.1.6",
     "w3-css": "^2.8.8",
     "x3dom": "^1.7.2",
-    "zone.js": "^0.7.6"
+    "zone.js": "^0.7.6",
+    "ngx-clipboard": "^3.0.0"
   },
   "devDependencies": {
     "@angular/compiler-cli": "~2.4.6",

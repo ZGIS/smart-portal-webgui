@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IGeoFeatureCollection, IGeoFeature, ResultService } from '../search';
 import * as moment from 'moment';
+import { NotificationService } from '../notifications/notification.service';
 
 // let moment = require('moment');
 
@@ -23,13 +24,16 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(private resultService: ResultService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
-    this.results = {
+    this.results = <IGeoFeatureCollection>{
       'type': 'FeatureCollection',
       'crs': {'type': 'name', 'properties': {'name': 'urn:ogc:def:crs:OGC:1.3:CRS84'}},
+      'count': 0,
+      'countMatched': 0,
       'features': []
     };
     this.resultsGroups = [];
@@ -47,11 +51,17 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
           query,
           '1970-01-01',
           moment().format('YYYY-MM-DD'),
-          'ENVELOPE(147.7369328125,201.7896671875,-23.1815078125,-50.5154921875)')
-          .then(results => {
-            this.results = results;
-            this.resultsGroups = this.getCataloguesOfResults();
-          });
+          // 'ENVELOPE(147.7369328125,201.7896671875,-23.1815078125,-50.5154921875)'
+          'ENVELOPE(-180,180,-90,90)'
+        )
+          .subscribe(
+            (results: IGeoFeatureCollection) => {
+              this.results = results;
+              this.resultsGroups = this.getCataloguesOfResults();
+            },
+            (error: any) => {
+              this.notificationService.addNotification({type: 'danger', message: error});
+            });
       });
   }
 

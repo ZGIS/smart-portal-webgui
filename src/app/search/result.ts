@@ -5,6 +5,8 @@ export class Result {
 export interface IGeoFeatureCollection {
   type: any;
   crs: any;
+  count: number;
+  countMatched: number;
   features: IGeoFeature[];
 }
 
@@ -22,4 +24,12 @@ export interface IGeoFeatureProperties {
   keywords: string[];
   linkage: string[];
   origin: string;
+}
+
+/**
+ * Generic Error that is returned by Ingester and Backend in case of Errors
+ */
+export interface IErrorResult {
+  message: string;
+  details: string;
 }

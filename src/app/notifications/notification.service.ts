@@ -1,18 +1,25 @@
 import { Injectable } from '@angular/core';
+import { Response } from '@angular/http';
+import { IErrorResult } from '../search/result';
 
 /**
  * Alert type. Provides one of four bootstrap supported contextual classes:
  * `success` -> green, `info` -> blue, `warning` -> orange and `danger` -> red
  */
-export class SacGwhNotification {
+export interface SacGwhNotification {
   type: string;
   message: string;
+  // details: string;
 }
 
 @Injectable()
 export class NotificationService {
 
-  notifications: SacGwhNotification[] = [];
+  notifications: any[] = [];
+
+  addErrorResultNotification(errorResponse: IErrorResult) {
+    this.notifications.push({type: 'danger', message: errorResponse.message, details: errorResponse.details});
+  }
 
   addNotification(notification: SacGwhNotification) {
     this.notifications.push(notification);
