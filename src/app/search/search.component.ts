@@ -44,7 +44,7 @@ export class SearchComponent implements OnInit {
   constructor(private resultService: ResultService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              notificationService: NotificationService) {
+              private notificationService: NotificationService) {
   }
 
   /**
@@ -179,6 +179,10 @@ export class SearchComponent implements OnInit {
    */
   formatDate(date: Date) {
     return moment(date).format(this.DATE_FORMAT);
+  }
+
+  onClipboardSuccess() {
+    this.notificationService.addNotification({message: 'URL successfully copied to clipboard', type: 'success'});
   }
 }
 

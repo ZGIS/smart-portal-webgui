@@ -79,7 +79,7 @@
              routerLink="/search" [queryParams]="getQueryParams(-1)"></i><span class="sr-only">show all results</span>
           <i class="fa fa-clipboard clickable" tooltip="click to copy url to clipboard"
              ngxClipboard [cbContent]="currentUrl"
-             (cbOnSuccess)="notificationService.addNotification({message: 'URL successfully copied to clipboard', type: 'success'})"></i>
+             (cbOnSuccess)="onClipboardSuccess()"></i>
           <span class="sr-only">copy url to clipboard</span>
         </span>
       </div>
