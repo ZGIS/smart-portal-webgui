@@ -85,7 +85,7 @@ export class MetadataEditorComponent implements OnInit {
       'extent': <GeoExtent> {
         'description': 'New Zealand',
         'referenceSystem': 'urn:ogc:def:crs:EPSG::4328',
-        'mapExtentCoordinates': [162, 180, -50, -25],
+        'mapExtentCoordinates': [162, -50, 180, -25],
         'temporalExtent': ''
       },
       'citation': <GeoCitation> {

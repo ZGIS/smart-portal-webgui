@@ -1,3 +1,5 @@
+import { Extent } from 'openlayers';
+
 export class GeoMetadata {
   fileIdentifier: string;
   title: string;              // gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title
@@ -21,7 +23,7 @@ export class GeoMetadata {
 export class GeoExtent {
   description: string;      // gmd_identificationInfo_MD_DataIdentification_extent_Description
   referenceSystem: string;  // gmd_referenceSystemInfo
-  mapExtentCoordinates: number[]; // bbox coordinates
+  mapExtentCoordinates: Extent; // bbox coordinates
 
   temporalExtent: string;   // gmd_identificationInfo_MD_DataIdentification_extent_temporalElement
 }
@@ -46,7 +48,7 @@ export class GeoDistribution {
   formatName: string;       // gmd_distributionInfo_MD_Distribution_formatName
   formatVersion: string;    // gmd_distributionInfo_MD_Distribution_formatVersion
   onlineResourceLinkage: string;
-        // gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage
+  // gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage
 }
 
 export class InsertResponse {

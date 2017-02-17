@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IGeoFeature, IGeoFeatureCollection, IErrorResult } from './result';
 import { ResultService } from './result.service';
 import * as moment from 'moment';
@@ -6,6 +6,7 @@ import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { NotificationService } from '../notifications/notification.service';
+import { Extent } from 'openlayers';
 
 @Component({
   selector: 'app-sac-gwh-search',
@@ -104,11 +105,11 @@ export class SearchComponent implements OnInit {
 
   getQueryParams(maxNumberOfResults?: number): any {
     return {
-        query: this.search.query,
-        fromDate: this.formatDate(this.search.fromDate),
-        toDate: this.formatDate(this.search.toDate),
-        bbox: JSON.stringify(this.search.bbox),
-        maxNumberOfResults: maxNumberOfResults
+      query: this.search.query,
+      fromDate: this.formatDate(this.search.fromDate),
+      toDate: this.formatDate(this.search.toDate),
+      bbox: JSON.stringify(this.search.bbox),
+      maxNumberOfResults: maxNumberOfResults
     };
   }
 
@@ -140,8 +141,10 @@ export class SearchComponent implements OnInit {
               }
             });
             let url = '#' + urlTree.toString();
-            this.notificationService.addNotification({type: 'info',
-              message: `Ommited some search results. <a href="${url}"><i class="fa fa-eye"></i>&nbsp;show all</a>`});
+            this.notificationService.addNotification({
+              type: 'info',
+              message: `Ommited some search results. <a href="${url}"><i class="fa fa-eye"></i>&nbsp;show all</a>`
+            });
           }
           this.isLoading = false;
         },
@@ -193,7 +196,7 @@ export class Search {
   query: string;
   fromDate: Date;
   toDate: Date;
-  bbox: number[];
+  bbox: Extent;
   bboxWkt: string;
   maxNumberOfResults: number;
 }

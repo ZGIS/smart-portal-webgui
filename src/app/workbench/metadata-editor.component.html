@@ -201,13 +201,12 @@
                 </div>
 
                 <div class="control-group list-group-item" >
-                  <label class="control-label" for="mapExtentCoordinates"
+                  <label class="control-label" for="mapExtentCoordinatesDiv"
                          tooltip="Zoom the map to include into the area of interest.">Geographical
                     Extent:</label>
                   <div class="controls">
-                    <div id="mapExtentCoordinates" style="border:1px solid red; width:640px; height:360px">
-                      <app-sac-gwh-ol3-map (onBboxChange)="bboxChanged($event)"
-                                           [mapExtent]="metadata.extent.mapExtentCoordinates"></app-sac-gwh-ol3-map>
+                    <div id="mapExtentCoordinatesDiv" style="border:1px solid red; width:640px; height:360px">
+                      <app-sac-gwh-ol3-map [mapExtent]="metadata.extent.mapExtentCoordinates" (onBboxChange)="bboxChanged($event)"></app-sac-gwh-ol3-map>
                     </div>
 
                   </div>

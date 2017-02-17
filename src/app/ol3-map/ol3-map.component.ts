@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { IGeoFeature } from '../search/result';
-import { source, format, layer, style, control, Map, View } from 'openlayers';
+import { source, format, layer, style, extent, control, Map, View, Extent } from 'openlayers';
 import { isNullOrUndefined } from 'util';
 
 export class Ol3MapExtent {
-  bbox: number[];
+  bbox: Extent;
   bboxWkt: string;
 }
 
@@ -21,8 +21,12 @@ export class Ol3MapComponent implements OnInit {
 
   @Output() onBboxChange = new EventEmitter<Ol3MapExtent>();
 
-  @Input() set mapExtent(bbox: number[]) {
-    this._mapExtent = bbox;
+  @Input() set mapExtent(bbox: Extent) {
+    if (extent.isEmpty(bbox)) {
+      this._mapExtent = this.nzExtent;
+    } else {
+      this._mapExtent = bbox;
+    }
 
     if (this.map) {
       this.map.getView().fit(this._mapExtent, this.map.getSize());
