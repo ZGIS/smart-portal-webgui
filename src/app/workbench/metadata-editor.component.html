@@ -145,7 +145,7 @@
                     <div class = "checkbox"
                          *ngFor = "let cat of validValues.smartCategory; let i = index">
                       <label><input type="checkbox" [checked]="validValues.smartCategory[i].selected" (click)="checkboxClicked(i)"/>
-                        {{cat['description']}} {{cat.selected}}
+                        {{cat['description']}}
                       </label>
                     </div>
                   </div>
