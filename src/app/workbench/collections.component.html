@@ -7,7 +7,7 @@
                                  aria-hidden="true"></i></a></div>
       <div class="panel-body">
         <accordion>
-          <accordion-group #defaultGroup>
+          <accordion-group #defaultGroup [isOpen]="true">
             <div accordion-heading>
               {{ myCollection.properties.title }}
               <i class="pull-right float-xs-right glyphicon"
@@ -76,7 +76,7 @@
 
             </accordion-group>
 
-            <accordion-group #featuresGroup>
+            <accordion-group #featuresGroup  [isOpen]="true">
               <div accordion-heading>
                 <span class="badge">{{ myCollection.features.length }}</span>
                 Entries
