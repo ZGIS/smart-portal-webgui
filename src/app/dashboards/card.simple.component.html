@@ -1,9 +1,23 @@
 <div class="card">
-  <div class="header" (click)="headerClicked()">
+  <div class="header">
     <!--<img src="http://us.123rf.com/450wm/violetkaipa/violetkaipa1409/violetkaipa140900052/31266340-man-drawing-a-graph-on-a-glass-wall.jpg" />-->
     <!--<img src="https://www.rabobank.com/en/images/A%20Kerndocumenten.jpg" />-->
-    <img src="{{cardImage}}" />
+    <img src="{{cardImage}}"/>
     <h4>{{ title }}</h4>
+    <div class="share-icons" tooltip="share on facebook, twitter or add to your collection">
+      <div class="fa fa-stack" >
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+      </div>
+      <div class="fa fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </div>
+      <div class="fa fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+      </div>
+    </div>
   </div>
   <div class="card-content">
     <div>

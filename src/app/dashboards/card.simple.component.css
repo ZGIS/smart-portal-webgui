@@ -17,8 +17,8 @@
   border-top-left-radius:2px;
   border-top-right-radius:2px;
   display:block;
-  cursor: pointer;
-  overflow: hidden;
+  /*cursor: pointer;*/
+  /*overflow: hidden;*/
   position:relative;
 }
 
@@ -40,9 +40,36 @@
 
   margin:0px;
   padding:7px;
+  padding-bottom: 20px;
+  padding-right:15px;
 
   background: rgba(255,255,255,0.5);
 }
+
+.card > .header > .share-icons {
+  position:absolute;
+  right:15px;
+  bottom:-16px;
+  font-weight: bold;
+  font-size: 1.2em;
+
+  color: dimgrey;
+  z-index:100;
+}
+
+.card > .header > .share-icons > .fa-stack {
+  margin:0 -3px;
+}
+
+.card > .header > .share-icons .fa:hover {
+  text-shadow: black 1px 1px;
+  cursor: pointer;
+}
+
+.card > .header > .share-icons > .fa:hover > .fa-circle {
+  color:lightskyblue;
+}
+
 
 .card-content {
   position:relative;
