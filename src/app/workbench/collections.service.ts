@@ -63,9 +63,9 @@ export class CollectionsService {
 
     return this.http.get(defaultCollectionFilesUri, options)
       .map((response: Response) => {
-        console.log("Files in DefaultCollection loaded");
+        console.log('Files in DefaultCollection loaded');
         console.log(response.json());
-        let filtered = response.json().filter((v,i,o) => v.properties.title.match(filter));
+        let filtered = response.json().filter((v, i, o) => v.properties.title.match(filter));
         return filtered;
       })
       .catch(this.handleHttpFailure);

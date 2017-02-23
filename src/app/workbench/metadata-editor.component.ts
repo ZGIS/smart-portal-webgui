@@ -38,7 +38,6 @@ export interface ValidValues {
 
 @Injectable()
 export class MetadataEditorComponent implements OnInit {
-  private DATE_FORMAT = 'YYYY-MM-DD';
 
   public tabs: any[] = [
     {title: 'What?', active: true},
@@ -75,6 +74,8 @@ export class MetadataEditorComponent implements OnInit {
   typeaheadLoading: boolean;
   typeaheadNoResults: boolean;
 
+  private DATE_FORMAT = 'YYYY-MM-DD';
+
   constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
               private http: Http,
               private cookieService: CookieService,
@@ -88,10 +89,9 @@ export class MetadataEditorComponent implements OnInit {
       })
       .mergeMap((token: string) => {
         let result: Observable<Array<any>>;
-        if (this.metadata.distribution.formatVersion === "file formats") {
+        if (this.metadata.distribution.formatVersion === 'file formats') {
           result = this.collectionsService.getUploadedFilesFromDefaultCollection(token);
-        }
-        else {
+        } else {
         // TODO SR in case we decide to store service URLs in collection, load other typeahead suggestions
           result = Observable.of([]);
         }
@@ -232,7 +232,7 @@ export class MetadataEditorComponent implements OnInit {
             selected: i === foobar.standardValue
           });
         }
-        return this.validValues
+        return this.validValues;
       })
       .catch((errorResponse: Response) => this.handleError(errorResponse))
       .subscribe(
@@ -253,10 +253,9 @@ export class MetadataEditorComponent implements OnInit {
       let errorResult: IErrorResult = <IErrorResult>errorResponse.json();
       let message: String = `${errorResponse.statusText} while querying backend: ${errorResult.message}`;
       return Observable.throw(<IErrorResult>{message: message, details: errorResult.details});
-    }
-    else {
-      let message: String = `${errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`
-      return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()})
+    } else {
+      let message: String = `${errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`;
+      return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()});
     }
   }
 

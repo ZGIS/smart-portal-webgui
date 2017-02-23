@@ -62,10 +62,9 @@ export class ResultService {
       let errorResult: IErrorResult = <IErrorResult>errorResponse.json();
       let message: String = `${errorResponse.statusText} while querying ingester: ${errorResult.message}`;
       return Observable.throw(<IErrorResult>{message: message, details: errorResult.details});
-    }
-    else {
-      let message: String = `${errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`
-      return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()})
+    } else {
+      let message: String = `${errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`;
+      return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()});
     }
   }
 
