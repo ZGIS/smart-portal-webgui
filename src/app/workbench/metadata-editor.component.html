@@ -514,15 +514,25 @@
                 <div class="control-group list-group-item">
                   <label class="control-label"
                          for="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
-
-                         tooltip="A web link (URL) to access the dataset or web service, if applicable.">Distribution
-                    Link:</label>
+                         tooltip="A web link (URL) to access the dataset or web service, if applicable.">
+                    Distribution Link:</label>
                   <div class="controls">
+                    <template #onlineResourceLinkageTemplate let-model="item">
+                      <h5>{{model.properties.title | json}}</h5>
+                    </template>
+
                     <input type="text"
                            id="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
                            name="gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage"
-                           placeholder="http://"
+                           placeholder="http:// (when distribution is 'file formats' type filename from your collection)"
                            [(ngModel)]="metadata.distribution.onlineResourceLinkage"
+                           [typeahead]="onlineResourceLinkageTypeahead"
+                           (typeaheadLoading)="changeTypeaheadLoading($event)"
+                           (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+                           (typeaheadOnSelect)="typeaheadOnSelect($event)"
+                           typeaheadOptionsLimit="7"
+                           typeaheadOptionField="operation.href"
+                           [typeaheadItemTemplate]="onlineResourceLinkageTemplate"
                            #gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage="ngModel" class="form-control">
                   </div>
                 </div>
@@ -532,10 +542,6 @@
               </div>
               </div>
             </tab>
-
-
-
-
           </tabset>
 
           <div class="control-group list-group-item">

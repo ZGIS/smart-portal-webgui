@@ -60,7 +60,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
               this.resultsGroups = this.getCataloguesOfResults();
             },
             (error: any) => {
-              this.notificationService.addNotification({type: 'danger', message: error});
+              this.notificationService.addErrorResultNotification(error);
             });
       });
   }

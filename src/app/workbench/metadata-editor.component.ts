@@ -1,12 +1,15 @@
 import { Component, Injectable, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PORTAL_API_URL } from '../app.tokens';
-import { GeoMetadata, GeoExtent, GeoCitation,
-  GeoContact, GeoDistribution, InsertResponse } from './metadata';
+import { GeoMetadata, GeoExtent, GeoCitation, GeoContact, GeoDistribution, InsertResponse } from './metadata';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { NotificationService } from '../notifications/notification.service';
 import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { IErrorResult } from '../search/result';
+import { Observable } from 'rxjs';
+import { CollectionsService } from './collections.service';
+import { TypeaheadMatch } from 'ng2-bootstrap';
 
 export interface SelectEntry {
   value: string;
@@ -64,12 +67,32 @@ export class MetadataEditorComponent implements OnInit {
   loading = false;
   error = '';
 
-  constructor(
-    @Inject(PORTAL_API_URL) private portalApiUrl: string,
-    private http: Http,
-    private cookieService: CookieService,
-    private notificationService: NotificationService,
-    private router: Router) {
+  onlineResourceLinkageTypeahead: Observable<any>;
+  typeaheadLoading: boolean;
+  typeaheadNoResults: boolean;
+
+  constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
+              private http: Http,
+              private cookieService: CookieService,
+              private notificationService: NotificationService,
+              private collectionsService: CollectionsService,
+              private router: Router) {
+
+    this.onlineResourceLinkageTypeahead = Observable
+      .create((observer: any) => {
+        observer.next(this.metadata.distribution.onlineResourceLinkage);
+      })
+      .mergeMap((token: string) => {
+        let result: Observable<Array<any>>;
+        if (this.metadata.distribution.formatVersion === "file formats") {
+          result = this.collectionsService.getUploadedFilesFromDefaultCollection(token);
+        }
+        else {
+        // TODO SR in case we decide to store service URLs in collection, load other typeahead suggestions
+          result = Observable.of([]);
+        }
+        return result;
+      });
   };
 
   ngOnInit() {
@@ -105,7 +128,7 @@ export class MetadataEditorComponent implements OnInit {
       distribution: <GeoDistribution> {
         useLimitation: 'Check with source agency',
         formatName: '',
-        formatVersion: '',
+        formatVersion: 'file formats',
         onlineResourceLinkage: ''
       }
     };
@@ -138,8 +161,12 @@ export class MetadataEditorComponent implements OnInit {
     // FIXME SR either find a smooth solution to hook into the data-binding to do that, or use different input!
     this.metadata.keywords = this.metadataKeywordString.split(',');
     this.metadata.smartCategory = this.validValues.smartCategory
-      .filter(function(value, index, array) { return (value.selected === true); })
-      .map(function(value, index, array) { return value.value; });
+      .filter(function (value, index, array) {
+        return (value.selected === true);
+      })
+      .map(function (value, index, array) {
+        return value.value;
+      });
     this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata}, options)
       .toPromise()
       .then(response => {
@@ -163,6 +190,67 @@ export class MetadataEditorComponent implements OnInit {
     this.validValues.smartCategory[index].selected = !this.validValues.smartCategory[index].selected;
   }
 
+  public changeTypeaheadLoading(e: boolean): void {
+    this.typeaheadLoading = e;
+  }
+
+  public changeTypeaheadNoResults(e: boolean): void {
+    this.typeaheadNoResults = e;
+  }
+
+  public typeaheadOnSelect(e: TypeaheadMatch): void {
+    console.log('Selected value: ', e.value);
+    this.metadata.distribution.formatName = e.item.operation.type;
+    console.log(e);
+  }
+
+  private loadValidValues(topic: string) {
+    this.http.get(this.portalApiUrl + '/csw/get-valid-values-for/' + topic)
+      .map((response: Response) => {
+        console.log(`response for ${topic}`);
+        console.log(response.json());
+        let foobar = response.json();
+        if (!foobar.descriptions || foobar.descriptions.length === 0) {
+          foobar.descriptions = foobar.values;
+        }
+
+        for (let i = 0; i < foobar.values.length; i++) {
+          // TODO SR this should push in some internal structure, return that and then subscribe should assign it!
+          this.validValues[topic].push({
+            value: foobar.values[i],
+            description: foobar.descriptions[i],
+            selected: i === foobar.standardValue
+          });
+        }
+        return this.validValues
+      })
+      .catch((errorResponse: Response) => this.handleError(errorResponse))
+      .subscribe(
+        (validValues => this.validValues = validValues),
+        (error => this.notificationService.addErrorResultNotification(error))
+      );
+  }
+
+  /**
+   *
+   * @param error
+   * @returns {any}
+   */
+  private handleError(errorResponse: Response) {
+    console.log(errorResponse);
+
+    if (errorResponse.headers.get('content-type').startsWith('text/json')) {
+      let errorResult: IErrorResult = <IErrorResult>errorResponse.json();
+      let message: String = `${errorResponse.statusText} while querying backend: ${errorResult.message}`;
+      return Observable.throw(<IErrorResult>{message: message, details: errorResult.details});
+    }
+    else {
+      let message: String = `${errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`
+      return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()})
+    }
+  }
+
+/*
   private handleError(error: Response | any): Promise<any> {
     // In a real world app, we might use a remote logging infrastructure
     this.loading = false;
@@ -181,26 +269,6 @@ export class MetadataEditorComponent implements OnInit {
     });
     return Promise.reject(error.message || error);
   };
+*/
 
-  private loadValidValues(topic: string) {
-    this.http.get(this.portalApiUrl + '/csw/get-valid-values-for/' + topic)
-      .toPromise()
-      .then(response => {
-        console.log(`response for ${topic}`);
-        console.log(response.json());
-        let foobar = response.json();
-        if (!foobar.descriptions || foobar.descriptions.length === 0) {
-          foobar.descriptions = foobar.values;
-        }
-        for (let i = 0; i < foobar.values.length; i++) {
-          this.validValues[topic].push({
-              value: foobar.values[i],
-              description: foobar.descriptions[i],
-              selected: i === foobar.standardValue
-            });
-        }
-      })
-      // TODO SR handle errors properly!
-      .catch(this.handleError);
-  }
 }

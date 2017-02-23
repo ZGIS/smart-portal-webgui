@@ -30,6 +30,7 @@ export class CollectionsService {
     return this.http.get(defaultCollectionsUri, options)
       .map(
         (response: Response) => {
+          // TODO SR the status at that point should always be 200!
           if (response.status === 200) {
             let userCollectionJson = response.json();
             if (<IOwcDocument>userCollectionJson) {
@@ -49,6 +50,33 @@ export class CollectionsService {
       .catch(this.handleHttpFailure);
   };
 
+  /**
+   * get all uploaded files in user's default collection
+   * @returns {Observable<R>}
+   */
+  getUploadedFilesFromDefaultCollection(filter?: String): Observable<Array<any>> {
+    let defaultCollectionFilesUri = this.portalApiUrl + '/collections/default/files';
+    let token = this.accountService.token;
+    console.log('token: ' + token);
+    let headers = new Headers({'X-XSRF-TOKEN': token});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+
+    return this.http.get(defaultCollectionFilesUri, options)
+      .map((response: Response) => {
+        console.log("Files in DefaultCollection loaded");
+        console.log(response.json());
+        let filtered = response.json().filter((v,i,o) => v.properties.title.match(filter));
+        return filtered;
+      })
+      .catch(this.handleHttpFailure);
+  }
+
+  /**
+   * In case call failed, handle error
+   * @param error
+   * @returns {any}
+   */
+  // TODO SR complete makeover to this.notificationService.addErrorResultNotification()
   private handleHttpFailure(error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;

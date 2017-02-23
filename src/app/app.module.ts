@@ -11,6 +11,7 @@ import {
   AlertModule,
   TabsModule,
   TooltipModule,
+  TypeaheadModule,
   Ng2BootstrapModule
 } from 'ng2-bootstrap';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -74,6 +75,7 @@ export function cookieServiceFactory() {
     AlertModule.forRoot(),
     TabsModule.forRoot(),
     TooltipModule.forRoot(),
+    TypeaheadModule.forRoot(),
     FileUploadModule,
     ClipboardModule,
     routing],

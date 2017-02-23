@@ -58,9 +58,15 @@ export class ResultService {
   private handleError(errorResponse: Response) {
     console.log(errorResponse);
 
-    let errorResult: IErrorResult = <IErrorResult>errorResponse.json();
-    let message: String = `${errorResponse.statusText} while querying ingester: ${errorResult.message}`;
+    if (errorResponse.headers.get('content-type').startsWith('text/json')) {
+      let errorResult: IErrorResult = <IErrorResult>errorResponse.json();
+      let message: String = `${errorResponse.statusText} while querying ingester: ${errorResult.message}`;
+      return Observable.throw(<IErrorResult>{message: message, details: errorResult.details});
+    }
+    else {
+      let message: String = `${errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`
+      return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()})
+    }
+  }
 
-    return Observable.throw(<IErrorResult>{message: message, details: errorResult.details});
-  };
 }
