@@ -10,6 +10,7 @@ import { IErrorResult } from '../search/result';
 import { Observable } from 'rxjs';
 import { CollectionsService } from './collections.service';
 import { TypeaheadMatch } from 'ng2-bootstrap';
+import * as moment from 'moment';
 
 export interface SelectEntry {
   value: string;
@@ -37,6 +38,7 @@ export interface ValidValues {
 
 @Injectable()
 export class MetadataEditorComponent implements OnInit {
+  private DATE_FORMAT = 'YYYY-MM-DD';
 
   public tabs: any[] = [
     {title: 'What?', active: true},
@@ -52,6 +54,8 @@ export class MetadataEditorComponent implements OnInit {
   metadataKeywordString: String;
 
   metadata: GeoMetadata;
+  _distributionCiDate: Date = new Date();
+
   validValues: ValidValues = {
     topicCategory: [],
     hierarchyLevelName: [],
@@ -112,7 +116,7 @@ export class MetadataEditorComponent implements OnInit {
         'temporalExtent': ''
       },
       'citation': <GeoCitation> {
-        'ciDate': '2016-01-01',
+        'ciDate': moment(this._distributionCiDate).format(this.DATE_FORMAT),
         'ciDateType': 'publication'
       },
 
@@ -202,6 +206,12 @@ export class MetadataEditorComponent implements OnInit {
     console.log('Selected value: ', e.value);
     this.metadata.distribution.formatName = e.item.operation.type;
     console.log(e);
+  }
+
+  onCitationDateSelectionDone(e) {
+    console.log(e);
+    this.metadata.citation.ciDate = moment(e).format(this.DATE_FORMAT);
+    console.log(this.metadata.citation.ciDate);
   }
 
   private loadValidValues(topic: string) {

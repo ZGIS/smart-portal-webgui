@@ -260,7 +260,8 @@
                       <div style="display:inline-block;" class="collapse">
                         <datepicker id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
                                     name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
-                                    [(ngModel)]="metadata.citation.ciDate"
+                                    [(ngModel)]="_distributionCiDate"
+                                    (selectionDone)="onCitationDateSelectionDone($event)"
                                     #gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date="ngModel"
                                     [showWeeks]="true"></datepicker>
                       </div>
