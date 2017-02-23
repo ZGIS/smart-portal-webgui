@@ -208,7 +208,7 @@ export class MetadataEditorComponent implements OnInit {
     console.log(e);
   }
 
-  onCitationDateSelectionDone(e) {
+  onCitationDateSelectionDone(e: any) {
     console.log(e);
     this.metadata.citation.ciDate = moment(e).format(this.DATE_FORMAT);
     console.log(this.metadata.citation.ciDate);
