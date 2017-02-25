@@ -58,6 +58,7 @@ import { API_URL_PROVIDERS } from './app.tokens';
 import { AuthGuard, RegisteredGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
+import { RatingModule } from 'ng2-bootstrap/rating';
 
 export function cookieServiceFactory() {
   return new CookieService();
@@ -76,6 +77,7 @@ export function cookieServiceFactory() {
     TabsModule.forRoot(),
     TooltipModule.forRoot(),
     TypeaheadModule.forRoot(),
+    RatingModule.forRoot(),
     FileUploadModule,
     ClipboardModule,
     routing],

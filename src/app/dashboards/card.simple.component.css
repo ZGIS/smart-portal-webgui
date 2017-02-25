@@ -70,6 +70,17 @@
   color:lightskyblue;
 }
 
+.card > .header > .rating {
+  position:absolute;
+  left: 7px;
+  bottom:-2px;
+  font-weight: bold;
+  font-size: 1.2em;
+
+  color: black;
+  z-index:100;
+}
+
 
 .card-content {
   position:relative;
