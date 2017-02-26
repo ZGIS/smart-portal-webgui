@@ -4,8 +4,8 @@
     <!--<img src="https://www.rabobank.com/en/images/A%20Kerndocumenten.jpg" />-->
     <img src="{{cardImage}}"/>
     <h4>{{ title }}</h4>
-    <div class="share-icons" tooltip="share on facebook, twitter or add to your collection">
-      <div class="fa fa-stack" >
+    <div class="share-icons">
+      <div class="fa fa-stack">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
       </div>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="rating">
-      <rating [(ngModel)]="2" [max]="5" [readonly]="false"></rating>
+      <rating [(ngModel)]="tempRating" [max]="5" [readonly]="false"></rating>
     </div>
   </div>
   <div class="card-content">

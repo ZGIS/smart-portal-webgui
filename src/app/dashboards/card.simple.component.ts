@@ -16,6 +16,8 @@ export class CardComponent {
   @Output() headerClick = new EventEmitter();
   @Output() readMoreClick = new EventEmitter();
 
+  tempRating: number = 0;
+
   headerClicked() {
     this.headerClick.emit();
   }
