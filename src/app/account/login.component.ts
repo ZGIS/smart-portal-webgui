@@ -91,15 +91,15 @@ export class LoginComponent {
           this.loading = false;
           this.error = <any>error;
           this.notificationService.addNotification({
-            type: 'danger',
-            message: 'Uncaught gConnect Login Error.'
+            type: 'warning',
+            message: 'Google Login failed.'
           });
         });
     } else {
       console.log('error gconnect signin');
       this.notificationService.addNotification({
         type: 'danger',
-        message: 'Uncaught gConnect Login Error. No authCode provided.'
+        message: 'Login Error. No AuthCode provided.'
       });
     }
   };

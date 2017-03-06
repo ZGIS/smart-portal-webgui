@@ -458,7 +458,8 @@ export class AccountService {
   gconnectHandle(authRequester: string, authCode: string) {
     if (authRequester === 'REGISTER') {
       console.log(authRequester);
-      return this.gconnectHandleRegistration(authCode);
+      // return this.gconnectHandleRegistration(authCode);
+      return this.gconnectHandleLogin(authCode);
     } else if (authRequester === 'LOGIN') {
       console.log(authRequester);
       return this.gconnectHandleLogin(authCode);

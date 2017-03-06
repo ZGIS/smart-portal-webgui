@@ -133,20 +133,15 @@ export class RegisterComponent {
       this.accountService.gconnectHandle('REGISTER', authCode).subscribe(
         result => {
           if (result === true) {
-            // register successful
-            this.notificationService.addNotification({
-              type: 'success',
-              message: 'Thank you. Please check your emails and activate your account by' +
-              ' clicking on th provided link.'
-            });
+            // login successful
             this.loading = false;
-            this.router.navigateByUrl('/login');
+            this.router.navigateByUrl('/dashboard');
           } else {
-            // registration failed
-            this.error = 'Google Registration failed.';
+            // login failed
+            this.error = 'Google Login failed.';
             this.notificationService.addNotification({
               type: 'warning',
-              message: 'Registration failed, could not use Google account.'
+              message: 'Google Login failed.'
             });
             this.loading = false;
           }
@@ -155,15 +150,15 @@ export class RegisterComponent {
           this.loading = false;
           this.error = <any>error;
           this.notificationService.addNotification({
-            type: 'danger',
-            message: 'Uncaught gConnect Registration Error.'
+            type: 'warning',
+            message: 'Google Login/Registration failed.'
           });
         });
     } else {
-      console.log('error gconnect signin for registration');
+      console.log('error gconnect signin');
       this.notificationService.addNotification({
         type: 'danger',
-        message: 'Uncaught gConnect Registration Error. No authCode provided.'
+        message: 'Login/Registration Error. No AuthCode provided.'
       });
     }
   };
