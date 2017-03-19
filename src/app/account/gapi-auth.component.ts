@@ -20,29 +20,17 @@ import { GApiAuthService } from './gapi-auth.service';
   '</div>'
 })
 
-/**
- *
- */
 export class GApiAuthComponent implements AfterViewInit {
-
   @ViewChild('oauth2') targetRef: ElementRef;
   public auth2: any;
 
   @Output()
   signinResponse = new EventEmitter<string>();
 
-  /**
-   *
-   * @param _zone
-   * @param _gapiAuthService
-   */
   constructor(private _zone: NgZone,
               private _gapiAuthService: GApiAuthService) {
   }
 
-  /**
-   *
-   */
   ngAfterViewInit() {
     this._gapiAuthService.getReady().subscribe(
       (ready) => {
@@ -53,9 +41,6 @@ export class GApiAuthComponent implements AfterViewInit {
       });
   }
 
-  /**
-   *
-   */
   public googleInit() {
     let that = this;
     gapi.load('auth2', function () {
@@ -68,10 +53,6 @@ export class GApiAuthComponent implements AfterViewInit {
     });
   }
 
-  /**
-   *
-   * @param element
-   */
   public attachSignin(element: any) {
     let that = this;
 
@@ -94,10 +75,6 @@ export class GApiAuthComponent implements AfterViewInit {
       });
   }
 
-  /**
-   *
-   * @param element
-   */
   public attachSigninGrantOffline(element: any) {
     let that = this;
     element.addEventListener('click', function () {
@@ -114,10 +91,6 @@ export class GApiAuthComponent implements AfterViewInit {
     });
   }
 
-  /**
-   *
-   * @param element
-   */
   public sighInClick(element: any) {
     let that = this;
     that.auth2.grantOfflineAccess({'redirect_uri': 'postmessage'})

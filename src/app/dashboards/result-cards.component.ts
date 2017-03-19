@@ -16,6 +16,9 @@ import { NotificationService } from '../notifications/notification.service';
   styleUrls: ['result-cards.component.css'],
 })
 
+/**
+ * CardComponent to show search results in Dashboard
+ */
 export class ResultCardsComponent implements OnInit, OnDestroy {
 
   results: IGeoFeatureCollection;
@@ -23,11 +26,20 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
+  /**
+   * Constructor
+   * @param resultService       - injected ResultService
+   * @param activatedRoute      - injected ActivatedRoute
+   * @param notificationService - injected NotificationService
+   */
   constructor(private resultService: ResultService,
               private activatedRoute: ActivatedRoute,
               private notificationService: NotificationService) {
   }
 
+  /**
+   * OnInit - will load search results according to current query/category
+   */
   ngOnInit(): void {
     this.results = <IGeoFeatureCollection>{
       'type': 'FeatureCollection',
@@ -53,19 +65,23 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
           moment().format('YYYY-MM-DD'),
           // 'ENVELOPE(147.7369328125,201.7896671875,-23.1815078125,-50.5154921875)'
           'ENVELOPE(-180,180,-90,90)'
-        )
-          .subscribe(
-            (results: IGeoFeatureCollection) => {
-              this.results = results;
-              this.resultsGroups = this.getCataloguesOfResults();
-            },
-            (error: any) => {
-              this.notificationService.addErrorResultNotification(error);
-            });
+        ).subscribe(
+          (results: IGeoFeatureCollection) => {
+            this.results = results;
+            this.resultsGroups = this.getCataloguesOfResults();
+          },
+          (error: any) => {
+            this.notificationService.addErrorResultNotification(error);
+          }
+        );
       });
   }
 
+  /**
+   * OnDestroy
+   */
   ngOnDestroy(): void {
+    // TODO SR this should not be needed anymore
     // prevent memory leak by unsubscribing
     this.subscription.unsubscribe();
   }

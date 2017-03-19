@@ -10,19 +10,30 @@ import { Subscription } from 'rxjs';
   templateUrl: 'account-profile-modal.component.html'
 })
 
+/**
+ * Component (modal) to change User's name etc.
+ */
 export class AccountProfileModalComponent implements OnInit, OnDestroy {
   @ViewChild('profileUpdateModalRef') public modal: ModalDirective;
+
   currentProfile: UserProfile = this.accountService.guestProfile;
   loading = false;
   error = '';
 
   private subscription: Subscription;
 
+  /**
+   * Constructor
+   * @param accountService - injected AccountService
+   * @param notificationService - injected NotificationService
+   */
   constructor( private accountService: AccountService,
                private notificationService: NotificationService ) {
-
   };
 
+  /**
+   * OnInit - loads current user profil
+   */
   ngOnInit(): void {
     // subscribe to router event
     this.subscription = this.accountService.getProfile ()
@@ -41,11 +52,18 @@ export class AccountProfileModalComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  /**
+   * shows the modal window
+   * @param userProfile
+   */
   showUpdateModal(userProfile: UserProfile) {
     this.currentProfile = userProfile;
     this.modal.show();
   }
 
+  /**
+   * hide modal window
+   */
   hideUpdateModal() {
     this.modal.hide();
   };

@@ -78,6 +78,10 @@ export class Ol3MapComponent implements OnInit {
    'Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom,
    2012';
    */
+
+  /**
+   * OnInit - load map and initalize OL3
+   */
   ngOnInit(): void {
     let vectorLayer = new layer.Vector({
       source: this.vectorSource,

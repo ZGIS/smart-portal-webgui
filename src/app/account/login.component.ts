@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
 
 /**
- *
+ * Login Dialog component
  */
 @Component({
   selector: 'app-sac-gwh-login',
@@ -12,13 +12,13 @@ import { NotificationService } from '../notifications';
 })
 
 /**
- *
+ * Login Dialog component
  */
 export class LoginComponent {
 
   model: any = {};
   loading = false;
-  error = '';
+  // error = '';
 
   /**
    *
@@ -38,27 +38,26 @@ export class LoginComponent {
     this.accountService.login(this.model.email, this.model.password)
       .subscribe(
         result => {
-          if (result === true) {
+          // if (result === true) {
             // login successful
             this.loading = false;
             this.router.navigateByUrl('/dashboard');
-          } else {
-            // login failed
-            this.error = 'User email or password is incorrect';
-            this.notificationService.addNotification({
-              type: 'info',
-              message: 'User email or password is incorrect.'
-            });
-            this.loading = false;
-          }
+          // } else {
+          //   this.notificationService.addNotification({
+          //     type: 'info',
+          //     message: 'User email or password is incorrect.'
+          //   });
+          //   this.loading = false;
+          // }
         },
         error => {
           this.loading = false;
-          this.error = <any>error;
-          this.notificationService.addNotification({
-            type: 'warning',
-            message: 'Uncaught Login Error.'
-          });
+          this.notificationService.addErrorResultNotification(error);
+          // this.error = <any>error;
+          // this.notificationService.addNotification({
+          //   type: 'warning',
+          //   message: 'Uncaught Login Error.'
+          // });
         });
   }
 
@@ -73,27 +72,29 @@ export class LoginComponent {
       // console.log(authCode);
       this.accountService.gconnectHandle('LOGIN', authCode).subscribe(
         result => {
-          if (result === true) {
+          // if (result === true) {
             // login successful
             this.loading = false;
             this.router.navigateByUrl('/dashboard');
-          } else {
-            // login failed
-            this.error = 'Google Login failed.';
-            this.notificationService.addNotification({
-              type: 'warning',
-              message: 'Google Login failed.'
-            });
-            this.loading = false;
-          }
+          // } else {
+          //   // login failed
+          //   this.error = 'Google Login failed.';
+          //   this.notificationService.addNotification({
+          //     type: 'warning',
+          //     message: 'Google Login failed.'
+          //   });
+          //   this.loading = false;
+          // }
         },
         error => {
           this.loading = false;
-          this.error = <any>error;
-          this.notificationService.addNotification({
-            type: 'warning',
-            message: 'Google Login failed.'
-          });
+          this.notificationService.addErrorResultNotification(error);
+
+          // this.error = <any>error;
+          // this.notificationService.addNotification({
+          //   type: 'warning',
+          //   message: 'Google Login failed.'
+          // });
         });
     } else {
       console.log('error gconnect signin');

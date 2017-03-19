@@ -74,6 +74,8 @@ export class MetadataEditorComponent implements OnInit {
   typeaheadLoading: boolean;
   typeaheadNoResults: boolean;
 
+  currentTab = 0;
+
   private DATE_FORMAT = 'YYYY-MM-DD';
 
   constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
@@ -92,7 +94,7 @@ export class MetadataEditorComponent implements OnInit {
         if (this.metadata.distribution.formatVersion === 'file formats') {
           result = this.collectionsService.getUploadedFilesFromDefaultCollection(token);
         } else {
-        // TODO SR in case we decide to store service URLs in collection, load other typeahead suggestions
+          // TODO SR in case we decide to store service URLs in collection, load other typeahead suggestions
           result = Observable.of([]);
         }
         return result;
@@ -144,9 +146,18 @@ export class MetadataEditorComponent implements OnInit {
     });
   }
 
-  public setNextTab(last: number, next: number): void {
-    this.tabs[last].active = false;
-    this.tabs[next].active = true;
+  public openPreviousTab() {
+    if (this.currentTab > 0) {
+      this.tabs[this.currentTab--].active = false;
+      this.tabs[this.currentTab].active = true;
+    }
+  }
+
+  public openNextTab() {
+    if (this.currentTab < this.tabs.length - 1) {
+      this.tabs[this.currentTab++].active = false;
+      this.tabs[this.currentTab].active = true;
+    }
   }
 
   submitForm() {
@@ -171,17 +182,25 @@ export class MetadataEditorComponent implements OnInit {
       .map(function (value, index, array) {
         return value.value;
       });
+
     this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata}, options)
-      .toPromise()
-      .then(response => {
-        console.log(response.toString());
-        console.log(response.json());
-        let insertResponse = <InsertResponse>(response.json() || {type: '', message: ''});
-        this.notificationService.addNotification(insertResponse);
-        this.loading = false;
-        this.router.navigateByUrl('/workbench/my-data');
+      .map((response) => {
+          console.log(response.toString());
+          console.log(response.json());
+          return <InsertResponse>(response.json() || {type: '', message: ''});
       })
-      .catch(this.handleError);
+      .catch((errorResponse: Response) => this.handleError(errorResponse))
+      .subscribe(
+        (response => {
+          this.loading = false;
+          this.notificationService.addNotification(response);
+          this.router.navigateByUrl('/workbench/my-data');
+        }),
+        (error => {
+          this.loading = false;
+          this.notificationService.addErrorResultNotification(error);
+        })
+      );
   }
 
   bboxChanged($event: any) {
@@ -249,6 +268,8 @@ export class MetadataEditorComponent implements OnInit {
   private handleError(errorResponse: Response) {
     console.log(errorResponse);
 
+    this.loading = false;
+
     if (errorResponse.headers.get('content-type').startsWith('text/json')) {
       let errorResult: IErrorResult = <IErrorResult>errorResponse.json();
       let message: String = `${errorResponse.statusText} while querying backend: ${errorResult.message}`;
@@ -258,26 +279,4 @@ export class MetadataEditorComponent implements OnInit {
       return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()});
     }
   }
-
-/*
-  private handleError(error: Response | any): Promise<any> {
-    // In a real world app, we might use a remote logging infrastructure
-    this.loading = false;
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || 'An error occurred'} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    this.notificationService.addNotification({
-      type: 'warning',
-      message: 'An error occurred: ' + errMsg
-    });
-    return Promise.reject(error.message || error);
-  };
-*/
-
 }

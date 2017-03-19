@@ -51,7 +51,7 @@ export class ResultService {
   }
 
   /**
-   *
+   * Handles errors
    * @param error
    * @returns {any}
    */
@@ -67,5 +67,4 @@ export class ResultService {
       return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()});
     }
   }
-
 }

@@ -9,13 +9,14 @@ import { IOwcDocument } from './collections';
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/catch';
 import { NotificationService } from '../notifications';
+import { IErrorResult } from '../search/result';
 
 @Injectable()
 export class CollectionsService {
 
   constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
-              private http: Http, private router: Router, private accountService: AccountService,
-              private notificationService: NotificationService) {
+              private http: Http, private router: Router,
+              private accountService: AccountService) {
   }
 
   getDefaultCollection(): Observable<IOwcDocument> {
@@ -31,20 +32,20 @@ export class CollectionsService {
       .map(
         (response: Response) => {
           // TODO SR the status at that point should always be 200!
-          if (response.status === 200) {
+          // if (response.status === 200) {
             let userCollectionJson = response.json();
             if (<IOwcDocument>userCollectionJson) {
               console.log(userCollectionJson);
             }
             return response.json();
-          } else {
-            // indicates failed self retrieve
-            this.notificationService.addNotification({
-              type: 'warning',
-              message: 'Error receiving collection'
-            });
-            return Observable.throw('Error receiving collection');
-          }
+          // } else {
+          //   // indicates failed self retrieve
+          //   this.notificationService.addNotification({
+          //     type: 'warning',
+          //     message: 'Error receiving collection'
+          //   });
+          //   return Observable.throw('Error receiving collection');
+          // }
         }
       )
       .catch(this.handleHttpFailure);
@@ -73,25 +74,19 @@ export class CollectionsService {
 
   /**
    * In case call failed, handle error
-   * @param error
+   * @param errorResponse
    * @returns {any}
    */
-  // TODO SR complete makeover to this.notificationService.addErrorResultNotification()
-  private handleHttpFailure(error: Response | any) {
-    // In a real world app, we might use a remote logging infrastructure
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+  private handleHttpFailure(errorResponse: Response | any) {
+    console.log(errorResponse);
+
+    if (errorResponse.headers.get('content-type').startsWith('text/json')) {
+      let errorResult: IErrorResult = <IErrorResult>errorResponse.json();
+      let message: String = `${errorResponse.statusText} while querying ingester: ${errorResult.message}`;
+      return Observable.throw(<IErrorResult>{message: message, details: errorResult.details});
     } else {
-      errMsg = error.message ? error.message : error.toString();
+      let message: String = `${errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`;
+      return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()});
     }
-    console.error(errMsg);
-    this.notificationService.addNotification({
-      type: 'danger',
-      message: errMsg
-    });
-    return Observable.throw(errMsg);
   };
 }

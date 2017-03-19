@@ -8,40 +8,70 @@ import { NotificationService } from '../notifications';
   templateUrl: 'account-password-modal.component.html'
 })
 
+/**
+ * Component (Modal) to change User's password
+ */
 export class AccountPasswordModalComponent {
   @ViewChild('passwordUpdateModalRef') public modal: ModalDirective;
 
+  /**
+   * Current User's profile
+   * @type {{email: string; accountSubject: string; firstname: string; lastname: string; password?: string}}
+   */
   currentProfile: UserProfile = this.accountService.guestProfile;
+
   passwordsAreSync = true;
   oldPassIsNotNewPass = true;
+
   model: any = {};
   loading = false;
   error = '';
 
+  /**
+   * Constructor
+   * @param accountService - injected AccountService
+   * @param notificationService - injected NotificationService
+   */
   constructor( private accountService: AccountService,
                private notificationService: NotificationService ) {
-
   };
 
+  /**
+   * checks if both paswords are identical
+   * @param event
+   */
   validatePasswordSync( event: any ) {
     this.passwordsAreSync = this.model.password === this.model.passwordConfirm;
     this.oldPassIsNotNewPass = this.model.password !== this.model.passwordCurrent;
   }
 
+  /**
+   * Shows the current modal
+   * @param userProfile
+   */
   showUpdateModal(userProfile: UserProfile) {
     this.currentProfile = userProfile;
     this.modal.show();
   }
 
+  /**
+   * closes the current modal
+   */
   hideUpdateModal() {
+    // delete anything that has been entered, when closing window
+    this.model = {};
     this.modal.hide();
   };
 
+  /**
+   * Form submission - try to change user's password
+   */
   onSubmit() {
     this.loading = true;
     this.accountService.updatePassword(this.currentProfile.email, this.model.password)
       .subscribe(
         result => {
+          // FIXME SR this should never be false!
           if (result === true) {
             // login successful
             this.loading = false;
@@ -63,7 +93,7 @@ export class AccountPasswordModalComponent {
         },
         error => {
           this.loading = false;
-          this.error = <any>error;
+          this.notificationService.addErrorResultNotification(error);
           this.modal.hide();
         });
   }

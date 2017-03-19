@@ -11,14 +11,25 @@ import { CollectionsService } from './';
   styleUrls: []
 })
 
+/**
+ * Shows collections of the current user
+ */
 export class CollectionsComponent implements OnInit {
 
   myCollection: IOwcDocument;
 
+  /**
+   * Constructor
+   * @param collectionsService  - injected CollectionsService
+   * @param notificationService - injected NotificationService
+   */
   constructor(private collectionsService: CollectionsService,
               private notificationService: NotificationService) {
   }
 
+  /**
+   * OnInit - load current user's collections
+   */
   ngOnInit() {
     // get owcDoc from secure api end point
     this.collectionsService.getDefaultCollection()
@@ -28,7 +39,7 @@ export class CollectionsComponent implements OnInit {
         },
         error => {
           console.log(<any>error);
-          this.notificationService.addNotification({type: 'warning', message: error.toString()});
+          this.notificationService.addErrorResultNotification(error);
         });
   }
 }

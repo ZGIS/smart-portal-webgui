@@ -11,20 +11,11 @@ import { PORTAL_API_URL } from '../app.tokens';
   styleUrls: [ 'basic-fileupload.component.css' ]
 })
 
-/**
- *
- */
 export class BasicFileUploadComponent {
 
   public uploader: FileUploader;
   public hasBaseDropZoneOver = false;
 
-  /**
-   *
-   * @param portalApiUrl
-   * @param notificationService
-   * @param cookieService
-   */
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
                private cookieService: CookieService,
                private notificationService: NotificationService ) {
@@ -47,5 +38,4 @@ export class BasicFileUploadComponent {
   public fileOverBase( e: any ): void {
     this.hasBaseDropZoneOver = e;
   }
-
 }

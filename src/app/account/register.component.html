@@ -4,11 +4,13 @@
       <div class="panel-heading">Register a new account</div>
       <div class="panel-body">
 
-        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" (keyup)="validatePasswordSync($event)" #f="ngForm"
-              novalidate>
+        <form name="form" (ngSubmit)="f.form.valid && recaptchaValid && passwordsAreSync && onSubmit()"
+              (keyup)="validatePasswordSync($event)" #f="ngForm" novalidate>
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-            <label for="email" tooltip="Your email will be your main username / login credential" placement="right">Email address</label>
-            <input [(ngModel)]="model.email" type="email" name="email" #email="ngModel"
+            <label for="email" tooltip="Your email will be your main username / login credential" placement="right">
+              Email address
+            </label>
+            <input id="email" [(ngModel)]="model.email" type="email" name="email" #email="ngModel"
                    class="form-control"
                    placeholder="email address" required autofocus>
             <div *ngIf="f.submitted && !email.valid" class="help-block">email is required</div>
@@ -16,7 +18,7 @@
 
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstname.valid }">
             <label for="firstname">First name</label>
-            <input [(ngModel)]="model.firstname" type="text" #firstname="ngModel"
+            <input id="firstname" [(ngModel)]="model.firstname" type="text" #firstname="ngModel"
                    name="firstname" class="form-control"
 
                    placeholder="firstname" required>
@@ -25,7 +27,7 @@
 
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastname.valid }">
             <label for="lastname">Last name</label>
-            <input [(ngModel)]="model.lastname" type="text" name="lastname"
+            <input id="lastname" [(ngModel)]="model.lastname" type="text" name="lastname"
                    #lastname="ngModel"
                    class="form-control"
                    placeholder="lastname" required>
@@ -34,16 +36,18 @@
 
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="password">Password</label>
-            <input [(ngModel)]="model.password" type="password" #password="ngModel"
+            <input id="password" [(ngModel)]="model.password" type="password" #password="ngModel"
                    name="password"
                    class="form-control"
                    placeholder="password" required minlength="8">
             <div *ngIf="f.submitted && !password.valid" class="help-block">password is required and
-               should have 8 or more characters</div>
+              should have 8 or more characters
+            </div>
           </div>
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !passwordConfirm.valid }">
             <label for="passwordConfirm">Confirm password</label>
-            <input type="password" class="form-control" name="passwordConfirm" [(ngModel)]="model.passwordConfirm" #passwordConfirm="ngModel"
+            <input id="passwordConfirm" type="password" class="form-control" name="passwordConfirm"
+                   [(ngModel)]="model.passwordConfirm" #passwordConfirm="ngModel"
                    placeholder="password" required minlength="8"/>
             <div *ngIf="f.submitted && !passwordConfirm.valid" class="help-block">Password is required</div>
             <div *ngIf="f.submitted && !passwordsAreSync" class="help-block">Passwords are not identical!</div>
@@ -52,33 +56,32 @@
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !recaptchaValid }">
             <app-recaptcha (captchaResponse)="recaptchaCallback($event)"
                            siteKey="6Le5RQsUAAAAAM_YjqAXzrJVLwqbYFl4hNmQ4n3Z"></app-recaptcha>
-            <div *ngIf="f.submitted && !recaptchaValid" class="help-block">ReCaptcha is
-              required</div>
+            <div *ngIf="f.submitted && !recaptchaValid" class="help-block">
+              ReCaptcha is required
+            </div>
           </div>
 
           <div class="form-group">
             <button [disabled]="loading" class="btn btn-info">Submit registration</button>
-            <img *ngIf="loading"
-                 src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
           </div>
           <div *ngIf="error" class="alert alert-danger">{{ error }} {{ f.errors?.required }}</div>
-
         </form>
-
       </div>
+
       <div class="panel-body">
-
         <div class="form-group">
-
           <label>You can also sign up with your Google account</label><br>
           <app-google-signin (signinResponse)="getOAuthResponse($event)"></app-google-signin>
-
         </div>
-
       </div>
-<div class="panel-footer"><a routerLink="/login"
-                             tooltip="back to login">Back to login <i class="fa fa-arrow-left"
-                                                        aria-hidden="true"></i></a></div>
+
+      <div class="panel-footer">
+        <a routerLink="/login"
+           tooltip="back to login">Back to login
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
   </div>
 </div>

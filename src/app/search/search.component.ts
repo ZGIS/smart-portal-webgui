@@ -14,6 +14,9 @@ import { Extent } from 'openlayers';
   styleUrls: ['search.component.css']
 })
 
+/**
+ * Search Component
+ */
 export class SearchComponent implements OnInit {
 
   /**
@@ -31,7 +34,7 @@ export class SearchComponent implements OnInit {
   };
 
   /**
-   * search restuls
+   * Search results
    */
   results: IGeoFeatureCollection;
   selectedResult: IGeoFeature;
@@ -42,6 +45,13 @@ export class SearchComponent implements OnInit {
   private DATE_FORMAT = 'YYYY-MM-DD';
   private timeoutId: number;
 
+  /**
+   * Constructor
+   * @param resultService       - injected ResultService
+   * @param router              - injected Router
+   * @param activatedRoute      - injected ActivatedRoute
+   * @param notificationService - injected NotificationService
+   */
   constructor(private resultService: ResultService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -103,6 +113,11 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  /**
+   * Parse query parameters
+   * @param maxNumberOfResults
+   * @returns {{query: string, fromDate: string, toDate: string, bbox: string, maxNumberOfResults: number}}
+   */
   getQueryParams(maxNumberOfResults?: number): any {
     return {
       query: this.search.query,
@@ -184,6 +199,9 @@ export class SearchComponent implements OnInit {
     return moment(date).format(this.DATE_FORMAT);
   }
 
+  /**
+   * on URL sucessfully copied to clipboard
+   */
   onClipboardSuccess() {
     this.notificationService.addNotification({message: 'URL successfully copied to clipboard', type: 'success'});
   }

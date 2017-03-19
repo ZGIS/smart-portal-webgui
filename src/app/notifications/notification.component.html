@@ -1,9 +1,13 @@
 <div class="row" style="position:fixed; z-index: 9999; width:100%">
   <div class="container">
+    <template>
+
+    </template>
     <alert *ngFor="let notification of notifications;let i = index"
            [type]="notification.type"
            dismissible="true"
            (close)="dismissNotification(i)">
+
       <button *ngIf="notification.details !== undefined" aria-label="Details" class="details" type="button"
               (click)="notification.show = !notification.show">
         <span class="fa-stack" tooltip="show more details">
@@ -12,6 +16,7 @@
         </span>
         <span class="sr-only">show details</span>
       </button>
+      <!--<h1>{{i}}</h1>-->
       <span [innerHtml]="notification.message"></span>
       <pre *ngIf="notification.show"><small>{{notification.details}}</small></pre>
     </alert>

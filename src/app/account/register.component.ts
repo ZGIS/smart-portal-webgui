@@ -60,6 +60,7 @@ export class RegisterComponent {
     this.accountService.register(regProfile)
       .subscribe(
         result => {
+          // TODO SR This should never be false
           if (result === true) {
             // register successful
             this.notificationService.addNotification({
@@ -81,11 +82,7 @@ export class RegisterComponent {
         },
         error => {
           this.loading = false;
-          this.error = <any>error;
-          this.notificationService.addNotification({
-            type: 'danger',
-            message: 'Uncaught registration process error.'
-          });
+          this.notificationService.addErrorResultNotification(error);
         });
   };
 
@@ -99,6 +96,7 @@ export class RegisterComponent {
     this.accountService.testReCaptcha(captchaChallenge).subscribe(
       result => {
         console.log(result);
+        // TODO SR this should never be false
         if (result === true) {
           this.recaptchaValid = true;
         } else {
@@ -111,13 +109,11 @@ export class RegisterComponent {
         }
       },
       error => {
+        // error on validating recapcha or capcha failed
         this.loading = false;
         this.recaptchaValid = false;
-        this.error = <any>error;
-        this.notificationService.addNotification({
-          type: 'danger',
-          message: 'Uncaught Recapture error.'
-        });
+        this.loading = false;
+        this.notificationService.addErrorResultNotification(error);
       });
   };
 
@@ -148,11 +144,7 @@ export class RegisterComponent {
         },
         error => {
           this.loading = false;
-          this.error = <any>error;
-          this.notificationService.addNotification({
-            type: 'warning',
-            message: 'Google Login/Registration failed.'
-          });
+          this.notificationService.addErrorResultNotification(error);
         });
     } else {
       console.log('error gconnect signin');
