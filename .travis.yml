@@ -32,14 +32,14 @@ script:
 - npm run e2e:ci:jit
 - npm run clean
 # - npm run build
-# protractor/e2e errors on aot build indicates something wrong with aot build
+# protractor/e2e errors use aot build and would indicates something wrong with aot build
 - npm run e2e:ci
 after_script:
 # - npm run coveralls
 after_success:
 - chmod 600 ghpages_ecdsa_sacgui && eval `ssh-agent -s` && ssh-add ghpages_ecdsa_sacgui
 - git remote -v
-- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run build:jit && sh -c $TRAVIS_BUILD_DIR/docker-preps.sh
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run build && sh -c $TRAVIS_BUILD_DIR/docker-preps.sh
 deploy:
   provider: gcs
   access_key_id: GOOGZDYY4PCU7QXHJ5GS
