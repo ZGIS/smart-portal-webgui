@@ -124,7 +124,7 @@ export class NavigationComponent implements OnInit {
           this.userProfile = this.accountService.guestProfile;
           this.checkLoggedIn = false;
           console.log('user profile change error ' + this.userProfile.email);
-          this.notificationService.addErrorResultNotification(error);
+          // this.notificationService.addErrorResultNotification(error);
         });
 
     this.accountService.isLoggedIn()
@@ -150,7 +150,7 @@ export class NavigationComponent implements OnInit {
           this.userProfile = this.accountService.guestProfile;
           this.checkLoggedIn = false;
           console.log('LoggedIn change error ' + this.checkLoggedIn);
-          this.notificationService.addErrorResultNotification(error);
+          // this.notificationService.addErrorResultNotification(error);
         });
   }
 }
