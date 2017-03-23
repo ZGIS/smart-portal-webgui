@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 // import { BehaviorSubject } from 'rxjs/Rx';
-import { PORTAL_API_URL } from '../app.tokens';
+import { PORTAL_API_URL } from '../in-app-config';
 import { AccountService } from '../account';
 import { IOwcDocument } from './collections';
 // import 'rxjs/add/operator/map';

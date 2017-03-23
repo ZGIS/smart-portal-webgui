@@ -21,6 +21,11 @@ if (envMap.APP_CSWI_API_URL && envMap.APP_PORTAL_API_URL) {
   console.log('APP_PORTAL_API_URL is ' + chalk[color]('%s'), envMap.APP_PORTAL_API_URL);
 } else {
   console.log('No API URL Providers found in ENV, using defaults');
+  envMap.APP_CSWI_API_URL = '"https://dev.smart-project.info/cswi-api/v1"';
+  envMap.APP_PORTAL_API_URL = '"https://dev.smart-project.info/api/v1"';
+  const color = constants.ENV_COLOR[env.APP_ENV] || 'bgMagenta';
+  console.log('APP_CSWI_API_URL is ' + chalk[color]('%s'), envMap.APP_CSWI_API_URL);
+  console.log('APP_PORTAL_API_URL is ' + chalk[color]('%s'), envMap.APP_PORTAL_API_URL);
 }
 
 module.exports = {

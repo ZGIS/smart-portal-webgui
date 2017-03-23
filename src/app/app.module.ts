@@ -54,7 +54,14 @@ import {
   OwcEntryDetailModalComponent,
   BasicFileUploadComponent
 } from './workbench';
-import { API_URL_PROVIDERS } from './app.tokens';
+import { API_URL_PROVIDERS,
+  CSWI_API_URL,
+  PORTAL_API_URL,
+  envPortalApiUrl,
+  envCswiApiUrl,
+  otherCswiApiUrl,
+  otherPortalApiUrl
+} from './in-app-config';
 import { AuthGuard, RegisteredGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -109,16 +116,16 @@ export function cookieServiceFactory() {
     CardComponent
   ],
   providers: [
-    { provide: CookieService, useFactory: cookieServiceFactory },
+    API_URL_PROVIDERS,
+    {provide: CookieService, useFactory: cookieServiceFactory},
+    AccountService,
     AuthGuard,
     RegisteredGuard,
     ResultService,
-    AccountService,
     ReCaptchaService,
     GApiAuthService,
     NotificationService,
-    CollectionsService,
-    API_URL_PROVIDERS
+    CollectionsService
   ],
   bootstrap: [AppComponent]
 })

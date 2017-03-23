@@ -1,5 +1,5 @@
 import { Component, Injectable, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { PORTAL_API_URL } from '../app.tokens';
+import { PORTAL_API_URL } from '../in-app-config';
 import { GeoMetadata, GeoExtent, GeoCitation, GeoContact, GeoDistribution, InsertResponse } from './metadata';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { NotificationService } from '../notifications/notification.service';

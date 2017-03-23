@@ -3,7 +3,7 @@ import { Headers, RequestOptions } from '@angular/http';
 import { NotificationService } from '../notifications';
 import { FileUploader } from 'ng2-file-upload';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
-import { PORTAL_API_URL } from '../app.tokens';
+import { PORTAL_API_URL } from '../in-app-config';
 
 @Component({
   selector: 'app-sac-gwh-upload-basic',

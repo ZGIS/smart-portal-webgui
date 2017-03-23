@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { CookieService } from 'angular2-cookie/core';
-import { PORTAL_API_URL } from '../app.tokens';
+import { PORTAL_API_URL } from '../in-app-config';
 import { NotificationService } from '../notifications';
 import { IErrorResult } from '../search/result';
 

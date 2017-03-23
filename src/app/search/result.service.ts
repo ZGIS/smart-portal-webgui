@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { CSWI_API_URL } from '../app.tokens';
+import { CSWI_API_URL } from '../in-app-config';
 import { IGeoFeatureCollection, IErrorResult } from './result';
 import { Observable } from 'rxjs';
 import { isNullOrUndefined } from 'util';
