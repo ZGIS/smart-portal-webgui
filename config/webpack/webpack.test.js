@@ -25,7 +25,7 @@ module.exports = webpackMerge(coreConfig, {
     rules: [
       {
         test: /\.ts$/,
-        use: 'awesome-typescript-loader',
+        loader: 'awesome-typescript-loader',
         query: {
           module: 'commonjs',
           sourceMap: !isCI,
