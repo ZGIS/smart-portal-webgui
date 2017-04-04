@@ -5,11 +5,11 @@
  */
 
 // Angular
+import '@angular/platform-browser';
+import '@angular/platform-browser-dynamic';
 import '@angular/core';
 import '@angular/common';
 import '@angular/compiler';
-import '@angular/platform-browser';
-import '@angular/platform-browser-dynamic';
 import '@angular/forms';
 import '@angular/http';
 import '@angular/router';
@@ -19,7 +19,7 @@ import '@angularclass/hmr';
 
 // RxJS
 // Uncomment below if you use RxJS in many non-preload lazy-loaded modules
-// import 'rxjs';
+import 'rxjs';
 
 // Global packages
 import 'angular2-cookie/core';

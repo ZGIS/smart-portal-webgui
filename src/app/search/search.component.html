@@ -33,7 +33,7 @@
 
             <div class="btn-group" role="group" aria-label="..." dropdown autoClose="outsideClick">
               <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
-              <div class="dropdown-menu datepicker-dropdown dropdown-menu-right" dropdownMenu aria-labelledby="split-button">
+              <div class="dropdown-menu datepicker-dropdown dropdown-menu-right" *dropdownMenu aria-labelledby="split-button">
                 <div style="display:inline-block;" class="collapse">
                   <datepicker [(ngModel)]="search.fromDate" name="search.date.from"
                               #searchdatefrom="ngModel" [showWeeks]="true"

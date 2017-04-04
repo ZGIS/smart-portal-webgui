@@ -79,9 +79,11 @@ export class SearchComponent implements OnInit {
       }
 
       if (params['bbox']) {
-        console.log('setting bbox');
-        this.search.bbox = JSON.parse(params['bbox']);
+        let paramBbox = JSON.parse(params['bbox']);
+        console.log(`params bbox for search '${paramBbox}'`);
+        this.search.bbox = paramBbox;
       } else {
+        console.log(`keep bbox for search '${this.search.bbox}'`);
         this.search.bbox = this.search.bbox;
       }
 
@@ -174,7 +176,7 @@ export class SearchComponent implements OnInit {
    * @param $event
    */
   bboxChanged($event: Ol3MapExtent) {
-    console.log(`bbox changed to '${$event.bboxWkt}'`);
+    console.log(`bboxChanged emitted '${$event.bbox}'`);
     this.search.bbox = $event.bbox;
     this.search.bboxWkt = $event.bboxWkt;
     this.doSearch();

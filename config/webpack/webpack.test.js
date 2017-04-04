@@ -25,7 +25,7 @@ module.exports = webpackMerge(coreConfig, {
     rules: [
       {
         test: /\.ts$/,
-        loader: 'awesome-typescript-loader',
+        use: 'awesome-typescript-loader',
         query: {
           module: 'commonjs',
           sourceMap: !isCI,
@@ -35,33 +35,33 @@ module.exports = webpackMerge(coreConfig, {
       },
       {
         test: /\.ts$/,
-        loader: 'angular2-template-loader'
+        use: 'angular2-template-loader'
       },
       {
         test: /\.html$/,
-        loader: 'html-loader'
+        use: 'html-loader'
 
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)/,
-        loader: 'null-loader'
+        use: 'null-loader'
       },
       {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
-        loader: 'null-loader'
+        use: 'null-loader'
       },
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
-        loader: 'raw-loader'
+        use: 'raw-loader'
       }
     ]
     .concat(!isCI ? [] : [
       {
         test: /\.(js|ts)$/,
         enforce: 'post',
-        loader: 'istanbul-instrumenter-loader',
+        use: 'istanbul-instrumenter-loader',
         include: helpers.root('src'),
         exclude: [
           /\.(e2e|spec)\.ts$/,

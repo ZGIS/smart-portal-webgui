@@ -185,9 +185,9 @@ export class MetadataEditorComponent implements OnInit {
 
     this.http.post(this.portalApiUrl + '/csw/insert', {metadata: this.metadata}, options)
       .map((response) => {
-          console.log(response.toString());
-          console.log(response.json());
-          return <InsertResponse>(response.json() || {type: '', message: ''});
+        console.log(response.toString());
+        console.log(response.json());
+        return <InsertResponse>(response.json() || {type: '', message: ''});
       })
       .catch((errorResponse: Response) => this.handleError(errorResponse))
       .subscribe(
@@ -231,6 +231,10 @@ export class MetadataEditorComponent implements OnInit {
     console.log(e);
     this.metadata.citation.ciDate = moment(e).format(this.DATE_FORMAT);
     console.log(this.metadata.citation.ciDate);
+  }
+
+  citationCiDateValid(cite: GeoCitation): boolean {
+    return (cite.ciDate !== null) && (cite.ciDateType !== null) ;
   }
 
   private loadValidValues(topic: string) {

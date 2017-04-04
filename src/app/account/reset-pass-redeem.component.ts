@@ -6,8 +6,7 @@ import { NotificationService } from '../notifications';
 
 @Component({
   selector: 'app-sac-gwh-reset-pass-redeem',
-  templateUrl: 'reset-pass-redeem.component.html',
-  styleUrls: []
+  templateUrl: 'reset-pass-redeem.component.html'
 })
 
 export class ResetPassRedeemComponent implements OnInit {

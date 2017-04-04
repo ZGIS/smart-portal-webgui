@@ -35,7 +35,7 @@ module.exports = webpackMerge(commonConfig, {
       tsConfigPath: helpers.root('tsconfig-aot.json'),
       entryModule: helpers.root('src','app','app.module#AppModule')
     }),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangle: {
         screw_ie8: true,

@@ -18,7 +18,7 @@
 
       <li dropdown>
         <a role="button" dropdownToggle>DATA <i class="fa fa-database"></i></a>
-        <ul class="dropdown-menu" role="menu" dropdownMenu>
+        <ul *dropdownMenu class="dropdown-menu" role="menu">
           <li role="menuitem" *ngIf="checkLoggedIn">
             <a routerLink="/workbench/my-data">My documents <i class="fa fa-folder-o"></i></a>
           </li>
@@ -58,7 +58,7 @@
                               <i class="fa fa-ellipsis-v fa-stack-1x"></i>
                           </span>
         </a>
-        <ul class="dropdown-menu" dropdownMenu>
+        <ul *dropdownMenu class="dropdown-menu" role="menu">
 
           <li role="menuitem" *ngIf="checkLoggedIn">
             <a class="dropdown-item" routerLink="/account"><i class="fa fa-user"></i>

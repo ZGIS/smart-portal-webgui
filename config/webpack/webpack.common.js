@@ -23,33 +23,34 @@ module.exports = webpackMerge(coreConfig, {
       {
         enforce: 'pre',
         test: /^((?!(ngfactory|shim)).)*ts$/,
-        loader: 'tslint-loader',
+        use: 'tslint-loader',
         exclude: [
           /node_modules/
         ]
       },
       {
         test: /\.html$/,
-        loader: 'html-loader',
+        use: 'html-loader',
         exclude: helpers.root('src', 'public')
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader?name=assets/[name].[hash].[ext]'
+        use: 'file-loader?name=assets/[name].[hash].[ext]'
       },
       {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin
+        use: ExtractTextPlugin
           .extract({
-              fallbackLoader: "style-loader",
-              loader: ['css-loader' + (isProd ? '?minimize' : ''), 'postcss-loader']
+            fallback: "style-loader",
+              use: ['css-loader' + (isProd ? '?minimize' : ''), 'postcss-loader']
           })
       },
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
-        loader: 'raw-loader!postcss-loader'
+        use: 'raw-loader'
+        // use: 'raw-loader!postcss-loader'
       }
     ]
   },

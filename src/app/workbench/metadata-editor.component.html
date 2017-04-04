@@ -256,10 +256,10 @@
                 </div>
 
                 <div class="control-group list-group-item"
-                     [ngClass]="{ 'has-error': f.submitted && !gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date.valid }">
+                     [ngClass]="{ 'has-error': f.submitted && !citationCiDateValid(metadata.citation) }">
 
                   <label class="control-label"
-                         for="showDate"
+                         for="CI_Date_Show"
                          tooltip="Date to the resource.">Date*:</label>
 
                   <div class="input-group" dropdown autoClose="outsideClick">
@@ -268,22 +268,24 @@
                         class="fa fa-calendar"></i></button>
                     </span>
 
-                    <div class="dropdown-menu datepicker-dropdown" dropdownMenu aria-labelledby="split-button">
+                    <div class="dropdown-menu datepicker-dropdown" *dropdownMenu aria-labelledby="split-button">
                       <div style="display:inline-block;" class="collapse">
-                        <datepicker id="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
-                                    name="gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date"
+                        <datepicker id="CI_Date_Picker"
+                                    name="CI_Date_Picker"
                                     [(ngModel)]="_distributionCiDate"
                                     (selectionDone)="onCitationDateSelectionDone($event)"
-                                    #gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date="ngModel"
+                                    #CI_Date_Picker="ngModel"
                                     [showWeeks]="true"></datepicker>
                       </div>
                     </div>
-                    <input class="span3 form-control" type="text" name="showDate" id="showDate"
+                    <input class="span3 form-control" type="text"
+                           id="CI_Date_Show"
+                           name="CI_Date_Show"
                            value="{{ metadata.citation.ciDate }}"
                            required disabled>
                   </div>
 
-                  <div *ngIf="f.submitted && !gmd_identificationInfo_MD_DataIdentification_CI_Citation_CI_Date.valid"
+                  <div *ngIf="f.submitted && !citationCiDateValid(metadata.citation)"
                        class="help-block">A valid date is required
                   </div>
                 </div>

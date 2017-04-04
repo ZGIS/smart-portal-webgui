@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { IGeoFeature } from '../search/result';
-import { source, format, layer, style, extent, control, Map, View, Extent } from 'openlayers';
+import { source, format, proj, layer, style, extent, control, Map, View, Extent, Coordinate } from 'openlayers';
 import { isNullOrUndefined } from 'util';
 
 export class Ol3MapExtent {
@@ -23,12 +23,15 @@ export class Ol3MapComponent implements OnInit {
 
   @Input() set mapExtent(bbox: Extent) {
     if (extent.isEmpty(bbox)) {
+      // console.log(`reset input extent.isEmpty '${this.nzExtent}'`);
       this._mapExtent = this.nzExtent;
     } else {
+      // console.log(`set input extent bbox '${bbox}'`);
       this._mapExtent = bbox;
     }
 
     if (this.map) {
+      console.log(`map.getView().fit() with '${this._mapExtent}'`);
       this.map.getView().fit(this._mapExtent, this.map.getSize());
     }
   }
@@ -58,26 +61,14 @@ export class Ol3MapComponent implements OnInit {
 
   private vectorSource = new source.Vector({'wrapX': false});
   private highlightSource = new source.Vector({'wrapX': false});
-  private _mapExtent: number[];
+  private _mapExtent: Extent;
   private _features: IGeoFeature[];
 
   // TODO SR make this configurable in constructor
-  private center: any = [174.7633, -36.8485];
-  private nzExtent: any = [168, -50, 180, -33];
-  private map: any;
-
-  /*
-   * private ESRI_STREET = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/' +
-   'MapServer/tile/${z}/${y}/${x}.jpg';
-   private ESRI_IMAGERY = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/' +
-   'MapServer/tile/${z}/${y}/${x}.jpg';
-
-   *  private ESRI_ATTRIBUTION1 = '&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX,' +
-   ' GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
-   private const ESRI_ATTRIBUTION2 = '&copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, ' +
-   'Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom,
-   2012';
-   */
+  private center: Coordinate = [174.7633, -36.8485];
+  private nzExtent: Extent = [168, -50, 180, -33];
+  private worldExtent: Extent = [-180, -90, 180, 90];
+  private map: Map;
 
   /**
    * OnInit - load map and initalize OL3
@@ -162,7 +153,7 @@ export class Ol3MapComponent implements OnInit {
       };
     } else {
       return <Ol3MapExtent> {
-        bbox: [-180, -90, 180, 90],
+        bbox: this.worldExtent,
         bboxWkt: 'ENVELOPE(-180,180,90,-90)'
       };
     }
@@ -171,9 +162,11 @@ export class Ol3MapComponent implements OnInit {
   /**
    * Event Handler when map move ends. Fires BboxChange event to listeners
    */
-  private onMoveEnd() {
-    this._mapExtent = this.getMapExtent().bbox;
-    this.onBboxChange.emit(this.getMapExtent());
+  private onMoveEnd(event: any) {
+    let tmpOl3Extent = this.getMapExtent();
+    // console.log(`onMoveEnd tmpOl3Extent '${tmpOl3Extent.bbox.toString()}'`);
+    this._mapExtent = tmpOl3Extent.bbox;
+    this.onBboxChange.emit(tmpOl3Extent);
   }
 
 }

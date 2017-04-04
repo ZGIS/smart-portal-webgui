@@ -3,11 +3,9 @@ import { AccountService } from './account.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
 
-
 @Component({
   selector: 'app-sac-gwh-reset-pass',
-  templateUrl: 'reset-pass.component.html',
-  styleUrls: []
+  templateUrl: 'reset-pass.component.html'
 })
 
 /**
@@ -37,8 +35,6 @@ export class ResetPassComponent {
     this.accountService.requestPasswordReset(this.model.email)
       .subscribe(
         result => {
-          // TODO SR this should never be anything else than true!
-          // if (result === true) {
           this.loading = false;
           this.notificationService.addNotification({
             type: 'success',
@@ -46,14 +42,6 @@ export class ResetPassComponent {
             ' clicking on th provided link..'
           });
           this.router.navigateByUrl('/login');
-          // } else {
-          //   // login failed
-          //   this.notificationService.addNotification({
-          //     type: 'info',
-          //     message: 'Email not known to us.'
-          //   });
-          //   this.loading = false;
-          // }
         },
         error => {
           this.loading = false;

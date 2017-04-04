@@ -58,7 +58,7 @@ module.exports = {
     }),
     new webpack.ContextReplacementPlugin(
       // The (\\|\/) piece accounts for path separators in *nix and Windows
-      constants.CONTEXT_REPLACE_REGEX,
+      constants.CONTEXT_REPLACE_REGEX2,
       helpers.root('./src') // location of your src
     )
   ]
