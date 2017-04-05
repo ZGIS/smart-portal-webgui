@@ -40,6 +40,7 @@ build/Release
 dist
 dist_compare
 aot
+api-docs
 
 # Dependency directories
 node_modules
