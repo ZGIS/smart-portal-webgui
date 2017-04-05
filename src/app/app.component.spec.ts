@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from  './navigation/navigation.component';
 import { AccountService } from './account/account.service';
-import { API_URL_PROVIDERS } from './in-app-config';
+import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
 import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
@@ -38,6 +38,7 @@ describe('App Component', () => {
         AccountService,
         NotificationService,
         API_URL_PROVIDERS,
+        APP_VERSION_PROVIDERS,
         MockBackend,
         BaseRequestOptions,
         ConnectionBackend,
@@ -81,6 +82,7 @@ describe('AppComponent with TCB', function () {
         AccountService,
         NotificationService,
         API_URL_PROVIDERS,
+        APP_VERSION_PROVIDERS,
         Http
       ],
       imports: [
