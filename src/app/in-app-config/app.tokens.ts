@@ -4,14 +4,18 @@ import { OpaqueToken } from '@angular/core';
 // this works in dev test and prod jit, used to fail silently in prod aot, but seems to work now reliably
 const envCswiApiUrl: string = APP_CSWI_API_URL ? APP_CSWI_API_URL : 'https://dev.smart-project.info/cswi-api/v1';
 const envPortalApiUrl: string = APP_PORTAL_API_URL ? APP_PORTAL_API_URL : 'https://dev.smart-project.info/api/v1';
-const envAppVersion: string = APP_VERSION ? APP_VERSION : 'Snapshot';
-const envAppBuildNumber: string = APP_BUILD_NUMBER ? APP_BUILD_NUMBER : '' + Date.now();
+let envAppVersion: string = APP_VERSION ? APP_VERSION : 'Snapshot';
+
+let currDate = new Date();
+let envAppBuildNumber: string = APP_BUILD_NUMBER ? APP_BUILD_NUMBER : currDate.toString();
 const fullAppVersionString: string = envAppVersion + '-' + envAppBuildNumber;
 
 console.log('API providers:');
 console.log(envCswiApiUrl);
 console.log(envPortalApiUrl);
 console.log('APP version: ' + fullAppVersionString);
+
+console.log('test app token TRAVIS: ' + process.env.TRAVIS_BUILD_NUMBER);
 
 export const CSWI_API_URL = new OpaqueToken('cswiApiUrl');
 export const PORTAL_API_URL = new OpaqueToken('portalApiUrl');

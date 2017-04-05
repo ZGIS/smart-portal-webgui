@@ -3,6 +3,8 @@ sudo: required
 language: node_js
 node_js:
 - "7"
+python:
+- "2.7"
 os:
 - linux
 env:
@@ -20,6 +22,8 @@ before_install:
 - npm i -g npm@3
 install:
 - npm install
+- pip install --user git+https://github.com/Syntaf/travis-sphinx.git
+- export PATH=$HOME/.local/bin:$PATH
 script:
 - cp config/internal/.env.travis .env
 - npm run tslint
@@ -33,8 +37,12 @@ script:
 # protractor/e2e errors use aot build and would indicate something wrong with aot build
 # now it seems to work again, AK 20170404
 - npm run e2e:ci
+- travis-sphinx --source=src/docs build
 after_script:
 # - npm run coverage
+# here should the shpinx docs get ready
+- sh -c $TRAVIS_BUILD_DIR/ghdash-preps.sh
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run gh-pages-push
 after_success:
 - chmod 600 ghpages_ecdsa_sacgui && eval `ssh-agent -s` && ssh-add ghpages_ecdsa_sacgui
 - git remote -v
