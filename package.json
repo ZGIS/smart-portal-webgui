@@ -150,7 +150,7 @@
     "url": "https://github.com/ZGIS/smart-portal-webgui/issues"
   },
   "engines": {
-    "node": ">=4.3",
-    "npm": "~3.0.0"
+    "node": ">=6",
+    "npm": "^3.0.0"
   }
 }

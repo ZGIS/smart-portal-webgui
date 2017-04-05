@@ -3,7 +3,7 @@ sudo: required
 language: node_js
 node_js:
 - '7'
-# - '6'
+- '6'
 os:
 - linux
 env:
@@ -37,7 +37,7 @@ script:
 # now it seems to work again, AK 20170404
 - npm run e2e:ci
 after_script:
-# - npm run coveralls
+# - npm run coverage
 after_success:
 - chmod 600 ghpages_ecdsa_sacgui && eval `ssh-agent -s` && ssh-add ghpages_ecdsa_sacgui
 - git remote -v
