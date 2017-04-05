@@ -8,6 +8,6 @@ ls -lh dist coverage
 
 mkdir ghdash
 
-cp -r api-docs internal/index.html coverage sphinx-build ghdash
+cp -r api-docs config/internal/index.html coverage sphinx-build ghdash
 
 ls -lh ghdash
