@@ -26,6 +26,10 @@ export class NavigationComponent implements OnInit {
   // accountSubject = this.accountService.isLoggedIn() ? this.accountService.getUsername() : 'guest';
   category = 'main';
 
+  public PORTAL_WEBGUI_VERSION = '';
+  public PORTAL_BACKEND_VERSION = '';
+  public CSW_INGESTER_VERSION = '';
+
   /**
    * Constructor
    * @param accountService      - injected AccountService
@@ -34,9 +38,11 @@ export class NavigationComponent implements OnInit {
    * @param notificationService - injected NotificationService
    */
   constructor(private accountService: AccountService,
-              private activatedRoute: ActivatedRoute,
               private router: Router,
               private notificationService: NotificationService) {
+
+    this.PORTAL_WEBGUI_VERSION = this.accountService.webguiAppVersion;
+
     let currentUserProfile = JSON.parse(localStorage.getItem('currentUserProfile'));
 
     if (currentUserProfile) {
@@ -85,10 +91,10 @@ export class NavigationComponent implements OnInit {
         result => {
           // TODO SR This should never happen!
           // if (result === true) {
-            // logout successful
-            this.checkLoggedIn = false;
-            this.userProfile = this.accountService.guestProfile;
-            this.router.navigateByUrl('/login');
+          // logout successful
+          this.checkLoggedIn = false;
+          this.userProfile = this.accountService.guestProfile;
+          this.router.navigateByUrl('/login');
           // } else {
           //   // logout failed?
           //   console.log('logout in navigation failed, what now?');
@@ -151,6 +157,26 @@ export class NavigationComponent implements OnInit {
           this.checkLoggedIn = false;
           console.log('LoggedIn change error ' + this.checkLoggedIn);
           // this.notificationService.addErrorResultNotification(error);
+        });
+
+    this.accountService.getPortalBackendVersion()
+      .subscribe(
+        versionString => {
+          this.PORTAL_BACKEND_VERSION = versionString;
+        },
+        error => {
+          this.PORTAL_BACKEND_VERSION = 'n/a';
+          console.log('could not retrieve backend version: ' + error);
+        });
+
+    this.accountService.getCswIngesterVersion()
+      .subscribe(
+        versionString => {
+          this.CSW_INGESTER_VERSION = versionString;
+        },
+        error => {
+          this.CSW_INGESTER_VERSION = 'n/a';
+          console.log('could not retrieve cswi version: ' + error);
         });
   }
 }

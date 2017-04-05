@@ -1,13 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
-// import { Observable }     from 'rxjs/Observable';
 import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { CookieService } from 'angular2-cookie/core';
-import { PORTAL_API_URL } from '../in-app-config';
+import { PORTAL_API_URL, CSWI_API_URL, WEBGUI_APP_VERSION } from '../in-app-config';
 import { NotificationService } from '../notifications';
 import { IErrorResult } from '../search/result';
 
@@ -75,12 +74,12 @@ export class AccountService {
    * @param http
    * @param router
    * @param cookieService
-   * @param notificationService
    */
   constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
+              @Inject(CSWI_API_URL) private cswiApiUrl: string,
+              @Inject(WEBGUI_APP_VERSION) public webguiAppVersion: string,
               private http: Http, private router: Router,
-              private cookieService: CookieService,
-              private notificationService: NotificationService) {
+              private cookieService: CookieService) {
 
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let cookieToken = this.cookieService.get('XSRF-TOKEN');
@@ -106,14 +105,14 @@ export class AccountService {
           .map(
             (response: Response) => {
               // if (response.status === 200) {
-                console.log('succesfully verified current session');
-                let userProfileJson = response.json();
-                if (userProfileJson) {
-                  let userProfile = createProfile(userProfileJson);
-                  console.log(userProfile);
-                  localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
-                }
-                this.loggedInState.next(true);
+              console.log('succesfully verified current session');
+              let userProfileJson = response.json();
+              if (userProfileJson) {
+                let userProfile = createProfile(userProfileJson);
+                console.log(userProfile);
+                localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
+              }
+              this.loggedInState.next(true);
               // }
               // FIXME SR this should never happen! Every http status code <200 & >299 will fail
               // else {
@@ -169,25 +168,25 @@ export class AccountService {
         (response: Response) => {
           // TODO SR see above. Here we should always find a 2xx http status code.
           // if (response.status === 200) {
-            let userProfileJson = response.json();
-            if (userProfileJson) {
-              let userProfile = createProfile(userProfileJson);
-              console.log(userProfile);
-              this.loggedInState.next(true);
-              localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
-            }
-            return response.json();
-        //   } else {
-        //     // indicates failed self retrieve / authenticated session
-        //     // should also remove token and invalidate angular session?
-        //     this.loggedInState.next(false);
-        //     // clear token remove user from local storage to log user out
-        //     this.token = null;
-        //     localStorage.removeItem('currentUser');
-        //     localStorage.removeItem('currentUserProfile');
-        //     this.cookieService.remove('XSRF-TOKEN');
-        //     return Observable.throw('invalid session');
-        //   }
+          let userProfileJson = response.json();
+          if (userProfileJson) {
+            let userProfile = createProfile(userProfileJson);
+            console.log(userProfile);
+            this.loggedInState.next(true);
+            localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
+          }
+          return response.json();
+          //   } else {
+          //     // indicates failed self retrieve / authenticated session
+          //     // should also remove token and invalidate angular session?
+          //     this.loggedInState.next(false);
+          //     // clear token remove user from local storage to log user out
+          //     this.token = null;
+          //     localStorage.removeItem('currentUser');
+          //     localStorage.removeItem('currentUserProfile');
+          //     this.cookieService.remove('XSRF-TOKEN');
+          //     return Observable.throw('invalid session');
+          //   }
         }
       )
       .catch((errorResponse: Response) => this.handleError(errorResponse));
@@ -217,14 +216,14 @@ export class AccountService {
       .map((response: Response) => {
         // logout
         // if (response.status === 200) {
-          this.loggedInState.next(false);
-          // clear token remove user from local storage to log user out
-          this.token = null;
-          localStorage.removeItem('currentUser');
-          localStorage.removeItem('currentUserProfile');
-          this.cookieService.remove('XSRF-TOKEN');
-          // return true to indicate successful logout
-          return true;
+        this.loggedInState.next(false);
+        // clear token remove user from local storage to log user out
+        this.token = null;
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentUserProfile');
+        this.cookieService.remove('XSRF-TOKEN');
+        // return true to indicate successful logout
+        return true;
         // } else {
         //   // return false to indicate failed logout
         //   // should also remove token and invalid angular session?
@@ -296,13 +295,13 @@ export class AccountService {
     return this.http.post(regUri, userprofile)
       .map((response: Response) => {
         // if (response.status === 200) {
-          let userProfileJson = response.json() && response.json().userprofile;
-          if (userProfileJson) {
-            let userProfile = createProfile(userProfileJson);
-            console.log(userProfile);
-            localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
-          }
-          return true;
+        let userProfileJson = response.json() && response.json().userprofile;
+        if (userProfileJson) {
+          let userProfile = createProfile(userProfileJson);
+          console.log(userProfile);
+          localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
+        }
+        return true;
         // } else {
         //   return false;
         // }
@@ -372,13 +371,13 @@ export class AccountService {
       .map((response: Response) => {
         // TODO SR see above. HEre we will always have 2xx as status code
         // if (response.status === 200) {
-          let userProfileJson = response.json();
-          if (userProfileJson) {
-            let userProfile = createProfile(userProfileJson);
-            console.log(userProfile);
-            localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
-          }
-          return true;
+        let userProfileJson = response.json();
+        if (userProfileJson) {
+          let userProfile = createProfile(userProfileJson);
+          console.log(userProfile);
+          localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
+        }
+        return true;
         // } else {
         //   return false;
         // }
@@ -401,9 +400,9 @@ export class AccountService {
       .map((response: Response) => {
         // TODO SR see above
         // if (response.status === 200) {
-          let info = response.json() && response.json().message;
-          console.log(info);
-          return true;
+        let info = response.json() && response.json().message;
+        console.log(info);
+        return true;
         // } else {
         //   return false;
         // }
@@ -426,15 +425,15 @@ export class AccountService {
     return this.http.post(regUri, data, options)
       .map(
         (response: Response) => {
-        // TODO SR see above
-        // if (response.status === 200) {
+          // TODO SR see above
+          // if (response.status === 200) {
           let info = response.json() && response.json().message;
           console.log(info);
           return true;
-        // } else {
-        //   return false;
-        // }
-      })
+          // } else {
+          //   return false;
+          // }
+        })
       .catch((errorResponse: Response) => this.handleErrorWithLogout(errorResponse));
   }
 
@@ -465,6 +464,36 @@ export class AccountService {
       })
       .catch((errorResponse: Response) => this.handleError(errorResponse));
   };
+
+  /**
+   *
+   * @returns {Observable<R|T>}
+   */
+  getPortalBackendVersion(): Observable<string> {
+    let portalVersionUrl = this.portalApiUrl + '/discovery';
+    return this.http.get(portalVersionUrl)
+      .map((response: Response) => {
+        let info = response.json() && response.json().version;
+        console.log(info);
+        return info;
+      })
+      .catch((errorResponse: Response) => this.handleError(errorResponse));
+  };
+
+  /**
+   *
+   * @returns {Observable<R|T>}
+   */
+  getCswIngesterVersion(): Observable<string> {
+    let cswiVersionUrl = this.cswiApiUrl + '/discovery';
+    return this.http.get(cswiVersionUrl)
+      .map((response: Response) => {
+        let info = response.json() && response.json().version;
+        console.log(info);
+        return info;
+      })
+      .catch((errorResponse: Response) => this.handleError(errorResponse));
+  }
 
   /**
    *
@@ -506,13 +535,13 @@ export class AccountService {
         // FIXME SR this should never return anything else than 200!
         // if (response.status === 200) {
 
-          let userProfileJson = response.json() && response.json().userprofile;
-          if (userProfileJson) {
-            let userProfile = createProfile(userProfileJson);
-            console.log(userProfile);
-            localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
-          }
-          return true;
+        let userProfileJson = response.json() && response.json().userprofile;
+        if (userProfileJson) {
+          let userProfile = createProfile(userProfileJson);
+          console.log(userProfile);
+          localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
+        }
+        return true;
         // } else {
         //   return false;
         // }
@@ -596,17 +625,17 @@ export class AccountService {
    * @returns {any}
    */
   private handleErrorWithLogout(errorResponse: Response) {
-      if (errorResponse.status === 401) {
-        // 401 unauthorized
-        this.loggedInState.next(false);
-        // clear token remove user from local storage to log user out
-        this.token = null;
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('currentUserProfile');
-        this.cookieService.remove('XSRF-TOKEN');
-      }
-      // TODO SR add "you've been logged out" to message
-      return this.handleError(errorResponse);
+    if (errorResponse.status === 401) {
+      // 401 unauthorized
+      this.loggedInState.next(false);
+      // clear token remove user from local storage to log user out
+      this.token = null;
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('currentUserProfile');
+      this.cookieService.remove('XSRF-TOKEN');
+    }
+    // TODO SR add "you've been logged out" to message
+    return this.handleError(errorResponse);
   };
 
 }

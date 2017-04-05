@@ -31,6 +31,7 @@
           <li role="menuitem" *ngIf="checkLoggedIn">
             <a routerLink="/workbench/add-data">Add metadata record <i class="fa fa-edit"></i></a>
           </li>
+          <!--
           <li class="divider dropdown-divider" *ngIf="checkLoggedIn"></li>
 
           <li class="navbar-text">Related Sensorweb Case Studies</li>
@@ -46,7 +47,7 @@
           <li>
             <a href="https://portal.smart-project.info/smart/sensorweb/hilltop/wfssites" target="_blank">Horizons Hilltop EODP Testbed</a>
           </li>
-
+          -->
         </ul>
       </li>
 
@@ -74,18 +75,6 @@
           <li class="divider dropdown-divider" *ngIf="checkLoggedIn"></li>
           <li role="menuitem"><a role="button" class="dropdown-item" (click)="showDisclaimerModal()">Disclaimer</a></li>
           <li role="menuitem"><a role="button" class="dropdown-item" (click)="showAboutModal()">About</a></li>
-          <li class="navbar-text ">External Links</li>
-          <li>
-            <a
-              href="http://www.gns.cri.nz/Home/Our-Science/Energy-Resources/Groundwater/Research/SMART-Aquifer-Characterisation"
-              target="_blank">SMART@GNS</a>
-          </li>
-          <li>
-            <a href="http://ggw.gns.cri.nz/ggwdata/" target="_blank">GNS GGW/NGMP</a>
-          </li>
-          <li>
-            <a href="http://data.gns.cri.nz/ebof/" target="_blank">GNS EBOF</a>
-          </li>
 
         </ul>
       </li>
@@ -117,7 +106,7 @@
             <a href="http://creativecommons.org/licenses/by-sa/3.0/nz/" target="_blank">
               Creative Commons Attribution 3.0 New Zealand (CC BY SA 3.0 NZ)</a> license.
             <img class="alignleft wp-image-164" style="margin-top: 0px;
-            margin-bottom: 10px;" title="by-sa" src="http://creativecommons.org.nz/wp-content/uploads/2012/05/by-sa.png" alt="" width="88" height="31">
+            margin-bottom: 10px;" title="by-sa" src="/images/by-sa.png" alt="" width="88" height="31">
           </p>
 
           <b>B. TERMS OF USE OF THE SMART Groundwater Portal</b>
@@ -160,9 +149,9 @@
           </p>
 
           <p align="justify">
-            The user acknowledges that neither GNS nor any of its Representatives has made or makes any representation
+            The user acknowledges that neither GNS Science nor any of its Representatives has made or makes any representation
             or
-            warranty, express or implied, as to the accuracy or completeness of the Information. GNS accepts no
+            warranty, express or implied, as to the accuracy or completeness of the Information. GNS Science accepts no
             responsibility for
             any use or reliance on any contents of the Information and shall not be liable to any person, on any ground,
             for any
@@ -174,14 +163,14 @@
             or makes the information available to any third party (either in full or in part) and at any event without
             the
             disclaimer of liability to third parties the recipient indemnifies and
-            holds harmless GNS for any event arising from such use or supply.
+            holds harmless GNS Science for any event arising from such use or supply.
           </p>
 
 
           <b>D. ENQUIRIES</b>
           <p align="justify">
             Other information relating to this website may be obtained by contacting us
-            via the GNS <a href="https://www.gns.cri.nz/Home/Contact-Us/General-inquiries">contact form</a>.
+            via the GNS Science <a href="https://www.gns.cri.nz/Home/Contact-Us/General-inquiries">contact form</a>.
           </p>
           <p align="justify">
             We will not use your personal information for the purpose of sending
@@ -202,14 +191,16 @@
         <button type="button" class="close pull-right" (click)="hideAboutModal()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title pull-left">About us</h4>
+        <h4 class="modal-title pull-left">About</h4>
       </div>
       <div class="modal-body">
         <div class="panel panel-default">
           <div class="panel-body">
             <b>SMART Aquifer Characterisation Programme (SAC)</b>
 
-            <p>The SMART Aquifer Characterisation (SAC) research programme aims to develop a suite of innovative methods
+            <p>The SMART Aquifer Characterisation (<a
+              href="http://www.gns.cri.nz/Home/Our-Science/Energy-Resources/Groundwater/Research/SMART-Aquifer-Characterisation"
+              target="_blank">SAC</a>) research programme aims to develop a suite of innovative methods
             for rapid and cost-effective characterisation of New Zealand’s groundwater systems. SMART is an acronym
             for the driving ideals of the SAC programme:<br />
             Save Money and Reduce Time, but be Specific, Measurable, Achievable, Realistic and Time-bound.</p>
@@ -228,6 +219,9 @@
 
           </div>
         </div>
+      </div>
+      <div class="modal-footer">
+        <small>web: {{ PORTAL_WEBGUI_VERSION }} | papi: {{ PORTAL_BACKEND_VERSION }} | cswi: {{ CSW_INGESTER_VERSION }}</small>
       </div>
     </div>
   </div>

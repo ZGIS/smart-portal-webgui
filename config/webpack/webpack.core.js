@@ -27,8 +27,17 @@ if (envMap.APP_CSWI_API_URL && envMap.APP_PORTAL_API_URL) {
   console.log('APP_PORTAL_API_URL is ' + chalk[color]('%s'), envMap.APP_PORTAL_API_URL);
 }
 
-if (envMap.TRAVIS_BUILD_NUMBER) {
-  envMap.APP_BUILD_NUMBER = envMap.TRAVIS_BUILD_NUMBER;
+if (!envMap.APP_VERSION) {
+  envMap.APP_VERSION = JSON.stringify(require(helpers.root('package.json')).version);
+  console.log('APP_VERSION is ' + chalk[color]('%s'), envMap.APP_VERSION);
+} else {
+  console.log('APP_VERSION is ' + chalk[color]('%s'), envMap.APP_VERSION);
+}
+
+const BUILD_NUMBER = process.env.TRAVIS_BUILD_NUMBER;
+
+if (BUILD_NUMBER != null) {
+  envMap.APP_BUILD_NUMBER = JSON.stringify(BUILD_NUMBER);
   console.log('APP_BUILD_NUMBER is ' + chalk[color]('%s'), envMap.APP_BUILD_NUMBER);
 } else {
   envMap.APP_BUILD_NUMBER = JSON.stringify('' + Date.now());
@@ -46,7 +55,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': envMap,
-      APP_VERSION: JSON.stringify(require(helpers.root('package.json')).version),
+      APP_VERSION: envMap.APP_VERSION,
       APP_BUILD_NUMBER: envMap.APP_BUILD_NUMBER,
       APP_CSWI_API_URL: envMap.APP_CSWI_API_URL,
       APP_PORTAL_API_URL: envMap.APP_PORTAL_API_URL
