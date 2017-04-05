@@ -39,7 +39,34 @@ module.exports = function (config) {
       'lcovonly': './coverage/lcov.info'
     },
 
-    reporters: ['progress', 'remap-coverage'],
+    specReporter: {
+      maxLogLines: 5, // limit number of lines logged per test
+      suppressErrorSummary: false, // do not print error summary
+      suppressFailed: false, // do not print information about failed tests
+      suppressPassed: false, // do not print information about passed tests
+      suppressSkipped: false, // do not print information about skipped tests
+      showSpecTiming: true,  // print the time elapsed for each spec
+      failFast: true // test would finish with error when a first fail occurs.
+    },
+
+    // reporter options
+    mochaReporter: {
+      colors: {
+        success: 'blue',
+        info: 'bgGreen',
+        warning: 'cyan',
+        error: 'bgRed'
+      },
+      symbols: {
+        success: '+',
+        info: '#',
+        warning: '!',
+        error: 'x'
+      }
+    },
+
+    reporters: ['remap-coverage', 'spec', 'mocha' ],
+
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
