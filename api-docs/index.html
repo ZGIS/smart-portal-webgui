@@ -1,0 +1,464 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>SMART WebGui</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">SMART WebGui</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> SMART WebGui</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="smart-portal-webgui">smart-portal-webgui</h1>
+				<h2 id="build-and-dependencies">Build and Dependencies</h2>
+				<p><a href="https://travis-ci.org/ZGIS/smart-portal-webgui"><img src="https://img.shields.io/travis/ZGIS/smart-portal-webgui.svg?style=flat-square" alt="Build Status"></a>
+				<a href="https://github.com/ZGIS/smart-portal-webgui/issues"><img src="https://img.shields.io/github/issues/ZGIS/smart-portal-webgui.svg?style=flat-square" alt="Issues"></a></p>
+				<p><a href="https://david-dm.org/ZGIS/smart-portal-webgui?branch=master"><img src="https://david-dm.org/ZGIS/smart-portal-webgui/status.svg?branch=master" alt="NPM Master Dependencies"></a>
+				<a href="https://david-dm.org/ZGIS/smart-portal-webgui?branch=master&amp;type=dev"><img src="https://david-dm.org/ZGIS/smart-portal-webgui/dev-status.svg?branch=master" alt="NPM Master DevDependencies"></a></p>
+				<p><a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202-blue.svg?style=flat-square" alt="License"></a>
+				<a href="https://www.openhub.net/p/smart-portal-webgui"><img src="https://www.openhub.net/p/smart-portal-webgui/widgets/project_thin_badge.gif" alt="OpenHUB"></a></p>
+				<h2 id="smart-portal-web-frontend-license">SMART Portal Web Frontend license</h2>
+				<p>Copyright (C) 2011-2017 Interfaculty Department of Geoinformatics, University of
+					Salzburg (Z_GIS) &amp; Institute of Geological and Nuclear Sciences Limited (GNS Science)
+					in the SMART Aquifer Characterisation (SAC) programme funded by the New Zealand
+				Ministry of Business, Innovation and Employment (MBIE)</p>
+				<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+					you may not use this file except in compliance with the License.
+				You may obtain a copy of the License at</p>
+				<p>  <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+				<p>Unless required by applicable law or agreed to in writing, software
+					distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+					WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+					See the License for the specific language governing permissions and
+				limitations under the License.</p>
+				<h2 id="development-testing-and-dist-prod-builds">development, testing and dist/prod builds</h2>
+				<pre><code class="lang-shell">
+# install the whole bunch into node_modules
+# no need for typings install, @types npm packages are the new hype in ts2
+npm install
+
+// Build DLL first, run this once after adding new package
+npm run build:dll
+
+# get started immediately, webpack-dev-server manages everything etc
+npm run start
+
+# alternatively 
+npm run start:dll
+
+# mean as linter rules
+npm run tslint
+
+# check webpack configs
+npm run webpack-validate:dev
+
+npm run webpack-validate:test
+
+# webpack will work but this config check will possibly fail, see config file
+npm run webpack-validate:prod
+
+# chrome selenium webdriver update for protractor (and karma)
+npm run webdriver:update
+
+# on Arch Linux, otherwise PhantomJS doesn&#39;t start properly / wrong QT libs something ..
+unset QT_QPA_PLATFORM 
+
+# karma/jsmine tests, webpack loads all up behind the scenes, no tsc precompile necessary
+npm test
+
+# if you don&#39;t have the npm run start going or the local web server in dist on port 8080, run this
+npm run e2e:ci
+
+# or if you have an npm run start open in another shell
+npm run e2e
+
+# building the dist export, pure file export to be hosted on a web server
+npm run build
+
+# check with a local http server
+python -m http.server 8000 --bind 127.0.0.1
+
+# or
+
+npm run http-server -p 8080 ./dist
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/accountcomponent.html" class="tsd-kind-icon">Account<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/accountpasswordmodalcomponent.html" class="tsd-kind-icon">Account<wbr>Password<wbr>Modal<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/accountprofilemodalcomponent.html" class="tsd-kind-icon">Account<wbr>Profile<wbr>Modal<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/accountservice.html" class="tsd-kind-icon">Account<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/appcomponent.html" class="tsd-kind-icon">App<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/appmodule.html" class="tsd-kind-icon">App<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/authguard.html" class="tsd-kind-icon">Auth<wbr>Guard</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/basicfileuploadcomponent.html" class="tsd-kind-icon">Basic<wbr>File<wbr>Upload<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cardcomponent.html" class="tsd-kind-icon">Card<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/collectionscomponent.html" class="tsd-kind-icon">Collections<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/collectionsservice.html" class="tsd-kind-icon">Collections<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/dashboardbuttoncomponent.html" class="tsd-kind-icon">Dashboard<wbr>Button<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/dashboardcategorycomponent.html" class="tsd-kind-icon">Dashboard<wbr>Category<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/dashboardhomecomponent.html" class="tsd-kind-icon">Dashboard<wbr>Home<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/featureoriginpipe.html" class="tsd-kind-icon">Feature<wbr>Origin<wbr>Pipe</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/gapiauthcomponent.html" class="tsd-kind-icon">GApi<wbr>Auth<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/gapiauthservice.html" class="tsd-kind-icon">GApi<wbr>Auth<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/geocitation.html" class="tsd-kind-icon">Geo<wbr>Citation</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/geocontact.html" class="tsd-kind-icon">Geo<wbr>Contact</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/geodistribution.html" class="tsd-kind-icon">Geo<wbr>Distribution</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/geoextent.html" class="tsd-kind-icon">Geo<wbr>Extent</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/geometadata.html" class="tsd-kind-icon">Geo<wbr>Metadata</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/insertresponse.html" class="tsd-kind-icon">Insert<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/logincomponent.html" class="tsd-kind-icon">Login<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/metadataeditorcomponent.html" class="tsd-kind-icon">Metadata<wbr>Editor<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/navigationcomponent.html" class="tsd-kind-icon">Navigation<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/notificationcomponent.html" class="tsd-kind-icon">Notification<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/notificationservice.html" class="tsd-kind-icon">Notification<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ol3mapcomponent.html" class="tsd-kind-icon">Ol3<wbr>Map<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ol3mapextent.html" class="tsd-kind-icon">Ol3<wbr>Map<wbr>Extent</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/owcentrydetailmodalcomponent.html" class="tsd-kind-icon">Owc<wbr>Entry<wbr>Detail<wbr>Modal<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/recaptchacomponent.html" class="tsd-kind-icon">Re<wbr>Captcha<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/recaptchaservice.html" class="tsd-kind-icon">Re<wbr>Captcha<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/registercomponent.html" class="tsd-kind-icon">Register<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/registeredguard.html" class="tsd-kind-icon">Registered<wbr>Guard</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/resetpasscomponent.html" class="tsd-kind-icon">Reset<wbr>Pass<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/resetpassredeemcomponent.html" class="tsd-kind-icon">Reset<wbr>Pass<wbr>Redeem<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/result.html" class="tsd-kind-icon">Result</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/resultcardscomponent.html" class="tsd-kind-icon">Result<wbr>Cards<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/resultdetailcomponent.html" class="tsd-kind-icon">Result<wbr>Detail<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/resultdetailmodalcomponent.html" class="tsd-kind-icon">Result<wbr>Detail<wbr>Modal<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/resultservice.html" class="tsd-kind-icon">Result<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/search.html" class="tsd-kind-icon">Search</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/searchcomponent.html" class="tsd-kind-icon">Search<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/ierrorresult.html" class="tsd-kind-icon">IError<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/igeofeature.html" class="tsd-kind-icon">IGeo<wbr>Feature</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/igeofeaturecollection.html" class="tsd-kind-icon">IGeo<wbr>Feature<wbr>Collection</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/igeofeatureproperties.html" class="tsd-kind-icon">IGeo<wbr>Feature<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iowcauthor.html" class="tsd-kind-icon">IOwc<wbr>Author</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iowccategory.html" class="tsd-kind-icon">IOwc<wbr>Category</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iowcdocument.html" class="tsd-kind-icon">IOwc<wbr>Document</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iowcdocumentproperties.html" class="tsd-kind-icon">IOwc<wbr>Document<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iowcentry.html" class="tsd-kind-icon">IOwc<wbr>Entry</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iowcentryproperties.html" class="tsd-kind-icon">IOwc<wbr>Entry<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iowclink.html" class="tsd-kind-icon">IOwc<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iowcoffering.html" class="tsd-kind-icon">IOwc<wbr>Offering</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iowcoperation.html" class="tsd-kind-icon">IOwc<wbr>Operation</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iowcpostrequestconfig.html" class="tsd-kind-icon">IOwc<wbr>Post<wbr>Request<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iowcrequestresult.html" class="tsd-kind-icon">IOwc<wbr>Request<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/sacgwhnotification.html" class="tsd-kind-icon">Sac<wbr>Gwh<wbr>Notification</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/selectentry.html" class="tsd-kind-icon">Select<wbr>Entry</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/userprofile.html" class="tsd-kind-icon">User<wbr>Profile</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/validvalues.html" class="tsd-kind-icon">Valid<wbr>Values</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#api_url_providers" class="tsd-kind-icon">API_<wbr>URL_<wbr>PROVIDERS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#app_version_providers" class="tsd-kind-icon">APP_<wbr>VERSION_<wbr>PROVIDERS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#cswi_api_url" class="tsd-kind-icon">CSWI_<wbr>API_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#portal_api_url" class="tsd-kind-icon">PORTAL_<wbr>API_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#webgui_app_version" class="tsd-kind-icon">WEBGUI_<wbr>APP_<wbr>VERSION</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#approutes" class="tsd-kind-icon">app<wbr>Routes</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#currdate" class="tsd-kind-icon">curr<wbr>Date</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#envappbuildnumber" class="tsd-kind-icon">env<wbr>App<wbr>Build<wbr>Number</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#envappversion" class="tsd-kind-icon">env<wbr>App<wbr>Version</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#envcswiapiurl" class="tsd-kind-icon">env<wbr>Cswi<wbr>Api<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#envportalapiurl" class="tsd-kind-icon">env<wbr>Portal<wbr>Api<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#fullappversionstring" class="tsd-kind-icon">full<wbr>App<wbr>Version<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#mycategories" class="tsd-kind-icon">my<wbr>Categories</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#routing" class="tsd-kind-icon">routing</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#bootstrap" class="tsd-kind-icon">bootstrap</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#cookieservicefactory" class="tsd-kind-icon">cookie<wbr>Service<wbr>Factory</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createprofile" class="tsd-kind-icon">create<wbr>Profile</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#hmrbootstrap" class="tsd-kind-icon">hmr<wbr>Bootstrap</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
