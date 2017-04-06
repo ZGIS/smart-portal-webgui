@@ -80,16 +80,18 @@ module.exports = webpackMerge(coreConfig, {
     }),
 
     new TypedocWebpackPlugin({
+
       name: 'SMART WebGui',
       mode: 'file',
       includeDeclarations: false,
       ignoreCompilerErrors: true,
       out: helpers.root('api-docs'),
-      exclude: '/node_modules/**/*.*',
+      exclude: '**/node_modules/**/*.*',
       experimentalDecorators: true,
       excludeExternals: true
     },
-      ['./src'])
+      [ helpers.root('src')]
+    )
   ]
 
 });
