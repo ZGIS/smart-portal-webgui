@@ -6,6 +6,10 @@
   "main": "src/app/main.ts",
   "keywords": [
     "angular2",
+    "openlayers",
+    "bootstrap",
+    "groundwater",
+    "geospatial",
     "webpack",
     "typescript"
   ],

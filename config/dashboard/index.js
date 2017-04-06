@@ -23,7 +23,7 @@ const appEnv = process.env.APP_ENV || 'development';
 const nodeEnvColor = colorMap[process.env.NODE_ENV] || defaultColor;
 const appEnvColor = colorMap[appEnv] || defaultColor;
 
-console.log(chalk[mainColor].bold('Angular Webpack Starter ') + chalk[defaultColor].bold(' %s '), package.version);
+console.log(chalk[mainColor].bold(package.name + ' ' + package.description + ' ') + chalk[defaultColor].bold(' %s '), package.version);
 console.log(chalk.underline.bold('Environments:'));
 
 if (!env) {
