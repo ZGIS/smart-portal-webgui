@@ -65,7 +65,7 @@ export function cookieServiceFactory() {
 }
 
 @NgModule({
-  imports: [BrowserModule,
+  imports: [ BrowserModule,
     FormsModule,
     HttpModule,
     Ng2BootstrapModule,
@@ -80,8 +80,8 @@ export function cookieServiceFactory() {
     RatingModule.forRoot(),
     FileUploadModule,
     ClipboardModule,
-    routing],
-  declarations: [AppComponent,
+    routing ],
+  declarations: [ AppComponent,
     ResultDetailComponent,
     DashboardHomeComponent,
     DashboardCategoryComponent,
@@ -121,7 +121,7 @@ export function cookieServiceFactory() {
     NotificationService,
     CollectionsService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule {
 }
