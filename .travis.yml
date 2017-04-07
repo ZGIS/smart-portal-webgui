@@ -22,8 +22,8 @@ before_install:
 - npm i -g npm@3
 install:
 - npm install
-- pip install --user git+https://github.com/Syntaf/travis-sphinx.git
-- pip install -q --user sphinx_rtd_theme
+# - pip install --user git+https://github.com/Syntaf/travis-sphinx.git
+- pip install -q --user Sphinx sphinx_rtd_theme
 - export PATH=$HOME/.local/bin:$PATH
 script:
 - cp config/internal/.env.travis .env
@@ -42,7 +42,8 @@ script:
 after_script:
 # - npm run coverage
 # here should the shpinx docs get ready
-- travis-sphinx --source=src/docs/source --outdir=sphinx-build build
+# - travis-sphinx --source=src/docs/source --outdir=sphinx-build build
+- sphinx-build -b html src/docs/source sphinx-build
 - sh -c $TRAVIS_BUILD_DIR/ghdash-preps.sh
 - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run gh-pages-push
 after_success:

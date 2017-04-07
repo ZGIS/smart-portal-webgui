@@ -6,7 +6,7 @@ ls -lh dist coverage
 
 # can have shpinx docs ready here
 
-mkdir ghdash
+mkdir -p ghdash
 
 cp -r api-docs config/internal/index.html coverage sphinx-build ghdash
 
