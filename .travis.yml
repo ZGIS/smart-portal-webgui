@@ -5,6 +5,7 @@ node_js:
 - "7"
 python:
 - "2.7"
+- "3.4"
 os:
 - linux
 env:
@@ -43,6 +44,7 @@ after_script:
 # - npm run coverage
 # here should the shpinx docs get ready
 # - travis-sphinx --source=src/docs/source --outdir=sphinx-build build
+- sphinx-build --version
 - sphinx-build -b html src/docs/source sphinx-build
 - sh -c $TRAVIS_BUILD_DIR/ghdash-preps.sh
 - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run gh-pages-push
