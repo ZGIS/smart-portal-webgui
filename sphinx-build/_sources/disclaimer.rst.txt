@@ -1,13 +1,32 @@
 .. disclaimer
 
-A. STATEMENT
-------------
+Disclaimer
+==========
+
+1. **STATEMENT**
+
 This website is being developed and maintained through the SMART Aquifer Characterisation programme (SAC)
 research aim "Data Synthesis and Visualisation".
 This documentation is licensed under the Creative Commons Attribution 4.0 (CC BY SA 4.0) license.
 
-B. TERMS OF USE OF THE SMART Groundwater Portal
------------------------------------------------
+.. image:: https://licensebuttons.net/l/by-sa/4.0/88x31.png
+   :target: https://creativecommons.org/licenses/by-sa/4.0/
+
+You are free to:
+
+- Share: copy and redistribute the documentation material in any medium or format
+- Adapt: remix, transform, and build upon the material
+
+... for any purpose, even commercially.
+
+The licensor cannot revoke these freedoms as long as you follow these license terms:
+
+- Attribution: You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+- ShareAlike: If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+
+
+2. **TERMS OF USE OF THE SMART Groundwater Portal**
+
 We encourage you to use and share information from this website, provided that:
 
 the source in any copy you make is clearly acknowledged;
@@ -19,8 +38,8 @@ By adding content, you'll make sure to comply to the use constraints and license
 state these in return.
 This website must not be used to disseminate unsolicited advertising or promotional material of any kind.
 
-C. DISCLAIMER
--------------
+3. **DISCLAIMER**
+
 The SMART Groundwater Portal and this documentation is provided "as is".
 We are not responsible for, and expressly disclaim all liability for, damages of any kind arising out of use,
 reference to, or reliance on any information contained within the site. While the information contained within
@@ -45,8 +64,8 @@ If the user employes the information in this portal for any purpose other than f
 information available to any third party (either in full or in part) and at any event without the disclaimer of
 liability to third parties the recipient indemnifies and holds harmless GNS Science for any event arising from such use or supply.
 
-D. ENQUIRIES
-------------
+4. **ENQUIRIES**
+
 The SMART Aquifer Characterisation (SAC) research programme aims to develop a suite of innovative
 methods for rapid and cost-effective characterisation of New Zealand’s groundwater systems.
 SMART is an acronym for the driving ideals of the SAC programme:
