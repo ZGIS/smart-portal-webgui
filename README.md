@@ -5,12 +5,16 @@
 [![Build Status][build-status-badge]][build-status-url]
 [![Issues][issues-badge]][issues-url]
 
-[![NPM Master Dependencies](https://david-dm.org/ZGIS/smart-portal-webgui/status.svg?branch=master)](https://david-dm.org/ZGIS/smart-portal-webgui?branch=master)
-[![NPM Master DevDependencies](https://david-dm.org/ZGIS/smart-portal-webgui/dev-status.svg?branch=master)](https://david-dm.org/ZGIS/smart-portal-webgui?branch=master&type=dev)
+[![NPM Master Dependencies](https://david-dm.org/ZGIS/smart-portal-webgui/status.svg)](https://david-dm.org/ZGIS/smart-portal-webgui)
+[![NPM Master DevDependencies](https://david-dm.org/ZGIS/smart-portal-webgui/dev-status.svg)](https://david-dm.org/ZGIS/smart-portal-webgui?type=dev)
 
 [![License][license-badge]][license-url]
 [![OpenHUB](https://www.openhub.net/p/smart-portal-webgui/widgets/project_thin_badge.gif)](https://www.openhub.net/p/smart-portal-webgui)
- 
+
+<p><a href="https://api.travis-ci.org/repos/ZGIS/smart-portal-webgui/builds.atom"><img src="https://upload.wikimedia.org/wikipedia/en/4/43/Feed-icon.svg" align="left" height="32" width="32" alt="Builds Feed"></a></p>
+
+[Site Docs](https://zgis.github.io/smart-portal-webgui/)
+
 [build-status-badge]: https://img.shields.io/travis/ZGIS/smart-portal-webgui.svg?style=flat-square
 [build-status-url]: https://travis-ci.org/ZGIS/smart-portal-webgui
 [issues-badge]: https://img.shields.io/github/issues/ZGIS/smart-portal-webgui.svg?style=flat-square
