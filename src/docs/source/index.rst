@@ -19,6 +19,9 @@ It will become a gateway into 3D geological models and foster consistency in geo
    :numbered:
    :caption: Contents:
 
+   introduction
+   scenarios
+   usecases
    disclaimer
 
 Indices and tables
