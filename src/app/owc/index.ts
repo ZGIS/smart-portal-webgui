@@ -1,6 +1,7 @@
 export * from './collections'
 export * from './collections.service'
 export * from './collections.component'
+export * from './collections-desk.component'
 export * from './owcentry-detail-modal.component'
 export * from './owc-author.component'
 export * from './owc-category.component'

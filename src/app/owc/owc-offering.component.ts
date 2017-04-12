@@ -12,7 +12,8 @@ import { IOwcOffering } from './collections';
 export class OwcOfferingComponent implements OnInit {
   @Input() owcOffering: IOwcOffering;
 
-  owcOfferingStyleClasses = 'owcOffering';
+  owcOfferingStyleClasses = 'OwcOffering';
+  owcOfferingType = 'OwcOffering';
 
   // wms|wmts|wfs|wcs|csw|wps|gml|kml|geotiff|sos|netcdf|http-link
   public readonly WmsOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/wms';
@@ -31,54 +32,55 @@ export class OwcOfferingComponent implements OnInit {
   ngOnInit(): void {
     switch (this.owcOffering.code) {
       case this.WmsOffering: {
-        this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', 'WmsOffering');
+        this.owcOfferingType = 'WmsOffering';
         break;
       }
       case this.WmtsOffering: {
-        this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', 'WmtsOffering');
+        this.owcOfferingType = 'WmtsOffering';
         break;
       }
       case this.WfsOffering: {
-        this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', 'WfsOffering');
+        this.owcOfferingType = 'WfsOffering';
         break;
       }
       case this.WcsOffering: {
-        this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', 'WcsOffering');
+        this.owcOfferingType = 'WcsOffering';
         break;
       }
       case this.CswOffering: {
-        this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', 'CswOffering');
+        this.owcOfferingType = 'CswOffering';
         break;
       }
       case this.WpsOffering: {
-        this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', 'WpsOffering');
+        this.owcOfferingType = 'WpsOffering';
         break;
       }
       case this.GmlOffering: {
-        this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', 'GmlOffering');
+        this.owcOfferingType = 'GmlOffering';
         break;
       }
       case this.KmlOffering: {
-        this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', 'KmlOffering');
+        this.owcOfferingType = 'KmlOffering';
         break;
       }
       case this.GeoTiffOffering: {
-        this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', 'GeoTiffOffering');
+        this.owcOfferingType = 'GeoTiffOffering';
         break;
       }
       case this.SosOffering: {
-        this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', 'SosOffering');
+        this.owcOfferingType = 'SosOffering';
         break;
       }
       case this.NetCdfOffering: {
-        this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', 'NetCdfOffering');
+        this.owcOfferingType = 'NetCdfOffering';
         break;
       }
       case this.HttpLinkOffering: {
-        this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', 'HttpLinkOffering');
+        this.owcOfferingType = 'HttpLinkOffering';
         break;
       }
     }
+    this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', this.owcOfferingType);
   }
 
 }

@@ -6,7 +6,7 @@ import {
   ResultCardsComponent
 } from './dashboards';
 import { SearchComponent } from './search';
-import { CollectionsComponent } from './owc';
+import { CollectionsComponent, CollectionsDeskComponent } from './owc';
 import {
   LoginComponent,
   RegisterComponent,
@@ -92,7 +92,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'workbench/my-data',
-    component: CollectionsComponent,
+    component: CollectionsDeskComponent,
     canActivate: [AuthGuard, RegisteredGuard]
   },
 

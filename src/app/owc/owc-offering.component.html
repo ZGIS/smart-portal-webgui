@@ -27,5 +27,9 @@
   </div>
 
   <div *ngIf="owcOffering.contents && owcOffering.contents.length > 0">
+    <div class="list-group-item" *ngFor="let dataContent of owcOffering.contents">
+      <p><small><i>{{ 'content: ' + dataContent }}</i></small></p>
+    </div>
+  </div>
 
 </div>

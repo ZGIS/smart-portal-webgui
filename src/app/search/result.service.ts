@@ -42,7 +42,7 @@ export class ResultService {
     }
 
     // TODO SR we should externalize the URL strings to one "service" wrapper class --> cswApiService.getQueryUrl() etc.
-    return this.http.get(this.cswiApiUrl + '/query', {search: params})
+    return this.http.get(this.cswiApiUrl + '/query', {params: params})
     /* FIXME not sure if I'm happy with this so far
      http://stackoverflow.com/questions/22875636/how-do-i-cast-a-json-object-to-a-typescript-class
      */

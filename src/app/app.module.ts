@@ -59,6 +59,7 @@ import {
 import {
   CollectionsService,
   CollectionsComponent,
+  CollectionsDeskComponent,
   OwcEntryDetailModalComponent,
   OwcAuthorComponent,
   OwcCategoryComponent,
@@ -124,6 +125,7 @@ export function cookieServiceFactory() {
     ResultDetailModalComponent,
     DashboardButtonComponent,
     CollectionsComponent,
+    CollectionsDeskComponent,
     OwcEntryDetailModalComponent,
     OwcAuthorComponent,
     OwcCategoryComponent,

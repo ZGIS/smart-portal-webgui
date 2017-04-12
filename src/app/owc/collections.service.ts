@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { PORTAL_API_URL } from '../in-app-config';
@@ -15,6 +15,10 @@ export class CollectionsService {
               private accountService: AccountService) {
   }
 
+  /**
+   *
+   * @returns {Observable<R|T>}
+   */
   getDefaultCollection(): Observable<IOwcDocument> {
     // add authorization header with jwt token
     let defaultCollectionsUri = this.portalApiUrl + '/collections/default';
@@ -27,21 +31,62 @@ export class CollectionsService {
     return this.http.get(defaultCollectionsUri, options)
       .map(
         (response: Response) => {
-          // TODO SR the status at that point should always be 200!
-          // if (response.status === 200) {
-            let userCollectionJson = response.json();
-            if (<IOwcDocument>userCollectionJson) {
-              console.log(userCollectionJson);
-            }
-            return response.json();
-          // } else {
-          //   // indicates failed self retrieve
-          //   this.notificationService.addNotification({
-          //     type: 'warning',
-          //     message: 'Error receiving collection'
-          //   });
-          //   return Observable.throw('Error receiving collection');
-          // }
+          let userCollectionJson = response.json();
+          if (<IOwcDocument>userCollectionJson) {
+            console.log(userCollectionJson);
+          }
+          return response.json();
+        }
+      )
+      .catch(this.handleHttpFailure);
+  };
+
+  /**
+   * get specific collection (that you have access to, server will filter reliably)
+   *
+   * @returns {Observable<R|T>}
+   */
+  getCollectionById(id: string): Observable<IOwcDocument> {
+    // add authorization header with jwt token
+    let defaultCollectionsUri = this.portalApiUrl + '/collections';
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('id', id);
+    let token = this.accountService.token;
+    console.log('token: ' + token);
+    let headers = new Headers({'X-XSRF-TOKEN': token});
+    let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
+
+    // get default collection from api (should be exactly one OwcDocument)
+    return this.http.get(defaultCollectionsUri, options)
+      .map(
+        (response: Response) => {
+          let userCollectionJson = response.json();
+          if (<IOwcDocument>userCollectionJson) {
+            console.log(userCollectionJson);
+          }
+          return response.json();
+        }
+      )
+      .catch(this.handleHttpFailure);
+  };
+
+  getCollections(): Observable<IOwcDocument[]> {
+    // add authorization header with jwt token
+    let collectionsUri = this.portalApiUrl + '/collections';
+    let token = this.accountService.token;
+    console.log('token: ' + token);
+    let headers = new Headers({'X-XSRF-TOKEN': token});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+
+    // get default collection from api (should be exactly one OwcDocument)
+    return this.http.get(collectionsUri, options)
+      .map(
+        (response: Response) => {
+          let userCollectionJson = response.json() && response.json().collections;
+          if (<IOwcDocument[]>userCollectionJson) {
+            console.log(response.json().count);
+          }
+          return response.json().collections;
         }
       )
       .catch(this.handleHttpFailure);
@@ -67,6 +112,20 @@ export class CollectionsService {
       })
       .catch(this.handleHttpFailure);
   }
+
+  // POST /api/v1/collections -> controllers.CollectionsController.insertCollection
+
+  // POST /api/v1/collections/update -> controllers.CollectionsController.updateCollectionMetadata
+
+  // GET /api/v1/collections/delete -> controllers.CollectionsController.deleteCollection(id: String)
+  //
+  // experimental, entries add, replace, delete from collections
+  // POST /api/v1/collections/entry
+  //    -> controllers.CollectionsController.addEntryToCollection(collectionid: String)
+  // POST /api/v1/collections/entry/replace
+  //    -> controllers.CollectionsController.replaceEntryInCollection(collectionid: String)
+  // GET /api/v1/collections/entry/delete
+  //    -> controllers.CollectionsController.deleteEntryFromCollection(collectionid: String, entryid: String)
 
   /**
    * In case call failed, handle error

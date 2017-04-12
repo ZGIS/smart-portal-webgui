@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-5">
+    <div class="panel panel-default" *ngIf="myCollections.length > 0">
+
+      <div class="panel-heading">{{ myCollections.length }} collection{{ myCollections.length > 1 ? 's' : '' }} <a (click)="reloadCollections()"
+                                                 tooltip="Refresh all collections">
+        Reload all <i class="fa fa-repeat"
+                  aria-hidden="true"></i></a></div>
+      <div class="panel-body" *ngFor="let myCollection of myCollections">
+        <app-sac-gwh-collection [myCollection]="myCollection"></app-sac-gwh-collection>
+      </div>
+    </div>
+  </div>
+</div>

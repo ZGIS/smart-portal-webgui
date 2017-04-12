@@ -2,7 +2,12 @@
   <div class="panel-heading">Title: {{owcEntryProperties.title}}</div>
 
   <div class="panel-body">
-
+    <button (click)="editProperties()" type="button" class="btn btn-primary" tooltip="Edit the entry">
+      Edit <i class="fa fa-edit" aria-hidden="true"></i>
+    </button>
+    <button (click)="editProperties()" type="button" class="btn btn-warning" tooltip="Delete the entry">
+      Delete <i class="fa fa-trash" aria-hidden="true"></i>
+    </button>
     <ul class="list-group">
       <li class="list-group-item"  *ngIf="owcEntryProperties.lang">
         <span class="badge pull-left">Entry Title:</span>&nbsp;{{ owcEntryProperties.title }}
