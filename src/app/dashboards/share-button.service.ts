@@ -1,6 +1,16 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
+/**
+ * Load script to make share button loader for Twitter and co easy
+ *
+ * https://www.addtoany.com/buttons/for/website
+ *
+ * others:
+ * - https://www.addthis.com
+ * - http://platform.sharethis.com/get-inline-share-buttons#
+ * - https://lukkr.com/share-buttons/
+ */
 @Injectable()
 export class ShareButtonService {
 
@@ -14,6 +24,11 @@ export class ShareButtonService {
     window[<any>'onloadCallback'] = <any>(() => zone.run(this.onloadCallback.bind(this)));
   }
 
+  /**
+   * loads the script and return when ready
+   *
+   * @returns {Observable<T>}
+   */
   public getReady(): Observable<boolean> {
     if (!this.scriptLoaded) {
       this.scriptLoaded = true;

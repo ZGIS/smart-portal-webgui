@@ -59,7 +59,13 @@ import {
 import {
   CollectionsService,
   CollectionsComponent,
-  OwcEntryDetailModalComponent
+  OwcEntryDetailModalComponent,
+  OwcAuthorComponent,
+  OwcCategoryComponent,
+  OwcLinkComponent,
+  OwcOfferingComponent,
+  OwcDocumentPropertiesComponent,
+  OwcEntryPropertiesComponent
 } from './owc';
 import { X3dViewComponent } from './x3d-view';
 import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
@@ -119,6 +125,12 @@ export function cookieServiceFactory() {
     DashboardButtonComponent,
     CollectionsComponent,
     OwcEntryDetailModalComponent,
+    OwcAuthorComponent,
+    OwcCategoryComponent,
+    OwcLinkComponent,
+    OwcOfferingComponent,
+    OwcDocumentPropertiesComponent,
+    OwcEntryPropertiesComponent,
     BasicFileUploadComponent,
     CardComponent
   ],

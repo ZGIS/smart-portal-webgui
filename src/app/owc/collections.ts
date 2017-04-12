@@ -9,14 +9,14 @@ export interface IOwcDocument {
 export interface IOwcDocumentProperties {
   lang: string;
   title: string;
-  subtitle: string;
-  updated: any;
-  generator: string;
+  subtitle?: string;
+  updated?: any;
+  generator?: string;
   rights: string;
   authors: IOwcAuthor[];
   contributors: IOwcAuthor[];
-  creator: string;
-  publisher: string;
+  creator?: string;
+  publisher?: string;
   categories: IOwcCategory[];
   links: IOwcLink[];
 }
@@ -31,18 +31,18 @@ export interface IOwcEntry {
 export interface IOwcEntryProperties {
   lang: string;
   title: string;
-  subtitle: string;
-  updated: any;
-  generator: string;
+  subtitle?: string;
+  updated?: any;
+  generator?: string;
   rights: string;
   authors: IOwcAuthor[];
   contributors: IOwcAuthor[];
-  creator: string;
-  publisher: string;
+  creator?: string;
+  publisher?: string;
   categories: IOwcCategory[];
   links: IOwcLink[];
   offerings: IOwcOffering[];
-  content: any; // content and subtitle, not sure about the current data model
+  content?: any; // content and subtitle, not sure about the current data model
 }
 
 export interface IOwcAuthor {
@@ -75,8 +75,8 @@ export interface IOwcOperation {
   method: string;
   type: string;
   href: string;
-  request: IOwcPostRequestConfig;
-  result: IOwcRequestResult;
+  request?: IOwcPostRequestConfig;
+  result?: IOwcRequestResult;
 }
 
 export interface IOwcPostRequestConfig {

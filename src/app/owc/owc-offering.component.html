@@ -1,0 +1,31 @@
+<div [class]="owcOfferingStyleClasses" *ngIf="owcOffering">
+  <p *ngIf="owcOffering.code"><small><i>{{ 'Offering def: ' + owcOffering.code }}</i></small></p>
+
+  <div *ngIf="owcOffering.operations && owcOffering.operations.length > 0">
+    <div class="list-group-item" *ngFor="let owcOperation of owcOffering.operations">
+      <p *ngIf="owcOperation.code"><small><i>{{ 'Operation: ' + owcOperation.code }}</i></small></p>
+      <p *ngIf="owcOperation.method"><small><i>{{ 'Operation method: ' + owcOperation.method }}</i></small></p>
+      <p *ngIf="owcOperation.type && owcOperation.method === 'GET'">
+        <small><i>{{ 'Operation Type: ' + owcOperation.type }}</i></small>
+      </p>
+      <p *ngIf="owcOperation.href && owcOperation.method === 'GET'">
+        Link: <a [href]="owcOperation.href" target="_blank">{{ owcOperation.href }} <i class="fa fa-globe"></i></a>
+      </p>
+      <p *ngIf="owcOperation.href && owcOperation.method === 'POST'">
+        Configured request for server:
+        <small><i><a [href]="owcOperation.href" target="_blank">{{ owcOperation.href }}</a></i></small>
+      </p>
+      <div class="owcPostRequestConfig" *ngIf="owcOperation.request">
+        <p *ngIf="owcOperation.request.type"><small><i>{{ 'mime-type: ' + owcOperation.request.type }}</i></small></p>
+        <p *ngIf="owcOperation.request.request"><small><i>{{ 'data: ' + owcOperation.request.request }}</i></small></p>
+      </div>
+      <div class="owcRequestResult" *ngIf="owcOperation.result">
+        <p *ngIf="owcOperation.result.type"><small><i>{{ 'mime-type: ' + owcOperation.result.type }}</i></small></p>
+        <p *ngIf="owcOperation.result.response"><small><i>{{ 'data: ' + owcOperation.result.response }}</i></small></p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="owcOffering.contents && owcOffering.contents.length > 0">
+
+</div>
