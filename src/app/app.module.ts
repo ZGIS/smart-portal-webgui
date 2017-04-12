@@ -24,7 +24,7 @@ import {
   FeatureOriginPipe,
   ResultDetailModalComponent
 } from './search';
-import { NavigationComponent } from './navigation';
+import { NavigationComponent, NotFoundComponent } from './navigation';
 import {
   DashboardHomeComponent,
   DashboardCategoryComponent,
@@ -54,6 +54,7 @@ import {
   OwcEntryDetailModalComponent,
   BasicFileUploadComponent
 } from './workbench';
+import { X3dViewComponent } from './x3d-view';
 import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
 import { AuthGuard, RegisteredGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
@@ -86,9 +87,11 @@ export function cookieServiceFactory() {
     DashboardHomeComponent,
     DashboardCategoryComponent,
     NavigationComponent,
+    NotFoundComponent,
     SearchComponent,
     ResultCardsComponent,
     Ol3MapComponent,
+    X3dViewComponent,
     LoginComponent,
     ReCaptchaComponent,
     GApiAuthComponent,

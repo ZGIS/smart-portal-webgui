@@ -17,7 +17,7 @@
     <ul class="nav navbar-nav navbar-right">
 
       <li dropdown>
-        <a role="button" dropdownToggle>DATA <i class="fa fa-database"></i></a>
+        <a role="button" dropdownToggle>ACCOUNT <i class="fa fa-database"></i></a>
         <ul *dropdownMenu class="dropdown-menu" role="menu">
           <li role="menuitem" *ngIf="checkLoggedIn">
             <a routerLink="/workbench/my-data">My documents <i class="fa fa-folder-o"></i></a>
@@ -75,6 +75,9 @@
           <li class="divider dropdown-divider" *ngIf="checkLoggedIn"></li>
           <li role="menuitem"><a role="button" class="dropdown-item" (click)="showDisclaimerModal()">Disclaimer</a></li>
           <li role="menuitem"><a role="button" class="dropdown-item" (click)="showAboutModal()">About</a></li>
+          <li role="menuitem"><a role="button" class="dropdown-item"
+                                 href="https://zgis.github.io/smart-portal-webgui/sphinx-build/#" target="_blank">Help</a>
+          </li>
 
         </ul>
       </li>

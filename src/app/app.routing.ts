@@ -18,6 +18,7 @@ import {
   CollectionsComponent,
   BasicFileUploadComponent } from './workbench';
 import { AuthGuard, RegisteredGuard } from './_guards';
+import { NotFoundComponent } from './navigation';
 
 const appRoutes: Routes = [
   {
@@ -79,8 +80,10 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard, RegisteredGuard]
   },
 
+  {path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'}
   // otherwise redirect to home
-  { path: '**', redirectTo: '/dashboard' }
+  // { path: '**', redirectTo: '/dashboard' }
 ];
 
 // useHash: true https://angular.io/docs/ts/latest/guide/router.html#!#browser-url-styles
