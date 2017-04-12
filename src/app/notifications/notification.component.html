@@ -6,10 +6,11 @@
     <alert *ngFor="let notification of notifications;let i = index"
            [type]="notification.type"
            dismissible="true"
-           (close)="dismissNotification(i)">
+           [dismissOnTimeout]="notification.dismissAfter"
+           (onClose)="dismissNotification(i)">
 
       <button *ngIf="notification.details !== undefined" aria-label="Details" class="details" type="button"
-              (click)="notification.show = !notification.show">
+              (click)="notification.detailsVisible = !notification.detailsVisible">
         <span class="fa-stack" tooltip="show more details">
           <i class="fa fa-circle fa-stack-2x"></i>
           <i class="fa fa-ellipsis-h fa-stack-1x fa-inverse"></i>
@@ -18,7 +19,7 @@
       </button>
       <!--<h1>{{i}}</h1>-->
       <span [innerHtml]="notification.message"></span>
-      <pre *ngIf="notification.show"><small>{{notification.details}}</small></pre>
+      <pre *ngIf="notification.detailsVisible"><small>{{notification.details}}</small></pre>
     </alert>
   </div>
 </div>

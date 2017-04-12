@@ -99,6 +99,7 @@ export class LoginComponent {
     } else {
       console.log('error gconnect signin');
       this.notificationService.addNotification({
+        id: NotificationService.MSG_ID_LOGIN_STUFF,
         type: 'danger',
         message: 'Login Error. No AuthCode provided.'
       });

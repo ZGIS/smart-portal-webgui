@@ -31,7 +31,7 @@ export class Ol3MapComponent implements OnInit {
     }
 
     if (this.map) {
-      console.log(`map.getView().fit() with '${this._mapExtent}'`);
+      // console.log(`map.getView().fit() with '${this._mapExtent}'`);
       this.map.getView().fit(this._mapExtent, this.map.getSize());
     }
   }
@@ -52,7 +52,7 @@ export class Ol3MapComponent implements OnInit {
     }
 
     this.highlightSource.clear();
-    console.log(feature);
+    // console.log(feature);
     if (!isNullOrUndefined(feature)) {
       this.highlightSource.addFeature((new format.GeoJSON()).readFeature(feature));
     }

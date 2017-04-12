@@ -8,22 +8,18 @@ import { isNullOrUndefined } from 'util';
 import { NotificationService } from '../notifications/notification.service';
 import { Extent } from 'openlayers';
 
+/**
+ * Search Component
+ */
 @Component({
   selector: 'app-sac-gwh-search',
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.css']
 })
 
-/**
- * Search Component
- */
 export class SearchComponent implements OnInit {
 
-  /**
-   * initial search
-   * @type {{query: string; fromDate: Date; toDate: Date; bbox: [number,number,number,number];
-   *         bboxWkt: string; maxNumberOfResults: number}}
-   */
+  /** initial search */
   search: Search = {
     query: '*:*',
     fromDate: moment('1970-01-01', this.DATE_FORMAT).toDate(),
@@ -33,16 +29,21 @@ export class SearchComponent implements OnInit {
     maxNumberOfResults: 100
   };
 
-  /**
-   * Search results
-   */
+  /** Search results */
   results: IGeoFeatureCollection;
+
+  /** The selected search result */
   selectedResult: IGeoFeature;
 
+  /** indicator if search mask is waiting for ajax request */
   isLoading = false;
+
+  /** current URL */
   currentUrl: String;
 
+  /** default date format */
   private DATE_FORMAT = 'YYYY-MM-DD';
+
   private timeoutId: number;
 
   /**
@@ -159,6 +160,7 @@ export class SearchComponent implements OnInit {
             });
             let url = '#' + urlTree.toString();
             this.notificationService.addNotification({
+              id: NotificationService.MSG_ID_SHOW_ALL_RESULTS,
               type: 'info',
               message: `Ommited some search results. <a href="${url}"><i class="fa fa-eye"></i>&nbsp;show all</a>`
             });
@@ -205,7 +207,11 @@ export class SearchComponent implements OnInit {
    * on URL sucessfully copied to clipboard
    */
   onClipboardSuccess() {
-    this.notificationService.addNotification({message: 'URL successfully copied to clipboard', type: 'success'});
+    this.notificationService.addNotification({
+      id: NotificationService.MSG_ID_URL_COPIED_TO_CLIPBOARD,
+      message: 'URL successfully copied to clipboard', type: 'success',
+      dismissAfter: 1500
+    });
   }
 }
 

@@ -64,15 +64,17 @@ export class RegisterComponent {
           if (result === true) {
             // register successful
             this.notificationService.addNotification({
+              id: NotificationService.MSG_ID_LOGIN_STUFF,
               type: 'success',
               message: 'Thank you. Please check your emails and activate your account by' +
-              ' clicking on th provided link.'
+              ' following the provided link.'
             });
             this.loading = false;
             this.router.navigateByUrl('/login');
           } else {
             // login failed
             this.notificationService.addNotification({
+              id: NotificationService.MSG_ID_LOGIN_STUFF,
               type: 'warning',
               message: 'Registration failed.'
             });
@@ -103,6 +105,7 @@ export class RegisterComponent {
           this.recaptchaValid = false;
           console.log('error recapture not valid');
           this.notificationService.addNotification({
+            id: NotificationService.MSG_ID_LOGIN_STUFF,
             type: 'warning',
             message: 'Recapture not valid.'
           });
@@ -136,6 +139,7 @@ export class RegisterComponent {
             // login failed
             this.error = 'Google Login failed.';
             this.notificationService.addNotification({
+              id: NotificationService.MSG_ID_LOGIN_STUFF,
               type: 'warning',
               message: 'Google Login failed.'
             });
@@ -149,6 +153,7 @@ export class RegisterComponent {
     } else {
       console.log('error gconnect signin');
       this.notificationService.addNotification({
+        id: NotificationService.MSG_ID_LOGIN_STUFF,
         type: 'danger',
         message: 'Login/Registration Error. No AuthCode provided.'
       });
