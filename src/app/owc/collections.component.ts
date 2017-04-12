@@ -18,6 +18,11 @@ export class CollectionsComponent {
     console.log('we reload this collection');
   }
 
+  editProperties(): void {
+    console.log('we edit the properties');
+  }
+
+
   /**
    * Constructor
    * @param collectionsService  - injected CollectionsService

@@ -8,8 +8,4 @@ import { IOwcDocumentProperties } from './collections';
 
 export class OwcDocumentPropertiesComponent {
   @Input() owcDocumentProperties: IOwcDocumentProperties;
-
-  editProperties(): void {
-    console.log('we edit the properties');
-  }
 }
