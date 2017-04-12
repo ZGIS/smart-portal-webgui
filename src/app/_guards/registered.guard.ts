@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-import { CollectionsService, IOwcDocument } from '../workbench';
+import { CollectionsService, IOwcDocument } from '../owc';
 import { NotificationService } from '../notifications';
 
 

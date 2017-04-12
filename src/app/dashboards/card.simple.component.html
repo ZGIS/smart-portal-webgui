@@ -1,10 +1,16 @@
 <div class="card">
   <div class="header">
-    <!--<img src="http://us.123rf.com/450wm/violetkaipa/violetkaipa1409/violetkaipa140900052/31266340-man-drawing-a-graph-on-a-glass-wall.jpg" />-->
-    <!--<img src="https://www.rabobank.com/en/images/A%20Kerndocumenten.jpg" />-->
+    <!-- 'https://www.rabobank.com/en/images/A%20Kerndocumenten.jpg' -->
+    <!-- 'https://www.addtoany.com/buttons/for/website' -->
+
     <img src="{{cardImage}}"/>
     <h4>{{ title }}</h4>
+
     <div class="share-icons">
+
+      <app-share-buttons></app-share-buttons>
+
+      <!--
       <div class="fa fa-stack">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -17,6 +23,7 @@
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
       </div>
+      -->
     </div>
     <div class="rating">
       <rating [(ngModel)]="tempRating" [max]="5" [readonly]="false"></rating>

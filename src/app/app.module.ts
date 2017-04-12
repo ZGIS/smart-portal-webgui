@@ -25,12 +25,17 @@ import {
   ResultDetailModalComponent
 } from './search';
 import { NavigationComponent, NotFoundComponent } from './navigation';
+import { AdminComponent } from './admin';
+import { GlossaryComponent } from './glossary-edu';
+import { ResearchProgrammesComponent } from './research-pg';
 import {
   DashboardHomeComponent,
   DashboardCategoryComponent,
   ResultCardsComponent,
   CardComponent,
-  DashboardButtonComponent
+  DashboardButtonComponent,
+  ShareButtonComponent,
+  ShareButtonService
 } from './dashboards';
 import { Ol3MapComponent } from './ol3-map';
 import {
@@ -49,14 +54,16 @@ import {
 } from './account';
 import {
   MetadataEditorComponent,
-  CollectionsService,
-  CollectionsComponent,
-  OwcEntryDetailModalComponent,
   BasicFileUploadComponent
 } from './workbench';
+import {
+  CollectionsService,
+  CollectionsComponent,
+  OwcEntryDetailModalComponent
+} from './owc';
 import { X3dViewComponent } from './x3d-view';
 import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
-import { AuthGuard, RegisteredGuard } from './_guards';
+import { AdminGuard, AuthGuard, RegisteredGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
 import { RatingModule } from 'ng2-bootstrap/rating';
@@ -88,8 +95,12 @@ export function cookieServiceFactory() {
     DashboardCategoryComponent,
     NavigationComponent,
     NotFoundComponent,
+    ResearchProgrammesComponent,
+    GlossaryComponent,
+    AdminComponent,
     SearchComponent,
     ResultCardsComponent,
+    ShareButtonComponent,
     Ol3MapComponent,
     X3dViewComponent,
     LoginComponent,
@@ -118,11 +129,13 @@ export function cookieServiceFactory() {
     AccountService,
     AuthGuard,
     RegisteredGuard,
+    AdminGuard,
     ResultService,
     ReCaptchaService,
     GApiAuthService,
     NotificationService,
-    CollectionsService
+    CollectionsService,
+    ShareButtonService
   ],
   bootstrap: [ AppComponent ]
 })

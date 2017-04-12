@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { IOwcDocument } from '../workbench/collections';
+import { IOwcDocument } from '../owc/collections';
 
 @Component({
   selector: 'app-sac-gwh-x3d-view',

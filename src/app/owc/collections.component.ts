@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notifications';
-import { IOwcDocument } from '.';
-import { CollectionsService } from '.';
+import { IOwcDocument, CollectionsService } from './';
 
 @Component({
   selector: 'app-sac-gwh-collections',

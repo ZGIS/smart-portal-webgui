@@ -6,7 +6,7 @@ import { NotificationService } from '../notifications';
 
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
 
   constructor(private router: Router, private accountService: AccountService,
               private notificationService: NotificationService) {
@@ -15,15 +15,20 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.accountService.getProfile().map(userProfile => {
       if (userProfile) {
-        return true;
+        if (userProfile.email === 'allixender@gmail.com') {
+          return true;
+        }
+        // here maybe more default admins for now :-)
+        return false;
+
       } else {
         return false;
       }
     }).catch(() => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
       this.notificationService.addNotification({
         type: 'warning',
-        message: 'You are not logged in. Please sign up or sign in.'
+        message: 'You are not an admin, sorry.'
       });
       return Observable.of(false);
 

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { IErrorResult } from '../search/result';
 import { Observable } from 'rxjs';
-import { CollectionsService } from './collections.service';
+import { CollectionsService } from '../owc';
 import { TypeaheadMatch } from 'ng2-bootstrap';
 import * as moment from 'moment';
 

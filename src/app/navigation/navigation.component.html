@@ -11,20 +11,37 @@
   </div>
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
-      <li routerLinkActive="active"><a routerLink="/dashboard"><span class="fa fa-home"></span></a></li>
+      <li routerLinkActive="active"><a routerLink="/dashboard">Home <i class="fa fa-home"></i></a></li>
       <li *ngIf="!(category==='main')">{{ category }}</li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
 
+      <li routerLinkActive="active"><a routerLink="/research-pg">Research Programmes <i class="fa fa-cubes "></i></a></li>
+
+      <li routerLinkActive="active"><a routerLink="/glossary-edu">Education/Glossary <i class="fa fa-lightbulb-o"></i></a></li>
+
+      <li routerLinkActive="active"><a routerLink="/search">Search Data and Tools <i class="fa fa-search"></i></a></li>
+
       <li dropdown>
-        <a role="button" dropdownToggle>ACCOUNT <i class="fa fa-database"></i></a>
+        <a role="button" dropdownToggle>Your Account <i class="fa fa-database"></i></a>
         <ul *dropdownMenu class="dropdown-menu" role="menu">
+          <li role="menuitem" *ngIf="checkLoggedIn">
+            <a class="dropdown-item" routerLink="/account"><i class="fa fa-user"></i>
+              {{ userProfile.email }}</a>
+          </li>
+          <li role="menuitem" *ngIf="!checkLoggedIn">
+            <a class="dropdown-item" routerLink="/login"><i class="fa fa-sign-in"></i> Sign in to manage your own data collections</a>
+          </li>
+          <li role="menuitem" *ngIf="checkLoggedIn">
+            <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-sign-out"></i>
+              Logout</a>
+          </li>
+          <li class="divider dropdown-divider" *ngIf="checkLoggedIn"></li>
+
           <li role="menuitem" *ngIf="checkLoggedIn">
             <a routerLink="/workbench/my-data">My documents <i class="fa fa-folder-o"></i></a>
           </li>
-          <li role="menuitem" *ngIf="!checkLoggedIn">
-            <a class="dropdown-item" routerLink="/login"><i class="fa fa-sign-in"></i> Sign in to manage your data</a>
-          </li>
+
           <li role="menuitem" *ngIf="checkLoggedIn">
             <a routerLink="/workbench/upload-file">Upload a file <i class="fa fa-upload"></i></a>
           </li>
@@ -51,8 +68,6 @@
         </ul>
       </li>
 
-      <li routerLinkActive="active"><a routerLink="/search">SEARCH <i class="fa fa-search"></i></a></li>
-
       <li dropdown>
         <a role="button" dropdownToggle><span class="fa-stack">
                               <i class="fa fa-circle fa-stack-2x" style="color:#EEEEEE"></i>
@@ -61,18 +76,6 @@
         </a>
         <ul *dropdownMenu class="dropdown-menu" role="menu">
 
-          <li role="menuitem" *ngIf="checkLoggedIn">
-            <a class="dropdown-item" routerLink="/account"><i class="fa fa-user"></i>
-              {{ userProfile.email }}</a>
-          </li>
-          <li role="menuitem" *ngIf="!checkLoggedIn">
-            <a class="dropdown-item" routerLink="/login"><i class="fa fa-sign-in"></i> Login</a>
-          </li>
-          <li role="menuitem" *ngIf="checkLoggedIn">
-            <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-sign-out"></i>
-              Logout</a>
-          </li>
-          <li class="divider dropdown-divider" *ngIf="checkLoggedIn"></li>
           <li role="menuitem"><a role="button" class="dropdown-item" (click)="showDisclaimerModal()">Disclaimer</a></li>
           <li role="menuitem"><a role="button" class="dropdown-item" (click)="showAboutModal()">About</a></li>
           <li role="menuitem"><a role="button" class="dropdown-item"

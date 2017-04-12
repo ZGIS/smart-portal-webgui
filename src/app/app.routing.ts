@@ -6,6 +6,7 @@ import {
   ResultCardsComponent
 } from './dashboards';
 import { SearchComponent } from './search';
+import { CollectionsComponent } from './owc';
 import {
   LoginComponent,
   RegisterComponent,
@@ -15,10 +16,12 @@ import {
 } from './account';
 import {
   MetadataEditorComponent,
-  CollectionsComponent,
   BasicFileUploadComponent } from './workbench';
-import { AuthGuard, RegisteredGuard } from './_guards';
+import { AdminGuard, AuthGuard, RegisteredGuard } from './_guards';
 import { NotFoundComponent } from './navigation';
+import { ResearchProgrammesComponent } from './research-pg';
+import { GlossaryComponent } from './glossary-edu';
+import { AdminComponent } from './admin';
 
 const appRoutes: Routes = [
   {
@@ -43,6 +46,14 @@ const appRoutes: Routes = [
     component: SearchComponent
   },
   {
+    path: 'research-pg',
+    component: ResearchProgrammesComponent
+  },
+  {
+    path: 'glossary-edu',
+    component: GlossaryComponent
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
@@ -62,6 +73,11 @@ const appRoutes: Routes = [
     path: 'account',
     component: AccountComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'x-admin',
+    component: AdminComponent,
+    canActivate: [AdminGuard]
   },
   // also think about CanActivateChild for the whole workbench thing
   {

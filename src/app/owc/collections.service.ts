@@ -2,13 +2,9 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-// import { BehaviorSubject } from 'rxjs/Rx';
 import { PORTAL_API_URL } from '../in-app-config';
 import { AccountService } from '../account';
-import { IOwcDocument } from './collections';
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/catch';
-import { NotificationService } from '../notifications';
+import { IOwcDocument } from './';
 import { IErrorResult } from '../search/result';
 
 @Injectable()

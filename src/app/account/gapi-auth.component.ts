@@ -27,12 +27,12 @@ export class GApiAuthComponent implements AfterViewInit {
   @Output()
   signinResponse = new EventEmitter<string>();
 
-  constructor(private _zone: NgZone,
-              private _gapiAuthService: GApiAuthService) {
+  constructor(private ngZone: NgZone,
+              private gapiAuthService: GApiAuthService) {
   }
 
   ngAfterViewInit() {
-    this._gapiAuthService.getReady().subscribe(
+    this.gapiAuthService.getReady().subscribe(
       (ready) => {
         if (!ready) {
           return;
