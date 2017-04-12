@@ -72,12 +72,6 @@
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><span class="tsd-signature-type">OnInit</span></li>
-				</ul>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -99,7 +93,8 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionscomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionscomponent.html#editproperties" class="tsd-kind-icon">edit<wbr>Properties</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionscomponent.html#reloadcollection" class="tsd-kind-icon">reload<wbr>Collection</a></li>
 							</ul>
 						</section>
 					</div>
@@ -117,7 +112,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.component.ts#L16">app/workbench/collections.component.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.component.ts#L23">app/owc/collections.component.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -157,7 +152,7 @@
 					<div class="tsd-signature tsd-kind-icon">collections<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.component.ts#L23">app/workbench/collections.component.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.component.ts#L31">app/owc/collections.component.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -172,7 +167,7 @@
 					<div class="tsd-signature tsd-kind-icon">my<wbr>Collection<span class="tsd-signature-symbol">:</span> <a href="../interfaces/iowcdocument.html" class="tsd-signature-type">IOwcDocument</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.component.ts#L16">app/workbench/collections.component.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.component.ts#L14">app/owc/collections.component.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -182,7 +177,7 @@
 					<div class="tsd-signature tsd-kind-icon">notification<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.component.ts#L24">app/workbench/collections.component.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.component.ts#L32">app/owc/collections.component.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -195,23 +190,35 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="ngoninit" class="tsd-anchor"></a>
-					<h3>ng<wbr>OnInit</h3>
+					<a name="editproperties" class="tsd-anchor"></a>
+					<h3>edit<wbr>Properties</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">ng<wbr>OnInit<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">edit<wbr>Properties<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.component.ts#L30">app/workbench/collections.component.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.component.ts#L21">app/owc/collections.component.ts:21</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>OnInit - load current user&#39;s collections</p>
-								</div>
-							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="reloadcollection" class="tsd-anchor"></a>
+					<h3>reload<wbr>Collection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">reload<wbr>Collection<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.component.ts#L17">app/owc/collections.component.ts:17</a></li>
+								</ul>
+							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -246,7 +253,10 @@
 								<a href="collectionscomponent.html#notificationservice" class="tsd-kind-icon">notification<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="collectionscomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>
+								<a href="collectionscomponent.html#editproperties" class="tsd-kind-icon">edit<wbr>Properties</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="collectionscomponent.html#reloadcollection" class="tsd-kind-icon">reload<wbr>Collection</a>
 							</li>
 						</ul>
 					</li>

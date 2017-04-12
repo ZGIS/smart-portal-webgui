@@ -66,10 +66,12 @@
 				<h2 id="build-and-dependencies">Build and Dependencies</h2>
 				<p><a href="https://travis-ci.org/ZGIS/smart-portal-webgui"><img src="https://img.shields.io/travis/ZGIS/smart-portal-webgui.svg?style=flat-square" alt="Build Status"></a>
 				<a href="https://github.com/ZGIS/smart-portal-webgui/issues"><img src="https://img.shields.io/github/issues/ZGIS/smart-portal-webgui.svg?style=flat-square" alt="Issues"></a></p>
-				<p><a href="https://david-dm.org/ZGIS/smart-portal-webgui?branch=master"><img src="https://david-dm.org/ZGIS/smart-portal-webgui/status.svg?branch=master" alt="NPM Master Dependencies"></a>
-				<a href="https://david-dm.org/ZGIS/smart-portal-webgui?branch=master&amp;type=dev"><img src="https://david-dm.org/ZGIS/smart-portal-webgui/dev-status.svg?branch=master" alt="NPM Master DevDependencies"></a></p>
+				<p><a href="https://david-dm.org/ZGIS/smart-portal-webgui"><img src="https://david-dm.org/ZGIS/smart-portal-webgui/status.svg" alt="NPM Master Dependencies"></a>
+				<a href="https://david-dm.org/ZGIS/smart-portal-webgui?type=dev"><img src="https://david-dm.org/ZGIS/smart-portal-webgui/dev-status.svg" alt="NPM Master DevDependencies"></a></p>
 				<p><a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202-blue.svg?style=flat-square" alt="License"></a>
 				<a href="https://www.openhub.net/p/smart-portal-webgui"><img src="https://www.openhub.net/p/smart-portal-webgui/widgets/project_thin_badge.gif" alt="OpenHUB"></a></p>
+				<p><a href="https://api.travis-ci.org/repos/ZGIS/smart-portal-webgui/builds.atom"><img src="https://upload.wikimedia.org/wikipedia/en/4/43/Feed-icon.svg" align="left" height="32" width="32" alt="Builds Feed"></a></p>
+				<p><a href="https://zgis.github.io/smart-portal-webgui/">Site Docs</a></p>
 				<h2 id="smart-portal-web-frontend-license">SMART Portal Web Frontend license</h2>
 				<p>Copyright (C) 2011-2017 Interfaculty Department of Geoinformatics, University of
 					Salzburg (Z_GIS) &amp; Institute of Geological and Nuclear Sciences Limited (GNS Science)
@@ -160,6 +162,12 @@ npm run http-server -p 8080 ./dist
 						<a href="classes/accountservice.html" class="tsd-kind-icon">Account<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/admincomponent.html" class="tsd-kind-icon">Admin<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/adminguard.html" class="tsd-kind-icon">Admin<wbr>Guard</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/appcomponent.html" class="tsd-kind-icon">App<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -176,6 +184,9 @@ npm run http-server -p 8080 ./dist
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/collectionscomponent.html" class="tsd-kind-icon">Collections<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/collectionsdeskcomponent.html" class="tsd-kind-icon">Collections<wbr>Desk<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/collectionsservice.html" class="tsd-kind-icon">Collections<wbr>Service</a>
@@ -214,6 +225,9 @@ npm run http-server -p 8080 ./dist
 						<a href="classes/geometadata.html" class="tsd-kind-icon">Geo<wbr>Metadata</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/glossarycomponent.html" class="tsd-kind-icon">Glossary<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/insertresponse.html" class="tsd-kind-icon">Insert<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -224,6 +238,9 @@ npm run http-server -p 8080 ./dist
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/navigationcomponent.html" class="tsd-kind-icon">Navigation<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/notfoundcomponent.html" class="tsd-kind-icon">Not<wbr>Found<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/notificationcomponent.html" class="tsd-kind-icon">Notification<wbr>Component</a>
@@ -238,7 +255,25 @@ npm run http-server -p 8080 ./dist
 						<a href="classes/ol3mapextent.html" class="tsd-kind-icon">Ol3<wbr>Map<wbr>Extent</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/owcauthorcomponent.html" class="tsd-kind-icon">Owc<wbr>Author<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/owccategorycomponent.html" class="tsd-kind-icon">Owc<wbr>Category<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/owcdocumentpropertiescomponent.html" class="tsd-kind-icon">Owc<wbr>Document<wbr>Properties<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/owcentrydetailmodalcomponent.html" class="tsd-kind-icon">Owc<wbr>Entry<wbr>Detail<wbr>Modal<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/owcentrypropertiescomponent.html" class="tsd-kind-icon">Owc<wbr>Entry<wbr>Properties<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/owclinkcomponent.html" class="tsd-kind-icon">Owc<wbr>Link<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/owcofferingcomponent.html" class="tsd-kind-icon">Owc<wbr>Offering<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/recaptchacomponent.html" class="tsd-kind-icon">Re<wbr>Captcha<wbr>Component</a>
@@ -251,6 +286,9 @@ npm run http-server -p 8080 ./dist
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/registeredguard.html" class="tsd-kind-icon">Registered<wbr>Guard</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/researchprogrammescomponent.html" class="tsd-kind-icon">Research<wbr>Programmes<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/resetpasscomponent.html" class="tsd-kind-icon">Reset<wbr>Pass<wbr>Component</a>
@@ -278,6 +316,15 @@ npm run http-server -p 8080 ./dist
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/searchcomponent.html" class="tsd-kind-icon">Search<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sharebuttoncomponent.html" class="tsd-kind-icon">Share<wbr>Button<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sharebuttonservice.html" class="tsd-kind-icon">Share<wbr>Button<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/x3dviewcomponent.html" class="tsd-kind-icon">X3d<wbr>View<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/ierrorresult.html" class="tsd-kind-icon">IError<wbr>Result</a>

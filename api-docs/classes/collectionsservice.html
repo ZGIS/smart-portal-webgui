@@ -94,6 +94,8 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsservice.html#getcollectionbyid" class="tsd-kind-icon">get<wbr>Collection<wbr>ById</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsservice.html#getcollections" class="tsd-kind-icon">get<wbr>Collections</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsservice.html#getdefaultcollection" class="tsd-kind-icon">get<wbr>Default<wbr>Collection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsservice.html#getuploadedfilesfromdefaultcollection" class="tsd-kind-icon">get<wbr>Uploaded<wbr>Files<wbr>From<wbr>Default<wbr>Collection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="collectionsservice.html#handlehttpfailure" class="tsd-kind-icon">handle<wbr>Http<wbr>Failure</a></li>
@@ -114,7 +116,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.service.ts#L15">app/workbench/collections.service.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.service.ts#L11">app/owc/collections.service.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -145,7 +147,7 @@
 					<div class="tsd-signature tsd-kind-icon">account<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="accountservice.html" class="tsd-signature-type">AccountService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.service.ts#L19">app/workbench/collections.service.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.service.ts#L15">app/owc/collections.service.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -155,7 +157,7 @@
 					<div class="tsd-signature tsd-kind-icon">http<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Http</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.service.ts#L18">app/workbench/collections.service.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.service.ts#L14">app/owc/collections.service.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -165,7 +167,7 @@
 					<div class="tsd-signature tsd-kind-icon">portal<wbr>Api<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.service.ts#L17">app/workbench/collections.service.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.service.ts#L13">app/owc/collections.service.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -175,13 +177,58 @@
 					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.service.ts#L18">app/workbench/collections.service.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.service.ts#L14">app/owc/collections.service.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getcollectionbyid" class="tsd-anchor"></a>
+					<h3>get<wbr>Collection<wbr>ById</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Collection<wbr>ById<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iowcdocument.html" class="tsd-signature-type">IOwcDocument</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.service.ts#L49">app/owc/collections.service.ts:49</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>get specific collection (that you have access to, server will filter reliably)</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iowcdocument.html" class="tsd-signature-type">IOwcDocument</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getcollections" class="tsd-anchor"></a>
+					<h3>get<wbr>Collections</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Collections<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iowcdocument.html" class="tsd-signature-type">IOwcDocument</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.service.ts#L73">app/owc/collections.service.ts:73</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iowcdocument.html" class="tsd-signature-type">IOwcDocument</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getdefaultcollection" class="tsd-anchor"></a>
 					<h3>get<wbr>Default<wbr>Collection</h3>
@@ -192,9 +239,11 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.service.ts#L22">app/workbench/collections.service.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.service.ts#L22">app/owc/collections.service.ts:22</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iowcdocument.html" class="tsd-signature-type">IOwcDocument</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -209,7 +258,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.service.ts#L58">app/workbench/collections.service.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.service.ts#L99">app/owc/collections.service.ts:99</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -237,7 +286,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/01f9690/src/app/workbench/collections.service.ts#L80">app/workbench/collections.service.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a458963/src/app/owc/collections.service.ts#L135">app/owc/collections.service.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -286,6 +335,12 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="collectionsservice.html#router" class="tsd-kind-icon">router</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="collectionsservice.html#getcollectionbyid" class="tsd-kind-icon">get<wbr>Collection<wbr>ById</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="collectionsservice.html#getcollections" class="tsd-kind-icon">get<wbr>Collections</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="collectionsservice.html#getdefaultcollection" class="tsd-kind-icon">get<wbr>Default<wbr>Collection</a>
