@@ -1,4 +1,4 @@
-.. disclaimer
+.. _disclaimer:
 
 Disclaimer
 ==========
@@ -22,7 +22,7 @@ You are free to:
 The licensor cannot revoke these freedoms as long as you follow these license terms:
 
 - Attribution: You must give appropriate credit, provide a link to the license, and indicate if changes were made.
-You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+  You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 - ShareAlike: If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
 
@@ -64,6 +64,8 @@ Any party using or relying on the Information will be regarded as having accepte
 If the user employes the information in this portal for any purpose other than for internal purposes, or makes the
 information available to any third party (either in full or in part) and at any event without the disclaimer of
 liability to third parties the recipient indemnifies and holds harmless GNS Science for any event arising from such use or supply.
+
+.. _contactinfo:
 
 4. **ENQUIRIES**
 

@@ -2,13 +2,13 @@
 
 pwd
 
-ls -lh dist coverage
-
-# can have shpinx docs ready here
+# have shpinx docs ready here
 
 mkdir -p ghdash
-touch ghdash/.nojekyll
 
-cp -r api-docs config/internal/index.html coverage sphinx-build ghdash
+cp -r api-docs config/internal/index.html _coverage sphinx-build ghdash
+
+touch ghdash/.nojekyll
+touch ghdash/sphinx-build/.nojekyll
 
 ls -lh ghdash
