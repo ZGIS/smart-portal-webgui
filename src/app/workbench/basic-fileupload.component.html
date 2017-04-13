@@ -1,93 +1,100 @@
 <div class="row">
-  <div class="col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-heading">Add files to upload</div>
-      <div class="panel-body">
-
-    <div ng2FileDrop
-         [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-         (fileOver)="fileOverBase($event)"
-         [uploader]="uploader"
-         class="well my-drop-zone">
-      Drop over here
-    </div>
-
-    Or select with file dialog
-    <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
-    </div>
-    </div>
-  </div>
-  <div class="col-md-7" style="margin-bottom: 40px">
+  <div class="col-md-12" style="margin-bottom: 40px">
     <div class="panel panel-default">
 
       <div class="panel-heading">Upload queue and progress</div>
       <div class="panel-body">
 
-    <p>Queue length: {{ uploader?.queue?.length }}</p>
+        <p>Queue length: {{ uploader?.queue?.length }}</p>
 
-    <table class="table">
-      <thead>
-      <tr>
-        <th width="50%">Name</th>
-        <th>Size</th>
-        <th>Progress</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let item of uploader.queue">
-        <td><strong>{{ item?.file?.name }}</strong></td>
-        <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-        <td *ngIf="uploader.isHTML5">
-          <div class="progress" style="margin-bottom: 0;">
-            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+        <table class="table file-queue">
+          <thead>
+          <th width="50%">Name</th>
+          <th>Size</th>
+          <th>Progress</th>
+          <th>Status</th>
+          <th>Actions</th>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let item of uploader.queue">
+            <td><strong>{{ item?.file?.name }}</strong></td>
+            <td>
+              <span *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</span>
+              &nbsp;
+            </td>
+            <td>
+              <div *ngIf="uploader.isHTML5" class="progress" style="margin-bottom: 0;">
+                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+              </div>
+              &nbsp;
+            </td>
+            <td class="text-center">
+              <span *ngIf="item.isSuccess"><i class="fa fa-ok"></i></span>
+              <span *ngIf="item.isCancel"><i class="fa fa-ban"></i></span>
+              <span *ngIf="item.isError"><i class="fa fa-remove"></i></span>
+            </td>
+            <td nowrap>
+              <button type="button" class="btn btn-success btn-xs" tooltip="Upload"
+                      (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                <span class="fa fa-upload"></span>
+              </button>
+              <button type="button" class="btn btn-warning btn-xs" tooltip="Cancel"
+                      (click)="item.cancel()" [disabled]="!item.isUploading">
+                <span class="fa fa-ban"></span>
+              </button>
+              <button type="button" class="btn btn-danger btn-xs" tooltip="Remove"
+                      (click)="item.remove()">
+                <span class="fa fa-trash"></span>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div *ngIf="!uploader.isUploading" class="row">
+          <div class="col-md-12">
+            <div ng2FileDrop
+                 [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                 (fileOver)="fileOverBase($event)"
+                 [uploader]="uploader"
+                 class="well my-drop-zone">
+              To add file(s) to the queue drop them over this area
+              <span class="pull-right" style="margin-top:-6px">
+                <input id="file-chooser" type="file" ng2FileSelect [uploader]="uploader" multiple/>
+                <label for="file-chooser" class="btn btn-default">
+                  <i class="fa fa-folder-open"></i> or select with file dialog
+                </label>
+              </span>
+            </div>
           </div>
-        </td>
-        <td class="text-center">
-          <span *ngIf="item.isSuccess"><i class="fa fa-ok"></i></span>
-          <span *ngIf="item.isCancel"><i class="fa fa-ban"></i></span>
-          <span *ngIf="item.isError"><i class="fa fa-remove"></i></span>
-        </td>
-        <td nowrap>
-          <button type="button" class="btn btn-success btn-xs" tooltip="Upload"
-                  (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-            <span class="fa fa-upload"></span>
-          </button>
-          <button type="button" class="btn btn-warning btn-xs" tooltip="Cancel"
-                  (click)="item.cancel()" [disabled]="!item.isUploading">
-            <span class="fa fa-ban"></span>
-          </button>
-          <button type="button" class="btn btn-danger btn-xs" tooltip="Remove"
-                  (click)="item.remove()">
-            <span class="fa fa-trash"></span>
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+        </div>
 
-    <div>
-      <div>
-        Queue progress:
-        <div class="progress" style="">
-          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+        <div *ngIf="uploader.isUploading" class="row">
+          <div class="col-md-12">
+            <progressbar class="progress-striped" [value]="uploader.progress">
+                <span>{{uploader.progress}}%</span>
+            </progressbar>
+          </div>
+        </div>
+
+        <div>
+          <button type="button" class="btn btn-success btn-s"
+                  (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+            <span class="fa fa-upload"></span> Upload all
+          </button>
+          <button type="button" class="btn btn-warning btn-s"
+                  (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+            <span class="fa fa-ban"></span> Cancel all
+          </button>
+          <button type="button" class="btn btn-danger btn-s"
+                  (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+            <span class="fa fa-trash"></span> Remove all
+          </button>
+          <a *ngIf="showOpenCollectionBtn" routerLink="/workbench/my-data" class="btn btn-info pull-right" type="submit" id="back-btn">Show in My
+            Data</a>
         </div>
       </div>
-      <button type="button" class="btn btn-success btn-s"
-              (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-        <span class="fa fa-upload"></span> Upload all
-      </button>
-      <button type="button" class="btn btn-warning btn-s"
-              (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
-        <span class="fa fa-ban"></span> Cancel all
-      </button>
-      <button type="button" class="btn btn-danger btn-s"
-              (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
-        <span class="fa fa-trash"></span> Remove all
-      </button>
-      <a routerLink="/workbench/my-data" class="btn btn-info pull-right" type="submit" id="back-btn">Show in My Data</a>
-    </div>
     </div>
   </div>
 </div>

@@ -43,6 +43,9 @@ export class NotificationService {
   /** Message that was created by login/register mask */
   public static MSG_ID_LOGIN_STUFF = 4;
 
+  /** Message that was created by file uploader */
+  public static MSG_ID_FILE_UPLOADER = 5;
+
   /** default dismiss time in milliseconds */
   public static DEFAULT_DISMISS = 5000;
 

@@ -12,7 +12,7 @@ import {
   TabsModule,
   TooltipModule,
   TypeaheadModule,
-  Ng2BootstrapModule
+  Ng2BootstrapModule, ProgressbarModule
 } from 'ng2-bootstrap';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AppComponent } from './app.component';
@@ -93,6 +93,7 @@ export function cookieServiceFactory() {
     TooltipModule.forRoot(),
     TypeaheadModule.forRoot(),
     RatingModule.forRoot(),
+    ProgressbarModule.forRoot(),
     FileUploadModule,
     ClipboardModule,
     routing ],
