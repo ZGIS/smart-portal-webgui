@@ -6,7 +6,7 @@ import { IOwcOffering } from './collections';
 @Component({
   selector: 'app-sac-gwh-owcoffering',
   templateUrl: 'owc-offering.component.html',
-  styleUrls: ['owc-offering.component.css']
+  styleUrls: [ 'owc-offering.component.css' ]
 })
 
 export class OwcOfferingComponent implements OnInit {
@@ -31,54 +31,54 @@ export class OwcOfferingComponent implements OnInit {
 
   ngOnInit(): void {
     switch (this.owcOffering.code) {
-      case this.WmsOffering: {
+      case this.WmsOffering:
         this.owcOfferingType = 'WmsOffering';
         break;
-      }
-      case this.WmtsOffering: {
+
+      case this.WmtsOffering:
         this.owcOfferingType = 'WmtsOffering';
         break;
-      }
-      case this.WfsOffering: {
+
+      case this.WfsOffering:
         this.owcOfferingType = 'WfsOffering';
         break;
-      }
-      case this.WcsOffering: {
+
+      case this.WcsOffering:
         this.owcOfferingType = 'WcsOffering';
         break;
-      }
-      case this.CswOffering: {
+
+      case this.CswOffering:
         this.owcOfferingType = 'CswOffering';
         break;
-      }
-      case this.WpsOffering: {
+
+      case this.WpsOffering:
         this.owcOfferingType = 'WpsOffering';
         break;
-      }
-      case this.GmlOffering: {
+
+      case this.GmlOffering:
         this.owcOfferingType = 'GmlOffering';
         break;
-      }
-      case this.KmlOffering: {
+
+      case this.KmlOffering:
         this.owcOfferingType = 'KmlOffering';
         break;
-      }
-      case this.GeoTiffOffering: {
+
+      case this.GeoTiffOffering:
         this.owcOfferingType = 'GeoTiffOffering';
         break;
-      }
-      case this.SosOffering: {
+
+      case this.SosOffering:
         this.owcOfferingType = 'SosOffering';
         break;
-      }
-      case this.NetCdfOffering: {
+
+      case this.NetCdfOffering:
         this.owcOfferingType = 'NetCdfOffering';
         break;
-      }
-      case this.HttpLinkOffering: {
+
+      case this.HttpLinkOffering:
         this.owcOfferingType = 'HttpLinkOffering';
         break;
-      }
+
     }
     this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', this.owcOfferingType);
   }

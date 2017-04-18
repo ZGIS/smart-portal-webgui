@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
+import { IDashboardCategory } from './categories';
 
 // TODO SR make service out of that?
 const myCategories = require('json-loader!./../../public/categories.json');
@@ -12,10 +13,10 @@ const myCategories = require('json-loader!./../../public/categories.json');
 
 export class DashboardCategoryComponent implements OnInit {
 
-  category = '';
+  categoryName = '';
   description = '';
   bgImage: any = {};
-  children: any[] = [];
+  children: IDashboardCategory[] = [];
   childrenImg: string[] = [];
   placeHolderImg = '/images/dashboard/0-placeholder-water-icon.jpg';
 
@@ -23,16 +24,16 @@ export class DashboardCategoryComponent implements OnInit {
     this.route.params.forEach(( params: Params ) => {
 
       let currentCategory = params[ 'category' ];
-      myCategories.categories.forEach(( catObj: any ) => {
+      myCategories.categories.forEach(( catObj: IDashboardCategory ) => {
         if (catObj.query_string === currentCategory) {
           console.log(catObj);
-          this.category = catObj.item_name;
+          this.categoryName = catObj.item_name;
           this.description = catObj.description;
 
           let imgUrl = '/images/dashboard/' + catObj.bg_icon;
           this.bgImage.imgUrl = imgUrl;
 
-          catObj.children.forEach(( childObj: any ) => {
+          catObj.children.forEach(( childObj: IDashboardCategory ) => {
             this.children.push(childObj);
 
             let subImgUrl = '/images/dashboard/' + childObj.icon;
@@ -45,7 +46,7 @@ export class DashboardCategoryComponent implements OnInit {
   }
 
   constructor( private route: ActivatedRoute ) {
-    this.bgImage.imgUrl = '/images/dashboard/0.0_main_background.png';
+    this.bgImage.imgUrl = '/images/dashboard/0.0_main_background_empty.png';
   };
 
 }

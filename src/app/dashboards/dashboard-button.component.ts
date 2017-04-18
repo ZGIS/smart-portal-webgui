@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IDashboardCategory } from './categories';
 
 @Component({
   selector: 'app-sac-gwh-dashboard-button',
@@ -8,7 +9,7 @@ import { Component, Input } from '@angular/core';
 
 export class DashboardButtonComponent {
 
-  @Input() category: any;
+  @Input() category: IDashboardCategory;
   @Input() categoryImg: string;
 
 }

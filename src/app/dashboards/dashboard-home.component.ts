@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IDashboardCategory } from './categories';
 
 const myCategories = require('json-loader!./../../public/categories.json');
 
@@ -10,11 +11,11 @@ const myCategories = require('json-loader!./../../public/categories.json');
 
 export class DashboardHomeComponent implements OnInit {
 
-  categoryObjs: any[] = [];
+  categoryObjs: IDashboardCategory[] = [];
   categoryImgs: string[] = [];
 
   ngOnInit(): void {
-    myCategories.categories.forEach(( catObj: any ) => {
+    myCategories.categories.forEach(( catObj: IDashboardCategory ) => {
       let imgUrl = '/images/dashboard/' + catObj.icon;
       this.categoryImgs.push(imgUrl);
       this.categoryObjs.push(catObj);

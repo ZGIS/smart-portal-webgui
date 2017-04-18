@@ -55,6 +55,13 @@ Detailed descriptions of the functionality
 #16 - index search with temporal from-to period filter (intersect? vs include?)
   Summary: <short phrase/sentence>.
 
+- search is bookmarkable
+
+.. raw:: html
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/1ggNfzM5QrQ" frameborder="0" allowfullscreen></iframe>
+
+
 #17 - All users can search the catalogues by using a search mask (simple, advanced) and retrieve lists of items (documents, datasets)
   Summary: <short phrase/sentence>.
 
@@ -94,7 +101,8 @@ Detailed descriptions of the functionality
 .. figure:: _static/publish-workflow.png
   :width: 80%
 
-  A basic publish workflow, read from top, flow links are currently missing
+  A basic publish workflow, read from top, flow links are currently missing,
+  https://www.youtube.com/playlist?list=PLZXVmFlSH03b4M2Wz2K8rnFTCBwTD-Npd
 
 #30 - Authenticated Users can add metadata records through the webgui,
   Summary: <short phrase/sentence>.
@@ -152,6 +160,13 @@ Detailed descriptions of the functionality
 
 #UploadHandleFile
 -----------------
+
+- file chooser
+
+.. raw:: html
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/mZt1XWGusGk" frameborder="0" allowfullscreen></iframe>
+
 
 #60 - Authenticated Users can upload files (datasets, reports ...) and keep reference in own collection
   Summary: <short phrase/sentence>.

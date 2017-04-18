@@ -60,7 +60,7 @@ export class NotificationService {
    *
    * @param errorResponse error response received from a AJAX call for example.
    */
-  public addErrorResultNotification(errorResponse: IErrorResult) {
+  public addErrorResultNotification( errorResponse: IErrorResult ) {
     this.addNotification({
       id: NotificationService.MSG_ID_ERROR,
       type: 'danger',
@@ -72,23 +72,24 @@ export class NotificationService {
   /** Adds a notification and displays it.
    * @param notification Notification description.
    */
-  public addNotification(notification: SacGwhNotification) {
+  public addNotification( notification: SacGwhNotification ) {
     if (notification.id) {
-      let i = this.notifications.findIndex(arrayNotification => arrayNotification.id === notification.id);
+      let i = this.notifications.findIndex(
+        arrayNotification => arrayNotification.id === notification.id);
       if (i > -1) {
         this.dismissNotification(i);
       }
     }
 
     switch (notification.dismissAfter) {
-      case undefined: {
+      case undefined:
         notification.dismissAfter = NotificationService.DEFAULT_DISMISS;
         break;
-      }
-      case NotificationService.DISMISS_NEVER: {
+
+      case NotificationService.DISMISS_NEVER:
         notification.dismissAfter = undefined;
         break;
-      }
+
     }
 
     this.notifications.push(notification);
@@ -98,7 +99,7 @@ export class NotificationService {
    * Dismisses the notification with the given index.
    * @param i index of the notification to dismiss
    */
-  dismissNotification(i: number) {
+  dismissNotification( i: number ) {
     // console.log(`dismissNotification(${i})`);
     if (i >= 0 && i < this.notifications.length) {
       this.notifications.splice(i, 1);
