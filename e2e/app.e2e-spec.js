@@ -19,7 +19,7 @@ describe('E2E Test Dashboard Maps Category', function () {
 
 
   beforeEach(function () {
-    browser.get('/#/dashboard/1-maps');
+    browser.get('/#/dashboard/1-understanding');
   });
 
 

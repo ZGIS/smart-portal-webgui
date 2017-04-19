@@ -20,6 +20,7 @@ export class DashboardCategoryComponent implements OnInit {
   placeHolderImg = '/images/dashboard/0-placeholder-water-icon.jpg';
 
   ngOnInit(): void {
+
     this.route.params.forEach(( params: Params ) => {
 
       let currentCategory = params[ 'category' ];
@@ -28,6 +29,7 @@ export class DashboardCategoryComponent implements OnInit {
         .subscribe(
           catObj => {
             if (catObj && catObj.query_string === currentCategory) {
+              this.children = [];
               console.log(catObj);
               this.categoryName = catObj.item_name;
               this.description = catObj.description;

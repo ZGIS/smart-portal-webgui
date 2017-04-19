@@ -11,12 +11,18 @@ const myCategories = require('json-loader!./../../public/categories.json');
 export class CategoriesService {
 
   private categoriesHolder: BehaviorSubject<IDashboardCategory[]> = new BehaviorSubject([]);
+  private mainCategoriesQueryStrings: string[] = [];
 
   /**
    *
    */
   constructor() {
     this.categoriesHolder.next(myCategories.categories);
+    myCategories.categories.forEach(( parentObj: IDashboardCategory ) => {
+      if (parentObj.query_string) {
+        this.mainCategoriesQueryStrings.push(parentObj.query_string);
+      }
+    });
   }
 
   /**
@@ -74,6 +80,10 @@ export class CategoriesService {
           catchallQueryString = q.concat(' OR ', catchallQueryString);
         }
       });
+    } else {
+      if (this.mainCategoriesQueryStrings.indexOf(child.query_string) > -1) {
+        newChild.parent = 'main';
+      }
     }
 
     if (keywordsQueryString !== '') {
