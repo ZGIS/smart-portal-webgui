@@ -3,8 +3,8 @@
      [queryParams]="category.parent !== 'main' ? {'query': category ? category.query_string : 'title:groundwater' }:{}"
      class="thumbnail" tooltip="{{ category ? category.item_name : '' }}{{ category ? ' -  ' + category.description : '' }}"><img
      src="{{ categoryImg }}">
-    <!--
+
     {{ category ? category.item_name : '' }}
-    -->
+
   </a>
 </div>
