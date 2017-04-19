@@ -36,6 +36,10 @@ export class DashboardCategoryComponent implements OnInit {
               this.bgImage.imgUrl = imgUrl;
 
               catObj.children.forEach(( childObj: IDashboardCategory ) => {
+
+                let newChild = this.categoriesService.updateQueryStringforChildCategory(childObj);
+                console.log(newChild.query_string);
+
                 this.children.push(childObj);
 
                 let subImgUrl = '/images/dashboard/' + childObj.icon;

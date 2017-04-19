@@ -38,4 +38,48 @@ export class CategoriesService {
     ));
 
   }
+
+  /**
+   *
+   * @param child
+   * @returns {IDashboardCategory}
+   */
+  public updateQueryStringforChildCategory( child: IDashboardCategory ): IDashboardCategory {
+
+    let newChild = child;
+    let keywordsQueryString = '';
+    let catchallQueryString = '';
+
+    if ((!child.query_string || child.query_string === '') && child.keyword_content.length > 0) {
+      let singleKeywordQueries = child.keyword_content.map(keyword =>
+        `keywords:"${keyword}"`
+      );
+
+      let singleFulltextQueries = child.keyword_content.map(keyword =>
+        `catch_all:${keyword}`
+      );
+
+      singleKeywordQueries.forEach(( q: string ) => {
+        if (keywordsQueryString === '') {
+          keywordsQueryString = q;
+        } else {
+          keywordsQueryString = q.concat(' OR ', keywordsQueryString);
+        }
+      });
+
+      singleFulltextQueries.forEach(( q: string ) => {
+        if (catchallQueryString === '') {
+          catchallQueryString = q;
+        } else {
+          catchallQueryString = q.concat(' OR ', catchallQueryString);
+        }
+      });
+    }
+
+    if (keywordsQueryString !== '') {
+      newChild.query_string = `(${keywordsQueryString})^1.5 OR ${catchallQueryString}`;
+    }
+
+    return newChild;
+  }
 }
