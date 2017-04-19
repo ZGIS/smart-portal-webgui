@@ -1,0 +1,1988 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/account/account.service.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/account/</a> account.service.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20.15% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>53/263</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.84% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>3/62</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/48</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">19.92% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>49/246</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable, Inject } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Rx';
+import { BehaviorSubject } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { CookieService } from 'angular2-cookie/core';
+import { PORTAL_API_URL, CSWI_API_URL, WEBGUI_APP_VERSION } from '../in-app-config';
+import { NotificationService } from '../notifications';
+import { IErrorResult } from '../search/result';
+&nbsp;
+/**
+ *
+ */
+export interface UserProfile {
+  email: string;
+  accountSubject: string;
+  firstname: string;
+  lastname: string;
+  password?: string;
+}
+&nbsp;
+/**
+ *
+ * @param profileConf
+ * @returns {{email: string, accountSubject: string, firstname: string,
+ *  lastname: string, password: string}}
+ */
+export function createProfile(profileConf: UserProfile): {
+  email: string,
+  accountSubject: string,
+  firstname: string,
+  lastname: string,
+  password?: string
+} {
+&nbsp;
+  let profileObj = {
+    email: profileConf.email,
+    accountSubject: profileConf.accountSubject,
+    firstname: profileConf.firstname,
+    lastname: profileConf.lastname,
+    password: '***'
+  };
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (profileConf.password) {
+    profileObj.password = profileConf.password;
+  }
+&nbsp;
+  return profileObj;
+}
+&nbsp;
+/**
+ *
+ */
+@Injectable()
+export class AccountService {
+&nbsp;
+  public token: string;
+&nbsp;
+  guestProfile = createProfile({
+    email: 'Your Account',
+    accountSubject: 'guest',
+    firstname: 'Guest',
+    lastname: 'User',
+    password: 'xxx'
+  });
+&nbsp;
+  private loggedInState: BehaviorSubject&lt;boolean&gt;;
+&nbsp;
+  /**
+   *
+   * @param portalApiUrl
+   * @param http
+   * @param router
+   * @param cookieService
+   */
+  constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
+              @Inject(CSWI_API_URL) private cswiApiUrl: string,
+              @Inject(WEBGUI_APP_VERSION) public webguiAppVersion: string,
+              private http: Http, private router: Router,
+              private cookieService: CookieService) {
+&nbsp;
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let cookieToken = this.cookieService.get('XSRF-TOKEN');
+    this.loggedInState = new BehaviorSubject(false);
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (currentUser &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >cookieToken)</span> {
+      // and here we could also check for cookie, if cookie and token are available we could check
+      // if we are still have valid session on server, too, only then we are like really really
+      // logged in (maybe OnInit and not in constructor?)
+<span class="cstat-no" title="statement not covered" >      this.token = currentUser.token;</span>
+<span class="cstat-no" title="statement not covered" >      if (currentUser.token === cookieToken) {</span>
+<span class="cstat-no" title="statement not covered" >        console.log('Trying to restore user from tokens...');</span>
+&nbsp;
+        let profileUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/users/self';</span>
+<span class="cstat-no" title="statement not covered" >        console.log('token: ' + this.token);</span>
+        let headers = <span class="cstat-no" title="statement not covered" >new Headers({</span>
+          // 'Authorization': 'Bearer ' + this.token,
+          'X-XSRF-TOKEN': this.token
+        });
+        let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.http.get(profileUri, options)</span>
+          .map(
+            (response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+              // if (response.status === 200) {
+<span class="cstat-no" title="statement not covered" >              console.log('succesfully verified current session');</span>
+              let userProfileJson = <span class="cstat-no" title="statement not covered" >response.json();</span>
+<span class="cstat-no" title="statement not covered" >              if (userProfileJson) {</span>
+                let userProfile = <span class="cstat-no" title="statement not covered" >createProfile(userProfileJson);</span>
+<span class="cstat-no" title="statement not covered" >                console.log(userProfile);</span>
+<span class="cstat-no" title="statement not covered" >                localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));</span>
+              }
+<span class="cstat-no" title="statement not covered" >              this.loggedInState.next(true);</span>
+              // }
+              // FIXME SR this should never happen! Every http status code &lt;200 &amp; &gt;299 will fail
+              // else {
+              //   console.log('could not verify current session');
+              //   this.loggedInState.next(false);
+              //   // clear token remove user from local storage to log user out
+              //   this.token = null;
+              //   localStorage.removeItem('currentUser');
+              //   localStorage.removeItem('currentUserProfile');
+              //   this.cookieService.remove('XSRF-TOKEN');
+              //   this.handleHttpFailure(response);
+              // }
+            }
+          )
+          .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
+      } else { // current user.token != cookie.token
+<span class="cstat-no" title="statement not covered" >        console.log('auth token and cookie mismatch, not a valid session ...');</span>
+<span class="cstat-no" title="statement not covered" >        this.loggedInState.next(false);</span>
+        // clear token remove user from local storage to log user out
+<span class="cstat-no" title="statement not covered" >        this.token = null;</span>
+<span class="cstat-no" title="statement not covered" >        localStorage.removeItem('currentUser');</span>
+<span class="cstat-no" title="statement not covered" >        localStorage.removeItem('currentUserProfile');</span>
+<span class="cstat-no" title="statement not covered" >        this.cookieService.remove('XSRF-TOKEN');</span>
+      }
+    } else { // !(currentUser &amp;&amp; cookieToken)
+      console.log('either auth token or cookie missing, not a valid session ...');
+      this.loggedInState.next(false);
+      // clear token remove user from local storage to log user out
+      this.token = null;
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('currentUserProfile');
+      this.cookieService.remove('XSRF-TOKEN');
+    }
+  };
+&nbsp;
+  /**
+   *
+   * @returns {Observable&lt;R&gt;}
+   */
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  getProfile(): Observable&lt;UserProfile&gt; {</span></span>
+    // add authorization header with jwt token
+    let profileUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/users/self';</span>
+<span class="cstat-no" title="statement not covered" >    console.log('token: ' + this.token);</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({</span>
+      // 'Authorization': 'Bearer ' + this.token,
+      'X-XSRF-TOKEN': this.token
+    });
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+&nbsp;
+    // get users from api
+<span class="cstat-no" title="statement not covered" >    return this.http.get(profileUri, options)</span>
+      .map(
+        (response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+          // TODO SR see above. Here we should always find a 2xx http status code.
+          // if (response.status === 200) {
+          let userProfileJson = <span class="cstat-no" title="statement not covered" >response.json();</span>
+<span class="cstat-no" title="statement not covered" >          if (userProfileJson) {</span>
+            let userProfile = <span class="cstat-no" title="statement not covered" >createProfile(userProfileJson);</span>
+<span class="cstat-no" title="statement not covered" >            console.log(userProfile);</span>
+<span class="cstat-no" title="statement not covered" >            this.loggedInState.next(true);</span>
+<span class="cstat-no" title="statement not covered" >            localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));</span>
+          }
+<span class="cstat-no" title="statement not covered" >          return response.json();</span>
+          //   } else {
+          //     // indicates failed self retrieve / authenticated session
+          //     // should also remove token and invalidate angular session?
+          //     this.loggedInState.next(false);
+          //     // clear token remove user from local storage to log user out
+          //     this.token = null;
+          //     localStorage.removeItem('currentUser');
+          //     localStorage.removeItem('currentUserProfile');
+          //     this.cookieService.remove('XSRF-TOKEN');
+          //     return Observable.throw('invalid session');
+          //   }
+        }
+      )
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
+  };
+&nbsp;
+  /**
+   *
+   * @returns {Observable&lt;T&gt;}
+   */
+<span class="fstat-no" title="function not covered" >  isLoggedIn(): Observable&lt;boolean&gt; {</span>
+    // console.log(this.loggedInState);
+<span class="cstat-no" title="statement not covered" >    return this.loggedInState.asObservable();</span>
+  };
+&nbsp;
+  /**
+   *
+   * @returns {Observable&lt;R&gt;}
+   */
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  logout(): Observable&lt;boolean&gt; {</span></span>
+    let logoutUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/logout';</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({</span>
+      // 'Authorization': 'Bearer ' + this.token,
+      'X-XSRF-TOKEN': this.token
+    });
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+<span class="cstat-no" title="statement not covered" >    return this.http.get(logoutUri, options)</span>
+      .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+        // logout
+        // if (response.status === 200) {
+<span class="cstat-no" title="statement not covered" >        this.loggedInState.next(false);</span>
+        // clear token remove user from local storage to log user out
+<span class="cstat-no" title="statement not covered" >        this.token = null;</span>
+<span class="cstat-no" title="statement not covered" >        localStorage.removeItem('currentUser');</span>
+<span class="cstat-no" title="statement not covered" >        localStorage.removeItem('currentUserProfile');</span>
+<span class="cstat-no" title="statement not covered" >        this.cookieService.remove('XSRF-TOKEN');</span>
+        // return true to indicate successful logout
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+        // } else {
+        //   // return false to indicate failed logout
+        //   // should also remove token and invalid angular session?
+        //   console.log('logout failed');
+        //   return false;
+        // }
+      })
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleErrorWithLogout(errorResponse))</span></span>;
+  };
+&nbsp;
+  /**
+   *
+   * @param email
+   * @param password
+   * @returns {Observable&lt;R&gt;}
+   */
+<span class="cstat-no" title="statement not covered" >  login(email: string, password: string<span class="fstat-no" title="function not covered" >): Observable&lt;boolean&gt; {</span></span>
+    let loginUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/login';</span>
+    let data = <span class="cstat-no" title="statement not covered" >JSON.stringify({email: email, password: password});</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'Content-Type': 'application/json'});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+<span class="cstat-no" title="statement not covered" >    return this.http.post(loginUri, data, options)</span>
+      .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+        // TODO SR when I look at the code in the backend, either the login replys with 200
+        // and then contains a token and everything, or http-fails and this will never be called
+        // and everything will be handled by the errorHandler.
+&nbsp;
+        // login successful if there's a xsrf token in the response
+        let token = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().token;</span>
+<span class="cstat-no" title="statement not covered" >        if (token) {</span>
+          // set token property
+<span class="cstat-no" title="statement not covered" >          this.token = token;</span>
+<span class="cstat-no" title="statement not covered" >          console.log('login received token: ' + token);</span>
+<span class="cstat-no" title="statement not covered" >          this.loggedInState.next(true);</span>
+&nbsp;
+          // store accountSubject and xsrf token in local storage to keep user logged in between page
+          // refreshes
+<span class="cstat-no" title="statement not covered" >          localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));</span>
+&nbsp;
+          let userProfileJson = <span class="cstat-no" title="statement not covered" >response.json().userprofile;</span>
+<span class="cstat-no" title="statement not covered" >          if (userProfileJson) {</span>
+            let userProfile = <span class="cstat-no" title="statement not covered" >createProfile(userProfileJson);</span>
+<span class="cstat-no" title="statement not covered" >            console.log(userProfile);</span>
+<span class="cstat-no" title="statement not covered" >            localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));</span>
+          }
+          // return true to indicate successful login
+<span class="cstat-no" title="statement not covered" >          return true;</span>
+        } else {
+          // TODO SR this should never happen!
+          // return false to indicate failed login
+          // should also remove token?
+<span class="cstat-no" title="statement not covered" >          this.loggedInState.next(false);</span>
+<span class="cstat-no" title="statement not covered" >          console.log('login failed');</span>
+<span class="cstat-no" title="statement not covered" >          return false;</span>
+        }
+      })
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleErrorWithLogout(errorResponse))</span></span>;
+  };
+&nbsp;
+  /**
+   *
+   * @param userprofile
+   * @returns {Observable&lt;R&gt;}
+   */
+<span class="cstat-no" title="statement not covered" >  register(userprofile: UserProfile<span class="fstat-no" title="function not covered" >): Observable&lt;boolean&gt; {</span></span>
+    let regUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/users/register';</span>
+&nbsp;
+    // JSON.stringify({email: email, password: password}))
+<span class="cstat-no" title="statement not covered" >    return this.http.post(regUri, userprofile)</span>
+      .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+        // if (response.status === 200) {
+        let userProfileJson = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().userprofile;</span>
+<span class="cstat-no" title="statement not covered" >        if (userProfileJson) {</span>
+          let userProfile = <span class="cstat-no" title="statement not covered" >createProfile(userProfileJson);</span>
+<span class="cstat-no" title="statement not covered" >          console.log(userProfile);</span>
+<span class="cstat-no" title="statement not covered" >          localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+        // } else {
+        //   return false;
+        // }
+      })
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleErrorWithLogout(errorResponse))</span></span>;
+  };
+&nbsp;
+  /**
+   *
+   * @param email
+   * @param password
+   * @returns {Observable&lt;R&gt;}
+   */
+<span class="cstat-no" title="statement not covered" >  updatePassword(email: string, password: string<span class="fstat-no" title="function not covered" >): Observable&lt;boolean&gt; {</span></span>
+    let updatePassUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/users/updatepass';</span>
+&nbsp;
+    let data = <span class="cstat-no" title="statement not covered" >JSON.stringify({email: email, password: password});</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({</span>
+      // 'Authorization': 'Bearer ' + this.token,
+      'X-XSRF-TOKEN': this.token,
+      'Content-Type': 'application/json'
+    });
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this.http.post(updatePassUri, data, options)</span>
+      .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+        // login successful if there's a xsrf token in the response
+        let token = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().token;</span>
+<span class="cstat-no" title="statement not covered" >        if (token) {</span>
+          // set token property
+<span class="cstat-no" title="statement not covered" >          this.token = token;</span>
+<span class="cstat-no" title="statement not covered" >          console.log('login received token: ' + token);</span>
+<span class="cstat-no" title="statement not covered" >          this.loggedInState.next(true);</span>
+&nbsp;
+          // store accountSubject and xsrf token in local storage to keep user logged in between page
+          // refreshes
+<span class="cstat-no" title="statement not covered" >          localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));</span>
+&nbsp;
+          // return true to indicate successful login
+<span class="cstat-no" title="statement not covered" >          return true;</span>
+        } else {
+          // return false to indicate failed login
+          // should also remove token?
+<span class="cstat-no" title="statement not covered" >          console.log('password update failed');</span>
+<span class="cstat-no" title="statement not covered" >          return false;</span>
+        }
+      })
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
+  };
+&nbsp;
+  /**
+   *
+   * @param userprofile
+   * @returns {Observable&lt;R&gt;}
+   */
+<span class="cstat-no" title="statement not covered" >  updateProfile(userprofile: UserProfile<span class="fstat-no" title="function not covered" >): Observable&lt;boolean&gt; {</span></span>
+    let updateProfileUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/users/update/' + userprofile.email;</span>
+&nbsp;
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({</span>
+      // 'Authorization': 'Bearer ' + this.token,
+      'X-XSRF-TOKEN': this.token,
+      'Content-Type': 'application/json'
+    });
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this.http.post(updateProfileUri, userprofile, options)</span>
+      .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+        // TODO SR see above. HEre we will always have 2xx as status code
+        // if (response.status === 200) {
+        let userProfileJson = <span class="cstat-no" title="statement not covered" >response.json();</span>
+<span class="cstat-no" title="statement not covered" >        if (userProfileJson) {</span>
+          let userProfile = <span class="cstat-no" title="statement not covered" >createProfile(userProfileJson);</span>
+<span class="cstat-no" title="statement not covered" >          console.log(userProfile);</span>
+<span class="cstat-no" title="statement not covered" >          localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+        // } else {
+        //   return false;
+        // }
+      })
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
+  };
+&nbsp;
+  /**
+   *
+   * @param email
+   * @returns {Observable&lt;R&gt;}
+   */
+<span class="cstat-no" title="statement not covered" >  requestPasswordReset(email: string<span class="fstat-no" title="function not covered" >): Observable&lt;boolean&gt; {</span></span>
+    let regUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/users/resetpass';</span>
+&nbsp;
+    let data = <span class="cstat-no" title="statement not covered" >JSON.stringify({email: email, password: 'PASSWORDRESET'});</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'Content-Type': 'application/json'});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+<span class="cstat-no" title="statement not covered" >    return this.http.post(regUri, data, options)</span>
+      .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+        // TODO SR see above
+        // if (response.status === 200) {
+        let info = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().message;</span>
+<span class="cstat-no" title="statement not covered" >        console.log(info);</span>
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+        // } else {
+        //   return false;
+        // }
+      })
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
+  }
+&nbsp;
+  /**
+   *
+   * @param email
+   * @param password
+   * @returns {Observable&lt;R&gt;}
+   */
+<span class="cstat-no" title="statement not covered" >  redeemPasswordReset(email: string, password: string, redeemlink: string<span class="fstat-no" title="function not covered" >): Observable&lt;boolean&gt; {</span></span>
+    let regUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/users/resetpass/' + redeemlink;</span>
+&nbsp;
+    let data = <span class="cstat-no" title="statement not covered" >JSON.stringify({email: email, password: password});</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'Content-Type': 'application/json'});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+<span class="cstat-no" title="statement not covered" >    return this.http.post(regUri, data, options)</span>
+      .map(
+        (response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+          // TODO SR see above
+          // if (response.status === 200) {
+          let info = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().message;</span>
+<span class="cstat-no" title="statement not covered" >          console.log(info);</span>
+<span class="cstat-no" title="statement not covered" >          return true;</span>
+          // } else {
+          //   return false;
+          // }
+        })
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleErrorWithLogout(errorResponse))</span></span>;
+  }
+&nbsp;
+  /**
+   * server-side validation
+   *
+   * @param recaptchaChallenge
+   * @returns {Observable&lt;R&gt;}
+   */
+<span class="cstat-no" title="statement not covered" >  testReCaptcha(recaptchaChallenge: string<span class="fstat-no" title="function not covered" >): Observable&lt;boolean&gt; {</span></span>
+    let paramUrl = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/recaptcha/validate' +</span>
+      '?recaptcaChallenge=' + recaptchaChallenge;
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({withCredentials: true});</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this.http.get(paramUrl, options)</span>
+      .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (response.status === 200) {</span>
+&nbsp;
+          let success = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().success;</span>
+<span class="cstat-no" title="statement not covered" >          if (success) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log(success);</span>
+<span class="cstat-no" title="statement not covered" >            return true;</span>
+          }
+<span class="cstat-no" title="statement not covered" >          return false;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          return false;</span>
+        }
+      })
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
+  };
+&nbsp;
+  /**
+   *
+   * @returns {Observable&lt;R|T&gt;}
+   */
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  getPortalBackendVersion(): Observable&lt;string&gt; {</span></span>
+    let portalVersionUrl = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/discovery';</span>
+<span class="cstat-no" title="statement not covered" >    return this.http.get(portalVersionUrl)</span>
+      .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+        let info = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().version;</span>
+<span class="cstat-no" title="statement not covered" >        console.log(info);</span>
+<span class="cstat-no" title="statement not covered" >        return info;</span>
+      })
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
+  };
+&nbsp;
+  /**
+   *
+   * @returns {Observable&lt;R|T&gt;}
+   */
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  getCswIngesterVersion(): Observable&lt;string&gt; {</span></span>
+    let cswiVersionUrl = <span class="cstat-no" title="statement not covered" >this.cswiApiUrl + '/discovery';</span>
+<span class="cstat-no" title="statement not covered" >    return this.http.get(cswiVersionUrl)</span>
+      .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+        let info = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().version;</span>
+<span class="cstat-no" title="statement not covered" >        console.log(info);</span>
+<span class="cstat-no" title="statement not covered" >        return info;</span>
+      })
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
+  }
+&nbsp;
+  /**
+   *
+   * @param authRequester
+   * @param authCode
+   * @returns {Observable&lt;R&gt;}
+   */
+  gconnectHandle(authRequester: string, authCode: string<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    if (authRequester === 'REGISTER') {</span>
+<span class="cstat-no" title="statement not covered" >      console.log(authRequester);</span>
+      // return this.gconnectHandleRegistration(authCode);
+<span class="cstat-no" title="statement not covered" >      return this.gconnectHandleLogin(authCode);</span>
+    } else <span class="cstat-no" title="statement not covered" >if (authRequester === 'LOGIN') {</span>
+<span class="cstat-no" title="statement not covered" >      console.log(authRequester);</span>
+<span class="cstat-no" title="statement not covered" >      return this.gconnectHandleLogin(authCode);</span>
+    }
+    // FIXME SR can this happen?
+    // else { // or else if, doesn't matter
+    //   console.log('error, authCode not recognised');
+    //   let error = (&lt;IErrorResult&gt;{message: 'error, authCode not recognised'});
+    //   return this.handleErrorWithLogout(error);
+    // }
+  };
+&nbsp;
+  /**
+   *
+   * @param authCode
+   * @returns {Observable&lt;R&gt;}
+   */
+<span class="cstat-no" title="statement not covered" >  private gconnectHandleRegistration(authCode: string<span class="fstat-no" title="function not covered" >) {</span></span>
+    let gconnectPortalUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/login/gconnect';</span>
+    let data = <span class="cstat-no" title="statement not covered" >JSON.stringify({authcode: authCode, accesstype: 'REGISTER'});</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'Content-Type': 'application/json'});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+<span class="cstat-no" title="statement not covered" >    console.log(data);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this.http.post(gconnectPortalUri, data, options)</span>
+      .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+        // FIXME SR this should never return anything else than 200!
+        // if (response.status === 200) {
+&nbsp;
+        let userProfileJson = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().userprofile;</span>
+<span class="cstat-no" title="statement not covered" >        if (userProfileJson) {</span>
+          let userProfile = <span class="cstat-no" title="statement not covered" >createProfile(userProfileJson);</span>
+<span class="cstat-no" title="statement not covered" >          console.log(userProfile);</span>
+<span class="cstat-no" title="statement not covered" >          localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+        // } else {
+        //   return false;
+        // }
+      })
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
+  }
+&nbsp;
+  /**
+   *
+   * @param authCode
+   * @returns {Observable&lt;R&gt;}
+   */
+<span class="cstat-no" title="statement not covered" >  private gconnectHandleLogin(authCode: string<span class="fstat-no" title="function not covered" >) {</span></span>
+    let gconnectPortalUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/login/gconnect';</span>
+    let data = <span class="cstat-no" title="statement not covered" >JSON.stringify({authcode: authCode, accesstype: 'LOGIN'});</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'Content-Type': 'application/json'});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+<span class="cstat-no" title="statement not covered" >    console.log(data);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this.http.post(gconnectPortalUri, data, options)</span>
+      .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+        // login successful if there's a xsrf token in the response
+        let token = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().token;</span>
+<span class="cstat-no" title="statement not covered" >        if (token) {</span>
+          // set token property
+<span class="cstat-no" title="statement not covered" >          this.token = token;</span>
+<span class="cstat-no" title="statement not covered" >          console.log('login received token: ' + token);</span>
+<span class="cstat-no" title="statement not covered" >          this.loggedInState.next(true);</span>
+&nbsp;
+          // store accountSubject and xsrf token in local storage to keep user logged in between page refreshes
+          let email = <span class="cstat-no" title="statement not covered" >response.json().email;</span>
+<span class="cstat-no" title="statement not covered" >          localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));</span>
+&nbsp;
+          let userProfileJson = <span class="cstat-no" title="statement not covered" >response.json().userprofile;</span>
+<span class="cstat-no" title="statement not covered" >          if (userProfileJson) {</span>
+            let userProfile = <span class="cstat-no" title="statement not covered" >createProfile(userProfileJson);</span>
+<span class="cstat-no" title="statement not covered" >            console.log(userProfile);</span>
+<span class="cstat-no" title="statement not covered" >            localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));</span>
+          }
+          // return true to indicate successful login
+<span class="cstat-no" title="statement not covered" >          return true;</span>
+        }
+        // TODO SR this should never happen. Either it returns OK with a token, or http failure
+        // else {
+        //   // return false to indicate failed login
+        //   // should also remove token?
+        //   this.loggedInState.next(false);
+        //   console.log('google login failed');
+        //   this.notificationService.addNotification({
+        //     type: 'warning',
+        //     message: 'Google login failed'
+        //   });
+        //   return false;
+        // }
+      })
+      .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleErrorWithLogout(errorResponse))</span></span>;
+  }
+&nbsp;
+  /**
+   *
+   * @param error
+   * @returns {any}
+   */
+  private handleError(errorResponse: Response<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    console.log(errorResponse);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (errorResponse.headers.get('content-type').startsWith('text/json') ||</span>
+      errorResponse.headers.get('content-type').startsWith('application/json')) {
+      let errorResult: IErrorResult = &lt;IErrorResult&gt;<span class="cstat-no" title="statement not covered" >errorResponse.json();</span>
+      let message: String = `${<span class="cstat-no" title="statement not covered" >errorResponse.statusText}: ${errorResult.message}`;</span>
+<span class="cstat-no" title="statement not covered" >      return Observable.throw(&lt;IErrorResult&gt;{message: message, details: errorResult.details});</span>
+    } else {
+      let message: String = `${<span class="cstat-no" title="statement not covered" >errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`;</span>
+<span class="cstat-no" title="statement not covered" >      return Observable.throw(&lt;IErrorResult&gt;{message: message, details: errorResponse.text()});</span>
+    }
+  }
+&nbsp;
+  /**
+   *
+   * @param error
+   * @returns {any}
+   */
+  private handleErrorWithLogout(errorResponse: Response<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    if (errorResponse.status === 401) {</span>
+      // 401 unauthorized
+<span class="cstat-no" title="statement not covered" >      this.loggedInState.next(false);</span>
+      // clear token remove user from local storage to log user out
+<span class="cstat-no" title="statement not covered" >      this.token = null;</span>
+<span class="cstat-no" title="statement not covered" >      localStorage.removeItem('currentUser');</span>
+<span class="cstat-no" title="statement not covered" >      localStorage.removeItem('currentUserProfile');</span>
+<span class="cstat-no" title="statement not covered" >      this.cookieService.remove('XSRF-TOKEN');</span>
+    }
+    // TODO SR add "you've been logged out" to message
+<span class="cstat-no" title="statement not covered" >    return this.handleError(errorResponse);</span>
+  };
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 19 2017 09:10:28 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

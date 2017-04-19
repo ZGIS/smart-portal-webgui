@@ -87,53 +87,53 @@
 					See the License for the specific language governing permissions and
 				limitations under the License.</p>
 				<h2 id="development-testing-and-dist-prod-builds">development, testing and dist/prod builds</h2>
-				<pre><code class="lang-shell">
-# install the whole bunch into node_modules
-# no need for typings install, @types npm packages are the new hype in ts2
+				<pre><code class="lang-shell"><span class="hljs-meta">
+#</span><span class="bash"> install the whole bunch into node_modules</span>
+<span class="hljs-meta">#</span><span class="bash"> no need <span class="hljs-keyword">for</span> typings install, @types npm packages are the new hype <span class="hljs-keyword">in</span> ts2</span>
 npm install
 
 // Build DLL first, run this once after adding new package
 npm run build:dll
-
-# get started immediately, webpack-dev-server manages everything etc
+<span class="hljs-meta">
+#</span><span class="bash"> get started immediately, webpack-dev-server manages everything etc</span>
 npm run start
-
-# alternatively 
+<span class="hljs-meta">
+#</span><span class="bash"> alternatively </span>
 npm run start:dll
-
-# mean as linter rules
+<span class="hljs-meta">
+#</span><span class="bash"> mean as linter rules</span>
 npm run tslint
-
-# check webpack configs
+<span class="hljs-meta">
+#</span><span class="bash"> check webpack configs</span>
 npm run webpack-validate:dev
 
 npm run webpack-validate:test
-
-# webpack will work but this config check will possibly fail, see config file
+<span class="hljs-meta">
+#</span><span class="bash"> webpack will work but this config check will possibly fail, see config file</span>
 npm run webpack-validate:prod
-
-# chrome selenium webdriver update for protractor (and karma)
+<span class="hljs-meta">
+#</span><span class="bash"> chrome selenium webdriver update <span class="hljs-keyword">for</span> protractor (and karma)</span>
 npm run webdriver:update
-
-# on Arch Linux, otherwise PhantomJS doesn&#39;t start properly / wrong QT libs something ..
+<span class="hljs-meta">
+#</span><span class="bash"> on Arch Linux, otherwise PhantomJS doesn<span class="hljs-string">'t start properly / wrong QT libs something ..</span></span>
 unset QT_QPA_PLATFORM 
-
-# karma/jsmine tests, webpack loads all up behind the scenes, no tsc precompile necessary
+<span class="hljs-meta">
+#</span><span class="bash"><span class="hljs-string"> karma/jsmine tests, webpack loads all up behind the scenes, no tsc precompile necessary</span></span>
 npm test
-
-# if you don&#39;t have the npm run start going or the local web server in dist on port 8080, run this
+<span class="hljs-meta">
+#</span><span class="bash"><span class="hljs-string"> if you don'</span>t have the npm run start going or the <span class="hljs-built_in">local</span> web server <span class="hljs-keyword">in</span> dist on port 8080, run this</span>
 npm run e2e:ci
-
-# or if you have an npm run start open in another shell
+<span class="hljs-meta">
+#</span><span class="bash"> or <span class="hljs-keyword">if</span> you have an npm run start open <span class="hljs-keyword">in</span> another shell</span>
 npm run e2e
-
-# building the dist export, pure file export to be hosted on a web server
+<span class="hljs-meta">
+#</span><span class="bash"> building the dist <span class="hljs-built_in">export</span>, pure file <span class="hljs-built_in">export</span> to be hosted on a web server</span>
 npm run build
-
-# check with a local http server
+<span class="hljs-meta">
+#</span><span class="bash"> check with a <span class="hljs-built_in">local</span> http server</span>
 python -m http.server 8000 --bind 127.0.0.1
-
-# or
+<span class="hljs-meta">
+#</span><span class="bash"> or</span>
 
 npm run http-server -p 8080 ./dist
 </code></pre>
@@ -181,6 +181,9 @@ npm run http-server -p 8080 ./dist
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/cardcomponent.html" class="tsd-kind-icon">Card<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/categoriesservice.html" class="tsd-kind-icon">Categories<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/collectionscomponent.html" class="tsd-kind-icon">Collections<wbr>Component</a>
@@ -325,6 +328,9 @@ npm run http-server -p 8080 ./dist
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/x3dviewcomponent.html" class="tsd-kind-icon">X3d<wbr>View<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/idashboardcategory.html" class="tsd-kind-icon">IDashboard<wbr>Category</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/ierrorresult.html" class="tsd-kind-icon">IError<wbr>Result</a>

@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/owc/owc-offering.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/owc/</a> owc-offering.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">14.89% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>7/47</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.11% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/45</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, Input, OnInit } from '@angular/core';
+import { IOwcOffering } from './collections';
+&nbsp;
+// IOwcOperation, IOwcPostRequestConfig, IOwcRequestResult
+&nbsp;
+<span class="fstat-no" title="function not covered" >@Component({</span>
+  selector: 'app-sac-gwh-owcoffering',
+  templateUrl: 'owc-offering.component.html',
+  styleUrls: [ 'owc-offering.component.css' ]
+})
+&nbsp;
+export class OwcOfferingComponent implements OnInit {
+  @Input() owcOffering: IOwcOffering;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  owcOfferingStyleClasses = 'OwcOffering';</span>
+<span class="cstat-no" title="statement not covered" >  owcOfferingType = 'OwcOffering';</span>
+&nbsp;
+  // wms|wmts|wfs|wcs|csw|wps|gml|kml|geotiff|sos|netcdf|http-link
+  public readonly <span class="cstat-no" title="statement not covered" >WmsOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/wms';</span>
+  public readonly <span class="cstat-no" title="statement not covered" >WmtsOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/wmts';</span>
+  public readonly <span class="cstat-no" title="statement not covered" >WfsOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/wfs';</span>
+  public readonly <span class="cstat-no" title="statement not covered" >WcsOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/wcs';</span>
+  public readonly <span class="cstat-no" title="statement not covered" >CswOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/csw';</span>
+  public readonly <span class="cstat-no" title="statement not covered" >WpsOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/wps';</span>
+  public readonly <span class="cstat-no" title="statement not covered" >GmlOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/gml';</span>
+  public readonly <span class="cstat-no" title="statement not covered" >KmlOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/kml';</span>
+  public readonly <span class="cstat-no" title="statement not covered" >GeoTiffOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/geotiff';</span>
+  public readonly <span class="cstat-no" title="statement not covered" >SosOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/sos';</span>
+  public readonly <span class="cstat-no" title="statement not covered" >NetCdfOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/netcdf';</span>
+  public readonly <span class="cstat-no" title="statement not covered" >HttpLinkOffering = 'http://www.opengis.net/spec/owc-geojson/1.0/req/http-link';</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ngOnInit(): void {</span>
+<span class="cstat-no" title="statement not covered" >    switch (this.owcOffering.code) {</span>
+      case this.WmsOffering:
+<span class="cstat-no" title="statement not covered" >        this.owcOfferingType = 'WmsOffering';</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+&nbsp;
+      case this.WmtsOffering:
+<span class="cstat-no" title="statement not covered" >        this.owcOfferingType = 'WmtsOffering';</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+&nbsp;
+      case this.WfsOffering:
+<span class="cstat-no" title="statement not covered" >        this.owcOfferingType = 'WfsOffering';</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+&nbsp;
+      case this.WcsOffering:
+<span class="cstat-no" title="statement not covered" >        this.owcOfferingType = 'WcsOffering';</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+&nbsp;
+      case this.CswOffering:
+<span class="cstat-no" title="statement not covered" >        this.owcOfferingType = 'CswOffering';</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+&nbsp;
+      case this.WpsOffering:
+<span class="cstat-no" title="statement not covered" >        this.owcOfferingType = 'WpsOffering';</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+&nbsp;
+      case this.GmlOffering:
+<span class="cstat-no" title="statement not covered" >        this.owcOfferingType = 'GmlOffering';</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+&nbsp;
+      case this.KmlOffering:
+<span class="cstat-no" title="statement not covered" >        this.owcOfferingType = 'KmlOffering';</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+&nbsp;
+      case this.GeoTiffOffering:
+<span class="cstat-no" title="statement not covered" >        this.owcOfferingType = 'GeoTiffOffering';</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+&nbsp;
+      case this.SosOffering:
+<span class="cstat-no" title="statement not covered" >        this.owcOfferingType = 'SosOffering';</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+&nbsp;
+      case this.NetCdfOffering:
+<span class="cstat-no" title="statement not covered" >        this.owcOfferingType = 'NetCdfOffering';</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+&nbsp;
+      case this.HttpLinkOffering:
+<span class="cstat-no" title="statement not covered" >        this.owcOfferingType = 'HttpLinkOffering';</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+&nbsp;
+    }
+<span class="cstat-no" title="statement not covered" >    this.owcOfferingStyleClasses = this.owcOfferingStyleClasses.concat(' ', this.owcOfferingType);</span>
+  }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 19 2017 09:10:28 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

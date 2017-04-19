@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/ol3-map/ol3-map.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/ol3-map/</a> ol3-map.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">30.36% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>17/56</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">26.42% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>14/53</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { IGeoFeature } from '../search/result';
+import { source, format, proj, layer, style, extent, control, Map, View, Extent, Coordinate } from 'openlayers';
+import { isNullOrUndefined } from 'util';
+&nbsp;
+<span class="fstat-no" title="function not covered" >export class Ol3MapExtent {</span>
+  bbox: Extent;
+  bboxWkt: string;
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >@Component({</span>
+  selector: 'app-sac-gwh-ol3-map',
+  template: '&lt;div id="map" class="map"&gt;&lt;/div&gt;',
+  styleUrls: ['ol3-map.component.css']
+})
+&nbsp;
+/**
+ * openlayers wrapper
+ */
+export class Ol3MapComponent implements OnInit {
+&nbsp;
+  @Output() onBboxChange = new EventEmitter&lt;Ol3MapExtent&gt;();
+&nbsp;
+  @Input() set mapExtent(bbox: Extent<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    if (extent.isEmpty(bbox)) {</span>
+      // console.log(`reset input extent.isEmpty '${this.nzExtent}'`);
+<span class="cstat-no" title="statement not covered" >      this._mapExtent = this.nzExtent;</span>
+    } else {
+      // console.log(`set input extent bbox '${bbox}'`);
+<span class="cstat-no" title="statement not covered" >      this._mapExtent = bbox;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (this.map) {</span>
+      // console.log(`map.getView().fit() with '${this._mapExtent}'`);
+<span class="cstat-no" title="statement not covered" >      this.map.getView().fit(this._mapExtent, this.map.getSize());</span>
+    }
+  }
+&nbsp;
+  @Input() set searchResults(features: IGeoFeature[]<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!features || features.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this._features = features;</span>
+<span class="cstat-no" title="statement not covered" >    this.vectorSource.clear();</span>
+<span class="cstat-no" title="statement not covered" >    this.vectorSource.addFeatures((new format.GeoJSON()).readFeatures(this._features));</span>
+  }
+&nbsp;
+  @Input() set highlightFeature(feature: IGeoFeature<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!this._features || this._features.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.highlightSource.clear();</span>
+    // console.log(feature);
+<span class="cstat-no" title="statement not covered" >    if (!isNullOrUndefined(feature)) {</span>
+<span class="cstat-no" title="statement not covered" >      this.highlightSource.addFeature((new format.GeoJSON()).readFeature(feature));</span>
+    }
+  }
+&nbsp;
+&nbsp;
+  private <span class="cstat-no" title="statement not covered" >vectorSource = new source.Vector({'wrapX': false});</span>
+  private <span class="cstat-no" title="statement not covered" >highlightSource = new source.Vector({'wrapX': false});</span>
+  private _mapExtent: Extent;
+  private _features: IGeoFeature[];
+&nbsp;
+  // TODO SR make this configurable in constructor
+  private <span class="cstat-no" title="statement not covered" >center: Coordinate = [174.7633, -36.8485];</span>
+  private <span class="cstat-no" title="statement not covered" >nzExtent: Extent = [168, -50, 180, -33];</span>
+  private <span class="cstat-no" title="statement not covered" >worldExtent: Extent = [-180, -90, 180, 90];</span>
+  private map: Map;
+&nbsp;
+  /**
+   * OnInit - load map and initalize OL3
+   */
+<span class="fstat-no" title="function not covered" >  ngOnInit(): void {</span>
+    let vectorLayer = <span class="cstat-no" title="statement not covered" >new layer.Vector({</span>
+      source: this.vectorSource,
+      style: new style.Style({
+        stroke: new style.Stroke({
+          color: 'blue',
+          lineDash: [4],
+          width: 2
+        }),
+        fill: new style.Fill({
+          color: 'rgba(0, 0, 255, 0.01)'
+        })
+      })
+    });
+&nbsp;
+    let highlightLayer = <span class="cstat-no" title="statement not covered" >new layer.Vector({</span>
+      source: this.highlightSource,
+      style: new style.Style({
+        stroke: new style.Stroke({
+          color: 'orange',
+          lineDash: [1],
+          width: 2
+        }),
+        fill: new style.Fill({
+          color: 'rgba(255, 255, 0, 0.5)'
+        })
+      })
+    });
+&nbsp;
+    /** {olx.control.AttributionOptions} */
+<span class="cstat-no" title="statement not covered" >    this.map = new Map({</span>
+      controls: control.defaults().extend([
+        new control.ZoomToExtent({
+          extent: this.nzExtent
+        })
+      ])
+      ,
+      layers: [
+        new layer.Tile({
+          source: new source.OSM()
+        }),
+        vectorLayer,
+        highlightLayer
+      ],
+      target: 'map',
+      view: new View({
+        projection: 'EPSG:4326',
+        center: this.center,
+        zoom: 5
+      })
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.map.getView().fit(this._mapExtent, this.map.getSize());</span>
+<span class="cstat-no" title="statement not covered" >    this.map.on('moveend', this.onMoveEnd, this);</span>
+  }
+&nbsp;
+  /**
+   * Gets the current map extent and normalizes it to WORLD if out of bounds.
+   */
+<span class="fstat-no" title="function not covered" >  private getMapExtent(): Ol3MapExtent {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.map) {</span>
+      let temp = <span class="cstat-no" title="statement not covered" >this.map.getView().calculateExtent(this.map.getSize());</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (Math.abs(temp[0] - temp[2]) &gt;= 360) {</span>
+<span class="cstat-no" title="statement not covered" >        temp[0] = -180;</span>
+<span class="cstat-no" title="statement not covered" >        temp[2] = 180;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (temp[1] &lt; -90 || temp[1] &gt; 90) {</span>
+<span class="cstat-no" title="statement not covered" >        temp[1] = Math.sign(temp[1]) * 90;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (temp[3] &lt; -90 || temp[3] &gt; 90) {</span>
+<span class="cstat-no" title="statement not covered" >        temp[3] = Math.sign(temp[3]) * 90;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return &lt;Ol3MapExtent&gt; {</span>
+        bbox: temp,
+        bboxWkt: `ENVELOPE(${temp[0]},${temp[2]},${temp[3]},${temp[1]})`
+      };
+    } else {
+<span class="cstat-no" title="statement not covered" >      return &lt;Ol3MapExtent&gt; {</span>
+        bbox: this.worldExtent,
+        bboxWkt: 'ENVELOPE(-180,180,90,-90)'
+      };
+    }
+  }
+&nbsp;
+  /**
+   * Event Handler when map move ends. Fires BboxChange event to listeners
+   */
+  private onMoveEnd(event: any<span class="fstat-no" title="function not covered" >) {</span>
+    let tmpOl3Extent = <span class="cstat-no" title="statement not covered" >this.getMapExtent();</span>
+    // console.log(`onMoveEnd tmpOl3Extent '${tmpOl3Extent.bbox.toString()}'`);
+<span class="cstat-no" title="statement not covered" >    this._mapExtent = tmpOl3Extent.bbox;</span>
+<span class="cstat-no" title="statement not covered" >    this.onBboxChange.emit(tmpOl3Extent);</span>
+  }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 19 2017 09:10:28 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/account/register.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/account/</a> register.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>13/65</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">18.97% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>11/58</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, Output, EventEmitter } from '@angular/core';
+import { AccountService, createProfile } from './account.service';
+import { Http } from '@angular/http';
+import { Router } from '@angular/router';
+import { NotificationService } from '../notifications';
+&nbsp;
+/**
+ *
+ */
+@Component({
+  selector: 'app-sac-gwh-register',
+  templateUrl: 'register.component.html'
+})
+&nbsp;
+/**
+ *
+ */
+export class RegisterComponent {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  model: any = {};</span>
+<span class="cstat-no" title="statement not covered" >  loading = false;</span>
+<span class="cstat-no" title="statement not covered" >  recaptchaValid = false;</span>
+<span class="cstat-no" title="statement not covered" >  error = '';</span>
+<span class="cstat-no" title="statement not covered" >  passwordsAreSync = true;</span>
+&nbsp;
+  /**
+   *
+   * @param accountService
+   * @param router
+   * @param http
+   * @param notificationService
+   */
+  constructor(private <span class="cstat-no" title="statement not covered" >accountService: AccountService,</span> private <span class="cstat-no" title="statement not covered" >router: Router,</span>
+              private <span class="cstat-no" title="statement not covered" >http: Http,</span> private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" >)</span> {</span>
+<span class="cstat-no" title="statement not covered" >    window[&lt;any&gt;'recaptchaCallback'] = &lt;any&gt;this.recaptchaCallback.bind(this);</span>
+  };
+&nbsp;
+  validatePasswordSync( event: any<span class="fstat-no" title="function not covered" > ) {</span>
+<span class="cstat-no" title="statement not covered" >    this.passwordsAreSync = this.model.password === this.model.passwordConfirm;</span>
+  }
+&nbsp;
+  /**
+   *
+   */
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  onSubmit() {</span></span>
+<span class="cstat-no" title="statement not covered" >    this.loading = true;</span>
+<span class="cstat-no" title="statement not covered" >    console.log(this.model);</span>
+&nbsp;
+    let regProfile = <span class="cstat-no" title="statement not covered" >createProfile({</span>
+      email: this.model.email,
+      accountSubject: 'local:' + this.model.email,
+      firstname: this.model.firstname,
+      lastname: this.model.lastname,
+      password: this.model.password
+    });
+&nbsp;
+    // console.log('submit register form clicked!');
+    // console.log(regProfile);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.accountService.register(regProfile)</span>
+      .subscribe(
+        result<span class="fstat-no" title="function not covered" > =&gt; {</span>
+          // TODO SR This should never be false
+<span class="cstat-no" title="statement not covered" >          if (result === true) {</span>
+            // register successful
+<span class="cstat-no" title="statement not covered" >            this.notificationService.addNotification({</span>
+              id: NotificationService.MSG_ID_LOGIN_STUFF,
+              type: 'success',
+              message: 'Thank you. Please check your emails and activate your account by' +
+              ' following the provided link.'
+            });
+<span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >            this.router.navigateByUrl('/login');</span>
+          } else {
+            // login failed
+<span class="cstat-no" title="statement not covered" >            this.notificationService.addNotification({</span>
+              id: NotificationService.MSG_ID_LOGIN_STUFF,
+              type: 'warning',
+              message: 'Registration failed.'
+            });
+<span class="cstat-no" title="statement not covered" >            this.error = 'Registration failed.';</span>
+<span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
+          }
+        },
+        error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          this.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >          this.notificationService.addErrorResultNotification(error);</span>
+        });
+  };
+&nbsp;
+  /**
+   * validate recaptcha via backend
+   *
+   * @param captchaChallenge
+   */
+<span class="cstat-no" title="statement not covered" >  recaptchaCallback(captchaChallenge: string<span class="fstat-no" title="function not covered" >) {</span></span>
+<span class="cstat-no" title="statement not covered" >    this.recaptchaValid = true;</span>
+<span class="cstat-no" title="statement not covered" >    this.accountService.testReCaptcha(captchaChallenge).subscribe(</span>
+      result<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(result);</span>
+        // TODO SR this should never be false
+<span class="cstat-no" title="statement not covered" >        if (result === true) {</span>
+<span class="cstat-no" title="statement not covered" >          this.recaptchaValid = true;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          this.recaptchaValid = false;</span>
+<span class="cstat-no" title="statement not covered" >          console.log('error recapture not valid');</span>
+<span class="cstat-no" title="statement not covered" >          this.notificationService.addNotification({</span>
+            id: NotificationService.MSG_ID_LOGIN_STUFF,
+            type: 'warning',
+            message: 'Recapture not valid.'
+          });
+        }
+      },
+      error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+        // error on validating recapcha or capcha failed
+<span class="cstat-no" title="statement not covered" >        this.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.recaptchaValid = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.notificationService.addErrorResultNotification(error);</span>
+      });
+  };
+&nbsp;
+  /**
+   *
+   * @param authCode
+   */
+<span class="cstat-no" title="statement not covered" >  getOAuthResponse(authCode: string<span class="fstat-no" title="function not covered" >) {</span></span>
+<span class="cstat-no" title="statement not covered" >    this.loading = true;</span>
+<span class="cstat-no" title="statement not covered" >    if (authCode) {</span>
+      // console.log('getOAuthResponse register component');
+      // console.log(authCode);
+<span class="cstat-no" title="statement not covered" >      this.accountService.gconnectHandle('REGISTER', authCode).subscribe(</span>
+        result<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          if (result === true) {</span>
+            // login successful
+<span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >            this.router.navigateByUrl('/dashboard');</span>
+          } else {
+            // login failed
+<span class="cstat-no" title="statement not covered" >            this.error = 'Google Login failed.';</span>
+<span class="cstat-no" title="statement not covered" >            this.notificationService.addNotification({</span>
+              id: NotificationService.MSG_ID_LOGIN_STUFF,
+              type: 'warning',
+              message: 'Google Login failed.'
+            });
+<span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
+          }
+        },
+        error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          this.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >          this.notificationService.addErrorResultNotification(error);</span>
+        });
+    } else {
+<span class="cstat-no" title="statement not covered" >      console.log('error gconnect signin');</span>
+<span class="cstat-no" title="statement not covered" >      this.notificationService.addNotification({</span>
+        id: NotificationService.MSG_ID_LOGIN_STUFF,
+        type: 'danger',
+        message: 'Login/Registration Error. No AuthCode provided.'
+      });
+    }
+  };
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 19 2017 09:10:28 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

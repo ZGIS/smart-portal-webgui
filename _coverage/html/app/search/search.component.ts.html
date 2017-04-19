@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/search/search.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/search/</a> search.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.77% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>21/73</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">12.5% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">26.47% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>18/68</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit } from '@angular/core';
+import { IGeoFeature, IGeoFeatureCollection, IErrorResult } from './result';
+import { ResultService } from './result.service';
+import * as moment from 'moment';
+import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { isNullOrUndefined } from 'util';
+import { NotificationService } from '../notifications/notification.service';
+import { Extent } from 'openlayers';
+&nbsp;
+/**
+ * Search Component
+ */
+@Component({
+  selector: 'app-sac-gwh-search',
+  templateUrl: 'search.component.html',
+  styleUrls: ['search.component.css']
+})
+&nbsp;
+export class SearchComponent implements OnInit {
+&nbsp;
+  /** initial search */
+<span class="cstat-no" title="statement not covered" >  search: Search = {</span>
+    query: '*:*',
+    fromDate: moment('1970-01-01', this.DATE_FORMAT).toDate(),
+    toDate: new Date(),
+    bbox: [168, -50, 180, -33],
+    bboxWkt: '',
+    maxNumberOfResults: 100
+  };
+&nbsp;
+  /** Search results */
+  results: IGeoFeatureCollection;
+&nbsp;
+  /** The selected search result */
+  selectedResult: IGeoFeature;
+&nbsp;
+  /** indicator if search mask is waiting for ajax request */
+<span class="cstat-no" title="statement not covered" >  isLoading = false;</span>
+&nbsp;
+  /** current URL */
+  currentUrl: String;
+&nbsp;
+  /** default date format */
+  private <span class="cstat-no" title="statement not covered" >DATE_FORMAT = 'YYYY-MM-DD';</span>
+&nbsp;
+  private timeoutId: number;
+&nbsp;
+  /**
+   * Constructor
+   * @param resultService       - injected ResultService
+   * @param router              - injected Router
+   * @param activatedRoute      - injected ActivatedRoute
+   * @param notificationService - injected NotificationService
+   */
+  constructor(private <span class="cstat-no" title="statement not covered" >resultService: ResultService,</span>
+              private <span class="cstat-no" title="statement not covered" >router: Router,</span>
+              private <span class="cstat-no" title="statement not covered" >activatedRoute: ActivatedRoute,</span>
+              private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" >)</span> {</span>
+  }
+&nbsp;
+  /**
+   * initializes the component. Specifically reads the URL parameters and makes the search.
+   */
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  ngOnInit(): void {</span></span>
+    // parse values from
+<span class="cstat-no" title="statement not covered" >    this.activatedRoute.queryParams.subscribe((params: Params<span class="fstat-no" title="function not covered" >) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      this.search.query = params['query'] || this.search.query;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (moment(params['fromDate'], this.DATE_FORMAT).isValid()) {</span>
+<span class="cstat-no" title="statement not covered" >        this.search.fromDate = moment(params['fromDate'], this.DATE_FORMAT).toDate();</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.search.fromDate = moment('1970-01-01', this.DATE_FORMAT).toDate();</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (moment(params['toDate'], this.DATE_FORMAT).isValid()) {</span>
+<span class="cstat-no" title="statement not covered" >        this.search.toDate = moment(params['toDate'], this.DATE_FORMAT).toDate();</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.search.toDate = new Date();</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (params['bbox']) {</span>
+        let paramBbox = <span class="cstat-no" title="statement not covered" >JSON.parse(params['bbox']);</span>
+<span class="cstat-no" title="statement not covered" >        console.log(`params bbox for search '${paramBbox}'`);</span>
+<span class="cstat-no" title="statement not covered" >        this.search.bbox = paramBbox;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        console.log(`keep bbox for search '${this.search.bbox}'`);</span>
+<span class="cstat-no" title="statement not covered" >        this.search.bbox = this.search.bbox;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (params['maxNumberOfResults']) {</span>
+<span class="cstat-no" title="statement not covered" >        this.search.maxNumberOfResults = params['maxNumberOfResults'];</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.search.maxNumberOfResults = undefined;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (!isNullOrUndefined(params['query'])) {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.timeoutId) {</span>
+<span class="cstat-no" title="statement not covered" >          clearTimeout(this.timeoutId);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.timeoutId = window.setTimeout(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >          this.getResults();</span>
+<span class="cstat-no" title="statement not covered" >          this.currentUrl = window.location.href;</span>
+        }, 250);
+      }
+    });
+  }
+&nbsp;
+  /**
+   * navigates to /serach with the correct parameters
+   */
+<span class="fstat-no" title="function not covered" >  doSearch(): void {</span>
+<span class="cstat-no" title="statement not covered" >    this.router.navigate(['/search'], {</span>
+      queryParams: this.getQueryParams()
+    });
+  }
+&nbsp;
+  /**
+   * Parse query parameters
+   * @param maxNumberOfResults
+   * @returns {{query: string, fromDate: string, toDate: string, bbox: string, maxNumberOfResults: number}}
+   */
+  getQueryParams(maxNumberOfResults?: number<span class="fstat-no" title="function not covered" >): any {</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      query: this.search.query,
+      fromDate: this.formatDate(this.search.fromDate),
+      toDate: this.formatDate(this.search.toDate),
+      bbox: JSON.stringify(this.search.bbox),
+      maxNumberOfResults: maxNumberOfResults
+    };
+  }
+&nbsp;
+  /**
+   * calls the ResultService with the current query and handles the search result / error
+   */
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  getResults(): void {</span></span>
+<span class="cstat-no" title="statement not covered" >    this.isLoading = true;</span>
+<span class="cstat-no" title="statement not covered" >    this.resultService.getResults(</span>
+      this.search.query,
+      this.formatDate(this.search.fromDate),
+      this.formatDate(this.search.toDate),
+      this.search.bboxWkt,
+      this.search.maxNumberOfResults)
+      .subscribe(
+        (results: IGeoFeatureCollection<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          this.results = results;</span>
+&nbsp;
+          // we got less results than matched documents =&gt; create alert with notification
+<span class="cstat-no" title="statement not covered" >          if (results.count &lt; results.countMatched) {</span>
+            // creates the URL for the alert-box notification
+            let urlTree = <span class="cstat-no" title="statement not covered" >this.router.createUrlTree(['/search'], {</span>
+              queryParams: {
+                query: this.search.query,
+                fromDate: this.formatDate(this.search.fromDate),
+                toDate: this.formatDate(this.search.toDate),
+                bbox: JSON.stringify(this.search.bbox),
+                maxNumberOfResults: -1
+              }
+            });
+            let url = <span class="cstat-no" title="statement not covered" >'#' + urlTree.toString();</span>
+<span class="cstat-no" title="statement not covered" >            this.notificationService.addNotification({</span>
+              id: NotificationService.MSG_ID_SHOW_ALL_RESULTS,
+              type: 'info',
+              message: `Ommited some search results. &lt;a href="${url}"&gt;&lt;i class="fa fa-eye"&gt;&lt;/i&gt;&amp;nbsp;show all&lt;/a&gt;`
+            });
+          }
+<span class="cstat-no" title="statement not covered" >          this.isLoading = false;</span>
+        },
+        (error: IErrorResult<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          this.notificationService.addErrorResultNotification(error);</span>
+<span class="cstat-no" title="statement not covered" >          this.isLoading = false;</span>
+        });
+  }
+&nbsp;
+  /**
+   * eventhandler when bounding box in map was changed
+   * @param $event
+   */
+  bboxChanged($event: Ol3MapExtent<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    console.log(`bboxChanged emitted '${$event.bbox}'`);</span>
+<span class="cstat-no" title="statement not covered" >    this.search.bbox = $event.bbox;</span>
+<span class="cstat-no" title="statement not covered" >    this.search.bboxWkt = $event.bboxWkt;</span>
+<span class="cstat-no" title="statement not covered" >    this.doSearch();</span>
+  }
+&nbsp;
+  /**
+   * event handler when key is pressed in search form. This enables search on press ENTER in search form.
+   * @param event
+   */
+  onKeydownSearchform(event: any<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    if (event.keyCode === 13) {</span>
+<span class="cstat-no" title="statement not covered" >      this.doSearch();</span>
+    }
+  }
+&nbsp;
+  /**
+   * helper function to format date to string defined in this.DATE_FORMAT
+   * @param date
+   * @returns {string}
+   */
+  formatDate(date: Date<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    return moment(date).format(this.DATE_FORMAT);</span>
+  }
+&nbsp;
+  /**
+   * on URL sucessfully copied to clipboard
+   */
+<span class="fstat-no" title="function not covered" >  onClipboardSuccess() {</span>
+<span class="cstat-no" title="statement not covered" >    this.notificationService.addNotification({</span>
+      id: NotificationService.MSG_ID_URL_COPIED_TO_CLIPBOARD,
+      message: 'URL successfully copied to clipboard', type: 'success',
+      dismissAfter: 1500
+    });
+  }
+}
+&nbsp;
+/**
+ * helper class that defines all parameter used for a search
+ */
+<span class="fstat-no" title="function not covered" >export class Search {</span>
+  query: string;
+  fromDate: Date;
+  toDate: Date;
+  bbox: Extent;
+  bboxWkt: string;
+  maxNumberOfResults: number;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 19 2017 09:10:28 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

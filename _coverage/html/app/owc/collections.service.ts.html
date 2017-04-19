@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/owc/collections.service.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/owc/</a> collections.service.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.74% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>15/69</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/65</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable, Inject } from '@angular/core';
+import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Rx';
+import { PORTAL_API_URL } from '../in-app-config';
+import { AccountService } from '../account';
+import { IOwcDocument } from './';
+import { IErrorResult } from '../search/result';
+&nbsp;
+@Injectable()
+export class CollectionsService {
+&nbsp;
+  constructor(@Inject(PORTAL_API_URL) private <span class="cstat-no" title="statement not covered" >portalApiUrl: string,</span>
+              private <span class="cstat-no" title="statement not covered" >http: Http,</span> private <span class="cstat-no" title="statement not covered" >router: Router,</span>
+              private <span class="cstat-no" title="statement not covered" >accountService: AccountService<span class="fstat-no" title="function not covered" >)</span> {</span>
+  }
+&nbsp;
+  /**
+   *
+   * @returns {Observable&lt;R|T&gt;}
+   */
+<span class="fstat-no" title="function not covered" >  getDefaultCollection(): Observable&lt;IOwcDocument&gt; {</span>
+    // add authorization header with jwt token
+    let defaultCollectionsUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/collections/default';</span>
+    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
+<span class="cstat-no" title="statement not covered" >    console.log('token: ' + token);</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'X-XSRF-TOKEN': token});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+&nbsp;
+    // get default collection from api (should be exactly one OwcDocument)
+<span class="cstat-no" title="statement not covered" >    return this.http.get(defaultCollectionsUri, options)</span>
+      .map(
+        (response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+          let userCollectionJson = <span class="cstat-no" title="statement not covered" >response.json();</span>
+<span class="cstat-no" title="statement not covered" >          if (&lt;IOwcDocument&gt;userCollectionJson) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log(userCollectionJson);</span>
+          }
+<span class="cstat-no" title="statement not covered" >          return response.json();</span>
+        }
+      )
+      .catch(this.handleHttpFailure);
+  };
+&nbsp;
+  /**
+   * get specific collection (that you have access to, server will filter reliably)
+   *
+   * @returns {Observable&lt;R|T&gt;}
+   */
+  getCollectionById(id: string<span class="fstat-no" title="function not covered" >): Observable&lt;IOwcDocument&gt; {</span>
+    // add authorization header with jwt token
+    let defaultCollectionsUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/collections';</span>
+    let params: URLSearchParams = <span class="cstat-no" title="statement not covered" >new URLSearchParams();</span>
+<span class="cstat-no" title="statement not covered" >    params.set('id', id);</span>
+    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
+<span class="cstat-no" title="statement not covered" >    console.log('token: ' + token);</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'X-XSRF-TOKEN': token});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true, params: params});</span>
+&nbsp;
+    // get default collection from api (should be exactly one OwcDocument)
+<span class="cstat-no" title="statement not covered" >    return this.http.get(defaultCollectionsUri, options)</span>
+      .map(
+        (response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+          let userCollectionJson = <span class="cstat-no" title="statement not covered" >response.json();</span>
+<span class="cstat-no" title="statement not covered" >          if (&lt;IOwcDocument&gt;userCollectionJson) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log(userCollectionJson);</span>
+          }
+<span class="cstat-no" title="statement not covered" >          return response.json();</span>
+        }
+      )
+      .catch(this.handleHttpFailure);
+  };
+&nbsp;
+<span class="fstat-no" title="function not covered" >  getCollections(): Observable&lt;IOwcDocument[]&gt; {</span>
+    // add authorization header with jwt token
+    let collectionsUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/collections';</span>
+    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
+<span class="cstat-no" title="statement not covered" >    console.log('token: ' + token);</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'X-XSRF-TOKEN': token});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+&nbsp;
+    // get default collection from api (should be exactly one OwcDocument)
+<span class="cstat-no" title="statement not covered" >    return this.http.get(collectionsUri, options)</span>
+      .map(
+        (response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+          let userCollectionJson = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().collections;</span>
+<span class="cstat-no" title="statement not covered" >          if (&lt;IOwcDocument[]&gt;userCollectionJson) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log(response.json().count);</span>
+          }
+<span class="cstat-no" title="statement not covered" >          return response.json().collections;</span>
+        }
+      )
+      .catch(this.handleHttpFailure);
+  };
+&nbsp;
+  /**
+   * get all uploaded files in user's default collection
+   * @returns {Observable&lt;R&gt;}
+   */
+  getUploadedFilesFromDefaultCollection(filter?: String<span class="fstat-no" title="function not covered" >): Observable&lt;Array&lt;any&gt;&gt; {</span>
+    let defaultCollectionFilesUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/collections/default/files';</span>
+    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
+<span class="cstat-no" title="statement not covered" >    console.log('token: ' + token);</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'X-XSRF-TOKEN': token});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this.http.get(defaultCollectionFilesUri, options)</span>
+      .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        console.log('Files in DefaultCollection loaded');</span>
+<span class="cstat-no" title="statement not covered" >        console.log(response.json());</span>
+        let filtered = <span class="cstat-no" title="statement not covered" >response.json().filter((v: any, i: any, o: any<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >v.properties.title.match(filter))</span></span>;</span>
+<span class="cstat-no" title="statement not covered" >        return filtered;</span>
+      })
+      .catch(this.handleHttpFailure);
+  }
+&nbsp;
+  // POST /api/v1/collections -&gt; controllers.CollectionsController.insertCollection
+&nbsp;
+  // POST /api/v1/collections/update -&gt; controllers.CollectionsController.updateCollectionMetadata
+&nbsp;
+  // GET /api/v1/collections/delete -&gt; controllers.CollectionsController.deleteCollection(id: String)
+  //
+  // experimental, entries add, replace, delete from collections
+  // POST /api/v1/collections/entry
+  //    -&gt; controllers.CollectionsController.addEntryToCollection(collectionid: String)
+  // POST /api/v1/collections/entry/replace
+  //    -&gt; controllers.CollectionsController.replaceEntryInCollection(collectionid: String)
+  // GET /api/v1/collections/entry/delete
+  //    -&gt; controllers.CollectionsController.deleteEntryFromCollection(collectionid: String, entryid: String)
+&nbsp;
+  /**
+   * In case call failed, handle error
+   * @param errorResponse
+   * @returns {any}
+   */
+  private handleHttpFailure(errorResponse: Response | any<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    console.log(errorResponse);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (errorResponse.headers.get('content-type').startsWith('text/json')) {</span>
+      let errorResult: IErrorResult = &lt;IErrorResult&gt;<span class="cstat-no" title="statement not covered" >errorResponse.json();</span>
+      let message: String = `${<span class="cstat-no" title="statement not covered" >errorResponse.statusText} while querying ingester: ${errorResult.message}`;</span>
+<span class="cstat-no" title="statement not covered" >      return Observable.throw(&lt;IErrorResult&gt;{message: message, details: errorResult.details});</span>
+    } else {
+      let message: String = `${<span class="cstat-no" title="statement not covered" >errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`;</span>
+<span class="cstat-no" title="statement not covered" >      return Observable.throw(&lt;IErrorResult&gt;{message: message, details: errorResponse.text()});</span>
+    }
+  };
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 19 2017 09:10:28 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
