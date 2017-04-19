@@ -8,6 +8,7 @@ import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { NotificationService } from './notifications/notification.service';
+import { CategoriesService } from './dashboards/categories.service';
 import { NotificationComponent } from './notifications/notification.component';
 import { Ng2BootstrapModule } from 'ng2-bootstrap';
 
@@ -81,6 +82,7 @@ describe('AppComponent with TCB', function () {
         CookieService,
         AccountService,
         NotificationService,
+        CategoriesService,
         API_URL_PROVIDERS,
         APP_VERSION_PROVIDERS,
         Http

@@ -34,6 +34,7 @@ import {
   ResultCardsComponent,
   CardComponent,
   DashboardButtonComponent,
+  CategoriesService,
   ShareButtonComponent,
   ShareButtonService
 } from './dashboards';
@@ -150,6 +151,7 @@ export function cookieServiceFactory() {
     GApiAuthService,
     NotificationService,
     CollectionsService,
+    CategoriesService,
     ShareButtonService
   ],
   bootstrap: [ AppComponent ]

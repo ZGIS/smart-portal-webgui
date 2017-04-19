@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { IDashboardCategory } from './categories';
-
-// TODO SR make service out of that?
-const myCategories = require('json-loader!./../../public/categories.json');
+import { CategoriesService } from './categories.service';
+import { NotificationService } from '../notifications/notification.service';
 
 @Component({
   selector: 'app-sac-gwh-dashboard-category',
@@ -24,28 +23,35 @@ export class DashboardCategoryComponent implements OnInit {
     this.route.params.forEach(( params: Params ) => {
 
       let currentCategory = params[ 'category' ];
-      myCategories.categories.forEach(( catObj: IDashboardCategory ) => {
-        if (catObj.query_string === currentCategory) {
-          console.log(catObj);
-          this.categoryName = catObj.item_name;
-          this.description = catObj.description;
 
-          let imgUrl = '/images/dashboard/' + catObj.bg_icon;
-          this.bgImage.imgUrl = imgUrl;
+      this.categoriesService.getMainCategoryForQueryString(currentCategory)
+        .subscribe(
+          catObj => {
+            if (catObj && catObj.query_string === currentCategory) {
+              console.log(catObj);
+              this.categoryName = catObj.item_name;
+              this.description = catObj.description;
 
-          catObj.children.forEach(( childObj: IDashboardCategory ) => {
-            this.children.push(childObj);
+              let imgUrl = '/images/dashboard/' + catObj.bg_icon;
+              this.bgImage.imgUrl = imgUrl;
 
-            let subImgUrl = '/images/dashboard/' + childObj.icon;
-            this.childrenImg.push(subImgUrl);
+              catObj.children.forEach(( childObj: IDashboardCategory ) => {
+                this.children.push(childObj);
+
+                let subImgUrl = '/images/dashboard/' + childObj.icon;
+                this.childrenImg.push(subImgUrl);
+              });
+            }
+          },
+          error => {
+            this.notificationService.addErrorResultNotification(error);
           });
-        }
-      });
 
     });
   }
 
-  constructor( private route: ActivatedRoute ) {
+  constructor( private route: ActivatedRoute, private categoriesService: CategoriesService,
+               private notificationService: NotificationService ) {
     this.bgImage.imgUrl = '/images/dashboard/0.0_main_background_empty.png';
   };
 

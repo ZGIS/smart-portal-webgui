@@ -3,8 +3,6 @@ const webpackMerge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
-
 const helpers = require('./helpers');
 const coreConfig = require('./webpack.core');
 
@@ -77,21 +75,7 @@ module.exports = webpackMerge(coreConfig, {
           failOnHint: false
         }
       }
-    }),
-
-    new TypedocWebpackPlugin({
-
-      name: 'SMART WebGui',
-      mode: 'file',
-      includeDeclarations: false,
-      ignoreCompilerErrors: true,
-      out: helpers.root('api-docs'),
-      exclude: '**/node_modules/**/*.*',
-      experimentalDecorators: true,
-      excludeExternals: true
-    },
-      [ helpers.root('src')]
-    )
+    })
   ]
 
 });

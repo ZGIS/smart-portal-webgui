@@ -3,6 +3,8 @@ const webpackMerge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
+
 // const ngtools = require('@ngtools/webpack');
 const AotPlugin = require('@ngtools/webpack').AotPlugin;
 
@@ -73,6 +75,19 @@ module.exports = webpackMerge(commonConfig, {
         from: './src/public/images',
         to: './images'
       }
-    ])
+    ]),
+    new TypedocWebpackPlugin({
+
+        name: 'SMART WebGui',
+        mode: 'file',
+        includeDeclarations: false,
+        ignoreCompilerErrors: true,
+        out: helpers.root('api-docs'),
+        exclude: '**/node_modules/**/*.*',
+        experimentalDecorators: true,
+        excludeExternals: true
+      },
+      [ helpers.root('src')]
+    )
   ]
 });
