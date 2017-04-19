@@ -15,7 +15,8 @@ describe('E2E Test Welcome Dashboard', function () {
 
 describe('E2E Test Dashboard Maps Category', function () {
 
-  const expectedMsg = 'Maps Maps and two-dimensional (map) datasets that are used in groundwater' + ' resource assessments';
+  // const expectedMsg = 'Maps Maps and two-dimensional (map) datasets that are used in groundwater' + ' resource assessments';
+  const expectedMsg = 'Understanding our groundwater systems';
 
 
   beforeEach(function () {
@@ -34,7 +35,7 @@ describe('E2E Test Dashboard Maps Category Query Aquifer has cards', function ()
   const notExpectedMsg = 'There are no documents for this query / category';
 
   beforeEach(function () {
-    browser.get('/#/dashboard/1-maps/cards?query=Aquifer');
+    browser.get('/#/dashboard/7-protect/cards?query=(keywords%3A%22nz%20water%20quality%20maps%22)%5E1.5%20OR%20catch_all%3Anz%20water%20quality%20maps');
   });
 
   it('should not have no-cards-found', function () {

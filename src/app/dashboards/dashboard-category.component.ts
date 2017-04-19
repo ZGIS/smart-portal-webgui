@@ -30,7 +30,7 @@ export class DashboardCategoryComponent implements OnInit {
           catObj => {
             if (catObj && catObj.query_string === currentCategory) {
               this.children = [];
-              console.log(catObj);
+              // console.log(catObj);
               this.categoryName = catObj.item_name;
               this.description = catObj.description;
 
@@ -40,7 +40,7 @@ export class DashboardCategoryComponent implements OnInit {
               catObj.children.forEach(( childObj: IDashboardCategory ) => {
 
                 let newChild = this.categoriesService.updateQueryStringforChildCategory(childObj);
-                console.log(newChild.query_string);
+                // console.log(newChild.query_string);
 
                 this.children.push(childObj);
 
