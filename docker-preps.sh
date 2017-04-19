@@ -9,6 +9,8 @@ ls -lh dist config/docker
 
 mv dist config/docker/html-source
 
+mv sphinx-build config/docker/html-source/docs
+
 ls -lh config/docker/
 
 cd config/docker/ && test -f Dockerfile && tar -cvzf ${APPNAME}-${TRAVIS_BUILD_NUMBER}-docker.tgz *
