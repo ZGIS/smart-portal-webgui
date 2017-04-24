@@ -35,7 +35,101 @@ Detailed descriptions of the functionality
 ------------
 
 #10 - Lucene/Angular Google type search and display underpinning all searches/discovery paths
-  Summary: <short phrase/sentence>.
+  Summary: All search queries, the categories/icons dashboard menus or the free search form with the map,
+  are built upon a specialised query syntax: the Lucene query syntax. To forge specific queries you can employ following fields:
+
+  - `keywords`: classic keyword in the sense that datasets, articles, reports or models are tagged with keywords describing the content
+  - `title`: The title of the dataset, report, article or model
+  - `abstrakt`: Intentional typo, as "abstract" is a reserved word in most programming languages, apologies for the inconvenience. We mean the abstract, or exec summary type of brief description at
+    the top of reports and research articles.
+  - `smartCategory`: a specific keyword type for this portal, which is from a controlled list to improve visibility in the portal. The
+    list is was generated: 2017-04-19 from Excel GW portal list of icons new structure 20170317.xlsx / Worksheet: science domain categories
+  - `topicCategory`: one of the ISO/ANZLIC TopicCategory values for MD_Metadata:
+    `environment`, `inlandWaters`, `geoscientificInformation`, `farming`, `biota`, `boundaries`,
+    `climatologyMeteorologyAtmosphere`, `oceans`, `imageryBaseMapsEarthCover`, `location`, `economy`, `elevation`,
+    `health`, `society`, `planningCadastre`, `structure`, `transportation`, `utilitiesCommunication`, `intelligenceMilitary`
+  - `contactName`: The name of a contact person associated with the record. Beyond beinf point of contact this person could also be
+    have one or more of the roles author, publisher, owner, originator, processor or principal investigator (the role type is not indexed by itself)
+  - `contactOrg`: The organisation of the contact person for the record
+  - `contactEmail`: The email address of the contact person for the record
+  - `license`: The license text associated with the record.
+  - `lineageStmt`: The liniage statement for the record, could be empty, but could also cary valuable information on the origin and sources.
+  - `linkage`: The types, protocols and online addresses associated with the records, often really just a web link to the resource
+  - `origin`: Originating catalogue where the resources was indexed from, currently we index `smart`, `journals`, `mfe`, `landcare`, `linz`, `doc`, `niwa , `gns`, `geogovt`
+    (`gns` and `geogovt` occasionally aren't availabe through this index due to performance issues)
+  - `fileIdentifier`: the Unique Identifier of the record
+  - `dateStampText`: as text-based representation of the date as ISO formatted datastamp string
+  - `dateStamp`: a number based range index (DAYS_FROM_1970)
+  - `bboxText`: a text-based representation of geographic bounding box in the OGC WKT format
+  - `catch_all`: a text-based wildcard-type field that searches all text-based indices from above, but doesn't distinguish between the fields, thus "catch all"
+
+  A query typically consists of a field + ":" (colon) + search text.
+
+  Search for word "hydro" in the title field
+
+  - `title: hydro`
+
+  Search for phrase "hydro geo" in the title field
+
+  - `title: "hydro geo"`
+
+  Search for phrase "hydro geo" in the title field AND the phrase "quick fox" in the abstrakt field.
+
+  - `title:"hydro geo" AND abstrakt:"quick fox"`
+
+  Search for either the phrase "hydro geo" in the title field AND the phrase "quick fox" in the abstrakt field, or the word "fox" in the title field.
+
+  - `(title:"hydro geo" AND abstrakt:"quick fox") OR title:fox`
+
+  Search for word "hydro" and NOT "geo" in the title field.
+
+  - `title:hydro -title:geo`
+
+  You can use so called wildcards (i.e. "*") for finding matches.
+
+  Search for any word that starts with "hydro" in the title field.
+
+  - `title:hydro*`
+
+  Search for any word that starts with "hydro" and ends with geo in the title field.
+
+  - `title:hydro*geo`
+
+  Note that Lucene doesn't support using a symbol as the first character of a `*search`.
+  Execpt as you will observe in the free map search `*:*` as default query all
+
+  Also, if you'd like to omit the field, it will be assumed per default to query over all available fields.
+  This would implicitly be a query of `*:<your text>`, however, to make this explicit we add the `catch_all` field, which does
+  exactly that, catching queries for all text-based fields.
+
+  Proximity matching, words that are close to each other in the text, but not necesserily directly next to each other.
+  Search for "hydro geo" within 4 words from each other.
+
+  - `"hydro geo"~4`
+
+  Range Searches or Range Queries allow search for documents where the field(s) values are between a lower and an upper bound.
+  Range Queries can be inclusive or exclusive of the upper and lower bounds. Sorting is done lexicographically.
+
+  - `dateStamp:[20020101 TO 20030101]`
+
+  We made this date search functionality more accessible, as separate ISO date fromDate and toDate search parameters, e.g. like so:
+
+  - `...index-url?query=fromDate=1970-01-01&toDate=2017-04-24`
+
+  Logical (Boolean) operators and parentheses can be used to group, combine and negate query parts:
+  To search for all documents with "geo" in the title field but must not have "hydro":
+
+  - `(NOT title:hydro) AND title:geo`
+
+  Boosting of parts of your query:
+  Query-time boosts allow specifying which terms/­clauses are "more important". The higher the boost factor,
+  the more relevant the term will be, and therefore the higher the corresponding document scores.
+
+  A typical boosting technique is assigning higher boosts to title matches than to other field matches:
+
+  - `(title:hydro OR title:geo)^1.5 (abstrakt:hydro OR abstrakt:geo)`
+
+  References: http://lucene.apache.org/core/6_4_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package.description
 
 #11 - List of catalogues "configurable" (at least config file),  BBOX only in WGS84
   Summary: <short phrase/sentence>.
