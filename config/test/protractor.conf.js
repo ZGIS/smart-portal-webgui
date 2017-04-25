@@ -14,49 +14,49 @@ var fs = require('fs');
 var path = require('canonical-path');
 var _ = require('lodash');
 
+const SpecReporter = require("jasmine-spec-reporter");
 
 exports.config = {
-  directConnect: true,
 
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
-    'browserName': 'chrome'
+    browserName: 'chrome'
   },
 
   // Framework to use. Jasmine is recommended.
-  // framework: 'jasmine',
-  framework: 'jasmine2',
+  framework: 'jasmine',
+  // framework: 'jasmine2',
 
   // Spec patterns are relative to this config file
   specs: ['**/*e2e-spec.js' ],
 
   // timeout stuff
-  allScriptsTimeout: 60000,
-  getPageTimeout: 60000,
+  allScriptsTimeout: 30000,
+  getPageTimeout: 30000,
+
+  // Base URL for application server .. http-serve
+  // directConnect: true,
+  baseUrl: 'http://localhost:8080',
+
+  // Base URL for application server .. webdriver server
+  seleniumAddress: 'http://localhost:4444/wd/hub',
 
   // For angular2 tests
   useAllAngular2AppRoots: true,
   rootElement: 'app-sac-gwh',
 
-  // Base URL for application server
-  baseUrl: 'http://localhost:8080',
-
-  // doesn't seem to work.
-  // resultJsonOutputFile: "foo.json",
-
   onPrepare: function() {
     //// SpecReporter
-    var SpecReporter = require('jasmine-spec-reporter');
-    //jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'all'}));
     jasmine.getEnv().addReporter(new SpecReporter({
-      spec: {
-        displayStacktrace: true
-      }
+      displayStacktrace: true,
+      displayFailuresSummary: true,
+      displayFailedSpec: true,
+      displaySuiteNumber: true,
+      displaySpecDuration: true
     }));
 
     // debugging
     console.log('browser.params:' + JSON.stringify(browser.params));
-    // jasmine.getEnv().addReporter(new Reporter( browser.params )) ;
 
     global.sendKeys = sendKeys;
 
@@ -68,7 +68,7 @@ exports.config = {
   },
 
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 60000,
+    defaultTimeoutInterval: 30000,
     // defaultTimeoutInterval: 10000,
     showTiming: true,
     print: function() {}
