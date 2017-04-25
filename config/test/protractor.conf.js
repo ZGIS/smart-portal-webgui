@@ -24,7 +24,8 @@ exports.config = {
   },
 
   // Framework to use. Jasmine is recommended.
-  framework: 'jasmine',
+  // framework: 'jasmine',
+  framework: 'jasmine2',
 
   // Spec patterns are relative to this config file
   specs: ['**/*e2e-spec.js' ],
@@ -61,7 +62,7 @@ exports.config = {
 
     // Allow changing bootstrap mode to NG1 for upgrade tests
     global.setProtractorToNg1Mode = function() {
-      browser.useAllAngular2AppRoots = false;
+      // browser.useAllAngular2AppRoots = false;
       browser.rootEl = 'body';
     };
   },
