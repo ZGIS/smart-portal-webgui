@@ -22,6 +22,7 @@ export interface IGeoFeatureProperties {
   title: string;
   abstrakt: string;
   keywords: string[];
+  lineageStmt: string;
   linkage: string[];
   origin: string;
 }
