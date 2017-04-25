@@ -26,13 +26,14 @@ install:
 # - pip install --user git+https://github.com/Syntaf/travis-sphinx.git
 - pip install -q --user Sphinx sphinx_rtd_theme
 - export PATH=$HOME/.local/bin:$PATH
-script:
-- cp config/internal/.env.travis .env
-- npm run tslint
 # - node node_modules/protractor/bin/webdriver-manager update
 - npm run webdriver:update
-- npm run webdriver:start
+# Immune to logouts, but not VM deprovisions!
+- nohup bash -c "webdriver-manager start 2>&1 &"
+script:
+- cp config/internal/.env.travis .env
 - npm run stat
+- npm run tslint
 - npm test -- --ci && cp -r coverage _coverage
 # jit build
 - npm run e2e:ci:jit

@@ -49,7 +49,7 @@
     "protractor": "node node_modules/protractor/bin/protractor",
     "webdriver-protractor": "node node_modules/protractor/bin/webdriver-manager",
     "webdriver-manager": "node node_modules/webdriver-manager/bin/webdriver-manager",
-    "webdriver:update": "webdriver-manager update",
+    "webdriver:update": "webdriver-manager update --standalone",
     "webdriver:start": "webdriver-manager start",
     "webdriver:stop": "webdriver-manager shutdown",
     "gh-pages-push": "gh-pages -d ghdash -r git@github.com:ZGIS/smart-portal-webgui.git",
