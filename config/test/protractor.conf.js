@@ -29,6 +29,9 @@ exports.config = {
   // Spec patterns are relative to this config file
   specs: ['**/*e2e-spec.js' ],
 
+  // timeout stuff
+  allScriptsTimeout: 60000,
+  getPageTimeout: 60000,
 
   // For angular2 tests
   useAllAngular2AppRoots: true,
@@ -63,8 +66,8 @@ exports.config = {
   },
 
   jasmineNodeOpts: {
-    // defaultTimeoutInterval: 60000,
-    defaultTimeoutInterval: 10000,
+    defaultTimeoutInterval: 60000,
+    // defaultTimeoutInterval: 10000,
     showTiming: true,
     print: function() {}
   }
