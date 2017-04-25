@@ -35,6 +35,7 @@ exports.config = {
 
   // For angular2 tests
   useAllAngular2AppRoots: true,
+  rootElement: 'app-sac-gwh',
 
   // Base URL for application server
   baseUrl: 'http://localhost:8080',
