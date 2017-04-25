@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { IGeoFeatureCollection, IGeoFeature, ResultService } from '../search';
 import * as moment from 'moment';
 import { NotificationService } from '../notifications/notification.service';
+import { CategoriesService } from './categories.service';
 
 // let moment = require('moment');
 
@@ -24,6 +25,10 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
   results: IGeoFeatureCollection;
   resultsGroups: String[];
 
+  categoryName = '';
+  description = '';
+  loading = true;
+
   private subscription: Subscription;
 
   /**
@@ -34,6 +39,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
    */
   constructor(private resultService: ResultService,
               private activatedRoute: ActivatedRoute,
+              private categoriesService: CategoriesService,
               private notificationService: NotificationService) {
   }
 
@@ -53,6 +59,23 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     // subscribe to router event
     this.subscription = this.activatedRoute.queryParams.subscribe(
       (param: any) => {
+        let categoryId = param['categoryId'];
+        this.categoryName = categoryId;
+        this.categoriesService.getCildCategoryById(categoryId)
+          .subscribe(
+            catObj => {
+              if (catObj && catObj.id === categoryId) {
+                console.log(catObj);
+                this.categoryName = catObj.item_name;
+                let keywords = '';
+                catObj.keyword_content.forEach( k => keywords = k.concat(', ', keywords));
+                this.description = catObj.description + ' - ' + keywords;
+              }
+            },
+            error => {
+              this.notificationService.addErrorResultNotification(error);
+            });
+
         let query = param['query'];
 
         if (!query) {
@@ -67,10 +90,12 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
           'ENVELOPE(-180,180,-90,90)'
         ).subscribe(
           (results: IGeoFeatureCollection) => {
+            this.loading = false;
             this.results = results;
             this.resultsGroups = this.getCataloguesOfResults();
           },
           (error: any) => {
+            this.loading = false;
             this.notificationService.addErrorResultNotification(error);
           }
         );

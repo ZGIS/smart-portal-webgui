@@ -18,7 +18,7 @@ export class CategoriesService {
    */
   constructor() {
     this.categoriesHolder.next(myCategories.categories);
-    myCategories.categories.forEach(( parentObj: IDashboardCategory ) => {
+    myCategories.categories.forEach((parentObj: IDashboardCategory) => {
       if (parentObj.query_string) {
         this.mainCategoriesQueryStrings.push(parentObj.query_string);
       }
@@ -38,11 +38,23 @@ export class CategoriesService {
    * @param query_string
    * @returns {Observable<IDashboardCategory>}
    */
-  public getMainCategoryForQueryString( query_string: string ): Observable<IDashboardCategory> {
+  public getMainCategoryForQueryString(query_string: string): Observable<IDashboardCategory> {
     return this.categoriesHolder.map(categories => categories.find(
-      ( ( catObj: IDashboardCategory ) => (catObj.query_string === query_string) && (catObj.parent === 'main'))
+      ( (catObj: IDashboardCategory) => (catObj.query_string === query_string) && (catObj.parent === 'main'))
     ));
+  }
 
+  /**
+   *
+   * @param id
+   * @returns {Observable<R>}
+   */
+  public getCildCategoryById(id: number): Observable<IDashboardCategory> {
+    return this.categoriesHolder.flatMap(categories => categories.map(
+      catObj => catObj.children)
+    ).map(categories => categories.find(
+      ( (catObj: IDashboardCategory) => (catObj.id === id) )
+    ));
   }
 
   /**
@@ -50,7 +62,7 @@ export class CategoriesService {
    * @param child
    * @returns {IDashboardCategory}
    */
-  public updateQueryStringforChildCategory( child: IDashboardCategory ): IDashboardCategory {
+  public updateQueryStringforChildCategory(child: IDashboardCategory): IDashboardCategory {
 
     let newChild = child;
     let keywordsQueryString = '';
@@ -65,7 +77,7 @@ export class CategoriesService {
         `catch_all:${keyword}`
       );
 
-      singleKeywordQueries.forEach(( q: string ) => {
+      singleKeywordQueries.forEach((q: string) => {
         if (keywordsQueryString === '') {
           keywordsQueryString = q;
         } else {
@@ -73,7 +85,7 @@ export class CategoriesService {
         }
       });
 
-      singleFulltextQueries.forEach(( q: string ) => {
+      singleFulltextQueries.forEach((q: string) => {
         if (catchallQueryString === '') {
           catchallQueryString = q;
         } else {

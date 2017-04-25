@@ -1,6 +1,33 @@
-<div *ngIf="results.features.length == 0" class="row">
-  <div class="col-md-12">
-    <p id="no-cards-found" style="color: #ffffff;">There are no documents for this query / category <i class="fa fa-frown-o"></i></p>
+<div class="row">
+  <div class="col-md-12" *ngIf="results.features.length == 0">
+    <div *ngIf="loading">
+      <p>Still loading ... <img *ngIf="loading"
+                             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+      </p>
+    </div>
+    <div *ngIf="!loading">
+      <p id="no-cards-found">There are currently no documents for this query / category <i class="fa fa-frown-o"></i></p>
+    </div>
+    <a routerLink="/dashboard" tooltip="back to main dashboard">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;back</a>
+  </div>
+  <div class="col-md-12" *ngIf="results.features.length > 0">
+    <div class="panel panel-default">
+      <div class="panel-heading" id="dashboard-category">
+        Category: {{ categoryName }} <a routerLink="/dashboard" tooltip="back to main dashboard">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;back</a>
+      </div>
+      <div class="panel-body">
+        <div class="list-group">
+          <div class="list-group-item">
+            Description and keywords for this category: {{ description }}
+          </div>
+          <div class="list-group-item">
+            <i class="fa fa-th-list"></i> Filter results ... more to come!
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -16,54 +43,54 @@
                   [title]="feature.properties.title"
     ></app-sac-card>
 
-<!--
-    <div class="card">
-      <a class="img-card" (click)="resultCardDetailRef.showFeatureModal(feature)">
-        &lt;!&ndash;<img src="http://us.123rf.com/450wm/violetkaipa/violetkaipa1409/violetkaipa140900052/31266340-man-drawing-a-graph-on-a-glass-wall.jpg" />&ndash;&gt;
-        &lt;!&ndash;<img src="https://www.rabobank.com/en/images/A%20Kerndocumenten.jpg" />&ndash;&gt;
-        <img src="https://filebound.files.wordpress.com/2014/01/files.jpg" />
-      </a>
-      <br />
-      <div class="card-content">
-        <h4 class="card-title">
-          <a href="http://www.fostrap.com/">
-            {{feature.properties.title}}
+    <!--
+        <div class="card">
+          <a class="img-card" (click)="resultCardDetailRef.showFeatureModal(feature)">
+            &lt;!&ndash;<img src="http://us.123rf.com/450wm/violetkaipa/violetkaipa1409/violetkaipa140900052/31266340-man-drawing-a-graph-on-a-glass-wall.jpg" />&ndash;&gt;
+            &lt;!&ndash;<img src="https://www.rabobank.com/en/images/A%20Kerndocumenten.jpg" />&ndash;&gt;
+            <img src="https://filebound.files.wordpress.com/2014/01/files.jpg" />
           </a>
-        </h4>
-        <div class="card-body">
-          {{feature.properties.abstrakt.substring(0, 400)}}
+          <br />
+          <div class="card-content">
+            <h4 class="card-title">
+              <a href="http://www.fostrap.com/">
+                {{feature.properties.title}}
+              </a>
+            </h4>
+            <div class="card-body">
+              {{feature.properties.abstrakt.substring(0, 400)}}
+            </div>
+          </div>
+          <div class="card-read-more">
+            <a class="btn btn-link btn-block" (click)="resultCardDetailRef.showFeatureModal(feature)">see full details...</a>
+          </div>
         </div>
-      </div>
-      <div class="card-read-more">
-        <a class="btn btn-link btn-block" (click)="resultCardDetailRef.showFeatureModal(feature)">see full details...</a>
-      </div>
-    </div>
--->
+    -->
 
-<!--
-    <div class="panel panel-default">
-      <div class="panel-heading folder-bg">
-        <div style="background-color: rgba(240,240,240,0.7);
-                    align-self:flex-end;
-                    dislay:flex;
-                    width:100%;
-                    padding:5px 10px;">
-          <h5 style="font-size: 15px;">{{feature.properties.title}}</h5>
+    <!--
+        <div class="panel panel-default">
+          <div class="panel-heading folder-bg">
+            <div style="background-color: rgba(240,240,240,0.7);
+                        align-self:flex-end;
+                        dislay:flex;
+                        width:100%;
+                        padding:5px 10px;">
+              <h5 style="font-size: 15px;">{{feature.properties.title}}</h5>
+            </div>
+          </div>
+          <div class="panel-body" style="height:260px; overflow:scroll">
+            <p style="text-align:justify">{{feature.properties.abstrakt}}</p>
+          </div>
+          <div class="panel-footer">
+            <a (click)="resultCardDetailRef.showFeatureModal(feature)">see full details...</a>
+            <div class="pull-right">
+              <a *ngFor="let link of feature.properties.linkage" [href]="link" target="_blank">
+                <i class="fa fa-download"></i>
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="panel-body" style="height:260px; overflow:scroll">
-        <p style="text-align:justify">{{feature.properties.abstrakt}}</p>
-      </div>
-      <div class="panel-footer">
-        <a (click)="resultCardDetailRef.showFeatureModal(feature)">see full details...</a>
-        <div class="pull-right">
-          <a *ngFor="let link of feature.properties.linkage" [href]="link" target="_blank">
-            <i class="fa fa-download"></i>
-          </a>
-        </div>
-      </div>
-    </div>
--->
+    -->
   </div>
 </div>
 

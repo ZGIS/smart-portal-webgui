@@ -10,7 +10,7 @@
         "1-understanding"
       ],
       "query_string": "1-understanding",
-      "icon": "0-placeholder-water-icon.jpg",
+      "icon": "7.3_methods_square_small.png",
       "bg_icon": "0.0_main_background_empty.png",
       "children": [
         {
@@ -23,7 +23,7 @@
             "3-location"
           ],
           "query_string": "3-location",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "4.6_groundwater_quantity_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -36,7 +36,7 @@
             "4-techniques"
           ],
           "query_string": "4-techniques",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.2_aquifer_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -49,7 +49,7 @@
             "5-quality"
           ],
           "query_string": "5-quality",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "5.8_groundwater_modelling_quality_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -62,7 +62,7 @@
             "6-model"
           ],
           "query_string": "6-model",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "5.7_groundwater_characterisation_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         }
       ]
@@ -77,7 +77,7 @@
         "2-managing"
       ],
       "query_string": "2-managing",
-      "icon": "0-placeholder-water-icon.jpg",
+      "icon": "4.0_water_budget_square_small.png",
       "bg_icon": "0.0_main_background_empty.png",
       "children": [
         {
@@ -91,7 +91,7 @@
             "climate extremes"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.8_climate_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -104,7 +104,7 @@
             "community and maori environmental values"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "3.5_policy_framework_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -118,7 +118,7 @@
             "land-use and cover"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.7_land_use_and_cover_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -131,7 +131,7 @@
             "8-ecosystems"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "4.7_groundwater_discharge_coast_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -146,7 +146,7 @@
             "vulnerability maps"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.0_maps_spatial_datasets_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -162,7 +162,7 @@
             "water use efficiency"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "8.0_groundwater_use_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -176,7 +176,7 @@
             "subsidence"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "8.6_effects_groundwater_use_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -194,7 +194,7 @@
             "waste water"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.6_infrastructure_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -208,7 +208,7 @@
             "volcanic eruptions"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "6.1_geology_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -223,7 +223,7 @@
             "trading"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "8.4_water_demand_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -237,7 +237,7 @@
             "allocations"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "3.0_policy_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -251,7 +251,7 @@
             "security of supply"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "8.1_groundwater_supply_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -266,7 +266,7 @@
             "techniques to characterise aquifers"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "8.5_water_use_efficiency_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -279,7 +279,7 @@
             "water economics"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "8.7_water_economics_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         }
       ]
@@ -294,7 +294,7 @@
         "3-location"
       ],
       "query_string": "3-location",
-      "icon": "0-placeholder-water-icon.jpg",
+      "icon": "4.6_groundwater_quantity_square_small.png",
       "bg_icon": "0.0_main_background_empty.png",
       "children": [
         {
@@ -313,7 +313,7 @@
             "groundwater chemistry"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "4.10_groundwater_catchments_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -328,7 +328,7 @@
             "groundwater use"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "8.0_groundwater_use_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -341,7 +341,7 @@
             "hydrogeology maps and descriptions"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.2_aquifer_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -354,7 +354,7 @@
             "rainfall recharge maps"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.9_rainfall_recharge_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         }
       ]
@@ -369,7 +369,7 @@
         "4-techniques"
       ],
       "query_string": "4-techniques",
-      "icon": "0-placeholder-water-icon.jpg",
+      "icon": "1.2_aquifer_square_small.png",
       "bg_icon": "0.0_main_background_empty.png",
       "children": [
         {
@@ -382,7 +382,7 @@
             "distributed temperature sensing"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.5_hydrology_square.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -397,7 +397,7 @@
             "water budgets"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "4.3_groundwater_inflow_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -412,7 +412,7 @@
             "tracer testing"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "5.4_tracer_tests_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -425,7 +425,7 @@
             "groundwater chemistry"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "5.0_groundwater_chemistry_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -439,7 +439,7 @@
             "geophysics"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.11_geophysics_square.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -456,7 +456,7 @@
             "piezometric surveys"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "6.0_geological_models_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         }
       ]
@@ -471,7 +471,7 @@
         "5-quality"
       ],
       "query_string": "5-quality",
-      "icon": "0-placeholder-water-icon.jpg",
+      "icon": "5.8_groundwater_modelling_quality_square_small.png",
       "bg_icon": "0.0_main_background_empty.png",
       "children": [
         {
@@ -484,7 +484,7 @@
             "age tracers"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "7.0_groundwater_age_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -498,7 +498,7 @@
             "land-use"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "5.10_contaminants_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -511,7 +511,7 @@
             "geothermal waters"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.1_geology_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -525,7 +525,7 @@
             "nz water quality maps"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.0_maps_spatial_datasets_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -538,7 +538,7 @@
             "natural processes"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "5.9_natural_process_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -551,7 +551,7 @@
             "nz drinking water guidelines"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "8.3_regulations_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -564,7 +564,7 @@
             "numerical groundwater transport modelling"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "5.8_groundwater_modelling_quality_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -578,7 +578,7 @@
             "measuring groundwater age"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "5.3_monitoring_chemistry_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -591,7 +591,7 @@
             "vadose zone"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "4.2_evaporation_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -604,7 +604,7 @@
             "groundwater chemistry"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "5.0_groundwater_chemistry_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         }
       ]
@@ -619,7 +619,7 @@
         "6-model"
       ],
       "query_string": "6-model",
-      "icon": "0-placeholder-water-icon.jpg",
+      "icon": "5.7_groundwater_characterisation_square_small.png",
       "bg_icon": "0.0_main_background_empty.png",
       "children": [
         {
@@ -632,7 +632,7 @@
             "designing monitoring networks"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "5.1_collection_chemistry_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -649,7 +649,7 @@
             "big data interrogation"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "4.11_uncertainty_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -667,7 +667,7 @@
             "water budgets"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "4.3_groundwater_inflow_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -680,7 +680,7 @@
             "age modelling"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "7.0_groundwater_age_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -693,7 +693,7 @@
             "chemical modelling"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "5.6_chemical_modeling_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -706,7 +706,7 @@
             "uncertainty analyses"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "4.11_uncertainty_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -719,7 +719,7 @@
             "pump test analyses"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "8.2_aquifer_tests_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -734,7 +734,7 @@
             "conceptual modelling"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "6.0_geological_models_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         }
       ]
@@ -749,7 +749,7 @@
         "7-protect"
       ],
       "query_string": "7-protect",
-      "icon": "0-placeholder-water-icon.jpg",
+      "icon": "8.1_groundwater_supply_square_small.png",
       "bg_icon": "0.0_main_background_empty.png",
       "children": [
         {
@@ -763,7 +763,7 @@
             "land-use"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "5.10_contaminants_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -776,7 +776,7 @@
             "nz water quality maps"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.0_maps_spatial_datasets_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -790,7 +790,7 @@
             "community drinking water supply monitoring"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "3.0_policy_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -803,7 +803,7 @@
             "numerical groundwater flow modelling"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "4.3_groundwater_inflow_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -818,7 +818,7 @@
             "climate"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "4.10_groundwater_catchments_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -832,7 +832,7 @@
             "groundwater chemistry"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.10_chemistry_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -845,7 +845,7 @@
             "hydraulic properties"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "6.2_hydraulic_Properties_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         }
       ]
@@ -860,7 +860,7 @@
         "8-ecosystems"
       ],
       "query_string": "8-ecosystems",
-      "icon": "0-placeholder-water-icon.jpg",
+      "icon": "4.7_groundwater_discharge_coast_square_small.png",
       "bg_icon": "0.0_main_background_empty.png",
       "children": [
         {
@@ -873,7 +873,7 @@
             "climate"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "2.0_climate_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -888,7 +888,7 @@
             "microbial community in our gw"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "1.2_aquifer_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -904,7 +904,7 @@
             "wetlands"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "4.7_groundwater_discharge_coast_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         },
         {
@@ -919,7 +919,7 @@
             "groundwater-river interaction"
           ],
           "query_string": "",
-          "icon": "0-placeholder-water-icon.jpg",
+          "icon": "4.5_groundwater_lake_interaction_square_small.png",
           "bg_icon": "0.0_main_background_empty.png"
         }
       ]
