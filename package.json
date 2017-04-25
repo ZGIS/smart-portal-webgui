@@ -47,10 +47,11 @@
     "e2e:ci": "npm run build && concurrently --kill-others --success first \"http-server -p 8080 ./dist\" \"npm run e2e\"",
     "e2e:ci:jit": "npm run build:jit && concurrently --kill-others --success first \"http-server -p 8080 ./dist\" \"npm run e2e\"",
     "protractor": "node node_modules/protractor/bin/protractor",
-    "webdriver-manager": "node node_modules/protractor/bin/webdriver-manager",
-    "webdriver:protractor": "node node_modules/protractor/bin/webdriver-manager",
+    "webdriver-protractor": "node node_modules/protractor/bin/webdriver-manager",
+    "webdriver-manager": "node node_modules/webdriver-manager/bin/webdriver-manager",
     "webdriver:update": "webdriver-manager update",
     "webdriver:start": "webdriver-manager start",
+    "webdriver:stop": "webdriver-manager shutdown",
     "gh-pages-push": "gh-pages -d ghdash -r git@github.com:ZGIS/smart-portal-webgui.git",
     "serve": "http-server -p 8080 ./dist",
     "stat": "node ./config/dashboard"

@@ -25,7 +25,7 @@ exports.config = {
 
   // Framework to use. Jasmine is recommended.
   framework: 'jasmine',
-  // framework: 'jasmine2',
+  // framework: 'jasmine2', supposedly a workaround of some sort? jasmine also is for jasmine versions +2.x
 
   // Spec patterns are relative to this config file
   specs: ['**/*e2e-spec.js' ],
