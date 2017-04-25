@@ -60,11 +60,11 @@ exports.config = {
 
     global.sendKeys = sendKeys;
 
-    // Allow changing bootstrap mode to NG1 for upgrade tests
-    global.setProtractorToNg1Mode = function() {
-      // browser.useAllAngular2AppRoots = false;
-      browser.rootEl = 'body';
-    };
+    // Allow changing bootstrap mode to NG1 for upgrade tests, AK 20170425 not necessary anymore?
+    // global.setProtractorToNg1Mode = function() {
+    //   browser.useAllAngular2AppRoots = false;
+    //   browser.rootEl = 'body';
+    // };
   },
 
   jasmineNodeOpts: {
