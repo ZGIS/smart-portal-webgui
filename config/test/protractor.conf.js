@@ -20,17 +20,17 @@ const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 exports.config = {
 
   // Capabilities to be passed to the webdriver instance.
-  capabilities: {
-    browserName: 'chrome'
-  },
+  // capabilities: {
+  //   browserName: 'chrome'
+  // },
 
   // Protractor will run tests in parallel against each set of capabilities.
   // Please note that if multiCapabilities is defined, the runner will ignore the capabilities configuration.
-  // multiCapabilities: [{
-  //   'browserName': 'firefox'
-  // }, {
-  //   'browserName': 'chrome'
-  // }],
+  multiCapabilities: [{
+    'browserName': 'firefox'
+  }, {
+    'browserName': 'chrome'
+  }],
 
   // Framework to use. Jasmine is recommended.
   framework: 'jasmine2',
@@ -44,10 +44,10 @@ exports.config = {
   getPageTimeout: 30000,
 
   // Base URL for application server .. http-serve
-  // directConnect: true,
   baseUrl: 'http://localhost:8080',
 
   // Base URL for application server .. webdriver server
+  // directConnect: true,
   seleniumAddress: 'http://localhost:4444/wd/hub',
 
   // For angular2 tests
@@ -56,13 +56,14 @@ exports.config = {
 
   onPrepare: function() {
     //// SpecReporter
-    jasmine.getEnv().addReporter(new SpecReporter({
-      displayStacktrace: true,
-      displayFailuresSummary: true,
-      displayFailedSpec: true,
-      displaySuiteNumber: true,
-      displaySpecDuration: true
-    }));
+    jasmine.getEnv().addReporter(new SpecReporter());
+    // jasmine.getEnv().addReporter(new SpecReporter({
+    //   displayStacktrace: true,
+    //   displayFailuresSummary: true,
+    //   displayFailedSpec: true,
+    //   displaySuiteNumber: true,
+    //   displaySpecDuration: true
+    // }));
 
     // debugging
     console.log('browser.params:' + JSON.stringify(browser.params));
