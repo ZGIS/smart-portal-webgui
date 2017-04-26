@@ -23,6 +23,14 @@ exports.config = {
     browserName: 'chrome'
   },
 
+  // Protractor will run tests in parallel against each set of capabilities.
+  // Please note that if multiCapabilities is defined, the runner will ignore the capabilities configuration.
+  // multiCapabilities: [{
+  //   'browserName': 'firefox'
+  // }, {
+  //   'browserName': 'chrome'
+  // }],
+
   // Framework to use. Jasmine is recommended.
   framework: 'jasmine',
   // framework: 'jasmine2', supposedly a workaround of some sort? jasmine also is for jasmine versions +2.x

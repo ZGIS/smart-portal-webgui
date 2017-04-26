@@ -8,11 +8,20 @@ python:
 - "3.4"
 os:
 - linux
+
+addons:
+  firefox: "latest"
+  apt:
+    sources:
+    - sourceline: google-chrome
+    packages:
+    - google-chrome-stable
 env:
   global:
   - DBUS_SESSION_BUS_ADDRESS=/dev/null
   - DISPLAY=:99.0
-  - CHROME_BIN=chromium-browser
+  - CHROME_BIN=/usr/bin/google-chrome-stable
+  # - CHROME_BIN=chromium-browser
 before_script:
 - sh -e /etc/init.d/xvfb start
 - sleep 3
