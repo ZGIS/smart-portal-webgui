@@ -38,6 +38,8 @@ export class SearchComponent implements OnInit {
   /** indicator if search mask is waiting for ajax request */
   isLoading = false;
 
+  textFilter = '';
+
   /** current URL */
   currentUrl: String;
 
@@ -212,6 +214,19 @@ export class SearchComponent implements OnInit {
       message: 'URL successfully copied to clipboard', type: 'success',
       dismissAfter: 1500
     });
+  }
+
+  /**
+   * filter results by textFilter
+   *
+   * @returns {IGeoFeature[]}
+   */
+  getFilteredResults(): IGeoFeature[] {
+    if (this.results) {
+      return this.results.features
+        .filter((item) =>
+          item.properties.title.toLocaleLowerCase().indexOf(this.textFilter.toLocaleLowerCase()) >= 0);
+    }
   }
 }
 

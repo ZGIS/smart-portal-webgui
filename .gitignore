@@ -58,3 +58,6 @@ src/**/**.js.map
 .env
 src/docs/build
 sphinx-build
+
+
+/_coverage/

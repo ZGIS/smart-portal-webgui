@@ -85,8 +85,12 @@
       </div>
       <div class="panel-body">
         <div class="panel-body-inner-wrapper panel-body-inner-wrapper-margins">
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="filter" [(ngModel)]="textFilter"/>
+          </div>
+
           <div class="list-group">
-            <a *ngFor="let feature of results.features"
+            <a *ngFor="let feature of getFilteredResults()"
                class="list-group-item"
                [class.active]="feature===selectedResult"
                (click)="searchResultDetailRef.showFeatureModal(feature)"

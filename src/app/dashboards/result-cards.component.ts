@@ -29,6 +29,8 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
   description = '';
   loading = true;
 
+  textFilter = '';
+
   private subscription: Subscription;
 
   /**
@@ -92,7 +94,8 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
           (results: IGeoFeatureCollection) => {
             this.loading = false;
             this.results = results;
-            this.resultsGroups = this.getCataloguesOfResults();
+            // this.resultsGroups = this.getCataloguesOfResults();
+            this.resultsGroups = ['Best results', 'Journal Articles', 'Other results'];
           },
           (error: any) => {
             this.loading = false;
@@ -109,6 +112,28 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     // TODO SR this should not be needed anymore
     // prevent memory leak by unsubscribing
     this.subscription.unsubscribe();
+  }
+
+  /**
+   * filters results by text filter and category (top 20, journal, other)
+   *
+   * @returns {IGeoFeature[]}
+   */
+  getFilteredResults(origin: String): IGeoFeature[] {
+    if (this.results) {
+      let filteredByOrigin = this.results.features;
+
+      if (origin === 'Best results') {
+        filteredByOrigin = this.results.features.slice(0, 20);
+      } else if (origin === 'Journal Articles') {
+        filteredByOrigin = this.results.features.filter((item) => item.properties.origin === 'journals');
+      } else if (origin === 'Other results') {
+        filteredByOrigin = this.results.features.slice(20);
+      }
+
+      return filteredByOrigin.filter((item) =>
+      item.properties.title.toLocaleLowerCase().indexOf(this.textFilter.toLocaleLowerCase()) >= 0);
+    }
   }
 
   /**
