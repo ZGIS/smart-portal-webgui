@@ -14,7 +14,8 @@ var fs = require('fs');
 var path = require('canonical-path');
 var _ = require('lodash');
 
-const SpecReporter = require("jasmine-spec-reporter");
+// const SpecReporter = require("jasmine-spec-reporter");
+const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
 exports.config = {
 
@@ -32,7 +33,7 @@ exports.config = {
   // }],
 
   // Framework to use. Jasmine is recommended.
-  framework: 'jasmine',
+  framework: 'jasmine2',
   // framework: 'jasmine2', supposedly a workaround of some sort? jasmine also is for jasmine versions +2.x
 
   // Spec patterns are relative to this config file

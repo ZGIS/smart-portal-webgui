@@ -41,7 +41,6 @@
     "tslint": "tslint -t verbose './src/**/*.ts'",
     "test:single": "karma start karma.conf.js --single-run",
     "test:watch": "karma start",
-    "pree2e": "npm run protractor -- --standalone",
     "e2e": "protractor",
     "e2e:watch": "npm run e2e -- --elementExplorer",
     "e2e:ci": "npm run build && concurrently --kill-others --success first \"http-server -p 8080 ./dist\" \"npm run e2e\"",
