@@ -8,31 +8,48 @@ Detailed descriptions of the functionality
 #UserAuth
 ---------
 
+.. _uc1:
+
 #1 - Login Screen
   Summary: Anonymous user can login using a login screen providing username and password.
 
+.. _uc2:
+
 #2 - Log-off Button
-  Summary: Authenticated user can log-off using a "logoff button".
+  Summary: Authenticated user can log-off using a "logout button".
+
+.. _uc3:
 
 #3 - Update profile
   Summary: Authenticated users can change / provide user information (profile)
 
+.. _uc4:
+
 #4 - Change password
   Summary: Authenticated users can change their password
+
+.. _uc5:
 
 #5 - Reset password
   Summary: Anonymous but registered users can reset their password by providing their username / email address
 
+.. _uc6:
+
 #6 - Register account
   Summary: Anonymous users can register an account
 
+.. _uc7:
+
 #7 - Anonymous users can register and login using Google OAuth2
-  Summary: <short phrase/sentence>.
+  Summary: Summary: By clicking on the Google Sign In buttun, users login and will have a local account created and linked to their Google identity.
+  Reference: https://developers.google.com/identity/protocols/OAuth2
 
 .. _#CSWIndexing:
 
 #CSWIndexing
 ------------
+
+.. _uc10:
 
 #10 - Lucene/Angular Google type search and display underpinning all searches/discovery paths
   Summary: All search queries, the categories/icons dashboard menus or the free search form with the map,
@@ -129,58 +146,105 @@ Detailed descriptions of the functionality
 
   - `(title:hydro OR title:geo)^1.5 (abstrakt:hydro OR abstrakt:geo)`
 
-  References: http://lucene.apache.org/core/6_4_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package.description
+  Reference: http://lucene.apache.org/core/6_4_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package.description
 
-#11 - List of catalogues "configurable" (at least config file),  BBOX only in WGS84
-  Summary: <short phrase/sentence>.
+.. _uc11:
+
+#11 - List of catalogues "configurable" (at least config file),  Bounding Box (BBOX) only in WGS84
+  Summary: The configuration file of the indexing component has options for the catalogues:
+
+.. _uc12:
 
 #12 - ingest MD_Metadata, keep track of originating catalog and the uuid
-  Summary: <short phrase/sentence>.
+  Summary: We use the ISO/ANZLIC Metadata standard to index, load and present metadata about datasets, models and reports.
+
+  The NOAA ISO Explorer lists all of the fields in the ISO 19115, 19115-2, 19119 standards as supported by the ISO 19139 schema.
+  Reference: https://geo-ide.noaa.gov/wiki/index.php?title=Category:ISO_Explorer
+
+
+.. _uc13:
 
 #13 - Return search results as GeoJson feature collection
-  Summary: <short phrase/sentence>.
+  Summary: The internal representation for data transfer between the indexing component and the user-facing website is a GeoJson FeatureCollection.
+  Reference: http://geojson.org/geojson-spec.html#feature-collection-objects
+
+.. _uc14:
 
 #14 - index search with lucene text field query
-  Summary: <short phrase/sentence>.
+  Summary: see above, :ref:`#10 <uc10>`
+
+.. _uc15:
 
 #15 - index search with spatial BBOX filter  (intersect? vs include?)
-  Summary: <short phrase/sentence>.
+  Summary: The spatial search component currently uses 'Intersect' to match the visible map area or the area of interest with the
+  Bounding Box (BBOX) of the indexed metadata records.
+
+.. _uc16:
 
 #16 - index search with temporal from-to period filter (intersect? vs include?)
-  Summary: <short phrase/sentence>.
+  Summary: The temporal search component currently uses 'Intersect' to match the dates (creation, publish..) or date range (e.g temporal frame for the referenced datasets)
+  of the indexed metadata records.
 
-- search is bookmarkable
+.. _uc17:
+
+#17 - All users can search the catalogues by using a search mask (simple, advanced) and retrieve lists of items (documents, datasets)
+  Summary: The search form provides fileds for a text query (which can be simple, but can also utilise the buffed Lucene syntax),
+  temporal filter (from-to time range) and the visible map extent as a spatial filter (only lists results that intersect with the visible map extent).
+
+.. _uc18:
+
+#18 - Every search is bookmarkable and the link can be shared
+  Summary: Every search query on the map and via the categories list the results on a page, where the link/URL can be shared or bokmarked.
+  Loading the same URL will list the same results and map extent again.
 
 .. raw:: html
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/1ggNfzM5QrQ" frameborder="0" allowfullscreen></iframe>
 
 
-#17 - All users can search the catalogues by using a search mask (simple, advanced) and retrieve lists of items (documents, datasets)
-  Summary: <short phrase/sentence>.
-
 .. _#OWCCollections:
 
 #OWCCollections
 ---------------
 
-#20 - need a OWC doc store, users are owning OWC docs
-  Summary: <short phrase/sentence>.
+We use the Open Geospatial Consortium (OGC) Web Services Context Document (OWS Context), in the following only referred to as OWC,
+as main bundling mechanism to reference metadata records, file uploads and datasets, as well as data services and web links.
+The OWC standard was created to allow a set of configured information resources (service set) to be passed between applications primarily as a collection of services.
+Here we use it to pass around and keep track of data, metadata and services and links. Currently we only support the OWC GeoJson encoding.
+Reference: http://www.opengeospatial.org/standards/owc
 
-#21 - all uploaded/created resources (datasets, models, case studies) should also trigger OWC documents
-  Summary: <short phrase/sentence>.
+.. _uc20:
+
+#20 - Have an OWC doc store, users are owning OWC documents aka (OWC) collections
+  Summary: Each user starts with a personal collection, that is represented as one OWC document.
+  All data that you upload and all metadata records you create show up as entries in your collection. This collection is always private.
+
+.. _uc21:
+
+#21 - all uploaded/created resources (datasets, models, case studies) should create OWC entries
+  Summary: All data that you upload and all metadata records you create show up as entries in your collection.
+
+.. _uc22:
 
 #22 - editing OWC doc collections in webgui (user collections, case studies) and store them with user info
   Summary: <short phrase/sentence>.
 
+.. _uc23:
+
 #23 - JavaScript/TypeScript parser for OWC GeoJSON documents webgui (user collections, case studies)
   Summary: <short phrase/sentence>.
+
+.. _uc24:
 
 #24 - a java/scala parser OWC GeoJSON documents, for "framework" and API
   Summary: <short phrase/sentence>.
 
+.. _uc25:
+
 #25 - Authenticated Users can edit/update their case studies
   Summary: <short phrase/sentence>.
+
+.. _uc26:
 
 #26 - Users can find data on the portal; and in other New Zealand catalogues, and add dataset references to their collections
   Summary: <short phrase/sentence>.
@@ -198,14 +262,22 @@ Detailed descriptions of the functionality
   A basic publish workflow, read from top, flow links are currently missing,
   https://www.youtube.com/playlist?list=PLZXVmFlSH03b4M2Wz2K8rnFTCBwTD-Npd
 
+.. _uc30:
+
 #30 - Authenticated Users can add metadata records through the webgui,
   Summary: <short phrase/sentence>.
+
+.. _uc31:
 
 #31 - SMART data sets, models, case studies etc are tagged with a specific keyword list, aka The Groundwater Data Categories
   Summary: <short phrase/sentence>.
 
+.. _uc32:
+
 #32 - Authenticated Users can edit MD_Metadata record, only own (or member org)
   Summary: <short phrase/sentence>.
+
+.. _uc33:
 
 #33 - MD_Metadata records retrieve, add and update to CSW from backend
   Summary: <short phrase/sentence>.
@@ -215,14 +287,22 @@ Detailed descriptions of the functionality
 #ScienceDomainSearch
 --------------------
 
+.. _uc40:
+
 #40 - all users can "discover" data from the catalogues through the "visual ui categories"
   Summary: <short phrase/sentence>.
+
+.. _uc41:
 
 #41 - search results lists are presented as "cards", with or without spatial hint/map, ordered by (? category type, metadata record type)
   Summary: <short phrase/sentence>.
 
+.. _uc42:
+
 #42 - list of index fields to be defined, "category list" awareness (filter also based on keywords and related dictionary/list)
   Summary: <short phrase/sentence>.
+
+.. _uc43:
 
 #43 - support multiple keyword list and be able to filter distinctive if keywords from that particular list are documented in the metadata record
   Summary: <short phrase/sentence>.
@@ -232,20 +312,32 @@ Detailed descriptions of the functionality
 #FocusedDataPresi
 -----------------
 
+.. _uc50:
+
 #50 - frontend Angular(2), JSON Api, should be easily usable from mobile, too, thus, ideally no server-side view rendering from Play
   Summary: <short phrase/sentence>.
+
+.. _uc51:
 
 #51 - this single representation of datasets, models, reports, case studies, with contextual article text and images, like a blog/one-two pager thing
   Summary: <short phrase/sentence>.
 
+.. _uc52:
+
 #52 - this single representation has link for download of datasets and metadata in their respective formats
   Summary: <short phrase/sentence>.
+
+.. _uc53:
 
 #53 - single dataset, case study etc should be addressable with a permalink and have "nice and appropriate" html representation
   Summary: <short phrase/sentence>.
 
+.. _uc54:
+
 #54 - the "addressable resource" should possibly always a OWC document, aka the collections (GeoJSON or ATOM or both with content negotiation)
   Summary: <short phrase/sentence>.
+
+.. _uc55:
 
 #55 - single item by item or from OWC collections, like shopping carts delegating to mapviewer, graphs, 3D
   Summary: <short phrase/sentence>.
@@ -261,15 +353,22 @@ Detailed descriptions of the functionality
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/mZt1XWGusGk" frameborder="0" allowfullscreen></iframe>
 
+.. _uc60:
 
 #60 - Authenticated Users can upload files (datasets, reports ...) and keep reference in own collection
   Summary: <short phrase/sentence>.
 
+.. _uc61:
+
 #61 - where do file uploads go: Google buckets, app keeps uuid and filename in DB
   Summary: <short phrase/sentence>.
 
+.. _uc62:
+
 #62 - need upload wizard procedure that (small files) can derive supporting info to prefill the metadata editor
   Summary: <short phrase/sentence>.
+
+.. _uc63:
 
 #63 - Authenticated Users can edit/update their files
   Summary: <short phrase/sentence>.
@@ -279,11 +378,17 @@ Detailed descriptions of the functionality
 #AccessCheckTracking
 --------------------
 
+.. _uc70:
+
 #70 - download need to confirm a "license terms" dialog
   Summary: <short phrase/sentence>.
 
+.. _uc71:
+
 #71 - records/datasets should be exposed to a sitemap so it can be found from google (open up data for "deep" search)
   Summary: <short phrase/sentence>.
+
+.. _uc72:
 
 #72 - Analytics/download tracking to be able report popularity of datasets (report impact of science)
   Summary: <short phrase/sentence>.
@@ -293,17 +398,27 @@ Detailed descriptions of the functionality
 #MapViewer
 ----------
 
+.. _uc80:
+
 #80 - Users can view data on maps, legends, attribute tables/featureinfo, sourced from OWC with link to MD_Metadata
   Summary: <short phrase/sentence>.
+
+.. _uc81:
 
 #81 - Cross-Origin Resource Sharing (CORS)
   Summary: CORS policy must work from mapviewer, from x3dviewer and from our sources from our servers
 
+.. _uc82:
+
 #82 - GetFeatureInfo Proxy for collecting FeatureInfo for multiple layers from multiple servers?
   Summary: <short phrase/sentence>.
 
+.. _uc83:
+
 #83 - WMS module (get WMS link out of MD_Metadata record and draw on OL3 map)
   Summary: <short phrase/sentence>.
+
+.. _uc84:
 
 #84 - WFS module (get WFS link out of MD_Metadata record and draw simple feature on OL3 map)
   Summary: <short phrase/sentence>.
@@ -313,11 +428,17 @@ Detailed descriptions of the functionality
 #GraphsViewer
 -------------
 
+.. _uc90:
+
 #90 - Users can view data as graphs/charts, or as tables, sourced from OWC with link to MD_Metadata
   Summary: <short phrase/sentence>.
 
+.. _uc91:
+
 #91 - SOS module - basic
   Summary: <short phrase/sentence>.
+
+.. _uc92:
 
 #92 - SOS module - extended
   Summary: <short phrase/sentence>.
@@ -327,8 +448,12 @@ Detailed descriptions of the functionality
 #3DViewer
 ---------
 
+.. _uc100:
+
 #100 - Users can view data as 3D, or as tables, sourced from OWC with link to MD_Metadata
   Summary: <short phrase/sentence>.
+
+.. _uc101:
 
 #101 - this single representation provides 3D view, maybe inline and expandable to fullscreen or in new window
   Summary: <short phrase/sentence>.
@@ -338,8 +463,12 @@ Detailed descriptions of the functionality
 #DataUserAdmin
 --------------
 
+.. _uc110:
+
 #110 - Admin users can "add" users to their project, organisation, case study to add their upload data to these entities
   Summary: <short phrase/sentence>.
+
+.. _uc111:
 
 #111 - users can add case studies, thus own them and decide who can add data to them
   Summary: <short phrase/sentence>.
