@@ -47,7 +47,7 @@ limitations under the License.
 ```shell
 
 # install the whole bunch into node_modules
-# no need for typings install, @types npm packages are the new hype in ts2
+# if yo uhave existing nodel_mudles folder 'npm prune && npm cache clean' or just delete that folder
 npm install
 
 // Build DLL first, run this once after adding new package
@@ -62,36 +62,36 @@ npm run start:dll
 # mean as linter rules
 npm run tslint
 
-# check webpack configs
-npm run webpack-validate:dev
-
-npm run webpack-validate:test
-
-# webpack will work but this config check will possibly fail, see config file
-npm run webpack-validate:prod
-
 # chrome selenium webdriver update for protractor (and karma)
 npm run webdriver:update
 
 # on Arch Linux, otherwise PhantomJS doesn't start properly / wrong QT libs something ..
 unset QT_QPA_PLATFORM 
 
-# karma/jsmine tests, webpack loads all up behind the scenes, no tsc precompile necessary
-npm test
+# karma tests, webpack loads all up behind the scenes, no tsc precompile necessary
+npm test (or 'npm run test:ci')
 
-# if you don't have the npm run start going or the local web server in dist on port 8080, run this
+# protractor end-to-end tests, builds and starts a local web server in dist on port 8080
+# from now on you need to start the selenium server first (tests with firefox and chrome)
+npm run webdriver:start
+
+# E2E Angular Just-In-Time build
+npm run e2e:ci:jit
+
+# same for E2E Angular AOT build
 npm run e2e:ci
 
-# or if you have an npm run start open in another shell
-npm run e2e
+# building the dist export, pure file export can be hosted on a web server
+# JIT build
+npm run build:jit
 
-# building the dist export, pure file export to be hosted on a web server
+# AOT build
 npm run build
 
 # check with a local http server
-python -m http.server 8000 --bind 127.0.0.1
-
-# or
-
 npm run http-server -p 8080 ./dist
+
+# to build the sphinx user documentation you need python 3.x Sphinx and sphinx_rtd_theme
+# test with 'sphinx-build -b html src/docs/source sphinx-build'
+npm run build:sphinx-docs
 ```

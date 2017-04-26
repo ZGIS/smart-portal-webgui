@@ -48,16 +48,14 @@ describe('E2E Test Dashboard Maps Category Query Aquifer has cards', function ()
 
 });
 
-describe('E2E Test Search has list-tems', function () {
-
-  const expectedMsg = 'Search Results - ';
+describe('E2E Test Search has map and list-tems', function () {
 
   beforeEach(function () {
     browser.get('/#/search');
   });
 
-  it('should contain: ' + expectedMsg, function () {
-    expect(element(by.deepCss('.col-md-4 > div:nth-child(1) > div:nth-child(1)')).getText()).toContain(expectedMsg);
+  it('should have map', function () {
+    expect(element(by.className('ol-viewport')).isPresent()).toBe(true);
   });
 
   it('should have many list items', function () {
