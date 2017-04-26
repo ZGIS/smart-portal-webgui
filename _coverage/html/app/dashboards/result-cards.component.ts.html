@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">35.29% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>12/34</span>
+        <span class='fraction'>13/52</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">10% </span>
+        <span class="strong">7.69% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/10</span>
+        <span class='fraction'>1/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">32.26% </span>
+        <span class="strong">22.92% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/31</span>
+        <span class='fraction'>11/48</span>
       </div>
     </div>
   </div>
@@ -149,12 +149,38 @@
 104
 105
 106
-107</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -175,6 +201,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -183,6 +212,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -205,6 +236,23 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -220,8 +268,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -261,6 +311,7 @@ import { Subscription } from 'rxjs';
 import { IGeoFeatureCollection, IGeoFeature, ResultService } from '../search';
 import * as moment from 'moment';
 import { NotificationService } from '../notifications/notification.service';
+import { CategoriesService } from './categories.service';
 &nbsp;
 // let moment = require('moment');
 &nbsp;
@@ -281,6 +332,10 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
   results: IGeoFeatureCollection;
   resultsGroups: String[];
 &nbsp;
+<span class="cstat-no" title="statement not covered" >  categoryName = '';</span>
+<span class="cstat-no" title="statement not covered" >  description = '';</span>
+<span class="cstat-no" title="statement not covered" >  loading = true;</span>
+&nbsp;
   private subscription: Subscription;
 &nbsp;
   /**
@@ -291,6 +346,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
    */
   constructor(private <span class="cstat-no" title="statement not covered" >resultService: ResultService,</span>
               private <span class="cstat-no" title="statement not covered" >activatedRoute: ActivatedRoute,</span>
+              private <span class="cstat-no" title="statement not covered" >categoriesService: CategoriesService,</span>
               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" >)</span> {</span>
   }
 &nbsp;
@@ -310,6 +366,23 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     // subscribe to router event
 <span class="cstat-no" title="statement not covered" >    this.subscription = this.activatedRoute.queryParams.subscribe(</span>
       (param: any<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+        let categoryId = <span class="cstat-no" title="statement not covered" >param['categoryId'];</span>
+<span class="cstat-no" title="statement not covered" >        this.categoryName = categoryId;</span>
+<span class="cstat-no" title="statement not covered" >        this.categoriesService.getCildCategoryById(categoryId)</span>
+          .subscribe(
+            catObj<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >              if (catObj &amp;&amp; catObj.id === categoryId) {</span>
+<span class="cstat-no" title="statement not covered" >                console.log(catObj);</span>
+<span class="cstat-no" title="statement not covered" >                this.categoryName = catObj.item_name;</span>
+                let keywords = <span class="cstat-no" title="statement not covered" >'';</span>
+<span class="cstat-no" title="statement not covered" >                catObj.keyword_content.forEach( k<span class="fstat-no" title="function not covered" > =&gt; <span class="cstat-no" title="statement not covered" >keywords = k.concat(', ', keywords))</span></span>;</span>
+<span class="cstat-no" title="statement not covered" >                this.description = catObj.description + ' - ' + keywords;</span>
+              }
+            },
+            error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >              this.notificationService.addErrorResultNotification(error);</span>
+            });
+&nbsp;
         let query = <span class="cstat-no" title="statement not covered" >param['query'];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        if (!query) {</span>
@@ -324,10 +397,12 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
           'ENVELOPE(-180,180,-90,90)'
         ).subscribe(
           (results: IGeoFeatureCollection<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
 <span class="cstat-no" title="statement not covered" >            this.results = results;</span>
 <span class="cstat-no" title="statement not covered" >            this.resultsGroups = this.getCataloguesOfResults();</span>
           },
           (error: any<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
 <span class="cstat-no" title="statement not covered" >            this.notificationService.addErrorResultNotification(error);</span>
           }
         );
@@ -367,7 +442,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 19 2017 09:10:28 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 26 2017 03:02:10 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

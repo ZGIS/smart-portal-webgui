@@ -89,7 +89,7 @@
 				<h2 id="development-testing-and-dist-prod-builds">development, testing and dist/prod builds</h2>
 				<pre><code class="lang-shell"><span class="hljs-meta">
 #</span><span class="bash"> install the whole bunch into node_modules</span>
-<span class="hljs-meta">#</span><span class="bash"> no need <span class="hljs-keyword">for</span> typings install, @types npm packages are the new hype <span class="hljs-keyword">in</span> ts2</span>
+<span class="hljs-meta">#</span><span class="bash"> <span class="hljs-keyword">if</span> yo uhave existing nodel_mudles folder <span class="hljs-string">'npm prune &amp;&amp; npm cache clean'</span> or just delete that folder</span>
 npm install
 
 // Build DLL first, run this once after adding new package
@@ -104,38 +104,38 @@ npm run start:dll
 #</span><span class="bash"> mean as linter rules</span>
 npm run tslint
 <span class="hljs-meta">
-#</span><span class="bash"> check webpack configs</span>
-npm run webpack-validate:dev
-
-npm run webpack-validate:test
-<span class="hljs-meta">
-#</span><span class="bash"> webpack will work but this config check will possibly fail, see config file</span>
-npm run webpack-validate:prod
-<span class="hljs-meta">
 #</span><span class="bash"> chrome selenium webdriver update <span class="hljs-keyword">for</span> protractor (and karma)</span>
 npm run webdriver:update
 <span class="hljs-meta">
 #</span><span class="bash"> on Arch Linux, otherwise PhantomJS doesn<span class="hljs-string">'t start properly / wrong QT libs something ..</span></span>
 unset QT_QPA_PLATFORM 
 <span class="hljs-meta">
-#</span><span class="bash"><span class="hljs-string"> karma/jsmine tests, webpack loads all up behind the scenes, no tsc precompile necessary</span></span>
-npm test
+#</span><span class="bash"><span class="hljs-string"> karma tests, webpack loads all up behind the scenes, no tsc precompile necessary</span></span>
+npm test (or 'npm run test:ci')
 <span class="hljs-meta">
-#</span><span class="bash"><span class="hljs-string"> if you don'</span>t have the npm run start going or the <span class="hljs-built_in">local</span> web server <span class="hljs-keyword">in</span> dist on port 8080, run this</span>
+#</span><span class="bash"><span class="hljs-string"> protractor end-to-end tests, builds and starts a local web server in dist on port 8080</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-string"> from now on you need to start the selenium server first (tests with firefox and chrome)</span></span>
+npm run webdriver:start
+<span class="hljs-meta">
+#</span><span class="bash"><span class="hljs-string"> E2E Angular Just-In-Time build</span></span>
+npm run e2e:ci:jit
+<span class="hljs-meta">
+#</span><span class="bash"><span class="hljs-string"> same for E2E Angular AOT build</span></span>
 npm run e2e:ci
 <span class="hljs-meta">
-#</span><span class="bash"> or <span class="hljs-keyword">if</span> you have an npm run start open <span class="hljs-keyword">in</span> another shell</span>
-npm run e2e
+#</span><span class="bash"><span class="hljs-string"> building the dist export, pure file export can be hosted on a web server</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-string"> JIT build</span></span>
+npm run build:jit
 <span class="hljs-meta">
-#</span><span class="bash"> building the dist <span class="hljs-built_in">export</span>, pure file <span class="hljs-built_in">export</span> to be hosted on a web server</span>
+#</span><span class="bash"><span class="hljs-string"> AOT build</span></span>
 npm run build
 <span class="hljs-meta">
-#</span><span class="bash"> check with a <span class="hljs-built_in">local</span> http server</span>
-python -m http.server 8000 --bind 127.0.0.1
-<span class="hljs-meta">
-#</span><span class="bash"> or</span>
-
+#</span><span class="bash"><span class="hljs-string"> check with a local http server</span></span>
 npm run http-server -p 8080 ./dist
+<span class="hljs-meta">
+#</span><span class="bash"><span class="hljs-string"> to build the sphinx user documentation you need python 3.x Sphinx and sphinx_rtd_theme</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-string"> test with '</span>sphinx-build -b html src/docs/<span class="hljs-built_in">source</span> sphinx-build<span class="hljs-string">'</span></span>
+npm run build:sphinx-docs
 </code></pre>
 			</div>
 		</div>
