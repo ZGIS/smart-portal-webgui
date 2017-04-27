@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">21.21% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/52</span>
+        <span class='fraction'>14/66</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>0/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">7.69% </span>
+        <span class="strong">6.25% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/13</span>
+        <span class='fraction'>1/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">22.92% </span>
+        <span class="strong">20% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>11/48</span>
+        <span class='fraction'>12/60</span>
       </div>
     </div>
   </div>
@@ -174,7 +174,32 @@
 129
 130
 131
-132</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -205,6 +230,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -268,6 +295,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -285,6 +313,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -335,6 +385,8 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
 <span class="cstat-no" title="statement not covered" >  categoryName = '';</span>
 <span class="cstat-no" title="statement not covered" >  description = '';</span>
 <span class="cstat-no" title="statement not covered" >  loading = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  textFilter = '';</span>
 &nbsp;
   private subscription: Subscription;
 &nbsp;
@@ -399,7 +451,8 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
           (results: IGeoFeatureCollection<span class="fstat-no" title="function not covered" >) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
 <span class="cstat-no" title="statement not covered" >            this.results = results;</span>
-<span class="cstat-no" title="statement not covered" >            this.resultsGroups = this.getCataloguesOfResults();</span>
+            // this.resultsGroups = this.getCataloguesOfResults();
+<span class="cstat-no" title="statement not covered" >            this.resultsGroups = ['Best results', 'Journal Articles', 'Other results'];</span>
           },
           (error: any<span class="fstat-no" title="function not covered" >) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
@@ -416,6 +469,28 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     // TODO SR this should not be needed anymore
     // prevent memory leak by unsubscribing
 <span class="cstat-no" title="statement not covered" >    this.subscription.unsubscribe();</span>
+  }
+&nbsp;
+  /**
+   * filters results by text filter and category (top 20, journal, other)
+   *
+   * @returns {IGeoFeature[]}
+   */
+<span class="cstat-no" title="statement not covered" >  getFilteredResults(origin: String<span class="fstat-no" title="function not covered" >): IGeoFeature[] {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (this.results) {</span>
+      let filteredByOrigin = <span class="cstat-no" title="statement not covered" >this.results.features;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (origin === 'Best results') {</span>
+<span class="cstat-no" title="statement not covered" >        filteredByOrigin = this.results.features.slice(0, 20);</span>
+      } else <span class="cstat-no" title="statement not covered" >if (origin === 'Journal Articles') {</span>
+<span class="cstat-no" title="statement not covered" >        filteredByOrigin = this.results.features.filter((item<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >item.properties.origin === 'journals')</span></span>;</span>
+      } else <span class="cstat-no" title="statement not covered" >if (origin === 'Other results') {</span>
+<span class="cstat-no" title="statement not covered" >        filteredByOrigin = this.results.features.slice(20);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return filteredByOrigin.filter((item<span class="fstat-no" title="function not covered" >) =&gt;</span></span>
+<span class="cstat-no" title="statement not covered" >      item.properties.title.toLocaleLowerCase().indexOf(this.textFilter.toLocaleLowerCase()) &gt;= 0)</span>;
+    }
   }
 &nbsp;
   /**
@@ -442,7 +517,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 26 2017 03:02:10 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Apr 27 2017 02:46:51 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
