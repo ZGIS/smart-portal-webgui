@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 import { IGeoFeature } from './result';
 
@@ -9,6 +9,9 @@ import { IGeoFeature } from './result';
 
 export class ResultDetailModalComponent {
   feature: IGeoFeature;
+
+  @Output() onHide = new EventEmitter();
+
   @ViewChild('resultModalRef') public modal: ModalDirective;
 
   showFeatureModal(geoFeature: IGeoFeature) {
@@ -21,4 +24,8 @@ export class ResultDetailModalComponent {
   hideFeatureModal() {
     this.modal.hide();
   };
+
+  onHideModal() {
+    this.onHide.emit();
+  }
 }

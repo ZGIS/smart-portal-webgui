@@ -5,10 +5,14 @@ import { CSWI_API_URL } from '../in-app-config';
 import { IGeoFeatureCollection, IErrorResult } from './result';
 import { Observable } from 'rxjs';
 import { isNullOrUndefined } from 'util';
+import * as moment from 'moment';
 // import {MOCK_RESULTS} from './mock-results';
 
 @Injectable()
 export class ResultService {
+
+  /** default date format */
+  private DATE_FORMAT = 'YYYY-MM-DD';
 
   /**
    * The Service URL inject from app.module as central inject of app constants
@@ -21,6 +25,7 @@ export class ResultService {
 
   /**
    * Queries the csw-ingester
+   *
    * @param query
    * @param fromDate
    * @param toDate
@@ -28,10 +33,11 @@ export class ResultService {
    * @returns {Observable<IGeoFeatureCollection>}
    */
   getResults(query: string,
-             fromDate: string,
-             toDate: string,
-             bboxWkt: string,
+             fromDate = moment('1970-01-01', this.DATE_FORMAT).format(this.DATE_FORMAT),
+             toDate = moment().format(this.DATE_FORMAT),
+             bboxWkt = 'ENVELOPE(-180,180,90,-90)',
              maxNumberOfResults?: number): Observable<IGeoFeatureCollection> {
+
     let params: URLSearchParams = new URLSearchParams();
     params.set('query', query);
     params.set('fromDate', fromDate);

@@ -40,8 +40,8 @@
 
   <div *ngFor="let feature of (getFilteredResults(origin))" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 
-    <app-sac-card (headerClick)="resultCardDetailRef.showFeatureModal(feature)"
-                  (readMoreClick)="resultCardDetailRef.showFeatureModal(feature)"
+    <app-sac-card (headerClick)="showFeatureModal(feature)"
+                  (readMoreClick)="showFeatureModal(feature)"
                   cardImage='/images/stylish-folder.jpg'
                   [bodyText]="feature.properties.abstrakt"
                   [title]="feature.properties.title"
@@ -98,5 +98,5 @@
   </div>
 </div>
 
-<app-sac-gwh-result-detail-modal #resultCardDetailRef></app-sac-gwh-result-detail-modal>
+<app-sac-gwh-result-detail-modal (onHide)="onHideFeatureModal()"></app-sac-gwh-result-detail-modal>
 

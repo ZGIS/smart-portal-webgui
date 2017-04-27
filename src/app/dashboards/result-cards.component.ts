@@ -1,10 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IGeoFeatureCollection, IGeoFeature, ResultService } from '../search';
 import * as moment from 'moment';
 import { NotificationService } from '../notifications/notification.service';
 import { CategoriesService } from './categories.service';
+import { ResultDetailModalComponent } from '../search/result-detail-modal.component';
+import { isNullOrUndefined } from 'util';
+import { IErrorResult } from '../search/result';
 
 // let moment = require('moment');
 
@@ -21,15 +24,20 @@ import { CategoriesService } from './categories.service';
  * CardComponent to show search results in Dashboard
  */
 export class ResultCardsComponent implements OnInit, OnDestroy {
+  @ViewChild(ResultDetailModalComponent) resultDetailModalComponentRef: ResultDetailModalComponent;
 
   results: IGeoFeatureCollection;
   resultsGroups: String[];
 
   categoryName = '';
+  categoryId = '';
+  query = '';
   description = '';
   loading = true;
 
   textFilter = '';
+
+  showModal: String;
 
   private subscription: Subscription;
 
@@ -38,11 +46,13 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
    * @param resultService       - injected ResultService
    * @param activatedRoute      - injected ActivatedRoute
    * @param notificationService - injected NotificationService
+   * @param router              - injected Router
    */
   constructor(private resultService: ResultService,
               private activatedRoute: ActivatedRoute,
               private categoriesService: CategoriesService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private router: Router) {
   }
 
   /**
@@ -60,9 +70,9 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
 
     // subscribe to router event
     this.subscription = this.activatedRoute.queryParams.subscribe(
-      (param: any) => {
-        let categoryId = param['categoryId'];
-        this.categoryName = categoryId;
+      (params: Params) => {
+        let categoryId = params['categoryId'];
+        this.categoryId = categoryId;
         this.categoriesService.getCildCategoryById(categoryId)
           .subscribe(
             catObj => {
@@ -78,30 +88,51 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
               this.notificationService.addErrorResultNotification(error);
             });
 
-        let query = param['query'];
+        if (params['query'] !== this.query) {
+          this.query = params['query'] || '*:*';
 
-        if (!query) {
-          query = '*:*';
+          this.resultService.getResults(
+            this.query,
+            '1970-01-01',
+            moment().format('YYYY-MM-DD'),
+            // 'ENVELOPE(147.7369328125,201.7896671875,-23.1815078125,-50.5154921875)'
+            'ENVELOPE(-180,180,-90,90)'
+          ).subscribe(
+            (results: IGeoFeatureCollection) => {
+              this.loading = false;
+              this.results = results;
+              // this.resultsGroups = this.getCataloguesOfResults();
+              this.resultsGroups = ['Best results', 'Journal Articles', 'Other results'];
+            },
+            (error: any) => {
+              this.loading = false;
+              this.notificationService.addErrorResultNotification(error);
+            }
+          );
         }
 
-        this.resultService.getResults(
-          query,
-          '1970-01-01',
-          moment().format('YYYY-MM-DD'),
-          // 'ENVELOPE(147.7369328125,201.7896671875,-23.1815078125,-50.5154921875)'
-          'ENVELOPE(-180,180,-90,90)'
-        ).subscribe(
-          (results: IGeoFeatureCollection) => {
-            this.loading = false;
-            this.results = results;
-            // this.resultsGroups = this.getCataloguesOfResults();
-            this.resultsGroups = ['Best results', 'Journal Articles', 'Other results'];
-          },
-          (error: any) => {
-            this.loading = false;
-            this.notificationService.addErrorResultNotification(error);
-          }
-        );
+        if (!isNullOrUndefined(params['showModal'])) {
+          this.showModal = params['showModal'];
+          this.resultService.getResults(
+            `fileIdentifier:"${params['showModal']}"`
+          ).subscribe(
+            (results: IGeoFeatureCollection) => {
+              if (results.count > 0) {
+                this.resultDetailModalComponentRef.showFeatureModal(results.features[0]);
+              } else {
+                this.notificationService.addNotification({
+                  id: NotificationService.MSG_ID_DOCUMENT_NOT_FOUND,
+                  message: `Document ${params['showModal']} could not be found in CSW index. Maybe it is not a metadata document?`,
+                  type: NotificationService.NOTIFICATION_TYPE_WARNING
+                });
+                this.resultDetailModalComponentRef.hideFeatureModal();
+              }
+            },
+            (error: IErrorResult) => {
+              this.notificationService.addErrorResultNotification(error);
+            });
+        }
+
       });
   }
 
@@ -134,6 +165,30 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
       return filteredByOrigin.filter((item) =>
       item.properties.title.toLocaleLowerCase().indexOf(this.textFilter.toLocaleLowerCase()) >= 0);
     }
+  }
+
+  showFeatureModal(feature: IGeoFeature) {
+    this.showModal = feature.properties.fileIdentifier;
+    console.log(this.activatedRoute.snapshot);
+    console.log();
+    this.router.navigate([this.activatedRoute.snapshot.url.join('/')], {
+      queryParams: {
+        query: this.query,
+        categoryId: this.categoryId,
+        showModal: this.showModal
+      }
+    });
+  }
+
+  onHideFeatureModal() {
+    this.showModal = undefined;
+    this.router.navigate([this.activatedRoute.snapshot.url.join('/')], {
+      queryParams: {
+        query: this.query,
+        categoryId: this.categoryId,
+        showModal: this.showModal
+      }
+    });
   }
 
   /**

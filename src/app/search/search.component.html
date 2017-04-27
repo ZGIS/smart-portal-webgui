@@ -93,7 +93,7 @@
             <a *ngFor="let feature of getFilteredResults()"
                class="list-group-item"
                [class.active]="feature===selectedResult"
-               (click)="searchResultDetailRef.showFeatureModal(feature)"
+               (click)="showFeatureModal(feature)"
                (mouseover)="selectedResult = feature"
                (mouseout)="selectedResult = undefined"
                 >
@@ -106,7 +106,7 @@
   </div>
 </div>
 
-<app-sac-gwh-result-detail-modal #searchResultDetailRef></app-sac-gwh-result-detail-modal>
+<app-sac-gwh-result-detail-modal (onHide)="onHideFeatureModal()"></app-sac-gwh-result-detail-modal>
 
 
 

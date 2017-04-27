@@ -46,11 +46,27 @@ export class NotificationService {
   /** Message that was created by file uploader */
   public static MSG_ID_FILE_UPLOADER = 5;
 
+  /** Message that shows the "document not found" when using "showModal" for example on search results. */
+  public static MSG_ID_DOCUMENT_NOT_FOUND = 6;
+
   /** default dismiss time in milliseconds */
   public static DEFAULT_DISMISS = 5000;
 
   /** constant to indicate that the notification should not be automatically dismissed after some time */
   public static DISMISS_NEVER = -1;
+
+  /** constant for notification type to indicate a successful operation */
+  public static NOTIFICATION_TYPE_SUCCESS = 'success';
+
+  /** constant for notification type to show a information message */
+  public static NOTIFICATION_TYPE_INFO = 'info';
+
+  /** constant for notification type to show a warning */
+  public static NOTIFICATION_TYPE_WARNING = 'warning';
+
+  /** constant for notification type to show an error */
+  public static NOTIFICATION_TYPE_DANGER = 'danger';
+
 
   /** array storing all displayed notifications */
   notifications: SacGwhNotification[] = [];

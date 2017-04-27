@@ -1,5 +1,5 @@
 <div bsModal #resultModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
-     aria-labelledby="result-details" aria-hidden="true">
+     aria-labelledby="result-details" aria-hidden="true" (onHide)="onHideModal()">
   <div class="modal-dialog modal-lg">
     <div *ngIf="feature" class="modal-content">
       <div class="modal-header">
@@ -77,7 +77,9 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">File Identifier</label>
                 <div class="col-sm-10">
-                  <p class="form-control-static">{{feature.properties.fileIdentifier}}</p>
+                  <p class="form-control-static">
+                    <a routerLink="/context/entry/{{feature.properties.fileIdentifier}}">{{feature.properties.fileIdentifier}}</a>
+                  </p>
                 </div>
               </div>
 

@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IGeoFeature, IGeoFeatureCollection, IErrorResult } from './result';
 import { ResultService } from './result.service';
 import * as moment from 'moment';
 import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { isNullOrUndefined } from 'util';
+import { isNullOrUndefined, isUndefined } from 'util';
 import { NotificationService } from '../notifications/notification.service';
 import { Extent } from 'openlayers';
+import { ResultDetailComponent } from './result-detail.component';
+import { ResultDetailModalComponent } from './result-detail-modal.component';
 
 /**
  * Search Component
@@ -18,6 +20,7 @@ import { Extent } from 'openlayers';
 })
 
 export class SearchComponent implements OnInit {
+  @ViewChild(ResultDetailModalComponent) resultDetailModalComponentRef: ResultDetailModalComponent;
 
   /** initial search */
   search: Search = {
@@ -28,6 +31,8 @@ export class SearchComponent implements OnInit {
     bboxWkt: '',
     maxNumberOfResults: 100
   };
+
+  showModal: String;
 
   /** Search results */
   results: IGeoFeatureCollection;
@@ -67,8 +72,6 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     // parse values from
     this.activatedRoute.queryParams.subscribe((params: Params) => {
-      this.search.query = params['query'] || this.search.query;
-
       if (moment(params['fromDate'], this.DATE_FORMAT).isValid()) {
         this.search.fromDate = moment(params['fromDate'], this.DATE_FORMAT).toDate();
       } else {
@@ -96,7 +99,9 @@ export class SearchComponent implements OnInit {
         this.search.maxNumberOfResults = undefined;
       }
 
-      if (!isNullOrUndefined(params['query'])) {
+      if (!isNullOrUndefined(params['query']) && this.search.query !== params['query']) {
+        this.search.query = params['query'] || this.search.query;
+
         if (this.timeoutId) {
           clearTimeout(this.timeoutId);
         }
@@ -105,6 +110,28 @@ export class SearchComponent implements OnInit {
           this.getResults();
           this.currentUrl = window.location.href;
         }, 250);
+      }
+
+      if (!isNullOrUndefined(params['showModal'])) {
+        this.showModal = params['showModal'];
+        this.resultService.getResults(
+          `fileIdentifier:"${params['showModal']}"`
+        ).subscribe(
+          (results: IGeoFeatureCollection) => {
+            if (results.count > 0) {
+              this.resultDetailModalComponentRef.showFeatureModal(results.features[0]);
+            } else {
+              this.notificationService.addNotification({
+                id: NotificationService.MSG_ID_DOCUMENT_NOT_FOUND,
+                message: `Document ${params['showModal']} could not be found in CSW index. Maybe it is not a metadata document?`,
+                type: NotificationService.NOTIFICATION_TYPE_WARNING
+              });
+              this.resultDetailModalComponentRef.hideFeatureModal();
+            }
+          },
+          (error: IErrorResult) => {
+            this.notificationService.addErrorResultNotification(error);
+          });
       }
     });
   }
@@ -129,7 +156,8 @@ export class SearchComponent implements OnInit {
       fromDate: this.formatDate(this.search.fromDate),
       toDate: this.formatDate(this.search.toDate),
       bbox: JSON.stringify(this.search.bbox),
-      maxNumberOfResults: maxNumberOfResults
+      maxNumberOfResults: maxNumberOfResults,
+      showModal: this.showModal
     };
   }
 
@@ -138,6 +166,7 @@ export class SearchComponent implements OnInit {
    */
   getResults(): void {
     this.isLoading = true;
+
     this.resultService.getResults(
       this.search.query,
       this.formatDate(this.search.fromDate),
@@ -225,8 +254,18 @@ export class SearchComponent implements OnInit {
     if (this.results) {
       return this.results.features
         .filter((item) =>
-          item.properties.title.toLocaleLowerCase().indexOf(this.textFilter.toLocaleLowerCase()) >= 0);
+        item.properties.title.toLocaleLowerCase().indexOf(this.textFilter.toLocaleLowerCase()) >= 0);
     }
+  }
+
+  showFeatureModal(feature: IGeoFeature) {
+    this.showModal = feature.properties.fileIdentifier;
+    this.doSearch();
+  }
+
+  onHideFeatureModal() {
+    this.showModal = undefined;
+    this.doSearch();
   }
 }
 

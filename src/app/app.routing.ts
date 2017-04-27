@@ -22,6 +22,7 @@ import { NotFoundComponent } from './navigation';
 import { ResearchProgrammesComponent } from './research-pg';
 import { GlossaryComponent } from './glossary-edu';
 import { AdminComponent } from './admin';
+import { ContextRetrieveComponent } from './context/context.component';
 
 const appRoutes: Routes = [
   {
@@ -78,6 +79,12 @@ const appRoutes: Routes = [
     path: 'x-admin',
     component: AdminComponent,
     canActivate: [AdminGuard]
+  },
+
+  // to access content directly
+  {
+    path: 'context/:type/:uuid',
+    component: ContextRetrieveComponent
   },
   // also think about CanActivateChild for the whole workbench thing
   {
