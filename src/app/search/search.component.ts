@@ -99,7 +99,7 @@ export class SearchComponent implements OnInit {
         this.search.maxNumberOfResults = undefined;
       }
 
-      if (!isNullOrUndefined(params['query']) && this.search.query !== params['query']) {
+      if (this.search.query !== params['query']) {
         this.search.query = params['query'] || this.search.query;
 
         if (this.timeoutId) {
