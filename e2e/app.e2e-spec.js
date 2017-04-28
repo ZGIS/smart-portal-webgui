@@ -25,7 +25,9 @@ describe('E2E Test Dashboard Maps Category', function () {
 
 
   it('should display: ' + expectedMsg, function () {
-    expect(element(by.id('dashboard-category')).getText()).toEqual(expectedMsg);
+    //SR the category description has more content than just the description
+    //SR changed toEqual -> toContain
+    expect(element(by.id('dashboard-category')).getText()).toContain(expectedMsg);
   });
 
 });
