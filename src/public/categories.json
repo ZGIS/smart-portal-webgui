@@ -5,7 +5,7 @@
       "id": "1",
       "parent": "main",
       "item_name": "Understanding our groundwater systems",
-      "description": "",
+      "description": "Groundwater in New Zealand - the big picture: Where is it? How much is there? What is its quality? How old is it?",
       "keyword_content": [
         "1-understanding"
       ],
@@ -18,7 +18,7 @@
           "id": "11",
           "parent": "1-understanding",
           "item_name": "Location and quantity of groundwater resources",
-          "description": "Location and quantity of groundwater resources",
+          "description": "Maps with locations and quantity of groundwater in New Zealand",
           "keyword_content": [
             "3-location"
           ],
@@ -31,7 +31,7 @@
           "id": "12",
           "parent": "1-understanding",
           "item_name": "Techniques to characterise aquifers",
-          "description": "Techniques to characterise aquifers",
+          "description": "Scientific and engineering methods that map aquifers and measure aquifer properties",
           "keyword_content": [
             "4-techniques"
           ],
@@ -44,7 +44,7 @@
           "id": "13",
           "parent": "1-understanding",
           "item_name": "Groundwater quality and age",
-          "description": "Groundwater quality and age",
+          "description": "What is the age of groundwater in New Zealand? Why is it measured? How is it measured?",
           "keyword_content": [
             "5-quality"
           ],
@@ -72,7 +72,7 @@
       "id": "2",
       "parent": "main",
       "item_name": "Managing impacts on our groundwater systems",
-      "description": "",
+      "description": "Where do we use groundwater and how much do we use? How does land use impact groundwater? How do we manage groundwater?",
       "keyword_content": [
         "2-managing"
       ],
@@ -289,7 +289,7 @@
       "id": "3",
       "parent": "main",
       "item_name": "Location and quantity of OUR groundwater resources",
-      "description": "",
+      "description": "Where is groundwater in New Zealand? How much is there? What is its quality? How old is it?",
       "keyword_content": [
         "3-location"
       ],
@@ -364,7 +364,7 @@
       "id": "4",
       "parent": "main",
       "item_name": "Techniques to characterise aquifers",
-      "description": "",
+      "description": "What methods are used to understand groundwater and its properties?",
       "keyword_content": [
         "4-techniques"
       ],
@@ -466,7 +466,7 @@
       "id": "5",
       "parent": "main",
       "item_name": "Groundwater quality and age",
-      "description": "",
+      "description": "What is the age of groundwater in New Zealand? Why is it measured? How is it measured?",
       "keyword_content": [
         "5-quality"
       ],
@@ -614,7 +614,7 @@
       "id": "6",
       "parent": "main",
       "item_name": "Modelling and data analysis techniques",
-      "description": "",
+      "description": "What methods are used to understand groundwater and its properties?",
       "keyword_content": [
         "6-model"
       ],
@@ -744,7 +744,7 @@
       "id": "7",
       "parent": "main",
       "item_name": "Protecting potable groundwater supplies",
-      "description": "",
+      "description": "How do we protect groundwater that is used for drinking? ",
       "keyword_content": [
         "7-protect"
       ],
@@ -855,7 +855,7 @@
       "id": "8",
       "parent": "main",
       "item_name": "groundwater dependent ecosystems and surface water",
-      "description": "",
+      "description": "How do we protect ecosystems that rely on groundwater flow?",
       "keyword_content": [
         "8-ecosystems"
       ],
