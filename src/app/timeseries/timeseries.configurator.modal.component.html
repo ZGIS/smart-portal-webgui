@@ -1,0 +1,188 @@
+<div bsModal #timeseriesConfiguratorRef="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title pull-left">Time series configurator</h4>
+      </div>
+      <div class="modal-body">
+
+        <form class="form" [formGroup]="configurationForm">
+
+          <div class="form-group" [ngClass]="{'has-error':formErrors.timeseriesName}">
+            <label class="control-label" for="timeseriesName"
+                   tooltip="Enter a name for the time series">Timeseries name:</label>
+            <div class="label label-danger pull-right">{{formErrors.timeseriesName}}</div>
+            <div class="controls">
+              <input id="timeseriesName" name="timeseriesName" class="form-control"
+                     formControlName="timeseriesName"
+                     placeholder="timeseries name"
+              >
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':formErrors.sosUrl}">
+            <label class="control-label" for="sosUrl"
+                   tooltip="Enter the URL of the SOS.">Url of Sensor Observation Service:</label>
+            <div class="label label-danger pull-right">{{formErrors.sosUrl}}</div>
+            <div class="input-group">
+              <input id="sosUrl" name="sosUrl" class="form-control"
+                     formControlName="sosUrl"
+                     placeholder="sensor observation service url"
+              >
+              <span class="input-group-btn">
+                <button class="btn btn-default" (click)="fetchSosCapabilities()" [disabled]="formErrors.sosUrl">get capabilities</button>
+              </span>
+            </div>
+          </div>
+
+          <div *ngIf="sosCapabilities.sosUrl" class="alert alert-success">
+            You are connected to {{sosCapabilities.sosUrl | json}}
+          </div>
+
+          <div *ngIf="!sosCapabilities.sosUrl" class="alert alert-warning">
+            You are not connected to any SOS server so far. Enter a SOS url above and click <b>Get Capabilites</b>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':formErrors.offering}">
+            <label class="control-label" for="offering"
+                   tooltip="Select an offering">Offering:</label>
+            <div class="controls">
+              <input id="offering" name="offering" class="form-control"
+                     formControlName="offering"
+                     placeholder="offering (just start typing to see options)"
+                     [typeahead]="sosCapabilities.offerings"
+                     typeaheadOptionsLimit="10"
+                     typeaheadMinLength="0"
+              >
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':formErrors.procedure}">
+            <label class="control-label" for="procedure"
+                   tooltip="Select an offering">Procedure:</label>
+            <div class="controls">
+              <input id="procedure" name="procedure" class="form-control"
+                     formControlName="procedure"
+                     placeholder="procedure (just start typing to see options)"
+                     [typeahead]="sosCapabilities.procedures"
+                     typeaheadOptionsLimit="10"
+                     typeaheadMinLength="0"
+              >
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':formErrors.featureOfInterest}">
+            <label class="control-label" for="featureOfInterest"
+                   tooltip="Select an offering">Feature of Interest:</label>
+            <div class="controls">
+              <input id="featureOfInterest" name="featureOfInterest" class="form-control"
+                     formControlName="featureOfInterest"
+                     placeholder="Feature of Interest (just start typing to see options)"
+                     [typeahead]="sosCapabilities.featuresOfInterest"
+                     typeaheadOptionsLimit="10"
+                     typeaheadMinLength="0"
+              >
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':formErrors.observedProperty}">
+            <label class="control-label" for="observedProperty"
+                   tooltip="Select an offering">Observed property: </label>
+            <div class="controls">
+              <input id="observedProperty" name="observedProperty" class="form-control"
+                     formControlName="observedProperty"
+                     placeholder="Observed property (just start typing to see options)"
+                     [typeahead]="sosCapabilities.observedProperties"
+                     typeaheadOptionsLimit="10"
+                     typeaheadMinLength="0"
+              >
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">&nbsp;</label>
+                <div class="input-group">
+                  <button class="btn btn-default"
+                          [disabled]="!configurationForm.valid">check data availability
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label" for="fromDate"
+                       tooltip="From date.">From date:</label>
+                <div class="input-group">
+                  <input name="fromDate.display" id="fromDate.display" readonly
+                         class="form-control" placeholder="fromDate"
+                         formControlName="fromDate"
+                  >
+                  <span class="input-group-btn" [autoClose]="false" dropdown>
+                    <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
+                    <div class="dropdown-menu datepicker-dropdown dropdown-menu-right" *dropdownMenu
+                         aria-labelledby="split-button">
+                        <datepicker name="fromDate"
+                                    id="fromDate"
+                                    (selectionDone)="onFromDateChanged($event)"
+                                    [(ngModel)]="_fromDate"
+                                    [ngModelOptions]="{standalone: true}"
+                                    [showWeeks]="true"
+                                    [maxDate]="_toDate"></datepicker>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label" for="toDate"
+                       tooltip="To date.">To date:</label>
+                <div class="input-group">
+                  <input name="toDate.display" id="toDate.display" readonly
+                         class="form-control" placeholder="toDate"
+                         formControlName="toDate"
+                  >
+                  <span class="input-group-btn" [autoClose]="false" dropdown>
+                    <button class="btn btn-default" type="button" dropdownToggle><i class="fa fa-calendar"></i></button>
+                    <div class="dropdown-menu datepicker-dropdown dropdown-menu-right" *dropdownMenu
+                         aria-labelledby="split-button">
+                      <div style="display:inline-block;" class="collapse">
+                        <datepicker name="toDate"
+                                    id="toDate"
+                                    (selectionDone)="onToDateChanged($event)"
+                                    [(ngModel)]="_toDate"
+                                    [ngModelOptions]="{standalone: true}"
+                                    [showWeeks]="true"
+                                    [minDate]="_fromDate"></datepicker>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!--
+                <pre>{{sosCapabilities | json}}</pre>
+        -->
+      </div>
+      <div class="modal-footer">
+        <div class="btn-group btn-group-sm">
+          <button class="btn btn-primary btn-sm" (click)="submitChanges()" [disabled]="!configurationForm.valid">
+            {{okButtonCaption}}
+          </button>
+          <button class="btn btn-default btn-sm" (click)="hideModal()">cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,8 @@ import { NotificationService } from '../notifications/notification.service';
 
 @Component({
   selector: 'app-sac-gwh-navigation',
-  templateUrl: 'navigation.component.html'
+  templateUrl: 'navigation.component.html',
+  styles: ['.fa-stack { margin-top: -5px; margin-bottom: -7px; }']
 })
 
 /**

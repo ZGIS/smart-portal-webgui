@@ -1,0 +1,58 @@
+<div class="jumbotron">
+  <p>In the <b><i class="fa fa-line-chart"></i>&nbsp;view timeseries</b> view you can explore timeseries stored in a Sensor Observation Service (SOS).</p>
+  <p>The layout of the chart can be fully customized within the online editor of
+    <a href="https://plot.ly/" target="_blank">Plotly</a>
+    by clicking on the <i class="fa fa-save"></i> icon in the toolbar of the plot once time series are added.</p>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">time series plot</div>
+      <div class="panel-body">
+        <div *ngIf="isLoading" class="loadingOverlay">
+          <h1><a class="fa fa-spinner fa-spin"></a> loading...</h1>
+        </div>
+        <div id="plotly"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">time series configuration</div>
+      <div class="panel-body">
+        <div *ngIf="isLoading" class="loadingOverlay">
+          <h1><a class="fa fa-spinner fa-spin"></a> loading...</h1>
+        </div>
+
+        <div *ngIf="!timeseries || timeseries.length === 0"
+             class="alert alert-warning" role="alert">
+          No timeseries configured at the moment. Please click the <b><i class="fa fa-plus-circle"></i>&nbsp;add new
+          time series</b> button below to add a new timeseries.
+        </div>
+
+        <accordion>
+          <accordion-group *ngFor="let ts of timeseries; let i = index" #timeseriesGroup>
+            <div accordion-heading>
+              <i class="fa fa-pull-right fa-fw"
+                 [ngClass]="{'fa-chevron-down': timeseriesGroup?.isOpen, 'fa-chevron-right': !timeseriesGroup?.isOpen}"></i>
+              <i class="fa fa-pull-right fa-border fa-trash" (click)="deleteTimeseries(i)"></i>
+              <i class="fa fa-pull-right fa-border fa-gears" (click)="openTimeseriesConfigurator($event, i)"></i>
+
+              {{ts.data.name}}
+            </div>
+            Here comes some description or whatever of the time series.
+          </accordion-group>
+        </accordion>
+        <br *ngIf="timeseries && timeseries.length > 0"/> <!-- this is a hack because theres a margin error with accordion -->
+        <button [disabled]="isLoading" class="btn btn-primary btn-group-justified" (click)="openTimeseriesConfigurator($event, -1)"><i
+          class="fa fa-plus-circle"></i>&nbsp;add new time series
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-sac-gwh-timeseries-configurator-modal #timeseriesConfiguratorRef></app-sac-gwh-timeseries-configurator-modal>

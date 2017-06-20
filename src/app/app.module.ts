@@ -1,73 +1,71 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { CookieService, BaseCookieOptions, CookieOptions } from 'angular2-cookie/core';
+import { CookieService } from 'angular2-cookie/core';
 import {
   AccordionModule,
-  BsDropdownModule,
-  ModalModule,
-  DatepickerModule,
   AlertModule,
+  BsDropdownModule,
+  DatepickerModule,
+  ModalModule,
+  Ng2BootstrapModule,
+  ProgressbarModule,
   TabsModule,
   TooltipModule,
-  TypeaheadModule,
-  Ng2BootstrapModule, ProgressbarModule
+  TypeaheadModule
 } from 'ng2-bootstrap';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import {
-  ResultService,
-  ResultDetailComponent,
-  SearchComponent,
   FeatureOriginPipe,
-  ResultDetailModalComponent
+  ResultDetailComponent,
+  ResultDetailModalComponent,
+  ResultService,
+  SearchComponent
 } from './search';
 import { NavigationComponent, NotFoundComponent } from './navigation';
 import { AdminComponent } from './admin';
 import { GlossaryComponent } from './glossary-edu';
 import { ResearchProgrammesComponent } from './research-pg';
 import {
-  DashboardHomeComponent,
-  DashboardCategoryComponent,
-  ResultCardsComponent,
   CardComponent,
-  DashboardButtonComponent,
   CategoriesService,
+  DashboardButtonComponent,
+  DashboardCategoryComponent,
+  DashboardHomeComponent,
+  ResultCardsComponent,
   ShareButtonComponent,
   ShareButtonService
 } from './dashboards';
 import { Ol3MapComponent } from './ol3-map';
 import {
+  AccountComponent,
+  AccountPasswordModalComponent,
+  AccountProfileModalComponent,
+  AccountService,
+  GApiAuthComponent,
+  GApiAuthService,
   LoginComponent,
-  RegisterComponent,
-  ResetPassComponent,
-  ResetPassRedeemComponent,
   ReCaptchaComponent,
   ReCaptchaService,
-  AccountService,
-  AccountComponent,
-  AccountProfileModalComponent,
-  AccountPasswordModalComponent,
-  GApiAuthComponent,
-  GApiAuthService
+  RegisterComponent,
+  ResetPassComponent,
+  ResetPassRedeemComponent
 } from './account';
+import { BasicFileUploadComponent, MetadataEditorComponent } from './workbench';
 import {
-  MetadataEditorComponent,
-  BasicFileUploadComponent
-} from './workbench';
-import {
-  CollectionsService,
   CollectionsComponent,
   CollectionsDeskComponent,
-  OwcEntryDetailModalComponent,
+  CollectionsService,
   OwcAuthorComponent,
   OwcCategoryComponent,
-  OwcLinkComponent,
-  OwcOfferingComponent,
   OwcDocumentPropertiesComponent,
-  OwcEntryPropertiesComponent
+  OwcEntryDetailModalComponent,
+  OwcEntryPropertiesComponent,
+  OwcLinkComponent,
+  OwcOfferingComponent
 } from './owc';
 import { X3dViewComponent } from './x3d-view';
 import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
@@ -76,14 +74,17 @@ import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
 import { RatingModule } from 'ng2-bootstrap/rating';
 import { ContextRetrieveComponent } from './context/context.component';
+import { TimeseriesComponent } from './timeseries';
+import { TimeseriesConfiguratorModalComponent } from './timeseries/timeseries.configurator.modal.component';
 
 export function cookieServiceFactory() {
   return new CookieService();
 }
 
 @NgModule({
-  imports: [ BrowserModule,
+  imports: [BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     Ng2BootstrapModule,
     AccordionModule.forRoot(),
@@ -98,8 +99,8 @@ export function cookieServiceFactory() {
     ProgressbarModule.forRoot(),
     FileUploadModule,
     ClipboardModule,
-    routing ],
-  declarations: [ AppComponent,
+    routing],
+  declarations: [AppComponent,
     ResultDetailComponent,
     DashboardHomeComponent,
     DashboardCategoryComponent,
@@ -138,7 +139,9 @@ export function cookieServiceFactory() {
     OwcEntryPropertiesComponent,
     BasicFileUploadComponent,
     CardComponent,
-    ContextRetrieveComponent
+    ContextRetrieveComponent,
+    TimeseriesComponent,
+    TimeseriesConfiguratorModalComponent
   ],
   providers: [
     API_URL_PROVIDERS,
@@ -156,7 +159,7 @@ export function cookieServiceFactory() {
     CategoriesService,
     ShareButtonService
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

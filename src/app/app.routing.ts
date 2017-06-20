@@ -23,6 +23,7 @@ import { ResearchProgrammesComponent } from './research-pg';
 import { GlossaryComponent } from './glossary-edu';
 import { AdminComponent } from './admin';
 import { ContextRetrieveComponent } from './context/context.component';
+import { TimeseriesComponent } from './timeseries/timeseries.component';
 
 const appRoutes: Routes = [
   {
@@ -102,6 +103,11 @@ const appRoutes: Routes = [
     component: CollectionsDeskComponent,
     canActivate: [AuthGuard, RegisteredGuard]
   },
+  {
+    path: 'timeseries',
+    component: TimeseriesComponent
+  },
+
 
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}

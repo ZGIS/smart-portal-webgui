@@ -20,7 +20,13 @@
 
       <li routerLinkActive="active"><a routerLink="/glossary-edu">Education/Glossary <i class="fa fa-lightbulb-o"></i></a></li>
 
-      <li routerLinkActive="active"><a routerLink="/search">Search Data and Tools <i class="fa fa-search"></i></a></li>
+      <li dropdown>
+        <a role="button" dropdownToggle>Search Data and Tools <i class="fa fa-search"></i></a>
+        <ul *dropdownMenu class="dropdown-menu" role="menu">
+          <li role="menuitem"><a class="dropdown-item" routerLink="/search"><i class="fa fa-search"></i> Search Documents</a></li>
+          <li role="menuitem"><a class="dropdown-item" routerLink="/timeseries"><i class="fa fa-line-chart"></i> View Timeseries </a></li>
+        </ul>
+      </li>
 
       <li dropdown>
         <a role="button" dropdownToggle>Account Info <i class="fa fa-database"></i></a>
