@@ -14,7 +14,7 @@ import {
   TabsModule,
   TooltipModule,
   TypeaheadModule
-} from 'ng2-bootstrap';
+} from 'ngx-bootstrap';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -72,7 +72,7 @@ import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
 import { AdminGuard, AuthGuard, RegisteredGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
-import { RatingModule } from 'ng2-bootstrap/rating';
+import { RatingModule } from 'ngx-bootstrap/rating';
 import { ContextRetrieveComponent } from './context/context.component';
 import { TimeseriesComponent } from './timeseries';
 import { TimeseriesConfiguratorModalComponent } from './timeseries/timeseries.configurator.modal.component';

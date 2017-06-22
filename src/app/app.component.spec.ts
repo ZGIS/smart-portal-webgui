@@ -10,7 +10,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { NotificationService } from './notifications/notification.service';
 import { CategoriesService } from './dashboards/categories.service';
 import { NotificationComponent } from './notifications/notification.component';
-import { Ng2BootstrapModule } from 'ng2-bootstrap';
+import { Ng2BootstrapModule } from 'ngx-bootstrap';
 
 // import { By }             from '@angular/platform-browser';
 

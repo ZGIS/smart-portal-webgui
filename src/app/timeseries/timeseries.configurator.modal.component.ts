@@ -1,5 +1,5 @@
 import { Component, Inject, ViewChild } from '@angular/core';
-import { ModalDirective } from 'ng2-bootstrap';
+import { ModalDirective } from 'ngx-bootstrap';
 import { isNullOrUndefined } from 'util';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup } from '@angular/forms';

@@ -24,7 +24,7 @@ import 'rxjs';
 // Global packages
 import 'angular2-cookie/core';
 import 'angular2-cookie/services';
-import 'ng2-bootstrap';
+import 'ngx-bootstrap';
 import 'ng2-file-upload';
 import 'ngx-clipboard';
 

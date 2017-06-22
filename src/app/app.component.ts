@@ -14,7 +14,7 @@ export class AppComponent {
 
   constructor(private accountService: AccountService,
               viewContainerRef: ViewContainerRef) {
-    // small hack for ng2-bootstrap model. See https://valor-software.com/ng2-bootstrap/#/modals
+    // small hack for ngx-bootstrap model. See https://valor-software.com/ngx-bootstrap/#/modals
     this.viewContainerRef = viewContainerRef;
   }
 }

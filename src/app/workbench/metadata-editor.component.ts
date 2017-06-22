@@ -9,7 +9,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { IErrorResult } from '../search/result';
 import { Observable } from 'rxjs';
 import { CollectionsService } from '../owc';
-import { TypeaheadMatch } from 'ng2-bootstrap';
+import { TypeaheadMatch } from 'ngx-bootstrap';
 import * as moment from 'moment';
 
 export interface SelectEntry {

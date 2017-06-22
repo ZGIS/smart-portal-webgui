@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { ModalDirective } from 'ng2-bootstrap/modal';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 import { AccountService, UserProfile, createProfile } from '../account';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../notifications/notification.service';
