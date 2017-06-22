@@ -9,7 +9,8 @@ from datetime import date
 
 today = date.today()
 
-excel_file = 'GW portal list of icons new structure 20170317.xlsx'
+excel_file = 'GW portal list of icons new structure 20170525.xlsx'
+# excel_file = 'GW portal list of icons new structure 20170317.xlsx'
 # excel_file = 'GW portal list of icons November 2016.xlsx'
 
 workbook = xlrd.open_workbook(excel_file)
@@ -76,7 +77,7 @@ parent_list = []
 parent = 'main'
 regMatcher = re.compile('item_name \(([\w\s,.-]+)\)', re.IGNORECASE)
 
-for row in range(0, 82):
+for row in range(0, 80):
     if worksheet.cell(row, 0).value == xlrd.empty_cell.value:
         pass
     else:
