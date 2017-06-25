@@ -23,6 +23,9 @@ worksheet_name = 'science domain categories'
 worksheet = workbook.sheet_by_name(worksheet_name)
 # worksheet = workbook.sheet_by_name('Alt. Level 2')
 
+synonyms_sheets = workbook.sheet_by_name('synonyms')
+
+
 # worksheet = workbook.sheet_by_index(0)
 # workbook.nsheets
 # workbook.sheet_names()
@@ -77,6 +80,28 @@ parent_list = []
 parent = 'main'
 regMatcher = re.compile('item_name \(([\w\s,.-]+)\)', re.IGNORECASE)
 
+def find_synonyms_for_keywords(keywords_list):
+    retVal = []
+    for keyword in keywords_list:
+        try:
+            for row in range(1, 8):
+                if synonyms_sheets.cell(row, 0).value == xlrd.empty_cell.value or synonyms_sheets.cell(row, 1).value == xlrd.empty_cell.value:
+                    pass
+                else:
+                    if str(synonyms_sheets.cell(row, 0).value) == keyword:
+                        synonyms_list = [x.strip() for x in synonyms_sheets.cell(row, 1).value.split(',')]
+                        retVal = retVal + [x.lower() for x in synonyms_list]
+                    else:
+                        pass
+        except KeyError:
+            print('synonym key error')
+        except ValueError:
+            print('synonym value error')
+        except:
+            print('synonym error')
+    print(str('keywords: ' + ' '.join(retVal)))
+    return retVal
+
 for row in range(0, 80):
     if worksheet.cell(row, 0).value == xlrd.empty_cell.value:
         pass
@@ -103,7 +128,9 @@ for row in range(0, 80):
                 cat.item_name = item_name
                 cat.description = worksheet.cell(row, 4).value
                 trimmed = [x.strip() for x in worksheet.cell(row, 5).value.split(',')]
-                cat.keyword_content =  [x.lower() for x in trimmed]
+                keywords_low = [x.lower() for x in trimmed]
+                synonyms_low = find_synonyms_for_keywords(keywords_low)
+                cat.keyword_content = keywords_low + synonyms_low
                 cat.query_string = worksheet.cell(row, 8).value
                 cat.icon = worksheet.cell(row, 6).value
                 cat.bg_icon = worksheet.cell(row, 7).value
@@ -113,11 +140,11 @@ for row in range(0, 80):
                     list.append(cat_list, cat)
                     # print(cat.toJson())
             except KeyError:
-                print('key error')
+                print('cat key error')
             except ValueError:
-                print('value error')
+                print('cat value error')
             except:
-                print('error')
+                print('cat error')
 
 # print(""" { 'categories' : [ """)
 
