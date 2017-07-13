@@ -8,7 +8,7 @@ describe('E2E Test Welcome Dashboard', function () {
   });
 
   it('should display: ' + expectedMsg, function () {
-    expect(element(by.id('dashboard-home')).getText()).toEqual(expectedMsg);
+    expect(element(by.id('dashboard-home')).getText()).toContain(expectedMsg);
   });
 
 });

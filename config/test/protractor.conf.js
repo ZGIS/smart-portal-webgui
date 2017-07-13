@@ -20,17 +20,13 @@ const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 exports.config = {
 
   // Capabilities to be passed to the webdriver instance.
-  // capabilities: {
-  //   browserName: 'chrome'
-  // },
+  capabilities: {
+    browserName: 'chrome'
+  },
 
   // Protractor will run tests in parallel against each set of capabilities.
   // Please note that if multiCapabilities is defined, the runner will ignore the capabilities configuration.
-  multiCapabilities: [{
-    'browserName': 'firefox'
-  }, {
-    'browserName': 'chrome'
-  }],
+  //
 
   // Framework to use. Jasmine is recommended.
   framework: 'jasmine2',

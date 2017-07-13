@@ -51,7 +51,8 @@ script:
 # jit build
 - npm run e2e:ci:jit
 # aot build
-- npm run e2e:ci
+# AK 13/07/2017
+# - npm run e2e:ci
 # shpinx docs build
 - sphinx-build --version
 - sphinx-build -b html src/docs/source sphinx-build
@@ -61,7 +62,9 @@ after_success:
 - chmod 600 ghpages_ecdsa_sacgui && eval `ssh-agent -s` && ssh-add ghpages_ecdsa_sacgui
 
 - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run gh-pages-push
-- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run clean && npm run build && sphinx-build -b html src/docs/source sphinx-build && sh -c $TRAVIS_BUILD_DIR/docker-preps.sh
+# AK 13/07/2017
+# - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run clean && npm run build && sphinx-build -b html src/docs/source sphinx-build && sh -c $TRAVIS_BUILD_DIR/docker-preps.sh
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run clean && npm run build:jit && sphinx-build -b html src/docs/source sphinx-build && sh -c $TRAVIS_BUILD_DIR/docker-preps.sh
 
 deploy:
   provider: gcs
