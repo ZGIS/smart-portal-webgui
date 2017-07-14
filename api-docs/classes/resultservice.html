@@ -85,6 +85,7 @@
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="resultservice.html#date_format" class="tsd-kind-icon">DATE_<wbr>FORMAT</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="resultservice.html#cswiapiurl" class="tsd-kind-icon">cswi<wbr>Api<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="resultservice.html#http" class="tsd-kind-icon">http</a></li>
 							</ul>
@@ -111,7 +112,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/48055f1/src/app/search/result.service.ts#L11">app/search/result.service.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/014670f/src/app/search/result.service.ts#L15">app/search/result.service.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -141,12 +142,27 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="date_format" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> DATE_<wbr>FORMAT</h3>
+					<div class="tsd-signature tsd-kind-icon">DATE_<wbr>FORMAT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;YYYY-MM-DD&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/014670f/src/app/search/result.service.ts#L15">app/search/result.service.ts:15</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>default date format</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="cswiapiurl" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> cswi<wbr>Api<wbr>Url</h3>
 					<div class="tsd-signature tsd-kind-icon">cswi<wbr>Api<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/48055f1/src/app/search/result.service.ts#L18">app/search/result.service.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/014670f/src/app/search/result.service.ts#L22">app/search/result.service.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -156,7 +172,7 @@
 					<div class="tsd-signature tsd-kind-icon">http<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Http</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/48055f1/src/app/search/result.service.ts#L19">app/search/result.service.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/014670f/src/app/search/result.service.ts#L23">app/search/result.service.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -167,13 +183,13 @@
 					<a name="getresults" class="tsd-anchor"></a>
 					<h3>get<wbr>Results</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Results<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fromDate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, toDate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, bboxWkt<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, maxNumberOfResults<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/igeofeaturecollection.html" class="tsd-signature-type">IGeoFeatureCollection</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Results<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fromDate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, toDate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, bboxWkt<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, maxNumberOfResults<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/igeofeaturecollection.html" class="tsd-signature-type">IGeoFeatureCollection</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/48055f1/src/app/search/result.service.ts#L30">app/search/result.service.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/014670f/src/app/search/result.service.ts#L35">app/search/result.service.ts:35</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -187,13 +203,13 @@
 									<h5>query: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>fromDate: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> fromDate: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;moment(&#x27;1970-01-01&#x27;, this.DATE_FORMAT).format(this.DATE_FORMAT)</span></h5>
 								</li>
 								<li>
-									<h5>toDate: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> toDate: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;moment().format(this.DATE_FORMAT)</span></h5>
 								</li>
 								<li>
-									<h5>bboxWkt: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> bboxWkt: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;ENVELOPE(-180,180,90,-90)&quot;</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> maxNumberOfResults: <span class="tsd-signature-type">number</span></h5>
@@ -213,7 +229,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/48055f1/src/app/search/result.service.ts#L58">app/search/result.service.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/014670f/src/app/search/result.service.ts#L64">app/search/result.service.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -250,6 +266,9 @@
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="resultservice.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="resultservice.html#date_format" class="tsd-kind-icon">DATE_<wbr>FORMAT</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="resultservice.html#cswiapiurl" class="tsd-kind-icon">cswi<wbr>Api<wbr>Url</a>
