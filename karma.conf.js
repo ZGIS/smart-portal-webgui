@@ -75,10 +75,10 @@ module.exports = function (config) {
     singleRun: config.ci
   };
 
-  // if (config.ci) {
-  //   _config.preprocessors['./config/test/karma-test-shim.js'].unshift('coverage');
-  //   _config.reporters.push('coverage');
-  // }
+  if (config.ci) {
+    _config.preprocessors['./config/test/karma-test-shim.js'].unshift('coverage');
+    _config.reporters.push('coverage');
+  }
 
   config.set(_config);
 };
