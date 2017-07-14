@@ -36,8 +36,8 @@ exports.config = {
   specs: ['**/*e2e-spec.js' ],
 
   // timeout stuff
-  allScriptsTimeout: 30000,
-  getPageTimeout: 30000,
+  allScriptsTimeout: 120000,
+  getPageTimeout: 120000,
 
   // Base URL for application server .. http-serve
   baseUrl: 'http://localhost:8080',
@@ -48,7 +48,7 @@ exports.config = {
 
   // For angular2 tests
   useAllAngular2AppRoots: true,
-  rootElement: 'app-sac-gwh',
+  // rootElement: 'app-sac-gwh',
 
   onPrepare: function() {
     //// SpecReporter
@@ -74,7 +74,7 @@ exports.config = {
   },
 
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 30000,
+    defaultTimeoutInterval: 120000,
     // defaultTimeoutInterval: 10000,
     showTiming: true,
     print: function() {}

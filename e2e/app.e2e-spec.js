@@ -4,6 +4,9 @@ describe('E2E Test Welcome Dashboard', function () {
 
 
   beforeEach(function () {
+    // browser.ignoreSynchronization = true;
+    // browser.waitForAngularEnabled(true);
+
     browser.get('/');
   });
 
