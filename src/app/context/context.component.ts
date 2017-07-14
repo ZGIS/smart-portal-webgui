@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NotificationService } from '../notifications/notification.service';
 
@@ -16,7 +16,8 @@ export class ContextRetrieveComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private ngZone: NgZone) {
   }
 
   ngOnInit(): void {
@@ -24,12 +25,19 @@ export class ContextRetrieveComponent implements OnInit {
       .subscribe((params: Params) => {
         switch (params['type']) {
           case this.TYPE_ENTRY: {
-            setTimeout(() =>
-            this.router.navigate(['search/'], { queryParams: {
-              query: `fileIdentifier:"${params['uuid']}"`,
-              showModal: params['uuid']
-            }})
-            );
+            // for protractor, being more explicit about zones and timeouts/asynch tasks
+            this.ngZone.runOutsideAngular(() => {
+              setTimeout(() => {
+                this.ngZone.run(() => {
+                  this.router.navigate([ 'search/' ], {
+                    queryParams: {
+                      query: `fileIdentifier:"${params[ 'uuid' ]}"`,
+                      showModal: params[ 'uuid' ]
+                    }
+                  });
+                });
+              }, 2500);
+            });
             break;
           }
           default: {

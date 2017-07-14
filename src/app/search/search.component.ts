@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { IGeoFeature, IGeoFeatureCollection, IErrorResult } from './result';
 import { ResultService } from './result.service';
 import * as moment from 'moment';
@@ -106,10 +106,11 @@ export class SearchComponent implements OnInit {
           clearTimeout(this.timeoutId);
         }
 
-        this.timeoutId = window.setTimeout(() => {
-          this.getResults();
-          this.currentUrl = window.location.href;
-        }, 250);
+        // TODO: plan for protractor, being more explicit about ngzones and timeouts/asynch tasks
+          this.timeoutId = window.setTimeout(() => {
+              this.getResults();
+              this.currentUrl = window.location.href;
+          }, 250);
       }
 
       if (!isNullOrUndefined(params['showModal'])) {

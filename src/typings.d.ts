@@ -4,6 +4,8 @@
 
 declare let System: any;
 
+declare let Plotly: any;
+
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
 declare let APP_CSWI_API_URL: string;
 declare let APP_PORTAL_API_URL: string;

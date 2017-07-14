@@ -1,8 +1,11 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Timeseries, TimeseriesConfiguratorModalComponent } from './timeseries.configurator.modal.component';
 import { isNullOrUndefined } from 'util';
+
 // TODO should we import that on module level?
-import Plotly from 'plotly.js/dist/plotly.js';
+// import * as Plotly from 'plotly.js';
+let Plotly = require('plotly.js/dist/plotly.js');
+
 import * as moment from 'moment-timezone';
 import { NotificationService } from '../notifications/notification.service';
 import { Observable } from 'rxjs/Observable';
@@ -46,8 +49,11 @@ export class TimeseriesComponent implements OnInit {
   options: any;
 
   /**
-   * Constructor with injected services
+   * construtor with injected services
+   *
+   * @param portalApiUrl
    * @param notificationService
+   * @param http
    */
   constructor (@Inject(PORTAL_API_URL) private portalApiUrl: string,
                private notificationService: NotificationService,
@@ -72,7 +78,7 @@ export class TimeseriesComponent implements OnInit {
    * @param event
    * @param index
    */
-  openTimeseriesConfigurator(event, index: number) {
+  openTimeseriesConfigurator(event: any, index: number) {
 
     this.modal.showModal(this.timeseries[index], (ts) => {
       // when null then editing was cancelled. Normally the callback does not get called but just to be sure.

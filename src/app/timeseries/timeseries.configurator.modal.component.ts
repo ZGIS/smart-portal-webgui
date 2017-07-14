@@ -46,7 +46,7 @@ export class TimeseriesConfiguratorModalComponent {
   @ViewChild('timeseriesConfiguratorRef') public modal: ModalDirective;
 
   configurationForm: FormGroup;
-  formErrors: {};
+  formErrors: any = {};
   validationMessages = {};
 
   timeseries: Timeseries = new Timeseries();
@@ -62,7 +62,11 @@ export class TimeseriesConfiguratorModalComponent {
 
   /**
    * Constructor with injected services.
+   *
+   * @param portalApiUrl
+   * @param http
    * @param fb
+   * @param notificationService
    */
   constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
               private http: Http,
@@ -195,12 +199,12 @@ export class TimeseriesConfiguratorModalComponent {
     );
   }
 
-  onFromDateChanged(event) {
+  onFromDateChanged(event: any) {
     console.log(event);
     this.configurationForm.get('fromDate').setValue(event);
   }
 
-  onToDateChanged(event) {
+  onToDateChanged(event: any) {
     console.log(event);
     this.configurationForm.get('toDate').setValue(event);
   }
@@ -259,7 +263,7 @@ export class TimeseriesConfiguratorModalComponent {
 
   /**
    *
-   * @param error
+   * @param errorResponse
    * @returns {any}
    */
   private handleError(errorResponse: Response) {
