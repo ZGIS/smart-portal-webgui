@@ -53,35 +53,35 @@ export class NavigationComponent implements OnInit {
       this.userProfile = this.accountService.guestProfile;
     }
     this.checkLoggedIn = false;
-  };
+  }
 
   /**
    * Shows the Disclaimer modal
    */
   showDisclaimerModal() {
     this.disclaimerModal.show();
-  };
+  }
 
   /**
    * hides the disclaimer modal
    */
   hideDisclaimerModal() {
     this.disclaimerModal.hide();
-  };
+  }
 
   /**
    * shows the about modal
    */
   showAboutModal() {
     this.aboutModal.show();
-  };
+  }
 
   /**
    * hides the about modal
    */
   hideAboutModal() {
     this.aboutModal.hide();
-  };
+  }
 
   /**
    * performs user logout

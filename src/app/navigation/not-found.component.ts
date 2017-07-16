@@ -18,5 +18,4 @@ export class NotFoundComponent {
     this._location.back();
   }
 }
-;
 

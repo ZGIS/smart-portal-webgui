@@ -1,1 +1,1 @@
-export * from './research-programmes.component'
+export * from './research-programmes.component';

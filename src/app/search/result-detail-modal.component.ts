@@ -19,11 +19,11 @@ export class ResultDetailModalComponent {
       this.feature = geoFeature;
       this.modal.show();
     }
-  };
+  }
 
   hideFeatureModal() {
     this.modal.hide();
-  };
+  }
 
   onHideModal() {
     this.onHide.emit();

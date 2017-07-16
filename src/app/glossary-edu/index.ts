@@ -1,1 +1,1 @@
-export * from './glossary.component'
+export * from './glossary.component';

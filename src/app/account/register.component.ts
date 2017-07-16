@@ -33,7 +33,7 @@ export class RegisterComponent {
   constructor(private accountService: AccountService, private router: Router,
               private http: Http, private notificationService: NotificationService) {
     window[<any>'recaptchaCallback'] = <any>this.recaptchaCallback.bind(this);
-  };
+  }
 
   validatePasswordSync( event: any ) {
     this.passwordsAreSync = this.model.password === this.model.passwordConfirm;
@@ -86,7 +86,7 @@ export class RegisterComponent {
           this.loading = false;
           this.notificationService.addErrorResultNotification(error);
         });
-  };
+  }
 
   /**
    * validate recaptcha via backend
@@ -118,7 +118,7 @@ export class RegisterComponent {
         this.loading = false;
         this.notificationService.addErrorResultNotification(error);
       });
-  };
+  }
 
   /**
    *
@@ -158,5 +158,5 @@ export class RegisterComponent {
         message: 'Login/Registration Error. No AuthCode provided.'
       });
     }
-  };
+  }
 }

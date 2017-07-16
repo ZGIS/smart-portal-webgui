@@ -25,7 +25,7 @@ export class ResetPassComponent {
   constructor(private accountService: AccountService, private router: Router,
               private notificationService: NotificationService) {
 
-  };
+  }
 
   /**
    * Submit form

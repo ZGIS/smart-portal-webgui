@@ -29,7 +29,7 @@ export class AccountProfileModalComponent implements OnInit, OnDestroy {
    */
   constructor( private accountService: AccountService,
                private notificationService: NotificationService ) {
-  };
+  }
 
   /**
    * OnInit - loads current user profil
@@ -66,7 +66,7 @@ export class AccountProfileModalComponent implements OnInit, OnDestroy {
    */
   hideUpdateModal() {
     this.modal.hide();
-  };
+  }
 
   onSubmit() {
     this.loading = true;

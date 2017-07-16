@@ -18,5 +18,3 @@ export class AdminComponent {
     this._location.back();
   }
 }
-;
-

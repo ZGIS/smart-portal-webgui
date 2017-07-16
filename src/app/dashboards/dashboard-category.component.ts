@@ -59,6 +59,6 @@ export class DashboardCategoryComponent implements OnInit {
   constructor( private route: ActivatedRoute, private categoriesService: CategoriesService,
                private notificationService: NotificationService ) {
     this.bgImage.imgUrl = '/images/dashboard/0.0_main_background_empty.png';
-  };
+  }
 
 }

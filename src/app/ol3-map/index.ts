@@ -1,1 +1,1 @@
-export * from './ol3-map.component'
+export * from './ol3-map.component';

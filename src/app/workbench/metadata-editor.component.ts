@@ -99,7 +99,7 @@ export class MetadataEditorComponent implements OnInit {
         }
         return result;
       });
-  };
+  }
 
   ngOnInit() {
     this.metadata = <GeoMetadata>{

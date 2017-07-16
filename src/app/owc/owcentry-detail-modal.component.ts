@@ -17,9 +17,9 @@ export class OwcEntryDetailModalComponent {
       this.owcEntry = owcFeature;
       this.modal.show();
     }
-  };
+  }
 
   hideOwcEntryModal() {
     this.modal.hide();
-  };
+  }
 }

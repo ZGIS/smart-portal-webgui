@@ -28,7 +28,7 @@ export class LoginComponent {
    */
   constructor(private accountService: AccountService,
               private router: Router, private notificationService: NotificationService) {
-  };
+  }
 
   /**
    *
@@ -104,5 +104,5 @@ export class LoginComponent {
         message: 'Login Error. No AuthCode provided.'
       });
     }
-  };
+  }
 }

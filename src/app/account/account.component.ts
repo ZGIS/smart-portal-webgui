@@ -22,7 +22,7 @@ export class AccountComponent implements OnInit {
    * @param accountService injected AccountService
    */
   constructor(private accountService: AccountService) {
-  };
+  }
 
   /**
    * OnInit - queries current profile from backend

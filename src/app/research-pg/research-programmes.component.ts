@@ -18,5 +18,4 @@ export class ResearchProgrammesComponent {
     this._location.back();
   }
 }
-;
 

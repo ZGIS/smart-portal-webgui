@@ -25,6 +25,13 @@
               </button>
             </td>
           </tr>
+          <tr>
+            <td>
+              <button class="btn btn-danger" id="deleteself"
+                      (click)="deleteselfModalRef.showDeleteSelfModal(userProfile)">Delete my account
+              </button>
+            </td>
+          </tr>
         </table>
       </div>
       <div class="panel-footer panel-info"></div>
@@ -35,3 +42,5 @@
 <app-sac-gwh-account-profile-modal #profileUpdateModalRef></app-sac-gwh-account-profile-modal>
 
 <app-sac-gwh-account-password-modal #passwordUpdateModalRef></app-sac-gwh-account-password-modal>
+
+<app-sac-gwh-account-deleteself-modal #deleteselfModalRef></app-sac-gwh-account-deleteself-modal>

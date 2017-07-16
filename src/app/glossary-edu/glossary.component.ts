@@ -18,5 +18,4 @@ export class GlossaryComponent {
     this._location.back();
   }
 }
-;
 

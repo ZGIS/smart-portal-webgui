@@ -18,7 +18,7 @@ export class ResetPassRedeemComponent implements OnInit {
 
   constructor( private accountService: AccountService, private route: ActivatedRoute,
                private router: Router, private notificationService: NotificationService ) {
-  };
+  }
 
   ngOnInit(): void {
     this.route.params.forEach(( params: Params ) => {

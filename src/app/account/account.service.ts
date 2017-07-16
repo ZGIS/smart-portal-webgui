@@ -1,14 +1,13 @@
-import { Injectable, Inject } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Inject, Injectable } from '@angular/core';
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
-import { BehaviorSubject } from 'rxjs/Rx';
+import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { CookieService } from 'angular2-cookie/core';
-import { PORTAL_API_URL, CSWI_API_URL, WEBGUI_APP_VERSION } from '../in-app-config';
-import { NotificationService } from '../notifications';
+import { CSWI_API_URL, PORTAL_API_URL, WEBGUI_APP_VERSION } from '../in-app-config';
 import { IErrorResult } from '../search/result';
+import { PasswordUpdateCredentials } from './account-password-modal.component';
 
 /**
  *
@@ -63,7 +62,7 @@ export class AccountService {
     accountSubject: 'guest',
     firstname: 'Guest',
     lastname: 'User',
-    password: 'xxx'
+    password: '***'
   });
 
   private loggedInState: BehaviorSubject<boolean>;
@@ -71,6 +70,8 @@ export class AccountService {
   /**
    *
    * @param portalApiUrl
+   * @param cswiApiUrl
+   * @param webguiAppVersion
    * @param http
    * @param router
    * @param cookieService
@@ -113,18 +114,6 @@ export class AccountService {
                 localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
               }
               this.loggedInState.next(true);
-              // }
-              // FIXME SR this should never happen! Every http status code <200 & >299 will fail
-              // else {
-              //   console.log('could not verify current session');
-              //   this.loggedInState.next(false);
-              //   // clear token remove user from local storage to log user out
-              //   this.token = null;
-              //   localStorage.removeItem('currentUser');
-              //   localStorage.removeItem('currentUserProfile');
-              //   this.cookieService.remove('XSRF-TOKEN');
-              //   this.handleHttpFailure(response);
-              // }
             }
           )
           .catch((errorResponse: Response) => this.handleError(errorResponse));
@@ -146,7 +135,7 @@ export class AccountService {
       localStorage.removeItem('currentUserProfile');
       this.cookieService.remove('XSRF-TOKEN');
     }
-  };
+  }
 
   /**
    *
@@ -166,8 +155,6 @@ export class AccountService {
     return this.http.get(profileUri, options)
       .map(
         (response: Response) => {
-          // TODO SR see above. Here we should always find a 2xx http status code.
-          // if (response.status === 200) {
           let userProfileJson = response.json();
           if (userProfileJson) {
             let userProfile = createProfile(userProfileJson);
@@ -176,21 +163,10 @@ export class AccountService {
             localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
           }
           return response.json();
-          //   } else {
-          //     // indicates failed self retrieve / authenticated session
-          //     // should also remove token and invalidate angular session?
-          //     this.loggedInState.next(false);
-          //     // clear token remove user from local storage to log user out
-          //     this.token = null;
-          //     localStorage.removeItem('currentUser');
-          //     localStorage.removeItem('currentUserProfile');
-          //     this.cookieService.remove('XSRF-TOKEN');
-          //     return Observable.throw('invalid session');
-          //   }
         }
       )
       .catch((errorResponse: Response) => this.handleError(errorResponse));
-  };
+  }
 
   /**
    *
@@ -199,7 +175,7 @@ export class AccountService {
   isLoggedIn(): Observable<boolean> {
     // console.log(this.loggedInState);
     return this.loggedInState.asObservable();
-  };
+  }
 
   /**
    *
@@ -224,15 +200,36 @@ export class AccountService {
         this.cookieService.remove('XSRF-TOKEN');
         // return true to indicate successful logout
         return true;
-        // } else {
-        //   // return false to indicate failed logout
-        //   // should also remove token and invalid angular session?
-        //   console.log('logout failed');
-        //   return false;
-        // }
       })
       .catch((errorResponse: Response) => this.handleErrorWithLogout(errorResponse));
-  };
+  }
+
+  /**
+   *
+   * @returns {Observable<R>}
+   */
+  deleteSelf(): Observable<boolean> {
+    let deleteSelfUri = this.portalApiUrl + '/users/deleteself';
+    let headers = new Headers({
+      // 'Authorization': 'Bearer ' + this.token,
+      'X-XSRF-TOKEN': this.token
+    });
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    return this.http.get(deleteSelfUri, options)
+      .map((response: Response) => {
+        // deleteSelf
+        // if (response.status === 200) {
+        this.loggedInState.next(false);
+        // clear token remove user from local storage to log user out
+        this.token = null;
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentUserProfile');
+        this.cookieService.remove('XSRF-TOKEN');
+        // return true to indicate successful logout
+        return true;
+      })
+      .catch((errorResponse: Response) => this.handleErrorWithLogout(errorResponse));
+  }
 
   /**
    *
@@ -247,9 +244,6 @@ export class AccountService {
     let options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.post(loginUri, data, options)
       .map((response: Response) => {
-        // TODO SR when I look at the code in the backend, either the login replys with 200
-        // and then contains a token and everything, or http-fails and this will never be called
-        // and everything will be handled by the errorHandler.
 
         // login successful if there's a xsrf token in the response
         let token = response.json() && response.json().token;
@@ -281,7 +275,7 @@ export class AccountService {
         }
       })
       .catch((errorResponse: Response) => this.handleErrorWithLogout(errorResponse));
-  };
+  }
 
   /**
    *
@@ -302,23 +296,21 @@ export class AccountService {
           localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
         }
         return true;
-        // } else {
-        //   return false;
-        // }
       })
       .catch((errorResponse: Response) => this.handleErrorWithLogout(errorResponse));
-  };
+  }
 
   /**
    *
    * @param email
-   * @param password
+   * @param passwordUpdateCredentials
    * @returns {Observable<R>}
    */
-  updatePassword(email: string, password: string): Observable<boolean> {
+  updatePassword(email: string, passwordUpdateCredentials: PasswordUpdateCredentials): Observable<boolean> {
     let updatePassUri = this.portalApiUrl + '/users/updatepass';
 
-    let data = JSON.stringify({email: email, password: password});
+    let data = JSON.stringify({email: email,
+      oldpassword: passwordUpdateCredentials.passwordCurrent, newpassword: passwordUpdateCredentials.passwordNew});
     let headers = new Headers({
       // 'Authorization': 'Bearer ' + this.token,
       'X-XSRF-TOKEN': this.token,
@@ -350,7 +342,7 @@ export class AccountService {
         }
       })
       .catch((errorResponse: Response) => this.handleError(errorResponse));
-  };
+  }
 
   /**
    *
@@ -383,7 +375,7 @@ export class AccountService {
         // }
       })
       .catch((errorResponse: Response) => this.handleError(errorResponse));
-  };
+  }
 
   /**
    *
@@ -414,6 +406,7 @@ export class AccountService {
    *
    * @param email
    * @param password
+   * @param redeemlink
    * @returns {Observable<R>}
    */
   redeemPasswordReset(email: string, password: string, redeemlink: string): Observable<boolean> {
@@ -463,7 +456,7 @@ export class AccountService {
         }
       })
       .catch((errorResponse: Response) => this.handleError(errorResponse));
-  };
+  }
 
   /**
    *
@@ -478,7 +471,7 @@ export class AccountService {
         return info;
       })
       .catch((errorResponse: Response) => this.handleError(errorResponse));
-  };
+  }
 
   /**
    *
@@ -510,13 +503,7 @@ export class AccountService {
       console.log(authRequester);
       return this.gconnectHandleLogin(authCode);
     }
-    // FIXME SR can this happen?
-    // else { // or else if, doesn't matter
-    //   console.log('error, authCode not recognised');
-    //   let error = (<IErrorResult>{message: 'error, authCode not recognised'});
-    //   return this.handleErrorWithLogout(error);
-    // }
-  };
+  }
 
   /**
    *
@@ -584,25 +571,13 @@ export class AccountService {
           // return true to indicate successful login
           return true;
         }
-        // TODO SR this should never happen. Either it returns OK with a token, or http failure
-        // else {
-        //   // return false to indicate failed login
-        //   // should also remove token?
-        //   this.loggedInState.next(false);
-        //   console.log('google login failed');
-        //   this.notificationService.addNotification({
-        //     type: 'warning',
-        //     message: 'Google login failed'
-        //   });
-        //   return false;
-        // }
       })
       .catch((errorResponse: Response) => this.handleErrorWithLogout(errorResponse));
   }
 
   /**
    *
-   * @param error
+   * @param errorResponse
    * @returns {any}
    */
   private handleError(errorResponse: Response) {
@@ -621,7 +596,7 @@ export class AccountService {
 
   /**
    *
-   * @param error
+   * @param errorResponse
    * @returns {any}
    */
   private handleErrorWithLogout(errorResponse: Response) {
@@ -636,6 +611,6 @@ export class AccountService {
     }
     // TODO SR add "you've been logged out" to message
     return this.handleError(errorResponse);
-  };
+  }
 
 }

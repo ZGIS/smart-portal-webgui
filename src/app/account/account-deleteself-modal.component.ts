@@ -3,22 +3,16 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { AccountService, UserProfile } from './account.service';
 import { NotificationService } from '../notifications';
 
-export interface PasswordUpdateCredentials {
-  passwordCurrent?: string;
-  passwordNew?: string;
-  passwordConfirm?: string;
-}
-
 @Component ({
-  selector: 'app-sac-gwh-account-password-modal',
-  templateUrl: 'account-password-modal.component.html'
+  selector: 'app-sac-gwh-account-deleteself-modal',
+  templateUrl: 'account-deleteself-modal.component.html'
 })
 
 /**
  * Component (Modal) to change User's password
  */
-export class AccountPasswordModalComponent {
-  @ViewChild('passwordUpdateModalRef') public modal: ModalDirective;
+export class AccountDeleteSelfModalComponent {
+  @ViewChild('deleteselfModalRef') public modal: ModalDirective;
 
   /**
    * Current User's profile
@@ -26,10 +20,6 @@ export class AccountPasswordModalComponent {
    */
   currentProfile: UserProfile = this.accountService.guestProfile;
 
-  passwordsAreSync = true;
-  oldPassIsNotNewPass = true;
-
-  model: PasswordUpdateCredentials = {};
   loading = false;
   error = '';
 
@@ -43,19 +33,10 @@ export class AccountPasswordModalComponent {
   }
 
   /**
-   * checks if both paswords are identical
-   * @param event
-   */
-  validatePasswordSync( event: any ) {
-    this.passwordsAreSync = this.model.passwordNew === this.model.passwordConfirm;
-    this.oldPassIsNotNewPass = this.model.passwordNew !== this.model.passwordCurrent;
-  }
-
-  /**
    * Shows the current modal
    * @param userProfile
    */
-  showUpdateModal(userProfile: UserProfile) {
+  showDeleteSelfModal(userProfile: UserProfile) {
     this.currentProfile = userProfile;
     this.modal.show();
   }
@@ -63,9 +44,7 @@ export class AccountPasswordModalComponent {
   /**
    * closes the current modal
    */
-  hideUpdateModal() {
-    // delete anything that has been entered, when closing window
-    this.model = {};
+  hideDeleteSelfModal() {
     this.modal.hide();
   }
 
@@ -74,7 +53,7 @@ export class AccountPasswordModalComponent {
    */
   onSubmit() {
     this.loading = true;
-    this.accountService.updatePassword(this.currentProfile.email, this.model)
+    this.accountService.deleteSelf()
       .subscribe(
         result => {
           // FIXME SR this should never be false!

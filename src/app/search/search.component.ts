@@ -1,13 +1,12 @@
-import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
-import { IGeoFeature, IGeoFeatureCollection, IErrorResult } from './result';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IErrorResult, IGeoFeature, IGeoFeatureCollection } from './result';
 import { ResultService } from './result.service';
 import * as moment from 'moment';
 import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { isNullOrUndefined, isUndefined } from 'util';
+import { isNullOrUndefined } from 'util';
 import { NotificationService } from '../notifications/notification.service';
 import { Extent } from 'openlayers';
-import { ResultDetailComponent } from './result-detail.component';
 import { ResultDetailModalComponent } from './result-detail-modal.component';
 
 /**
@@ -16,18 +15,21 @@ import { ResultDetailModalComponent } from './result-detail-modal.component';
 @Component({
   selector: 'app-sac-gwh-search',
   templateUrl: 'search.component.html',
-  styleUrls: ['search.component.css']
+  styleUrls: [ 'search.component.css' ]
 })
 
 export class SearchComponent implements OnInit {
   @ViewChild(ResultDetailModalComponent) resultDetailModalComponentRef: ResultDetailModalComponent;
+
+  /** default date format */
+  DATE_FORMAT = 'YYYY-MM-DD';
 
   /** initial search */
   search: Search = {
     query: '*:*',
     fromDate: moment('1970-01-01', this.DATE_FORMAT).toDate(),
     toDate: new Date(),
-    bbox: [168, -50, 180, -33],
+    bbox: [ 168, -50, 180, -33 ],
     bboxWkt: '',
     maxNumberOfResults: 100
   };
@@ -48,9 +50,6 @@ export class SearchComponent implements OnInit {
   /** current URL */
   currentUrl: String;
 
-  /** default date format */
-  private DATE_FORMAT = 'YYYY-MM-DD';
-
   private timeoutId: number;
 
   /**
@@ -60,32 +59,33 @@ export class SearchComponent implements OnInit {
    * @param activatedRoute      - injected ActivatedRoute
    * @param notificationService - injected NotificationService
    */
-  constructor(private resultService: ResultService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute,
-              private notificationService: NotificationService) {
+  constructor( private resultService: ResultService,
+               private router: Router,
+               private activatedRoute: ActivatedRoute,
+               private notificationService: NotificationService ) {
   }
+
 
   /**
    * initializes the component. Specifically reads the URL parameters and makes the search.
    */
   ngOnInit(): void {
     // parse values from
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
-      if (moment(params['fromDate'], this.DATE_FORMAT).isValid()) {
-        this.search.fromDate = moment(params['fromDate'], this.DATE_FORMAT).toDate();
+    this.activatedRoute.queryParams.subscribe(( params: Params ) => {
+      if (moment(params[ 'fromDate' ], this.DATE_FORMAT).isValid()) {
+        this.search.fromDate = moment(params[ 'fromDate' ], this.DATE_FORMAT).toDate();
       } else {
         this.search.fromDate = moment('1970-01-01', this.DATE_FORMAT).toDate();
       }
 
-      if (moment(params['toDate'], this.DATE_FORMAT).isValid()) {
-        this.search.toDate = moment(params['toDate'], this.DATE_FORMAT).toDate();
+      if (moment(params[ 'toDate' ], this.DATE_FORMAT).isValid()) {
+        this.search.toDate = moment(params[ 'toDate' ], this.DATE_FORMAT).toDate();
       } else {
         this.search.toDate = new Date();
       }
 
-      if (params['bbox']) {
-        let paramBbox = JSON.parse(params['bbox']);
+      if (params[ 'bbox' ]) {
+        let paramBbox = JSON.parse(params[ 'bbox' ]);
         console.log(`params bbox for search '${paramBbox}'`);
         this.search.bbox = paramBbox;
       } else {
@@ -93,44 +93,43 @@ export class SearchComponent implements OnInit {
         this.search.bbox = this.search.bbox;
       }
 
-      if (params['maxNumberOfResults']) {
-        this.search.maxNumberOfResults = params['maxNumberOfResults'];
+      if (params[ 'maxNumberOfResults' ]) {
+        this.search.maxNumberOfResults = params[ 'maxNumberOfResults' ];
       } else {
         this.search.maxNumberOfResults = undefined;
       }
 
-      if (this.search.query !== params['query']) {
-        this.search.query = params['query'] || this.search.query;
+      if (this.search.query !== params[ 'query' ]) {
+        this.search.query = params[ 'query' ] || this.search.query;
 
         if (this.timeoutId) {
           clearTimeout(this.timeoutId);
         }
 
-        // TODO: plan for protractor, being more explicit about ngzones and timeouts/asynch tasks
-          this.timeoutId = window.setTimeout(() => {
-              this.getResults();
-              this.currentUrl = window.location.href;
-          }, 250);
+        this.timeoutId = window.setTimeout(() => {
+          this.getResults();
+          this.currentUrl = window.location.href;
+        }, 250);
       }
 
-      if (!isNullOrUndefined(params['showModal'])) {
-        this.showModal = params['showModal'];
+      if (!isNullOrUndefined(params[ 'showModal' ])) {
+        this.showModal = params[ 'showModal' ];
         this.resultService.getResults(
-          `fileIdentifier:"${params['showModal']}"`
+          `fileIdentifier:"${params[ 'showModal' ]}"`
         ).subscribe(
-          (results: IGeoFeatureCollection) => {
+          ( results: IGeoFeatureCollection ) => {
             if (results.count > 0) {
-              this.resultDetailModalComponentRef.showFeatureModal(results.features[0]);
+              this.resultDetailModalComponentRef.showFeatureModal(results.features[ 0 ]);
             } else {
               this.notificationService.addNotification({
                 id: NotificationService.MSG_ID_DOCUMENT_NOT_FOUND,
-                message: `Document ${params['showModal']} could not be found in CSW index. Maybe it is not a metadata document?`,
+                message: `Document ${params[ 'showModal' ]} could not be found in CSW index. Maybe it is not a metadata document?`,
                 type: NotificationService.NOTIFICATION_TYPE_WARNING
               });
               this.resultDetailModalComponentRef.hideFeatureModal();
             }
           },
-          (error: IErrorResult) => {
+          ( error: IErrorResult ) => {
             this.notificationService.addErrorResultNotification(error);
           });
       }
@@ -141,7 +140,7 @@ export class SearchComponent implements OnInit {
    * navigates to /serach with the correct parameters
    */
   doSearch(): void {
-    this.router.navigate(['/search'], {
+    this.router.navigate([ '/search' ], {
       queryParams: this.getQueryParams()
     });
   }
@@ -151,7 +150,7 @@ export class SearchComponent implements OnInit {
    * @param maxNumberOfResults
    * @returns {{query: string, fromDate: string, toDate: string, bbox: string, maxNumberOfResults: number}}
    */
-  getQueryParams(maxNumberOfResults?: number): any {
+  getQueryParams( maxNumberOfResults?: number ): any {
     return {
       query: this.search.query,
       fromDate: this.formatDate(this.search.fromDate),
@@ -175,13 +174,13 @@ export class SearchComponent implements OnInit {
       this.search.bboxWkt,
       this.search.maxNumberOfResults)
       .subscribe(
-        (results: IGeoFeatureCollection) => {
+        ( results: IGeoFeatureCollection ) => {
           this.results = results;
 
           // we got less results than matched documents => create alert with notification
           if (results.count < results.countMatched) {
             // creates the URL for the alert-box notification
-            let urlTree = this.router.createUrlTree(['/search'], {
+            let urlTree = this.router.createUrlTree([ '/search' ], {
               queryParams: {
                 query: this.search.query,
                 fromDate: this.formatDate(this.search.fromDate),
@@ -199,7 +198,7 @@ export class SearchComponent implements OnInit {
           }
           this.isLoading = false;
         },
-        (error: IErrorResult) => {
+        ( error: IErrorResult ) => {
           this.notificationService.addErrorResultNotification(error);
           this.isLoading = false;
         });
@@ -209,7 +208,7 @@ export class SearchComponent implements OnInit {
    * eventhandler when bounding box in map was changed
    * @param $event
    */
-  bboxChanged($event: Ol3MapExtent) {
+  bboxChanged( $event: Ol3MapExtent ) {
     console.log(`bboxChanged emitted '${$event.bbox}'`);
     this.search.bbox = $event.bbox;
     this.search.bboxWkt = $event.bboxWkt;
@@ -220,7 +219,7 @@ export class SearchComponent implements OnInit {
    * event handler when key is pressed in search form. This enables search on press ENTER in search form.
    * @param event
    */
-  onKeydownSearchform(event: any) {
+  onKeydownSearchform( event: any ) {
     if (event.keyCode === 13) {
       this.doSearch();
     }
@@ -231,7 +230,7 @@ export class SearchComponent implements OnInit {
    * @param date
    * @returns {string}
    */
-  formatDate(date: Date) {
+  formatDate( date: Date ) {
     return moment(date).format(this.DATE_FORMAT);
   }
 
@@ -254,12 +253,13 @@ export class SearchComponent implements OnInit {
   getFilteredResults(): IGeoFeature[] {
     if (this.results) {
       return this.results.features
-        .filter((item) =>
-        item.properties.title.toLocaleLowerCase().indexOf(this.textFilter.toLocaleLowerCase()) >= 0);
+        .filter(( item ) =>
+        item.properties.title.toLocaleLowerCase().indexOf(
+          this.textFilter.toLocaleLowerCase()) >= 0);
     }
   }
 
-  showFeatureModal(feature: IGeoFeature) {
+  showFeatureModal( feature: IGeoFeature ) {
     this.showModal = feature.properties.fileIdentifier;
     this.doSearch();
   }

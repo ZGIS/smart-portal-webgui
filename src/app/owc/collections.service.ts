@@ -39,7 +39,7 @@ export class CollectionsService {
         }
       )
       .catch(this.handleHttpFailure);
-  };
+  }
 
   /**
    * get specific collection (that you have access to, server will filter reliably)
@@ -68,7 +68,7 @@ export class CollectionsService {
         }
       )
       .catch(this.handleHttpFailure);
-  };
+  }
 
   getCollections(): Observable<IOwcDocument[]> {
     // add authorization header with jwt token
@@ -90,7 +90,7 @@ export class CollectionsService {
         }
       )
       .catch(this.handleHttpFailure);
-  };
+  }
 
   /**
    * get all uploaded files in user's default collection
@@ -143,5 +143,5 @@ export class CollectionsService {
       let message: String = `${errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`;
       return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()});
     }
-  };
+  }
 }

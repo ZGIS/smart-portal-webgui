@@ -77,7 +77,7 @@ export class BasicFileUploadComponent {
       return {item, response, status, responseHeaders};
     };
 
-  };
+  }
 
   public fileOverBase( e: any ): void {
     this.hasBaseDropZoneOver = e;

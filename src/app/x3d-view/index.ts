@@ -1,1 +1,1 @@
-export * from './x3d-view.component'
+export * from './x3d-view.component';

@@ -18,7 +18,7 @@ export class DashboardHomeComponent implements OnInit {
 
   constructor( private categoriesService: CategoriesService,
                private notificationService: NotificationService ) {
-  };
+  }
 
   ngOnInit(): void {
     this.categoriesService.getAllCategories()
