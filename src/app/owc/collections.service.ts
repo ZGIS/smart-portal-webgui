@@ -6,6 +6,7 @@ import { PORTAL_API_URL } from '../in-app-config';
 import { AccountService } from '../account';
 import { IOwcDocument } from './';
 import { IErrorResult } from '../search/result';
+import { IOwcLink } from './collections';
 
 @Injectable()
 export class CollectionsService {
@@ -78,7 +79,7 @@ export class CollectionsService {
     let headers = new Headers({'X-XSRF-TOKEN': token});
     let options = new RequestOptions({headers: headers, withCredentials: true});
 
-    // get default collection from api (should be exactly one OwcDocument)
+    // get visible collections from api
     return this.http.get(collectionsUri, options)
       .map(
         (response: Response) => {
@@ -94,9 +95,10 @@ export class CollectionsService {
 
   /**
    * get all uploaded files in user's default collection
+   * getPersonalFilesFromDefaultCollection returns owc Data Links
    * @returns {Observable<R>}
    */
-  getUploadedFilesFromDefaultCollection(filter?: String): Observable<Array<any>> {
+  getUploadedFilesFromDefaultCollection(filter?: string): Observable<IOwcLink[]> {
     let defaultCollectionFilesUri = this.portalApiUrl + '/collections/default/files';
     let token = this.accountService.token;
     console.log('token: ' + token);
@@ -107,25 +109,41 @@ export class CollectionsService {
       .map((response: Response) => {
         console.log('Files in DefaultCollection loaded');
         console.log(response.json());
-        let filtered = response.json().filter((v: any, i: any, o: any) => v.properties.title.match(filter));
+        let filtered = response.json().filter((o: IOwcLink) => o.title.match(filter));
         return filtered;
       })
       .catch(this.handleHttpFailure);
   }
 
-  // POST /api/v1/collections -> controllers.CollectionsController.insertCollection
-
-  // POST /api/v1/collections/update -> controllers.CollectionsController.updateCollectionMetadata
-
-  // GET /api/v1/collections/delete -> controllers.CollectionsController.deleteCollection(id: String)
-  //
-  // experimental, entries add, replace, delete from collections
-  // POST /api/v1/collections/entry
-  //    -> controllers.CollectionsController.addEntryToCollection(collectionid: String)
-  // POST /api/v1/collections/entry/replace
-  //    -> controllers.CollectionsController.replaceEntryInCollection(collectionid: String)
-  // GET /api/v1/collections/entry/delete
-  //    -> controllers.CollectionsController.deleteEntryFromCollection(collectionid: String, entryid: String)
+  /**
+   * POST /api/v1/collections
+   *   -> controllers.CollectionsController.insertCollection
+   *     -> Ok(Json.obj("message" -> "owcContext inserted", "document" -> theDoc.toJson))
+   *
+   * POST /api/v1/collections/update
+   *   -> controllers.CollectionsController.updateCollection
+   *     -> Ok(Json.obj("message" -> "owcContext updated", "document" -> theDoc.toJson))
+   *
+   * GET /api/v1/collections/delete
+   *   -> controllers.CollectionsController.deleteCollection(id: String)
+   *     -> Ok(Json.obj("message" -> "owcContext deleted", "document" -> owcContextId))
+   *
+   * POST /api/v1/collections/entry
+   *   -> controllers.CollectionsController.addResourceToCollection(collectionid: String)
+   *     -> Ok(Json.obj("message" -> "owcResource added to owcContext",
+   *         "document" -> theDoc.toJson, "entry" -> owcResource.toJson))
+   *
+   * POST /api/v1/collections/entry/replace
+   *   -> controllers.CollectionsController.replaceResourceInCollection(collectionid: String)
+   *     -> Ok(Json.obj("message" -> "owcResource replaced in owcContext",
+   *     "document" -> theDoc.toJson, "entry" -> owcResource.toJson))
+   *
+   * GET /api/v1/collections/entry/delete
+   *   -> controllers.CollectionsController.deleteResourceFromCollection(collectionid: String, resourceid: String)
+   *     -> Ok(Json.obj("message" -> "owcResource removed from owcContext", "document" ->
+   *     theDoc.toJson))
+   *
+   */
 
   /**
    * In case call failed, handle error

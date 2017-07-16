@@ -15,19 +15,22 @@ const entry = {
   'app': './src/main.ts'
 };
 
-module.exports = webpackMerge(coreConfig, {
-  entry: entry,
-
-  module: {
-    rules: [
-      {
+/*
+  {
         enforce: 'pre',
-        test: /^((?!(ngfactory|shim)).)*ts$/,
+        test: /^((?!(ngfactory|ngstyle|shim)).)*ts$/,
         use: 'tslint-loader',
         exclude: [
           /node_modules/
         ]
       },
+ */
+module.exports = webpackMerge(coreConfig, {
+  entry: entry,
+
+  module: {
+    rules: [
+
       {
         test: /\.html$/,
         use: 'html-loader',
