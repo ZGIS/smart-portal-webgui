@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from './account.service';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { NotificationService } from '../notifications';
-
+import { LoginCredentials } from './account.types';
 
 @Component({
   selector: 'app-sac-gwh-reset-pass-redeem',
@@ -45,8 +45,8 @@ export class ResetPassRedeemComponent implements OnInit {
       this.loading = false;
       this.passwordsAreSync = false;
     } else {
-      this.accountService.redeemPasswordReset(this.model.email, this.model.password,
-        this.redeemLink)
+      const resetCredentials: LoginCredentials = {email: this.model.email, password: this.model.password};
+      this.accountService.redeemPasswordReset(resetCredentials, this.redeemLink)
         .subscribe(
           result => {
             // TODO SR this should never be false!
@@ -58,14 +58,6 @@ export class ResetPassRedeemComponent implements OnInit {
                 message: 'Thank you. Please check your emails and login with your password'
               });
               this.router.navigateByUrl('/login');
-            // } else {
-            //   // login failed
-            //   this.notificationService.addNotification({
-            //     type: 'info',
-            //     message: 'Email not known to us.'
-            //   });
-            //   this.loading = false;
-            // }
           },
           error => {
             this.loading = false;

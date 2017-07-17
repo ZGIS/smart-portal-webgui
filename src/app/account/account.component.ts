@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AccountService, UserProfile } from './account.service';
+import { AccountService } from './account.service';
+import { ProfileJs } from './account.types';
 
 @Component({
   selector: 'app-sac-gwh-account',
@@ -13,9 +14,9 @@ export class AccountComponent implements OnInit {
 
   /**
    * Account information
-   * @type {{email: string; accountSubject: string; firstname: string; lastname: string; password?: string}}
+   * @type {ProfileJs}
    */
-  @Input() userProfile: UserProfile = this.accountService.guestProfile;
+  @Input() userProfile: ProfileJs = this.accountService.guestProfile;
 
   /**
    * Constructor

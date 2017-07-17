@@ -7,47 +7,13 @@ import 'rxjs/add/operator/catch';
 import { CookieService } from 'angular2-cookie/core';
 import { CSWI_API_URL, PORTAL_API_URL, WEBGUI_APP_VERSION } from '../in-app-config';
 import { IErrorResult } from '../search/result';
-import { PasswordUpdateCredentials } from './account-password-modal.component';
-
-/**
- *
- */
-export interface UserProfile {
-  email: string;
-  accountSubject: string;
-  firstname: string;
-  lastname: string;
-  password?: string;
-}
-
-/**
- *
- * @param profileConf
- * @returns {{email: string, accountSubject: string, firstname: string,
- *  lastname: string, password: string}}
- */
-export function createProfile(profileConf: UserProfile): {
-  email: string,
-  accountSubject: string,
-  firstname: string,
-  lastname: string,
-  password?: string
-} {
-
-  let profileObj = {
-    email: profileConf.email,
-    accountSubject: profileConf.accountSubject,
-    firstname: profileConf.firstname,
-    lastname: profileConf.lastname,
-    password: '***'
-  };
-
-  if (profileConf.password) {
-    profileObj.password = profileConf.password;
-  }
-
-  return profileObj;
-}
+import {
+  GAuthCredentials,
+  LoginCredentials,
+  PasswordUpdateCredentials,
+  ProfileJs,
+  RegisterJs
+} from './';
 
 /**
  *
@@ -57,13 +23,12 @@ export class AccountService {
 
   public token: string;
 
-  guestProfile = createProfile({
+  guestProfile: ProfileJs = {
     email: 'Your Account',
-    accountSubject: 'guest',
     firstname: 'Guest',
     lastname: 'User',
     password: '***'
-  });
+  };
 
   private loggedInState: BehaviorSubject<boolean>;
 
@@ -76,11 +41,11 @@ export class AccountService {
    * @param router
    * @param cookieService
    */
-  constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
-              @Inject(CSWI_API_URL) private cswiApiUrl: string,
-              @Inject(WEBGUI_APP_VERSION) public webguiAppVersion: string,
-              private http: Http, private router: Router,
-              private cookieService: CookieService) {
+  constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
+               @Inject(CSWI_API_URL) private cswiApiUrl: string,
+               @Inject(WEBGUI_APP_VERSION) public webguiAppVersion: string,
+               private http: Http, private router: Router,
+               private cookieService: CookieService ) {
 
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let cookieToken = this.cookieService.get('XSRF-TOKEN');
@@ -104,19 +69,19 @@ export class AccountService {
 
         this.http.get(profileUri, options)
           .map(
-            (response: Response) => {
+            ( response: Response ) => {
               // if (response.status === 200) {
               console.log('succesfully verified current session');
               let userProfileJson = response.json();
-              if (userProfileJson) {
-                let userProfile = createProfile(userProfileJson);
+              if (<ProfileJs>userProfileJson) {
+                const userProfile: ProfileJs = userProfileJson;
                 console.log(userProfile);
                 localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
               }
               this.loggedInState.next(true);
             }
           )
-          .catch((errorResponse: Response) => this.handleError(errorResponse));
+          .catch(( errorResponse: Response ) => this.handleError(errorResponse));
       } else { // current user.token != cookie.token
         console.log('auth token and cookie mismatch, not a valid session ...');
         this.loggedInState.next(false);
@@ -141,7 +106,7 @@ export class AccountService {
    *
    * @returns {Observable<R>}
    */
-  getProfile(): Observable<UserProfile> {
+  getProfile(): Observable<ProfileJs> {
     // add authorization header with jwt token
     let profileUri = this.portalApiUrl + '/users/self';
     console.log('token: ' + this.token);
@@ -154,10 +119,10 @@ export class AccountService {
     // get users from api
     return this.http.get(profileUri, options)
       .map(
-        (response: Response) => {
+        ( response: Response ) => {
           let userProfileJson = response.json();
-          if (userProfileJson) {
-            let userProfile = createProfile(userProfileJson);
+          if (<ProfileJs>userProfileJson) {
+            const userProfile: ProfileJs = userProfileJson;
             console.log(userProfile);
             this.loggedInState.next(true);
             localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
@@ -165,7 +130,7 @@ export class AccountService {
           return response.json();
         }
       )
-      .catch((errorResponse: Response) => this.handleError(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
 
   /**
@@ -189,7 +154,7 @@ export class AccountService {
     });
     let options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.get(logoutUri, options)
-      .map((response: Response) => {
+      .map(( response: Response ) => {
         // logout
         // if (response.status === 200) {
         this.loggedInState.next(false);
@@ -201,7 +166,7 @@ export class AccountService {
         // return true to indicate successful logout
         return true;
       })
-      .catch((errorResponse: Response) => this.handleErrorWithLogout(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleErrorWithLogout(errorResponse));
   }
 
   /**
@@ -216,7 +181,7 @@ export class AccountService {
     });
     let options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.get(deleteSelfUri, options)
-      .map((response: Response) => {
+      .map(( response: Response ) => {
         // deleteSelf
         // if (response.status === 200) {
         this.loggedInState.next(false);
@@ -228,22 +193,21 @@ export class AccountService {
         // return true to indicate successful logout
         return true;
       })
-      .catch((errorResponse: Response) => this.handleErrorWithLogout(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleErrorWithLogout(errorResponse));
   }
 
   /**
    *
-   * @param email
-   * @param password
+   * @param loginCredentials
    * @returns {Observable<R>}
    */
-  login(email: string, password: string): Observable<boolean> {
+  login( loginCredentials: LoginCredentials ): Observable<boolean> {
     let loginUri = this.portalApiUrl + '/login';
-    let data = JSON.stringify({email: email, password: password});
+    let data = JSON.stringify(loginCredentials);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.post(loginUri, data, options)
-      .map((response: Response) => {
+      .map(( response: Response ) => {
 
         // login successful if there's a xsrf token in the response
         let token = response.json() && response.json().token;
@@ -255,11 +219,12 @@ export class AccountService {
 
           // store accountSubject and xsrf token in local storage to keep user logged in between page
           // refreshes
-          localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));
+          localStorage.setItem('currentUser',
+            JSON.stringify({email: loginCredentials.email, token: token}));
 
           let userProfileJson = response.json().userprofile;
-          if (userProfileJson) {
-            let userProfile = createProfile(userProfileJson);
+          if (<ProfileJs>userProfileJson) {
+            const userProfile: ProfileJs = userProfileJson;
             console.log(userProfile);
             localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
           }
@@ -274,30 +239,29 @@ export class AccountService {
           return false;
         }
       })
-      .catch((errorResponse: Response) => this.handleErrorWithLogout(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleErrorWithLogout(errorResponse));
   }
 
   /**
    *
-   * @param userprofile
+   * @param registerJs
    * @returns {Observable<R>}
    */
-  register(userprofile: UserProfile): Observable<boolean> {
+  register( registerJs: RegisterJs ): Observable<boolean> {
     let regUri = this.portalApiUrl + '/users/register';
 
-    // JSON.stringify({email: email, password: password}))
-    return this.http.post(regUri, userprofile)
-      .map((response: Response) => {
+    return this.http.post(regUri, registerJs)
+      .map(( response: Response ) => {
         // if (response.status === 200) {
         let userProfileJson = response.json() && response.json().userprofile;
-        if (userProfileJson) {
-          let userProfile = createProfile(userProfileJson);
+        if (<ProfileJs>userProfileJson) {
+          const userProfile: ProfileJs = userProfileJson;
           console.log(userProfile);
           localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
         }
         return true;
       })
-      .catch((errorResponse: Response) => this.handleErrorWithLogout(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleErrorWithLogout(errorResponse));
   }
 
   /**
@@ -306,11 +270,15 @@ export class AccountService {
    * @param passwordUpdateCredentials
    * @returns {Observable<R>}
    */
-  updatePassword(email: string, passwordUpdateCredentials: PasswordUpdateCredentials): Observable<boolean> {
+  updatePassword( email: string,
+                  passwordUpdateCredentials: PasswordUpdateCredentials ): Observable<boolean> {
     let updatePassUri = this.portalApiUrl + '/users/updatepass';
 
-    let data = JSON.stringify({email: email,
-      oldpassword: passwordUpdateCredentials.passwordCurrent, newpassword: passwordUpdateCredentials.passwordNew});
+    let data = JSON.stringify({
+      email: email,
+      oldpassword: passwordUpdateCredentials.passwordCurrent,
+      newpassword: passwordUpdateCredentials.passwordNew
+    });
     let headers = new Headers({
       // 'Authorization': 'Bearer ' + this.token,
       'X-XSRF-TOKEN': this.token,
@@ -319,7 +287,7 @@ export class AccountService {
     let options = new RequestOptions({headers: headers, withCredentials: true});
 
     return this.http.post(updatePassUri, data, options)
-      .map((response: Response) => {
+      .map(( response: Response ) => {
         // login successful if there's a xsrf token in the response
         let token = response.json() && response.json().token;
         if (token) {
@@ -341,7 +309,7 @@ export class AccountService {
           return false;
         }
       })
-      .catch((errorResponse: Response) => this.handleError(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
 
   /**
@@ -349,7 +317,7 @@ export class AccountService {
    * @param userprofile
    * @returns {Observable<R>}
    */
-  updateProfile(userprofile: UserProfile): Observable<boolean> {
+  updateProfile( userprofile: ProfileJs ): Observable<boolean> {
     let updateProfileUri = this.portalApiUrl + '/users/update/' + userprofile.email;
 
     let headers = new Headers({
@@ -360,12 +328,12 @@ export class AccountService {
     let options = new RequestOptions({headers: headers, withCredentials: true});
 
     return this.http.post(updateProfileUri, userprofile, options)
-      .map((response: Response) => {
+      .map(( response: Response ) => {
         // TODO SR see above. HEre we will always have 2xx as status code
         // if (response.status === 200) {
-        let userProfileJson = response.json();
-        if (userProfileJson) {
-          let userProfile = createProfile(userProfileJson);
+        const userProfileJson = response.json();
+        if (<ProfileJs> userProfileJson) {
+          let userProfile: ProfileJs = userProfileJson;
           console.log(userProfile);
           localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
         }
@@ -374,22 +342,21 @@ export class AccountService {
         //   return false;
         // }
       })
-      .catch((errorResponse: Response) => this.handleError(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
 
   /**
    *
-   * @param email
+   * @param resetCredentials
    * @returns {Observable<R>}
    */
-  requestPasswordReset(email: string): Observable<boolean> {
+  requestPasswordReset( resetCredentials: LoginCredentials ): Observable<boolean> {
     let regUri = this.portalApiUrl + '/users/resetpass';
-
-    let data = JSON.stringify({email: email, password: 'PASSWORDRESET'});
+    let data = JSON.stringify(resetCredentials);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.post(regUri, data, options)
-      .map((response: Response) => {
+      .map(( response: Response ) => {
         // TODO SR see above
         // if (response.status === 200) {
         let info = response.json() && response.json().message;
@@ -399,25 +366,25 @@ export class AccountService {
         //   return false;
         // }
       })
-      .catch((errorResponse: Response) => this.handleError(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
 
   /**
    *
-   * @param email
-   * @param password
+   * @param resetCredentials
    * @param redeemlink
    * @returns {Observable<R>}
    */
-  redeemPasswordReset(email: string, password: string, redeemlink: string): Observable<boolean> {
+  redeemPasswordReset( resetCredentials: LoginCredentials,
+                       redeemlink: string ): Observable<boolean> {
     let regUri = this.portalApiUrl + '/users/resetpass/' + redeemlink;
 
-    let data = JSON.stringify({email: email, password: password});
+    let data = JSON.stringify(resetCredentials);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.post(regUri, data, options)
       .map(
-        (response: Response) => {
+        ( response: Response ) => {
           // TODO SR see above
           // if (response.status === 200) {
           let info = response.json() && response.json().message;
@@ -427,7 +394,7 @@ export class AccountService {
           //   return false;
           // }
         })
-      .catch((errorResponse: Response) => this.handleErrorWithLogout(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleErrorWithLogout(errorResponse));
   }
 
   /**
@@ -436,13 +403,13 @@ export class AccountService {
    * @param recaptchaChallenge
    * @returns {Observable<R>}
    */
-  testReCaptcha(recaptchaChallenge: string): Observable<boolean> {
+  testReCaptcha( recaptchaChallenge: string ): Observable<boolean> {
     let paramUrl = this.portalApiUrl + '/recaptcha/validate' +
       '?recaptcaChallenge=' + recaptchaChallenge;
     let options = new RequestOptions({withCredentials: true});
 
     return this.http.get(paramUrl, options)
-      .map((response: Response) => {
+      .map(( response: Response ) => {
         if (response.status === 200) {
 
           let success = response.json() && response.json().success;
@@ -455,7 +422,7 @@ export class AccountService {
           return false;
         }
       })
-      .catch((errorResponse: Response) => this.handleError(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
 
   /**
@@ -465,12 +432,12 @@ export class AccountService {
   getPortalBackendVersion(): Observable<string> {
     let portalVersionUrl = this.portalApiUrl + '/discovery';
     return this.http.get(portalVersionUrl)
-      .map((response: Response) => {
+      .map(( response: Response ) => {
         let info = response.json() && response.json().version;
         console.log(info);
         return info;
       })
-      .catch((errorResponse: Response) => this.handleError(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
 
   /**
@@ -480,76 +447,43 @@ export class AccountService {
   getCswIngesterVersion(): Observable<string> {
     let cswiVersionUrl = this.cswiApiUrl + '/discovery';
     return this.http.get(cswiVersionUrl)
-      .map((response: Response) => {
+      .map(( response: Response ) => {
         let info = response.json() && response.json().version;
         console.log(info);
         return info;
       })
-      .catch((errorResponse: Response) => this.handleError(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
 
   /**
    *
-   * @param authRequester
-   * @param authCode
+   * @param gAuthCredential
    * @returns {Observable<R>}
    */
-  gconnectHandle(authRequester: string, authCode: string) {
-    if (authRequester === 'REGISTER') {
-      console.log(authRequester);
-      // return this.gconnectHandleRegistration(authCode);
-      return this.gconnectHandleLogin(authCode);
-    } else if (authRequester === 'LOGIN') {
-      console.log(authRequester);
-      return this.gconnectHandleLogin(authCode);
+  gconnectHandle( gAuthCredential: GAuthCredentials ) {
+    console.log(gAuthCredential.accesstype);
+    if (gAuthCredential.accesstype === 'REGISTER') {
+      // return this.gconnectHandleRegistration(gAuthCredential);
+      return this.gconnectHandleLogin(gAuthCredential);
+    } else if (gAuthCredential.accesstype === 'LOGIN') {
+      return this.gconnectHandleLogin(gAuthCredential);
     }
   }
 
   /**
    *
-   * @param authCode
+   * @param gAuthCredential
    * @returns {Observable<R>}
    */
-  private gconnectHandleRegistration(authCode: string) {
+  private gconnectHandleLogin( gAuthCredential: GAuthCredentials ) {
     let gconnectPortalUri = this.portalApiUrl + '/login/gconnect';
-    let data = JSON.stringify({authcode: authCode, accesstype: 'REGISTER'});
+    let data = JSON.stringify(gAuthCredential);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers, withCredentials: true});
     console.log(data);
 
     return this.http.post(gconnectPortalUri, data, options)
-      .map((response: Response) => {
-        // FIXME SR this should never return anything else than 200!
-        // if (response.status === 200) {
-
-        let userProfileJson = response.json() && response.json().userprofile;
-        if (userProfileJson) {
-          let userProfile = createProfile(userProfileJson);
-          console.log(userProfile);
-          localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
-        }
-        return true;
-        // } else {
-        //   return false;
-        // }
-      })
-      .catch((errorResponse: Response) => this.handleError(errorResponse));
-  }
-
-  /**
-   *
-   * @param authCode
-   * @returns {Observable<R>}
-   */
-  private gconnectHandleLogin(authCode: string) {
-    let gconnectPortalUri = this.portalApiUrl + '/login/gconnect';
-    let data = JSON.stringify({authcode: authCode, accesstype: 'LOGIN'});
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers, withCredentials: true});
-    console.log(data);
-
-    return this.http.post(gconnectPortalUri, data, options)
-      .map((response: Response) => {
+      .map(( response: Response ) => {
         // login successful if there's a xsrf token in the response
         let token = response.json() && response.json().token;
         if (token) {
@@ -563,8 +497,8 @@ export class AccountService {
           localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));
 
           let userProfileJson = response.json().userprofile;
-          if (userProfileJson) {
-            let userProfile = createProfile(userProfileJson);
+          if (<ProfileJs>userProfileJson) {
+            const userProfile: ProfileJs = userProfileJson;
             console.log(userProfile);
             localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
           }
@@ -572,7 +506,7 @@ export class AccountService {
           return true;
         }
       })
-      .catch((errorResponse: Response) => this.handleErrorWithLogout(errorResponse));
+      .catch(( errorResponse: Response ) => this.handleErrorWithLogout(errorResponse));
   }
 
   /**
@@ -580,7 +514,7 @@ export class AccountService {
    * @param errorResponse
    * @returns {any}
    */
-  private handleError(errorResponse: Response) {
+  private handleError( errorResponse: Response ) {
     console.log(errorResponse);
 
     if (errorResponse.headers.get('content-type').startsWith('text/json') ||
@@ -599,7 +533,7 @@ export class AccountService {
    * @param errorResponse
    * @returns {any}
    */
-  private handleErrorWithLogout(errorResponse: Response) {
+  private handleErrorWithLogout( errorResponse: Response ) {
     if (errorResponse.status === 401) {
       // 401 unauthorized
       this.loggedInState.next(false);

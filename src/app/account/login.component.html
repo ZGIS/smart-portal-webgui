@@ -8,7 +8,7 @@
 
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <label for="email" tooltip="Your email is your username / login credential" placement="right">Email</label>
-            <input type="text" class="form-control" name="email" id="email" [(ngModel)]="model.email"
+            <input type="text" class="form-control" name="email" id="email" [(ngModel)]="loginCredentials.email"
                    #email="ngModel"
                    required
                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
@@ -16,7 +16,7 @@
           </div>
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="password">Password</label>
-            <input id="password" type="password" class="form-control" name="password" [(ngModel)]="model.password"
+            <input id="password" type="password" class="form-control" name="password" [(ngModel)]="loginCredentials.password"
                    #password="ngModel"
                    required
                    minlength="8"/>

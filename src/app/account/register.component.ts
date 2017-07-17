@@ -1,8 +1,9 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { AccountService, createProfile } from './account.service';
+import { AccountService } from './account.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
+import { GAuthCredentials, RegisterJs } from './account.types';
 
 /**
  *
@@ -39,20 +40,17 @@ export class RegisterComponent {
     this.passwordsAreSync = this.model.password === this.model.passwordConfirm;
   }
 
-  /**
-   *
-   */
   onSubmit() {
     this.loading = true;
     console.log(this.model);
 
-    let regProfile = createProfile({
+    const regProfile: RegisterJs = {
       email: this.model.email,
       accountSubject: 'local:' + this.model.email,
       firstname: this.model.firstname,
       lastname: this.model.lastname,
       password: this.model.password
-    });
+    };
 
     // console.log('submit register form clicked!');
     // console.log(regProfile);
@@ -129,7 +127,8 @@ export class RegisterComponent {
     if (authCode) {
       // console.log('getOAuthResponse register component');
       // console.log(authCode);
-      this.accountService.gconnectHandle('REGISTER', authCode).subscribe(
+      const gAuthCredential: GAuthCredentials = { authcode: authCode, accesstype: 'REGISTER' };
+      this.accountService.gconnectHandle(gAuthCredential).subscribe(
         result => {
           if (result === true) {
             // login successful

@@ -30,7 +30,14 @@ module.exports = webpackMerge(coreConfig, {
 
   module: {
     rules: [
-
+      {
+        enforce: 'pre',
+        test: /^((?!(ngfactory|ngstyle|shim)).)*ts$/,
+        use: 'tslint-loader',
+        exclude: [
+          /node_modules/
+        ]
+      },
       {
         test: /\.html$/,
         use: 'html-loader',

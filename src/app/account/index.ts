@@ -1,3 +1,4 @@
+export * from './account.types';
 export * from './account.component';
 export * from './account-password-modal.component';
 export * from './account-profile-modal.component';

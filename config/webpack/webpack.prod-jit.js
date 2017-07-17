@@ -8,6 +8,23 @@ const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 const commonConfig = require('./webpack.common.js');
 const helpers = require('./helpers');
 
+
+ // // only needed in prod aot builds
+ // ,
+ // new TypedocWebpackPlugin({
+ //
+ // name: 'SMART WebGui',
+ // mode: 'file',
+ // includeDeclarations: false,
+ // ignoreCompilerErrors: true,
+ // out: helpers.root('api-docs'),
+ // exclude: '**/node_modules/**/*.*',
+ //  experimentalDecorators: true,
+ //    excludeExternals: true
+ //  },
+ //  [ helpers.root('src')]
+ //  )
+
 module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
@@ -89,19 +106,6 @@ module.exports = webpackMerge(commonConfig, {
         from: './src/public/images',
         to: './images'
       }
-    ]),
-    new TypedocWebpackPlugin({
-
-        name: 'SMART WebGui',
-        mode: 'file',
-        includeDeclarations: false,
-        ignoreCompilerErrors: true,
-        out: helpers.root('api-docs'),
-        exclude: '**/node_modules/**/*.*',
-        experimentalDecorators: true,
-        excludeExternals: true
-      },
-      [ helpers.root('src')]
-    )
+    ])
   ]
 });

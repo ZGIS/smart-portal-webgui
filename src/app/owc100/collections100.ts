@@ -1,104 +1,130 @@
-export class OwcContext {
-  type: any;
+export interface OwcContext {
   id: string;
-  geometry: any;
+  bbox: any;
+  properties: OwcContextProperties;
+  links: OwcContextLinks;
+  features?: OwcResource[];
+}
+
+export interface OwcContextProperties {
   lang: string;
   title: string;
   subtitle?: string;
-  updated?: any;
+  updated: string;
+  authors?: OwcAuthor[];
+  publisher?: string;
   generator?: OwcCreatorApplication;
   display?: OwcCreatorDisplay;
-  rights: string;
-  authors: OwcAuthor[];
-  creator?: string;
-  publisher?: string;
-  categories: OwcCategory[];
-  links: OwcLink[];
-  features: OwcResource[];
+  rights?: string;
+  date?: string;
+  categories?: OwcCategory[];
 }
 
-export class OwcResource {
+export interface OwcContextLinks {
+  profiles: OwcLink[];
+  via?: OwcLink[];
+}
+
+export interface OwcResource {
   id: string;
-  geometry: any;
-  lang: string;
+  properties: OwcResourceProperties;
+}
+
+export interface OwcResourceProperties {
   title: string;
-  subtitle?: string;
-  updated?: any;
-  generator?: string;
-  rights: string;
-  authors: OwcAuthor[];
-  creator?: string;
+  abstract?: string;
+  updated: string;
+  authors?: OwcAuthor[];
   publisher?: string;
-  categories: OwcCategory[];
-  links: OwcLink[];
-  offerings: OwcOffering[];
-  content?: OwcContent;
+  rights?: string;
+  geometry?: any;
+  date?: string,
+  links?: OwcResourceLinks;
+  offerings?: OwcOffering[];
+  categories?: OwcCategory[];
+  active?: boolean;
+  minscaledenominator?: number;
+  maxscaledenominator?: number;
+  folder?: string;
 }
 
-export class OwcAuthor {
-  uuid?: string;
-  name: string;
-  email: string;
-  uri: string;
+export interface OwcResourceLinks {
+  alternates?: OwcLink[];
+  previews?: OwcLink[];
+  date?: OwcLink[];
+  via?: OwcLink[];
 }
 
-export class OwcCategory {
+export interface OwcAuthor {
+  name?: string;
+  email?: string;
+  uri?: string;
   uuid?: string;
-  scheme: string;
+}
+
+export interface OwcCategory {
   term: string;
-  label: string;
+  scheme?: string;
+  label?: string;
+  uuid?: string;
 }
 
-export class OwcLink {
-  uuid?: string;
-  rel: string;
-  type: string;
-  length: number;
+export interface OwcLink {
   href: string;
-  title: string;
+  type?: string;
+  lang?: string;
+  title?: string;
+  length?: number;
+  rel?: string;
+  uuid?: string;
 }
 
-export class OwcOffering {
-  uuid?: string;
+export interface OwcOffering {
   code: string;
   operations: OwcOperation[];
   contents: OwcContent[];
   styles: OwcStyleSet[];
+  uuid?: string;
 }
 
-export class OwcOperation {
-  uuid?: string;
+export interface OwcOperation {
   code: string;
   method: string;
-  type: string;
+  type?: string;
   href: string;
   request?: OwcContent;
   result?: OwcContent;
+  uuid?: string;
 }
 
-export class OwcCreatorApplication {
-  uuid?: string;
-  title: string;
-  version: string;
+export interface OwcCreatorApplication {
+  title?: string;
   uri?: string;
+  version?: string;
+  uuid?: string;
 }
 
-export class OwcCreatorDisplay {
-  uuid?: string;
-  pixelHeight: number;
-  pixelWidth: number;
+export interface OwcCreatorDisplay {
+  pixelWidth?: number;
+  pixelHeight?: number;
   mmPerPixel?: number;
+  uuid?: string;
 }
 
-export class OwcStyleSet {
-  uuid?: string;
+export interface OwcStyleSet {
+  name: string;
   title: string;
-  subtitle: string;
+  abstract?: string;
+  default?: boolean;
+  legendURL?: string;
   content?: OwcContent;
+  uuid?: string;
 }
 
-export class OwcContent {
-  uuid?: string;
-  type?: string;
+export interface OwcContent {
+  type: string;
+  href?: string;
+  title?: string;
   content?: string;
+  uuid?: string;
 }

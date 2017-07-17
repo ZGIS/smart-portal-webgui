@@ -31,9 +31,7 @@ export class AdminGuard implements CanActivate {
         message: 'You are not an admin, sorry.'
       });
       return Observable.of(false);
-
     });
-
   }
 }
 

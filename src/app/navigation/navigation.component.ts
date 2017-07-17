@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { AccountService, UserProfile, createProfile } from '../account';
+import { AccountService, ProfileJs } from '../account';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../notifications/notification.service';
 
@@ -18,13 +18,12 @@ export class NavigationComponent implements OnInit {
   // FIXME make this an enum or so
   currentNav: string;
 
-  @Input() public userProfile: UserProfile;
+  @Input() public userProfile: ProfileJs;
   @Input() public checkLoggedIn: boolean;
 
   @ViewChild('disclaimerModalRef') public disclaimerModal: ModalDirective;
   @ViewChild('aboutModalRef') public aboutModal: ModalDirective;
 
-  // accountSubject = this.accountService.isLoggedIn() ? this.accountService.getUsername() : 'guest';
   category = 'main';
 
   public PORTAL_WEBGUI_VERSION = '';
@@ -44,10 +43,10 @@ export class NavigationComponent implements OnInit {
 
     this.PORTAL_WEBGUI_VERSION = this.accountService.webguiAppVersion;
 
-    let currentUserProfile = JSON.parse(localStorage.getItem('currentUserProfile'));
+    let currentUserProfile: ProfileJs = JSON.parse(localStorage.getItem('currentUserProfile'));
 
-    if (currentUserProfile) {
-      this.userProfile = createProfile(currentUserProfile);
+    if (<ProfileJs>currentUserProfile) {
+      this.userProfile = currentUserProfile;
       console.log(this.userProfile);
     } else {
       this.userProfile = this.accountService.guestProfile;
@@ -90,17 +89,9 @@ export class NavigationComponent implements OnInit {
     this.accountService.logout()
       .subscribe(
         result => {
-          // TODO SR This should never happen!
-          // if (result === true) {
-          // logout successful
           this.checkLoggedIn = false;
           this.userProfile = this.accountService.guestProfile;
           this.router.navigateByUrl('/login');
-          // } else {
-          //   // logout failed?
-          //   console.log('logout in navigation failed, what now?');
-          //   this.router.navigateByUrl('/dashboard');
-          // }
         },
         error => {
           console.log(<any>error);
@@ -118,7 +109,7 @@ export class NavigationComponent implements OnInit {
         user => {
           this.userProfile = user;
           console.log('user profile change ' + this.userProfile.firstname);
-          if (user.accountSubject === this.accountService.guestProfile.email) {
+          if (user.email === this.accountService.guestProfile.email) {
             // refresh this.checkLoggedIn to false
             this.checkLoggedIn = false;
           } else {
@@ -141,9 +132,9 @@ export class NavigationComponent implements OnInit {
           console.log('LoggedIn change ' + this.checkLoggedIn);
           if (loggedInStatus === true) {
             // refresh loggedin user
-            let userProfile = JSON.parse(localStorage.getItem('currentUserProfile'));
-            if (userProfile) {
-              this.userProfile = createProfile(userProfile);
+            let userProfile: ProfileJs = JSON.parse(localStorage.getItem('currentUserProfile'));
+            if (<ProfileJs>userProfile) {
+              this.userProfile = userProfile;
             } else {
               this.userProfile = this.accountService.guestProfile;
             }

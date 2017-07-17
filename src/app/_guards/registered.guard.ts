@@ -26,7 +26,6 @@ export class RegisteredGuard implements CanActivate {
         message: 'Cannot access your documents collection. Are you logged in? Did you confirm the registration email?',
       });
       return Observable.of(false);
-
     });
   }
 }

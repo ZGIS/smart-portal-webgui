@@ -6,7 +6,6 @@ import { IGeoFeatureCollection, IErrorResult } from './result';
 import { Observable } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 import * as moment from 'moment';
-// import {MOCK_RESULTS} from './mock-results';
 
 @Injectable()
 export class ResultService {
@@ -30,7 +29,8 @@ export class ResultService {
    * @param fromDate
    * @param toDate
    * @param bboxWkt
-   * @returns {Observable<IGeoFeatureCollection>}
+   * @param maxNumberOfResults
+   * @returns {Observable<R|T>}
    */
   getResults(query: string,
              fromDate = moment('1970-01-01', this.DATE_FORMAT).format(this.DATE_FORMAT),

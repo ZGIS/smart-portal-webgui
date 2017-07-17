@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { AccountService, UserProfile } from './account.service';
+import { AccountService } from './account.service';
 import { NotificationService } from '../notifications';
+import { ProfileJs } from './account.types';
 
 @Component ({
   selector: 'app-sac-gwh-account-deleteself-modal',
@@ -16,9 +17,9 @@ export class AccountDeleteSelfModalComponent {
 
   /**
    * Current User's profile
-   * @type {{email: string; accountSubject: string; firstname: string; lastname: string; password?: string}}
+   * @type {ProfileJs}
    */
-  currentProfile: UserProfile = this.accountService.guestProfile;
+  currentProfile: ProfileJs = this.accountService.guestProfile;
 
   loading = false;
   error = '';
@@ -36,7 +37,7 @@ export class AccountDeleteSelfModalComponent {
    * Shows the current modal
    * @param userProfile
    */
-  showDeleteSelfModal(userProfile: UserProfile) {
+  showDeleteSelfModal(userProfile: ProfileJs) {
     this.currentProfile = userProfile;
     this.modal.show();
   }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AccountService } from './account.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
+import { LoginCredentials } from './account.types';
 
 @Component({
   selector: 'app-sac-gwh-reset-pass',
@@ -32,7 +33,8 @@ export class ResetPassComponent {
    */
   onSubmit() {
     this.loading = true;
-    this.accountService.requestPasswordReset(this.model.email)
+    const resetCredentials: LoginCredentials = {email: this.model.email, password: 'PASSWORDRESET'};
+    this.accountService.requestPasswordReset(resetCredentials)
       .subscribe(
         result => {
           this.loading = false;

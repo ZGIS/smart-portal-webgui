@@ -1,9 +1,9 @@
 import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { UserProfile } from './account.service';
 import { AccountService } from './account.service';
 import { NotificationService } from '../notifications';
 import { Subscription } from 'rxjs';
+import { ProfileJs } from './account.types';
 
 @Component ({
   selector: 'app-sac-gwh-account-profile-modal',
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class AccountProfileModalComponent implements OnInit, OnDestroy {
   @ViewChild('profileUpdateModalRef') public modal: ModalDirective;
 
-  currentProfile: UserProfile = this.accountService.guestProfile;
+  currentProfile: ProfileJs = this.accountService.guestProfile;
   loading = false;
   error = '';
 
@@ -56,7 +56,7 @@ export class AccountProfileModalComponent implements OnInit, OnDestroy {
    * shows the modal window
    * @param userProfile
    */
-  showUpdateModal(userProfile: UserProfile) {
+  showUpdateModal(userProfile: ProfileJs) {
     this.currentProfile = userProfile;
     this.modal.show();
   }

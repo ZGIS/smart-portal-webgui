@@ -1,13 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { AccountService, UserProfile } from './account.service';
+import { AccountService, ProfileJs, PasswordUpdateCredentials } from './';
 import { NotificationService } from '../notifications';
-
-export interface PasswordUpdateCredentials {
-  passwordCurrent?: string;
-  passwordNew?: string;
-  passwordConfirm?: string;
-}
 
 @Component ({
   selector: 'app-sac-gwh-account-password-modal',
@@ -22,9 +16,9 @@ export class AccountPasswordModalComponent {
 
   /**
    * Current User's profile
-   * @type {{email: string; accountSubject: string; firstname: string; lastname: string; password?: string}}
+   * @type {ProfileJs}
    */
-  currentProfile: UserProfile = this.accountService.guestProfile;
+  currentProfile: ProfileJs = this.accountService.guestProfile;
 
   passwordsAreSync = true;
   oldPassIsNotNewPass = true;
@@ -55,7 +49,7 @@ export class AccountPasswordModalComponent {
    * Shows the current modal
    * @param userProfile
    */
-  showUpdateModal(userProfile: UserProfile) {
+  showUpdateModal(userProfile: ProfileJs) {
     this.currentProfile = userProfile;
     this.modal.show();
   }
