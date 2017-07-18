@@ -6,28 +6,19 @@ import { AccountService } from './account/account.service';
 import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
 import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-import { CookieService } from 'ngx-cookie';
+import { CookieModule, CookieService } from 'ngx-cookie';
 import { NotificationService } from './notifications/notification.service';
 import { CategoriesService } from './dashboards/categories.service';
 import { NotificationComponent } from './notifications/notification.component';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
 
-// import { By }             from '@angular/platform-browser';
 
-////////  SPECS  /////////////
-
-/// Delete this
-describe('Smoke test', () => {
-  it('should run a passing test', () => {
-    expect(true).toEqual(true, 'should pass');
-  });
-});
-
-
-// fake backend provider
-// http://jasonwatmore.com/post/2016/08/16/
-//   angular-2-jwt-authentication-example-tutorial#fakebackendprovider
-
+/**
+ * fake backend provider
+ * http://jasonwatmore.com/post/2016/08/16/
+ * angular-2-jwt-authentication-example-tutorial#fakebackendprovider
+ *
+ */
 describe('App Component', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -53,7 +44,8 @@ describe('App Component', () => {
       ],
       imports: [
         RouterTestingModule,
-        Ng2BootstrapModule.forRoot()
+        Ng2BootstrapModule.forRoot(),
+        CookieModule.forRoot()
         /*RouterTestingModule.withRoutes([
          {
          path: '/home',
@@ -93,25 +85,4 @@ describe('AppComponent with TCB', function () {
     });
   });
 
-  /*
-   it('should instantiate component', () => {
-   let fixture = TestBed.createComponent(AppComponent);
-   expect(fixture.componentInstance instanceof AppComponent)
-   .toBe(true, 'should create AppComponent');
-   });
-
-   it('should have expected <h1> text', () => {
-   let fixture = TestBed.createComponent(AppComponent);
-   fixture.detectChanges();
-
-   // it works
-   let h1 = fixture.debugElement.query(el => el.name === 'h1').nativeElement;
-
-   // preferred
-   h1 = fixture.debugElement.query(By.css('h1')).nativeElement;
-
-   expect(h1.innerText).toMatch(/angular 2 app/i,
-   '<h1> should say something about "Angular 2 App"');
-   });
-   */
 });

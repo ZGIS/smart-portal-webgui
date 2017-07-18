@@ -45,7 +45,8 @@ export class CollectionsService {
   /**
    * get specific collection (that you have access to, server will filter reliably)
    *
-   * @returns {Observable<R|T>}
+   * @param {string} id
+   * @returns {Observable<OwcContext>}
    */
   getCollectionById(id: string): Observable<OwcContext> {
     // add authorization header with jwt token
@@ -118,31 +119,123 @@ export class CollectionsService {
   /**
    * POST /api/v1/collections
    *   -> controllers.CollectionsController.insertCollection
-   *     -> Ok(Json.obj("message" -> "owcContext inserted", "context" -> theDoc.toJson))
+   *     -> Ok(Json.obj("message" -> "owcContext inserted", "document" -> theDoc.toJson))
    *
+   * insert a collection, the owcContext.id must not exist on the server or it will fail
+   *
+   * @param {OwcContext} owcContext
+   * @returns {Observable<OwcContext>}
+   */
+  insertCollection(owcContext: OwcContext): Observable<OwcContext> {
+    let defaultCollectionsUri = this.portalApiUrl + '/collections';
+    let token = this.accountService.token;
+    console.log('token: ' + token);
+    let headers = new Headers({'X-XSRF-TOKEN': token});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    return this.http.post(defaultCollectionsUri, owcContext, options)
+      .map(
+        (response: Response) => {
+          let insertedCollection = response.json().document;
+          if (<OwcContext>insertedCollection) {
+            console.log(insertedCollection);
+          }
+          return response.json();
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
+
+  /**
    * POST /api/v1/collections/update
    *   -> controllers.CollectionsController.updateCollection
-   *     -> Ok(Json.obj("message" -> "owcContext updated", "context" -> theDoc.toJson))
+   *     -> Ok(Json.obj("message" -> "owcContext updated", "document" -> theDoc.toJson))
    *
+   * update a collection, the owcContext.id must already exist on the server and user must own
+   * or it will fail
+   *
+   * @param {OwcContext} owcContext
+   * @returns {Observable<OwcContext>}
+   */
+  updateCollection(owcContext: OwcContext): Observable<OwcContext> {
+    let defaultCollectionsUri = this.portalApiUrl + '/collections/update';
+    let token = this.accountService.token;
+    console.log('token: ' + token);
+    let headers = new Headers({'X-XSRF-TOKEN': token});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    return this.http.post(defaultCollectionsUri, owcContext, options)
+      .map(
+        (response: Response) => {
+          let insertedCollection = response.json().document;
+          if (<OwcContext>insertedCollection) {
+            console.log(insertedCollection);
+          }
+          return response.json();
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
+
+  /**
    * GET /api/v1/collections/delete
    *   -> controllers.CollectionsController.deleteCollection(id: String)
    *     -> Ok(Json.obj("message" -> "owcContext deleted", "document" -> owcContextId))
    *
+   * delete specific collection that you have access to,
+   * server will check that and either allow or fail the operation
+   *
+   * @param {string} id
+   * @returns {Observable<boolean>}
+   */
+  deleteCollectionById(id: string): Observable<boolean> {
+    // add authorization header with jwt token
+    let defaultCollectionsUri = this.portalApiUrl + '/collections/delete';
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('id', id);
+    let token = this.accountService.token;
+    console.log('token: ' + token);
+    let headers = new Headers({'X-XSRF-TOKEN': token});
+    let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
+
+    // get default collection from api (should be exactly one OwcContext)
+    return this.http.get(defaultCollectionsUri, options)
+      .map(
+        (response: Response) => {
+          let checkedId = response.json().document;
+          if (checkedId) {
+            console.log(checkedId);
+            if (checkedId === id) {
+              return true;
+            } else {
+              console.log('weird: ' + checkedId + ' not equal to ' + id);
+              return false;
+            }
+          } else {
+            return false;
+          }
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
+
+  /**
    * POST /api/v1/collections/entry
    *   -> controllers.CollectionsController.addResourceToCollection(collectionid: String)
    *     -> Ok(Json.obj("message" -> "owcResource added to owcContext",
    *         "document" -> theDoc.toJson, "entry" -> owcResource.toJson))
-   *
+   */
+
+  /**
    * POST /api/v1/collections/entry/replace
    *   -> controllers.CollectionsController.replaceResourceInCollection(collectionid: String)
    *     -> Ok(Json.obj("message" -> "owcResource replaced in owcContext",
    *     "document" -> theDoc.toJson, "entry" -> owcResource.toJson))
-   *
+   */
+
+  /**
    * GET /api/v1/collections/entry/delete
    *   -> controllers.CollectionsController.deleteResourceFromCollection(collectionid: String, resourceid: String)
    *     -> Ok(Json.obj("message" -> "owcResource removed from owcContext", "document" ->
    *     theDoc.toJson))
-   *
    */
 
   /**
