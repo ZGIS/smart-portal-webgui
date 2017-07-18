@@ -12,11 +12,14 @@ export class CardComponent {
   @Input() cardImage: string;
   @Input() title: string;
   @Input() bodyText: string;
+  @Input() origin: string;
+  @Input() originUrl: string;
+  @Input() tempRating: number;
 
   @Output() headerClick = new EventEmitter();
   @Output() readMoreClick = new EventEmitter();
 
-  tempRating = 0;
+
 
   headerClicked() {
     this.headerClick.emit();

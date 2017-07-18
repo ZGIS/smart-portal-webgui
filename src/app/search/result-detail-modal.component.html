@@ -12,6 +12,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Details:</div>
           <div class="panel-body">
+
             <form class="form-horizontal">
               <div class="form-group">
                 <label class="col-sm-2 control-label">Abstract</label>
@@ -84,10 +85,10 @@
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Origin of record</label>
+                <label class="col-sm-2 control-label">Source:</label>
                 <div class="col-sm-10">
                   <p class="form-control-static">{{feature.properties.origin}}
-                    - <a *ngIf="feature.properties.originUrl" href="{{feature.properties.originUrl}}">
+                    <a *ngIf="feature.properties.originUrl" href="{{feature.properties.originUrl}}">
                       <i class="fa fa-globe"></i>&nbsp;{{feature.properties.originUrl}}</a>
                   </p>
                 </div>
@@ -99,6 +100,13 @@
                   <p class="form-control-static">
                     <a routerLink="/context/resource/{{feature.properties.fileIdentifier}}">{{feature.properties.fileIdentifier}}</a>
                   </p>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Share this:</label>
+                <div class="col-sm-10">
+                  <app-share-buttons></app-share-buttons>
                 </div>
               </div>
 

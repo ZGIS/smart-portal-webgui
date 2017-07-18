@@ -1,36 +1,19 @@
 <div class="card">
   <div class="header">
     <!-- 'https://www.rabobank.com/en/images/A%20Kerndocumenten.jpg' -->
-    <!-- 'https://www.addtoany.com/buttons/for/website' -->
 
     <img src="{{cardImage}}"/>
     <h4>{{ title }}</h4>
 
-    <div class="share-icons">
-
-      <app-share-buttons></app-share-buttons>
-
-      <!--
-      <div class="fa fa-stack">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-      </div>
-      <div class="fa fa-stack">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-      </div>
-      <div class="fa fa-stack">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
-      </div>
-      -->
-    </div>
     <div class="rating">
-      <rating [(ngModel)]="tempRating" [max]="5" [readonly]="false"></rating>
+      <rating [(ngModel)]="tempRating" [max]="10" [readonly]="true"></rating>
     </div>
   </div>
   <div class="card-content">
     <div>
+      <small><b>(src:{{origin}}
+      <a *ngIf="originUrl" href="{{originUrl}}">
+        <i class="fa fa-globe"></i>&nbsp;{{originUrl}}</a></b></small>)
       {{ getFirstWords(bodyText, 100)}}
     </div>
     <div class="gradient"></div>
