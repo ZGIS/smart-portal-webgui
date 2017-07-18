@@ -6,7 +6,7 @@ import { PORTAL_API_URL } from '../in-app-config';
 import { AccountService } from '../account';
 import { OwcContext } from './';
 import { IErrorResult } from '../search/result';
-import { OwcLink } from './collections';
+import { OwcLink, OwcResource } from './collections';
 
 @Injectable()
 export class CollectionsService {
@@ -183,30 +183,27 @@ export class CollectionsService {
    * delete specific collection that you have access to,
    * server will check that and either allow or fail the operation
    *
-   * @param {string} id
+   * @param {string} collectionid
    * @returns {Observable<boolean>}
    */
-  deleteCollectionById(id: string): Observable<boolean> {
-    // add authorization header with jwt token
+  deleteCollectionById(collectionid: string): Observable<boolean> {
     let defaultCollectionsUri = this.portalApiUrl + '/collections/delete';
     let params: URLSearchParams = new URLSearchParams();
-    params.set('id', id);
+    params.set('id', collectionid);
     let token = this.accountService.token;
     console.log('token: ' + token);
     let headers = new Headers({'X-XSRF-TOKEN': token});
     let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
-
-    // get default collection from api (should be exactly one OwcContext)
     return this.http.get(defaultCollectionsUri, options)
       .map(
         (response: Response) => {
           let checkedId = response.json().document;
           if (checkedId) {
             console.log(checkedId);
-            if (checkedId === id) {
+            if (checkedId === collectionid) {
               return true;
             } else {
-              console.log('weird: ' + checkedId + ' not equal to ' + id);
+              console.log('weird: ' + checkedId + ' not equal to ' + collectionid);
               return false;
             }
           } else {
@@ -222,21 +219,102 @@ export class CollectionsService {
    *   -> controllers.CollectionsController.addResourceToCollection(collectionid: String)
    *     -> Ok(Json.obj("message" -> "owcResource added to owcContext",
    *         "document" -> theDoc.toJson, "entry" -> owcResource.toJson))
+   *
+   * add a resource entry to a collection, the user must own the owccontext collection and the
+   * resource id must not exist
+   *
+   * @param {string} collectionid
+   * @param {OwcResource} owcResource
+   * @returns {Observable<OwcContext>}
    */
+  addResourceToCollection(collectionid: string, owcResource: OwcResource): Observable<OwcContext> {
+    let defaultCollectionsUri = this.portalApiUrl + '/collections/entry';
+    let token = this.accountService.token;
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('collectionid', collectionid);
+    console.log('token: ' + token);
+    let headers = new Headers({'X-XSRF-TOKEN': token});
+    let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
+    return this.http.post(defaultCollectionsUri, owcResource, options)
+      .map(
+        (response: Response) => {
+          let updatedCollection = response.json().document;
+          if (<OwcContext>updatedCollection) {
+            console.log(updatedCollection);
+          }
+          return response.json();
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
 
   /**
    * POST /api/v1/collections/entry/replace
    *   -> controllers.CollectionsController.replaceResourceInCollection(collectionid: String)
    *     -> Ok(Json.obj("message" -> "owcResource replaced in owcContext",
    *     "document" -> theDoc.toJson, "entry" -> owcResource.toJson))
+   *
+   * update a resource entry in a colection, the collection and the resource must exist in that
+   * constallation with the user owning them
+   *
+   * @param {string} collectionid
+   * @param {OwcResource} owcResource
+   * @returns {Observable<OwcContext>}
    */
+  replaceResourceInCollection(collectionid: string, owcResource: OwcResource): Observable<OwcContext> {
+    let defaultCollectionsUri = this.portalApiUrl + '/collections/entry/replace';
+    let token = this.accountService.token;
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('collectionid', collectionid);
+    console.log('token: ' + token);
+    let headers = new Headers({'X-XSRF-TOKEN': token});
+    let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
+    return this.http.post(defaultCollectionsUri, owcResource, options)
+      .map(
+        (response: Response) => {
+          let updatedCollection = response.json().document;
+          if (<OwcContext>updatedCollection) {
+            console.log(updatedCollection);
+          }
+          return response.json();
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
 
   /**
    * GET /api/v1/collections/entry/delete
    *   -> controllers.CollectionsController.deleteResourceFromCollection(collectionid: String, resourceid: String)
    *     -> Ok(Json.obj("message" -> "owcResource removed from owcContext", "document" ->
    *     theDoc.toJson))
+   *
+   * delete a resource entry from a collection
+   *
+   * @param {string} collectionid
+   * @param {string} resourceid
+   * @returns {Observable<OwcContext>}
    */
+  deleteResourceFromCollection(collectionid: string, resourceid: string): Observable<OwcContext> {
+    let defaultCollectionsUri = this.portalApiUrl + '/collections/entry/delete';
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('collectionid', collectionid);
+    params.set('resourceid', resourceid);
+    let token = this.accountService.token;
+    console.log('token: ' + token);
+    let headers = new Headers({'X-XSRF-TOKEN': token});
+    let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
+    return this.http.get(defaultCollectionsUri, options)
+      .map(
+        (response: Response) => {
+          let updatedCollection = response.json().document;
+          if (<OwcContext>updatedCollection) {
+            console.log(updatedCollection);
+          }
+          return response.json();
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
 
   /**
    * In case call failed, handle error

@@ -14,7 +14,7 @@ import { OwcOperation } from './collections';
         <small>href: <a [href]="owcOperation.href"
                         target="_blank">{{ owcOperation.href }} <i class="fa fa-globe"></i></a>
         </small>
-        /p>
+      </p>
       <div *ngIf="owcOperation.request">
         <app-sac-gwh-owccontent [owcContent]="owcOperation.request"></app-sac-gwh-owccontent>
       </div>
