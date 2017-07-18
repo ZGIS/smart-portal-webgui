@@ -15,12 +15,15 @@
 
         <p><span class="badge pull-left">Resource ID:</span> <small><i> {{ owcResource.id }}</i></small></p>
         <div>
+          <!--
           <button (click)="reloadResource()" type="button" class="btn btn-default" tooltip="Refresh this resource entry">
             Reload <i class="fa fa-repeat" aria-hidden="true"></i>
           </button>
+          -->
           <button (click)="editProperties()" type="button" class="btn btn-primary" tooltip="Edit the entry">
             Edit <i class="fa fa-edit" aria-hidden="true"></i>
           </button>
+
           <button (click)="deleteResource()" type="button" class="btn btn-warning" tooltip="Delete the resource entry">
             Delete <i class="fa fa-trash" aria-hidden="true"></i>
           </button>

@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { OwcResource } from './';
+import { NotificationService } from '../notifications';
+import { OwcContext, CollectionsService, OwcResource } from './';
 
 @Component({
   selector: 'app-sac-gwh-owcresource-detail-modal',
@@ -9,12 +10,23 @@ import { OwcResource } from './';
 
 export class OwcResourceDetailModalComponent {
   owcResource: OwcResource;
+  collectionid: string;
 
   @ViewChild('owcResourceDetailModalRef') public modal: ModalDirective;
 
-  showOwcResourceModal(owcFeature: OwcResource) {
-    if (owcFeature !== undefined) {
+  /**
+   * Constructor
+   * @param collectionsService  - injected CollectionsService
+   * @param notificationService - injected NotificationService
+   */
+  constructor(private collectionsService: CollectionsService,
+              private notificationService: NotificationService) {
+  }
+
+  showOwcResourceModal(owcFeature: OwcResource, owccontextid: string) {
+    if (owcFeature !== undefined && owccontextid !== undefined) {
       this.owcResource = owcFeature;
+      this.collectionid = owccontextid;
       this.modal.show();
     }
   }
@@ -25,13 +37,38 @@ export class OwcResourceDetailModalComponent {
 
   reloadResource(): void {
     console.log('we reload this resource entry');
+    this.notificationService.addNotification({
+      id: NotificationService.DEFAULT_DISMISS,
+      type: 'info',
+      message: `Refresh this resource entry, not yet implemented.`
+    });
   }
 
   editProperties(): void {
     console.log('we edit the properties');
+    this.notificationService.addNotification({
+      id: NotificationService.DEFAULT_DISMISS,
+      type: 'info',
+      message: `Editing of this resource entry, not yet implemented.`
+    });
   }
 
   deleteResource(): void {
     console.log('we delete this resource entry');
+    this.collectionsService.deleteResourceFromCollection(this.collectionid, this.owcResource.id).subscribe(
+      deleted => {
+        console.log('deleted ' + deleted);
+        this.notificationService.addNotification({
+          id: NotificationService.DEFAULT_DISMISS,
+          type: 'info',
+          message: `This resource entry has been deleted.`
+        });
+        this.hideOwcResourceModal();
+      },
+      error => {
+        console.log(<any>error);
+        this.notificationService.addErrorResultNotification(error);
+      });
+
   }
 }

@@ -8,9 +8,11 @@
     </div>
 
     <div>
+      <!--
       <button (click)="reloadCollection()" type="button" class="btn btn-default" tooltip="Refresh this collection">
         Reload <i class="fa fa-repeat" aria-hidden="true"></i>
       </button>
+      -->
       <button (click)="editProperties()" type="button" class="btn btn-primary" tooltip="Edit the properties">
         Edit <i class="fa fa-edit" aria-hidden="true"></i>
       </button>
@@ -45,7 +47,7 @@
 
       <div class="list-group" *ngIf="myCollection.features.length > 0">
         <li class="list-group-item" *ngFor="let owcResource of myCollection.features">
-          <a (click)="owcResourceDetailModalRef.showOwcResourceModal(owcResource)">
+          <a (click)="owcResourceDetailModalRef.showOwcResourceModal(owcResource, myCollection.id)">
             {{ owcResource.properties.title }} </a>
         </li>
       </div>
