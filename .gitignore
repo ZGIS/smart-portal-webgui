@@ -61,3 +61,4 @@ sphinx-build
 
 
 /_coverage/
+/package-lock.json

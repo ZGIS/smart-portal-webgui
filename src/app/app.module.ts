@@ -41,11 +41,11 @@ import {
 } from './dashboards';
 import { Ol3MapComponent } from './ol3-map';
 import {
+  AccountService,
   AccountComponent,
   AccountPasswordModalComponent,
   AccountProfileModalComponent,
   AccountDeleteSelfModalComponent,
-  AccountService,
   GApiAuthComponent,
   GApiAuthService,
   LoginComponent,
@@ -57,9 +57,9 @@ import {
 } from './account';
 import { BasicFileUploadComponent, MetadataEditorComponent } from './workbench';
 import {
+  CollectionsService,
   CollectionsComponent,
   CollectionsDeskComponent,
-  CollectionsService,
   OwcAuthorComponent,
   OwcCategoryComponent,
   OwcContextPropertiesComponent,
