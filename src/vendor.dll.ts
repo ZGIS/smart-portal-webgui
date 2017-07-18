@@ -22,13 +22,14 @@ import '@angularclass/hmr';
 import 'rxjs';
 
 // Global packages
-import 'angular2-cookie/core';
-import 'angular2-cookie/services';
+import 'ngx-cookie';
 import 'ngx-bootstrap';
 import 'ng2-file-upload';
 import 'ngx-clipboard';
 
 import 'bootstrap/dist/js/bootstrap';
 import 'moment';
+import 'moment-timezone';
 import 'openlayers';
+import 'plotly.js';
 import 'x3dom';

@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { PORTAL_API_URL } from '../in-app-config';
 import { AccountService } from '../account';
-import { IOwcDocument } from './';
+import { OwcContext } from './';
 import { IErrorResult } from '../search/result';
-import { IOwcLink } from './collections';
+import { OwcLink } from './collections';
 
 @Injectable()
 export class CollectionsService {
@@ -20,7 +20,7 @@ export class CollectionsService {
    *
    * @returns {Observable<R|T>}
    */
-  getDefaultCollection(): Observable<IOwcDocument> {
+  getDefaultCollection(): Observable<OwcContext> {
     // add authorization header with jwt token
     let defaultCollectionsUri = this.portalApiUrl + '/collections/default';
     let token = this.accountService.token;
@@ -28,12 +28,12 @@ export class CollectionsService {
     let headers = new Headers({'X-XSRF-TOKEN': token});
     let options = new RequestOptions({headers: headers, withCredentials: true});
 
-    // get default collection from api (should be exactly one OwcDocument)
+    // get default collection from api (should be exactly one OwcContext)
     return this.http.get(defaultCollectionsUri, options)
       .map(
         (response: Response) => {
           let userCollectionJson = response.json();
-          if (<IOwcDocument>userCollectionJson) {
+          if (<OwcContext>userCollectionJson) {
             console.log(userCollectionJson);
           }
           return response.json();
@@ -47,7 +47,7 @@ export class CollectionsService {
    *
    * @returns {Observable<R|T>}
    */
-  getCollectionById(id: string): Observable<IOwcDocument> {
+  getCollectionById(id: string): Observable<OwcContext> {
     // add authorization header with jwt token
     let defaultCollectionsUri = this.portalApiUrl + '/collections';
     let params: URLSearchParams = new URLSearchParams();
@@ -57,12 +57,12 @@ export class CollectionsService {
     let headers = new Headers({'X-XSRF-TOKEN': token});
     let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
 
-    // get default collection from api (should be exactly one OwcDocument)
+    // get default collection from api (should be exactly one OwcContext)
     return this.http.get(defaultCollectionsUri, options)
       .map(
         (response: Response) => {
           let userCollectionJson = response.json();
-          if (<IOwcDocument>userCollectionJson) {
+          if (<OwcContext>userCollectionJson) {
             console.log(userCollectionJson);
           }
           return response.json();
@@ -71,7 +71,7 @@ export class CollectionsService {
       .catch(this.handleHttpFailure);
   }
 
-  getCollections(): Observable<IOwcDocument[]> {
+  getCollections(): Observable<OwcContext[]> {
     // add authorization header with jwt token
     let collectionsUri = this.portalApiUrl + '/collections';
     let token = this.accountService.token;
@@ -84,7 +84,7 @@ export class CollectionsService {
       .map(
         (response: Response) => {
           let userCollectionJson = response.json() && response.json().collections;
-          if (<IOwcDocument[]>userCollectionJson) {
+          if (<OwcContext[]>userCollectionJson) {
             console.log(response.json().count);
           }
           return response.json().collections;
@@ -98,7 +98,7 @@ export class CollectionsService {
    * getPersonalFilesFromDefaultCollection returns owc Data Links
    * @returns {Observable<R>}
    */
-  getUploadedFilesFromDefaultCollection(filter?: string): Observable<IOwcLink[]> {
+  getUploadedFilesFromDefaultCollection(filter?: string): Observable<OwcLink[]> {
     let defaultCollectionFilesUri = this.portalApiUrl + '/collections/default/files';
     let token = this.accountService.token;
     console.log('token: ' + token);
@@ -109,7 +109,7 @@ export class CollectionsService {
       .map((response: Response) => {
         console.log('Files in DefaultCollection loaded');
         console.log(response.json());
-        let filtered = response.json().filter((o: IOwcLink) => o.title.match(filter));
+        let filtered = response.json().filter((o: OwcLink) => o.title.match(filter));
         return filtered;
       })
       .catch(this.handleHttpFailure);
@@ -118,11 +118,11 @@ export class CollectionsService {
   /**
    * POST /api/v1/collections
    *   -> controllers.CollectionsController.insertCollection
-   *     -> Ok(Json.obj("message" -> "owcContext inserted", "document" -> theDoc.toJson))
+   *     -> Ok(Json.obj("message" -> "owcContext inserted", "context" -> theDoc.toJson))
    *
    * POST /api/v1/collections/update
    *   -> controllers.CollectionsController.updateCollection
-   *     -> Ok(Json.obj("message" -> "owcContext updated", "document" -> theDoc.toJson))
+   *     -> Ok(Json.obj("message" -> "owcContext updated", "context" -> theDoc.toJson))
    *
    * GET /api/v1/collections/delete
    *   -> controllers.CollectionsController.deleteCollection(id: String)

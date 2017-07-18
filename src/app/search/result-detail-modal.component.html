@@ -27,7 +27,15 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div *ngIf="feature.properties.topicCategories.length > 0" class="form-group">
+                <label class="col-sm-2 control-label">Topic category (ISO/ANZLIC)</label>
+                <div class="col-sm-10">
+                  <p class="form-control-static">{{feature.properties.topicCategories.join(', ')}}</p>
+                  <p *ngIf="feature.properties.smartCategory.length > 0" class="form-control-static">{{feature.properties.smartCategory.join(', ')}}</p>
+                </div>
+              </div>
+
+              <div *ngIf="feature.properties.dateStamp" class="form-group">
                 <label class="col-sm-2 control-label">date</label>
                 <div class="col-sm-10">
                   <p class="form-control-static">{{feature.properties.dateStamp}}</p>
@@ -35,35 +43,36 @@
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">contact person</label>
+                <label class="col-sm-2 control-label">contact information</label>
                 <div class="col-sm-10">
-                  <p class="form-control-static">{{feature.properties.contactName}}
-                    ({{feature.properties.contactEmail}})</p>
+                  <p *ngIf="feature.properties.contactName" class="form-control-static">{{feature.properties.contactName}}
+                  <div *ngIf="feature.properties.contactEmail">({{feature.properties.contactEmail}})</div></p>
+                  <p *ngIf="feature.properties.contactOrg" class="form-control-static">Organisation: {{feature.properties.contactOrg}}</p>
                 </div>
               </div>
 
-              <div class="form-group">
+              <div  class="form-group">
                 <label class="col-sm-2 control-label">contact organisation</label>
                 <div class="col-sm-10">
-                  <p class="form-control-static">{{feature.properties.contactOrg}}</p>
+
                 </div>
               </div>
 
-              <div class="form-group">
+              <div *ngIf="feature.properties.license" class="form-group">
                 <label class="col-sm-2 control-label">license</label>
                 <div class="col-sm-10">
                   <p class="form-control-static">{{feature.properties.license}}</p>
                 </div>
               </div>
 
-              <div class="form-group">
+              <div *ngIf="feature.properties.lineageStmt" class="form-group">
                 <label class="col-sm-2 control-label">lineage statement</label>
                 <div class="col-sm-10">
                   <p class="form-control-static">{{feature.properties.lineageStmt}}</p>
                 </div>
               </div>
 
-              <div class="form-group">
+              <div *ngIf="feature.properties.linkage.length > 0" class="form-group">
                 <label class="col-sm-2 control-label">linkages</label>
                 <div class="col-sm-10">
                   <p class="form-control-static">
@@ -75,10 +84,20 @@
               </div>
 
               <div class="form-group">
+                <label class="col-sm-2 control-label">Origin of record</label>
+                <div class="col-sm-10">
+                  <p class="form-control-static">{{feature.properties.origin}}
+                    - <a *ngIf="feature.properties.originUrl" href="{{feature.properties.originUrl}}">
+                      <i class="fa fa-globe"></i>&nbsp;{{feature.properties.originUrl}}</a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="form-group">
                 <label class="col-sm-2 control-label">File Identifier</label>
                 <div class="col-sm-10">
                   <p class="form-control-static">
-                    <a routerLink="/context/entry/{{feature.properties.fileIdentifier}}">{{feature.properties.fileIdentifier}}</a>
+                    <a routerLink="/context/resource/{{feature.properties.fileIdentifier}}">{{feature.properties.fileIdentifier}}</a>
                   </p>
                 </div>
               </div>

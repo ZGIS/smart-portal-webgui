@@ -1,0 +1,87 @@
+<div class="panel panel-default" *ngIf="owcResourceProperties">
+  <div class="panel-heading">Title: {{owcResourceProperties.title}}</div>
+
+  <div class="panel-body">
+    <ul class="list-group">
+
+      <li class="list-group-item"  *ngIf="owcResourceProperties.abstract">
+        <span class="badge pull-left">Abstract:</span>&nbsp;
+        <div class="list-group-item">{{ owcResourceProperties.abstract }}</div>
+      </li>
+      <li class="list-group-item"  *ngIf="owcResourceProperties.date || owcResourceProperties.updated">
+        <p *ngIf="owcResourceProperties.updated"><small><i>{{ 'Last updated: ' + owcResourceProperties.updated }}</i></small></p>
+        <p *ngIf="owcResourceProperties.date"><small><i>{{ 'Temporal extent: ' + owcResourceProperties.date }}</i></small></p>
+      </li>
+      <li class="list-group-item"  *ngIf="owcResourceProperties.geometry">
+        <span class="badge pull-left">Geospatial extent:</span>&nbsp;
+        <div>
+          Here should be a map roughly outlining the geometry of: {{ owcResourceProperties.geometry | json }}
+        </div>
+      </li>
+      <li class="list-group-item"  *ngIf="owcResourceProperties.active || owcResourceProperties.minscaledenominator || owcResourceProperties.maxscaledenominator">
+        <p *ngIf="owcResourceProperties.active"><small><i>{{ 'layer should be active: ' + owcResourceProperties.active }}</i></small></p>
+        <p *ngIf="owcResourceProperties.minscaledenominator"><small><i>{{ 'minimal scale visible: ' + owcResourceProperties.minscaledenominator }}</i></small></p>
+        <p *ngIf="owcResourceProperties.maxscaledenominator"><small><i>{{ 'maximal scale visible: ' + owcResourceProperties.maxscaledenominator }}</i></small></p>
+      </li>
+      <li class="list-group-item"  *ngIf="owcResourceProperties.authors">
+        <span class="badge pull-left">Authored by:</span>&nbsp;
+        <div class="list-group-item" *ngFor="let owcAuthor of owcResourceProperties.authors">
+          <app-sac-gwh-owcauthor [owcAuthor]="owcAuthor"></app-sac-gwh-owcauthor>
+        </div>
+      </li>
+      <li class="list-group-item"  *ngIf="owcResourceProperties.rights || owcResourceProperties.publisher">
+        <span class="badge pull-left">License:</span>&nbsp;
+        <div class="list-group-item" *ngIf="owcResourceProperties.rights">{{  owcResourceProperties.rights }}</div>
+        <div class="list-group-item" *ngIf="owcResourceProperties.publisher">
+          <p *ngIf="owcResourceProperties.publisher"><small><i>{{ 'Published by: ' + owcResourceProperties.publisher }}</i></small></p>
+        </div>
+      </li>
+      <li class="list-group-item"  *ngIf="owcResourceProperties.categories && owcResourceProperties.categories > 0">
+        <span class="badge  pull-left">Tagged Categories and keywords:</span>&nbsp;
+        <div class="list-group-item" *ngFor="let owcCategory of owcResourceProperties.categories">
+          <app-sac-gwh-owccategory [owcCategory]="owcCategory"></app-sac-gwh-owccategory>
+        </div>
+      </li>
+      <li class="list-group-item"  *ngIf="owcResourceProperties.links.previews">
+        <span class="badge pull-left">Preview or icon links:</span>&nbsp;
+        <div class="list-group-item" *ngFor="let owcLink of owcResourceProperties.links.previews">
+          <app-sac-gwh-owclink [owcLink]="owcLink"></app-sac-gwh-owclink>
+        </div>
+      </li>
+      <li class="list-group-item"  *ngIf="owcResourceProperties.links.via">
+        <span class="badge pull-left">Related links:</span>&nbsp;
+        <div class="list-group-item" *ngFor="let owcLink of owcResourceProperties.links.via">
+          <app-sac-gwh-owclink [owcLink]="owcLink"></app-sac-gwh-owclink>
+        </div>
+      </li>
+      <li class="list-group-item"  *ngIf="owcResourceProperties.links.data">
+        <span class="badge pull-left">External data links:</span>&nbsp;
+        <div class="list-group-item" *ngFor="let owcLink of owcResourceProperties.links.data">
+          <app-sac-gwh-owclink [owcLink]="owcLink"></app-sac-gwh-owclink>
+        </div>
+      </li>
+      <li class="list-group-item"  *ngIf="owcResourceProperties.links.alternates">
+        <span class="badge pull-left">Additional links:</span>&nbsp;
+        <div class="list-group-item" *ngFor="let owcLink of owcResourceProperties.links.alternates">
+          <app-sac-gwh-owclink [owcLink]="owcLink"></app-sac-gwh-owclink>
+        </div>
+      </li>
+      <li class="list-group-item"  *ngIf="owcResourceProperties.offerings">
+        <span class="badge pull-left">Data Offerings:</span>&nbsp;
+        <div class="list-group-item" *ngFor="let owcOffering of owcResourceProperties.offerings">
+          <app-sac-gwh-owcoffering [owcOffering]="owcOffering"></app-sac-gwh-owcoffering>
+        </div>
+      </li>
+      <li class="list-group-item"  *ngIf="owcResourceProperties.folder">
+        <p><small><i>{{ 'Folder: ' + owcResourceProperties.folder }}</i></small></p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="panel-footer">
+    <div class="pull-right">
+
+    </div>
+  </div>
+
+</div>

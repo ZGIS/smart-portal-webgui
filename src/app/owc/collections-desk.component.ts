@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notifications';
-import { IOwcDocument, CollectionsService } from './';
+import { OwcContext, CollectionsService } from './';
 
 @Component({
   selector: 'app-sac-gwh-collections-desk',
@@ -12,8 +12,8 @@ import { IOwcDocument, CollectionsService } from './';
  */
 export class CollectionsDeskComponent implements OnInit {
 
-  myCollections: IOwcDocument[] = [];
-  private _myDefaultCollection: IOwcDocument;
+  myCollections: OwcContext[] = [];
+  private _myDefaultCollection: OwcContext;
 
   reloadCollections(): void {
     console.log('we reload collections');
@@ -36,7 +36,7 @@ export class CollectionsDeskComponent implements OnInit {
     this.collectionsService.getCollections()
       .subscribe(
         owcDocs => {
-          owcDocs.forEach((owcDoc: IOwcDocument) => {
+          owcDocs.forEach((owcDoc: OwcContext) => {
             this.myCollections.push(owcDoc);
             console.log(owcDoc.id);
           });

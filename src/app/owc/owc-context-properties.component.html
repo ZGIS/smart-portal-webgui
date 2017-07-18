@@ -1,0 +1,54 @@
+<ul class="list-group" *ngIf="owcContextProperties">
+  <li class="list-group-item"  *ngIf="owcContextProperties.title">
+    <span class="badge pull-left">Document Title:</span> {{ owcContextProperties.title }}
+  </li>
+  <li class="list-group-item"  *ngIf="owcContextProperties.subtitle">
+    <span class="badge pull-left">Abstract:</span>&nbsp;
+    <div class="list-group-item">{{ owcContextProperties.subtitle }}</div>
+  </li>
+  <li class="list-group-item"  *ngIf="owcContextProperties.lang || owcContextProperties.updated || owcContextProperties.date">
+    <p *ngIf="owcContextProperties.lang"><small><i>{{ 'Language: ' + owcContextProperties.lang }}</i></small></p>
+    <p *ngIf="owcContextProperties.updated"><small><i>{{ 'Last updated: ' + owcContextProperties.updated }}</i></small></p>
+    <p *ngIf="owcContextProperties.date"><small><i>{{ 'Time interval of interest: ' + owcContextProperties.date }}</i></small></p>
+  </li>
+  <li class="list-group-item"  *ngIf="owcContextProperties.authors">
+    <span class="badge pull-left">Authored by:</span>&nbsp;
+    <div class="list-group-item" *ngFor="let owcAuthor of owcContextProperties.authors">
+      <app-sac-gwh-owcauthor [owcAuthor]="owcAuthor"></app-sac-gwh-owcauthor>
+    </div>
+  </li>
+  <li class="list-group-item"  *ngIf="owcContextProperties.rights || owcContextProperties.publisher">
+    <span class="badge pull-left">License:</span>&nbsp;
+    <div class="list-group-item" *ngIf="owcContextProperties.rights">{{ owcContextProperties.rights }}</div>
+    <div class="list-group-item" *ngIf="owcContextProperties.publisher">
+      <p *ngIf="owcContextProperties.publisher"><small><i>{{ 'Published by: ' + owcContextProperties.publisher }}</i></small></p>
+    </div>
+  </li>
+  <li class="list-group-item"  *ngIf="owcContextProperties.generator || owcContextProperties.display">
+    <span class="badge pull-left">Application details:</span>&nbsp;
+    <div class="list-group-item" *ngIf="owcContextProperties.generator">
+      <app-sac-gwh-owccreatorapplication [owcCreatorApplication]="owcContextProperties.generator"></app-sac-gwh-owccreatorapplication>
+    </div>
+    <div class="list-group-item" *ngIf="owcContextProperties.display">
+      <app-sac-gwh-owccreatordisplay [owcCreatorDisplay]="owcContextProperties.display"></app-sac-gwh-owccreatordisplay>
+    </div>
+  </li>
+  <li class="list-group-item"  *ngIf="owcContextProperties.categories && owcContextProperties.categories.length > 0">
+    <span class="badge  pull-left">Tagged Categories:</span>&nbsp;
+    <div class="list-group-item" *ngFor="let owcCategory of owcContextProperties.categories">
+      <app-sac-gwh-owccategory [owcCategory]="owcCategory"></app-sac-gwh-owccategory>
+    </div>
+  </li>
+  <li class="list-group-item"  *ngIf="owcContextProperties.links.profiles">
+    <span class="badge pull-left">OWC GeoJson Profiles:</span>&nbsp;
+    <div class="list-group-item" *ngFor="let owcLink of owcContextProperties.links.profiles">
+      <app-sac-gwh-owclink [owcLink]="owcLink"></app-sac-gwh-owclink>
+    </div>
+  </li>
+  <li class="list-group-item"  *ngIf="owcContextProperties.links.via">
+    <span class="badge pull-left">Related links:</span>&nbsp;
+    <div class="list-group-item" *ngFor="let owcLink of owcContextProperties.links.via">
+      <app-sac-gwh-owclink [owcLink]="owcLink"></app-sac-gwh-owclink>
+    </div>
+  </li>
+</ul>

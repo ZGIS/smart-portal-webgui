@@ -17,14 +17,22 @@ export interface IGeoFeature {
 }
 
 export interface IGeoFeatureProperties {
-  // TODO SR put all exposed properties in here
   fileIdentifier: string;
+  dateStamp?: string;
   title: string;
-  abstrakt: string;
-  keywords: string[];
-  lineageStmt: string;
+  abstrakt?: string;
+  keywords?: string[];
+  smartCategory?: string;
+  topicCategories?: string[];
+  contactName?: string;
+  contactOrg?: string;
+  contactEmail?: string;
+  license?: string;
+  lineageStmt?: string;
   linkage: string[];
   origin: string;
+  originUrl?: string;
+  searchScore?: number;
 }
 
 /**

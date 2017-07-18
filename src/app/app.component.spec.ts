@@ -6,7 +6,7 @@ import { AccountService } from './account/account.service';
 import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
 import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService } from 'ngx-cookie';
 import { NotificationService } from './notifications/notification.service';
 import { CategoriesService } from './dashboards/categories.service';
 import { NotificationComponent } from './notifications/notification.component';

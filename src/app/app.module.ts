@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { CookieService } from 'angular2-cookie/core';
+import { CookieModule } from 'ngx-cookie';
 import {
   AccordionModule,
   AlertModule,
@@ -62,10 +62,15 @@ import {
   CollectionsService,
   OwcAuthorComponent,
   OwcCategoryComponent,
-  OwcDocumentPropertiesComponent,
-  OwcEntryDetailModalComponent,
-  OwcEntryPropertiesComponent,
+  OwcContextPropertiesComponent,
+  OwcResourceDetailModalComponent,
+  OwcResourcePropertiesComponent,
   OwcLinkComponent,
+  OwcContentComponent,
+  OwcOperationComponent,
+  OwcCreatorDisplayComponent,
+  OwcCreatorApplicationComponent,
+  OwcStyleSetComponent,
   OwcOfferingComponent
 } from './owc';
 import { X3dViewComponent } from './x3d-view';
@@ -78,16 +83,13 @@ import { ContextRetrieveComponent } from './context/context.component';
 import { TimeseriesComponent } from './timeseries';
 import { TimeseriesConfiguratorModalComponent } from './timeseries/timeseries.configurator.modal.component';
 
-export function cookieServiceFactory() {
-  return new CookieService();
-}
-
 @NgModule({
   imports: [BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     Ng2BootstrapModule,
+    CookieModule.forRoot(),
     AccordionModule.forRoot(),
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
@@ -132,13 +134,18 @@ export function cookieServiceFactory() {
     DashboardButtonComponent,
     CollectionsComponent,
     CollectionsDeskComponent,
-    OwcEntryDetailModalComponent,
+    OwcResourceDetailModalComponent,
     OwcAuthorComponent,
     OwcCategoryComponent,
     OwcLinkComponent,
+    OwcContentComponent,
     OwcOfferingComponent,
-    OwcDocumentPropertiesComponent,
-    OwcEntryPropertiesComponent,
+    OwcOperationComponent,
+    OwcStyleSetComponent,
+    OwcCreatorDisplayComponent,
+    OwcCreatorApplicationComponent,
+    OwcContextPropertiesComponent,
+    OwcResourcePropertiesComponent,
     BasicFileUploadComponent,
     CardComponent,
     ContextRetrieveComponent,
@@ -148,7 +155,6 @@ export function cookieServiceFactory() {
   providers: [
     API_URL_PROVIDERS,
     APP_VERSION_PROVIDERS,
-    {provide: CookieService, useFactory: cookieServiceFactory},
     AccountService,
     AuthGuard,
     RegisteredGuard,

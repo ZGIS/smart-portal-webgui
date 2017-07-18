@@ -5,10 +5,6 @@
   background: #55c072;
 }
 
-.WmtsOffering {
-  background: #1caa10;
-}
-
 .WfsOffering {
   background: #cc8f00;
 }
@@ -25,14 +21,6 @@
   background: #e84810;
 }
 
-.GmlOffering {
-  background: #dad19c;
-}
-
-.KmlOffering {
-  background: #4fdaba;
-}
-
 .GeoTiffOffering {
   background: #fffe0b;
 }
@@ -41,10 +29,3 @@
   background: #4d00da;
 }
 
-.NetCdfOffering {
-  background: #0328da;
-}
-
-.HttpLinkOffering {
-  background: #dacac6;
-}

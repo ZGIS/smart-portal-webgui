@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IOwcCategory } from './collections';
+import { OwcCategory } from './collections';
 
 @Component({
   selector: 'app-sac-gwh-owccategory',
@@ -11,5 +11,5 @@ import { IOwcCategory } from './collections';
 })
 
 export class OwcCategoryComponent {
-  @Input() owcCategory: IOwcCategory;
+  @Input() owcCategory: OwcCategory;
 }

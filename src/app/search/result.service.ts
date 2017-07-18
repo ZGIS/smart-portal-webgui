@@ -6,6 +6,7 @@ import { IGeoFeatureCollection, IErrorResult } from './result';
 import { Observable } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 import * as moment from 'moment';
+import { OwcContext } from '../owc/collections';
 
 @Injectable()
 export class ResultService {
@@ -57,8 +58,44 @@ export class ResultService {
   }
 
   /**
+   * new content type to migrate for better linkages and offerings and copying of results into
+   * user collections
+   *
+   * @param query
+   * @param fromDate
+   * @param toDate
+   * @param bboxWkt
+   * @param maxNumberOfResults
+   * @returns {Observable<R|T>}
+   */
+  getResultsAsOwcGeoJson(query: string,
+             fromDate = moment('1970-01-01', this.DATE_FORMAT).format(this.DATE_FORMAT),
+             toDate = moment().format(this.DATE_FORMAT),
+             bboxWkt = 'ENVELOPE(-180,180,90,-90)',
+             maxNumberOfResults?: number): Observable<OwcContext> {
+
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('query', query);
+    params.set('fromDate', fromDate);
+    params.set('toDate', toDate);
+    params.set('bbox', bboxWkt);
+    params.set('contentType', 'OwcContext');
+    if (!isNullOrUndefined(maxNumberOfResults)) {
+      params.set('maxNumberOfResults', maxNumberOfResults.toString());
+    }
+
+    // TODO SR we should externalize the URL strings to one "service" wrapper class --> cswApiService.getQueryUrl() etc.
+    return this.http.get(this.cswiApiUrl + '/query', {params: params})
+    /* FIXME not sure if I'm happy with this so far
+     http://stackoverflow.com/questions/22875636/how-do-i-cast-a-json-object-to-a-typescript-class
+     */
+      .map((response: Response) => <OwcContext>response.json())
+      .catch((errorResponse: Response) => this.handleError(errorResponse));
+  }
+
+  /**
    * Handles errors
-   * @param error
+   * @param errorResponse
    * @returns {any}
    */
   private handleError(errorResponse: Response) {

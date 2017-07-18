@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { CookieService } from 'angular2-cookie/core';
+import { CookieService } from 'ngx-cookie';
 import { CSWI_API_URL, PORTAL_API_URL, WEBGUI_APP_VERSION } from '../in-app-config';
 import { IErrorResult } from '../search/result';
 import {
@@ -23,7 +23,7 @@ export class AccountService {
 
   public token: string;
 
-  guestProfile: ProfileJs = {
+  public guestProfile: ProfileJs = {
     email: 'Your Account',
     firstname: 'Guest',
     lastname: 'User',

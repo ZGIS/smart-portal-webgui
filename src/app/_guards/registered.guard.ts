@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-import { CollectionsService, IOwcDocument } from '../owc';
+import { CollectionsService, OwcContext } from '../owc';
 import { NotificationService } from '../notifications';
 
 
@@ -14,7 +14,7 @@ export class RegisteredGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this.collectionsService.getDefaultCollection().map(userCollectionJson => {
-      if (<IOwcDocument>userCollectionJson) {
+      if (<OwcContext>userCollectionJson) {
         return true;
       } else {
         return false;

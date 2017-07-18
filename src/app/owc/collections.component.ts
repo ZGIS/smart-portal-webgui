@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NotificationService } from '../notifications';
-import { IOwcDocument, CollectionsService } from './';
+import { OwcContext, CollectionsService } from './';
 
 @Component({
   selector: 'app-sac-gwh-collection',
@@ -11,8 +11,7 @@ import { IOwcDocument, CollectionsService } from './';
  * Shows collections of the current user
  */
 export class CollectionsComponent {
-  @Input() myCollection: IOwcDocument;
-
+  @Input() myCollection: OwcContext;
 
   reloadCollection(): void {
     console.log('we reload this collection');
@@ -22,6 +21,9 @@ export class CollectionsComponent {
     console.log('we edit the properties');
   }
 
+  deleteCollection(): void {
+    console.log('we delete the Collection');
+  }
 
   /**
    * Constructor

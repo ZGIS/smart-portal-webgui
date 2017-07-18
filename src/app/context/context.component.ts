@@ -12,7 +12,7 @@ import { NotificationService } from '../notifications/notification.service';
 
 export class ContextRetrieveComponent implements OnInit {
 
-  private TYPE_ENTRY = 'entry';
+  private TYPE_RESOURCE = 'resource';
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -24,7 +24,7 @@ export class ContextRetrieveComponent implements OnInit {
     this.route.params
       .subscribe((params: Params) => {
         switch (params['type']) {
-          case this.TYPE_ENTRY: {
+          case this.TYPE_RESOURCE: {
             // for protractor, being more explicit about zones and timeouts/asynch tasks
             this.ngZone.runOutsideAngular(() => {
               setTimeout(() => {

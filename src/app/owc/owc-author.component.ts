@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IOwcAuthor } from './collections';
+import { OwcAuthor } from './collections';
 
 @Component({
   selector: 'app-sac-gwh-owcauthor',
@@ -12,5 +12,5 @@ import { IOwcAuthor } from './collections';
 })
 
 export class OwcAuthorComponent {
-  @Input() owcAuthor: IOwcAuthor;
+  @Input() owcAuthor: OwcAuthor;
 }

@@ -5,7 +5,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { NotificationService } from '../notifications/notification.service';
 import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
 import { Router } from '@angular/router';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService } from 'ngx-cookie';
 import { IErrorResult } from '../search/result';
 import { Observable } from 'rxjs';
 import { CollectionsService } from '../owc';

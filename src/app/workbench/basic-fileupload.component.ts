@@ -2,7 +2,7 @@ import { Inject, Component, Input } from '@angular/core';
 import { Headers, RequestOptions } from '@angular/http';
 import { NotificationService } from '../notifications';
 import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService } from 'ngx-cookie';
 import { PORTAL_API_URL } from '../in-app-config';
 
 @Component({
