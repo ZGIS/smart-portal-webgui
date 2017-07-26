@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="list-group" *ngIf="currentCollectionBindings.length > 0">
-          <li class="list-group-item" *ngFor="let binding of (getFilteredResults(currentCollectionBindings))">
+          <div class="list-group-item" *ngFor="let binding of (getFilteredResults(currentCollectionBindings))">
             <p>
               Name: {{ binding.label.value }}
             </p>
@@ -45,7 +45,7 @@
               IRI (identifier): <a tooltip="Click for details" (click)="showConceptDetailModal(binding)"><i class="fa fa-globe"></i>
               {{ binding.iri.value }}</a>
             </p>
-          </li>
+          </div>
         </div>
       </div>
     </div>
@@ -63,16 +63,16 @@
       </div>
       <div class="modal-body">
         <div class="list-group">
-          <li class="list-group-item" *ngIf="currentConceptUri.length > 0">
+          <div class="list-group-item" *ngIf="currentConceptUri.length > 0">
             <p>Showing list of {{ currentConceptBindings.length }} attributes for concept:
               <a><i class="fa fa-globe"></i> {{ currentConceptUri }}</a>
             </p>
-          </li>
-          <li class="list-group-item" *ngFor="let binding of currentConceptBindings">
+          </div>
+          <div class="list-group-item" *ngFor="let binding of currentConceptBindings">
             <p>
               Attribute <i><small>({{ binding.att.value}})</small></i>: {{ binding.val.value }}
             </p>
-          </li>
+          </div>
         </div>
       </div>
     </div>
