@@ -1,5 +1,80 @@
-<div class="col-md-12">
-  <p style="color: #eea236;">So sorry, we didn't add any glossary or education material yet <i class="fa fa-frown-o"></i></p>
-  <p style="color: #eea236;"><a (click)="backClicked()"><i class="fa fa-backward"></i> Go back...</a></p>
-  <p style="color: #eea236;"><a routerLink="/"> <i class="fa fa-home"></i> Start</a> </p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">Glossaries and Linked Vocabularies <a class="pull-right" tooltip="Back to last page."
+                                                                       (click)="backClicked()"><i
+        class="fa fa-backward"></i> back...</a></div>
+      <div class="panel-body">
+        <div class="list-group-item">
+          <a class="btn" (click)="getCollection( uriNgmpCollection, spqNgmpQueryUrl )"
+             tooltip="Collection concept IRI: {{ uriNgmpCollection }}">National Groundwater Monitoring Programme
+            measured parameters</a>
+        </div>
+        <div class="list-group-item">
+          <a class="btn" (click)="getCollection( uriGlossaryCollection, spqGlossaryQueryUrl )"
+             tooltip="Collection concept IRI: {{ uriGlossaryCollection }}">NZHS Freshwater Terms Lexicon</a>
+        </div>
+        <div class="list-group-item">
+          <a class="btn" (click)="getCollection( uriPapawaiCollection, spqPapawaiQueryUrl )"
+             tooltip="Collection concept IRI: {{ uriPapawaiCollection }}">Te Reo Maori Geoscience Lexicon</a>
+        </div>
+        <div class="list-group-item">
+          <a class="btn" (click)="getCollection( uriAwahouCollection, spqAwahouQueryUrl )"
+             tooltip="Collection concept IRI: {{ uriAwahouCollection }}">Awahou Portal Terms</a>
+        </div>
+      </div>
+      <div class="panel-footer panel-info">
+        <img *ngIf="loading"
+             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        <p style="color: #eea236;" *ngIf="currentCollectionUri.length > 0">Showing list of concepts for {{
+          currentCollectionUri }}, has {{ currentCollectionBindings.length }} elements.</p>
+      </div>
+      <div class="panel-body" *ngIf="currentCollectionUri.length > 0">
+        <div class="list-group-item">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-th-list"></i></span>
+            <input class="form-control" type="text" placeholder="filter" [(ngModel)]="textFilter"/>
+          </div>
+        </div>
+        <div class="list-group" *ngIf="currentCollectionBindings.length > 0">
+          <li class="list-group-item" *ngFor="let binding of (getFilteredResults(currentCollectionBindings))">
+            <p>
+              Name: {{ binding.label.value }}
+            </p>
+            <p>
+              IRI (identifier): <a tooltip="Click for details" (click)="showConceptDetailModal(binding)"><i class="fa fa-globe"></i>
+              {{ binding.iri.value }}</a>
+            </p>
+          </li>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #conceptDetailsModal="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="conceptDetails" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" *ngIf="currentConceptBindings.length > 0">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideConceptDetailModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="list-group">
+          <li class="list-group-item" *ngIf="currentConceptUri.length > 0">
+            <p>Showing list of {{ currentConceptBindings.length }} attributes for concept:
+              <a><i class="fa fa-globe"></i> {{ currentConceptUri }}</a>
+            </p>
+          </li>
+          <li class="list-group-item" *ngFor="let binding of currentConceptBindings">
+            <p>
+              Attribute <i><small>({{ binding.att.value}})</small></i>: {{ binding.val.value }}
+            </p>
+          </li>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

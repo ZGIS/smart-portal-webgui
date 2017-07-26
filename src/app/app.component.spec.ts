@@ -9,6 +9,7 @@ import { MockBackend } from '@angular/http/testing';
 import { CookieModule, CookieService } from 'ngx-cookie';
 import { NotificationService } from './notifications/notification.service';
 import { CategoriesService } from './dashboards/categories.service';
+import { GlossaryService } from './glossary-edu/glossary.service';
 import { NotificationComponent } from './notifications/notification.component';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
 
@@ -29,6 +30,8 @@ describe('App Component', () => {
         CookieService,
         AccountService,
         NotificationService,
+        GlossaryService,
+        CategoriesService,
         API_URL_PROVIDERS,
         APP_VERSION_PROVIDERS,
         MockBackend,
@@ -75,6 +78,7 @@ describe('AppComponent with TCB', function () {
         AccountService,
         NotificationService,
         CategoriesService,
+        GlossaryService,
         API_URL_PROVIDERS,
         APP_VERSION_PROVIDERS,
         Http

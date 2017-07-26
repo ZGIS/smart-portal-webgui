@@ -10,6 +10,7 @@ import {
   DatepickerModule,
   ModalModule,
   Ng2BootstrapModule,
+  PopoverModule,
   ProgressbarModule,
   TabsModule,
   TooltipModule,
@@ -27,7 +28,7 @@ import {
 } from './search';
 import { NavigationComponent, NotFoundComponent } from './navigation';
 import { AdminComponent } from './admin';
-import { GlossaryComponent } from './glossary-edu';
+import { GlossaryService, GlossaryComponent } from './glossary-edu';
 import { ResearchProgrammesComponent } from './research-pg';
 import {
   CardComponent,
@@ -94,6 +95,7 @@ import { TimeseriesConfiguratorModalComponent } from './timeseries/timeseries.co
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     DatepickerModule.forRoot(),
+    PopoverModule.forRoot(),
     AlertModule.forRoot(),
     TabsModule.forRoot(),
     TooltipModule.forRoot(),
@@ -165,6 +167,7 @@ import { TimeseriesConfiguratorModalComponent } from './timeseries/timeseries.co
     NotificationService,
     CollectionsService,
     CategoriesService,
+    GlossaryService,
     ShareButtonService
   ],
   bootstrap: [AppComponent]
