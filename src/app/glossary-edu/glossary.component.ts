@@ -1,12 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Headers, Http, RequestOptions, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import { Location } from '@angular/common';
-import { IErrorResult } from '../search/result';
-import { Observable } from 'rxjs/Observable';
+import { ModalDirective } from 'ngx-bootstrap';
+import { AttributeLabelBinding, IriLabelBinding } from './glossary.types';
 import { GlossaryService } from './glossary.service';
 import { NotificationService } from '../notifications/notification.service';
-import { AttributeLabelBinding, IriLabelBinding, SparqlResult } from './glossary.types';
-import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-sac-gwh-glossary',
