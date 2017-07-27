@@ -27,10 +27,10 @@ export class GlossaryComponent {
 
   @ViewChild('conceptDetailsModal') public modal: ModalDirective;
 
-  public spqGlossaryQueryUrl = 'http://vocab.smart-project.info/spq-glossary/query';
-  public spqNgmpQueryUrl = 'http://vocab.smart-project.info/spq-ngmp/query';
-  public spqPapawaiQueryUrl = 'http://vocab.smart-project.info/spq-papawai/query';
-  public spqAwahouQueryUrl = 'http://vocab.smart-project.info/spq-awahou/query';
+  public spqGlossaryQueryUrl = 'https://vocab.smart-project.info/spq-glossary/query';
+  public spqNgmpQueryUrl = 'https://vocab.smart-project.info/spq-ngmp/query';
+  public spqPapawaiQueryUrl = 'https://vocab.smart-project.info/spq-papawai/query';
+  public spqAwahouQueryUrl = 'https://vocab.smart-project.info/spq-awahou/query';
 
   public uriGlossaryCollection = 'http://vocab.smart-project.info/collection/glossary/terms';
   public uriNgmpCollection = 'http://vocab.smart-project.info/collection/ngmp/phenomena';
