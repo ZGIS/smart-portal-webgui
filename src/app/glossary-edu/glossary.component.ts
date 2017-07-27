@@ -84,7 +84,7 @@ export class GlossaryComponent {
       this.loading = true;
       const cur = this.currentCollectionUri;
       const s = cur.replace('http://vocab.smart-project.info/collection/', '');
-      const queryUrl = `http://vocab.smart-project.info/spq-${s.split('/')[ 0 ]}/query`;
+      const queryUrl = `https://vocab.smart-project.info/spq-${s.split('/')[ 0 ]}/query`;
       // console.log(queryUrl);
       this.glossaryService.querySparqlConceptAttributes(conceptBinding.iri.value, queryUrl)
         .subscribe(
