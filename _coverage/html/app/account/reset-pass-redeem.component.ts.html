@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">28.95% </span>
+        <span class="strong">28.21% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>11/38</span>
+        <span class='fraction'>11/39</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">28.13% </span>
+        <span class="strong">27.27% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/32</span>
+        <span class='fraction'>9/33</span>
       </div>
     </div>
   </div>
@@ -111,15 +111,7 @@
 66
 67
 68
-69
-70
-71
-72
-73
-74
-75
-76
-77</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+69</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -167,7 +159,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,14 +171,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -199,7 +183,7 @@
 import { AccountService } from './account.service';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { NotificationService } from '../notifications';
-&nbsp;
+import { LoginCredentials } from './account.types';
 &nbsp;
 @Component({
   selector: 'app-sac-gwh-reset-pass-redeem',
@@ -215,7 +199,7 @@ export class ResetPassRedeemComponent implements OnInit {
 &nbsp;
   constructor( private <span class="cstat-no" title="statement not covered" >accountService: AccountService,</span> private <span class="cstat-no" title="statement not covered" >route: ActivatedRoute,</span>
                private <span class="cstat-no" title="statement not covered" >router: Router,</span> private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" > </span>) {</span>
-  };
+  }
 &nbsp;
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  ngOnInit(): void {</span></span>
 <span class="cstat-no" title="statement not covered" >    this.route.params.forEach(( params: Params<span class="fstat-no" title="function not covered" > ) =&gt; {</span></span>
@@ -242,8 +226,8 @@ export class ResetPassRedeemComponent implements OnInit {
 <span class="cstat-no" title="statement not covered" >      this.loading = false;</span>
 <span class="cstat-no" title="statement not covered" >      this.passwordsAreSync = false;</span>
     } else {
-<span class="cstat-no" title="statement not covered" >      this.accountService.redeemPasswordReset(this.model.email, this.model.password,</span>
-        this.redeemLink)
+      const resetCredentials: LoginCredentials = <span class="cstat-no" title="statement not covered" >{email: this.model.email, password: this.model.password};</span>
+<span class="cstat-no" title="statement not covered" >      this.accountService.redeemPasswordReset(resetCredentials, this.redeemLink)</span>
         .subscribe(
           result<span class="fstat-no" title="function not covered" > =&gt; {</span>
             // TODO SR this should never be false!
@@ -255,14 +239,6 @@ export class ResetPassRedeemComponent implements OnInit {
                 message: 'Thank you. Please check your emails and login with your password'
               });
 <span class="cstat-no" title="statement not covered" >              this.router.navigateByUrl('/login');</span>
-            // } else {
-            //   // login failed
-            //   this.notificationService.addNotification({
-            //     type: 'info',
-            //     message: 'Email not known to us.'
-            //   });
-            //   this.loading = false;
-            // }
           },
           error<span class="fstat-no" title="function not covered" > =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
@@ -277,7 +253,7 @@ export class ResetPassRedeemComponent implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jul 14 2017 15:40:28 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 27 2017 17:14:23 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

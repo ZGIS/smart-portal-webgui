@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/account/account-deleteself-modal.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/account/</a> account-deleteself-modal.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">35.29% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/34</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">14.29% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">32.26% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>10/31</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { AccountService } from './account.service';
+import { NotificationService } from '../notifications';
+import { ProfileJs } from './account.types';
+&nbsp;
+@Component ({
+  selector: 'app-sac-gwh-account-deleteself-modal',
+  templateUrl: 'account-deleteself-modal.component.html'
+})
+&nbsp;
+/**
+ * Component (Modal) to change User's password
+ */
+export class AccountDeleteSelfModalComponent {
+  @ViewChild('deleteselfModalRef') public modal: ModalDirective;
+&nbsp;
+  /**
+   * Current User's profile
+   * @type {ProfileJs}
+   */
+<span class="cstat-no" title="statement not covered" >  currentProfile: ProfileJs = this.accountService.guestProfile;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  loading = false;</span>
+<span class="cstat-no" title="statement not covered" >  error = '';</span>
+&nbsp;
+  /**
+   * Constructor
+   * @param accountService - injected AccountService
+   * @param notificationService - injected NotificationService
+   */
+  constructor( private <span class="cstat-no" title="statement not covered" >accountService: AccountService,</span>
+               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" > </span>) {</span>
+  }
+&nbsp;
+  /**
+   * Shows the current modal
+   * @param userProfile
+   */
+  showDeleteSelfModal(userProfile: ProfileJs<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    this.currentProfile = userProfile;</span>
+<span class="cstat-no" title="statement not covered" >    this.modal.show();</span>
+  }
+&nbsp;
+  /**
+   * closes the current modal
+   */
+<span class="fstat-no" title="function not covered" >  hideDeleteSelfModal() {</span>
+<span class="cstat-no" title="statement not covered" >    this.modal.hide();</span>
+  }
+&nbsp;
+  /**
+   * Form submission - try to change user's password
+   */
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  onSubmit() {</span></span>
+<span class="cstat-no" title="statement not covered" >    this.loading = true;</span>
+<span class="cstat-no" title="statement not covered" >    this.accountService.deleteSelf()</span>
+      .subscribe(
+        result<span class="fstat-no" title="function not covered" > =&gt; {</span>
+          // FIXME SR this should never be false!
+<span class="cstat-no" title="statement not covered" >          if (result === true) {</span>
+            // login successful
+<span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >            this.notificationService.addNotification({</span>
+              type: 'success',
+              message: 'Thank you. Your password has been changed.'
+            });
+<span class="cstat-no" title="statement not covered" >            this.modal.hide();</span>
+          } else {
+            // login failed
+<span class="cstat-no" title="statement not covered" >            this.notificationService.addNotification({</span>
+              type: 'info',
+              message: 'Apologies, but password could not be updated.'
+            });
+<span class="cstat-no" title="statement not covered" >            this.error = 'Apologies, but password could not be updated.';</span>
+<span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >            this.modal.hide();</span>
+          }
+        },
+        error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          this.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >          this.notificationService.addErrorResultNotification(error);</span>
+<span class="cstat-no" title="statement not covered" >          this.modal.hide();</span>
+        });
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 27 2017 17:14:23 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

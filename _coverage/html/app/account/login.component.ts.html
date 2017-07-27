@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">31.25% </span>
+        <span class="strong">30.3% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/32</span>
+        <span class='fraction'>10/33</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">29.63% </span>
+        <span class="strong">28.57% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/27</span>
+        <span class='fraction'>8/28</span>
       </div>
     </div>
   </div>
@@ -126,35 +126,11 @@
 81
 82
 83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+84</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -197,20 +173,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -224,6 +188,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -231,23 +196,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -263,6 +213,7 @@
 import { AccountService } from './account.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
+import { GAuthCredentials, LoginCredentials } from './account.types';
 &nbsp;
 /**
  * Login Dialog component
@@ -277,7 +228,7 @@ import { NotificationService } from '../notifications';
  */
 export class LoginComponent {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  model: any = {};</span>
+<span class="cstat-no" title="statement not covered" >  loginCredentials: LoginCredentials = {};</span>
 <span class="cstat-no" title="statement not covered" >  loading = false;</span>
   // error = '';
 &nbsp;
@@ -289,36 +240,24 @@ export class LoginComponent {
    */
   constructor(private <span class="cstat-no" title="statement not covered" >accountService: AccountService,</span>
               private <span class="cstat-no" title="statement not covered" >router: Router,</span> private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" >)</span> {</span>
-  };
+  }
 &nbsp;
   /**
    *
    */
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  login() {</span></span>
 <span class="cstat-no" title="statement not covered" >    this.loading = true;</span>
-<span class="cstat-no" title="statement not covered" >    this.accountService.login(this.model.email, this.model.password)</span>
+<span class="cstat-no" title="statement not covered" >    this.accountService.login(this.loginCredentials)</span>
       .subscribe(
         result<span class="fstat-no" title="function not covered" > =&gt; {</span>
           // if (result === true) {
             // login successful
 <span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
 <span class="cstat-no" title="statement not covered" >            this.router.navigateByUrl('/dashboard');</span>
-          // } else {
-          //   this.notificationService.addNotification({
-          //     type: 'info',
-          //     message: 'User email or password is incorrect.'
-          //   });
-          //   this.loading = false;
-          // }
         },
         error<span class="fstat-no" title="function not covered" > =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >          this.loading = false;</span>
 <span class="cstat-no" title="statement not covered" >          this.notificationService.addErrorResultNotification(error);</span>
-          // this.error = &lt;any&gt;error;
-          // this.notificationService.addNotification({
-          //   type: 'warning',
-          //   message: 'Uncaught Login Error.'
-          // });
         });
   }
 &nbsp;
@@ -331,31 +270,17 @@ export class LoginComponent {
 <span class="cstat-no" title="statement not covered" >    if (authCode) {</span>
       // console.log('getOAuthResponse login component');
       // console.log(authCode);
-<span class="cstat-no" title="statement not covered" >      this.accountService.gconnectHandle('LOGIN', authCode).subscribe(</span>
+      const gAuthCredential: GAuthCredentials = <span class="cstat-no" title="statement not covered" >{ authcode: authCode, accesstype: 'LOGIN' };</span>
+<span class="cstat-no" title="statement not covered" >      this.accountService.gconnectHandle(gAuthCredential).subscribe(</span>
         result<span class="fstat-no" title="function not covered" > =&gt; {</span>
           // if (result === true) {
             // login successful
 <span class="cstat-no" title="statement not covered" >            this.loading = false;</span>
 <span class="cstat-no" title="statement not covered" >            this.router.navigateByUrl('/dashboard');</span>
-          // } else {
-          //   // login failed
-          //   this.error = 'Google Login failed.';
-          //   this.notificationService.addNotification({
-          //     type: 'warning',
-          //     message: 'Google Login failed.'
-          //   });
-          //   this.loading = false;
-          // }
         },
         error<span class="fstat-no" title="function not covered" > =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >          this.loading = false;</span>
 <span class="cstat-no" title="statement not covered" >          this.notificationService.addErrorResultNotification(error);</span>
-&nbsp;
-          // this.error = &lt;any&gt;error;
-          // this.notificationService.addNotification({
-          //   type: 'warning',
-          //   message: 'Google Login failed.'
-          // });
         });
     } else {
 <span class="cstat-no" title="statement not covered" >      console.log('error gconnect signin');</span>
@@ -365,7 +290,7 @@ export class LoginComponent {
         message: 'Login Error. No AuthCode provided.'
       });
     }
-  };
+  }
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -373,7 +298,7 @@ export class LoginComponent {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jul 14 2017 15:40:28 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 27 2017 17:14:23 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

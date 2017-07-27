@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">37.5% </span>
+        <span class="strong">23.26% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/24</span>
+        <span class='fraction'>10/43</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">11.11% </span>
+        <span class="strong">6.67% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/9</span>
+        <span class='fraction'>1/15</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">20.51% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/21</span>
+        <span class='fraction'>8/39</span>
       </div>
     </div>
   </div>
@@ -104,7 +104,53 @@
 59
 60
 61
-62</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -123,6 +169,53 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,14 +253,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notifications';
-import { IOwcDocument, CollectionsService } from './';
+import { OwcContext, CollectionsService } from './';
 &nbsp;
 @Component({
   selector: 'app-sac-gwh-collections-desk',
@@ -179,11 +271,58 @@ import { IOwcDocument, CollectionsService } from './';
  */
 export class CollectionsDeskComponent implements OnInit {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  myCollections: IOwcDocument[] = [];</span>
-  private _myDefaultCollection: IOwcDocument;
+<span class="cstat-no" title="statement not covered" >  myCollections: OwcContext[] = [];</span>
+  private _myDefaultCollection: OwcContext;
 &nbsp;
-<span class="fstat-no" title="function not covered" >  reloadCollections(): void {</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  reloadCollections(): void {</span></span>
 <span class="cstat-no" title="statement not covered" >    console.log('we reload collections');</span>
+<span class="cstat-no" title="statement not covered" >    this.collectionsService.getCollections()</span>
+      .subscribe(
+        owcDocs<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          this.myCollections = [];</span>
+<span class="cstat-no" title="statement not covered" >          owcDocs.forEach(( owcDoc: OwcContext<span class="fstat-no" title="function not covered" > ) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.myCollections.push(owcDoc);</span>
+<span class="cstat-no" title="statement not covered" >            console.log(owcDoc.id);</span>
+          });
+<span class="cstat-no" title="statement not covered" >          this.notificationService.addNotification({</span>
+            id: NotificationService.DEFAULT_DISMISS,
+            type: 'info',
+            message: `The collections have been reloaded.`
+          });
+        },
+        error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          console.log(&lt;any&gt;error);</span>
+<span class="cstat-no" title="statement not covered" >          this.notificationService.addErrorResultNotification(error);</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.collectionsService.getDefaultCollection()</span>
+      .subscribe(
+        owcDoc<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          this._myDefaultCollection = owcDoc;</span>
+<span class="cstat-no" title="statement not covered" >          this.notificationService.addNotification({</span>
+            id: NotificationService.DEFAULT_DISMISS,
+            type: 'info',
+            message: `The default collections has been reloaded.`
+          });
+        },
+        error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          console.log(&lt;any&gt;error);</span>
+<span class="cstat-no" title="statement not covered" >          this.notificationService.addErrorResultNotification(error);</span>
+        });
+  }
+&nbsp;
+  /**
+   * shouldn't trust the client I guess
+   */
+<span class="fstat-no" title="function not covered" >  createCollection(): void {</span>
+    const templateUuid = <span class="cstat-no" title="statement not covered" >'00000000-0000-0000-0000-000000000000';</span>
+    const id = <span class="cstat-no" title="statement not covered" >'http://portal.smart-project.info/context/user/' + templateUuid;</span>
+<span class="cstat-no" title="statement not covered" >    console.log('we create a new collection: ' + id);</span>
+<span class="cstat-no" title="statement not covered" >    this.notificationService.addNotification({</span>
+      id: NotificationService.DEFAULT_DISMISS,
+      type: 'info',
+      message: `Creating a new collection, not yet implemented: ${id}`
+    });
   }
 &nbsp;
   /**
@@ -191,8 +330,8 @@ export class CollectionsDeskComponent implements OnInit {
    * @param collectionsService  - injected CollectionsService
    * @param notificationService - injected NotificationService
    */
-  constructor(private <span class="cstat-no" title="statement not covered" >collectionsService: CollectionsService,</span>
-              private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" >)</span> {</span>
+  constructor( private <span class="cstat-no" title="statement not covered" >collectionsService: CollectionsService,</span>
+               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" > </span>) {</span>
   }
 &nbsp;
   /**
@@ -203,7 +342,7 @@ export class CollectionsDeskComponent implements OnInit {
 <span class="cstat-no" title="statement not covered" >    this.collectionsService.getCollections()</span>
       .subscribe(
         owcDocs<span class="fstat-no" title="function not covered" > =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          owcDocs.forEach((owcDoc: IOwcDocument<span class="fstat-no" title="function not covered" >) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >          owcDocs.forEach(( owcDoc: OwcContext<span class="fstat-no" title="function not covered" > ) =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" >            this.myCollections.push(owcDoc);</span>
 <span class="cstat-no" title="statement not covered" >            console.log(owcDoc.id);</span>
           });
@@ -224,7 +363,6 @@ export class CollectionsDeskComponent implements OnInit {
         });
   }
 &nbsp;
-&nbsp;
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -232,7 +370,7 @@ export class CollectionsDeskComponent implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jul 14 2017 15:40:28 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 27 2017 17:14:23 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

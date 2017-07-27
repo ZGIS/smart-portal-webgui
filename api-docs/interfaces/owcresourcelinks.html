@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OwcDocumentPropertiesComponent | SMART WebGui</title>
+	<title>OwcResourceLinks | SMART WebGui</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="owcdocumentpropertiescomponent.html">OwcDocumentPropertiesComponent</a>
+					<a href="owcresourcelinks.html">OwcResourceLinks</a>
 				</li>
 			</ul>
-			<h1>Class OwcDocumentPropertiesComponent</h1>
+			<h1>Interface OwcResourceLinks</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">OwcDocumentPropertiesComponent</span>
+						<span class="target">OwcResourceLinks</span>
 					</li>
 				</ul>
 			</section>
@@ -79,7 +79,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="owcdocumentpropertiescomponent.html#owcdocumentproperties" class="tsd-kind-icon">owc<wbr>Document<wbr>Properties</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="owcresourcelinks.html#alternates" class="tsd-kind-icon">alternates</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="owcresourcelinks.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="owcresourcelinks.html#previews" class="tsd-kind-icon">previews</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="owcresourcelinks.html#via" class="tsd-kind-icon">via</a></li>
 							</ul>
 						</section>
 					</div>
@@ -87,13 +90,43 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="owcdocumentproperties" class="tsd-anchor"></a>
-					<h3>owc<wbr>Document<wbr>Properties</h3>
-					<div class="tsd-signature tsd-kind-icon">owc<wbr>Document<wbr>Properties<span class="tsd-signature-symbol">:</span> <a href="../interfaces/iowcdocumentproperties.html" class="tsd-signature-type">IOwcDocumentProperties</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="alternates" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> alternates</h3>
+					<div class="tsd-signature tsd-kind-icon">alternates<span class="tsd-signature-symbol">:</span> <a href="owclink.html" class="tsd-signature-type">OwcLink</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/owc-document-properties.component.ts#L10">app/owc/owc-document-properties.component.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections.ts#L53">app/owc/collections.ts:53</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="data" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> data</h3>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="owclink.html" class="tsd-signature-type">OwcLink</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections.ts#L55">app/owc/collections.ts:55</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="previews" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> previews</h3>
+					<div class="tsd-signature tsd-kind-icon">previews<span class="tsd-signature-symbol">:</span> <a href="owclink.html" class="tsd-signature-type">OwcLink</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections.ts#L54">app/owc/collections.ts:54</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="via" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> via</h3>
+					<div class="tsd-signature tsd-kind-icon">via<span class="tsd-signature-symbol">:</span> <a href="owclink.html" class="tsd-signature-type">OwcLink</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections.ts#L56">app/owc/collections.ts:56</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -111,11 +144,20 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="owcdocumentpropertiescomponent.html" class="tsd-kind-icon">Owc<wbr>Document<wbr>Properties<wbr>Component</a>
+					<li class="current tsd-kind-interface">
+						<a href="owcresourcelinks.html" class="tsd-kind-icon">Owc<wbr>Resource<wbr>Links</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="owcdocumentpropertiescomponent.html#owcdocumentproperties" class="tsd-kind-icon">owc<wbr>Document<wbr>Properties</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="owcresourcelinks.html#alternates" class="tsd-kind-icon">alternates</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="owcresourcelinks.html#data" class="tsd-kind-icon">data</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="owcresourcelinks.html#previews" class="tsd-kind-icon">previews</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="owcresourcelinks.html#via" class="tsd-kind-icon">via</a>
 							</li>
 						</ul>
 					</li>

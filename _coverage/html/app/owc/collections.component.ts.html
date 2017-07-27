@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">71.43% </span>
+        <span class="strong">46.15% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/14</span>
+        <span class='fraction'>12/26</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">14.29% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/4</span>
+        <span class='fraction'>1/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">43.48% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/12</span>
+        <span class='fraction'>10/23</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -78,9 +78,35 @@
 33
 34
 35
-36</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -92,7 +118,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -100,6 +125,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -108,6 +155,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -115,7 +165,8 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, Input } from '@angular/core';
 import { NotificationService } from '../notifications';
-import { IOwcDocument, CollectionsService } from './';
+import { OwcContext, CollectionsService } from './';
+import { Router } from '@angular/router';
 &nbsp;
 @Component({
   selector: 'app-sac-gwh-collection',
@@ -126,8 +177,7 @@ import { IOwcDocument, CollectionsService } from './';
  * Shows collections of the current user
  */
 export class CollectionsComponent {
-  @Input() myCollection: IOwcDocument;
-&nbsp;
+  @Input() myCollection: OwcContext;
 &nbsp;
 <span class="fstat-no" title="function not covered" >  reloadCollection(): void {</span>
 <span class="cstat-no" title="statement not covered" >    console.log('we reload this collection');</span>
@@ -135,16 +185,41 @@ export class CollectionsComponent {
 &nbsp;
 <span class="fstat-no" title="function not covered" >  editProperties(): void {</span>
 <span class="cstat-no" title="statement not covered" >    console.log('we edit the properties');</span>
+<span class="cstat-no" title="statement not covered" >    this.notificationService.addNotification({</span>
+      id: NotificationService.DEFAULT_DISMISS,
+      type: 'info',
+      message: `Editing of this collection, not yet implemented.`
+    });
   }
 &nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  deleteCollection(): void {</span></span>
+<span class="cstat-no" title="statement not covered" >    console.log('we delete the Collection');</span>
+<span class="cstat-no" title="statement not covered" >    this.collectionsService.deleteCollectionById(this.myCollection.id).subscribe(</span>
+      deleted<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        console.log('deleted ' + deleted);</span>
+<span class="cstat-no" title="statement not covered" >        this.notificationService.addNotification({</span>
+          id: NotificationService.DEFAULT_DISMISS,
+          type: 'info',
+          message: `This collection has been deleted.`
+        });
+<span class="cstat-no" title="statement not covered" >        this.router.navigateByUrl('/workbench/my-data');</span>
+      },
+      error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(&lt;any&gt;error);</span>
+<span class="cstat-no" title="statement not covered" >        this.notificationService.addErrorResultNotification(error);</span>
+      });
+  }
 &nbsp;
   /**
    * Constructor
-   * @param collectionsService  - injected CollectionsService
-   * @param notificationService - injected NotificationService
+   *
+   * @param {CollectionsService} collectionsService
+   * @param {NotificationService} notificationService
+   * @param {Router} router
    */
   constructor(private <span class="cstat-no" title="statement not covered" >collectionsService: CollectionsService,</span>
-              private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" >)</span> {</span>
+              private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService,</span>
+              private <span class="cstat-no" title="statement not covered" >router: Router<span class="fstat-no" title="function not covered" >)</span> {</span>
   }
 &nbsp;
 }
@@ -154,7 +229,7 @@ export class CollectionsComponent {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jul 14 2017 15:40:28 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 27 2017 17:14:23 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

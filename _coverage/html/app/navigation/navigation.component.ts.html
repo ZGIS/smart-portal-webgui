@@ -217,16 +217,7 @@
 172
 173
 174
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+175</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -251,7 +242,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -318,17 +308,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -411,7 +393,7 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { AccountService, UserProfile, createProfile } from '../account';
+import { AccountService, ProfileJs } from '../account';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../notifications/notification.service';
 &nbsp;
@@ -429,13 +411,12 @@ export class NavigationComponent implements OnInit {
   // FIXME make this an enum or so
   currentNav: string;
 &nbsp;
-  @Input() public userProfile: UserProfile;
+  @Input() public userProfile: ProfileJs;
   @Input() public checkLoggedIn: boolean;
 &nbsp;
   @ViewChild('disclaimerModalRef') public disclaimerModal: ModalDirective;
   @ViewChild('aboutModalRef') public aboutModal: ModalDirective;
 &nbsp;
-  // accountSubject = this.accountService.isLoggedIn() ? this.accountService.getUsername() : 'guest';
   category = 'main';
 &nbsp;
   public PORTAL_WEBGUI_VERSION = '';
@@ -455,44 +436,44 @@ export class NavigationComponent implements OnInit {
 &nbsp;
     this.PORTAL_WEBGUI_VERSION = this.accountService.webguiAppVersion;
 &nbsp;
-    let currentUserProfile = JSON.parse(localStorage.getItem('currentUserProfile'));
+    let currentUserProfile: ProfileJs = JSON.parse(localStorage.getItem('currentUserProfile'));
 &nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (currentUserProfile) {
-<span class="cstat-no" title="statement not covered" >      this.userProfile = createProfile(currentUserProfile);</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (&lt;ProfileJs&gt;currentUserProfile) {
+<span class="cstat-no" title="statement not covered" >      this.userProfile = currentUserProfile;</span>
 <span class="cstat-no" title="statement not covered" >      console.log(this.userProfile);</span>
     } else {
       this.userProfile = this.accountService.guestProfile;
     }
     this.checkLoggedIn = false;
-  };
+  }
 &nbsp;
   /**
    * Shows the Disclaimer modal
    */
 <span class="fstat-no" title="function not covered" >  showDisclaimerModal() {</span>
 <span class="cstat-no" title="statement not covered" >    this.disclaimerModal.show();</span>
-  };
+  }
 &nbsp;
   /**
    * hides the disclaimer modal
    */
 <span class="fstat-no" title="function not covered" >  hideDisclaimerModal() {</span>
 <span class="cstat-no" title="statement not covered" >    this.disclaimerModal.hide();</span>
-  };
+  }
 &nbsp;
   /**
    * shows the about modal
    */
 <span class="fstat-no" title="function not covered" >  showAboutModal() {</span>
 <span class="cstat-no" title="statement not covered" >    this.aboutModal.show();</span>
-  };
+  }
 &nbsp;
   /**
    * hides the about modal
    */
 <span class="fstat-no" title="function not covered" >  hideAboutModal() {</span>
 <span class="cstat-no" title="statement not covered" >    this.aboutModal.hide();</span>
-  };
+  }
 &nbsp;
   /**
    * performs user logout
@@ -501,17 +482,9 @@ export class NavigationComponent implements OnInit {
 <span class="cstat-no" title="statement not covered" >    this.accountService.logout()</span>
       .subscribe(
         result<span class="fstat-no" title="function not covered" > =&gt; {</span>
-          // TODO SR This should never happen!
-          // if (result === true) {
-          // logout successful
 <span class="cstat-no" title="statement not covered" >          this.checkLoggedIn = false;</span>
 <span class="cstat-no" title="statement not covered" >          this.userProfile = this.accountService.guestProfile;</span>
 <span class="cstat-no" title="statement not covered" >          this.router.navigateByUrl('/login');</span>
-          // } else {
-          //   // logout failed?
-          //   console.log('logout in navigation failed, what now?');
-          //   this.router.navigateByUrl('/dashboard');
-          // }
         },
         error<span class="fstat-no" title="function not covered" > =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >          console.log(&lt;any&gt;error);</span>
@@ -529,7 +502,7 @@ export class NavigationComponent implements OnInit {
         user<span class="fstat-no" title="function not covered" > =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >          this.userProfile = user;</span>
 <span class="cstat-no" title="statement not covered" >          console.log('user profile change ' + this.userProfile.firstname);</span>
-<span class="cstat-no" title="statement not covered" >          if (user.accountSubject === this.accountService.guestProfile.email) {</span>
+<span class="cstat-no" title="statement not covered" >          if (user.email === this.accountService.guestProfile.email) {</span>
             // refresh this.checkLoggedIn to false
 <span class="cstat-no" title="statement not covered" >            this.checkLoggedIn = false;</span>
           } else {
@@ -552,9 +525,9 @@ export class NavigationComponent implements OnInit {
 <span class="cstat-no" title="statement not covered" >          console.log('LoggedIn change ' + this.checkLoggedIn);</span>
 <span class="cstat-no" title="statement not covered" >          if (loggedInStatus === true) {</span>
             // refresh loggedin user
-            let userProfile = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem('currentUserProfile'));</span>
-<span class="cstat-no" title="statement not covered" >            if (userProfile) {</span>
-<span class="cstat-no" title="statement not covered" >              this.userProfile = createProfile(userProfile);</span>
+            let userProfile: ProfileJs = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem('currentUserProfile'));</span>
+<span class="cstat-no" title="statement not covered" >            if (&lt;ProfileJs&gt;userProfile) {</span>
+<span class="cstat-no" title="statement not covered" >              this.userProfile = userProfile;</span>
             } else {
 <span class="cstat-no" title="statement not covered" >              this.userProfile = this.accountService.guestProfile;</span>
             }
@@ -598,7 +571,7 @@ export class NavigationComponent implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jul 14 2017 15:40:28 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 27 2017 17:14:23 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

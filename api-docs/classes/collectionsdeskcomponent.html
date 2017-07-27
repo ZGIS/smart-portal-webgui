@@ -100,6 +100,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#createcollection" class="tsd-kind-icon">create<wbr>Collection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#reloadcollections" class="tsd-kind-icon">reload<wbr>Collections</a></li>
 							</ul>
@@ -119,7 +120,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections-desk.component.ts#L20">app/owc/collections-desk.component.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections-desk.component.ts#L67">app/owc/collections-desk.component.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -156,10 +157,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_mydefaultcollection" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _my<wbr>Default<wbr>Collection</h3>
-					<div class="tsd-signature tsd-kind-icon">_my<wbr>Default<wbr>Collection<span class="tsd-signature-symbol">:</span> <a href="../interfaces/iowcdocument.html" class="tsd-signature-type">IOwcDocument</a></div>
+					<div class="tsd-signature tsd-kind-icon">_my<wbr>Default<wbr>Collection<span class="tsd-signature-symbol">:</span> <a href="../interfaces/owccontext.html" class="tsd-signature-type">OwcContext</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections-desk.component.ts#L16">app/owc/collections-desk.component.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections-desk.component.ts#L16">app/owc/collections-desk.component.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -169,7 +170,7 @@
 					<div class="tsd-signature tsd-kind-icon">collections<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections-desk.component.ts#L27">app/owc/collections-desk.component.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections-desk.component.ts#L74">app/owc/collections-desk.component.ts:74</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -181,10 +182,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="mycollections" class="tsd-anchor"></a>
 					<h3>my<wbr>Collections</h3>
-					<div class="tsd-signature tsd-kind-icon">my<wbr>Collections<span class="tsd-signature-symbol">:</span> <a href="../interfaces/iowcdocument.html" class="tsd-signature-type">IOwcDocument</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">my<wbr>Collections<span class="tsd-signature-symbol">:</span> <a href="../interfaces/owccontext.html" class="tsd-signature-type">OwcContext</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections-desk.component.ts#L15">app/owc/collections-desk.component.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections-desk.component.ts#L15">app/owc/collections-desk.component.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -194,7 +195,7 @@
 					<div class="tsd-signature tsd-kind-icon">notification<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections-desk.component.ts#L28">app/owc/collections-desk.component.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections-desk.component.ts#L75">app/owc/collections-desk.component.ts:75</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -207,6 +208,28 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createcollection" class="tsd-anchor"></a>
+					<h3>create<wbr>Collection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Collection<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections-desk.component.ts#L58">app/owc/collections-desk.component.ts:58</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>shouldn&#39;t trust the client I guess</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="ngoninit" class="tsd-anchor"></a>
 					<h3>ng<wbr>OnInit</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -216,7 +239,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections-desk.component.ts#L34">app/owc/collections-desk.component.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections-desk.component.ts#L81">app/owc/collections-desk.component.ts:81</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -238,7 +261,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections-desk.component.ts#L18">app/owc/collections-desk.component.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections-desk.component.ts#L18">app/owc/collections-desk.component.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -276,6 +299,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="collectionsdeskcomponent.html#notificationservice" class="tsd-kind-icon">notification<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="collectionsdeskcomponent.html#createcollection" class="tsd-kind-icon">create<wbr>Collection</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="collectionsdeskcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>

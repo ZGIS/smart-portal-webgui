@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20% </span>
+        <span class="strong">19.7% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/65</span>
+        <span class='fraction'>13/66</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">18.97% </span>
+        <span class="strong">18.64% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>11/58</span>
+        <span class='fraction'>11/59</span>
       </div>
     </div>
   </div>
@@ -204,8 +204,7 @@
 159
 160
 161
-162
-163</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+162</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -222,31 +221,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -336,6 +333,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -368,10 +366,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, Output, EventEmitter } from '@angular/core';
-import { AccountService, createProfile } from './account.service';
+import { AccountService } from './account.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
+import { GAuthCredentials, RegisterJs } from './account.types';
 &nbsp;
 /**
  *
@@ -402,26 +401,23 @@ export class RegisterComponent {
   constructor(private <span class="cstat-no" title="statement not covered" >accountService: AccountService,</span> private <span class="cstat-no" title="statement not covered" >router: Router,</span>
               private <span class="cstat-no" title="statement not covered" >http: Http,</span> private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" >)</span> {</span>
 <span class="cstat-no" title="statement not covered" >    window[&lt;any&gt;'recaptchaCallback'] = &lt;any&gt;this.recaptchaCallback.bind(this);</span>
-  };
+  }
 &nbsp;
   validatePasswordSync( event: any<span class="fstat-no" title="function not covered" > ) {</span>
 <span class="cstat-no" title="statement not covered" >    this.passwordsAreSync = this.model.password === this.model.passwordConfirm;</span>
   }
 &nbsp;
-  /**
-   *
-   */
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  onSubmit() {</span></span>
 <span class="cstat-no" title="statement not covered" >    this.loading = true;</span>
 <span class="cstat-no" title="statement not covered" >    console.log(this.model);</span>
 &nbsp;
-    let regProfile = <span class="cstat-no" title="statement not covered" >createProfile({</span>
+    const regProfile: RegisterJs = <span class="cstat-no" title="statement not covered" >{</span>
       email: this.model.email,
       accountSubject: 'local:' + this.model.email,
       firstname: this.model.firstname,
       lastname: this.model.lastname,
       password: this.model.password
-    });
+    };
 &nbsp;
     // console.log('submit register form clicked!');
     // console.log(regProfile);
@@ -455,7 +451,7 @@ export class RegisterComponent {
 <span class="cstat-no" title="statement not covered" >          this.loading = false;</span>
 <span class="cstat-no" title="statement not covered" >          this.notificationService.addErrorResultNotification(error);</span>
         });
-  };
+  }
 &nbsp;
   /**
    * validate recaptcha via backend
@@ -487,7 +483,7 @@ export class RegisterComponent {
 <span class="cstat-no" title="statement not covered" >        this.loading = false;</span>
 <span class="cstat-no" title="statement not covered" >        this.notificationService.addErrorResultNotification(error);</span>
       });
-  };
+  }
 &nbsp;
   /**
    *
@@ -498,7 +494,8 @@ export class RegisterComponent {
 <span class="cstat-no" title="statement not covered" >    if (authCode) {</span>
       // console.log('getOAuthResponse register component');
       // console.log(authCode);
-<span class="cstat-no" title="statement not covered" >      this.accountService.gconnectHandle('REGISTER', authCode).subscribe(</span>
+      const gAuthCredential: GAuthCredentials = <span class="cstat-no" title="statement not covered" >{ authcode: authCode, accesstype: 'REGISTER' };</span>
+<span class="cstat-no" title="statement not covered" >      this.accountService.gconnectHandle(gAuthCredential).subscribe(</span>
         result<span class="fstat-no" title="function not covered" > =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >          if (result === true) {</span>
             // login successful
@@ -527,7 +524,7 @@ export class RegisterComponent {
         message: 'Login/Registration Error. No AuthCode provided.'
       });
     }
-  };
+  }
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -535,7 +532,7 @@ export class RegisterComponent {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jul 14 2017 15:40:28 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 27 2017 17:14:23 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

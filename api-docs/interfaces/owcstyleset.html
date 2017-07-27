@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IOwcPostRequestConfig | SMART WebGui</title>
+	<title>OwcStyleSet | SMART WebGui</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="iowcpostrequestconfig.html">IOwcPostRequestConfig</a>
+					<a href="owcstyleset.html">OwcStyleSet</a>
 				</li>
 			</ul>
-			<h1>Interface IOwcPostRequestConfig</h1>
+			<h1>Interface OwcStyleSet</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IOwcPostRequestConfig</span>
+						<span class="target">OwcStyleSet</span>
 					</li>
 				</ul>
 			</section>
@@ -79,8 +79,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iowcpostrequestconfig.html#request" class="tsd-kind-icon">request</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iowcpostrequestconfig.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="owcstyleset.html#abstract" class="tsd-kind-icon">abstract</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="owcstyleset.html#content" class="tsd-kind-icon">content</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="owcstyleset.html#default" class="tsd-kind-icon">default</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="owcstyleset.html#legendurl" class="tsd-kind-icon">legendURL</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="owcstyleset.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="owcstyleset.html#title" class="tsd-kind-icon">title</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="owcstyleset.html#uuid" class="tsd-kind-icon">uuid</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,22 +94,72 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="request" class="tsd-anchor"></a>
-					<h3>request</h3>
-					<div class="tsd-signature tsd-kind-icon">request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="abstract" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> abstract</h3>
+					<div class="tsd-signature tsd-kind-icon">abstract<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections.ts#L84">app/owc/collections.ts:84</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections.ts#L118">app/owc/collections.ts:118</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="content" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> content</h3>
+					<div class="tsd-signature tsd-kind-icon">content<span class="tsd-signature-symbol">:</span> <a href="owccontent.html" class="tsd-signature-type">OwcContent</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections.ts#L83">app/owc/collections.ts:83</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections.ts#L121">app/owc/collections.ts:121</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="default" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> default</h3>
+					<div class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections.ts#L119">app/owc/collections.ts:119</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="legendurl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> legendURL</h3>
+					<div class="tsd-signature tsd-kind-icon">legendURL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections.ts#L120">app/owc/collections.ts:120</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections.ts#L116">app/owc/collections.ts:116</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="title" class="tsd-anchor"></a>
+					<h3>title</h3>
+					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections.ts#L117">app/owc/collections.ts:117</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="uuid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> uuid</h3>
+					<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/owc/collections.ts#L122">app/owc/collections.ts:122</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -123,13 +178,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="iowcpostrequestconfig.html" class="tsd-kind-icon">IOwc<wbr>Post<wbr>Request<wbr>Config</a>
+						<a href="owcstyleset.html" class="tsd-kind-icon">Owc<wbr>Style<wbr>Set</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iowcpostrequestconfig.html#request" class="tsd-kind-icon">request</a>
+								<a href="owcstyleset.html#abstract" class="tsd-kind-icon">abstract</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iowcpostrequestconfig.html#type" class="tsd-kind-icon">type</a>
+								<a href="owcstyleset.html#content" class="tsd-kind-icon">content</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="owcstyleset.html#default" class="tsd-kind-icon">default</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="owcstyleset.html#legendurl" class="tsd-kind-icon">legendURL</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="owcstyleset.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="owcstyleset.html#title" class="tsd-kind-icon">title</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="owcstyleset.html#uuid" class="tsd-kind-icon">uuid</a>
 							</li>
 						</ul>
 					</li>

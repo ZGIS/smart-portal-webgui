@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IOwcDocument | SMART WebGui</title>
+	<title>SparqlResult | SMART WebGui</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="iowcdocument.html">IOwcDocument</a>
+					<a href="sparqlresult.html">SparqlResult</a>
 				</li>
 			</ul>
-			<h1>Interface IOwcDocument</h1>
+			<h1>Interface SparqlResult</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IOwcDocument</span>
+						<span class="target">SparqlResult</span>
 					</li>
 				</ul>
 			</section>
@@ -79,11 +79,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iowcdocument.html#features" class="tsd-kind-icon">features</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iowcdocument.html#geometry" class="tsd-kind-icon">geometry</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iowcdocument.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iowcdocument.html#properties" class="tsd-kind-icon">properties</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iowcdocument.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sparqlresult.html#head" class="tsd-kind-icon">head</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sparqlresult.html#results" class="tsd-kind-icon">results</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,52 +89,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="features" class="tsd-anchor"></a>
-					<h3>features</h3>
-					<div class="tsd-signature tsd-kind-icon">features<span class="tsd-signature-symbol">:</span> <a href="iowcentry.html" class="tsd-signature-type">IOwcEntry</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="head" class="tsd-anchor"></a>
+					<h3>head</h3>
+					<div class="tsd-signature tsd-kind-icon">head<span class="tsd-signature-symbol">:</span> <a href="sparqlheadvars.html" class="tsd-signature-type">SparqlHeadVars</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections.ts#L6">app/owc/collections.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/glossary-edu/glossary.types.ts#L2">app/glossary-edu/glossary.types.ts:2</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="geometry" class="tsd-anchor"></a>
-					<h3>geometry</h3>
-					<div class="tsd-signature tsd-kind-icon">geometry<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="results" class="tsd-anchor"></a>
+					<h3>results</h3>
+					<div class="tsd-signature tsd-kind-icon">results<span class="tsd-signature-symbol">:</span> <a href="sparqlheadresults.html" class="tsd-signature-type">SparqlHeadResults</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections.ts#L4">app/owc/collections.ts:4</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections.ts#L3">app/owc/collections.ts:3</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="properties" class="tsd-anchor"></a>
-					<h3>properties</h3>
-					<div class="tsd-signature tsd-kind-icon">properties<span class="tsd-signature-symbol">:</span> <a href="iowcdocumentproperties.html" class="tsd-signature-type">IOwcDocumentProperties</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections.ts#L5">app/owc/collections.ts:5</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/634b298/src/app/owc/collections.ts#L2">app/owc/collections.ts:2</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/83a334b/src/app/glossary-edu/glossary.types.ts#L3">app/glossary-edu/glossary.types.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -156,22 +123,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="iowcdocument.html" class="tsd-kind-icon">IOwc<wbr>Document</a>
+						<a href="sparqlresult.html" class="tsd-kind-icon">Sparql<wbr>Result</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iowcdocument.html#features" class="tsd-kind-icon">features</a>
+								<a href="sparqlresult.html#head" class="tsd-kind-icon">head</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iowcdocument.html#geometry" class="tsd-kind-icon">geometry</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iowcdocument.html#id" class="tsd-kind-icon">id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iowcdocument.html#properties" class="tsd-kind-icon">properties</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iowcdocument.html#type" class="tsd-kind-icon">type</a>
+								<a href="sparqlresult.html#results" class="tsd-kind-icon">results</a>
 							</li>
 						</ul>
 					</li>
