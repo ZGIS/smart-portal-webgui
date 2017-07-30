@@ -2,11 +2,12 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { CSWI_API_URL } from '../in-app-config';
-import { IGeoFeatureCollection, IErrorResult } from './result';
+import { IGeoFeatureCollection, IErrorResult, IGeoFeature } from './result';
 import { Observable } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 import * as moment from 'moment';
-import { OwcContext } from '../owc/collections';
+import { OwcContext, OwcResource } from '../owc/collections';
+import * as _ from 'lodash';
 
 @Injectable()
 export class ResultService {
@@ -19,8 +20,8 @@ export class ResultService {
    *
    * @type {string}
    */
-  constructor(@Inject(CSWI_API_URL) private cswiApiUrl: string,
-              private http: Http) {
+  constructor( @Inject(CSWI_API_URL) private cswiApiUrl: string,
+               private http: Http ) {
   }
 
   /**
@@ -33,28 +34,50 @@ export class ResultService {
    * @param maxNumberOfResults
    * @returns {Observable<R|T>}
    */
-  getResults(query: string,
-             fromDate = moment('1970-01-01', this.DATE_FORMAT).format(this.DATE_FORMAT),
-             toDate = moment().format(this.DATE_FORMAT),
-             bboxWkt = 'ENVELOPE(-180,180,90,-90)',
-             maxNumberOfResults?: number): Observable<IGeoFeatureCollection> {
+  getResults( query: string,
+              fromDate = moment('1970-01-01', this.DATE_FORMAT).format(this.DATE_FORMAT),
+              toDate = moment().format(this.DATE_FORMAT),
+              bboxWkt = 'ENVELOPE(-180,180,90,-90)',
+              maxNumberOfResults?: number ): Observable<IGeoFeatureCollection> {
 
     let params: URLSearchParams = new URLSearchParams();
     params.set('query', query);
     params.set('fromDate', fromDate);
     params.set('toDate', toDate);
     params.set('bbox', bboxWkt);
+    params.set('contentType', 'GeoJson');
     if (!isNullOrUndefined(maxNumberOfResults)) {
       params.set('maxNumberOfResults', maxNumberOfResults.toString());
     }
 
-    // TODO SR we should externalize the URL strings to one "service" wrapper class --> cswApiService.getQueryUrl() etc.
+    // TODO SR we should externalize the URL strings to one "service" wrapper class -->
+    // cswApiService.getQueryUrl() etc.
     return this.http.get(this.cswiApiUrl + '/query', {params: params})
-    /* FIXME not sure if I'm happy with this so far
-     http://stackoverflow.com/questions/22875636/how-do-i-cast-a-json-object-to-a-typescript-class
-     */
-      .map((response: Response) => <IGeoFeatureCollection>response.json())
-      .catch((errorResponse: Response) => this.handleError(errorResponse));
+      .map(
+        ( response: Response ) => {
+          if (<IGeoFeatureCollection>response.json()) {
+            let featureCollectionJson: IGeoFeatureCollection = response.json();
+            const scores = featureCollectionJson.features.map(f => f.properties.searchScore);
+            const maxValue = _.max(scores);
+            const minValue = 0; // _.min(scores);
+            const normalised: IGeoFeature[] = featureCollectionJson.features.map(f => {
+              const normalScore = (f.properties.searchScore - minValue) / (maxValue - minValue);
+              let geoFeature = f;
+              geoFeature.properties.searchScore = normalScore;
+              return geoFeature;
+            });
+            featureCollectionJson.features = normalised;
+            return featureCollectionJson;
+          } else {
+            let message: String = 'FeatureCollection not of type GeoJson';
+            return Observable.throw(<IErrorResult>{
+              message: message,
+              details: `${response.statusText} (${response.status}) for ${response.url}`
+            });
+          }
+        }
+      )
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
 
   /**
@@ -68,11 +91,12 @@ export class ResultService {
    * @param maxNumberOfResults
    * @returns {Observable<R|T>}
    */
-  getResultsAsOwcGeoJson(query: string,
-             fromDate = moment('1970-01-01', this.DATE_FORMAT).format(this.DATE_FORMAT),
-             toDate = moment().format(this.DATE_FORMAT),
-             bboxWkt = 'ENVELOPE(-180,180,90,-90)',
-             maxNumberOfResults?: number): Observable<OwcContext> {
+  getResultsAsOwcGeoJson( query: string,
+                          fromDate = moment('1970-01-01', this.DATE_FORMAT).format(
+                            this.DATE_FORMAT),
+                          toDate = moment().format(this.DATE_FORMAT),
+                          bboxWkt = 'ENVELOPE(-180,180,90,-90)',
+                          maxNumberOfResults?: number ): Observable<OwcContext> {
 
     let params: URLSearchParams = new URLSearchParams();
     params.set('query', query);
@@ -84,13 +108,34 @@ export class ResultService {
       params.set('maxNumberOfResults', maxNumberOfResults.toString());
     }
 
-    // TODO SR we should externalize the URL strings to one "service" wrapper class --> cswApiService.getQueryUrl() etc.
+    // TODO SR we should externalize the URL strings to one "service" wrapper class -->
+    // cswApiService.getQueryUrl() etc.
     return this.http.get(this.cswiApiUrl + '/query', {params: params})
-    /* FIXME not sure if I'm happy with this so far
-     http://stackoverflow.com/questions/22875636/how-do-i-cast-a-json-object-to-a-typescript-class
-     */
-      .map((response: Response) => <OwcContext>response.json())
-      .catch((errorResponse: Response) => this.handleError(errorResponse));
+      .map(
+        ( response: Response ) => {
+          if (<OwcContext>response.json()) {
+            let featureCollectionJson: OwcContext = response.json();
+            const scores = featureCollectionJson.features.map(f => f.searchScore);
+            const maxValue = _.max(scores);
+            const minValue = 0; // _.min(scores);
+            const normalised: OwcResource[] = featureCollectionJson.features.map(f => {
+              const normalScore = (f.searchScore - minValue) / (maxValue - minValue);
+              let owcResource = f;
+              owcResource.searchScore = normalScore;
+              return owcResource;
+            });
+            featureCollectionJson.features = normalised;
+            return featureCollectionJson;
+          } else {
+            let message: String = 'FeatureCollection not of type GeoJson';
+            return Observable.throw(<IErrorResult>{
+              message: message,
+              details: `${response.statusText} (${response.status}) for ${response.url}`
+            });
+          }
+        }
+      )
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
 
   /**
@@ -98,7 +143,7 @@ export class ResultService {
    * @param errorResponse
    * @returns {any}
    */
-  private handleError(errorResponse: Response) {
+  private handleError( errorResponse: Response ) {
     console.log(errorResponse);
 
     if (errorResponse.headers.get('content-type').startsWith('text/json')) {
