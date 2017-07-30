@@ -75,12 +75,15 @@
 
               <div *ngIf="feature.properties.linkage.length > 0" class="form-group">
                 <label class="col-sm-2 control-label">linkages</label>
-                <div class="col-sm-10">
+                <div class="col-sm-10" *ngFor="let link of feature.properties.linkage">
                   <p class="form-control-static">
-                    <a *ngFor="let link of feature.properties.linkage" [href]="link" target="_blank">
-                      <i class="fa fa-globe"></i>&nbsp;{{link}}
+                    <a [href]="link.linkage" target="_blank">
+                      <i class="fa fa-globe"></i>&nbsp;{{ link.resourceType}}: (<small><i>{{link.linkage}}</i></small>)
                     </a>
                   </p>
+                  <p class="form-control-static" *ngIf="link.name"><small><i>Name: {{link.name}}</i></small></p>
+                  <p class="form-control-static" *ngIf="link.description"><small><i>Description: {{link.description}}</i></small></p>
+                  <p class="form-control-static" *ngIf="link.protocol"><small><i>Protocol: {{link.protocol}}</i></small></p>
                 </div>
               </div>
 
@@ -88,8 +91,7 @@
                 <label class="col-sm-2 control-label">Source:</label>
                 <div class="col-sm-10">
                   <p class="form-control-static">{{feature.properties.origin}}
-                    <a *ngIf="feature.properties.originUrl" href="{{feature.properties.originUrl}}">
-                      <i class="fa fa-globe"></i>&nbsp;{{feature.properties.originUrl}}</a>
+                    <i *ngIf="feature.properties.originUrl" class="fa fa-tags" tooltip="{{feature.properties.originUrl}}"></i>
                   </p>
                 </div>
               </div>
@@ -98,7 +100,7 @@
                 <label class="col-sm-2 control-label">File Identifier</label>
                 <div class="col-sm-10">
                   <p class="form-control-static">
-                    <a routerLink="/context/resource/{{feature.properties.fileIdentifier}}">{{feature.properties.fileIdentifier}}</a>
+                    <a href="/#/context/resource/{{feature.properties.fileIdentifier}}" target="_blank">{{feature.properties.fileIdentifier}}</a>
                   </p>
                 </div>
               </div>

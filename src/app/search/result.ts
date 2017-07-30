@@ -29,12 +29,19 @@ export interface IGeoFeatureProperties {
   contactEmail?: string;
   license?: string;
   lineageStmt?: string;
-  linkage: string[];
+  linkage: ILinkageType[];
   origin: string;
   originUrl?: string;
   searchScore?: number;
 }
 
+export interface ILinkageType {
+  linkage: string;
+  protocol?: string;
+  name?: string;
+  description?: string;
+  resourceType: string;
+}
 /**
  * Generic Error that is returned by Ingester and Backend in case of Errors
  */

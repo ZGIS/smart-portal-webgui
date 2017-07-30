@@ -3,17 +3,16 @@
     <!-- 'https://www.rabobank.com/en/images/A%20Kerndocumenten.jpg' -->
 
     <img src="{{cardImage}}"/>
-    <h4>{{ title }}</h4>
+    <h4>{{ title }} <small><b>(<i *ngIf="originUrl" class="fa fa-tags" tooltip="{{originUrl}}"></i> {{origin}};
+      <i *ngIf="tempRating" class="fa fa-star" tooltip="Relevance match: {{ tempRating }}"></i> {{tempRating.toFixed(2)}}))</b></small></h4>
 
-    <div class="rating">
+    <!-- <div class="rating">
       <rating [(ngModel)]="tempRating" [max]="10" [readonly]="true"></rating>
     </div>
+    -->
   </div>
   <div class="card-content">
     <div>
-      <small><b>(src:{{origin}}
-      <a *ngIf="originUrl" href="{{originUrl}}">
-        <i class="fa fa-globe"></i>&nbsp;{{originUrl}}</a></b></small>)
       {{ getFirstWords(bodyText, 100)}}
     </div>
     <div class="gradient"></div>
