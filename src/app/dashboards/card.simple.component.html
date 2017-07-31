@@ -3,13 +3,13 @@
     <!-- 'https://www.rabobank.com/en/images/A%20Kerndocumenten.jpg' -->
 
     <img src="{{cardImage}}"/>
-    <h4>{{ title }} <small><b>(<i *ngIf="originUrl" class="fa fa-tags" tooltip="{{originUrl}}"></i> {{origin}};
-      <i *ngIf="tempRating" class="fa fa-star" tooltip="Relevance match: {{ tempRating }}"></i> {{tempRating.toFixed(2)}}))</b></small></h4>
+    <h4>{{ title }} <small><b>(<i *ngIf="originUrl" class="fa fa-tags" tooltip="{{originUrl}}"></i> {{origin}})</b></small></h4>
 
-    <!-- <div class="rating">
-      <rating [(ngModel)]="tempRating" [max]="10" [readonly]="true"></rating>
+    <div class="rating" *ngIf="tempRating" tooltip="Relevance match: {{ tempRating }}">
+      <!-- <rating [(ngModel)]="tempRating" [max]="10" [readonly]="true"></rating> -->
+      <i class="fa fa-star"></i> {{tempRating.toFixed(2)}}
     </div>
-    -->
+
   </div>
   <div class="card-content">
     <div>
