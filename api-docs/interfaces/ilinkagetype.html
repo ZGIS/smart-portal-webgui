@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IErrorResult | SMART WebGui</title>
+	<title>ILinkageType | SMART WebGui</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,28 +54,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="ierrorresult.html">IErrorResult</a>
+					<a href="ilinkagetype.html">ILinkageType</a>
 				</li>
 			</ul>
-			<h1>Interface IErrorResult</h1>
+			<h1>Interface ILinkageType</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Generic Error that is returned by Ingester and Backend in case of Errors</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IErrorResult</span>
+						<span class="target">ILinkageType</span>
 					</li>
 				</ul>
 			</section>
@@ -86,8 +79,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ierrorresult.html#details" class="tsd-kind-icon">details</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ierrorresult.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ilinkagetype.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ilinkagetype.html#linkage" class="tsd-kind-icon">linkage</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ilinkagetype.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ilinkagetype.html#protocol" class="tsd-kind-icon">protocol</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ilinkagetype.html#resourcetype" class="tsd-kind-icon">resource<wbr>Type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,22 +92,52 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="details" class="tsd-anchor"></a>
-					<h3>details</h3>
-					<div class="tsd-signature tsd-kind-icon">details<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="description" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> description</h3>
+					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/f5b6e6e/src/app/search/result.ts#L50">app/search/result.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/f5b6e6e/src/app/search/result.ts#L42">app/search/result.ts:42</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="message" class="tsd-anchor"></a>
-					<h3>message</h3>
-					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="linkage" class="tsd-anchor"></a>
+					<h3>linkage</h3>
+					<div class="tsd-signature tsd-kind-icon">linkage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/f5b6e6e/src/app/search/result.ts#L49">app/search/result.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/f5b6e6e/src/app/search/result.ts#L39">app/search/result.ts:39</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/f5b6e6e/src/app/search/result.ts#L41">app/search/result.ts:41</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="protocol" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> protocol</h3>
+					<div class="tsd-signature tsd-kind-icon">protocol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/f5b6e6e/src/app/search/result.ts#L40">app/search/result.ts:40</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="resourcetype" class="tsd-anchor"></a>
+					<h3>resource<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">resource<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/f5b6e6e/src/app/search/result.ts#L43">app/search/result.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -130,13 +156,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="ierrorresult.html" class="tsd-kind-icon">IError<wbr>Result</a>
+						<a href="ilinkagetype.html" class="tsd-kind-icon">ILinkage<wbr>Type</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ierrorresult.html#details" class="tsd-kind-icon">details</a>
+								<a href="ilinkagetype.html#description" class="tsd-kind-icon">description</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ierrorresult.html#message" class="tsd-kind-icon">message</a>
+								<a href="ilinkagetype.html#linkage" class="tsd-kind-icon">linkage</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ilinkagetype.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ilinkagetype.html#protocol" class="tsd-kind-icon">protocol</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ilinkagetype.html#resourcetype" class="tsd-kind-icon">resource<wbr>Type</a>
 							</li>
 						</ul>
 					</li>
