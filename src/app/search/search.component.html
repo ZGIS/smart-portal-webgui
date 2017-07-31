@@ -95,9 +95,20 @@
                [class.active]="feature===selectedResult"
                (click)="showFeatureModal(feature)"
                (mouseover)="selectedResult = feature"
-               (mouseout)="selectedResult = undefined"
-                >
+               (mouseout)="selectedResult = undefined">
                {{feature.properties.title}}
+              <i *ngIf="feature.properties.searchScore && feature.properties.searchScore > 0.75"
+                 tooltip="Estimated  relative relevance: {{ (feature.properties.searchScore * 100).toFixed(0) }}%">
+                <small style="color: #00A000">({{ (feature.properties.searchScore * 100).toFixed(0) }}%)</small>
+              </i>
+              <i *ngIf="feature.properties.searchScore && feature.properties.searchScore < 0.75  && feature.properties.searchScore > 0.5"
+                 tooltip="Estimated  relative relevance: {{ (feature.properties.searchScore * 100).toFixed(0) }}%">
+                <small style="color: #0d87e9">({{ (feature.properties.searchScore * 100).toFixed(0) }}%)</small>
+              </i>
+              <i *ngIf="feature.properties.searchScore && feature.properties.searchScore < 0.5  && feature.properties.searchScore > 0.1"
+                 tooltip="Estimated  relative relevance: {{ (feature.properties.searchScore * 100).toFixed(0) }}%">
+                <small style="color: #cc9900">({{ (feature.properties.searchScore * 100).toFixed(0) }}%)</small>
+              </i>
             </a>
           </div>
         </div>

@@ -7,39 +7,32 @@
       <small><b>(<i *ngIf="originUrl" class="fa fa-tags" tooltip="{{originUrl}}"></i> {{origin}})</b></small>
     </h4>
 
-    <progressbar class="rating" *ngIf="tempRating && tempRating > 0.75"
-                 tooltip="Estimated  relative relevance: {{ (tempRating * 100).toFixed(2) }}%"
-                 [animate]="false" type="success" [value]="(tempRating * 100).toFixed(2)">
-      <b>{{ (tempRating * 100).toFixed(2) }}%</b>
-    </progressbar>
-
-    <progressbar class="rating" *ngIf="tempRating && tempRating > 0.5 && tempRating < 0.75"
-                 tooltip="Estimated  relative relevance: {{ (tempRating * 100).toFixed(2) }}%"
-                 [animate]="false" type="info" [value]="(tempRating * 100).toFixed(2)">
-      <b>{{ (tempRating * 100).toFixed(2) }}%</b>
-    </progressbar>
-
-    <progressbar class="rating" *ngIf="tempRating && tempRating > 0.1 && tempRating < 0.5"
-                 tooltip="Estimated  relative relevance: {{ (tempRating * 100).toFixed(2) }}%"
-                 [animate]="false" type="warning" [value]="(tempRating * 100).toFixed(2)">
-      <b>{{ (tempRating * 100).toFixed(2) }}%</b>
-    </progressbar>
-
-    <!--
-    <div class="rating" *ngIf="tempRating" tooltip="Relevance match: {{ tempRating }}">
-       <rating [(ngModel)]="tempRating" [max]="10" [readonly]="true"></rating>
-      <!-- <i class="fa fa-star"></i> {{tempRating.toFixed(2)}}
-    </div>
-    -->
-
   </div>
   <div class="card-content">
+
+    <progressbar class="rating" *ngIf="tempRating && tempRating > 0.75" placement="bottom"
+                 tooltip="Estimated  relative relevance: {{ (tempRating * 100).toFixed(0) }}%"
+                 [animate]="false" type="success" [value]="(tempRating * 100).toFixed(0)">
+      <b>{{ (tempRating * 100).toFixed(0) }}%</b>
+    </progressbar>
+
+    <progressbar class="rating" *ngIf="tempRating && tempRating > 0.5 && tempRating < 0.75" placement="bottom"
+                 tooltip="Estimated  relative relevance: {{ (tempRating * 100).toFixed(0) }}%"
+                 [animate]="false" type="info" [value]="(tempRating * 100).toFixed(0)">
+      <b>{{ (tempRating * 100).toFixed(0) }}%</b>
+    </progressbar>
+
+    <progressbar class="rating" *ngIf="tempRating && tempRating > 0.1 && tempRating < 0.5" placement="bottom"
+                 tooltip="Estimated  relative relevance: {{ (tempRating * 100).toFixed(0) }}%"
+                 [animate]="false" type="warning" [value]="(tempRating * 100).toFixed(0)">
+      <b>{{ (tempRating * 100).toFixed(0) }}%</b>
+    </progressbar>
     <div>
       {{ getFirstWords(bodyText, 100)}}
     </div>
     <div class="gradient"></div>
   </div>
   <div class="card-read-more">
-    <a class="btn btn-link btn-block" (click)="readMoreClicked()">see details...</a>
+    <a tooltip="Click to open details view." class="btn btn-link btn-block" (click)="readMoreClicked()">see details...</a>
   </div>
 </div>
