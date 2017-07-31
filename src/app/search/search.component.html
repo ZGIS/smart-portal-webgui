@@ -109,6 +109,8 @@
                  tooltip="Estimated  relative relevance: {{ (feature.properties.searchScore * 100).toFixed(0) }}%">
                 <small style="color: #cc9900">({{ (feature.properties.searchScore * 100).toFixed(0) }}%)</small>
               </i>
+              <small>(<i *ngIf="feature.properties.originUrl" class="fa fa-tags"
+                            tooltip="{{ feature.properties.originUrl}}"></i> {{feature.properties.origin}})</small>
             </a>
           </div>
         </div>
