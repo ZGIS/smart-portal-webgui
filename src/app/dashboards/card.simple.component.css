@@ -70,7 +70,7 @@
   color:lightskyblue;
 }
 
-.card > .header > .rating {
+.card > .header > .rating .progressbar {
   position:absolute;
   left: 7px;
   bottom:-2px;

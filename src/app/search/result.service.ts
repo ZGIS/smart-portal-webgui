@@ -59,9 +59,10 @@ export class ResultService {
             let featureCollectionJson: IGeoFeatureCollection = response.json();
             const scores = featureCollectionJson.features.map(f => f.properties.searchScore);
             const maxValue = _.max(scores);
-            const minValue = 0; // _.min(scores);
+            const minValue = _.min(scores);
+            // const minValue = 0;
             const normalised: IGeoFeature[] = featureCollectionJson.features.map(f => {
-              const normalScore = (f.properties.searchScore - minValue) / (maxValue - minValue);
+              const normalScore: number = (f.properties.searchScore - minValue) / (maxValue - minValue);
               let geoFeature = f;
               geoFeature.properties.searchScore = normalScore;
               return geoFeature;
@@ -117,7 +118,8 @@ export class ResultService {
             let featureCollectionJson: OwcContext = response.json();
             const scores = featureCollectionJson.features.map(f => f.searchScore);
             const maxValue = _.max(scores);
-            const minValue = 0; // _.min(scores);
+            const minValue = _.min(scores);
+            // const minValue = 0;
             const normalised: OwcResource[] = featureCollectionJson.features.map(f => {
               const normalScore = (f.searchScore - minValue) / (maxValue - minValue);
               let owcResource = f;
