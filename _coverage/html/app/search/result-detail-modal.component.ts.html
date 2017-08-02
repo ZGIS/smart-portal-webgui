@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">68.75% </span>
+        <span class="strong">48.15% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>11/16</span>
+        <span class='fraction'>13/27</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20% </span>
+        <span class="strong">14.29% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/5</span>
+        <span class='fraction'>1/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">64.29% </span>
+        <span class="strong">45.83% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/14</span>
+        <span class='fraction'>11/24</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -74,7 +74,40 @@
 29
 30
 31
-32</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -82,17 +115,42 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -107,23 +165,52 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { IGeoFeature } from './result';
+import { IErrorResult, IGeoFeature } from './result';
+import { OwcContext, OwcResource } from '../owc/collections';
+import { ResultService } from './result.service';
+import { NotificationService } from '../notifications/notification.service';
 &nbsp;
-<span class="fstat-no" title="function not covered" >@Component({</span>
+@Component({
   selector: 'app-sac-gwh-result-detail-modal',
   templateUrl: 'result-detail-modal.component.html'
 })
 &nbsp;
 export class ResultDetailModalComponent {
   feature: IGeoFeature;
+  owcFeature: OwcResource;
 &nbsp;
   @Output() onHide = new EventEmitter();
 &nbsp;
   @ViewChild('resultModalRef') public modal: ModalDirective;
 &nbsp;
-  showFeatureModal(geoFeature: IGeoFeature<span class="fstat-no" title="function not covered" >) {</span>
+  constructor( private <span class="cstat-no" title="statement not covered" >resultService: ResultService,</span>
+               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" > </span>) {</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  showFeatureModal( geoFeature: IGeoFeature<span class="fstat-no" title="function not covered" > ) {</span></span>
 <span class="cstat-no" title="statement not covered" >    if (geoFeature !== undefined) {</span>
 <span class="cstat-no" title="statement not covered" >      this.feature = geoFeature;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.resultService.getResultsAsOwcGeoJson(</span>
+        `fileIdentifier:"${geoFeature.properties.fileIdentifier}"`
+      ).subscribe(
+        ( results: OwcContext<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          if (results.features.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            this.owcFeature = results.features[ 0 ];</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            this.notificationService.addNotification({</span>
+              id: NotificationService.MSG_ID_DOCUMENT_NOT_FOUND,
+              message: `Document ${geoFeature.properties.fileIdentifier}
+              could not be found in CSW index. Maybe it is not a metadata document?`,
+              type: NotificationService.NOTIFICATION_TYPE_WARNING
+            });
+<span class="cstat-no" title="statement not covered" >            this.hideFeatureModal();</span>
+          }
+        },
+        ( error: IErrorResult<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          this.notificationService.addErrorResultNotification(error);</span>
+        });
+&nbsp;
 <span class="cstat-no" title="statement not covered" >      this.modal.show();</span>
     }
   }
@@ -142,7 +229,7 @@ export class ResultDetailModalComponent {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 31 2017 08:41:21 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Aug 02 2017 05:05:30 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
