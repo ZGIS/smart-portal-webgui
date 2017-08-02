@@ -1,0 +1,54 @@
+#
+# This snippet needs to be included under every resource, i.e. location etc for which CORS should be enabled
+#
+
+if ($request_method = 'OPTIONS') {
+
+  add_header 'Access-Control-Allow-Origin' '*';
+
+  #
+  # cookies
+  #
+
+  add_header 'Access-Control-Allow-Credentials' 'true';
+  add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+
+  #
+  # Custom headers and headers various browsers *should* be OK with but aren't
+  #
+
+  add_header 'Access-Control-Allow-Headers' 'Origin,Accept,Referer,Authorization,X-XSRF-TOKEN,Pragma,Date,DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+
+  #
+  # Tell client that this pre-flight info is valid for 3 days
+  #
+
+  add_header 'Access-Control-Max-Age' 259200;
+  add_header 'Content-Type' 'text/plain charset=UTF-8';
+  add_header 'Content-Length' 0;
+
+  return 204;
+}
+
+if ($request_method = 'POST') {
+
+  add_header 'Access-Control-Allow-Origin' '*';
+  add_header 'Access-Control-Allow-Credentials' 'true';
+  add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+  add_header 'Access-Control-Allow-Headers' 'Origin,Accept,Referer,Authorization,X-XSRF-TOKEN,Pragma,Date,DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+
+}
+
+if ($request_method = 'GET') {
+
+  add_header 'Access-Control-Allow-Origin' '*';
+  add_header 'Access-Control-Allow-Credentials' 'true';
+  add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+  add_header 'Access-Control-Allow-Headers' 'Origin,Accept,Referer,Authorization,X-XSRF-TOKEN,Pragma,Date,DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+
+}
+
+###
+# here goes the content of your "location /" section
+###
+
