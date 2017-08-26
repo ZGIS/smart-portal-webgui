@@ -53,7 +53,7 @@ module.exports = webpackMerge(coreConfig, {
         use: ExtractTextPlugin
           .extract({
             fallback: "style-loader",
-              use: ['css-loader' + (isProd ? '?minimize' : ''), 'postcss-loader']
+            use: ['css-loader' + (isProd ? '?minimize' : ''), 'postcss-loader']
           })
       },
       {
@@ -61,7 +61,26 @@ module.exports = webpackMerge(coreConfig, {
         include: helpers.root('src', 'app'),
         use: 'raw-loader'
         // use: 'raw-loader!postcss-loader'
-      }
+      },
+      {
+        test: /\.less$/,
+        exclude: helpers.root('src', 'app'),
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            'css-loader' + (isProd ? '?minimize' : ''),
+            "less-loader"
+          ],
+        })
+      },
+      {
+        test: /\.less$/,
+        include: helpers.root('src', 'app'),
+        use: [
+          'raw-loader',
+          "less-loader"
+        ],
+      },
     ]
   },
 
@@ -69,7 +88,7 @@ module.exports = webpackMerge(coreConfig, {
     new webpack.NamedModulesPlugin(),
 
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app','style', 'vendor', 'vendorDll', 'polyfills']
+      name: ['app', 'style', 'vendor', 'vendorDll', 'polyfills']
     }),
 
     new HtmlWebpackPlugin({

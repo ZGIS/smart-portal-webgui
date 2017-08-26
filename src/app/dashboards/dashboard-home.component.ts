@@ -8,7 +8,7 @@ import { NotificationService } from '../notifications';
 @Component({
   selector: 'app-sac-gwh-dashboard-home',
   templateUrl: 'dashboard-home.component.html',
-  styleUrls: [ 'dashboard-home.component.css' ]
+  styleUrls: [ 'dashboard-home.component.less' ]
 })
 
 export class DashboardHomeComponent implements OnInit {

@@ -5,13 +5,9 @@ import 'font-awesome/css/font-awesome.css';
 import 'openlayers/dist/ol.css';
 import 'x3dom/x3dom.css';
 
-import 'bootstrap/dist/css/bootstrap.css';
 
 // app theme is included in app component and viewencapsulation is deactivated so it propagates
 // app styles into inheriting components
 
-// import './public/css/theme.min.css';
-
-
-
-
+import 'bootstrap/less/bootstrap.less';
+// import 'theme.less';

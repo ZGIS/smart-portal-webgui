@@ -81,6 +81,10 @@ module.exports = webpackMerge(commonConfig, {
     new ExtractTextPlugin({
       filename: '[name].css',
       allChunks: true
+    }),
+    new ExtractTextPlugin({
+      filename: '[name].less',
+      allChunks: true
     })
   ],
 
