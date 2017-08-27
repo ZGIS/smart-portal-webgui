@@ -55,6 +55,16 @@ module.exports = webpackMerge(coreConfig, {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         use: 'raw-loader'
+      },
+      {
+        test: /\.less$/,
+        exclude: helpers.root('src', 'app'),
+        use: 'null-loader'
+      },
+      {
+        test: /\.less$/,
+        include: helpers.root('src', 'app'),
+        use: ['raw-loader', 'less-loader']
       }
     ]
     .concat(!isCI ? [] : [

@@ -78,7 +78,7 @@ module.exports = webpackMerge(coreConfig, {
         include: helpers.root('src', 'app'),
         use: [
           'raw-loader',
-          "less-loader"
+          'less-loader'
         ],
       },
     ]

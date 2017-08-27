@@ -10,4 +10,4 @@ import 'x3dom/x3dom.css';
 // app styles into inheriting components
 
 import 'bootstrap/less/bootstrap.less';
-// import 'theme.less';
+import 'theme.less';
