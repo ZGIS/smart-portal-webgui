@@ -83,6 +83,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
 import { ContextRetrieveComponent } from './context/context.component';
 import { TimeseriesComponent } from './timeseries';
 import { TimeseriesConfiguratorModalComponent } from './timeseries/timeseries.configurator.modal.component';
+import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.component';
 
 @NgModule({
   imports: [BrowserModule,
@@ -152,7 +153,8 @@ import { TimeseriesConfiguratorModalComponent } from './timeseries/timeseries.co
     CardComponent,
     ContextRetrieveComponent,
     TimeseriesComponent,
-    TimeseriesConfiguratorModalComponent
+    TimeseriesConfiguratorModalComponent,
+    UsplashImageCreditComponent
   ],
   providers: [
     API_URL_PROVIDERS,

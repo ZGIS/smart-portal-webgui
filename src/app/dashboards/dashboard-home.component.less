@@ -1,11 +1,41 @@
-/*FIXME SR get the size out of bootstrap itself. */
-
 @import (reference) "../../variables";
 
+@understanding-color: rgb(22,109,134);
+@managing-color: rgb(3,36,51);
+
+@understanding-bg-color: fade(@managing-color, 60%);
+@managing-bg-color: fade(@understanding-color, 60%);
+
+/*FIXME SR get the size out of bootstrap itself. */
+/*
 @media (min-width: 992px) {
   .slide01 {
-    background: url(/images/dashboard/0.0_main_background_empty.png) center no-repeat;
-    //background: @brand-primary;
+    background: url("/images/dashboard/0.0_main_background_empty.png") center no-repeat;
     background-size: cover;
   }
+}
+*/
+
+.dashboard-bg {
+  background-color: @managing-bg-color;
+}
+
+.understanding {
+  color: @understanding-color;
+  background-color: @understanding-bg-color;
+  text-align: center;
+  height:500px; // TODO this is a disgusting hack
+}
+
+.managing {
+  color: @managing-color;
+  background-color: @managing-bg-color;
+  text-align: center;
+  height:500px; // TODO this is a disgusting hack
+}
+
+.transition-column {
+  //border:1px solid red;
+  background: linear-gradient(90deg, @understanding-bg-color, @managing-bg-color);
+  height:500px; // TODO this is a disgusting hack
 }

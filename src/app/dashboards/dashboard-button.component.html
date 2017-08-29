@@ -1,10 +1,14 @@
-<div *ngIf="category">
+<div *ngIf="category"
+     class="dashboard-button">
+
   <a [routerLink]="category.parent !== 'main' ? ['./cards'] : ['/dashboard/' + category.query_string ]"
      [queryParams]="category.parent !== 'main' ? {'query': category ? category.query_string : 'title:groundwater', 'categoryId' : category ? category.id : 0 }:{ 'categoryId' : category ? category.id : 0 }"
-     class="thumbnail" tooltip="{{ category ? category.item_name : '' }}{{ category ? ' -  ' + category.description : '' }}"><img
-     src="{{ categoryImg }}">
-
+     class="thumbnail"
+     [ngClass]="{'smallBtn': smallBtn}"
+     tooltip="{{ category ? category.item_name : '' }}{{ category ? ' -  ' + category.description : '' }}">
+    <img *ngIf="categoryImg && !smallBtn" src="{{ categoryImg }}">
+    <p>
     {{ category ? category.item_name : '' }}
-
+    </p>
   </a>
 </div>

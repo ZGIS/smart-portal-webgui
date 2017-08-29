@@ -1,9 +1,63 @@
 <div class="jumbotron">
-  <p id="dashboard-home">Welcome to the SAC groundwater hub</p>
-  <p id="dashboard-info">Here you will find datasets, models, reports and further groundwater-related information.
-  With a registered account you will be able to upload and manage your personal datasets and create collections to share.</p>
+  <h2 id="dashboard-home">Welcome to the SAC groundwater hub</h2><i class="gns-logo small top-right"></i>
+  <p id="dashboard-info">Description text introducing the portal, GNS to provide</p>
 </div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5 understanding">
+      <div class="row">
+        <h1>understanding</h1>
+        <h3>our groundwater systems</h3>
+        <br/>
+        <br/>
+        <br/>
+      </div>
+      <div class="row">
+        <div class="col-md-4" id="category-2">
+          <app-sac-gwh-dashboard-button [category]="categoryObjs[2]"
+                                        [categoryImg]="categoryImgs[2]"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-4" id="category-3">
+          <app-sac-gwh-dashboard-button [category]="categoryObjs[3]"
+                                        [categoryImg]="categoryImgs[3]"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-4" id="category-5">
+          <app-sac-gwh-dashboard-button [category]="categoryObjs[5]"
+                                        [categoryImg]="categoryImgs[5]"></app-sac-gwh-dashboard-button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 transition-column">
+      &nbsp;
+    </div>
+    <div class="col-md-5 managing">
+      <div class="row">
+        <h1>managing</h1>
+        <h3>impacts on our groundwater systems</h3>
+        <br/>
+        <br/>
+        <br/>
+      </div>
+      <div class="row">
+        <div class="col-md-4" id="category-4">
+          <app-sac-gwh-dashboard-button [category]="categoryObjs[4]"
+                                        [categoryImg]="categoryImgs[4]"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-4" id="category-6">
+          <app-sac-gwh-dashboard-button [category]="categoryObjs[6]"
+                                        [categoryImg]="categoryImgs[6]"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-4" id="category-7">
+          <app-sac-gwh-dashboard-button [category]="categoryObjs[7]"
+                                        [categoryImg]="categoryImgs[7]"></app-sac-gwh-dashboard-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
 <div class="slide01">
   <div class="row" id="row-1">
 
@@ -80,3 +134,4 @@
 
   </div>
 </div>
+-->

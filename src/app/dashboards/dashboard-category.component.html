@@ -1,77 +1,62 @@
 <div class="jumbotron">
-  <p id="dashboard-category">{{ categoryName }} <i class="fa fa-tint" aria-hidden="true"></i> {{ description }}</p>
+  <h2>{{ categoryName }} <i class="fa fa-tint" aria-hidden="true"></i></h2>
+  <p>{{ description }}</p>
 </div>
-<div class="slide02" [ngStyle]="{'background-image': 'url(' + bgImage.imgUrl + ')'}">
 
-  <div class="row" id="row-1">
 
-    <div class="col-md-2">
-      <div class="back-button">
-        <a routerLink="/dashboard" class="thumbnail" tooltip="back to main dashboard">
-          <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;back</a>
-      </div>
-    </div>
-
-    <div class="col-md-2">&nbsp;</div>
-
-    <div class="col-md-2"  id="category-7">
-      <app-sac-gwh-dashboard-button [category]="children[7]" [categoryImg]="childrenImg[7]"></app-sac-gwh-dashboard-button>
-    </div>
-
-    <div class="col-md-2" id="category-0">
-      <app-sac-gwh-dashboard-button [category]="children[0]" [categoryImg]="childrenImg[0]"></app-sac-gwh-dashboard-button>
-    </div>
-
-    <div class="col-md-2" id="category-1">
-      <app-sac-gwh-dashboard-button [category]="children[1]" [categoryImg]="childrenImg[1]"></app-sac-gwh-dashboard-button>
-    </div>
-
-    <div class="col-md-2"  id="category-8">
-      <app-sac-gwh-dashboard-button [category]="children[8]" [categoryImg]="childrenImg[8]"></app-sac-gwh-dashboard-button>
-    </div>
+<div class="container-fluid">
+  <div class="row dashboard-bg">
+        <div class="col-md-3" id="category-0">
+          <app-sac-gwh-dashboard-button [category]="children[0]"
+                                        [categoryImg]="childrenImg[0]" smallBtn="true"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-3" id="category-1">
+          <app-sac-gwh-dashboard-button [category]="children[1]"
+                                        [categoryImg]="childrenImg[1]" smallBtn="true"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-3" id="category-2">
+          <app-sac-gwh-dashboard-button [category]="children[2]"
+                                        [categoryImg]="childrenImg[2]" smallBtn="true"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-3" id="category-3">
+          <app-sac-gwh-dashboard-button [category]="children[3]"
+                                        [categoryImg]="childrenImg[3]" smallBtn="true"></app-sac-gwh-dashboard-button>
+        </div>
   </div>
-
-  <div class="row" id="row-2">
-
-    <div class="col-md-10"></div>
-
-    <div class="col-md-2" id="category-2">
-      <app-sac-gwh-dashboard-button [category]="children[2]" [categoryImg]="childrenImg[2]"></app-sac-gwh-dashboard-button>
-    </div>
-
+  <div class="row dashboard-bg">
+        <div class="col-md-3" id="category-4">
+          <app-sac-gwh-dashboard-button [category]="children[4]"
+                                        [categoryImg]="childrenImg[4]" smallBtn="true"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-3" id="category-5">
+          <app-sac-gwh-dashboard-button [category]="children[5]"
+                                        [categoryImg]="childrenImg[5]" smallBtn="true"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-3" id="category-6">
+          <app-sac-gwh-dashboard-button [category]="children[6]"
+                                        [categoryImg]="childrenImg[6]" smallBtn="true"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-3" id="category-7">
+          <app-sac-gwh-dashboard-button [category]="children[7]"
+                                        [categoryImg]="childrenImg[7]" smallBtn="true"></app-sac-gwh-dashboard-button>
+        </div>
   </div>
-
-  <div class="row" id="row-3">
-
-    <div class="col-md-2"  id="category-3">
-      <app-sac-gwh-dashboard-button [category]="children[3]" [categoryImg]="childrenImg[3]"></app-sac-gwh-dashboard-button>
-    </div>
-
-    <div class="col-md-8">&nbsp;</div>
-
-    <div class="col-md-2" id="category-4">
-      <app-sac-gwh-dashboard-button [category]="children[4]" [categoryImg]="childrenImg[4]"></app-sac-gwh-dashboard-button>
-    </div>
-  </div>
-
-  <div class="row" id="row-4">
-
-    <div class="col-md-2"  id="category-10">
-      <app-sac-gwh-dashboard-button [category]="children[10]" [categoryImg]="childrenImg[10]"></app-sac-gwh-dashboard-button>
-    </div>
-
-    <div class="col-md-2"  id="category-5">
-      <app-sac-gwh-dashboard-button [category]="children[5]" [categoryImg]="childrenImg[5]"></app-sac-gwh-dashboard-button>
-    </div>
-
-    <div class="col-md-4">&nbsp;</div>
-
-    <div class="col-md-2"  id="category-6">
-      <app-sac-gwh-dashboard-button [category]="children[6]" [categoryImg]="childrenImg[6]"></app-sac-gwh-dashboard-button>
-    </div>
-
-    <div class="col-md-2"  id="category-9">
-      <app-sac-gwh-dashboard-button [category]="children[9]" [categoryImg]="childrenImg[9]"></app-sac-gwh-dashboard-button>
-    </div>
+  <div class="row dashboard-bg">
+        <div class="col-md-3" id="category-8">
+          <app-sac-gwh-dashboard-button [category]="children[8]"
+                                        [categoryImg]="childrenImg[8]" smallBtn="true"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-3" id="category-9">
+          <app-sac-gwh-dashboard-button [category]="children[9]"
+                                        [categoryImg]="childrenImg[9]" smallBtn="true"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-3" id="category-10">
+          <app-sac-gwh-dashboard-button [category]="children[10]"
+                                        [categoryImg]="childrenImg[10]" smallBtn="true"></app-sac-gwh-dashboard-button>
+        </div>
+        <div class="col-md-3" id="category-11">
+          <app-sac-gwh-dashboard-button [category]="children[11]"
+                                        [categoryImg]="childrenImg[11]" smallBtn="true"></app-sac-gwh-dashboard-button>
+        </div>
   </div>
 </div>

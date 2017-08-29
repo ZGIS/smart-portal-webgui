@@ -1,0 +1,43 @@
+@import (reference) "../../variables";
+
+.dashboard-button {
+  margin-bottom: @line-height-computed;
+  margin-top: @line-height-computed;
+
+
+  > .thumbnail {
+    background-color: rgba(179, 175, 153, .6);
+    border:none;
+
+    color: @brand-primary;
+    padding: 1px;
+    height:250px;
+
+    &.smallBtn {
+      height:85px;
+    }
+
+    > img {
+      width: 100%;
+    }
+
+    > p {
+      margin-top: @line-height-computed;
+      text-align:center;
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+  }
+
+  > .thumbnail:hover {
+    background-color: rgb(179, 175, 153);
+    color: lighten(@brand-primary, 20%);
+    text-decoration: none;
+  }
+
+  > .thumbnail.disabled > img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }
+}
+
