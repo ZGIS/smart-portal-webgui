@@ -20,6 +20,21 @@ export class CardComponent {
   @Output() readMoreClick = new EventEmitter();
 
 
+  getProgressLabel(value: number): string {
+    if (value < 0.1) {
+      return '<10%';
+    } else {
+      return `${this.getProgressValue(value)}%`;
+    }
+  }
+
+  getProgressValue(value: number): string {
+    if (value < 0.1) {
+      return '10';
+    } else {
+      return (value * 100).toFixed(0);
+    }
+  }
 
   headerClicked() {
     this.headerClick.emit();
@@ -33,4 +48,15 @@ export class CardComponent {
     return str.split(/\W/, number).join(' ');
   }
 
+  private getProgressType(value: number): string {
+    if (value > 0.75) {
+      return 'success';
+    } else if (value > 0.5) {
+      return 'info';
+    } else if (value > 0.1) {
+      return 'warning';
+    } else {
+      return 'default';
+    }
+  }
 }
