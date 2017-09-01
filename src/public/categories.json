@@ -4,66 +4,66 @@
       "hierarchy_number": "1.0",
       "id": "1",
       "parent": "main",
-      "item_name": "Understanding our groundwater systems",
+      "item_name": "Understand our groundwater systems",
       "description": "Groundwater in New Zealand - the big picture: Where is it? How much is there? What is its quality? How old is it?",
       "keyword_content": [
         ""
       ],
       "query_string": "1-understanding",
-      "icon": "7.3_methods_square_small.png",
-      "bg_icon": "0.0_main_background_empty.png",
+      "icon": "",
+      "bg_icon": "ant-rozetsky-226345.jpg",
       "children": [
         {
           "hierarchy_number": "1.1",
           "id": "11",
           "parent": "1-understanding",
-          "item_name": "Understanding groundwater - location and quantity of groundwater resources",
+          "item_name": "Location and quantity of groundwater resources",
           "description": "Maps with locations and quantity of groundwater in New Zealand",
           "keyword_content": [
             ""
           ],
           "query_string": "3-location",
-          "icon": "4.6_groundwater_quantity_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "1.2",
           "id": "12",
           "parent": "1-understanding",
-          "item_name": "Understanding groundwater - techniques to characterise aquifers",
+          "item_name": "Techniques to characterise aquifers",
           "description": "Scientific and engineering methods that map aquifers and measure aquifer properties",
           "keyword_content": [
             ""
           ],
           "query_string": "4-techniques",
-          "icon": "1.2_aquifer_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "1.3",
           "id": "13",
           "parent": "1-understanding",
-          "item_name": "Understanding groundwater - groundwater quality and age",
+          "item_name": "Groundwater quality and age",
           "description": "Groundwater properties of chemistry and age: how they inform our knowledge of groundwater systems",
           "keyword_content": [
             ""
           ],
           "query_string": "5-quality",
-          "icon": "5.8_groundwater_modelling_quality_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "1.4",
           "id": "14",
           "parent": "1-understanding",
-          "item_name": "Understanding groundwater - modelling and data analysis techniques",
+          "item_name": "Modelling and data analysis techniques",
           "description": "Modelling and data analysis techniques",
           "keyword_content": [
             ""
           ],
           "query_string": "6-model",
-          "icon": "5.7_groundwater_characterisation_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         }
       ]
     },
@@ -71,20 +71,20 @@
       "hierarchy_number": "2.0",
       "id": "2",
       "parent": "main",
-      "item_name": "Managing impacts on our groundwater systems",
+      "item_name": "Manage impacts on our groundwater systems",
       "description": "Where do we use groundwater and how much do we use? How does land use impact groundwater? How do we manage groundwater?",
       "keyword_content": [
         ""
       ],
       "query_string": "2-managing",
-      "icon": "4.0_water_budget_square_small.png",
-      "bg_icon": "0.0_main_background_empty.png",
+      "icon": "",
+      "bg_icon": "ant-rozetsky-226345.jpg",
       "children": [
         {
           "hierarchy_number": "2.1",
           "id": "17",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - climate change and extremes",
+          "item_name": "Climate change and extremes",
           "description": "Resources on climate change (natural and human-induced), climatic extremes and groundwater",
           "keyword_content": [
             "climate change",
@@ -94,14 +94,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "1.8_climate_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.2",
           "id": "18",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - community and Maori environmental values",
+          "item_name": "Community and Maori environmental values",
           "description": "Community (including Maori) organisations, groups and policies relevant to groundwater ",
           "keyword_content": [
             "community value",
@@ -111,14 +111,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "3.5_policy_framework_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.3",
           "id": "19",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - contaminants sources and remediation",
+          "item_name": "Contaminants sources and remediation",
           "description": "Pollution, land use and groundwater contamination",
           "keyword_content": [
             "contaminant",
@@ -128,27 +128,27 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "1.7_land_use_and_cover_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.4",
           "id": "20",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - ecosystems",
+          "item_name": "Ecosystems",
           "description": "Co-managment of groundwater and surface water to maintain, or enhance ecosystems including groundwater-dependent ecosystems",
           "keyword_content": [
             ""
           ],
           "query_string": "8-ecosystems",
-          "icon": "4.7_groundwater_discharge_coast_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.5",
           "id": "21",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - thematic maps",
+          "item_name": "Thematic maps",
           "description": "Maps of groundwater resources: national aquifer classification and vulnerability to pollution",
           "keyword_content": [
             "maps",
@@ -158,14 +158,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "1.0_maps_spatial_datasets_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.6",
           "id": "22",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - volume and use",
+          "item_name": "Volume and use",
           "description": "Water demand, water use efficiency and the effects of groundwater use",
           "keyword_content": [
             "water demand",
@@ -176,14 +176,14 @@
             "groundwater use"
           ],
           "query_string": "",
-          "icon": "8.0_groundwater_use_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.7",
           "id": "23",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - abstraction and adverse effects",
+          "item_name": "Abstraction and adverse effects",
           "description": "Resources to understand salt water intrusion, subsidence and fracking",
           "keyword_content": [
             "water use",
@@ -194,14 +194,14 @@
             "groundwater use"
           ],
           "query_string": "",
-          "icon": "8.6_effects_groundwater_use_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.8",
           "id": "24",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - infrastructure",
+          "item_name": "Infrastructure",
           "description": "Resources to understand the role of groundwater and infrastructure: water supply engineering, managed aquifer recharge, storm water, waste water",
           "keyword_content": [
             "water supply engineering",
@@ -211,14 +211,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "1.6_infrastructure_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.9",
           "id": "25",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - natural hazards",
+          "item_name": "Natural hazards",
           "description": "Resources to understand the effects of earthquakes and volcanic eruptions on groundwater",
           "keyword_content": [
             "earthquake",
@@ -228,14 +228,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "6.1_geology_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.10",
           "id": "26",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - optimisation and sustainable use",
+          "item_name": "Optimisation and sustainable use",
           "description": "Publications and examples of sustainable use of water including balancing of development and environmental values",
           "keyword_content": [
             "sustainable use",
@@ -245,14 +245,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "8.4_water_demand_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.11",
           "id": "27",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - policy and regulations",
+          "item_name": "Policy and regulations",
           "description": "Resources and examples of: policy, regulations, allocations and water trading",
           "keyword_content": [
             "policy",
@@ -262,14 +262,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "3.0_policy_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.12",
           "id": "28",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - potable supply",
+          "item_name": "Potable supply",
           "description": "Resources to understand protecting of potable groundwater supplies and policies for the security of supply",
           "keyword_content": [
             "source protection",
@@ -279,14 +279,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "8.1_groundwater_supply_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.13",
           "id": "29",
           "parent": "2-managing",
-          "item_name": "Managing groundwater - tools ",
+          "item_name": "Tools ",
           "description": "Groundwater quality and age; modelling and data analysis techniques; and techniques to characterise aquifers",
           "keyword_content": [
             "quality",
@@ -296,14 +296,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "8.5_water_use_efficiency_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "2.14",
           "id": "30",
           "parent": "2-managing",
-          "item_name": "Managing groundwater- water economics",
+          "item_name": "Water economics",
           "description": "Resources to understand economics of: resources, production, in-stu values and environment",
           "keyword_content": [
             "water economics",
@@ -313,8 +313,8 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "8.7_water_economics_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         }
       ]
     },
@@ -328,14 +328,14 @@
         ""
       ],
       "query_string": "3-location",
-      "icon": "jean-frederic-fortier-25858.jpg",
-      "bg_icon": "0.0_main_background_empty.png",
+      "icon": "ruthie-163318.jpg",
+      "bg_icon": "ant-rozetsky-226345.jpg",
       "children": [
         {
           "hierarchy_number": "3.1",
           "id": "33",
           "parent": "3-location",
-          "item_name": "Groundwater resources - quantity ",
+          "item_name": "Quantity ",
           "description": "Aquifers (locations, descriptions, depths and properties); geology (units and desciption) water tables and groundwater catchments",
           "keyword_content": [
             "aquifer",
@@ -350,14 +350,14 @@
             "maps"
           ],
           "query_string": "",
-          "icon": "4.10_groundwater_catchments_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "3.2",
           "id": "34",
           "parent": "3-location",
-          "item_name": "Groundwater resources - volume",
+          "item_name": "Volume",
           "description": "Groundwater volumes and maps",
           "keyword_content": [
             "quantity",
@@ -368,14 +368,14 @@
             "maps"
           ],
           "query_string": "",
-          "icon": "8.0_groundwater_use_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "3.3",
           "id": "35",
           "parent": "3-location",
-          "item_name": "Groundwater resources - use",
+          "item_name": "Use",
           "description": "Well locations and groundwater use",
           "keyword_content": [
             "hydrogeology",
@@ -386,14 +386,14 @@
             "maps"
           ],
           "query_string": "",
-          "icon": "1.2_aquifer_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "3.4",
           "id": "36",
           "parent": "3-location",
-          "item_name": "Groundwater resources - rainfall recharge",
+          "item_name": "Rainfall recharge",
           "description": "Rainfall recharge to groundwater",
           "keyword_content": [
             "rainfall",
@@ -403,8 +403,8 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "1.9_rainfall_recharge_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         }
       ]
     },
@@ -418,14 +418,14 @@
         ""
       ],
       "query_string": "4-techniques",
-      "icon": "1.2_aquifer_square_small.png",
-      "bg_icon": "0.0_main_background_empty.png",
+      "icon": "igor-ovsyannykov-252342.jpg",
+      "bg_icon": "ant-rozetsky-226345.jpg",
       "children": [
         {
           "hierarchy_number": "4.1",
           "id": "39",
           "parent": "4-techniques",
-          "item_name": "Techniques - groundwater surface-water connectivity",
+          "item_name": "Groundwater surface-water connectivity",
           "description": "Methods that assess the interaction between groundwater and surface water",
           "keyword_content": [
             "method",
@@ -435,14 +435,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "1.5_hydrology_square.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "4.2",
           "id": "40",
           "parent": "4-techniques",
-          "item_name": "Techniques - pathways and fluxes",
+          "item_name": "Pathways and fluxes",
           "description": "Models of groundwater flow, rainfall recharge and water budgets",
           "keyword_content": [
             "flow model",
@@ -452,14 +452,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "4.3_groundwater_inflow_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "4.3",
           "id": "41",
           "parent": "4-techniques",
-          "item_name": "Techniques - pathways and residence times",
+          "item_name": "Pathways and residence times",
           "description": "Analysis of age tracers, water dating, isotopes and tracer testing",
           "keyword_content": [
             "method",
@@ -469,14 +469,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "5.4_tracer_tests_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "4.4",
           "id": "42",
           "parent": "4-techniques",
-          "item_name": "Techniques - groundwater chemistry",
+          "item_name": "Groundwater chemistry",
           "description": "Analysis of groundwater chemistry and groundwater biology",
           "keyword_content": [
             "method",
@@ -486,14 +486,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "5.0_groundwater_chemistry_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "4.5",
           "id": "43",
           "parent": "4-techniques",
-          "item_name": "Techniques - hydraulic properties",
+          "item_name": "Hydraulic properties",
           "description": "Measuring hydraulic properties of aquifers with pump tests and geophysics",
           "keyword_content": [
             "aquifers",
@@ -503,14 +503,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "1.11_geophysics_square.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "4.6",
           "id": "44",
           "parent": "4-techniques",
-          "item_name": "Techniques - system structure (up to 3D)",
+          "item_name": "System structure (up to 3D)",
           "description": "Methods including: 3D geological model, aquifer delineation, geophysics, borehole drilling and piezometric surveys",
           "keyword_content": [
             "3d geological model",
@@ -520,14 +520,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "6.0_geological_models_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "4.7",
           "id": "45",
           "parent": "4-techniques",
-          "item_name": "Techniques - monitoring",
+          "item_name": "Monitoring",
           "description": "Groundwater monitoring: single wells and network design with criteria and examples ",
           "keyword_content": [
             "monitoring network",
@@ -538,7 +538,7 @@
           ],
           "query_string": "",
           "icon": "",
-          "bg_icon": ""
+          "bg_icon": "ant-rozetsky-226345.jpg"
         }
       ]
     },
@@ -552,14 +552,14 @@
         ""
       ],
       "query_string": "5-quality",
-      "icon": "drew-hays-206414.jpg",
-      "bg_icon": "0.0_main_background_empty.png",
+      "icon": "chuttersnap-146798.jpg",
+      "bg_icon": "ant-rozetsky-226345.jpg",
       "children": [
         {
           "hierarchy_number": "5.1",
           "id": "48",
           "parent": "5-quality",
-          "item_name": "Groundwater quality - age tracers",
+          "item_name": "Age tracers",
           "description": "Resources to understand and model groundwater age ",
           "keyword_content": [
             "age",
@@ -569,14 +569,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "7.0_groundwater_age_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "5.2",
           "id": "49",
           "parent": "5-quality",
-          "item_name": "Groundwater quality - contaminants",
+          "item_name": "Contaminants",
           "description": "Resources to understand contaminants, historical and emerging, and land use",
           "keyword_content": [
             "contaminants",
@@ -586,14 +586,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "5.10_contaminants_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "5.3",
           "id": "50",
           "parent": "5-quality",
-          "item_name": "Groundwater quality - geothermal waters",
+          "item_name": "Geothermal waters",
           "description": "Resources to understand the roles of cold groundwater in geothermal systems",
           "keyword_content": [
             "geothermal",
@@ -603,14 +603,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "1.1_geology_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "5.4",
           "id": "51",
           "parent": "5-quality",
-          "item_name": "Groundwater quality - thematic maps",
+          "item_name": "Thematic maps",
           "description": "Maps of groundwater quality and aquifers",
           "keyword_content": [
             "maps",
@@ -620,14 +620,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "1.0_maps_spatial_datasets_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "5.5",
           "id": "52",
           "parent": "5-quality",
-          "item_name": "Groundwater quality - natural processes: chemistry and biology",
+          "item_name": "Natural processes: chemistry and biology",
           "description": "Natural processes in groundwater systems: recharge, flow, discharge, geochemical evolution of water and biology ",
           "keyword_content": [
             "water-rock interaction",
@@ -640,14 +640,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "5.9_natural_process_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "5.6",
           "id": "53",
           "parent": "5-quality",
-          "item_name": "Groundwater quality - policy and regulations",
+          "item_name": "Policy and regulations",
           "description": "New Zealand  drinking water guidelines: surface water and groundwater",
           "keyword_content": [
             "drinking water",
@@ -657,14 +657,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "8.3_regulations_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "5.7",
           "id": "54",
           "parent": "5-quality",
-          "item_name": "Groundwater quality - pathways and modelling",
+          "item_name": "Pathways and modelling",
           "description": "Groundwater transport modelling: methods and applications",
           "keyword_content": [
             "groundwater transport model",
@@ -674,14 +674,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "5.8_groundwater_modelling_quality_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "5.8",
           "id": "55",
           "parent": "5-quality",
-          "item_name": "Groundwater quality - sampling and analysis",
+          "item_name": "Sampling and analysis",
           "description": "Field and laboratory methods to measure groundwater quality, age and biology",
           "keyword_content": [
             "sampling",
@@ -691,14 +691,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "5.3_monitoring_chemistry_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "5.9",
           "id": "56",
           "parent": "5-quality",
-          "item_name": "Groundwater quality - vadose zone",
+          "item_name": "Vadose zone",
           "description": "Chemistry and chemical processes in soil, soil water and the unsaturated zone",
           "keyword_content": [
             "soil chemistry",
@@ -707,8 +707,8 @@
             "unsaturated zone"
           ],
           "query_string": "",
-          "icon": "4.2_evaporation_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         }
       ]
     },
@@ -722,14 +722,14 @@
         ""
       ],
       "query_string": "6-model",
-      "icon": "5.7_groundwater_characterisation_square_small.png",
-      "bg_icon": "0.0_main_background_empty.png",
+      "icon": "mike-toews-GNS-extrinsic2.png",
+      "bg_icon": "ant-rozetsky-226345.jpg",
       "children": [
         {
           "hierarchy_number": "6.1",
           "id": "59",
           "parent": "6-model",
-          "item_name": "Groundwater models - monitoring",
+          "item_name": "Monitoring",
           "description": "Optimisation of monitoring networks",
           "keyword_content": [
             "optimisation",
@@ -739,14 +739,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "5.1_collection_chemistry_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "6.2",
           "id": "60",
           "parent": "6-model",
-          "item_name": "Groundwater models - statistical and machine learning data analysis techniques",
+          "item_name": "statistical and machine learning data analysis techniques",
           "description": "Data worth in models, cluster analysis, machine learning algorithms and big-data interrogation",
           "keyword_content": [
             "data worth",
@@ -756,14 +756,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "4.11_uncertainty_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "6.3",
           "id": "61",
           "parent": "6-model",
-          "item_name": "Groundwater models -pathways and fluxes",
+          "item_name": "Pathways and fluxes",
           "description": "Conceptual modelling, water budgets, rainfall recharge modelling, groundwater flow modelling, groundwater transport modelling and piezometric modelling",
           "keyword_content": [
             "conceptual model",
@@ -773,14 +773,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "4.3_groundwater_inflow_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "6.4",
           "id": "62",
           "parent": "6-model",
-          "item_name": "Groundwater models - pathways and residence times",
+          "item_name": "Pathways and residence times",
           "description": "The contribution of age modelling to the understanding of groundwater flow directions and groundwater age",
           "keyword_content": [
             "age",
@@ -790,14 +790,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "7.0_groundwater_age_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "6.5",
           "id": "63",
           "parent": "6-model",
-          "item_name": "Groundwater models - pathways and water quality",
+          "item_name": "Pathways and water quality",
           "description": "Use of chemical data and models to identify groundwater flow directions",
           "keyword_content": [
             "chemistry",
@@ -807,14 +807,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "5.6_chemical_modeling_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "6.6",
           "id": "64",
           "parent": "6-model",
-          "item_name": "Groundwater model - uncertainty analysis",
+          "item_name": "Uncertainty analysis",
           "description": "Assessment of uncertainty of model predictions and what this could mean for model applications",
           "keyword_content": [
             "uncertainty",
@@ -824,14 +824,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "4.11_uncertainty_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "6.7",
           "id": "65",
           "parent": "6-model",
-          "item_name": "Groundwater models - hydraulic properties",
+          "item_name": "Hydraulic properties",
           "description": "Use of pump test data and interpretations in model development ",
           "keyword_content": [
             "hydraulic property",
@@ -841,14 +841,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "8.2_aquifer_tests_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "6.8",
           "id": "66",
           "parent": "6-model",
-          "item_name": "Groundwater models - system structure (up to 3D)",
+          "item_name": "System structure (up to 3D)",
           "description": "Conceptual modelling, geological modelling and geostatistics",
           "keyword_content": [
             "conceptual model",
@@ -858,8 +858,8 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "6.0_geological_models_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         }
       ]
     },
@@ -867,20 +867,20 @@
       "hierarchy_number": "7.0",
       "id": "7",
       "parent": "main",
-      "item_name": "Protecting potable groundwater supplies",
+      "item_name": "Protect potable groundwater supplies",
       "description": "How do we protect groundwater that is used for drinking? ",
       "keyword_content": [
         ""
       ],
       "query_string": "7-protect",
-      "icon": "8.1_groundwater_supply_square_small.png",
-      "bg_icon": "0.0_main_background_empty.png",
+      "icon": "austin-neill-184253.jpg",
+      "bg_icon": "ant-rozetsky-226345.jpg",
       "children": [
         {
           "hierarchy_number": "7.1",
           "id": "69",
           "parent": "7-protect",
-          "item_name": "Groundwater protection - contaminants",
+          "item_name": "Contaminants",
           "description": "Contaminants - historical and emerging; land use",
           "keyword_content": [
             "emerging contaminants",
@@ -891,14 +891,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "5.10_contaminants_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "7.2",
           "id": "70",
           "parent": "7-protect",
-          "item_name": "Groundwater protection - groundwater thematic maps",
+          "item_name": "Groundwater thematic maps",
           "description": "New Zealand groundwater quality maps",
           "keyword_content": [
             "quality",
@@ -908,14 +908,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "1.0_maps_spatial_datasets_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "7.3",
           "id": "71",
           "parent": "7-protect",
-          "item_name": "Groundwater protection - policy and regulations",
+          "item_name": "Policy and regulations",
           "description": "Drinking water guidelines and community drinking water supply monitoring (New Zealand)",
           "keyword_content": [
             "drinking water",
@@ -925,14 +925,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "3.0_policy_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "7.4",
           "id": "72",
           "parent": "7-protect",
-          "item_name": "Groundwater protection - pathways and fluxes",
+          "item_name": "Pathways and fluxes",
           "description": "Groundwater flow modelling",
           "keyword_content": [
             "flow model",
@@ -942,14 +942,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "4.3_groundwater_inflow_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "7.5",
           "id": "73",
           "parent": "7-protect",
-          "item_name": "Groundwater protection - pathways and residence times",
+          "item_name": "Pathways and residence times",
           "description": "Capture zone delineation, transport modelling and age modelling",
           "keyword_content": [
             "capture zone",
@@ -959,14 +959,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "4.10_groundwater_catchments_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "7.6",
           "id": "74",
           "parent": "7-protect",
-          "item_name": "Groundwater protection - pathways and water quality",
+          "item_name": "Pathways and water quality",
           "description": "Groundwater transport modelling and groundwater chemistry",
           "keyword_content": [
             "transport model",
@@ -976,8 +976,8 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "1.10_chemistry_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         }
       ]
     },
@@ -991,14 +991,14 @@
         ""
       ],
       "query_string": "8-ecosystems",
-      "icon": "4.7_groundwater_discharge_coast_square_small.png",
-      "bg_icon": "0.0_main_background_empty.png",
+      "icon": "deniz-fuchidzhiev-249553.jpg",
+      "bg_icon": "ant-rozetsky-226345.jpg",
       "children": [
         {
           "hierarchy_number": "8.1",
           "id": "77",
           "parent": "8-ecosystems",
-          "item_name": "Groundwater and surface water - dependent ecosystems",
+          "item_name": "Dependent ecosystems",
           "description": "Interaction between groundwater and ecosystems (i.e., above-ground and below-ground) ",
           "keyword_content": [
             "interaction",
@@ -1008,14 +1008,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "1.2_aquifer_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "8.2",
           "id": "78",
           "parent": "8-ecosystems",
-          "item_name": "Groundwater and surface water -lakes and wetlands",
+          "item_name": "Lakes and wetlands",
           "description": "Groundwater-lake interaction and impacts of land use on water quality in lakes and wetlands",
           "keyword_content": [
             "interaction",
@@ -1025,14 +1025,14 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "4.7_groundwater_discharge_coast_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         },
         {
           "hierarchy_number": "8.3",
           "id": "79",
           "parent": "8-ecosystems",
-          "item_name": "Groundwater and surface water - rivers, springs and seeps",
+          "item_name": "Rivers, springs and seeps",
           "description": "Groundwater recharge from rivers and groundwater discharge to surface water: quantity and quality",
           "keyword_content": [
             "recharge",
@@ -1043,8 +1043,8 @@
             "groundwater"
           ],
           "query_string": "",
-          "icon": "4.5_groundwater_lake_interaction_square_small.png",
-          "bg_icon": "0.0_main_background_empty.png"
+          "icon": "",
+          "bg_icon": "ant-rozetsky-226345.jpg"
         }
       ]
     }

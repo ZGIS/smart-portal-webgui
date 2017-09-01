@@ -9,7 +9,7 @@ from datetime import date
 
 today = date.today()
 
-excel_file = 'GW portal list of icons new structure 20170525.xlsx'
+excel_file = 'GW portal list of icons new structure 20170830.xlsx'
 # excel_file = 'GW portal list of icons new structure 20170317.xlsx'
 # excel_file = 'GW portal list of icons November 2016.xlsx'
 
