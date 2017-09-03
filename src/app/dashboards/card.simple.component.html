@@ -9,23 +9,12 @@
 
   </div>
   <div class="card-content">
-
-    <progressbar class="rating" *ngIf="tempRating && tempRating > 0.75" placement="bottom"
-                 tooltip="Estimated  relative relevance: {{ (tempRating * 100).toFixed(0) }}%"
-                 [animate]="false" type="success" [value]="(tempRating * 100).toFixed(0)">
-      <b>{{ (tempRating * 100).toFixed(0) }}%</b>
-    </progressbar>
-
-    <progressbar class="rating" *ngIf="tempRating && tempRating > 0.5 && tempRating < 0.75" placement="bottom"
-                 tooltip="Estimated  relative relevance: {{ (tempRating * 100).toFixed(0) }}%"
-                 [animate]="false" type="info" [value]="(tempRating * 100).toFixed(0)">
-      <b>{{ (tempRating * 100).toFixed(0) }}%</b>
-    </progressbar>
-
-    <progressbar class="rating" *ngIf="tempRating && tempRating > 0.1 && tempRating < 0.5" placement="bottom"
-                 tooltip="Estimated  relative relevance: {{ (tempRating * 100).toFixed(0) }}%"
-                 [animate]="false" type="warning" [value]="(tempRating * 100).toFixed(0)">
-      <b>{{ (tempRating * 100).toFixed(0) }}%</b>
+    <progressbar class="rating" placement="bottom"
+                 tooltip="Estimated relevance of this result compared to the top result. The top result is always 100%."
+                 [animate]="false"
+                 [type]="getProgressType(tempRating)"
+                 [value]="getProgressValue(tempRating)">
+      <b>{{getProgressLabel(tempRating)}}</b>
     </progressbar>
     <div>
       {{ getFirstWords(bodyText, 100)}}
