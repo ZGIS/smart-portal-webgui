@@ -36,6 +36,18 @@ export class CardComponent {
     }
   }
 
+  getProgressType(value: number): string {
+    if (value > 0.75) {
+      return 'success';
+    } else if (value > 0.5) {
+      return 'info';
+    } else if (value > 0.1) {
+      return 'warning';
+    } else {
+      return 'default';
+    }
+  }
+
   headerClicked() {
     this.headerClick.emit();
   }
@@ -48,15 +60,4 @@ export class CardComponent {
     return str.split(/\W/, number).join(' ');
   }
 
-  private getProgressType(value: number): string {
-    if (value > 0.75) {
-      return 'success';
-    } else if (value > 0.5) {
-      return 'info';
-    } else if (value > 0.1) {
-      return 'warning';
-    } else {
-      return 'default';
-    }
-  }
 }
