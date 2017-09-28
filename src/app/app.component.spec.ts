@@ -12,6 +12,7 @@ import { CategoriesService } from './dashboards/categories.service';
 import { GlossaryService } from './glossary-edu/glossary.service';
 import { NotificationComponent } from './notifications/notification.component';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
+import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.component';
 
 
 /**
@@ -24,7 +25,7 @@ describe('App Component', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent, NavigationComponent, NotificationComponent
+        AppComponent, NavigationComponent, NotificationComponent, UsplashImageCreditComponent
       ],
       providers: [
         CookieService,
@@ -71,7 +72,7 @@ describe('AppComponent with TCB', function () {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent, NotificationComponent
+        AppComponent, NotificationComponent, UsplashImageCreditComponent
       ],
       providers: [
         CookieService,
