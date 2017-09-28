@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for app/owc/owc-content.component.ts</title>
+    <title>Code coverage report for app/navigation/usplash-credit-btn.component.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">app/owc/</a> owc-content.component.ts
+      <a href="../../index.html">all files</a> / <a href="index.html">app/navigation/</a> usplash-credit-btn.component.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/6</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>5/5</span>
       </div>
     </div>
   </div>
@@ -59,7 +59,15 @@
 14
 15
 16
-17</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+17
+18
+19
+20
+21
+22</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -73,23 +81,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, Input } from '@angular/core';
-import { OwcContent } from './collections';
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { AccountService, ProfileJs } from '../account';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from '../notifications/notification.service';
 &nbsp;
 @Component({
-  selector: 'app-sac-gwh-owccontent',
-  template: `&lt;div class="owcContent" *ngIf="owcContent"&gt;
-    &lt;p *ngIf="owcContent.title"&gt;{{ 'Title: ' + owcContent.title }}&lt;/p&gt;
-    &lt;p *ngIf="owcContent.href"&gt;Link: &lt;a [href]="owcContent.href" target="_blank"&gt;{{ owcContent.href }} &lt;i class="fa fa-globe"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
-    &lt;p *ngIf="owcContent.type"&gt;&lt;small&gt;&lt;i&gt;{{ 'Type: ' + owcContent.type }}&lt;/i&gt;&lt;/small&gt;&lt;/p&gt;
-    &lt;p *ngIf="owcContent.content"&gt;&lt;small&gt;&lt;i&gt;{{ 'Data content: ' + owcContent.content }}&lt;/i&gt;&lt;/small&gt;&lt;/p&gt;
-  &lt;/div&gt;`,
+  selector: 'app-usplash-img-credit-btn',
+  templateUrl: 'usplash-credit-btn.component.html',
+  styleUrls: ['usplash-credit-btn.component.less']
 })
 &nbsp;
-<span class="fstat-no" title="function not covered" >export class OwcContentComponent {</span>
-  @Input() owcContent: OwcContent;
+/**
+ * Credit Button as suggested by Usplash.com.
+ * TODO make own module?
+ */
+export class UsplashImageCreditComponent {
+&nbsp;
+  @Input() public userProfile: String;
+  @Input() public userDisplayName: String;
 }
 &nbsp;</pre></td></tr>
 </table></pre>
