@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../notifications/notification.service';
 
 @Component({
-  selector: 'usplash-img-credit-btn',
+  selector: 'app-usplash-img-credit-btn',
   templateUrl: 'usplash-credit-btn.component.html',
   styleUrls: ['usplash-credit-btn.component.less']
 })
