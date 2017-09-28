@@ -48,7 +48,7 @@ export class CardComponent {
     return str.split(/\W/, number).join(' ');
   }
 
-  private getProgressType(value: number): string {
+  getProgressType(value: number): string {
     if (value > 0.75) {
       return 'success';
     } else if (value > 0.5) {
