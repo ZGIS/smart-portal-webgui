@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { Timeseries, TimeseriesConfiguratorModalComponent } from './timeseries.configurator.modal.component';
+import { Timeseries, TimeseriesConfiguratorModalComponent } from './';
 import { isNullOrUndefined } from 'util';
 
 // TODO should we import that on module level?

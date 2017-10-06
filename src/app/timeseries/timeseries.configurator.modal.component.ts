@@ -9,32 +9,7 @@ import { Http, Response } from '@angular/http';
 import { IErrorResult } from '../search/result';
 import { Observable } from 'rxjs/Observable';
 import { NotificationService } from '../notifications/notification.service';
-
-export class Timeseries {
-  sosUrl: string;
-  offering: string;
-  procedure: string;
-  observedProperty: string;
-  featureOfInterest: string;
-
-  fromDate: Date;
-  toDate: Date;
-
-  uom: string;
-  timeseriesName: string;
-
-  data: any;
-}
-
-export class SosCapabilities {
-  sosUrl: string;
-  title: string;
-
-  offerings: string[];
-  procedures: string[];
-  observedProperties: string[];
-  featuresOfInterest: string[];
-}
+import { SosCapabilities, Timeseries } from './timeseries.types';
 
 @Component({
   selector: 'app-sac-gwh-timeseries-configurator-modal',
