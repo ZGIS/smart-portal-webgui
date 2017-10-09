@@ -1,15 +1,19 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { Timeseries, TimeseriesConfiguratorModalComponent } from './';
+import { Timeseries, TimeseriesConfiguratorModalComponent, SosCapabilities } from './';
 import { isNullOrUndefined } from 'util';
 
 // TODO should we import that on module level?
 // import * as Plotly from 'plotly.js';
 let Plotly = require('plotly.js/dist/plotly.js');
+let FileSaver = require('file-saver/FileSaver.js');
+
+// import { saveAs } from 'file-saver/FileSaver';
 
 import * as moment from 'moment-timezone';
 import { NotificationService } from '../notifications/notification.service';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response } from '@angular/http';
+
+import { Http, Response, ResponseContentType } from '@angular/http';
 import { IErrorResult } from '../search/result';
 import { PORTAL_API_URL } from '../in-app-config/app.tokens';
 
@@ -24,6 +28,7 @@ export class TimeseriesComponent implements OnInit {
   @ViewChild('timeseriesConfiguratorRef') public modal: TimeseriesConfiguratorModalComponent;
 
   timeseries: Timeseries[];
+  capabilities: SosCapabilities[];
 
   isLoading = false;
 
@@ -55,10 +60,10 @@ export class TimeseriesComponent implements OnInit {
    * @param notificationService
    * @param http
    */
-  constructor (@Inject(PORTAL_API_URL) private portalApiUrl: string,
-               private notificationService: NotificationService,
-               private http: Http
-  ) {}
+  constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
+              private notificationService: NotificationService,
+              private http: Http) {
+  }
 
   /**
    * OnInit is called on component initialization
@@ -91,6 +96,7 @@ export class TimeseriesComponent implements OnInit {
             timeseries.data.yaxis = this.determineOrCreateYAxis(timeseries.uom);
             if (index < 0) {
               this.timeseries.push(timeseries);
+              // this.capabilities.push(capa);
 
               Plotly.addTraces('plotly', timeseries.data);
               Plotly.relayout('plotly', this.layout);
@@ -127,6 +133,38 @@ export class TimeseriesComponent implements OnInit {
     console.log(`deleting ${index}`);
     this.timeseries.splice(index, 1);
     Plotly.deleteTraces('plotly', index);
+  }
+
+  exportTimeseries(index: number) {
+    if (!isNullOrUndefined(this.timeseries[index])) {
+      // let requestCapa = this.capabilities[index];
+      // if (!(requestCapa.responseFormats.filter(elem => elem === 'http://www.opengis.net/waterml/2.0').length > 0)) {
+      //   console.log('WaterMl2 not in SosCapa RepsosneFormats');
+      // }
+      let requestTs = this.timeseries[index];
+      requestTs.responseFormat = 'http://www.opengis.net/waterml/2.0';
+      requestTs.data.data = {};
+      console.log(`exporting ${JSON.stringify(requestTs)}`);
+      this.exportTimeseriesData(requestTs).subscribe(
+        response => {
+          const contentType: string = response.headers.get('content-type');
+          const filename = response.headers.get('x-filename');
+          const blob = new Blob([response._body], { type: contentType });
+          FileSaver.saveAs(blob, filename);
+
+          // let url = window.URL.createObjectURL(blob);
+          // window.open(url);
+        },
+        (error) => {
+          this.isLoading = false;
+          console.log(error);
+          this.notificationService.addErrorResultNotification({
+            message: `Error while requesting Export for ${requestTs.timeseriesName}: ${error.message}`,
+            details: error.details
+          });
+        }
+      );
+    }
   }
 
   /**
@@ -181,6 +219,19 @@ export class TimeseriesComponent implements OnInit {
         ts.fromDate = moment(ts.fromDate).toDate();
         ts.toDate = moment(ts.toDate).toDate();
         return ts;
+      })
+      .catch((errorResponse: Response) => this.handleError(errorResponse));
+
+    return tsObservable;
+  }
+
+  private exportTimeseriesData(ts: Timeseries): Observable<any> {
+    // we get that from sos observations!
+    let tsObservable = this.http.post(`${this.portalApiUrl}/sos/timeseries-wml2`, ts, { responseType: ResponseContentType.Blob })
+      .map((response) => {
+        console.log(response.headers.toJSON());
+        // return new Blob([response.blob()], { type: 'application/octet-stream' });
+        return response;
       })
       .catch((errorResponse: Response) => this.handleError(errorResponse));
 

@@ -26,5 +26,4 @@ import 'moment-timezone';
 import 'openlayers';
 import 'plotly.js/dist/plotly.js';
 import 'x3dom';
-
-
+import 'file-saver';

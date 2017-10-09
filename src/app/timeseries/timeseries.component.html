@@ -37,9 +37,9 @@
             <div accordion-heading>
               <i class="fa fa-pull-right fa-fw"
                  [ngClass]="{'fa-chevron-down': timeseriesGroup?.isOpen, 'fa-chevron-right': !timeseriesGroup?.isOpen}"></i>
-              <i class="fa fa-pull-right fa-border fa-trash" (click)="deleteTimeseries(i)"></i>
-              <i class="fa fa-pull-right fa-border fa-gears" (click)="openTimeseriesConfigurator($event, i)"></i>
-              <i class="fa fa-pull-right fa-border fa-file-excel-o" (click)="openTimeseriesConfigurator($event, i)"></i>
+              <i class="fa fa-pull-right fa-border fa-trash" (click)="deleteTimeseries(i)" tooltip="Delete this time-series"></i>
+              <i class="fa fa-pull-right fa-border fa-gears" (click)="openTimeseriesConfigurator($event, i)" tooltip="Configure this time-series"></i>
+              <i class="fa fa-pull-right fa-border fa-file-excel-o" (click)="exportTimeseries(i)" tooltip="Export/download data (currently only WML2)"></i>
 
               {{ts.data.name}}
             </div>
