@@ -13,49 +13,61 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/1-maps</loc>
+    <loc>https://dev.smart-project.info/#/dashboard/3-location?categoryId=3</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/2-climate</loc>
+    <loc>https://dev.smart-project.info/#/dashboard/4-techniques?categoryId=4</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/3-policy</loc>
+    <loc>https://dev.smart-project.info/#/dashboard/6-model?categoryId=6</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/4-water-budget</loc>
+    <loc>https://dev.smart-project.info/#/dashboard/5-quality?categoryId=5</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/5-gw-chemistry</loc>
+    <loc>https://dev.smart-project.info/#/dashboard/7-protect?categoryId=7</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/6-geol-models</loc>
+    <loc>https://dev.smart-project.info/#/dashboard/8-ecosystems?categoryId=8</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/7-gw-age</loc>
+    <loc>https://dev.smart-project.info/#/glossary-edu</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/8-gw-use</loc>
+    <loc>https://dev.smart-project.info/#/research-pg</loc>
+    <lastmod>2017-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://dev.smart-project.info/#/search</loc>
+    <lastmod>2017-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://dev.smart-project.info/docs/</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
