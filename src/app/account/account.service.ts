@@ -318,7 +318,7 @@ export class AccountService {
    * @returns {Observable<R>}
    */
   updateProfile( userprofile: ProfileJs ): Observable<boolean> {
-    let updateProfileUri = this.portalApiUrl + '/users/update/' + userprofile.email;
+    let updateProfileUri = this.portalApiUrl + '/users/update';
 
     let headers = new Headers({
       // 'Authorization': 'Bearer ' + this.token,
