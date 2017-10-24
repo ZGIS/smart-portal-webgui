@@ -1,31 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-import { AccountService } from '../account';
 import { NotificationService } from '../notifications';
+import { AdminService } from '../admin';
+import { AccountService } from '../account';
+import { ProfileJs } from '../account/account.types';
 
 
 @Injectable()
 export class AdminGuard implements CanActivate {
 
-  constructor(private router: Router, private accountService: AccountService,
-              private notificationService: NotificationService) {
+  constructor( private router: Router, private adminService: AdminService,
+               private accountService: AccountService,
+               private notificationService: NotificationService ) {
   }
 
   canActivate(): Observable<boolean> {
-    return this.accountService.getProfile().map(userProfile => {
-      if (userProfile) {
-        if (userProfile.email === 'allixender@gmail.com') {
-          return true;
-        }
-        // here maybe more default admins for now :-)
-        return false;
-
-      } else {
-        return false;
+    return this.adminService.amiAdmin().map(resp => {
+      let currentUserProfile: ProfileJs = JSON.parse(localStorage.getItem('currentUserProfile'));
+      if (currentUserProfile.email === <any>resp.email) {
+        return true;
       }
+      // here maybe more default admins for now :-)
+      return false;
+
     }).catch(() => {
-      this.router.navigate(['/']);
+      this.router.navigate([ '/' ]);
       this.notificationService.addNotification({
         type: 'warning',
         message: 'You are not an admin, sorry.'
@@ -34,4 +34,3 @@ export class AdminGuard implements CanActivate {
     });
   }
 }
-

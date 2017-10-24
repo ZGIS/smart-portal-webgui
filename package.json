@@ -53,6 +53,7 @@
     "webdriver:stop": "npm run webdriver-protractor shutdown",
     "gh-pages-push": "gh-pages -d ghdash -r git@github.com:ZGIS/smart-portal-webgui.git",
     "serve": "http-server -p 8080 ./dist",
+    "serve-dev": "http-server -p 8080 ./dist -o -P http://localhost:9000 --cors",
     "stat": "node ./config/dashboard"
   },
   "dependencies": {

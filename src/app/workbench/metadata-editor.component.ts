@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { CollectionsService } from '../owc';
 import { TypeaheadMatch } from 'ngx-bootstrap';
 import * as moment from 'moment';
+import { ProfileJs } from '../account/account.types';
 
 export interface SelectEntry {
   value: string;
@@ -51,6 +52,8 @@ export class MetadataEditorComponent implements OnInit {
   ];
 
   metadataKeywordString: String;
+
+  basicProfile: ProfileJs;
 
   metadata: GeoMetadata;
   _distributionCiDate: Date = new Date();
@@ -102,8 +105,11 @@ export class MetadataEditorComponent implements OnInit {
   }
 
   ngOnInit() {
+    const uuid = this.collectionsService.getNewUuid();
+    console.log(uuid);
+
     this.metadata = <GeoMetadata>{
-      'fileIdentifier': '',
+      'fileIdentifier': uuid,
       'title': '',
       'abstrakt': '',
       'keywords': [],
@@ -113,7 +119,7 @@ export class MetadataEditorComponent implements OnInit {
       'scale': '1000000',
       'extent': <GeoExtent> {
         'description': 'New Zealand',
-        'referenceSystem': 'urn:ogc:def:crs:EPSG::4328',
+        'referenceSystem': 'urn:ogc:def:crs:EPSG::4326',
         'mapExtentCoordinates': [162, -50, 180, -25],
         'temporalExtent': ''
       },
@@ -127,12 +133,12 @@ export class MetadataEditorComponent implements OnInit {
         individualName: '',
         telephone: '',
         email: '',
-        pointOfContact: 'publisher',
+        pointOfContact: 'pointOfContact',
         orgName: '',
         orgWebLinkage: ''
       },
       distribution: <GeoDistribution> {
-        useLimitation: 'Check with source agency',
+        useLimitation: 'Creative Commons Attribution 4.0 license',
         formatName: '',
         formatVersion: 'file formats',
         onlineResourceLinkage: ''
@@ -144,6 +150,13 @@ export class MetadataEditorComponent implements OnInit {
       console.log(`Loading data for ${property}`);
       this.loadValidValues(property);
     });
+
+
+    // the guard makes sure we're logged in, we can provide basic fill out for contact
+    this.basicProfile = JSON.parse(localStorage.getItem('currentUserProfile'));
+    this.metadata.responsibleParty.individualName = `${this.basicProfile.firstname} ${this.basicProfile.lastname}`;
+    this.metadata.responsibleParty.email = `${this.basicProfile.email}`;
+    this.metadata.responsibleParty.orgWebLinkage = 'https://portal.smart-project.info';
   }
 
   public openPreviousTab() {

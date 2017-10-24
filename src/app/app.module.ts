@@ -27,7 +27,6 @@ import {
   SearchComponent
 } from './search';
 import { NavigationComponent, NotFoundComponent } from './navigation';
-import { AdminComponent } from './admin';
 import { GlossaryService, GlossaryComponent } from './glossary-edu';
 import { ResearchProgrammesComponent } from './research-pg';
 import {
@@ -56,6 +55,7 @@ import {
   ResetPassComponent,
   ResetPassRedeemComponent
 } from './account';
+import { AdminComponent, AdminService } from './admin';
 import { BasicFileUploadComponent, MetadataEditorComponent } from './workbench';
 import {
   CollectionsService,
@@ -160,6 +160,7 @@ import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.com
     API_URL_PROVIDERS,
     APP_VERSION_PROVIDERS,
     AccountService,
+    AdminService,
     AuthGuard,
     RegisteredGuard,
     AdminGuard,

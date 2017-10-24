@@ -8,6 +8,8 @@ import { OwcContext } from './';
 import { IErrorResult } from '../search/result';
 import { OwcLink, OwcResource } from './collections';
 
+let UUID = require('uuid/uuid.js');
+
 @Injectable()
 export class CollectionsService {
 
@@ -16,6 +18,15 @@ export class CollectionsService {
               private accountService: AccountService) {
   }
 
+  /**
+   * sort of trying to get reliable UUIDs
+   *
+   * @returns {string}
+   */
+  getNewUuid(): string {
+    let uuid = UUID(); // 'df7cca36-3d7a-40f4-8f06-ae03cc22f045'
+    return uuid;
+  }
   /**
    *
    * @returns {Observable<R|T>}

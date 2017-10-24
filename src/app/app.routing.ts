@@ -78,8 +78,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'x-admin',
-    component: AdminComponent
-    // canActivate: [AdminGuard]
+    component: AdminComponent,
+    canActivate: [AdminGuard]
   },
 
   // to access content directly
