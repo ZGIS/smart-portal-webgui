@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">43.48% </span>
+        <span class="strong">45.83% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/23</span>
+        <span class='fraction'>11/24</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">20% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.11% </span>
+        <span class="strong">45% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/19</span>
+        <span class='fraction'>9/20</span>
       </div>
     </div>
   </div>
@@ -79,12 +79,13 @@
 34
 35
 36
-37
-38</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+37</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -92,15 +93,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -116,35 +115,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-import { AccountService } from '../account';
 import { NotificationService } from '../notifications';
+import { AdminService } from '../admin';
+import { AccountService } from '../account';
+import { ProfileJs } from '../account/account.types';
 &nbsp;
 &nbsp;
 @Injectable()
 export class AdminGuard implements CanActivate {
 &nbsp;
-  constructor(private <span class="cstat-no" title="statement not covered" >router: Router,</span> private <span class="cstat-no" title="statement not covered" >accountService: AccountService,</span>
-              private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" >)</span> {</span>
+  constructor( private <span class="cstat-no" title="statement not covered" >router: Router,</span> private <span class="cstat-no" title="statement not covered" >adminService: AdminService,</span>
+               private <span class="cstat-no" title="statement not covered" >accountService: AccountService,</span>
+               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" > </span>) {</span>
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  canActivate(): Observable&lt;boolean&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >    return this.accountService.getProfile().map(userProfile<span class="fstat-no" title="function not covered" > =&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >      if (userProfile) {</span>
-<span class="cstat-no" title="statement not covered" >        if (userProfile.email === 'allixender@gmail.com') {</span>
-<span class="cstat-no" title="statement not covered" >          return true;</span>
-        }
-        // here maybe more default admins for now :-)
-<span class="cstat-no" title="statement not covered" >        return false;</span>
-&nbsp;
-      } else {
-<span class="cstat-no" title="statement not covered" >        return false;</span>
+<span class="cstat-no" title="statement not covered" >    return this.adminService.amiAdmin().map(resp<span class="fstat-no" title="function not covered" > =&gt; {</span></span>
+      let currentUserProfile: ProfileJs = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem('currentUserProfile'));</span>
+<span class="cstat-no" title="statement not covered" >      if (currentUserProfile.email === &lt;any&gt;resp.email) {</span>
+<span class="cstat-no" title="statement not covered" >        return true;</span>
       }
+      // here maybe more default admins for now :-)
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+&nbsp;
     }).catch(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      this.router.navigate(['/']);</span>
+<span class="cstat-no" title="statement not covered" >      this.router.navigate([ '/' ]);</span>
 <span class="cstat-no" title="statement not covered" >      this.notificationService.addNotification({</span>
         type: 'warning',
         message: 'You are not an admin, sorry.'
@@ -153,14 +151,13 @@ export class AdminGuard implements CanActivate {
     });
   }
 }
-&nbsp;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 10 2017 13:56:21 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 24 2017 17:42:42 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
