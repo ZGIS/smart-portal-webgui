@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { IErrorResult, IGeoFeature } from './result';
-import { OwcContext, OwcResource } from '../owc/collections';
+import { OwcContext, OwcResource, CollectionsService } from '../owc';
 import { ResultService } from './result.service';
 import { NotificationService } from '../notifications/notification.service';
 
@@ -13,13 +13,30 @@ import { NotificationService } from '../notifications/notification.service';
 export class ResultDetailModalComponent {
   feature: IGeoFeature;
   owcFeature: OwcResource;
+  myCollections: OwcContext[];
+  activeCollectionId = '';
 
   @Output() onHide = new EventEmitter();
 
   @ViewChild('resultModalRef') public modal: ModalDirective;
 
   constructor( private resultService: ResultService,
-               private notificationService: NotificationService ) {
+               private notificationService: NotificationService,
+               private collectionsService: CollectionsService ) {
+
+    this.collectionsService.getCollections()
+      .subscribe(
+        owcDocs => {
+          this.myCollections = [];
+          owcDocs.forEach(( owcDoc: OwcContext ) => {
+            this.myCollections.push(owcDoc);
+            console.log(owcDoc.id);
+          });
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
   }
 
   showFeatureModal( geoFeature: IGeoFeature ) {
@@ -47,6 +64,27 @@ export class ResultDetailModalComponent {
         });
 
       this.modal.show();
+    }
+  }
+
+  addToMyCollection( owcResource: OwcResource ) {
+    if (this.activeCollectionId.length > 0) {
+      this.collectionsService.addResourceToCollection(this.activeCollectionId, owcResource).subscribe(
+        ( results: OwcContext ) => {
+          this.notificationService.addNotification({
+            id: NotificationService.DEFAULT_DISMISS,
+            message: `Document was successfully added to ${results.properties.title}.`,
+            type: NotificationService.NOTIFICATION_TYPE_WARNING
+          });
+        }, ( error: IErrorResult ) => {
+          this.notificationService.addErrorResultNotification(error);
+        });
+    } else {
+      this.notificationService.addNotification({
+        id: NotificationService.DEFAULT_DISMISS,
+        message: `Please select a collection to which you would to add this to!`,
+        type: NotificationService.NOTIFICATION_TYPE_WARNING
+      });
     }
   }
 

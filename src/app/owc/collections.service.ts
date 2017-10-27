@@ -253,7 +253,7 @@ export class CollectionsService {
           if (<OwcContext>updatedCollection) {
             console.log(updatedCollection);
           }
-          return response.json();
+          return <OwcContext>updatedCollection;
         }
       )
       .catch(this.handleHttpFailure);
