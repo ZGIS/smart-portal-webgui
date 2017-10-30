@@ -56,8 +56,8 @@ export class CollectionsDeskComponent implements OnInit {
    * shouldn't trust the client I guess
    */
   createCollection(): void {
-    const templateUuid = '00000000-0000-0000-0000-000000000000';
-    const id = 'http://portal.smart-project.info/context/user/' + templateUuid;
+    const templateUuid = this.collectionsService.getNewUuid();
+    const id = 'https://portal.smart-project.info/context/user/' + templateUuid;
     console.log('we create a new collection: ' + id);
     this.notificationService.addNotification({
       id: NotificationService.DEFAULT_DISMISS,

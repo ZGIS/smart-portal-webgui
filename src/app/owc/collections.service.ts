@@ -231,7 +231,7 @@ export class CollectionsService {
    *     -> Ok(Json.obj("message" -> "owcResource added to owcContext",
    *         "document" -> theDoc.toJson, "entry" -> owcResource.toJson))
    *
-   * add a resource entry to a collection, the user must own the owccontext collection and the
+   * add a resource AS IS entry to a collection, the user must own the owccontext collection and the
    * resource id must not exist
    *
    * @param {string} collectionid
@@ -240,6 +240,40 @@ export class CollectionsService {
    */
   addResourceToCollection(collectionid: string, owcResource: OwcResource): Observable<OwcContext> {
     let defaultCollectionsUri = this.portalApiUrl + '/collections/entry';
+    let token = this.accountService.token;
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('collectionid', collectionid);
+    console.log('token: ' + token);
+    let headers = new Headers({'X-XSRF-TOKEN': token});
+    let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
+    return this.http.post(defaultCollectionsUri, owcResource, options)
+      .map(
+        (response: Response) => {
+          let updatedCollection = response.json().document;
+          if (<OwcContext>updatedCollection) {
+            console.log(updatedCollection);
+          }
+          return <OwcContext>updatedCollection;
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
+
+  /**
+   * POST /api/v1/collections/entry
+   *   -> controllers.CollectionsController.addResourceToCollection(collectionid: String)
+   *     -> Ok(Json.obj("message" -> "owcResource added to owcContext",
+   *         "document" -> theDoc.toJson, "entry" -> owcResource.toJson))
+   *
+   * add a resource entry to a collection, the user must own the owccontext collection and the
+   * resource will be refreshed with a unique copy of server-side (not conflicts should happen on multiple re-use)
+   *
+   * @param {string} collectionid
+   * @param {OwcResource} owcResource
+   * @returns {Observable<OwcContext>}
+   */
+  addCopyOfResourceResourceToCollection(collectionid: string, owcResource: OwcResource): Observable<OwcContext> {
+    let defaultCollectionsUri = this.portalApiUrl + '/collections/entry/copy';
     let token = this.accountService.token;
     let params: URLSearchParams = new URLSearchParams();
     params.set('collectionid', collectionid);

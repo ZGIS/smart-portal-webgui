@@ -8,15 +8,11 @@
     </div>
 
     <div>
-      <!--
-      <button (click)="reloadCollection()" type="button" class="btn btn-default" tooltip="Refresh this collection">
-        Reload <i class="fa fa-repeat" aria-hidden="true"></i>
-      </button>
-      -->
-      <button (click)="editProperties()" type="button" class="btn btn-primary" tooltip="Edit the properties">
+
+      <button (click)="editProperties()" type="button" class="btn btn-primary" tooltip="Edit the properties" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
         Edit <i class="fa fa-edit" aria-hidden="true"></i>
       </button>
-      <button (click)="deleteCollection()" type="button" class="btn btn-warning" tooltip="Delete the Collection">
+      <button (click)="deleteCollection()" type="button" class="btn btn-warning" tooltip="Delete the Collection" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
         Delete <i class="fa fa-trash" aria-hidden="true"></i>
       </button>
     </div>

@@ -61,8 +61,9 @@ export class OwcResourceDetailModalComponent {
         this.notificationService.addNotification({
           id: NotificationService.DEFAULT_DISMISS,
           type: 'info',
-          message: `This resource entry has been deleted.`
+          message: `This resource entry has been deleted. Please reload your collections to reflect the update!`
         });
+        console.log('We need to reload the collection!');
         this.hideOwcResourceModal();
       },
       error => {

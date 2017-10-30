@@ -4,6 +4,7 @@ import { IErrorResult, IGeoFeature } from './result';
 import { OwcContext, OwcResource, CollectionsService } from '../owc';
 import { ResultService } from './result.service';
 import { NotificationService } from '../notifications/notification.service';
+import { logger } from 'codelyzer/util/logger';
 
 @Component({
   selector: 'app-sac-gwh-result-detail-modal',
@@ -67,15 +68,16 @@ export class ResultDetailModalComponent {
     }
   }
 
-  addToMyCollection( owcResource: OwcResource ) {
+  copyToMyCollection( owcResource: OwcResource ) {
     if (this.activeCollectionId.length > 0) {
-      this.collectionsService.addResourceToCollection(this.activeCollectionId, owcResource).subscribe(
+      this.collectionsService.addCopyOfResourceResourceToCollection(this.activeCollectionId, owcResource).subscribe(
         ( results: OwcContext ) => {
           this.notificationService.addNotification({
             id: NotificationService.DEFAULT_DISMISS,
             message: `Document was successfully added to ${results.properties.title}.`,
-            type: NotificationService.NOTIFICATION_TYPE_WARNING
+            type: NotificationService.NOTIFICATION_TYPE_SUCCESS
           });
+          console.log('We need to reload the collection!');
         }, ( error: IErrorResult ) => {
           this.notificationService.addErrorResultNotification(error);
         });
