@@ -13,6 +13,9 @@ import { NotificationService } from '../notifications/notification.service';
 export class ContextRetrieveComponent implements OnInit {
 
   private TYPE_RESOURCE = 'resource';
+  private TYPE_USER = 'user';
+  private TYPE_DOCUMENT = 'document';
+  // private TYPE_FILE = 'file'; -> FileLoaderComponent
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -35,6 +38,28 @@ export class ContextRetrieveComponent implements OnInit {
                       showModal: params[ 'uuid' ]
                     }
                   });
+                });
+              }, 2500);
+            });
+            break;
+          }
+          case this.TYPE_USER: {
+            // for protractor, being more explicit about zones and timeouts/asynch tasks
+            this.ngZone.runOutsideAngular(() => {
+              setTimeout(() => {
+                this.ngZone.run(() => {
+                  this.router.navigate([ 'workbench/my-data' ]);
+                });
+              }, 2500);
+            });
+            break;
+          }
+          case this.TYPE_DOCUMENT: {
+            // for protractor, being more explicit about zones and timeouts/asynch tasks
+            this.ngZone.runOutsideAngular(() => {
+              setTimeout(() => {
+                this.ngZone.run(() => {
+                  this.router.navigate([ 'workbench/my-data' ]);
                 });
               }, 2500);
             });

@@ -24,6 +24,7 @@ import { GlossaryComponent } from './glossary-edu';
 import { AdminComponent } from './admin';
 import { ContextRetrieveComponent } from './context/context.component';
 import { TimeseriesComponent } from './timeseries/timeseries.component';
+import { FileLoaderComponent } from './context/fileloader.component';
 
 const appRoutes: Routes = [
   {
@@ -83,6 +84,11 @@ const appRoutes: Routes = [
   },
 
   // to access content directly
+
+  {
+    path: 'context/file/:uuid',
+    component: FileLoaderComponent
+  },
   {
     path: 'context/:type/:uuid',
     component: ContextRetrieveComponent
