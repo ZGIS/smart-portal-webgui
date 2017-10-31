@@ -1,5 +1,267 @@
 <div class="col-md-12">
-  <p style="color: #eea236;">So sorry, we don't allow any admin activities yet <i class="fa fa-frown-o"></i></p>
-  <p style="color: #eea236;"><a (click)="backClicked()"><i class="fa fa-backward"></i> Go back...</a></p>
-  <p style="color: #eea236;"><a routerLink="/"> <i class="fa fa-home"></i> Start</a> </p>
+
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Admin Page: Stuff you can do, or will be able to do:</div>
+    <div class="panel-body">
+
+      <!-- List group -->
+      <ul class="list-group">
+        <li class="list-group-item">
+          <button type="button" class="btn btn-info" (click)="userlistModalRef.show()">See users</button>
+          ... and block or unblock them: WIP
+        </li>
+        <li class="list-group-item">
+          <button type="button" class="btn btn-info" (click)="usersessionsModalRef.show()">See active user sessions
+          </button>
+          ... and remove them to make users login again: WIP
+        </li>
+        <li class="list-group-item">
+          <button type="button" class="btn btn-info" (click)="userFilesModalRef.show()">See which files</button>
+          ... users have uploaded: WIP</li>
+        <li class="list-group-item">
+          <button type="button" class="btn btn-info" (click)="userMetaRecordsModal.show()">See which metadata records</button>
+          ... users have uploaded: WIP</li>
+        <li class="list-group-item">
+          <button type="button" class="btn btn-info" (click)="linkloggingModalRef.show()">See download requests</button>
+          of what files and sos/waterml2 exports that users have downloaded: WIP
+        </li>
+        <li class="list-group-item">
+          <button type="button" class="btn btn-info" (click)="userGroupsModalRef.show()">See user groups</button>
+          ... and edit user rights in thee groups: WIP
+        </li>
+        <li class="list-group-item">Upload new Terms/Glossary/Research Program Infos/Groundwater Categories via
+          especially prepared XLS spreadsheet: TODO
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <p style="color: #eea236;"><a (click)="backClicked()"><i class="fa fa-backward"></i> Go back...</a></p>
+    <p style="color: #eea236;"><a routerLink="/"> <i class="fa fa-home"></i> Dashboard</a></p>
+  </div>
+</div>
+
+<div bsModal #userlistModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="about" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideUserlistModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title pull-left">Users</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <table class="table table-bordered table-hover table-striped table-condensed">
+              <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>action</th>
+              </tr>
+              <tr *ngFor="let user of userlist">
+                <td><a href="{{ user.email }}">{{ user.email }}</a></td>
+                <td>{{ user.firstname ? user.firstname : '*' }} {{ user.lastname ? user.lastname : '*' }}</td>
+                <td>
+                  <button type="button" class="btn btn-warning disabled"
+                          tooltip="Prevent user from logging in with this email account.">Block user
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #userGroupsModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="about" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideUserGroupsModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title pull-left">User Groups</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul class="list-group">
+              <div class="list-group-item" *ngIf="userGroups.length <= 0">No groups have been created.</div>
+              <div class="list-group-item" *ngFor="let usergroup of userGroups">
+                {{ usergroup.name }}
+                <button type="button" class="btn btn-primary disabled" tooltip="Edit group properties.">Edit group.
+                </button>
+                <ul>
+                  <li *ngIf="usergroup.shortinfo">{{ usergroup.shortinfo }}</li>
+                  <li>user members: {{ usergroup?.hasUsersLevel.length }}</li>
+                  <li>shared collections: {{ usergroup?.hasOwcContextsVisibility.length }}</li>
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #usersessionsModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="about" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideUsersessionsModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title pull-left">Active User Sessions</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <table class="table table-bordered table-hover table-striped table-condensed">
+              <tr>
+                <th>Email</th>
+                <th>status</th>
+                <th>timestamp</th>
+                <th>action</th>
+              </tr>
+              <tr *ngFor="let session of usersessions">
+                <td><a href="{{ session.email }}">{{ session.email }}</a></td>
+                <td>{{ session.laststatustoken }}</td>
+                <td>{{ session.laststatuschange }}</td>
+                <td>
+                  <button type="button" class="btn btn-warning disabled" tooltip="Forces user to login again.">Remove
+                    session
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #linkloggingModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="about" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideLinkloggingModalModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title pull-left">Latest file downloads and data exports</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="list-group-item" *ngIf="userLinkLogs.length <= 0">No logs have been created.</div>
+            <table class="table table-bordered table-hover table-striped table-condensed">
+              <tr>
+                <th>ID</th>
+                <th>request</th>
+                <th>by user</th>
+                <th>with browser</th>
+                <th>from host</th>
+                <th>from page</th>
+                <th>timestamp</th>
+              </tr>
+              <tr *ngFor="let links of userLinkLogs">
+                <td>{{ links.id}}</td>
+                <td><div *ngIf="links.link" tooltip="{{ links.link }}">{{ links.link.slice(0, 20) }}</div></td>
+                <td><div *ngIf="links.email">{{ links.email }}</div></td>
+                <td><div *ngIf="links.useragent" tooltip="{{links.useragent}}">{{ links.useragent.slice(0,20) }}</div></td>
+                <td><div *ngIf="links.ipaddress">{{ links.ipaddress }}</div></td>
+                <td><div *ngIf="links.referer" tooltip="{{links.referer}}">{{ links.referer.slice(0,20) }}</div></td>
+                <td><div *ngIf="links.timestamp">{{ links.timestamp }}</div></td>
+
+              </tr>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #userFilesModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="about" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideUserFilesModalModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title pull-left">User Files</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="list-group-item" *ngIf="userFiles.length <= 0">No files have been created.</div>
+            <table class="table table-bordered table-hover table-striped table-condensed">
+              <tr>
+                <th>entryID</th>
+                <th>userID</th>
+                <th>filename</th>
+                <th>ext. link</th>
+                <th>timestamp</th>
+              </tr>
+              <tr *ngFor="let links of userFiles">
+                <td><div *ngIf="links.uuid" tooltip="{{ links.uuid }}">{{ links.uuid.slice(0, 10) }}</div></td>
+                <td><div *ngIf="links.users_accountsubject">{{ links.users_accountsubject }}</div></td>
+                <td><div *ngIf="links.originalfilename" tooltip="{{ links.originalfilename }}">{{ links.originalfilename.slice(0, 20) }}</div></td>
+                <td><div *ngIf="links.linkreference" tooltip="{{links.linkreference}}">{{ links.linkreference.slice(0,20) }}</div></td>
+                <td><div *ngIf="links.laststatuschange">{{ links.laststatuschange }}</div></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #userMetaRecordsModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="about" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideUserMetaRecordsModalModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title pull-left">User Metadata Records</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="list-group-item" *ngIf="userMetaRecords.length <= 0">No metadata records have been created.</div>
+            <table class="table table-bordered table-hover table-striped table-condensed">
+              <tr>
+                <th>entryID</th>
+                <th>userID</th>
+                <th>Metadata ID</th>
+                <th>catalogue link</th>
+                <th>timestamp</th>
+              </tr>
+              <tr *ngFor="let metaRec of userMetaRecords">
+                <td><div *ngIf="metaRec.uuid" tooltip="{{ metaRec.uuid }}">{{ metaRec.uuid.slice(0, 10) }}</div></td>
+                <td><div *ngIf="metaRec.users_accountsubject">{{ metaRec.users_accountsubject }}</div></td>
+                <td><div *ngIf="metaRec.originaluuid" tooltip="{{ metaRec.originaluuid }}">{{ metaRec.originaluuid.slice(0, 10) }}</div></td>
+                <td><div *ngIf="metaRec.cswreference" tooltip="{{metaRec.cswreference}}">{{ metaRec.cswreference.slice(0,20) }}</div></td>
+                <td><div *ngIf="metaRec.laststatuschange">{{ metaRec.laststatuschange }}</div></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

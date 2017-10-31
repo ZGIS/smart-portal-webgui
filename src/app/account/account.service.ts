@@ -173,7 +173,7 @@ export class AccountService {
    *
    * @returns {Observable<R>}
    */
-  deleteSelf(): Observable<boolean> {
+  deleteSelf(): Observable<any> {
     let deleteSelfUri = this.portalApiUrl + '/users/deleteself';
     let headers = new Headers({
       // 'Authorization': 'Bearer ' + this.token,
@@ -182,8 +182,6 @@ export class AccountService {
     let options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.get(deleteSelfUri, options)
       .map(( response: Response ) => {
-        // deleteSelf
-        // if (response.status === 200) {
         this.loggedInState.next(false);
         // clear token remove user from local storage to log user out
         this.token = null;
@@ -191,7 +189,7 @@ export class AccountService {
         localStorage.removeItem('currentUserProfile');
         this.cookieService.remove('XSRF-TOKEN');
         // return true to indicate successful logout
-        return true;
+        return response.json();
       })
       .catch(( errorResponse: Response ) => this.handleErrorWithLogout(errorResponse));
   }

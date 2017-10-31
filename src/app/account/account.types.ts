@@ -39,4 +39,20 @@ export interface GAuthCredentials {
   accesstype?: string;
 }
 
+export interface UserFile {
+  uuid?: string;
+  users_accountsubject?: string;
+  originalfilename: string;
+  linkreference: string;
+  laststatustoken: string;
+  laststatuschange: string; // possibly moment datetime something?
+}
 
+export interface UserMetaRecord {
+  uuid?: string;
+  users_accountsubject?: string;
+  originaluuid: string;
+  cswreference: string;
+  laststatustoken: string;
+  laststatuschange: string; // possibly moment datetime something?
+}

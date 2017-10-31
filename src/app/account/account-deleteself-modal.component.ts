@@ -58,21 +58,21 @@ export class AccountDeleteSelfModalComponent {
       .subscribe(
         result => {
           // FIXME SR this should never be false!
-          if (result === true) {
-            // login successful
+          if (result.status === 'OK') {
+            // deleteself successful
             this.loading = false;
             this.notificationService.addNotification({
               type: 'success',
-              message: 'Thank you. Your password has been changed.'
+              message: result.message
             });
             this.modal.hide();
           } else {
-            // login failed
+            // deleteself failed
             this.notificationService.addNotification({
-              type: 'info',
-              message: 'Apologies, but password could not be updated.'
+              type: 'warning',
+              message: result.message
             });
-            this.error = 'Apologies, but password could not be updated.';
+            this.error = result.message;
             this.loading = false;
             this.modal.hide();
           }

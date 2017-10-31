@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AccountService } from './account.service';
 import { ProfileJs } from './account.types';
+import { AdminService } from '../admin/admin.service';
+import { NotificationService } from '../notifications/notification.service';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-sac-gwh-account',
@@ -21,8 +24,10 @@ export class AccountComponent implements OnInit {
   /**
    * Constructor
    * @param accountService injected AccountService
+   * @param adminService injected AdminService
    */
-  constructor(private accountService: AccountService) {
+  constructor( private accountService: AccountService,
+               private adminService: AdminService ) {
   }
 
   /**
@@ -39,5 +44,19 @@ export class AccountComponent implements OnInit {
           console.log(<any>error);
           this.userProfile = this.accountService.guestProfile;
         });
+  }
+
+  setAdminLink(): Observable<boolean> {
+    return this.adminService.amiAdmin().map(resp => {
+      let currentUserProfile: ProfileJs = JSON.parse(localStorage.getItem('currentUserProfile'));
+      if (currentUserProfile.email === <any>resp.email) {
+        return true;
+      }
+      // here maybe more default admins for now :-)
+      return false;
+
+    }).catch(() => {
+      return Observable.of(false);
+    });
   }
 }

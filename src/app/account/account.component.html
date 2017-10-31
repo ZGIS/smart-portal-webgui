@@ -37,6 +37,16 @@
       <div class="panel-footer panel-info"></div>
     </div>
   </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">Manage groups and rights</div>
+
+      <div class="panel-body" *ngIf="setAdminLink()">
+        <a routerLink="/x-admin"><i class="fa fa-forward"></i> ADMIN: Go to Admin Panel</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <app-sac-gwh-account-profile-modal #profileUpdateModalRef></app-sac-gwh-account-profile-modal>
