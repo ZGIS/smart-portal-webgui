@@ -53,9 +53,8 @@ export class FileLoaderComponent implements OnInit {
         this.downloadFileService(userFileResponse).subscribe(
           downloadResponse => {
             const contentType: string = downloadResponse.headers.get('content-type');
-            const filename = downloadResponse.headers.get('x-filename');
             const blob = new Blob([ downloadResponse._body ], { type: contentType });
-            FileSaver.saveAs(blob, filename);
+            FileSaver.saveAs(blob, originalfilename);
 
             // let url = window.URL.createObjectURL(blob);
             // window.open(url);
