@@ -6,6 +6,9 @@
 @understanding-bg-color: fade(@managing-color, 60%);
 @managing-bg-color: fade(@understanding-color, 60%);
 
+@link-color:        #428bca; // sea blue
+@link-color-hover:  darken(@link-color, 10%);
+
 /*FIXME SR get the size out of bootstrap itself. */
 /*
 @media (min-width: 992px) {
@@ -25,6 +28,15 @@
   background-color: @understanding-bg-color;
   text-align: center;
   height:500px; // TODO this is a disgusting hack
+
+  a,
+  .link {
+    color: @link-color;
+  }
+  a:hover {
+    color: @link-color-hover;
+  }
+
 }
 
 .managing {
@@ -32,6 +44,14 @@
   background-color: @managing-bg-color;
   text-align: center;
   height:500px; // TODO this is a disgusting hack
+
+  a,
+  .link {
+    color: @link-color;
+  }
+  a:hover {
+    color: @link-color-hover;
+  }
 }
 
 .transition-column {
