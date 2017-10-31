@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">15.13% </span>
+        <span class="strong">14.55% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>23/152</span>
+        <span class='fraction'>24/165</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/24</span>
+        <span class='fraction'>0/26</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4% </span>
+        <span class="strong">3.7% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/25</span>
+        <span class='fraction'>1/27</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">14.19% </span>
+        <span class="strong">13.66% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>21/148</span>
+        <span class='fraction'>22/161</span>
       </div>
     </div>
   </div>
@@ -390,7 +390,41 @@
 345
 346
 347
-348</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -612,6 +646,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -970,7 +1038,7 @@ export class CollectionsService {
    *     -&gt; Ok(Json.obj("message" -&gt; "owcResource added to owcContext",
    *         "document" -&gt; theDoc.toJson, "entry" -&gt; owcResource.toJson))
    *
-   * add a resource entry to a collection, the user must own the owccontext collection and the
+   * add a resource AS IS entry to a collection, the user must own the owccontext collection and the
    * resource id must not exist
    *
    * @param {string} collectionid
@@ -992,7 +1060,41 @@ export class CollectionsService {
 <span class="cstat-no" title="statement not covered" >          if (&lt;OwcContext&gt;updatedCollection) {</span>
 <span class="cstat-no" title="statement not covered" >            console.log(updatedCollection);</span>
           }
-<span class="cstat-no" title="statement not covered" >          return response.json();</span>
+<span class="cstat-no" title="statement not covered" >          return &lt;OwcContext&gt;updatedCollection;</span>
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
+&nbsp;
+  /**
+   * POST /api/v1/collections/entry
+   *   -&gt; controllers.CollectionsController.addResourceToCollection(collectionid: String)
+   *     -&gt; Ok(Json.obj("message" -&gt; "owcResource added to owcContext",
+   *         "document" -&gt; theDoc.toJson, "entry" -&gt; owcResource.toJson))
+   *
+   * add a resource entry to a collection, the user must own the owccontext collection and the
+   * resource will be refreshed with a unique copy of server-side (not conflicts should happen on multiple re-use)
+   *
+   * @param {string} collectionid
+   * @param {OwcResource} owcResource
+   * @returns {Observable&lt;OwcContext&gt;}
+   */
+  addCopyOfResourceResourceToCollection(collectionid: string, owcResource: OwcResource<span class="fstat-no" title="function not covered" >): Observable&lt;OwcContext&gt; {</span>
+    let defaultCollectionsUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/collections/entry/copy';</span>
+    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
+    let params: URLSearchParams = <span class="cstat-no" title="statement not covered" >new URLSearchParams();</span>
+<span class="cstat-no" title="statement not covered" >    params.set('collectionid', collectionid);</span>
+<span class="cstat-no" title="statement not covered" >    console.log('token: ' + token);</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'X-XSRF-TOKEN': token});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true, params: params});</span>
+<span class="cstat-no" title="statement not covered" >    return this.http.post(defaultCollectionsUri, owcResource, options)</span>
+      .map(
+        (response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+          let updatedCollection = <span class="cstat-no" title="statement not covered" >response.json().document;</span>
+<span class="cstat-no" title="statement not covered" >          if (&lt;OwcContext&gt;updatedCollection) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log(updatedCollection);</span>
+          }
+<span class="cstat-no" title="statement not covered" >          return &lt;OwcContext&gt;updatedCollection;</span>
         }
       )
       .catch(this.handleHttpFailure);
@@ -1090,7 +1192,7 @@ export class CollectionsService {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 24 2017 17:42:42 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 31 2017 17:55:42 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

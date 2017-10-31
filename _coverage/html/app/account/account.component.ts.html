@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">57.14% </span>
+        <span class="strong">45.83% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/14</span>
+        <span class='fraction'>11/24</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20% </span>
+        <span class="strong">12.5% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/5</span>
+        <span class='fraction'>1/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">54.55% </span>
+        <span class="strong">42.86% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/11</span>
+        <span class='fraction'>9/21</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -86,7 +86,30 @@
 41
 42
 43
-44</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -97,7 +120,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -110,6 +132,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,6 +149,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,6 +170,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit, Input } from '@angular/core';
 import { AccountService } from './account.service';
 import { ProfileJs } from './account.types';
+import { AdminService } from '../admin/admin.service';
+import { NotificationService } from '../notifications/notification.service';
+import { Observable } from 'rxjs/Rx';
 &nbsp;
 @Component({
   selector: 'app-sac-gwh-account',
@@ -152,8 +193,10 @@ export class AccountComponent implements OnInit {
   /**
    * Constructor
    * @param accountService injected AccountService
+   * @param adminService injected AdminService
    */
-  constructor(private <span class="cstat-no" title="statement not covered" >accountService: AccountService<span class="fstat-no" title="function not covered" >)</span> {</span>
+  constructor( private <span class="cstat-no" title="statement not covered" >accountService: AccountService,</span>
+               private <span class="cstat-no" title="statement not covered" >adminService: AdminService<span class="fstat-no" title="function not covered" > </span>) {</span>
   }
 &nbsp;
   /**
@@ -171,6 +214,20 @@ export class AccountComponent implements OnInit {
 <span class="cstat-no" title="statement not covered" >          this.userProfile = this.accountService.guestProfile;</span>
         });
   }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  setAdminLink(): Observable&lt;boolean&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return this.adminService.amiAdmin().map(resp<span class="fstat-no" title="function not covered" > =&gt; {</span></span>
+      let currentUserProfile: ProfileJs = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem('currentUserProfile'));</span>
+<span class="cstat-no" title="statement not covered" >      if (currentUserProfile.email === &lt;any&gt;resp.email) {</span>
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+      }
+      // here maybe more default admins for now :-)
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+&nbsp;
+    }).catch(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      return Observable.of(false);</span>
+    });
+  }
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -178,7 +235,7 @@ export class AccountComponent implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 24 2017 17:42:42 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 31 2017 17:55:42 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

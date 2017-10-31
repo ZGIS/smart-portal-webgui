@@ -85,6 +85,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="adminservice.html#accountservice" class="tsd-kind-icon">account<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="adminservice.html#cookieservice" class="tsd-kind-icon">cookie<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="adminservice.html#http" class="tsd-kind-icon">http</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="adminservice.html#portalapiurl" class="tsd-kind-icon">portal<wbr>Api<wbr>Url</a></li>
@@ -96,7 +97,13 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="adminservice.html#amiadmin" class="tsd-kind-icon">ami<wbr>Admin</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="adminservice.html#handleerror" class="tsd-kind-icon">handle<wbr>Error</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="adminservice.html#getactivesessions" class="tsd-kind-icon">get<wbr>Active<wbr>Sessions</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="adminservice.html#getalluserfiles" class="tsd-kind-icon">get<wbr>All<wbr>User<wbr>Files</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="adminservice.html#getallusergroups" class="tsd-kind-icon">get<wbr>All<wbr>User<wbr>Groups</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="adminservice.html#getallusers" class="tsd-kind-icon">get<wbr>All<wbr>Users</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="adminservice.html#getalluserlinkloggings" class="tsd-kind-icon">getall<wbr>User<wbr>Link<wbr>Loggings</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="adminservice.html#getallusermetarecords" class="tsd-kind-icon">getall<wbr>User<wbr>Meta<wbr>Records</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="adminservice.html#handlehttpfailure" class="tsd-kind-icon">handle<wbr>Http<wbr>Failure</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,13 +115,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Admin<wbr>Service<span class="tsd-signature-symbol">(</span>portalApiUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, http<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Http</span>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span>, cookieService<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CookieService</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="adminservice.html" class="tsd-signature-type">AdminService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Admin<wbr>Service<span class="tsd-signature-symbol">(</span>portalApiUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, http<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Http</span>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span>, accountService<span class="tsd-signature-symbol">: </span><a href="accountservice.html" class="tsd-signature-type">AccountService</a>, cookieService<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CookieService</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="adminservice.html" class="tsd-signature-type">AdminService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/admin/admin.service.ts#L17">app/admin/admin.service.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L21">app/admin/admin.service.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -129,6 +136,9 @@
 									<h5>router: <span class="tsd-signature-type">Router</span></h5>
 								</li>
 								<li>
+									<h5>accountService: <a href="accountservice.html" class="tsd-signature-type">AccountService</a></h5>
+								</li>
+								<li>
 									<h5>cookieService: <span class="tsd-signature-type">CookieService</span></h5>
 								</li>
 							</ul>
@@ -140,12 +150,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="accountservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> account<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">account<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="accountservice.html" class="tsd-signature-type">AccountService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L25">app/admin/admin.service.ts:25</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="cookieservice" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> cookie<wbr>Service</h3>
 					<div class="tsd-signature tsd-kind-icon">cookie<wbr>Service<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CookieService</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/admin/admin.service.ts#L21">app/admin/admin.service.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L26">app/admin/admin.service.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -155,7 +175,7 @@
 					<div class="tsd-signature tsd-kind-icon">http<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Http</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/admin/admin.service.ts#L20">app/admin/admin.service.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L24">app/admin/admin.service.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -165,7 +185,7 @@
 					<div class="tsd-signature tsd-kind-icon">portal<wbr>Api<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/admin/admin.service.ts#L19">app/admin/admin.service.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L23">app/admin/admin.service.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -175,7 +195,7 @@
 					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/admin/admin.service.ts#L20">app/admin/admin.service.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L24">app/admin/admin.service.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -185,7 +205,7 @@
 					<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/admin/admin.service.ts#L17">app/admin/admin.service.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L21">app/admin/admin.service.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -202,26 +222,161 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/admin/admin.service.ts#L30">app/admin/admin.service.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L36">app/admin/admin.service.ts:36</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>GET /api/v1/admin/ami   -&gt; controllers.AdminController.amiAdmin</p>
+								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="handleerror" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> handle<wbr>Error</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">handle<wbr>Error<span class="tsd-signature-symbol">(</span>errorResponse<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ErrorObservable</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getactivesessions" class="tsd-anchor"></a>
+					<h3>get<wbr>Active<wbr>Sessions</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Active<wbr>Sessions<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/usersession.html" class="tsd-signature-type">UserSession</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/admin/admin.service.ts#L60">app/admin/admin.service.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L89">app/admin/admin.service.ts:89</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>GET /api/v1/admin/sessions -&gt; controllers.AdminController.getActiveSessions(max: Option[Int])</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/usersession.html" class="tsd-signature-type">UserSession</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getalluserfiles" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>User<wbr>Files</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>User<wbr>Files<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/userfile.html" class="tsd-signature-type">UserFile</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L117">app/admin/admin.service.ts:117</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>GET  /api/v1/admin/userfiles   -&gt; controllers.AdminController.getAllUserFiles</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/userfile.html" class="tsd-signature-type">UserFile</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getallusergroups" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>User<wbr>Groups</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>User<wbr>Groups<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/usergroup.html" class="tsd-signature-type">UserGroup</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L194">app/admin/admin.service.ts:194</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>GET   /api/v1/admin/groups   -&gt; controllers.AdminController.getAllUserGroups</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/usergroup.html" class="tsd-signature-type">UserGroup</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getallusers" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>Users</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Users<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/profilejs.html" class="tsd-signature-type">ProfileJs</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L65">app/admin/admin.service.ts:65</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>GET  /api/v1/admin/users       -&gt; controllers.AdminController.getAllUsers</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/profilejs.html" class="tsd-signature-type">ProfileJs</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getalluserlinkloggings" class="tsd-anchor"></a>
+					<h3>getall<wbr>User<wbr>Link<wbr>Loggings</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">getall<wbr>User<wbr>Link<wbr>Loggings<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/userlinklogging.html" class="tsd-signature-type">UserLinkLogging</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L165">app/admin/admin.service.ts:165</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>GET  /api/v1/admin/requestlogs  -&gt; controllers.AdminController.getallUserLinkLoggings(max: Option[Int])</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/userlinklogging.html" class="tsd-signature-type">UserLinkLogging</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getallusermetarecords" class="tsd-anchor"></a>
+					<h3>getall<wbr>User<wbr>Meta<wbr>Records</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">getall<wbr>User<wbr>Meta<wbr>Records<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/usermetarecord.html" class="tsd-signature-type">UserMetaRecord</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L141">app/admin/admin.service.ts:141</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>GET  /api/v1/admin/usermetarecords        -&gt; controllers.AdminController.getallUserMetaRecords</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/usermetarecord.html" class="tsd-signature-type">UserMetaRecord</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="handlehttpfailure" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> handle<wbr>Http<wbr>Failure</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Http<wbr>Failure<span class="tsd-signature-symbol">(</span>errorResponse<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ErrorObservable</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/admin/admin.service.ts#L225">app/admin/admin.service.ts:225</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -257,6 +412,9 @@
 								<a href="adminservice.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="adminservice.html#accountservice" class="tsd-kind-icon">account<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="adminservice.html#cookieservice" class="tsd-kind-icon">cookie<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
@@ -274,8 +432,26 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="adminservice.html#amiadmin" class="tsd-kind-icon">ami<wbr>Admin</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="adminservice.html#getactivesessions" class="tsd-kind-icon">get<wbr>Active<wbr>Sessions</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="adminservice.html#getalluserfiles" class="tsd-kind-icon">get<wbr>All<wbr>User<wbr>Files</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="adminservice.html#getallusergroups" class="tsd-kind-icon">get<wbr>All<wbr>User<wbr>Groups</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="adminservice.html#getallusers" class="tsd-kind-icon">get<wbr>All<wbr>Users</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="adminservice.html#getalluserlinkloggings" class="tsd-kind-icon">getall<wbr>User<wbr>Link<wbr>Loggings</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="adminservice.html#getallusermetarecords" class="tsd-kind-icon">getall<wbr>User<wbr>Meta<wbr>Records</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="adminservice.html#handleerror" class="tsd-kind-icon">handle<wbr>Error</a>
+								<a href="adminservice.html#handlehttpfailure" class="tsd-kind-icon">handle<wbr>Http<wbr>Failure</a>
 							</li>
 						</ul>
 					</li>

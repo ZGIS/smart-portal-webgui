@@ -85,8 +85,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="resultdetailmodalcomponent.html#activecollectionid" class="tsd-kind-icon">active<wbr>Collection<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="resultdetailmodalcomponent.html#collectionsservice" class="tsd-kind-icon">collections<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="resultdetailmodalcomponent.html#feature" class="tsd-kind-icon">feature</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="resultdetailmodalcomponent.html#modal" class="tsd-kind-icon">modal</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="resultdetailmodalcomponent.html#mycollections" class="tsd-kind-icon">my<wbr>Collections</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="resultdetailmodalcomponent.html#notificationservice" class="tsd-kind-icon">notification<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="resultdetailmodalcomponent.html#onhide" class="tsd-kind-icon">on<wbr>Hide</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="resultdetailmodalcomponent.html#owcfeature" class="tsd-kind-icon">owc<wbr>Feature</a></li>
@@ -96,6 +99,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="resultdetailmodalcomponent.html#copytomycollection" class="tsd-kind-icon">copy<wbr>ToMy<wbr>Collection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="resultdetailmodalcomponent.html#hidefeaturemodal" class="tsd-kind-icon">hide<wbr>Feature<wbr>Modal</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="resultdetailmodalcomponent.html#onhidemodal" class="tsd-kind-icon">on<wbr>Hide<wbr>Modal</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="resultdetailmodalcomponent.html#showfeaturemodal" class="tsd-kind-icon">show<wbr>Feature<wbr>Modal</a></li>
@@ -110,13 +114,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Result<wbr>Detail<wbr>Modal<wbr>Component<span class="tsd-signature-symbol">(</span>resultService<span class="tsd-signature-symbol">: </span><a href="resultservice.html" class="tsd-signature-type">ResultService</a>, notificationService<span class="tsd-signature-symbol">: </span><a href="notificationservice.html" class="tsd-signature-type">NotificationService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="resultdetailmodalcomponent.html" class="tsd-signature-type">ResultDetailModalComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Result<wbr>Detail<wbr>Modal<wbr>Component<span class="tsd-signature-symbol">(</span>resultService<span class="tsd-signature-symbol">: </span><a href="resultservice.html" class="tsd-signature-type">ResultService</a>, notificationService<span class="tsd-signature-symbol">: </span><a href="notificationservice.html" class="tsd-signature-type">NotificationService</a>, collectionsService<span class="tsd-signature-symbol">: </span><a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="resultdetailmodalcomponent.html" class="tsd-signature-type">ResultDetailModalComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/search/result-detail-modal.component.ts#L19">app/search/result-detail-modal.component.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L22">app/search/result-detail-modal.component.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -127,6 +131,9 @@
 								<li>
 									<h5>notificationService: <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></h5>
 								</li>
+								<li>
+									<h5>collectionsService: <a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="resultdetailmodalcomponent.html" class="tsd-signature-type">ResultDetailModalComponent</a></h4>
 						</li>
@@ -136,12 +143,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="activecollectionid" class="tsd-anchor"></a>
+					<h3>active<wbr>Collection<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">active<wbr>Collection<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L18">app/search/result-detail-modal.component.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="collectionsservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> collections<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">collections<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L26">app/search/result-detail-modal.component.ts:26</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="feature" class="tsd-anchor"></a>
 					<h3>feature</h3>
 					<div class="tsd-signature tsd-kind-icon">feature<span class="tsd-signature-symbol">:</span> <a href="../interfaces/igeofeature.html" class="tsd-signature-type">IGeoFeature</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/search/result-detail-modal.component.ts#L14">app/search/result-detail-modal.component.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L15">app/search/result-detail-modal.component.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -151,7 +178,17 @@
 					<div class="tsd-signature tsd-kind-icon">modal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ModalDirective</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/search/result-detail-modal.component.ts#L19">app/search/result-detail-modal.component.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L22">app/search/result-detail-modal.component.ts:22</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="mycollections" class="tsd-anchor"></a>
+					<h3>my<wbr>Collections</h3>
+					<div class="tsd-signature tsd-kind-icon">my<wbr>Collections<span class="tsd-signature-symbol">:</span> <a href="../interfaces/owccontext.html" class="tsd-signature-type">OwcContext</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L17">app/search/result-detail-modal.component.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -161,7 +198,7 @@
 					<div class="tsd-signature tsd-kind-icon">notification<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/search/result-detail-modal.component.ts#L22">app/search/result-detail-modal.component.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L25">app/search/result-detail-modal.component.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -171,7 +208,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Hide<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/search/result-detail-modal.component.ts#L17">app/search/result-detail-modal.component.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L20">app/search/result-detail-modal.component.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -181,7 +218,7 @@
 					<div class="tsd-signature tsd-kind-icon">owc<wbr>Feature<span class="tsd-signature-symbol">:</span> <a href="../interfaces/owcresource.html" class="tsd-signature-type">OwcResource</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/search/result-detail-modal.component.ts#L15">app/search/result-detail-modal.component.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L16">app/search/result-detail-modal.component.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -191,13 +228,36 @@
 					<div class="tsd-signature tsd-kind-icon">result<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="resultservice.html" class="tsd-signature-type">ResultService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/search/result-detail-modal.component.ts#L21">app/search/result-detail-modal.component.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L24">app/search/result-detail-modal.component.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="copytomycollection" class="tsd-anchor"></a>
+					<h3>copy<wbr>ToMy<wbr>Collection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">copy<wbr>ToMy<wbr>Collection<span class="tsd-signature-symbol">(</span>owcResource<span class="tsd-signature-symbol">: </span><a href="../interfaces/owcresource.html" class="tsd-signature-type">OwcResource</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L71">app/search/result-detail-modal.component.ts:71</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>owcResource: <a href="../interfaces/owcresource.html" class="tsd-signature-type">OwcResource</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="hidefeaturemodal" class="tsd-anchor"></a>
 					<h3>hide<wbr>Feature<wbr>Modal</h3>
@@ -208,7 +268,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/search/result-detail-modal.component.ts#L53">app/search/result-detail-modal.component.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L93">app/search/result-detail-modal.component.ts:93</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -225,7 +285,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/search/result-detail-modal.component.ts#L57">app/search/result-detail-modal.component.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L97">app/search/result-detail-modal.component.ts:97</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -242,7 +302,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cfa9784/src/app/search/result-detail-modal.component.ts#L25">app/search/result-detail-modal.component.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3e0161d/src/app/search/result-detail-modal.component.ts#L43">app/search/result-detail-modal.component.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -276,10 +336,19 @@
 								<a href="resultdetailmodalcomponent.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="resultdetailmodalcomponent.html#activecollectionid" class="tsd-kind-icon">active<wbr>Collection<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="resultdetailmodalcomponent.html#collectionsservice" class="tsd-kind-icon">collections<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="resultdetailmodalcomponent.html#feature" class="tsd-kind-icon">feature</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="resultdetailmodalcomponent.html#modal" class="tsd-kind-icon">modal</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="resultdetailmodalcomponent.html#mycollections" class="tsd-kind-icon">my<wbr>Collections</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="resultdetailmodalcomponent.html#notificationservice" class="tsd-kind-icon">notification<wbr>Service</a>
@@ -292,6 +361,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="resultdetailmodalcomponent.html#resultservice" class="tsd-kind-icon">result<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="resultdetailmodalcomponent.html#copytomycollection" class="tsd-kind-icon">copy<wbr>ToMy<wbr>Collection</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="resultdetailmodalcomponent.html#hidefeaturemodal" class="tsd-kind-icon">hide<wbr>Feature<wbr>Modal</a>
