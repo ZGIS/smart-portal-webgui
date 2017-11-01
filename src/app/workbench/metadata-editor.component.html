@@ -541,7 +541,7 @@
                     Distribution Link:</label>
                   <div class="controls">
                     <template #onlineResourceLinkageTemplate let-model="item">
-                      <h5>{{model.properties.title | json}}</h5>
+                      <h5>Filename: {{model.title | json}} <small>(Public link: {{ model.href }})</small></h5>
                     </template>
 
                     <input type="text"

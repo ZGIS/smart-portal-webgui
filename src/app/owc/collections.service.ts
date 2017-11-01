@@ -110,19 +110,22 @@ export class CollectionsService {
    * getPersonalFilesFromDefaultCollection returns owc Data Links
    * @returns {Observable<R>}
    */
-  getUploadedFilesFromDefaultCollection(filter?: string): Observable<OwcLink[]> {
+  getUploadedFilesFromDefaultCollection(filtertoken?: string): Observable<Array<OwcLink>> {
     let defaultCollectionFilesUri = this.portalApiUrl + '/collections/default/files';
     let token = this.accountService.token;
-    console.log('token: ' + token);
     let headers = new Headers({'X-XSRF-TOKEN': token});
     let options = new RequestOptions({headers: headers, withCredentials: true});
 
     return this.http.get(defaultCollectionFilesUri, options)
       .map((response: Response) => {
         console.log('Files in DefaultCollection loaded');
-        console.log(response.json());
-        let filtered = response.json().filter((o: OwcLink) => o.title.match(filter));
-        return filtered;
+        let datalinks = response.json().datalinks as OwcLink[];
+        console.log(datalinks);
+        if (<OwcLink[]>datalinks) {
+          return datalinks.filter((o: OwcLink) => o.title.match(filtertoken));
+        } else {
+          return [];
+        }
       })
       .catch(this.handleHttpFailure);
   }

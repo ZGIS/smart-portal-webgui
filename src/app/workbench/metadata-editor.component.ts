@@ -12,6 +12,7 @@ import { CollectionsService } from '../owc';
 import { TypeaheadMatch } from 'ngx-bootstrap';
 import * as moment from 'moment';
 import { ProfileJs } from '../account/account.types';
+import { OwcLink } from '../owc/collections';
 
 export interface SelectEntry {
   value: string;
@@ -73,7 +74,7 @@ export class MetadataEditorComponent implements OnInit {
   loading = false;
   error = '';
 
-  onlineResourceLinkageTypeahead: Observable<any>;
+  onlineResourceLinkageTypeahead: Observable<Array<OwcLink>>;
   typeaheadLoading: boolean;
   typeaheadNoResults: boolean;
 
@@ -92,10 +93,10 @@ export class MetadataEditorComponent implements OnInit {
       .create((observer: any) => {
         observer.next(this.metadata.distribution.onlineResourceLinkage);
       })
-      .mergeMap((token: string) => {
-        let result: Observable<Array<any>>;
+      .mergeMap((filtertoken: string) => {
+        let result: Observable<Array<OwcLink>>;
         if (this.metadata.distribution.formatVersion === 'file formats') {
-          result = this.collectionsService.getUploadedFilesFromDefaultCollection(token);
+          result = this.collectionsService.getUploadedFilesFromDefaultCollection(filtertoken);
         } else {
           // TODO SR in case we decide to store service URLs in collection, load other typeahead suggestions
           result = Observable.of([]);
@@ -236,7 +237,7 @@ export class MetadataEditorComponent implements OnInit {
 
   public typeaheadOnSelect(e: TypeaheadMatch): void {
     console.log('Selected value: ', e.value);
-    this.metadata.distribution.formatName = e.item.operation.type;
+    this.metadata.distribution.formatName = e.item.title;
     console.log(e);
   }
 
