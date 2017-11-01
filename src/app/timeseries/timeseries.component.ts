@@ -135,14 +135,14 @@ export class TimeseriesComponent implements OnInit {
     Plotly.deleteTraces('plotly', index);
   }
 
-  exportTimeseries(index: number) {
+  exportTimeseries(index: number, responseFormat: string) {
     if (!isNullOrUndefined(this.timeseries[index])) {
       // let requestCapa = this.capabilities[index];
       // if (!(requestCapa.responseFormats.filter(elem => elem === 'http://www.opengis.net/waterml/2.0').length > 0)) {
       //   console.log('WaterMl2 not in SosCapa RepsosneFormats');
       // }
       let requestTs = this.timeseries[index];
-      requestTs.responseFormat = 'http://www.opengis.net/waterml/2.0';
+      requestTs.responseFormat = responseFormat;
       requestTs.data.data = {};
       console.log(`exporting ${JSON.stringify(requestTs)}`);
       this.exportTimeseriesData(requestTs).subscribe(
@@ -227,7 +227,7 @@ export class TimeseriesComponent implements OnInit {
 
   private exportTimeseriesData(ts: Timeseries): Observable<any> {
     // we get that from sos observations!
-    let tsObservable = this.http.post(`${this.portalApiUrl}/sos/timeseries-wml2`, ts, { responseType: ResponseContentType.Blob })
+    let tsObservable = this.http.post(`${this.portalApiUrl}/sos/timeseries/export`, ts, { responseType: ResponseContentType.Blob })
       .map((response) => {
         console.log(response.headers.toJSON());
         // return new Blob([response.blob()], { type: 'application/octet-stream' });

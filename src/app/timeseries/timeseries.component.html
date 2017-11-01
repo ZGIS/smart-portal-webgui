@@ -35,15 +35,28 @@
         <accordion>
           <accordion-group *ngFor="let ts of timeseries; let i = index" #timeseriesGroup>
             <div accordion-heading>
-              <i class="fa fa-pull-right fa-fw"
-                 [ngClass]="{'fa-chevron-down': timeseriesGroup?.isOpen, 'fa-chevron-right': !timeseriesGroup?.isOpen}"></i>
+              <i class="fa fa-pull-left fa-fw"
+                 [ngClass]="{'fa-chevron-down': timeseriesGroup?.isOpen, 'fa-chevron-right': !timeseriesGroup?.isOpen}" tooltip="Click open for details"></i>
+              {{ts.data.name }}
+
               <i class="fa fa-pull-right fa-border fa-trash" (click)="deleteTimeseries(i)" tooltip="Delete this time-series"></i>
               <i class="fa fa-pull-right fa-border fa-gears" (click)="openTimeseriesConfigurator($event, i)" tooltip="Configure this time-series"></i>
-              <i class="fa fa-pull-right fa-border fa-file-excel-o" (click)="exportTimeseries(i)" tooltip="Export/download data (currently only WML2)"></i>
 
-              {{ts.data.name}}
             </div>
-            Here comes some description or whatever of the time series.
+            <table class="table-bordered table-condensed">
+              <tr *ngIf="ts.timeseriesName"><td>{{ts.timeseriesName}}</td></tr>
+              <tr *ngIf="ts.sosUrl"><td>URL: {{ts.sosUrl}}</td></tr>
+              <tr><td><a (click)="exportTimeseries(i, 'http://www.opengis.net/waterml/2.0')">Export/download data as WML2 <i class="fa fa-pull-right fa-border fa-file-excel-o" tooltip="Export/download data as WML2"></i></a></td></tr>
+              <tr><td><a (click)="exportTimeseries(i, 'application/vnd.ms-excel')">Export/download data as Excel spreadsheet <i class="fa fa-pull-right fa-border fa-file-excel-o" tooltip="Export/download data as Excel Spreadsheet"></i></a></td></tr>
+              <tr *ngIf="ts.uom"><td>Unit: {{ts.uom}}</td></tr>
+              <tr *ngIf="ts.fromDate"><td>from: {{ts.fromDate}}</td></tr>
+              <tr *ngIf="ts.toDate"><td>to: {{ts.toDate}}</td></tr>
+              <tr *ngIf="ts.offering"><td>Offering: {{ts.offering}}</td></tr>
+              <tr *ngIf="ts.procedure"><td>Procedure: {{ts.procedure}}</td></tr>
+              <tr *ngIf="ts.observedProperty"><td>Observed property: {{ts.observedProperty}}</td></tr>
+              <tr *ngIf="ts.featureOfInterest"><td>Feature: {{ts.featureOfInterest}}</td></tr>
+              <tr *ngIf="ts.responseFormat"><td>Default data format: {{ts.responseFormat}}</td></tr>
+            </table>
           </accordion-group>
         </accordion>
         <br *ngIf="timeseries && timeseries.length > 0"/> <!-- this is a hack because theres a margin error with accordion -->
