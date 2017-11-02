@@ -46,8 +46,11 @@
             <table class="table-bordered table-condensed">
               <tr *ngIf="ts.timeseriesName"><td>{{ts.timeseriesName}}</td></tr>
               <tr *ngIf="ts.sosUrl"><td>URL: {{ts.sosUrl}}</td></tr>
-              <tr><td><a (click)="exportTimeseries(i, 'http://www.opengis.net/waterml/2.0')">Export/download data as WML2 <i class="fa fa-pull-right fa-border fa-file-excel-o" tooltip="Export/download data as WML2"></i></a></td></tr>
-              <tr><td><a (click)="exportTimeseries(i, 'application/vnd.ms-excel')">Export/download data as Excel spreadsheet <i class="fa fa-pull-right fa-border fa-file-excel-o" tooltip="Export/download data as Excel Spreadsheet"></i></a></td></tr>
+              <tr><td>Export/download data<br>
+                <a role="button" class="btn btn-info" (click)="exportTimeseries(i, 'http://www.opengis.net/waterml/2.0')"> as WML2 <i class="fa fa-file-zip-o" tooltip="Export/download data as WML2"></i></a>
+                <a role="button" class="btn btn-info" (click)="exportTimeseries(i, 'application/vnd.ms-excel')">Excel spreadsheet <i class="fa fa-file-excel-o" tooltip="Export/download data as Excel Spreadsheet"></i></a>
+                <a role="button" class="btn btn-info" (click)="exportTimeseries(i, 'text/csv')">CSV file <i class="fa fa-file-text-o" tooltip="Export/download data as CSV file"></i></a>
+              </td></tr>
               <tr *ngIf="ts.uom"><td>Unit: {{ts.uom}}</td></tr>
               <tr *ngIf="ts.fromDate"><td>from: {{ts.fromDate}}</td></tr>
               <tr *ngIf="ts.toDate"><td>to: {{ts.toDate}}</td></tr>
