@@ -1,5 +1,6 @@
 import { Component, Inject, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { NotificationService } from '../notifications/notification.service';
 import { Observable } from 'rxjs/Observable';
 import { Http, RequestOptions, Response, ResponseContentType } from '@angular/http';
@@ -19,7 +20,7 @@ export interface UserFileResponse {
  */
 @Component({
   selector: 'app-sac-gwh-context-fileload',
-  template: '<i class="fa fa-spinner fa-pulse fa-fw"></i> retrieving file ...'
+  templateUrl: 'fileloader.component.html'
 })
 
 export class FileLoaderComponent implements OnInit {
@@ -31,7 +32,8 @@ export class FileLoaderComponent implements OnInit {
                private activatedRoute: ActivatedRoute,
                private notificationService: NotificationService,
                private ngZone: NgZone,
-               private http: Http ) {
+               private http: Http,
+               private location: Location ) {
   }
 
   /**
@@ -40,8 +42,12 @@ export class FileLoaderComponent implements OnInit {
   ngOnInit(): void {
     // parse values from
     this.activatedRoute.params.subscribe(( params: Params ) => {
-      this.downloadFileExecute(params['uuid']);
+      this.downloadFileExecute(params[ 'uuid' ]);
     });
+  }
+
+  backClicked() {
+    this.location.back();
   }
 
   private downloadFileExecute( uuid: string ) {

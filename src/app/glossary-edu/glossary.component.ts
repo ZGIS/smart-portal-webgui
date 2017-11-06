@@ -37,7 +37,7 @@ export class GlossaryComponent {
   public uriPapawaiCollection = 'http://vocab.smart-project.info/collection/papawai/terms';
   public uriAwahouCollection = 'http://vocab.smart-project.info/collection/awahou/terms';
 
-  constructor( private location: Location, private http: Http,
+  constructor( private location: Location,
                private glossaryService: GlossaryService,
                private notificationService: NotificationService ) {
   }

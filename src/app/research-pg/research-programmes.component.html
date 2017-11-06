@@ -1,5 +1,62 @@
-<div class="col-md-12">
-  <p style="color: #eea236;">So sorry, we didn't add any materials about research programmes yet <i class="fa fa-frown-o"></i></p>
-  <p style="color: #eea236;"><a (click)="backClicked()"><i class="fa fa-backward"></i> Go back...</a></p>
-  <p style="color: #eea236;"><a routerLink="/"> <i class="fa fa-home"></i> Start</a> </p>
+<div class="row" *ngIf="uriResearchPGCollection.length <= 0">
+  <div class="col-md-12">
+    <p style="color: #eea236;">So sorry, we didn't add any materials about research programmes yet <i class="fa fa-frown-o"></i></p>
+    <p style="color: #eea236;"><a (click)="backClicked()"><i class="fa fa-backward"></i> Go back...</a></p>
+    <p style="color: #eea236;"><a routerLink="/"> <i class="fa fa-home"></i> Start</a> </p>
+  </div>
+</div>
+<div class="row" *ngIf="uriResearchPGCollection.length > 0">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Research Programmes <a class="pull-right" tooltip="Back to last page." (click)="backClicked()"><i class="fa fa-backward"></i> back...</a>
+      </div>
+      <div class="panel-body">
+        <div class="list-group-item">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-th-list"></i></span>
+            <input class="form-control" type="text" placeholder="filter" [(ngModel)]="textFilter"/>
+          </div>
+        </div>
+        <div class="list-group" *ngIf="currentCollectionBindings.length > 0">
+          <div class="list-group-item" *ngFor="let binding of (getFilteredResults(currentCollectionBindings))">
+            <p>
+              Name: {{ binding.label.value }}
+            </p>
+            <p>
+              IRI (identifier): <a tooltip="Click for details" (click)="showConceptDetailModal(binding)"><i class="fa fa-globe"></i>
+              {{ binding.iri.value }}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #conceptDetailsModal="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="conceptDetails" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" *ngIf="currentConceptBindings.length > 0">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideConceptDetailModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="list-group">
+          <div class="list-group-item" *ngIf="currentConceptUri.length > 0">
+            <p>Found {{ currentConceptBindings.length }} details for programme:
+              <a><i class="fa fa-globe"></i> {{ currentConceptUri }}</a>
+            </p>
+          </div>
+          <div class="list-group-item" *ngFor="let binding of currentConceptBindings">
+            <p>
+              Detail <i><small>({{ binding.att.value}})</small></i>: {{ binding.val.value }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
