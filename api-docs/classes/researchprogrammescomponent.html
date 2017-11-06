@@ -72,6 +72,12 @@
 					</li>
 				</ul>
 			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><span class="tsd-signature-type">OnInit</span></li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -82,16 +88,29 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="researchprogrammescomponent.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="researchprogrammescomponent.html#_location" class="tsd-kind-icon">_location</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="researchprogrammescomponent.html#currentconceptbindings" class="tsd-kind-icon">current<wbr>Concept<wbr>Bindings</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="researchprogrammescomponent.html#currentconcepturi" class="tsd-kind-icon">current<wbr>Concept<wbr>Uri</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="researchprogrammescomponent.html#glossaryservice" class="tsd-kind-icon">glossary<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="researchprogrammescomponent.html#loading" class="tsd-kind-icon">loading</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="researchprogrammescomponent.html#location" class="tsd-kind-icon">location</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="researchprogrammescomponent.html#modal" class="tsd-kind-icon">modal</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="researchprogrammescomponent.html#notificationservice" class="tsd-kind-icon">notification<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="researchprogrammescomponent.html#researchpgcollectionbindings" class="tsd-kind-icon">researchPGCollection<wbr>Bindings</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="researchprogrammescomponent.html#spqresearchpgqueryurl" class="tsd-kind-icon">spq<wbr>ResearchPGQuery<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="researchprogrammescomponent.html#textfilter" class="tsd-kind-icon">text<wbr>Filter</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="researchprogrammescomponent.html#uriresearchpgcollection" class="tsd-kind-icon">uri<wbr>ResearchPGCollection</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="researchprogrammescomponent.html#backclicked" class="tsd-kind-icon">back<wbr>Clicked</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="researchprogrammescomponent.html#hideconceptdetailmodal" class="tsd-kind-icon">hide<wbr>Concept<wbr>Detail<wbr>Modal</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="researchprogrammescomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="researchprogrammescomponent.html#showconceptdetailmodal" class="tsd-kind-icon">show<wbr>Concept<wbr>Detail<wbr>Modal</a></li>
 							</ul>
 						</section>
 					</div>
@@ -103,19 +122,25 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Research<wbr>Programmes<wbr>Component<span class="tsd-signature-symbol">(</span>_location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="researchprogrammescomponent.html" class="tsd-signature-type">ResearchProgrammesComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Research<wbr>Programmes<wbr>Component<span class="tsd-signature-symbol">(</span>location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span>, glossaryService<span class="tsd-signature-symbol">: </span><a href="glossaryservice.html" class="tsd-signature-type">GlossaryService</a>, notificationService<span class="tsd-signature-symbol">: </span><a href="notificationservice.html" class="tsd-signature-type">NotificationService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="researchprogrammescomponent.html" class="tsd-signature-type">ResearchProgrammesComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8f9d840/src/app/research-pg/research-programmes.component.ts#L12">app/research-pg/research-programmes.component.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L29">app/research-pg/research-programmes.component.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>_location: <span class="tsd-signature-type">Location</span></h5>
+									<h5>location: <span class="tsd-signature-type">Location</span></h5>
+								</li>
+								<li>
+									<h5>glossaryService: <a href="glossaryservice.html" class="tsd-signature-type">GlossaryService</a></h5>
+								</li>
+								<li>
+									<h5>notificationService: <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="researchprogrammescomponent.html" class="tsd-signature-type">ResearchProgrammesComponent</a></h4>
@@ -123,15 +148,115 @@
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_location" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _location</h3>
-					<div class="tsd-signature tsd-kind-icon">_location<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Location</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="currentconceptbindings" class="tsd-anchor"></a>
+					<h3>current<wbr>Concept<wbr>Bindings</h3>
+					<div class="tsd-signature tsd-kind-icon">current<wbr>Concept<wbr>Bindings<span class="tsd-signature-symbol">:</span> <a href="../interfaces/attributelabelbinding.html" class="tsd-signature-type">AttributeLabelBinding</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8f9d840/src/app/research-pg/research-programmes.component.ts#L14">app/research-pg/research-programmes.component.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L24">app/research-pg/research-programmes.component.ts:24</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="currentconcepturi" class="tsd-anchor"></a>
+					<h3>current<wbr>Concept<wbr>Uri</h3>
+					<div class="tsd-signature tsd-kind-icon">current<wbr>Concept<wbr>Uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L23">app/research-pg/research-programmes.component.ts:23</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="glossaryservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> glossary<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">glossary<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="glossaryservice.html" class="tsd-signature-type">GlossaryService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L32">app/research-pg/research-programmes.component.ts:32</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="loading" class="tsd-anchor"></a>
+					<h3>loading</h3>
+					<div class="tsd-signature tsd-kind-icon">loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L26">app/research-pg/research-programmes.component.ts:26</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="location" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> location</h3>
+					<div class="tsd-signature tsd-kind-icon">location<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Location</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L31">app/research-pg/research-programmes.component.ts:31</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="modal" class="tsd-anchor"></a>
+					<h3>modal</h3>
+					<div class="tsd-signature tsd-kind-icon">modal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ModalDirective</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L29">app/research-pg/research-programmes.component.ts:29</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="notificationservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> notification<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">notification<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L33">app/research-pg/research-programmes.component.ts:33</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="researchpgcollectionbindings" class="tsd-anchor"></a>
+					<h3>researchPGCollection<wbr>Bindings</h3>
+					<div class="tsd-signature tsd-kind-icon">researchPGCollection<wbr>Bindings<span class="tsd-signature-symbol">:</span> <a href="../interfaces/irilabelbinding.html" class="tsd-signature-type">IriLabelBinding</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L21">app/research-pg/research-programmes.component.ts:21</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="spqresearchpgqueryurl" class="tsd-anchor"></a>
+					<h3>spq<wbr>ResearchPGQuery<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">spq<wbr>ResearchPGQuery<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;https://vocab.smart-project.info/spq-glossary/query&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L18">app/research-pg/research-programmes.component.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="textfilter" class="tsd-anchor"></a>
+					<h3>text<wbr>Filter</h3>
+					<div class="tsd-signature tsd-kind-icon">text<wbr>Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L27">app/research-pg/research-programmes.component.ts:27</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="uriresearchpgcollection" class="tsd-anchor"></a>
+					<h3>uri<wbr>ResearchPGCollection</h3>
+					<div class="tsd-signature tsd-kind-icon">uri<wbr>ResearchPGCollection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;http://vocab.smart-project.info/collection/glossary/terms&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L19">app/research-pg/research-programmes.component.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -148,9 +273,78 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8f9d840/src/app/research-pg/research-programmes.component.ts#L17">app/research-pg/research-programmes.component.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L100">app/research-pg/research-programmes.component.ts:100</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="hideconceptdetailmodal" class="tsd-anchor"></a>
+					<h3>hide<wbr>Concept<wbr>Detail<wbr>Modal</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">hide<wbr>Concept<wbr>Detail<wbr>Modal<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L96">app/research-pg/research-programmes.component.ts:96</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ngoninit" class="tsd-anchor"></a>
+					<h3>ng<wbr>OnInit</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">ng<wbr>OnInit<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L39">app/research-pg/research-programmes.component.ts:39</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>load all research programmes from sparql collections</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="showconceptdetailmodal" class="tsd-anchor"></a>
+					<h3>show<wbr>Concept<wbr>Detail<wbr>Modal</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">show<wbr>Concept<wbr>Detail<wbr>Modal<span class="tsd-signature-symbol">(</span>conceptBinding<span class="tsd-signature-symbol">: </span><a href="../interfaces/irilabelbinding.html" class="tsd-signature-type">IriLabelBinding</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/87ccad2/src/app/research-pg/research-programmes.component.ts#L66">app/research-pg/research-programmes.component.ts:66</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>load details for a research programme</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>conceptBinding: <a href="../interfaces/irilabelbinding.html" class="tsd-signature-type">IriLabelBinding</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -175,11 +369,50 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="researchprogrammescomponent.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="researchprogrammescomponent.html#currentconceptbindings" class="tsd-kind-icon">current<wbr>Concept<wbr>Bindings</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="researchprogrammescomponent.html#currentconcepturi" class="tsd-kind-icon">current<wbr>Concept<wbr>Uri</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="researchprogrammescomponent.html#_location" class="tsd-kind-icon">_location</a>
+								<a href="researchprogrammescomponent.html#glossaryservice" class="tsd-kind-icon">glossary<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="researchprogrammescomponent.html#loading" class="tsd-kind-icon">loading</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="researchprogrammescomponent.html#location" class="tsd-kind-icon">location</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="researchprogrammescomponent.html#modal" class="tsd-kind-icon">modal</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="researchprogrammescomponent.html#notificationservice" class="tsd-kind-icon">notification<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="researchprogrammescomponent.html#researchpgcollectionbindings" class="tsd-kind-icon">researchPGCollection<wbr>Bindings</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="researchprogrammescomponent.html#spqresearchpgqueryurl" class="tsd-kind-icon">spq<wbr>ResearchPGQuery<wbr>Url</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="researchprogrammescomponent.html#textfilter" class="tsd-kind-icon">text<wbr>Filter</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="researchprogrammescomponent.html#uriresearchpgcollection" class="tsd-kind-icon">uri<wbr>ResearchPGCollection</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="researchprogrammescomponent.html#backclicked" class="tsd-kind-icon">back<wbr>Clicked</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="researchprogrammescomponent.html#hideconceptdetailmodal" class="tsd-kind-icon">hide<wbr>Concept<wbr>Detail<wbr>Modal</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="researchprogrammescomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="researchprogrammescomponent.html#showconceptdetailmodal" class="tsd-kind-icon">show<wbr>Concept<wbr>Detail<wbr>Modal</a>
 							</li>
 						</ul>
 					</li>

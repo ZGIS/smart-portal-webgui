@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">14.55% </span>
+        <span class="strong">14.46% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>24/165</span>
+        <span class='fraction'>24/166</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/26</span>
+        <span class='fraction'>0/28</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">3.7% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/27</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">13.66% </span>
+        <span class="strong">13.58% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>22/161</span>
+        <span class='fraction'>22/162</span>
       </div>
     </div>
   </div>
@@ -424,7 +424,10 @@
 379
 380
 381
-382</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+382
+383
+384
+385</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -541,7 +544,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -549,6 +551,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -917,19 +923,22 @@ export class CollectionsService {
    * getPersonalFilesFromDefaultCollection returns owc Data Links
    * @returns {Observable&lt;R&gt;}
    */
-  getUploadedFilesFromDefaultCollection(filter?: string<span class="fstat-no" title="function not covered" >): Observable&lt;OwcLink[]&gt; {</span>
+  getUploadedFilesFromDefaultCollection(filtertoken?: string<span class="fstat-no" title="function not covered" >): Observable&lt;Array&lt;OwcLink&gt;&gt; {</span>
     let defaultCollectionFilesUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/collections/default/files';</span>
     let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
-<span class="cstat-no" title="statement not covered" >    console.log('token: ' + token);</span>
     let headers = <span class="cstat-no" title="statement not covered" >new Headers({'X-XSRF-TOKEN': token});</span>
     let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return this.http.get(defaultCollectionFilesUri, options)</span>
       .map((response: Response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        console.log('Files in DefaultCollection loaded');</span>
-<span class="cstat-no" title="statement not covered" >        console.log(response.json());</span>
-        let filtered = <span class="cstat-no" title="statement not covered" >response.json().filter((o: OwcLink<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >o.title.match(filter))</span></span>;</span>
-<span class="cstat-no" title="statement not covered" >        return filtered;</span>
+        let datalinks = <span class="cstat-no" title="statement not covered" >response.json().datalinks as OwcLink[];</span>
+<span class="cstat-no" title="statement not covered" >        console.log(datalinks);</span>
+<span class="cstat-no" title="statement not covered" >        if (&lt;OwcLink[]&gt;datalinks) {</span>
+<span class="cstat-no" title="statement not covered" >          return datalinks.filter((o: OwcLink<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >o.title.match(filtertoken))</span></span>;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          return [];</span>
+        }
       })
       .catch(this.handleHttpFailure);
   }
@@ -1192,7 +1201,7 @@ export class CollectionsService {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 31 2017 20:53:55 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 06 2017 20:05:15 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

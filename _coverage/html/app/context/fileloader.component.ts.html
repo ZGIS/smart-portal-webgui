@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">26.47% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>16/64</span>
+        <span class='fraction'>18/68</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.25% </span>
+        <span class="strong">5.88% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/16</span>
+        <span class='fraction'>1/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">24.14% </span>
+        <span class="strong">25.81% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>14/58</span>
+        <span class='fraction'>16/62</span>
       </div>
     </div>
   </div>
@@ -181,12 +181,19 @@
 136
 137
 138
-139</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+139
+140
+141
+142
+143
+144
+145</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -200,21 +207,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -223,8 +215,28 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -321,6 +333,7 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, Inject, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { NotificationService } from '../notifications/notification.service';
 import { Observable } from 'rxjs/Observable';
 import { Http, RequestOptions, Response, ResponseContentType } from '@angular/http';
@@ -340,7 +353,7 @@ export interface UserFileResponse {
  */
 @Component({
   selector: 'app-sac-gwh-context-fileload',
-  template: '&lt;i class="fa fa-spinner fa-pulse fa-fw"&gt;&lt;/i&gt; retrieving file ...'
+  templateUrl: 'fileloader.component.html'
 })
 &nbsp;
 export class FileLoaderComponent implements OnInit {
@@ -352,7 +365,8 @@ export class FileLoaderComponent implements OnInit {
                private <span class="cstat-no" title="statement not covered" >activatedRoute: ActivatedRoute,</span>
                private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService,</span>
                private <span class="cstat-no" title="statement not covered" >ngZone: NgZone,</span>
-               private <span class="cstat-no" title="statement not covered" >http: Http<span class="fstat-no" title="function not covered" > </span>) {</span>
+               private <span class="cstat-no" title="statement not covered" >http: Http,</span>
+               private <span class="cstat-no" title="statement not covered" >location: Location<span class="fstat-no" title="function not covered" > </span>) {</span>
   }
 &nbsp;
   /**
@@ -361,8 +375,12 @@ export class FileLoaderComponent implements OnInit {
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  ngOnInit(): void {</span></span>
     // parse values from
 <span class="cstat-no" title="statement not covered" >    this.activatedRoute.params.subscribe(( params: Params<span class="fstat-no" title="function not covered" > ) =&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >      this.downloadFileExecute(params['uuid']);</span>
+<span class="cstat-no" title="statement not covered" >      this.downloadFileExecute(params[ 'uuid' ]);</span>
     });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  backClicked() {</span>
+<span class="cstat-no" title="statement not covered" >    this.location.back();</span>
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  private downloadFileExecute( uuid: string<span class="fstat-no" title="function not covered" > ) {</span></span>
@@ -463,7 +481,7 @@ export class FileLoaderComponent implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 31 2017 20:53:55 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 06 2017 20:05:15 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
