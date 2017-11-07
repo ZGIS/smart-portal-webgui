@@ -1,11 +1,11 @@
-<div class="row" *ngIf="uriResearchPGCollection.length <= 0">
+<div class="row" *ngIf="researchPGCollectionBindings.length <= 0">
   <div class="col-md-12">
-    <p style="color: #eea236;">So sorry, we didn't add any materials about research programmes yet <i class="fa fa-frown-o"></i></p>
+    <p style="color: #eea236;">So sorry, we didn't add any infos about research programmes yet <i class="fa fa-frown-o"></i></p>
     <p style="color: #eea236;"><a (click)="backClicked()"><i class="fa fa-backward"></i> Go back...</a></p>
     <p style="color: #eea236;"><a routerLink="/"> <i class="fa fa-home"></i> Start</a> </p>
   </div>
 </div>
-<div class="row" *ngIf="uriResearchPGCollection.length > 0">
+<div class="row" *ngIf="researchPGCollectionBindings.length > 0">
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -18,8 +18,8 @@
             <input class="form-control" type="text" placeholder="filter" [(ngModel)]="textFilter"/>
           </div>
         </div>
-        <div class="list-group" *ngIf="currentCollectionBindings.length > 0">
-          <div class="list-group-item" *ngFor="let binding of (getFilteredResults(currentCollectionBindings))">
+        <div class="list-group" *ngIf="researchPGCollectionBindings.length > 0">
+          <div class="list-group-item" *ngFor="let binding of (getFilteredResults(researchPGCollectionBindings))">
             <p>
               Name: {{ binding.label.value }}
             </p>
