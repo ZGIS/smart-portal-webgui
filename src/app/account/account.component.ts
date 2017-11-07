@@ -4,6 +4,7 @@ import { ProfileJs } from './account.types';
 import { AdminService } from '../admin/admin.service';
 import { NotificationService } from '../notifications/notification.service';
 import { Observable } from 'rxjs/Rx';
+import { UserGroup } from '../admin/admin.types';
 
 @Component({
   selector: 'app-sac-gwh-account',
@@ -20,6 +21,8 @@ export class AccountComponent implements OnInit {
    * @type {ProfileJs}
    */
   @Input() userProfile: ProfileJs = this.accountService.guestProfile;
+
+  userGroups: UserGroup[] = [];
 
   /**
    * Constructor

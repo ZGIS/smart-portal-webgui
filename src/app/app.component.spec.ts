@@ -11,6 +11,7 @@ import { CookieModule, CookieService } from 'ngx-cookie';
 import { NotificationService } from './notifications/notification.service';
 import { CategoriesService } from './dashboards/categories.service';
 import { GlossaryService } from './glossary-edu/glossary.service';
+import { WorkbenchService } from './workbench/workbench.service';
 import { NotificationComponent } from './notifications/notification.component';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
 import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.component';
@@ -34,6 +35,7 @@ describe('App Component', () => {
         AdminService,
         NotificationService,
         GlossaryService,
+        WorkbenchService,
         CategoriesService,
         API_URL_PROVIDERS,
         APP_VERSION_PROVIDERS,
@@ -83,6 +85,7 @@ describe('AppComponent with TCB', function () {
         NotificationService,
         CategoriesService,
         GlossaryService,
+        WorkbenchService,
         API_URL_PROVIDERS,
         APP_VERSION_PROVIDERS,
         Http

@@ -1,6 +1,30 @@
 import { Extent } from 'openlayers';
 import { SacGwhNotification } from '../notifications/notification.service';
 
+export interface SelectEntry {
+  value: string;
+  description: string;
+  selected: boolean;
+}
+
+export interface ValueEntry {
+  standardValue: number;
+  values: string[];
+  descriptions?: string[];
+}
+
+export interface ValidValues {
+  topicCategory: SelectEntry[];
+  hierarchyLevelName: SelectEntry[];
+  scale: SelectEntry[];
+  referenceSystem: SelectEntry[];
+  ciDateType: SelectEntry[];
+  pointOfContact: SelectEntry[];
+  useLimitation: SelectEntry[];
+  formatVersion: SelectEntry[];
+  smartCategory: SelectEntry[];
+}
+
 export class GeoMetadata {
   fileIdentifier: string;
   title: string;              // gmd_identificationInfo_MD_DataIdentification_CI_Citation_gmd_title
@@ -52,7 +76,7 @@ export class GeoDistribution {
   // gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage
 }
 
-export class InsertResponse implements SacGwhNotification {
+export class CswTransactionResponse implements SacGwhNotification {
   type: string;
   message: string;
 }

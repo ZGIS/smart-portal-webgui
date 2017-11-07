@@ -2,17 +2,78 @@
   <div class="col-md-5">
     <div class="panel panel-default" *ngIf="myCollections.length > 0">
 
-      <div class="panel-heading">{{ myCollections.length }} collection{{ myCollections.length > 1 ? 's' : '' }} <a (click)="reloadCollections()"
-                                                 tooltip="Refresh all collections">
-        Reload all <i class="fa fa-repeat"
-                  aria-hidden="true"></i></a>
-        <a class="pull-right" (click)="createCollection()" tooltip="Create a new collection">Create new
-          <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        </a>
+      <div class="panel-heading">
+        <a (click)="reloadCollections()" tooltip="Refresh collections">
+          <i class="fa fa-repeat" aria-hidden="true"></i> Manage</a> my collections
+      </div>
+      <div class="panel-body">
+        <div class="list-group">
+          <div class="list-group-item">
+            <a role="button" class="btn btn-info"  (click)="createCollection()" tooltip="Create a new collection">Create new collection
+              <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
       </div>
       <div class="panel-body" *ngFor="let myCollection of myCollections">
         <app-sac-gwh-collection [myCollection]="myCollection"></app-sac-gwh-collection>
       </div>
+      <div class="panel-footer">
+        {{ myCollections.length }} collection{{ myCollections.length !== 1 ? 's' : '' }}
+      </div>
     </div>
   </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a (click)="reloadCollections()" tooltip="Refresh file list">
+          <i class="fa fa-repeat" aria-hidden="true"></i> Manage</a> uploaded files</div>
+
+      <div class="panel-body">
+        <div class="list-group">
+          <div class="list-group-item">
+            <a role="button" class="btn btn-info" routerLink="/workbench/upload-file" tooltip="Upload a file">Upload a file <i class="fa fa-upload" aria-hidden="true"></i></a>
+          </div>
+          <div class="list-group-item" *ngIf="userFiles.length <= 0">No files have been uploaded.</div>
+          <div class="list-group-item" *ngFor="let files of userFiles">
+            <button type="button" class="btn btn-danger disabled" tooltip="Delete this file.">Delete file!
+            </button>
+            <div *ngIf="files.originalfilename" tooltip="{{ files.originalfilename }}">{{ files.originalfilename.slice(0, 20) }}...</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+          {{ userFiles.length }} file{{ userFiles.length !== 1 ? 's' : '' }}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a (click)="reloadCollections()" tooltip="Refresh record list">
+        <i class="fa fa-repeat" aria-hidden="true"></i> Manage</a> Catalogue Metadata records
+      </div>
+      <div class="panel-body">
+        <div class="list-group">
+          <div class="list-group-item">
+            <a role="button" class="btn btn-info" routerLink="/workbench/add-data" tooltip="Upload a file">Add metadata record <i class="fa fa-edit" aria-hidden="true"></i></a>
+          </div>
+          <div class="list-group-item" *ngIf="userMetaRecords.length <= 0">No metadata records have been created.</div>
+          <div class="list-group-item" *ngFor="let metaRec of userMetaRecords">
+            <button type="button" class="btn btn-info disabled" tooltip="Edit this record.">Edit record content.
+            </button>
+            <button type="button" class="btn btn-danger disabled" tooltip="Delete this record.">Delete record!
+            </button>
+            <div *ngIf="metaRec.uuid" tooltip="{{ metaRec.uuid }}">{{ metaRec.uuid.slice(0, 10) }}...</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+          {{ userMetaRecords.length }} record{{ userMetaRecords.length !== 1 ? 's' : '' }}
+      </div>
+    </div>
+  </div>
+
 </div>

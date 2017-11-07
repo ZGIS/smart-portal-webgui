@@ -1,11 +1,9 @@
-import { Component, Inject, NgZone, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { NotificationService } from '../notifications/notification.service';
-import { Observable } from 'rxjs/Observable';
-import { Http, RequestOptions, Response, ResponseContentType } from '@angular/http';
+import { WorkbenchService } from '../workbench/workbench.service';
 import { PORTAL_API_URL } from '../in-app-config/app.tokens';
-import { IErrorResult } from '../search/result';
 
 let FileSaver = require('file-saver/FileSaver.js');
 
@@ -28,11 +26,9 @@ export class FileLoaderComponent implements OnInit {
   isLoading = false;
 
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
-               private router: Router,
                private activatedRoute: ActivatedRoute,
                private notificationService: NotificationService,
-               private ngZone: NgZone,
-               private http: Http,
+               private workbenchService: WorkbenchService,
                private location: Location ) {
   }
 
@@ -51,13 +47,15 @@ export class FileLoaderComponent implements OnInit {
   }
 
   private downloadFileExecute( uuid: string ) {
-    this.getDownloadLink(uuid).subscribe(
+    this.isLoading = true;
+    this.workbenchService.getDownloadLink(uuid).subscribe(
       userFileResponse => {
         const linkreference = userFileResponse.linkreference;
         const originalfilename = userFileResponse.originalfilename;
 
-        this.downloadFileService(userFileResponse).subscribe(
+        this.workbenchService.downloadFileService(userFileResponse).subscribe(
           downloadResponse => {
+            this.isLoading = false;
             const contentType: string = downloadResponse.headers.get('content-type');
             const blob = new Blob([ downloadResponse._body ], { type: contentType });
             FileSaver.saveAs(blob, originalfilename);
@@ -84,61 +82,5 @@ export class FileLoaderComponent implements OnInit {
         });
       }
     );
-  }
-
-  /**
-   *
-   * @param {string} uuid
-   * @returns {Observable<string>}
-   */
-  private getDownloadLink( uuid: string ): Observable<UserFileResponse> {
-    let options = new RequestOptions({ withCredentials: true });
-    let tsObservable = this.http.get(`${this.portalApiUrl}/files/getDownloadLink/${uuid}`, options)
-      .map(( response ) => {
-        console.log(response.json());
-        return <UserFileResponse>response.json();
-      })
-      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
-
-    return tsObservable;
-  }
-
-  /**
-   * does the actual http download request to the remote url
-   *
-   * @param {string} userFile
-   * @returns {Observable<any>}
-   */
-  private downloadFileService( userFile: UserFileResponse ): Observable<any> {
-    let options = new RequestOptions({ withCredentials: true, responseType: ResponseContentType.Blob });
-    return this.http.get(userFile.linkreference, options)
-      .map(( response ) => {
-        console.log(response.headers.toJSON());
-        // return new Blob([response.blob()], { type: 'application/octet-stream' });
-        return response;
-      })
-      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
-  }
-
-  /**
-   *
-   * @param error
-   * @returns {any}
-   */
-  private handleError( errorResponse: Response ) {
-    console.log(errorResponse);
-    this.isLoading = true;
-
-    if (errorResponse.headers.get('content-type') && errorResponse.headers.get('content-type').includes('\/json')) {
-      let errorResult: IErrorResult = <IErrorResult>errorResponse.json();
-      let message: String = `${errorResponse.statusText} while querying backend: ${errorResult.message}`;
-      return Observable.throw(<IErrorResult>{ message: message, details: errorResult.details });
-    } else if (errorResponse.status === 0) {
-      let message: String = `Unknown response status. Are you connected to the backend?`;
-      return Observable.throw(<IErrorResult>{ message: message });
-    } else {
-      let message: String = `${errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`;
-      return Observable.throw(<IErrorResult>{ message: message, details: errorResponse.text() });
-    }
   }
 }

@@ -56,7 +56,7 @@ import {
   ResetPassRedeemComponent
 } from './account';
 import { AdminComponent, AdminService } from './admin';
-import { BasicFileUploadComponent, MetadataEditorComponent } from './workbench';
+import { WorkbenchService, BasicFileUploadComponent, MetadataEditorComponent } from './workbench';
 import {
   CollectionsService,
   CollectionsComponent,
@@ -165,10 +165,11 @@ import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.com
     AuthGuard,
     RegisteredGuard,
     AdminGuard,
+    NotificationService,
     ResultService,
+    WorkbenchService,
     ReCaptchaService,
     GApiAuthService,
-    NotificationService,
     CollectionsService,
     CategoriesService,
     GlossaryService,

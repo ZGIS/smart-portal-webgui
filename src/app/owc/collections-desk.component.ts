@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notifications';
 import { OwcContext, CollectionsService } from './';
+import { UserFile, UserMetaRecord } from '../account/account.types';
 
 @Component({
   selector: 'app-sac-gwh-collections-desk',
@@ -11,6 +12,9 @@ import { OwcContext, CollectionsService } from './';
  * Shows collections of the current user
  */
 export class CollectionsDeskComponent implements OnInit {
+
+  userFiles: UserFile[] = [];
+  userMetaRecords: UserMetaRecord[] = [];
 
   myCollections: OwcContext[] = [];
   private _myDefaultCollection: OwcContext;
