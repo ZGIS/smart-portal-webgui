@@ -35,7 +35,7 @@ export class ShareButtonService {
       let doc = <HTMLDivElement>document.body;
 
       let a2a_config = this.a2a_config || {};
-      a2a_config.linkname = 'SAC Groundwater Hub';
+      a2a_config.linkname = 'Groundwater Hub';
       a2a_config.linkurl = 'https://dev.smart-portal.info';
 
       let shareScript = document.createElement('script');

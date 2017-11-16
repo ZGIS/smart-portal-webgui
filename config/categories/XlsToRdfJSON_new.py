@@ -74,6 +74,53 @@ class CategoryHolder:
                                           self.icon,
                                           self.bg_icon)
 
+    def toRdf(self, isChild):
+        formatter = """<rdf:Description rdf:about="http://vocab.smart-project.info/categories.rdfs#%s"
+                     categories:id="%s"
+                     categories:hierarchy_number="%s"
+                     categories:parent="%s"
+                     categories:item_name="%s"
+                     categories:description="%s"
+                     categories:keyword_content="%s"
+                     categories:query_string="%s"
+                     categories:icon="%s"
+                     categories:bg_icon="%s">
+
+        <rdf:type rdf:resource="http://vocab.smart-project.info/categories.rdfs#%s"/>
+    </rdf:Description>"""
+
+        emptyIcon = ''
+        if self.icon:
+            emptyIcon = self.icon
+
+        emptyBgIcon = ''
+        if self.bg_icon:
+            emptyBgIcon = self.bg_icon
+
+        emptyKeywords = ''
+        if len(self.keyword_content) > 0:
+            emptyKeywords = ', '.join([x for x in self.keyword_content])
+
+        emptyQuery = ''
+        if self.query_string:
+            emptyQuery = self.query_string
+
+        categoryClass = 'MainCategory'
+        if isChild:
+            categoryClass = 'ChildCategory'
+
+        return formatter  % (self.id,
+                             self.id,
+                             self.hierarchy_number,
+                             self.parent,
+                             self.item_name,
+                             self.description,
+                             emptyKeywords,
+                             emptyQuery,
+                             emptyIcon,
+                             emptyBgIcon,
+                             categoryClass)
+
 
 cat_list = []
 parent_list = []
@@ -155,6 +202,8 @@ parentJsonList = []
 valuesList = []
 descList = []
 
+rdfObjectsList = []
+
 for parentElem in parent_list:
 
     childJsonList = []
@@ -165,6 +214,10 @@ for parentElem in parent_list:
             # print(childElem.toJson() + ', ')
             list.append(childJsonList, childElem.toJson())
             list.append(childList, childElem)
+
+            # RDF stuff for child categories
+            print(childElem.toRdf(True))
+            list.append(rdfObjectsList, childElem.toRdf(True))
         else:
             pass
 
@@ -189,6 +242,7 @@ for parentElem in parent_list:
                                                    ', \n'.join(childJsonList))
 
     list.append(parentJsonList, parentJsonString)
+
     # json_children = ', %s \"children\": [ ' % parentJsonString
     # print(json_children)
     # print(""" ]},""")
@@ -213,6 +267,10 @@ for parentElem in parent_list:
         list.append(valuesList, valueString)
         list.append(descList, descString)
 
+    # RDF stuff for parent categories
+    print(parentElem.toRdf(False))
+    list.append(rdfObjectsList, parentElem.toRdf(False))
+
 # print(""" ]}""")
 catJsonFooter = """ \n]}"""
 
@@ -220,7 +278,7 @@ parentJsonFull = ', \n'.join(parentJsonList)
 
 fullJsonString = catJsonHeader + parentJsonFull + catJsonFooter
 
-print(fullJsonString + '\n')
+# print(fullJsonString + '\n')
 
 with open('categories.json', 'w') as out:
     out.write(fullJsonString + '\n')
@@ -231,7 +289,110 @@ comment = '# Generated on: ' + today.isoformat() + ' from Excel ' + excel_file +
 
 validValuesHocon = comment + '\nvalues: [\n' + valuesString + '\n],\n' + 'descriptions: [\n' + descString + '\n]'
 
-print(validValuesHocon + '\n')
+# print(validValuesHocon + '\n')
 
 with open('valid-values.hocon.conf', 'w') as out:
     out.write(validValuesHocon + '\n')
+
+rdf_header = """<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:categories="http://vocab.smart-project.info/categories#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:xs="http://www.w3.org/2001/XMLSchema">
+         """
+
+rdf_classdef = """    <rdf:Description rdf:ID="SacCategory">
+        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+        <rdfs:label xml:lang="en">category</rdfs:label>
+        <rdfs:comment xml:lang="en">the basic category template</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+    </rdf:Description>
+
+    <rdfs:Class rdf:ID="MainCategory">
+        <rdfs:subClassOf rdf:resource="#SacCategory"/>
+        <rdfs:label xml:lang="en">main category</rdfs:label>
+        <rdfs:comment xml:lang="en">a main category</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+    </rdfs:Class>
+
+    <rdfs:Class rdf:ID="ChildCategory">
+        <rdfs:subClassOf rdf:resource="#MainCategory"/>
+        <rdfs:label xml:lang="en">child category</rdfs:label>
+        <rdfs:comment xml:lang="en">a child category</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+    </rdfs:Class>
+
+    <rdf:Property rdf:about="id" rdfs:label="id" rdfs:comment="id">
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+        <rdfs:domain rdf:resource="http://vocab.smart-project.info/categories#SacCategory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </rdf:Property>
+
+    <rdf:Property rdf:about="hierarchy_number" rdfs:label="hierarchy_number" rdfs:comment="hierarchy_number">
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+        <rdfs:domain rdf:resource="http://vocab.smart-project.info/categories#SacCategory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </rdf:Property>
+
+    <rdf:Property rdf:about="parent" rdfs:label="parent" rdfs:comment="parent">
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+        <rdfs:domain rdf:resource="http://vocab.smart-project.info/categories#SacCategory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </rdf:Property>
+
+    <rdf:Property rdf:about="item_name" rdfs:label="item_name" rdfs:comment="item_name">
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+        <rdfs:domain rdf:resource="http://vocab.smart-project.info/categories#SacCategory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </rdf:Property>
+
+    <rdf:Property rdf:about="description" rdfs:label="description" rdfs:comment="description">
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+        <rdfs:domain rdf:resource="http://vocab.smart-project.info/categories#SacCategory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </rdf:Property>
+
+    <rdf:Property rdf:about="query_string" rdfs:label="query_string" rdfs:comment="query_string">
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+        <rdfs:domain rdf:resource="http://vocab.smart-project.info/categories#SacCategory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </rdf:Property>
+
+    <rdf:Property rdf:about="query_string" rdfs:label="query_string" rdfs:comment="keyword_content">
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+        <rdfs:domain rdf:resource="http://vocab.smart-project.info/categories#SacCategory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </rdf:Property>
+    
+    <rdf:Property rdf:about="icon" rdfs:label="icon" rdfs:comment="icon">
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+        <rdfs:domain rdf:resource="http://vocab.smart-project.info/categories#SacCategory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </rdf:Property>
+
+    <rdf:Property rdf:about="bg_icon" rdfs:label="bg_icon" rdfs:comment="bg_icon">
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+        <rdfs:domain rdf:resource="http://vocab.smart-project.info/categories#SacCategory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </rdf:Property>
+
+    <!-- need to be a listable property, so that a class has several  -->
+    <rdf:Property rdf:about="keyword_content" rdfs:label="keyword_content" rdfs:comment="keyword_content">
+        <rdfs:isDefinedBy rdf:resource="http://vocab.smart-project.info/categories#"/>
+        <rdfs:domain rdf:resource="http://vocab.smart-project.info/categories#SacCategory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </rdf:Property>
+    """
+
+rdf_footer = """
+</rdf:RDF>
+"""
+
+
+rdfCategories = '\n'.join([x for x in rdfObjectsList])
+
+fullRdfString = rdf_header + '\n<!-- ' + comment + ' -->\n' + rdf_classdef + rdfCategories + rdf_footer
+
+with open('categories_test.rdf', 'w') as out:
+    out.write(fullRdfString + '\n')

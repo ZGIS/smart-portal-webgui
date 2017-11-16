@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { SecurityContext } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { AttributeLabelBinding } from '../glossary-edu/glossary.types';
 
 /**
@@ -24,10 +22,10 @@ import { AttributeLabelBinding } from '../glossary-edu/glossary.types';
     <p *ngIf="binding.att.value === 'description'"><small><i>Description:</i></small> {{ binding.val.value }}</p>
     <p *ngIf="binding.att.value === 'contributor'"><small><i>Contact:</i></small> {{ binding.val.value }}</p>
     <p *ngIf="binding.att.value === 'creator'"><small><i>Organisation (lead):</i></small> {{ binding.val.value }}</p>
-  <p *ngIf="binding.att.value === 'relation' && binding.val.valueAsSafeUrl">
-    <small><i>Link:</i></small> <a [href]="binding.val.valueAsSafeUrl" target="_blank">
-      <i class="fa fa-globe"></i> {{ binding.val.value }}</a>
-  </p></div>`,
+    <p *ngIf="binding.att.value === 'relation' && binding.val.valueAsSafeUrl">
+      <small><i>Link:</i></small> <a [href]="binding.val.valueAsSafeUrl" target="_blank">
+        <i class="fa fa-globe"></i> {{ binding.val.value }}</a>
+    </p></div>`,
 })
 
 export class ResearchProgrammesSkosdefComponent {
