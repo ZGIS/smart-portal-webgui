@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notifications';
 import { OwcContext, CollectionsService } from './';
-import { UserFile, UserMetaRecord } from '../account/account.types';
+import { UserFile, UserMetaRecord } from '../workbench';
 
 @Component({
   selector: 'app-sac-gwh-collections-desk',

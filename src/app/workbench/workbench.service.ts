@@ -1,15 +1,12 @@
-import { Injectable, Inject } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams, ResponseContentType } from '@angular/http';
+import { Inject, Injectable } from '@angular/core';
+import { Headers, Http, RequestOptions, Response, ResponseContentType, URLSearchParams } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { PORTAL_API_URL } from '../in-app-config';
 import { AccountService } from '../account';
-import { OwcContext } from '../owc/';
 import { IErrorResult } from '../search/result';
-import { OwcLink, OwcResource } from '../owc/collections';
-import { UserFileResponse } from '../context/fileloader.component';
-import { GeoMetadata, CswTransactionResponse } from './metadata';
-import { ValidValues, ValueEntry } from './';
+import { LocalBlobInfo, UserFile, UserFileResponse, UserMetaRecord, ValueEntry } from '.';
+import { CswTransactionResponse, GeoMetadata } from './.';
 
 @Injectable()
 export class WorkbenchService {
@@ -81,9 +78,29 @@ export class WorkbenchService {
       .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
 
-  /*
-GET         /api/v1/admin/usermetarecords                  controllers.AdminController.getallUserMetaRecords
+  /**
+   * GET -> /api/v1/csw/usermetarecords -> controllers.CswController.getUserMetaRecords
+   *
+   * @returns {Observable<UserMetaRecord[]>}
    */
+  getUserMetaRecords(): Observable<UserMetaRecord[]> {
+    let params: URLSearchParams = new URLSearchParams();
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+
+    return this.http.get(this.portalApiUrl + '/csw/usermetarecords', options)
+      .map(( response ) => {
+        console.log(response.toString());
+        console.log(response.json());
+        let datajson = response.json() && response.json().metarecords;
+        if (<UserMetaRecord[]>datajson) {
+          console.log(response.json());
+        }
+        return datajson;
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+  }
 
   /**
    * GET -> /api/v1/csw/get-valid-values-for/:topic
@@ -109,13 +126,12 @@ GET         /api/v1/admin/usermetarecords                  controllers.AdminCont
   }
 
 
+  // TODO the GROUPS stuff
+  // TODO GET  /api/v1/admin/groups   -> controllers.AdminController.getAllUserGroupAsAdmin
+  // TODO POST /api/v1/admin/groups/create   -> controllers.AdminController.createUserGroupAsAdmin
+  // TODO POST /api/v1/admin/groups/update   -> controllers.AdminController.updateUserGroupAsAdmin
+  // TODO POST /api/v1/admin/groups/delete   -> controllers.AdminController.deleteUserGroupAsAdmin
 
-  /*
-  GET         /api/v1/admin/groups                           controllers.AdminController.getAllUserGroups
-POST        /api/v1/admin/groups/create                    controllers.AdminController.createUserGroupAsAdmin
-POST        /api/v1/admin/groups/update                    controllers.AdminController.updateUserGroupAsAdmin
-POST        /api/v1/admin/groups/delete                    controllers.AdminController.deleteUserGroupAsAdmin
-   */
 
   /**
    * GET -> /api/v1/files/getDownloadLink/:uuid -> controllers.FilesController.mappedFileLinkFor(uuid: String)
@@ -151,11 +167,69 @@ POST        /api/v1/admin/groups/delete                    controllers.AdminCont
       .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
 
-  /*
-GET         /api/v1/admin/userfiles                        controllers.AdminController.getAllUserFiles
-GET         /api/v1/files/getRemoteFileInfo/:uuid          controllers.FilesController.getBlobInfoForMappedLink(uuid: String)
-GET         /api/v1/files/deleteRemoteFile/:uuid           controllers.FilesController.deleteBlobForMappedLink(uuid: String)
- */
+  /**
+   * GET -> /api/v1/files/getRemoteFileInfo/:uuid -> controllers.FilesController.getBlobInfoForMappedLink(uuid: String)
+   *
+   * @param {string} uuid
+   * @returns {Observable<LocalBlobInfo>}
+   */
+  getBlobInfoForMappedLink( uuid: string ): Observable<LocalBlobInfo> {
+    let options = new RequestOptions({ withCredentials: true });
+    let tsObservable = this.http.get(`${this.portalApiUrl}/files/getRemoteFileInfo/${uuid}`, options)
+      .map(( response ) => {
+        console.log(response.json());
+        let datajson = response.json() && response.json().blobinfo;
+        if (<LocalBlobInfo>datajson) {
+          console.log(JSON.stringify(datajson));
+        }
+        return datajson;
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+
+    return tsObservable;
+  }
+
+  /**
+   * GET -> /api/v1/files/deleteRemoteFile/:uuid -> controllers.FilesController.deleteBlobForMappedLink(uuid: String)
+   *
+   * @param {string} uuid
+   * @returns {Observable<UserFileResponse>}
+   */
+  deleteBlobForMappedLink( uuid: string ): Observable<UserFileResponse> {
+    let options = new RequestOptions({ withCredentials: true });
+    let tsObservable = this.http.get(`${this.portalApiUrl}/files/deleteRemoteFile/${uuid}`, options)
+      .map(( response ) => {
+        console.log(response.json());
+        return <UserFileResponse>response.json();
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+
+    return tsObservable;
+  }
+
+  /**
+   * GET -> /api/v1/files/userfiles -> controllers.AdminController.getUserFiles
+   *
+   * @returns {Observable<UserFile[]>}
+   */
+  getUserFiles(): Observable<UserFile[]> {
+    let params: URLSearchParams = new URLSearchParams();
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+
+    return this.http.get(this.portalApiUrl + '/files/userfiles', options)
+      .map(( response ) => {
+        console.log(response.toString());
+        console.log(response.json());
+        let datajson = response.json() && response.json().userfiles;
+        if (<UserFile[]>datajson) {
+          console.log(response.json());
+        }
+        return datajson;
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+  }
 
   /**
    *

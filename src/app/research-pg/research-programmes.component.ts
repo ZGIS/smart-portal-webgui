@@ -1,9 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, SecurityContext, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AttributeLabelBinding, IriLabelBinding } from '../glossary-edu/glossary.types';
 import { ModalDirective } from 'ngx-bootstrap';
 import { NotificationService } from '../notifications/notification.service';
 import { GlossaryService } from '../glossary-edu/glossary.service';
+
+/*
+identifier - Abreviation
+ core#label - s.a.
+ title - Name
+ type - Funding source
+ description - Description
+ contributor - Contact
+ relation - Link
+ creator - Organization
+ */
+const visualMembers = ['identifier', 'title', 'type', 'description', 'contributor', 'relation', 'creator'];
 
 @Component({
   selector: 'app-sac-gwh-research-programmes',
@@ -15,8 +28,8 @@ import { GlossaryService } from '../glossary-edu/glossary.service';
  */
 export class ResearchProgrammesComponent implements OnInit {
 
-  public spqResearchPGQueryUrl = 'https://vocab.smart-project.info/spq-glossary/query';
-  public uriResearchPGCollection = 'http://vocab.smart-project.info/collection/glossary/terms';
+  public spqResearchPGQueryUrl = 'https://vocab.smart-project.info/spq-researchpg/query';
+  public uriResearchPGCollection = 'http://vocab.smart-project.info/collection/researchpg/terms';
 
   public researchPGCollectionBindings: IriLabelBinding[] = [];
 
@@ -30,7 +43,8 @@ export class ResearchProgrammesComponent implements OnInit {
 
   constructor( private location: Location,
                private glossaryService: GlossaryService,
-               private notificationService: NotificationService ) {
+               private notificationService: NotificationService,
+               private sanitizer: DomSanitizer) {
   }
 
   /**
@@ -58,6 +72,9 @@ export class ResearchProgrammesComponent implements OnInit {
         });
   }
 
+  isInVisualMembers(concept: string): Boolean {
+    return visualMembers.indexOf(concept) > -1;
+  }
   /**
    * load details for a research programme
    *
@@ -72,15 +89,18 @@ export class ResearchProgrammesComponent implements OnInit {
           spqResult => {
 
             this.currentConceptBindings.length = 0;
-            // this.currentCollectionBindings = [];
             this.loading = false;
             this.currentConceptUri = conceptBinding.iri.value;
             spqResult.results.bindings.forEach(( binding: AttributeLabelBinding ) => {
               // console.log(binding.label);
 
               let termId = binding.att.value.split('/').slice(-1)[ 0 ] as string;
-
               binding.att.value = termId;
+
+              if (binding.att.value === 'relation') {
+                let safeUrl = this.sanitizer.bypassSecurityTrustUrl(binding.val.value);
+                binding.val.valueAsSafeUrl = safeUrl;
+              }
               this.currentConceptBindings.push(binding);
             });
 
@@ -91,6 +111,15 @@ export class ResearchProgrammesComponent implements OnInit {
             this.notificationService.addErrorResultNotification(error);
           });
     }
+  }
+
+  getFilteredResults(): IriLabelBinding[] {
+    return this.researchPGCollectionBindings.filter(( item ) => {
+      let paramId = item.iri.value.split('/').slice(-1)[ 0 ] as string;
+      return item.label.value.toLocaleLowerCase().indexOf(
+        this.textFilter.toLocaleLowerCase()) >= 0 ||
+        paramId.indexOf(this.textFilter) >= 0;
+    });
   }
 
   hideConceptDetailModal() {

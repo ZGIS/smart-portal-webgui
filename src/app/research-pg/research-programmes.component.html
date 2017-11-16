@@ -21,11 +21,8 @@
         <div class="list-group" *ngIf="researchPGCollectionBindings.length > 0">
           <div class="list-group-item" *ngFor="let binding of (getFilteredResults(researchPGCollectionBindings))">
             <p>
-              Name: {{ binding.label.value }}
-            </p>
-            <p>
-              IRI (identifier): <a tooltip="Click for details" (click)="showConceptDetailModal(binding)"><i class="fa fa-globe"></i>
-              {{ binding.iri.value }}</a>
+              <small>Programme Identifier:</small> <a tooltip="Click for details" (click)="showConceptDetailModal(binding)"><i class="fa fa-globe"></i>
+              {{ binding.label.value }}</a>
             </p>
           </div>
         </div>
@@ -39,21 +36,15 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content" *ngIf="currentConceptBindings.length > 0">
       <div class="modal-header">
+        <b>Details for programme:</b>
         <button type="button" class="close pull-right" aria-label="Close" (click)="hideConceptDetailModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="list-group">
-          <div class="list-group-item" *ngIf="currentConceptUri.length > 0">
-            <p>Found {{ currentConceptBindings.length }} details for programme:
-              <a><i class="fa fa-globe"></i> {{ currentConceptUri }}</a>
-            </p>
-          </div>
-          <div class="list-group-item" *ngFor="let binding of currentConceptBindings">
-            <p>
-              Detail <i><small>({{ binding.att.value}})</small></i>: {{ binding.val.value }}
-            </p>
+          <div *ngFor="let binding of currentConceptBindings">
+            <app-sac-gwh-rpg-skosdef [binding]="binding" *ngIf="isInVisualMembers(binding.att.value)"></app-sac-gwh-rpg-skosdef>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap';
 import { PORTAL_API_URL } from '../in-app-config';
-import { GeoCitation, GeoContact, GeoDistribution, GeoExtent, GeoMetadata, SelectEntry, ValidValues } from './metadata';
+import { GeoCitation, GeoContact, GeoDistribution, GeoExtent, GeoMetadata, SelectEntry, ValidValues } from '.';
 import { NotificationService } from '../notifications/notification.service';
 import { WorkbenchService } from '../workbench';
 import { CollectionsService } from '../owc';

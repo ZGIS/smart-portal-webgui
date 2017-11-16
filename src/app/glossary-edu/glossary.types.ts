@@ -1,3 +1,5 @@
+import { SafeUrl } from '@angular/platform-browser';
+
 export interface SparqlResult {
   head: SparqlHeadVars;
   results: SparqlHeadResults;
@@ -28,4 +30,6 @@ export interface AttributeLabelBinding extends SparqlBinding {
 export interface BindingTypeValue {
   type: string;
   value: string;
+  typeAsSafeUrl?: SafeUrl;
+  valueAsSafeUrl?: SafeUrl;
 }

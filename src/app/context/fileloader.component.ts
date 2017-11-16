@@ -7,12 +7,6 @@ import { PORTAL_API_URL } from '../in-app-config/app.tokens';
 
 let FileSaver = require('file-saver/FileSaver.js');
 
-export interface UserFileResponse {
-  status: string;
-  linkreference: string;
-  originalfilename: string;
-}
-
 /**
  * This component loads the file link for a uuid file reference and forwards to download
  */

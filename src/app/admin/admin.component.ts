@@ -1,9 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { ProfileJs, UserFile, UserMetaRecord } from '../account';
+import { ProfileJs } from '../account';
 import { UserGroup, UserLinkLogging, UserSession } from './admin.types';
 import { AdminService } from './';
+import { UserFile, UserMetaRecord } from '../workbench';
 import { NotificationService } from '../notifications/notification.service';
 
 @Component({

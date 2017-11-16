@@ -1,5 +1,4 @@
 import { Extent } from 'openlayers';
-import { SacGwhNotification } from '../notifications/notification.service';
 
 export interface SelectEntry {
   value: string;
@@ -76,7 +75,3 @@ export class GeoDistribution {
   // gmd_distributionInfo_MD_Distribution_MD_DigitalTransferOptions_CI_OnlineResource_linkage
 }
 
-export class CswTransactionResponse implements SacGwhNotification {
-  type: string;
-  message: string;
-}

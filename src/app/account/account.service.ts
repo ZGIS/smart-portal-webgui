@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
-import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -44,7 +43,7 @@ export class AccountService {
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
                @Inject(CSWI_API_URL) private cswiApiUrl: string,
                @Inject(WEBGUI_APP_VERSION) public webguiAppVersion: string,
-               private http: Http, private router: Router,
+               private http: Http,
                private cookieService: CookieService ) {
 
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));

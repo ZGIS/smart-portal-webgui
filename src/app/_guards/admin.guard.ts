@@ -2,16 +2,15 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { NotificationService } from '../notifications';
-import { AdminService } from '../admin';
-import { AccountService } from '../account';
 import { ProfileJs } from '../account/account.types';
+import { AdminService } from '../admin';
 
 
 @Injectable()
 export class AdminGuard implements CanActivate {
 
-  constructor( private router: Router, private adminService: AdminService,
-               private accountService: AccountService,
+  constructor( private router: Router,
+               private adminService: AdminService,
                private notificationService: NotificationService ) {
   }
 

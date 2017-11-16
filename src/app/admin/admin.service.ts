@@ -1,16 +1,15 @@
 import { Inject, Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { CookieService } from 'ngx-cookie';
 import { PORTAL_API_URL } from '../in-app-config';
-import { IErrorResult } from '../search/result';
-import { UserFile, UserMetaRecord } from '../account';
-import { UserGroup, UserGroupUsersLevel, UserGroupContextsVisibility, UserLinkLogging, UserSession } from './';
-import { AccountService } from '../account/account.service';
 import { ProfileJs } from '../account/account.types';
+import { UserFile, UserMetaRecord } from '../workbench';
+import { UserGroup, UserLinkLogging, UserSession } from './';
+import { IErrorResult } from '../search/result';
+import { CookieService } from 'ngx-cookie';
+import { AccountService } from '../account/account.service';
 
 /**
  *
@@ -21,7 +20,7 @@ export class AdminService {
   public token: string;
 
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
-               private http: Http, private router: Router,
+               private http: Http,
                private accountService: AccountService,
                private cookieService: CookieService ) {
 

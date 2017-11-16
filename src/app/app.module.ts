@@ -28,7 +28,7 @@ import {
 } from './search';
 import { NavigationComponent, NotFoundComponent } from './navigation';
 import { GlossaryService, GlossaryComponent } from './glossary-edu';
-import { ResearchProgrammesComponent } from './research-pg';
+import { ResearchProgrammesSkosdefComponent, ResearchProgrammesComponent } from './research-pg';
 import {
   CardComponent,
   CategoriesService,
@@ -56,7 +56,7 @@ import {
   ResetPassRedeemComponent
 } from './account';
 import { AdminComponent, AdminService } from './admin';
-import { WorkbenchService, BasicFileUploadComponent, MetadataEditorComponent } from './workbench';
+import { WorkbenchService, BasicFileUploadComponent, MetadataEditorComponent, UserFilesComponent } from './workbench';
 import {
   CollectionsService,
   CollectionsComponent,
@@ -112,6 +112,7 @@ import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.com
     DashboardCategoryComponent,
     NavigationComponent,
     NotFoundComponent,
+    ResearchProgrammesSkosdefComponent,
     ResearchProgrammesComponent,
     GlossaryComponent,
     AdminComponent,
@@ -137,6 +138,7 @@ import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.com
     DashboardButtonComponent,
     CollectionsComponent,
     CollectionsDeskComponent,
+    UserFilesComponent,
     OwcResourceDetailModalComponent,
     OwcAuthorComponent,
     OwcCategoryComponent,
