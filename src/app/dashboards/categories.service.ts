@@ -67,13 +67,13 @@ export class CategoriesService {
    * @returns {Observable<R>}
    */
   public getCildCategoryById( id: number ): Observable<IDashboardCategory> {
-    console.log('get child for ' + id);
+    // console.log('get child for ' + id);
     return this.categoriesSparqlCacheSubject.map((categories: IDashboardCategory[]) => {
-      console.log('observable map');
+      // console.log('observable map');
       const nested = categories.map(mainCategory => mainCategory.children);
-      console.log('in nested: ' + nested.length);
+      // console.log('in nested: ' + nested.length);
       const flattenedArray = ([] as IDashboardCategory[]).concat(...nested);
-      console.log('in flattenedArray: ' + flattenedArray.length);
+      // console.log('in flattenedArray: ' + flattenedArray.length);
       return flattenedArray.find(
         ( catObj: IDashboardCategory ) => (catObj.id === id)
       );
@@ -147,10 +147,10 @@ export class CategoriesService {
           let mainCats: IDashboardCategory[] = [];
           let childCats: IDashboardCategory[] = [];
 
-          jsonLdGraph.forEach(jsonLdCategory => {
+          jsonLdGraph.forEach((jsonLdCategory: any) => {
             let tmpKeywords = [];
             if (jsonLdCategory.keyword_content && jsonLdCategory.keyword_content !== '') {
-              tmpKeywords = jsonLdCategory.keyword_content.split(',').map(( item ) => item.trim());
+              tmpKeywords = jsonLdCategory.keyword_content.split(',').map(( item: string ) => item.trim());
             }
             if (jsonLdCategory[ '@type' ] === 'http://vocab.smart-project.info/categories.rdfs#MainCategory') {
               mainCats.push(<IDashboardCategory>{
@@ -178,7 +178,7 @@ export class CategoriesService {
               });
             }
           });
-          let finalCats = [];
+          let finalCats = [] as IDashboardCategory[];
           mainCats.forEach(mainCat => {
             let mychildren: IDashboardCategory[] = childCats.filter(
               ( childCat: IDashboardCategory ) => childCat.parent === mainCat.query_string);
