@@ -7,9 +7,9 @@
 </div>
 
 <div class="container-fluid">
-  <div class="row">
+  <div class="row" *ngIf="categoryObjs.length > 0">
     <div class="col-md-5 understanding">
-      <div class="row">
+      <div class="row" *ngIf="categoryObjs[0]">
 
         <a [routerLink]="categoryObjs[0].parent !== 'main' ? ['./cards'] : ['/dashboard/' + categoryObjs[0].query_string ]"
            [queryParams]="categoryObjs[0].parent !== 'main' ? {'query': categoryObjs[0] ? categoryObjs[0].query_string : 'title:groundwater', 'categoryId' : categoryObjs[0] ? categoryObjs[0].id : 0 }:{ 'categoryId' : categoryObjs[0] ? categoryObjs[0].id : 0 }"
@@ -22,15 +22,15 @@
         <br/>
       </div>
       <div class="row">
-        <div class="col-md-4" id="category-2">
+        <div class="col-md-4" id="category-2" *ngIf="categoryObjs[2]">
           <app-sac-gwh-dashboard-button [category]="categoryObjs[2]"
                                         [categoryImg]="categoryImgs[2]"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-4" id="category-3">
+        <div class="col-md-4" id="category-3" *ngIf="categoryObjs[3]">
           <app-sac-gwh-dashboard-button [category]="categoryObjs[3]"
                                         [categoryImg]="categoryImgs[3]"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-4" id="category-5">
+        <div class="col-md-4" id="category-5" *ngIf="categoryObjs[5]">
           <app-sac-gwh-dashboard-button [category]="categoryObjs[5]"
                                         [categoryImg]="categoryImgs[5]"></app-sac-gwh-dashboard-button>
         </div>
@@ -53,15 +53,15 @@
         <br/>
       </div>
       <div class="row">
-        <div class="col-md-4" id="category-4">
+        <div class="col-md-4" id="category-4" *ngIf="categoryObjs[4]">
           <app-sac-gwh-dashboard-button [category]="categoryObjs[4]"
                                         [categoryImg]="categoryImgs[4]"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-4" id="category-6">
+        <div class="col-md-4" id="category-6" *ngIf="categoryObjs[6]">
           <app-sac-gwh-dashboard-button [category]="categoryObjs[6]"
                                         [categoryImg]="categoryImgs[6]"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-4" id="category-7">
+        <div class="col-md-4" id="category-7" *ngIf="categoryObjs[7]">
           <app-sac-gwh-dashboard-button [category]="categoryObjs[7]"
                                         [categoryImg]="categoryImgs[7]"></app-sac-gwh-dashboard-button>
         </div>

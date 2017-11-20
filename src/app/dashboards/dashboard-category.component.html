@@ -5,7 +5,7 @@
 
 
 <div class="container-fluid">
-  <div class="row dashboard-bg">
+  <div class="row dashboard-bg" *ngIf="children.length >= 3 && childrenImg.length >= 3">
         <div class="col-md-3" id="category-0">
           <app-sac-gwh-dashboard-button [category]="children[0]"
                                         [categoryImg]="childrenImg[0]" smallBtn="true"></app-sac-gwh-dashboard-button>
@@ -24,7 +24,7 @@
         </div>
   </div>
   <div class="row dashboard-bg">
-        <div class="col-md-3" id="category-4">
+        <div class="col-md-3" id="category-4" *ngIf="children.length >= 7 && childrenImg.length >= 7">
           <app-sac-gwh-dashboard-button [category]="children[4]"
                                         [categoryImg]="childrenImg[4]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
@@ -42,7 +42,7 @@
         </div>
   </div>
   <div class="row dashboard-bg">
-        <div class="col-md-3" id="category-8">
+        <div class="col-md-3" id="category-8" *ngIf="children.length >= 11 && childrenImg.length >= 11">
           <app-sac-gwh-dashboard-button [category]="children[8]"
                                         [categoryImg]="childrenImg[8]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>

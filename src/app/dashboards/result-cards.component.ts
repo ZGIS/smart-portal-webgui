@@ -8,6 +8,7 @@ import { CategoriesService } from './categories.service';
 import { ResultDetailModalComponent } from '../search/result-detail-modal.component';
 import { isNullOrUndefined } from 'util';
 import { IErrorResult } from '../search/result';
+import { IDashboardCategory } from './categories';
 
 // let moment = require('moment');
 
@@ -17,7 +18,7 @@ import { IErrorResult } from '../search/result';
 @Component({
   selector: 'app-sac-gwh-result-cards',
   templateUrl: 'result-cards.component.html',
-  styleUrls: ['result-cards.component.css'],
+  styleUrls: [ 'result-cards.component.css' ],
 })
 
 /**
@@ -48,11 +49,11 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
    * @param notificationService - injected NotificationService
    * @param router              - injected Router
    */
-  constructor(private resultService: ResultService,
-              private activatedRoute: ActivatedRoute,
-              private categoriesService: CategoriesService,
-              private notificationService: NotificationService,
-              private router: Router) {
+  constructor( private resultService: ResultService,
+               private activatedRoute: ActivatedRoute,
+               private categoriesService: CategoriesService,
+               private notificationService: NotificationService,
+               private router: Router ) {
   }
 
   /**
@@ -61,7 +62,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.results = <IGeoFeatureCollection>{
       'type': 'FeatureCollection',
-      'crs': {'type': 'name', 'properties': {'name': 'urn:ogc:def:crs:OGC:1.3:CRS84'}},
+      'crs': { 'type': 'name', 'properties': { 'name': 'urn:ogc:def:crs:OGC:1.3:CRS84' } },
       'count': 0,
       'countMatched': 0,
       'features': []
@@ -70,17 +71,19 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
 
     // subscribe to router event
     this.subscription = this.activatedRoute.queryParams.subscribe(
-      (params: Params) => {
-        let categoryId = params['categoryId'];
-        this.categoryId = categoryId;
-        this.categoriesService.getCildCategoryById(categoryId)
+      ( params: Params ) => {
+        let categoryIdAsString = params[ 'categoryId' ];
+        this.categoryId = categoryIdAsString;
+        let categoryIdAsNumber = Number(categoryIdAsString).valueOf();
+
+        this.categoriesService.getCildCategoryById(categoryIdAsNumber)
           .subscribe(
-            catObj => {
-              if (catObj && catObj.id === categoryId) {
+            ( catObj: IDashboardCategory ) => {
+              if (catObj && catObj.id === categoryIdAsNumber) {
                 console.log(catObj);
                 this.categoryName = catObj.item_name;
                 let keywords = '';
-                catObj.keyword_content.forEach( k => keywords = k.concat(', ', keywords));
+                catObj.keyword_content.forEach(k => keywords = k.concat(', ', keywords));
                 this.description = catObj.description + ' - ' + keywords;
               }
             },
@@ -88,8 +91,8 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
               this.notificationService.addErrorResultNotification(error);
             });
 
-        if (params['query'] !== this.query) {
-          this.query = params['query'] || '*:*';
+        if (params[ 'query' ] !== this.query) {
+          this.query = params[ 'query' ] || '*:*';
 
           this.resultService.getResults(
             this.query,
@@ -98,37 +101,37 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
             // 'ENVELOPE(147.7369328125,201.7896671875,-23.1815078125,-50.5154921875)'
             'ENVELOPE(-180,180,-90,90)'
           ).subscribe(
-            (results: IGeoFeatureCollection) => {
+            ( results: IGeoFeatureCollection ) => {
               this.loading = false;
               this.results = results;
               // this.resultsGroups = this.getCataloguesOfResults();
-              this.resultsGroups = ['Best results', 'Journal Articles', 'Other results'];
+              this.resultsGroups = [ 'Best results', 'Journal Articles', 'Other results' ];
             },
-            (error: any) => {
+            ( error: any ) => {
               this.loading = false;
               this.notificationService.addErrorResultNotification(error);
             }
           );
         }
 
-        if (!isNullOrUndefined(params['showModal'])) {
-          this.showModal = params['showModal'];
+        if (!isNullOrUndefined(params[ 'showModal' ])) {
+          this.showModal = params[ 'showModal' ];
           this.resultService.getResults(
-            `fileIdentifier:"${params['showModal']}"`
+            `fileIdentifier:"${params[ 'showModal' ]}"`
           ).subscribe(
-            (results: IGeoFeatureCollection) => {
+            ( results: IGeoFeatureCollection ) => {
               if (results.count > 0) {
-                this.resultDetailModalComponentRef.showFeatureModal(results.features[0]);
+                this.resultDetailModalComponentRef.showFeatureModal(results.features[ 0 ]);
               } else {
                 this.notificationService.addNotification({
                   id: NotificationService.MSG_ID_DOCUMENT_NOT_FOUND,
-                  message: `Document ${params['showModal']} could not be found in CSW index. Maybe it is not a metadata document?`,
+                  message: `Document ${params[ 'showModal' ]} could not be found in CSW index. Maybe it is not a metadata document?`,
                   type: NotificationService.NOTIFICATION_TYPE_WARNING
                 });
                 this.resultDetailModalComponentRef.hideFeatureModal();
               }
             },
-            (error: IErrorResult) => {
+            ( error: IErrorResult ) => {
               this.notificationService.addErrorResultNotification(error);
             });
         }
@@ -150,28 +153,27 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
    *
    * @returns {IGeoFeature[]}
    */
-  getFilteredResults(origin: String): IGeoFeature[] {
+  getFilteredResults( origin: String ): IGeoFeature[] {
     if (this.results) {
       let filteredByOrigin = this.results.features;
 
       if (origin === 'Best results') {
         filteredByOrigin = this.results.features.slice(0, 20);
       } else if (origin === 'Journal Articles') {
-        filteredByOrigin = this.results.features.filter((item) => item.properties.origin === 'journals');
+        filteredByOrigin = this.results.features.filter(( item ) => item.properties.origin === 'journals');
       } else if (origin === 'Other results') {
         filteredByOrigin = this.results.features.slice(20);
       }
 
-      return filteredByOrigin.filter((item) =>
-      item.properties.title.toLocaleLowerCase().indexOf(this.textFilter.toLocaleLowerCase()) >= 0);
+      return filteredByOrigin.filter(( item ) =>
+        item.properties.title.toLocaleLowerCase().indexOf(this.textFilter.toLocaleLowerCase()) >= 0);
     }
   }
 
-  showFeatureModal(feature: IGeoFeature) {
+  showFeatureModal( feature: IGeoFeature ) {
     this.showModal = feature.properties.fileIdentifier;
     console.log(this.activatedRoute.snapshot);
-    console.log();
-    this.router.navigate([this.activatedRoute.snapshot.url.join('/')], {
+    this.router.navigate([ this.activatedRoute.snapshot.url.join('/') ], {
       queryParams: {
         query: this.query,
         categoryId: this.categoryId,
@@ -182,7 +184,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
 
   onHideFeatureModal() {
     this.showModal = undefined;
-    this.router.navigate([this.activatedRoute.snapshot.url.join('/')], {
+    this.router.navigate([ this.activatedRoute.snapshot.url.join('/') ], {
       queryParams: {
         query: this.query,
         categoryId: this.categoryId,
@@ -197,12 +199,12 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
    */
   private getCataloguesOfResults() {
     let cat = this.results.features.map(
-      (feature: IGeoFeature) => {
+      ( feature: IGeoFeature ) => {
         return feature.properties.origin;
       }
     );
     console.log(JSON.stringify(cat));
-    let uniqueCat = cat.filter(function (item, pos, self) {
+    let uniqueCat = cat.filter(function ( item, pos, self ) {
       return self.indexOf(item) === pos;
     });
     console.log(uniqueCat);

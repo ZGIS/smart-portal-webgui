@@ -1,6 +1,6 @@
 describe('E2E Test Welcome Dashboard', function () {
 
-  const expectedMsg = 'Welcome to the SAC groundwater hub';
+  const expectedMsg = 'Welcome to the groundwater hub';
 
 
   beforeEach(function () {
