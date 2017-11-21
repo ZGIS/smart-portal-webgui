@@ -10,8 +10,6 @@ import { isNullOrUndefined } from 'util';
 import { IErrorResult } from '../search/result';
 import { IDashboardCategory } from './categories';
 
-// let moment = require('moment');
-
 // let smallPlaceHolderImg = require('file!./../../../public/images/icon_folder_640.png');
 // let largePaceHolderImg = require('file!./../../../public/images/icon_folder_1280.png');
 

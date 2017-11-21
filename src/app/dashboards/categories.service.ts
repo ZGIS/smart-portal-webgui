@@ -6,8 +6,7 @@ import 'rxjs/add/operator/catch';
 import { IErrorResult } from '../search/result';
 import { IDashboardCategory } from './categories';
 
-// const deprecateJsonFileCategories = require('json-loader!./../../public/categories.json');
-const categoriesSparqlGraph = 'http://vocab.smart-project.info/spq-categories/get';
+const categoriesSparqlGraph = 'https://vocab.smart-project.info/spq-categories/get';
 
 /**
  * service holder for the categories and provide some logic helpers
@@ -15,7 +14,6 @@ const categoriesSparqlGraph = 'http://vocab.smart-project.info/spq-categories/ge
 @Injectable()
 export class CategoriesService {
 
-  // private deprecatedCategoriesHolder: BehaviorSubject<IDashboardCategory[]> = new BehaviorSubject([]);
   private mainCategoriesQueryStrings: string[] = [];
 
   private categoriesSparqlCacheSubject: BehaviorSubject<IDashboardCategory[]> = new BehaviorSubject([]);
