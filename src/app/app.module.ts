@@ -56,7 +56,11 @@ import {
   ResetPassRedeemComponent
 } from './account';
 import { AdminComponent, AdminService } from './admin';
-import { WorkbenchService, BasicFileUploadComponent, MetadataEditorComponent, UserFilesComponent } from './workbench';
+import { WorkbenchService,
+  BasicFileUploadComponent,
+  MetadataEditorComponent,
+  UserFilesComponent,
+  UsermetarecordsComponent } from './workbench';
 import {
   CollectionsService,
   CollectionsComponent,
@@ -139,6 +143,7 @@ import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.com
     CollectionsComponent,
     CollectionsDeskComponent,
     UserFilesComponent,
+    UsermetarecordsComponent,
     OwcResourceDetailModalComponent,
     OwcAuthorComponent,
     OwcCategoryComponent,

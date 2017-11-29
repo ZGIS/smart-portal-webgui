@@ -80,6 +80,9 @@ export class AdminService {
       .catch(this.handleHttpFailure);
   }
 
+  // TODO GET /api/v1/admin/users/:command/:email
+  //    -> controllers.AdminController.blockUnblockUsers(command: String, email: String)
+
   /**
    * GET /api/v1/admin/sessions -> controllers.AdminController.getActiveSessions(max: Option[Int])
    *

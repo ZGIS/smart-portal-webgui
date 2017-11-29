@@ -31,7 +31,67 @@ export class UserFilesComponent implements OnInit {
         });
   }
 
+  // TODO implement and add delete and reload to component
+
   reloadCollections(): void {
+    this.workbenchService.getUserFiles()
+      .subscribe(
+        userFiles => {
+          this.userFiles = [];
+          userFiles.forEach(( userFile: UserFile ) => {
+            this.userFiles.push(userFile);
+            console.log(userFile.uuid);
+          });
+          this.notificationService.addNotification({
+            id: NotificationService.DEFAULT_DISMISS,
+            type: 'info',
+            message: `The user files have been reloaded.`
+          });
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
     console.log('we reload user file collection');
+  }
+
+  /**
+   * get Extended File Info
+   * @param {string} uuid
+   */
+  getExtendedFileInfo( uuid: string ): void {
+    this.workbenchService.getBlobInfoForMappedLink(uuid)
+      .subscribe(
+        blobinfo => {
+          console.log(blobinfo);
+          this.notificationService.addNotification(
+            { type: 'info', message: 'BlobInfo, please expand.', details: JSON.stringify(blobinfo), dismissAfter: 0 });
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
+  }
+
+  /**
+   * delete File From Portal Storage
+   * @param {string} uuid
+   */
+  deleteFileFromPortalStorage( uuid: string ): void {
+    this.workbenchService.deleteBlobForMappedLink(uuid)
+      .subscribe(
+        userFileResponse => {
+          console.log(userFileResponse);
+          this.notificationService.addNotification(
+            {
+              type: 'success',
+              message: 'File deleted, for details please expand.',
+              details: JSON.stringify(userFileResponse)
+            });
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
   }
 }

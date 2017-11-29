@@ -60,16 +60,16 @@ export class WorkbenchService {
   /**
    * POST -> /api/v1/csw/delete/:uuid -> controllers.CswController.deleteMetadataRecord(uuid: String)
    *
-   * @param {string} uuid
+   * @param {string} originaluuid
    * @returns {Observable<CswTransactionResponse>}
    */
-  deleteMetadatarecord( uuid: string ): Observable<CswTransactionResponse> {
+  deleteMetadatarecord( originaluuid: string ): Observable<CswTransactionResponse> {
     let params: URLSearchParams = new URLSearchParams();
     let token = this.accountService.token;
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
     let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
 
-    return this.http.get(this.portalApiUrl + '/csw/delete/' + uuid, options)
+    return this.http.get(this.portalApiUrl + '/csw/delete/' + originaluuid, options)
       .map(( response ) => {
         console.log(response.toString());
         console.log(response.json());
@@ -174,7 +174,10 @@ export class WorkbenchService {
    * @returns {Observable<LocalBlobInfo>}
    */
   getBlobInfoForMappedLink( uuid: string ): Observable<LocalBlobInfo> {
-    let options = new RequestOptions({ withCredentials: true });
+    let params: URLSearchParams = new URLSearchParams();
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
     let tsObservable = this.http.get(`${this.portalApiUrl}/files/getRemoteFileInfo/${uuid}`, options)
       .map(( response ) => {
         console.log(response.json());
@@ -196,7 +199,10 @@ export class WorkbenchService {
    * @returns {Observable<UserFileResponse>}
    */
   deleteBlobForMappedLink( uuid: string ): Observable<UserFileResponse> {
-    let options = new RequestOptions({ withCredentials: true });
+    let params: URLSearchParams = new URLSearchParams();
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
     let tsObservable = this.http.get(`${this.portalApiUrl}/files/deleteRemoteFile/${uuid}`, options)
       .map(( response ) => {
         console.log(response.json());

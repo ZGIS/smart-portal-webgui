@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <a (click)="reloadCollections()" tooltip="Refresh record list">
+      <i class="fa fa-repeat" aria-hidden="true"></i> Manage</a> Catalogue Metadata records
+  </div>
+  <div class="panel-body">
+    <div class="list-group">
+      <div class="list-group-item">
+        <a role="button" class="btn btn-info" routerLink="/workbench/add-data" tooltip="Upload a file">Add metadata record <i class="fa fa-edit" aria-hidden="true"></i></a>
+      </div>
+      <div class="list-group-item" *ngIf="userMetaRecords.length <= 0">No metadata records have been created.</div>
+      <div class="list-group-item" *ngFor="let metaRec of userMetaRecords">
+        <table class="table table-bordered table-hover table-striped table-condensed">
+          <tr><td>meta-id:</td><td *ngIf="metaRec.originaluuid" tooltip="{{ metaRec.originaluuid }}">{{ metaRec.originaluuid.slice(0, 60) }}...</td></tr>
+          <tr><td>csw:</td><td *ngIf="metaRec.cswreference" tooltip="{{metaRec.cswreference}}"><small>{{ metaRec.cswreference.slice(0,60) }}</small></td></tr>
+          <tr><td>time:</td><td *ngIf="metaRec.laststatuschange"><small>{{ metaRec.laststatuschange }}</small></td></tr>
+          <tr><td>actions:</td>
+            <td>
+              <a type="button" class="btn btn-info" *ngIf="metaRec.uuid" routerLink="{{ '/context/resource/' + metaRec.originaluuid }}" tooltip="Get extended catalogue record info.">Catalogue Record Details</a>
+              <button type="button" *ngIf="metaRec.uuid" class="btn btn-info disabled" tooltip="Edit this metadata record.">Edit record content.</button>
+              <button type="button" class="btn btn-danger" *ngIf="metaRec.originaluuid" (click)="deleteMetadataRecordFromCatalogue(metaRec.originaluuid)" tooltip="Delete the MetadataRecord from the Catalogue. Attention, click and done!">Delete Record!</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    {{ userMetaRecords.length }} record{{ userMetaRecords.length !== 1 ? 's' : '' }}
+  </div>
+</div>
