@@ -7,9 +7,14 @@ import { AdminService } from './';
 import { UserFile, UserMetaRecord } from '../workbench';
 import { NotificationService } from '../notifications/notification.service';
 
+const activatedTokens: string[] = [ 'ACTIVE', 'PASSWORDRESET', 'EMAILVALIDATION' ];
+
+const deactivatedTokens: string[] = [ 'BLOCKED', 'DELETED' ];
+
 @Component({
   selector: 'app-sac-gwh-admin',
-  templateUrl: 'admin.component.html'
+  templateUrl: 'admin.component.html',
+  styleUrls: [ 'admin.component.css' ],
 })
 
 /**
@@ -174,7 +179,7 @@ export class AdminComponent implements OnInit {
         resultlist => {
           resultlist.forEach(( elem: UserLinkLogging ) => {
             this.userLinkLogs.push(elem);
-            console.log(elem.email);
+            console.log(elem.referer);
           });
         },
         error => {
@@ -204,6 +209,127 @@ export class AdminComponent implements OnInit {
             this.userMetaRecords.push(elem);
             console.log(elem.originaluuid);
           });
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
+  }
+
+  /**
+   * basic check if user is active to be used as visual indicator
+   *
+   * @param {string} laststatustoken
+   * @returns {boolean}
+   */
+  userStatusIsActive( laststatustoken: string ): boolean {
+    let activeIsTrue = false;
+    try {
+      let tokentest = laststatustoken.split(':')[ 0 ];
+      if (activatedTokens.find(v => v === tokentest)) {
+        activeIsTrue = true;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    return activeIsTrue;
+  }
+
+  /**
+   * basic check if user is active to be used as visual indicator
+   *
+   * @param {string} laststatustoken
+   * @returns {boolean}
+   */
+  userCanBeBlocked( laststatustoken: string ): boolean {
+    let canBeBlocked = false;
+    try {
+      let tokentest = laststatustoken.split(':')[ 0 ];
+      if (activatedTokens.find(v => v === tokentest)) {
+        if (tokentest === 'ACTIVE') {
+          canBeBlocked = true;
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    return canBeBlocked;
+  }
+
+  /**
+   * basic check if user is BLOCKED and can be unblocked
+   *
+   * @param {string} laststatustoken
+   * @returns {boolean}
+   */
+  userCanBeUnBlocked( laststatustoken: string ): boolean {
+    let canBeUnBlocked = false;
+    try {
+      let tokentest = laststatustoken.split(':')[ 0 ];
+      if (deactivatedTokens.find(v => v === tokentest)) {
+        if (tokentest === 'BLOCKED') {
+          canBeUnBlocked = true;
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    return canBeUnBlocked;
+  }
+
+  blockUnblockUsers( command: string, email: string ): void {
+    this.adminService.blockUnblockUsers(command, email)
+      .subscribe(
+        resultjson => {
+          this.notificationService.addNotification(
+            {
+              type: 'success',
+              message: `User ${email} has been ${command}(e)d.`,
+              details: JSON.stringify(resultjson)
+            });
+          this.adminService.getAllUsers()
+            .subscribe(
+              resultlist => {
+                this.userlist = [];
+                resultlist.forEach(( elem: ProfileJs ) => {
+                  this.userlist.push(elem);
+                  console.log(elem.email);
+                });
+              },
+              error => {
+                console.log(<any>error);
+                this.notificationService.addErrorResultNotification(error);
+              });
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
+  }
+
+  removeActiveSessions( usersesiontoken: string, email: string ): void {
+    this.adminService.removeActiveSessions(usersesiontoken, email)
+      .subscribe(
+        resultjson => {
+          this.notificationService.addNotification(
+            {
+              type: 'success',
+              message: `Session ${usersesiontoken} of User ${email} has been removed, forcing to re-login.`,
+              details: JSON.stringify(resultjson)
+            });
+          this.adminService.getActiveSessions()
+            .subscribe(
+              resultlist => {
+                this.usersessions = [];
+                resultlist.forEach(( elem: UserSession ) => {
+                  this.usersessions.push(elem);
+                  console.log(elem.email);
+                });
+              },
+              error => {
+                console.log(<any>error);
+                this.notificationService.addErrorResultNotification(error);
+              });
         },
         error => {
           console.log(<any>error);

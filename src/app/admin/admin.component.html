@@ -59,14 +59,18 @@
               <tr>
                 <th>Email</th>
                 <th>Name</th>
-                <th>action</th>
+                <th>Status</th>
               </tr>
               <tr *ngFor="let user of userlist">
                 <td><a href="{{ user.email }}">{{ user.email }}</a></td>
                 <td>{{ user.firstname ? user.firstname : '*' }} {{ user.lastname ? user.lastname : '*' }}</td>
-                <td>
-                  <button type="button" class="btn btn-warning disabled"
-                          tooltip="Prevent user from logging in with this email account.">Block user
+                <td *ngIf="user.laststatuschange" [ngClass]="userStatusIsActive(user.laststatustoken) ? 'userIsActive' : 'userIsNotActive'" tooltip="Last status update was {{ user.laststatuschange }}">
+                  {{ user.laststatustoken ? user.laststatustoken : 'unknown' }}
+                  <button type="button" class="btn btn-warning" *ngIf="userCanBeBlocked(user.laststatustoken)"
+                          tooltip="Prevent user from logging in with this email account." (click)="blockUnblockUsers('BLOCK', user.email)">Block user
+                  </button>
+                  <button type="button" class="btn btn-primary" *ngIf="userCanBeUnBlocked(user.laststatustoken)"
+                          tooltip="Enable user to log in again with this email account." (click)="blockUnblockUsers('ACTIVATE', user.email)">Enable/unblock user
                   </button>
                 </td>
               </tr>
@@ -136,7 +140,8 @@
                 <td>{{ session.laststatustoken }}</td>
                 <td>{{ session.laststatuschange }}</td>
                 <td>
-                  <button type="button" class="btn btn-warning disabled" tooltip="Forces user to login again.">Remove
+                  <button type="button" class="btn btn-warning"
+                          tooltip="Forces user to login again." (click)="removeActiveSessions(session.token, session.email)">Remove
                     session
                   </button>
                 </td>

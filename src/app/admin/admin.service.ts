@@ -80,8 +80,29 @@ export class AdminService {
       .catch(this.handleHttpFailure);
   }
 
-  // TODO GET /api/v1/admin/users/:command/:email
-  //    -> controllers.AdminController.blockUnblockUsers(command: String, email: String)
+  /**
+   * GET /api/v1/admin/users/:command/:email
+   *  -> controllers.AdminController.blockUnblockUsers(command: String, email: String)
+   * @param {string} command
+   * @param {string} email
+   * @returns {Observable<any>}
+   */
+  blockUnblockUsers(command: string, email: string): Observable<any> {
+    let url = this.portalApiUrl + `/admin/users/${command}/${email}`;
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
+
+    return this.http.get(url, options)
+      .map(
+        ( response: Response ) => {
+          let datajson = response.json();
+          console.log(response.json());
+          return datajson;
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
 
   /**
    * GET /api/v1/admin/sessions -> controllers.AdminController.getActiveSessions(max: Option[Int])
@@ -101,6 +122,34 @@ export class AdminService {
           if (<UserSession[]>datajson) {
             console.log(response.json());
           }
+          return datajson;
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
+
+  /**
+   * GET /api/v1/admin/removesessions
+   * -> controllers.AdminController.removeActiveSessions(token: String, email: String)
+   *
+   * @param {string} usersesiontoken
+   * @param {string} email
+   * @returns {Observable<any>}
+   */
+  removeActiveSessions(usersesiontoken: string, email: string): Observable<any> {
+    let params: URLSearchParams = new URLSearchParams();
+    params.append('token', usersesiontoken);
+    params.append('email', email);
+    let url = this.portalApiUrl + `/admin/removesessions?token=${usersesiontoken}&email=${email}`;
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, params: params, withCredentials: true });
+
+    return this.http.get(url, options)
+      .map(
+        ( response: Response ) => {
+          let datajson = response.json();
+          console.log(response.json());
           return datajson;
         }
       )

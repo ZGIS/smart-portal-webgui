@@ -350,7 +350,7 @@ export class CollectionsService {
     let token = this.accountService.token;
     console.log('token: ' + token);
     let headers = new Headers({'X-XSRF-TOKEN': token});
-    let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
+    let options = new RequestOptions({headers: headers, params: params, withCredentials: true});
     return this.http.get(defaultCollectionsUri, options)
       .map(
         (response: Response) => {

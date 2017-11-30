@@ -21,6 +21,8 @@ export interface ProfileJs {
   firstname: string;
   lastname: string;
   password?: string;
+  laststatustoken?: string;
+  laststatuschange?: string;
 }
 
 export interface LoginCredentials {
