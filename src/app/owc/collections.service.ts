@@ -155,7 +155,35 @@ export class CollectionsService {
           if (<OwcContext>insertedCollection) {
             console.log(insertedCollection);
           }
-          return response.json();
+          return insertedCollection;
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
+
+  /**
+   * POST /api/v1/collections/copy
+   *   -> controllers.CollectionsController.insertCopyOfCollection
+   *     -> Ok(Json.obj("message" -> "owcContext inserted", "document" -> theDoc.toJson))
+   *
+   * insert a collection, the owcContext.id must not exist on the server or it will fail
+   *
+   * @param {OwcContext} owcContext
+   * @returns {Observable<OwcContext>}
+   */
+  insertCopyOfCollection( owcContext: OwcContext ): Observable<OwcContext> {
+    let defaultCollectionsUri = this.portalApiUrl + '/collections/copy';
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
+    return this.http.post(defaultCollectionsUri, owcContext, options)
+      .map(
+        ( response: Response ) => {
+          let insertedCollection = response.json().document;
+          if (<OwcContext>insertedCollection) {
+            console.log(insertedCollection);
+          }
+          return insertedCollection;
         }
       )
       .catch(this.handleHttpFailure);

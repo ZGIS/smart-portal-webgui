@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NotificationService } from '../notifications';
-import { OwcContext, CollectionsService } from './';
+import { CollectionsService, OwcContext } from './';
 import { UserFile, UserMetaRecord } from '../workbench';
 import { ModalDirective } from 'ngx-bootstrap';
 
@@ -16,7 +16,9 @@ export class CollectionsDeskComponent implements OnInit {
 
   @ViewChild('createCollectionModalRef') public createCollectionModal: ModalDirective;
   loading = false;
+  fileparseerror = true;
   newdocintro: any = {};
+  importOwcDoc: any = {};
   userFiles: UserFile[] = [];
   userMetaRecords: UserMetaRecord[] = [];
 
@@ -64,7 +66,7 @@ export class CollectionsDeskComponent implements OnInit {
           this.notificationService.addNotification({
             id: NotificationService.DEFAULT_DISMISS,
             type: 'info',
-            message: `The default collections has been reloaded.`
+            message: 'The default collections has been reloaded.'
           });
         },
         error => {
@@ -96,7 +98,7 @@ export class CollectionsDeskComponent implements OnInit {
                 this.notificationService.addNotification({
                   id: NotificationService.DEFAULT_DISMISS,
                   type: 'info',
-                  message: `A new custom collection has been created and added to your data.`,
+                  message: 'A new custom collection has been created and added to your data.',
                   details: `Created a new collection, ${id}`
                 });
                 this.hideCreateCollectionModal();
@@ -106,6 +108,65 @@ export class CollectionsDeskComponent implements OnInit {
                 console.log(<any>error);
                 this.notificationService.addErrorResultNotification(error);
               });
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
+  }
+
+  /**
+   * tries to load the selected file as JSON as OwcContext
+   * @param event
+   */
+  testImportJsonFile( event: Event ): void {
+    let files = event.target['files'];
+    console.log(files);
+    try {
+      let reader = new FileReader();
+      reader.readAsText(files[0]);
+      reader.onload = ( e ) => {
+        let owcDoc: OwcContext = <OwcContext>JSON.parse(reader.result);
+        this.fileparseerror = false;
+        this.importOwcDoc = owcDoc;
+      };
+      reader.onerror = ( e ) => {
+        console.log(e);
+        this.notificationService.addNotification({
+          id: NotificationService.DEFAULT_DISMISS,
+          type: 'danger',
+          message: 'An error has occured while reading the file',
+          details: e.message
+        });
+      };
+    } catch (ex) {
+      console.log(ex);
+      this.notificationService.addNotification({
+        id: NotificationService.DEFAULT_DISMISS,
+        type: 'danger',
+        message: 'An error has occuredm this file is not compatible',
+        details: `${JSON.stringify(ex)}`
+      });
+    }
+  }
+
+  /**
+   * import a new Collection From GeoJSON File (and for security/collisions reasons make deep identifier-safe copy)
+   * @param owcdoc
+   */
+  importCollectionFromFile( owcdoc: OwcContext ): void {
+    console.log(owcdoc);
+    this.collectionsService.insertCopyOfCollection(owcdoc)
+      .subscribe(
+        insertedDoc => {
+          this.notificationService.addNotification({
+            id: NotificationService.DEFAULT_DISMISS,
+            type: 'info',
+            message: `A new custom collection has been created and added to your data.`,
+            details: `Created a new collection, ${insertedDoc.id}`
+          });
+          this.hideCreateCollectionModal();
+          this.reloadCollections();
         },
         error => {
           console.log(<any>error);

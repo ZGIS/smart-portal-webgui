@@ -48,6 +48,7 @@
       <div class="modal-body">
         <div class="panel panel-default">
           <div class="panel-body">
+            <h3>Create a new collection and provide Title and Abstract to start with</h3>
             <form name="form" (ngSubmit)="f.form.valid && createCollection(newdocintro.title, newdocintro.subtitle)" #f="ngForm" novalidate>
 
               <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid }">
@@ -72,6 +73,21 @@
               </div>
             </form>
 
+          </div>
+          <div class="panel-body">
+            <h3>(Or) Import a collection from a compatible GeoJSON file</h3>
+            <form name="fileform" #fileformRef="ngForm" (ngSubmit)="importCollectionFromFile(importOwcDoc)" novalidate>
+              <div class="form-group">
+                <label for="fileimport" tooltip="A GeoJSON file containing the new collection to import" placement="right">GeoJSON File <small>(A GeoJSON file containing the new collection to import)</small></label>
+                <input type="file" class="form-control" name="fileimport" id="fileimport" (change)="testImportJsonFile($event)" required />
+              </div>
+              <div class="form-group">
+                <button [disabled]="loading || fileparseerror" class="btn btn-info" tooltip="Upload/import a new collection">Submit
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                <img *ngIf="loading"
+                     src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+              </div>
+            </form>
           </div>
         </div>
       </div>
