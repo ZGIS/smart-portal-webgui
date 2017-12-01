@@ -62,11 +62,10 @@ export class CollectionsService {
    */
   getCollectionById( id: string ): Observable<OwcContext> {
     // add authorization header with jwt token
-    let defaultCollectionsUri = this.portalApiUrl + '/collections';
+    let defaultCollectionsUri = this.portalApiUrl + '/collections?id=' + id;
     let params: URLSearchParams = new URLSearchParams();
     params.set('id', id);
     let token = this.accountService.token;
-    console.log('token: ' + token);
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
     let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
 
@@ -74,11 +73,14 @@ export class CollectionsService {
     return this.http.get(defaultCollectionsUri, options)
       .map(
         ( response: Response ) => {
-          let userCollectionJson = response.json();
-          if (<OwcContext>userCollectionJson) {
-            console.log(userCollectionJson);
+          let userCollectionJson: OwcContext[] = response.json().collections;
+          let count = response.json().count;
+          if (count === 1 && userCollectionJson.length === 1) {
+            console.log(userCollectionJson[ 0 ]);
+            return userCollectionJson[ 0 ];
+          } else {
+            throw new ReferenceError('Not found, or more than one found, or you dont have rights');
           }
-          return response.json();
         }
       )
       .catch(this.handleHttpFailure);

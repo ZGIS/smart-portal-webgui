@@ -43,7 +43,7 @@
         <button type="button" class="close pull-right" (click)="hideCreateCollectionModal()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title pull-left">Create a custom Collection</h4>
+        <h4 class="modal-title pull-left">Create a new custom Collection</h4>
       </div>
       <div class="modal-body">
         <div class="panel panel-default">
@@ -51,14 +51,14 @@
             <form name="form" (ngSubmit)="f.form.valid && createCollection(newdocintro.title, newdocintro.subtitle)" #f="ngForm" novalidate>
 
               <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid }">
-                <label for="title" tooltip="title" placement="right">title</label>
+                <label for="title" tooltip="The title of the new collection" placement="right">Title <small>(the title of the new collection)</small></label>
                 <input type="text" class="form-control" name="title" id="title"
                        #title="ngModel" [(ngModel)]="newdocintro.title"
                        required />
-                <div *ngIf="f.submitted && !title.valid" class="help-block">title is required</div>
+                <div *ngIf="f.submitted && !title.valid" class="help-block">a title is required</div>
               </div>
               <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !subtitle.valid }">
-                <label for="subtitle">Abstract7subtitle</label>
+                <label tooltip="The abstract of the new collection" for="subtitle">Abstract/subtitle <small>(a short abstract or subtitle for the new collection)</small></label>
                 <input id="subtitle" type="text" class="form-control" name="subtitle"
                        #subtitle="ngModel" [(ngModel)]="newdocintro.subtitle"
                        required />

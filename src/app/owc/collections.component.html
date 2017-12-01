@@ -8,10 +8,13 @@
 
     <div>
 
-      <button (click)="editProperties()" type="button" class="btn btn-primary" tooltip="Edit the properties" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
+      <button (click)="editProperties()" type="button" class="btn btn-info disabled" tooltip="Edit the properties" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
         Edit <i class="fa fa-edit" aria-hidden="true"></i>
       </button>
-      <button (click)="deleteCollection()" type="button" class="btn btn-warning" tooltip="Delete the Collection" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
+      <button *ngIf="!myCollection.id.toLowerCase().includes('context\/user')" (click)="exportCollectionToJson(myCollection.id)" type="button" class="btn btn-warning" tooltip="export this collection as external file.">
+        Export <i class="fa fa-save" aria-hidden="true"></i>
+      </button>
+      <button (click)="deleteCollection()" type="button" class="btn btn-danger pull-right" tooltip="Delete the Collection" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
         Delete <i class="fa fa-trash" aria-hidden="true"></i>
       </button>
     </div>

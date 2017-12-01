@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NotificationService } from '../notifications';
-import { OwcContext, CollectionsService } from './';
+import { CollectionsService, OwcContext } from './';
 import { Router } from '@angular/router';
+
+let FileSaver = require('file-saver/FileSaver.js');
 
 @Component({
   selector: 'app-sac-gwh-collection',
@@ -30,6 +32,9 @@ export class CollectionsComponent {
     });
   }
 
+  /**
+   * delete the collection
+   */
   deleteCollection(): void {
     console.log('we delete the Collection');
     this.collectionsService.deleteCollectionById(this.myCollection.id).subscribe(
@@ -50,15 +55,30 @@ export class CollectionsComponent {
   }
 
   /**
+   * export to Json
+   */
+  exportCollectionToJson( collectionid: string ): void {
+    this.collectionsService.getCollectionById(collectionid).subscribe(
+      owcContext => {
+        const blob = new Blob([ JSON.stringify(owcContext, null, ' ') ], { type: 'application/geojson' });
+        FileSaver.saveAs(blob, `export-${collectionid}.geojson`);
+      },
+      error => {
+        console.log(<any>error);
+        this.notificationService.addErrorResultNotification(error);
+      });
+  }
+
+  /**
    * Constructor
    *
    * @param {CollectionsService} collectionsService
    * @param {NotificationService} notificationService
    * @param {Router} router
    */
-  constructor(private collectionsService: CollectionsService,
-              private notificationService: NotificationService,
-              private router: Router) {
+  constructor( private collectionsService: CollectionsService,
+               private notificationService: NotificationService,
+               private router: Router ) {
   }
 
 }
