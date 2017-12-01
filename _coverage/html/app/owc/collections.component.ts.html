@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">46.15% </span>
+        <span class="strong">40.54% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>12/26</span>
+        <span class='fraction'>15/37</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">14.29% </span>
+        <span class="strong">10% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/7</span>
+        <span class='fraction'>1/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">43.48% </span>
+        <span class="strong">39.39% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/23</span>
+        <span class='fraction'>13/33</span>
       </div>
     </div>
   </div>
@@ -103,11 +103,38 @@
 58
 59
 60
-61</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -118,6 +145,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -126,6 +154,10 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,6 +175,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -163,14 +211,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, Input } from '@angular/core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NotificationService } from '../notifications';
-import { OwcContext, CollectionsService } from './';
+import { CollectionsService, OwcContext } from './';
 import { Router } from '@angular/router';
+&nbsp;
+let FileSaver = require('file-saver/FileSaver.js');
 &nbsp;
 @Component({
   selector: 'app-sac-gwh-collection',
-  templateUrl: 'collections.component.html'
+  templateUrl: 'collections.component.html',
+  styleUrls: [ 'collections.component.css' ],
 })
 &nbsp;
 /**
@@ -178,6 +229,7 @@ import { Router } from '@angular/router';
  */
 export class CollectionsComponent {
   @Input() myCollection: OwcContext;
+  @Output() reloadOnChangedCollection: EventEmitter&lt;any&gt; = new EventEmitter&lt;any&gt;();
 &nbsp;
 <span class="fstat-no" title="function not covered" >  reloadCollection(): void {</span>
 <span class="cstat-no" title="statement not covered" >    console.log('we reload this collection');</span>
@@ -185,6 +237,7 @@ export class CollectionsComponent {
 &nbsp;
 <span class="fstat-no" title="function not covered" >  editProperties(): void {</span>
 <span class="cstat-no" title="statement not covered" >    console.log('we edit the properties');</span>
+<span class="cstat-no" title="statement not covered" >    this.reloadOnChangedCollection.emit(true);</span>
 <span class="cstat-no" title="statement not covered" >    this.notificationService.addNotification({</span>
       id: NotificationService.DEFAULT_DISMISS,
       type: 'info',
@@ -192,6 +245,9 @@ export class CollectionsComponent {
     });
   }
 &nbsp;
+  /**
+   * delete the collection
+   */
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  deleteCollection(): void {</span></span>
 <span class="cstat-no" title="statement not covered" >    console.log('we delete the Collection');</span>
 <span class="cstat-no" title="statement not covered" >    this.collectionsService.deleteCollectionById(this.myCollection.id).subscribe(</span>
@@ -200,9 +256,25 @@ export class CollectionsComponent {
 <span class="cstat-no" title="statement not covered" >        this.notificationService.addNotification({</span>
           id: NotificationService.DEFAULT_DISMISS,
           type: 'info',
-          message: `This collection has been deleted.`
+          message: `This collection has been deleted, reloading.`
         });
+<span class="cstat-no" title="statement not covered" >        this.reloadOnChangedCollection.emit(true);</span>
 <span class="cstat-no" title="statement not covered" >        this.router.navigateByUrl('/workbench/my-data');</span>
+      },
+      error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(&lt;any&gt;error);</span>
+<span class="cstat-no" title="statement not covered" >        this.notificationService.addErrorResultNotification(error);</span>
+      });
+  }
+&nbsp;
+  /**
+   * export to Json
+   */
+<span class="cstat-no" title="statement not covered" >  exportCollectionToJson( collectionid: string<span class="fstat-no" title="function not covered" > ): void {</span></span>
+<span class="cstat-no" title="statement not covered" >    this.collectionsService.getCollectionById(collectionid).subscribe(</span>
+      owcContext<span class="fstat-no" title="function not covered" > =&gt; {</span>
+        const blob = <span class="cstat-no" title="statement not covered" >new Blob([ JSON.stringify(owcContext, null, ' ') ], { type: 'application/geojson' });</span>
+<span class="cstat-no" title="statement not covered" >        FileSaver.saveAs(blob, `export-${collectionid}.geojson`);</span>
       },
       error<span class="fstat-no" title="function not covered" > =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        console.log(&lt;any&gt;error);</span>
@@ -217,9 +289,9 @@ export class CollectionsComponent {
    * @param {NotificationService} notificationService
    * @param {Router} router
    */
-  constructor(private <span class="cstat-no" title="statement not covered" >collectionsService: CollectionsService,</span>
-              private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService,</span>
-              private <span class="cstat-no" title="statement not covered" >router: Router<span class="fstat-no" title="function not covered" >)</span> {</span>
+  constructor( private <span class="cstat-no" title="statement not covered" >collectionsService: CollectionsService,</span>
+               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService,</span>
+               private <span class="cstat-no" title="statement not covered" >router: Router<span class="fstat-no" title="function not covered" > </span>) {</span>
   }
 &nbsp;
 }
@@ -229,7 +301,7 @@ export class CollectionsComponent {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Nov 23 2017 15:41:21 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Dec 01 2017 14:45:18 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.03% </span>
+        <span class="strong">15.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>21/131</span>
+        <span class='fraction'>21/137</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/33</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.1% </span>
+        <span class="strong">15.32% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>19/118</span>
+        <span class='fraction'>19/124</span>
       </div>
     </div>
   </div>
@@ -297,7 +297,13 @@
 252
 253
 254
-255</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+255
+256
+257
+258
+259
+260
+261</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -475,6 +481,9 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -495,6 +504,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -613,16 +625,16 @@ export class WorkbenchService {
   /**
    * POST -&gt; /api/v1/csw/delete/:uuid -&gt; controllers.CswController.deleteMetadataRecord(uuid: String)
    *
-   * @param {string} uuid
+   * @param {string} originaluuid
    * @returns {Observable&lt;CswTransactionResponse&gt;}
    */
-<span class="cstat-no" title="statement not covered" >  deleteMetadatarecord( uuid: string<span class="fstat-no" title="function not covered" > ): Observable&lt;CswTransactionResponse&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >  deleteMetadatarecord( originaluuid: string<span class="fstat-no" title="function not covered" > ): Observable&lt;CswTransactionResponse&gt; {</span></span>
     let params: URLSearchParams = <span class="cstat-no" title="statement not covered" >new URLSearchParams();</span>
     let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
     let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'X-XSRF-TOKEN': token });</span>
     let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true, params: params });</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return this.http.get(this.portalApiUrl + '/csw/delete/' + uuid, options)</span>
+<span class="cstat-no" title="statement not covered" >    return this.http.get(this.portalApiUrl + '/csw/delete/' + originaluuid, options)</span>
       .map(( response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        console.log(response.toString());</span>
 <span class="cstat-no" title="statement not covered" >        console.log(response.json());</span>
@@ -727,7 +739,10 @@ export class WorkbenchService {
    * @returns {Observable&lt;LocalBlobInfo&gt;}
    */
 <span class="cstat-no" title="statement not covered" >  getBlobInfoForMappedLink( uuid: string<span class="fstat-no" title="function not covered" > ): Observable&lt;LocalBlobInfo&gt; {</span></span>
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ withCredentials: true });</span>
+    let params: URLSearchParams = <span class="cstat-no" title="statement not covered" >new URLSearchParams();</span>
+    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'X-XSRF-TOKEN': token });</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true, params: params });</span>
     let tsObservable = <span class="cstat-no" title="statement not covered" >this.http.get(`${this.portalApiUrl}/files/getRemoteFileInfo/${uuid}`, options)</span>
       .map(( response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        console.log(response.json());</span>
@@ -749,7 +764,10 @@ export class WorkbenchService {
    * @returns {Observable&lt;UserFileResponse&gt;}
    */
 <span class="cstat-no" title="statement not covered" >  deleteBlobForMappedLink( uuid: string<span class="fstat-no" title="function not covered" > ): Observable&lt;UserFileResponse&gt; {</span></span>
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ withCredentials: true });</span>
+    let params: URLSearchParams = <span class="cstat-no" title="statement not covered" >new URLSearchParams();</span>
+    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'X-XSRF-TOKEN': token });</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true, params: params });</span>
     let tsObservable = <span class="cstat-no" title="statement not covered" >this.http.get(`${this.portalApiUrl}/files/deleteRemoteFile/${uuid}`, options)</span>
       .map(( response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        console.log(response.json());</span>
@@ -811,7 +829,7 @@ export class WorkbenchService {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Nov 23 2017 15:41:21 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Dec 01 2017 14:45:18 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

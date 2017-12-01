@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20.41% </span>
+        <span class="strong">18.49% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>20/98</span>
+        <span class='fraction'>22/119</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/32</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.56% </span>
+        <span class="strong">4.55% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/18</span>
+        <span class='fraction'>1/22</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">18.95% </span>
+        <span class="strong">17.24% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>18/95</span>
+        <span class='fraction'>20/116</span>
       </div>
     </div>
   </div>
@@ -280,7 +280,59 @@
 235
 236
 237
-238</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -367,6 +419,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -380,6 +434,56 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -600,6 +704,30 @@ export class AdminService {
   }
 &nbsp;
   /**
+   * GET /api/v1/admin/users/:command/:email
+   *  -&gt; controllers.AdminController.blockUnblockUsers(command: String, email: String)
+   * @param {string} command
+   * @param {string} email
+   * @returns {Observable&lt;any&gt;}
+   */
+  blockUnblockUsers(command: string, email: string<span class="fstat-no" title="function not covered" >): Observable&lt;any&gt; {</span>
+    let url = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + `/admin/users/${command}/${email}`;</span>
+    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'X-XSRF-TOKEN': token });</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true });</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this.http.get(url, options)</span>
+      .map(
+        ( response: Response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
+          let datajson = <span class="cstat-no" title="statement not covered" >response.json();</span>
+<span class="cstat-no" title="statement not covered" >          console.log(response.json());</span>
+<span class="cstat-no" title="statement not covered" >          return datajson;</span>
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
+&nbsp;
+  /**
    * GET /api/v1/admin/sessions -&gt; controllers.AdminController.getActiveSessions(max: Option[Int])
    *
    * @returns {Observable&lt;UserSession[]&gt;}
@@ -617,6 +745,34 @@ export class AdminService {
 <span class="cstat-no" title="statement not covered" >          if (&lt;UserSession[]&gt;datajson) {</span>
 <span class="cstat-no" title="statement not covered" >            console.log(response.json());</span>
           }
+<span class="cstat-no" title="statement not covered" >          return datajson;</span>
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
+&nbsp;
+  /**
+   * GET /api/v1/admin/removesessions
+   * -&gt; controllers.AdminController.removeActiveSessions(token: String, email: String)
+   *
+   * @param {string} usersesiontoken
+   * @param {string} email
+   * @returns {Observable&lt;any&gt;}
+   */
+  removeActiveSessions(usersesiontoken: string, email: string<span class="fstat-no" title="function not covered" >): Observable&lt;any&gt; {</span>
+    let params: URLSearchParams = <span class="cstat-no" title="statement not covered" >new URLSearchParams();</span>
+<span class="cstat-no" title="statement not covered" >    params.append('token', usersesiontoken);</span>
+<span class="cstat-no" title="statement not covered" >    params.append('email', email);</span>
+    let url = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + `/admin/removesessions?token=${usersesiontoken}&amp;email=${email}`;</span>
+    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'X-XSRF-TOKEN': token });</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, params: params, withCredentials: true });</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this.http.get(url, options)</span>
+      .map(
+        ( response: Response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
+          let datajson = <span class="cstat-no" title="statement not covered" >response.json();</span>
+<span class="cstat-no" title="statement not covered" >          console.log(response.json());</span>
 <span class="cstat-no" title="statement not covered" >          return datajson;</span>
         }
       )
@@ -760,7 +916,7 @@ export class AdminService {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Nov 23 2017 15:41:21 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Dec 01 2017 14:45:18 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
