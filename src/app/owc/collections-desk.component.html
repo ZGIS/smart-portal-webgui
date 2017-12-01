@@ -9,14 +9,15 @@
       <div class="panel-body">
         <div class="list-group">
           <div class="list-group-item">
-            <a role="button" class="btn btn-info"  (click)="createCollection()" tooltip="Create a new collection">Create new collection
+            <a role="button" class="btn btn-info" (click)="showCreateCollectionModal()"
+               tooltip="Create a new collection">Create new collection
               <i class="fa fa-plus-circle" aria-hidden="true"></i>
             </a>
           </div>
         </div>
       </div>
       <div class="panel-body" *ngFor="let myCollection of myCollections">
-        <app-sac-gwh-collection [myCollection]="myCollection"></app-sac-gwh-collection>
+        <app-sac-gwh-collection [myCollection]="myCollection" (reloadOnChangedCollection)="reloadCollections()"></app-sac-gwh-collection>
       </div>
       <div class="panel-footer">
         {{ myCollections.length }} collection{{ myCollections.length !== 1 ? 's' : '' }}
@@ -32,4 +33,48 @@
     <app-sac-gwh-usermetarecords></app-sac-gwh-usermetarecords>
   </div>
 
+</div>
+
+<div bsModal #createCollectionModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="about" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideCreateCollectionModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title pull-left">Create a custom Collection</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form name="form" (ngSubmit)="f.form.valid && createCollection(newdocintro.title, newdocintro.subtitle)" #f="ngForm" novalidate>
+
+              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid }">
+                <label for="title" tooltip="title" placement="right">title</label>
+                <input type="text" class="form-control" name="title" id="title"
+                       #title="ngModel" [(ngModel)]="newdocintro.title"
+                       required />
+                <div *ngIf="f.submitted && !title.valid" class="help-block">title is required</div>
+              </div>
+              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !subtitle.valid }">
+                <label for="subtitle">Abstract7subtitle</label>
+                <input id="subtitle" type="text" class="form-control" name="subtitle"
+                       #subtitle="ngModel" [(ngModel)]="newdocintro.subtitle"
+                       required />
+                <div *ngIf="f.submitted && !subtitle.valid" class="help-block">Abstract/subtitle is required</div>
+              </div>
+              <div class="form-group">
+                <button [disabled]="loading" class="btn btn-info" tooltip="Create a new collection">Submit
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                <img *ngIf="loading"
+                     src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

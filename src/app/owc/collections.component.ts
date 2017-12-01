@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NotificationService } from '../notifications';
 import { OwcContext, CollectionsService } from './';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sac-gwh-collection',
-  templateUrl: 'collections.component.html'
+  templateUrl: 'collections.component.html',
+  styleUrls: [ 'collections.component.css' ],
 })
 
 /**
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
  */
 export class CollectionsComponent {
   @Input() myCollection: OwcContext;
+  @Output() reloadOnChangedCollection: EventEmitter<any> = new EventEmitter<any>();
 
   reloadCollection(): void {
     console.log('we reload this collection');
@@ -20,6 +22,7 @@ export class CollectionsComponent {
 
   editProperties(): void {
     console.log('we edit the properties');
+    this.reloadOnChangedCollection.emit(true);
     this.notificationService.addNotification({
       id: NotificationService.DEFAULT_DISMISS,
       type: 'info',
@@ -35,8 +38,9 @@ export class CollectionsComponent {
         this.notificationService.addNotification({
           id: NotificationService.DEFAULT_DISMISS,
           type: 'info',
-          message: `This collection has been deleted.`
+          message: `This collection has been deleted, reloading.`
         });
+        this.reloadOnChangedCollection.emit(true);
         this.router.navigateByUrl('/workbench/my-data');
       },
       error => {

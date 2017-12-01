@@ -13,9 +13,9 @@ let UUID = require('uuid/uuid.js');
 @Injectable()
 export class CollectionsService {
 
-  constructor(@Inject(PORTAL_API_URL) private portalApiUrl: string,
-              private http: Http, private router: Router,
-              private accountService: AccountService) {
+  constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
+               private http: Http, private router: Router,
+               private accountService: AccountService ) {
   }
 
   /**
@@ -27,6 +27,7 @@ export class CollectionsService {
     let uuid = UUID(); // 'df7cca36-3d7a-40f4-8f06-ae03cc22f045'
     return uuid;
   }
+
   /**
    *
    * @returns {Observable<R|T>}
@@ -36,13 +37,13 @@ export class CollectionsService {
     let defaultCollectionsUri = this.portalApiUrl + '/collections/default';
     let token = this.accountService.token;
     console.log('token: ' + token);
-    let headers = new Headers({'X-XSRF-TOKEN': token});
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     // get default collection from api (should be exactly one OwcContext)
     return this.http.get(defaultCollectionsUri, options)
       .map(
-        (response: Response) => {
+        ( response: Response ) => {
           let userCollectionJson = response.json();
           if (<OwcContext>userCollectionJson) {
             console.log(userCollectionJson);
@@ -59,20 +60,20 @@ export class CollectionsService {
    * @param {string} id
    * @returns {Observable<OwcContext>}
    */
-  getCollectionById(id: string): Observable<OwcContext> {
+  getCollectionById( id: string ): Observable<OwcContext> {
     // add authorization header with jwt token
     let defaultCollectionsUri = this.portalApiUrl + '/collections';
     let params: URLSearchParams = new URLSearchParams();
     params.set('id', id);
     let token = this.accountService.token;
     console.log('token: ' + token);
-    let headers = new Headers({'X-XSRF-TOKEN': token});
-    let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
 
     // get default collection from api (should be exactly one OwcContext)
     return this.http.get(defaultCollectionsUri, options)
       .map(
-        (response: Response) => {
+        ( response: Response ) => {
           let userCollectionJson = response.json();
           if (<OwcContext>userCollectionJson) {
             console.log(userCollectionJson);
@@ -88,13 +89,13 @@ export class CollectionsService {
     let collectionsUri = this.portalApiUrl + '/collections';
     let token = this.accountService.token;
     console.log('token: ' + token);
-    let headers = new Headers({'X-XSRF-TOKEN': token});
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     // get visible collections from api
     return this.http.get(collectionsUri, options)
       .map(
-        (response: Response) => {
+        ( response: Response ) => {
           let userCollectionJson = response.json() && response.json().collections;
           if (<OwcContext[]>userCollectionJson) {
             console.log(response.json().count);
@@ -110,19 +111,19 @@ export class CollectionsService {
    * getPersonalFilesFromDefaultCollection returns owc Data Links
    * @returns {Observable<R>}
    */
-  getUploadedFilesFromDefaultCollection(filtertoken?: string): Observable<Array<OwcLink>> {
+  getUploadedFilesFromDefaultCollection( filtertoken?: string ): Observable<Array<OwcLink>> {
     let defaultCollectionFilesUri = this.portalApiUrl + '/collections/default/files';
     let token = this.accountService.token;
-    let headers = new Headers({'X-XSRF-TOKEN': token});
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.http.get(defaultCollectionFilesUri, options)
-      .map((response: Response) => {
+      .map(( response: Response ) => {
         console.log('Files in DefaultCollection loaded');
         let datalinks = response.json().datalinks as OwcLink[];
         console.log(datalinks);
         if (<OwcLink[]>datalinks) {
-          return datalinks.filter((o: OwcLink) => o.title.match(filtertoken));
+          return datalinks.filter(( o: OwcLink ) => o.title.match(filtertoken));
         } else {
           return [];
         }
@@ -140,18 +141,40 @@ export class CollectionsService {
    * @param {OwcContext} owcContext
    * @returns {Observable<OwcContext>}
    */
-  insertCollection(owcContext: OwcContext): Observable<OwcContext> {
+  insertCollection( owcContext: OwcContext ): Observable<OwcContext> {
     let defaultCollectionsUri = this.portalApiUrl + '/collections';
     let token = this.accountService.token;
-    console.log('token: ' + token);
-    let headers = new Headers({'X-XSRF-TOKEN': token});
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
     return this.http.post(defaultCollectionsUri, owcContext, options)
       .map(
-        (response: Response) => {
+        ( response: Response ) => {
           let insertedCollection = response.json().document;
           if (<OwcContext>insertedCollection) {
             console.log(insertedCollection);
+          }
+          return response.json();
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
+
+  /**
+   * GET -> /api/v1/collections/requestnew
+   *  -> controllers.CollectionsController.createNewCustomCollection
+   * @returns {Observable<OwcContext>}
+   */
+  createNewCustomCollection(): Observable<OwcContext> {
+    let collectionsUri = this.portalApiUrl + '/collections/requestnew';
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
+    return this.http.get(collectionsUri, options)
+      .map(
+        ( response: Response ) => {
+          let theCollection = response.json();
+          if (<OwcContext>theCollection) {
+            console.log(theCollection);
           }
           return response.json();
         }
@@ -170,20 +193,20 @@ export class CollectionsService {
    * @param {OwcContext} owcContext
    * @returns {Observable<OwcContext>}
    */
-  updateCollection(owcContext: OwcContext): Observable<OwcContext> {
+  updateCollection( owcContext: OwcContext ): Observable<OwcContext> {
     let defaultCollectionsUri = this.portalApiUrl + '/collections/update';
     let token = this.accountService.token;
     console.log('token: ' + token);
-    let headers = new Headers({'X-XSRF-TOKEN': token});
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
     return this.http.post(defaultCollectionsUri, owcContext, options)
       .map(
-        (response: Response) => {
+        ( response: Response ) => {
           let insertedCollection = response.json().document;
           if (<OwcContext>insertedCollection) {
             console.log(insertedCollection);
           }
-          return response.json();
+          return insertedCollection;
         }
       )
       .catch(this.handleHttpFailure);
@@ -200,17 +223,17 @@ export class CollectionsService {
    * @param {string} collectionid
    * @returns {Observable<boolean>}
    */
-  deleteCollectionById(collectionid: string): Observable<boolean> {
+  deleteCollectionById( collectionid: string ): Observable<boolean> {
     let defaultCollectionsUri = this.portalApiUrl + '/collections/delete';
     let params: URLSearchParams = new URLSearchParams();
     params.set('id', collectionid);
     let token = this.accountService.token;
     console.log('token: ' + token);
-    let headers = new Headers({'X-XSRF-TOKEN': token});
-    let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
     return this.http.get(defaultCollectionsUri, options)
       .map(
-        (response: Response) => {
+        ( response: Response ) => {
           let checkedId = response.json().document;
           if (checkedId) {
             console.log(checkedId);
@@ -241,17 +264,17 @@ export class CollectionsService {
    * @param {OwcResource} owcResource
    * @returns {Observable<OwcContext>}
    */
-  addResourceToCollection(collectionid: string, owcResource: OwcResource): Observable<OwcContext> {
+  addResourceToCollection( collectionid: string, owcResource: OwcResource ): Observable<OwcContext> {
     let defaultCollectionsUri = this.portalApiUrl + '/collections/entry';
     let token = this.accountService.token;
     let params: URLSearchParams = new URLSearchParams();
     params.set('collectionid', collectionid);
     console.log('token: ' + token);
-    let headers = new Headers({'X-XSRF-TOKEN': token});
-    let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
     return this.http.post(defaultCollectionsUri, owcResource, options)
       .map(
-        (response: Response) => {
+        ( response: Response ) => {
           let updatedCollection = response.json().document;
           if (<OwcContext>updatedCollection) {
             console.log(updatedCollection);
@@ -275,17 +298,17 @@ export class CollectionsService {
    * @param {OwcResource} owcResource
    * @returns {Observable<OwcContext>}
    */
-  addCopyOfResourceResourceToCollection(collectionid: string, owcResource: OwcResource): Observable<OwcContext> {
+  addCopyOfResourceResourceToCollection( collectionid: string, owcResource: OwcResource ): Observable<OwcContext> {
     let defaultCollectionsUri = this.portalApiUrl + '/collections/entry/copy';
     let token = this.accountService.token;
     let params: URLSearchParams = new URLSearchParams();
     params.set('collectionid', collectionid);
     console.log('token: ' + token);
-    let headers = new Headers({'X-XSRF-TOKEN': token});
-    let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
     return this.http.post(defaultCollectionsUri, owcResource, options)
       .map(
-        (response: Response) => {
+        ( response: Response ) => {
           let updatedCollection = response.json().document;
           if (<OwcContext>updatedCollection) {
             console.log(updatedCollection);
@@ -309,17 +332,17 @@ export class CollectionsService {
    * @param {OwcResource} owcResource
    * @returns {Observable<OwcContext>}
    */
-  replaceResourceInCollection(collectionid: string, owcResource: OwcResource): Observable<OwcContext> {
+  replaceResourceInCollection( collectionid: string, owcResource: OwcResource ): Observable<OwcContext> {
     let defaultCollectionsUri = this.portalApiUrl + '/collections/entry/replace';
     let token = this.accountService.token;
     let params: URLSearchParams = new URLSearchParams();
     params.set('collectionid', collectionid);
     console.log('token: ' + token);
-    let headers = new Headers({'X-XSRF-TOKEN': token});
-    let options = new RequestOptions({headers: headers, withCredentials: true, params: params});
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
     return this.http.post(defaultCollectionsUri, owcResource, options)
       .map(
-        (response: Response) => {
+        ( response: Response ) => {
           let updatedCollection = response.json().document;
           if (<OwcContext>updatedCollection) {
             console.log(updatedCollection);
@@ -342,18 +365,18 @@ export class CollectionsService {
    * @param {string} resourceid
    * @returns {Observable<OwcContext>}
    */
-  deleteResourceFromCollection(collectionid: string, resourceid: string): Observable<OwcContext> {
+  deleteResourceFromCollection( collectionid: string, resourceid: string ): Observable<OwcContext> {
     let defaultCollectionsUri = this.portalApiUrl + '/collections/entry/delete';
     let params: URLSearchParams = new URLSearchParams();
     params.set('collectionid', collectionid);
     params.set('resourceid', resourceid);
     let token = this.accountService.token;
     console.log('token: ' + token);
-    let headers = new Headers({'X-XSRF-TOKEN': token});
-    let options = new RequestOptions({headers: headers, params: params, withCredentials: true});
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, params: params, withCredentials: true });
     return this.http.get(defaultCollectionsUri, options)
       .map(
-        (response: Response) => {
+        ( response: Response ) => {
           let updatedCollection = response.json().document;
           if (<OwcContext>updatedCollection) {
             console.log(updatedCollection);
@@ -369,16 +392,16 @@ export class CollectionsService {
    * @param errorResponse
    * @returns {any}
    */
-  private handleHttpFailure(errorResponse: Response | any) {
+  private handleHttpFailure( errorResponse: Response | any ) {
     console.log(errorResponse);
 
     if (errorResponse.headers.get('content-type').startsWith('text/json')) {
       let errorResult: IErrorResult = <IErrorResult>errorResponse.json();
       let message: String = `${errorResponse.statusText} while querying ingester: ${errorResult.message}`;
-      return Observable.throw(<IErrorResult>{message: message, details: errorResult.details});
+      return Observable.throw(<IErrorResult>{ message: message, details: errorResult.details });
     } else {
       let message: String = `${errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`;
-      return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()});
+      return Observable.throw(<IErrorResult>{ message: message, details: errorResponse.text() });
     }
   }
 }

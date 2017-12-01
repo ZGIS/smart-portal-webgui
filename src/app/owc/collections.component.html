@@ -1,8 +1,7 @@
 <accordion *ngIf="myCollection">
-  <accordion-group #defaultGroup [isOpen]="false">
+  <accordion-group #defaultGroup [isOpen]="false" [ngClass]="!myCollection.id.toLowerCase().includes('context\/user') ? 'isCustomCollection' : 'isUserDefaultCollection'">
     <div accordion-heading>
       {{ myCollection.properties.title }}
-
       <i class="pull-right float-xs-right glyphicon"
          [ngClass]="{'glyphicon-chevron-down': defaultGroup?.isOpen, 'glyphicon-chevron-right': !defaultGroup?.isOpen}"></i>
     </div>

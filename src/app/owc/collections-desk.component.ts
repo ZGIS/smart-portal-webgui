@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NotificationService } from '../notifications';
 import { OwcContext, CollectionsService } from './';
 import { UserFile, UserMetaRecord } from '../workbench';
+import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-sac-gwh-collections-desk',
@@ -13,14 +14,30 @@ import { UserFile, UserMetaRecord } from '../workbench';
  */
 export class CollectionsDeskComponent implements OnInit {
 
+  @ViewChild('createCollectionModalRef') public createCollectionModal: ModalDirective;
+  loading = false;
+  newdocintro: any = {};
   userFiles: UserFile[] = [];
   userMetaRecords: UserMetaRecord[] = [];
 
   myCollections: OwcContext[] = [];
   private _myDefaultCollection: OwcContext;
 
+  /**
+   * shows the modal
+   */
+  showCreateCollectionModal() {
+    this.createCollectionModal.show();
+  }
+
+  /**
+   * hides the modal
+   */
+  hideCreateCollectionModal() {
+    this.createCollectionModal.hide();
+  }
+
   reloadCollections(): void {
-    console.log('we reload collections');
     this.collectionsService.getCollections()
       .subscribe(
         owcDocs => {
@@ -57,17 +74,43 @@ export class CollectionsDeskComponent implements OnInit {
   }
 
   /**
-   * shouldn't trust the client I guess
+   * shouldn't trust the client I guess, request fresh empty custom collection and adds initial edits
+   * @param {string} title
+   * @param {string} abstract
    */
-  createCollection(): void {
+  createCollection( title: string, subtitle: string ): void {
     const templateUuid = this.collectionsService.getNewUuid();
     const id = 'https://portal.smart-project.info/context/user/' + templateUuid;
     console.log('we create a new collection: ' + id);
-    this.notificationService.addNotification({
-      id: NotificationService.DEFAULT_DISMISS,
-      type: 'info',
-      message: `Creating a new collection, not yet implemented: ${id}`
-    });
+    this.collectionsService.createNewCustomCollection()
+      .subscribe(
+        owcDoc => {
+          // this.myCollections.push(owcDoc);
+          let newDoc = owcDoc;
+          newDoc.properties.title = title;
+          newDoc.properties.subtitle = subtitle;
+          console.log(owcDoc);
+          this.collectionsService.updateCollection(newDoc)
+            .subscribe(
+              updatedDoc => {
+                this.notificationService.addNotification({
+                  id: NotificationService.DEFAULT_DISMISS,
+                  type: 'info',
+                  message: `A new custom collection has been created and added to your data.`,
+                  details: `Created a new collection, ${id}`
+                });
+                this.hideCreateCollectionModal();
+                this.reloadCollections();
+              },
+              error => {
+                console.log(<any>error);
+                this.notificationService.addErrorResultNotification(error);
+              });
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
   }
 
   /**
