@@ -90,9 +90,10 @@
                     <label class="col-sm-2 control-label">linkages</label>
                     <div class="col-sm-10" *ngFor="let link of feature.properties.linkage">
                       <p class="form-control-static">
-                        <a [href]="link.linkage" target="_blank">
-                          <i class="fa fa-globe"></i>&nbsp;{{ link.resourceType}}: (<small><i>{{link.linkage}}</i></small>)
-                        </a>
+                        <i class="fa fa-globe"></i>&nbsp;{{ link.resourceType}}:
+                        (<small><i>
+                          <app-sac-gwh-licensedexitlink [theLink]="link.linkage" [licenseComment]=""></app-sac-gwh-licensedexitlink>
+                        </i></small>)
                       </p>
                       <p class="form-control-static" *ngIf="link.name"><small><i>Name: {{link.name}}</i></small></p>
                       <p class="form-control-static" *ngIf="link.description"><small><i>Description: {{link.description}}</i></small></p>

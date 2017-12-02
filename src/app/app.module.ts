@@ -84,7 +84,7 @@ import { AdminGuard, AuthGuard, RegisteredGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
 import { RatingModule } from 'ngx-bootstrap/rating';
-import { ContextRetrieveComponent, FileLoaderComponent } from './context';
+import { ContextRetrieveComponent, FileLoaderComponent, LicensedlinkComponent } from './context';
 import { TimeseriesComponent } from './timeseries';
 import { TimeseriesConfiguratorModalComponent } from './timeseries/timeseries.configurator.modal.component';
 import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.component';
@@ -160,6 +160,7 @@ import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.com
     CardComponent,
     ContextRetrieveComponent,
     FileLoaderComponent,
+    LicensedlinkComponent,
     TimeseriesComponent,
     TimeseriesConfiguratorModalComponent,
     UsplashImageCreditComponent
