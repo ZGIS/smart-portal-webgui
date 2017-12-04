@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
-import { NotificationService } from '../notifications/notification.service';
-import { PopoverDirective } from 'ngx-bootstrap';
+import { PopoverDirective } from 'ngx-bootstrap/popover';
+import { NotificationService } from '../notifications';
 
 @Component({
   selector: 'app-sac-gwh-licensedexitlink',

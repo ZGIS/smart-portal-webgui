@@ -14,7 +14,8 @@ import {
   ProgressbarModule,
   TabsModule,
   TooltipModule,
-  TypeaheadModule
+  TypeaheadModule,
+  RatingModule
 } from 'ngx-bootstrap';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AppComponent } from './app.component';
@@ -83,11 +84,10 @@ import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
 import { AdminGuard, AuthGuard, RegisteredGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
-import { RatingModule } from 'ngx-bootstrap/rating';
 import { ContextRetrieveComponent, FileLoaderComponent, LicensedlinkComponent } from './context';
 import { TimeseriesComponent } from './timeseries';
-import { TimeseriesConfiguratorModalComponent } from './timeseries/timeseries.configurator.modal.component';
-import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.component';
+import { TimeseriesConfiguratorModalComponent } from './timeseries';
+import { UsplashImageCreditComponent } from './navigation';
 
 @NgModule({
   imports: [BrowserModule,
@@ -174,13 +174,13 @@ import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.com
     RegisteredGuard,
     AdminGuard,
     NotificationService,
+    CategoriesService,
+    GlossaryService,
     ResultService,
     WorkbenchService,
     ReCaptchaService,
     GApiAuthService,
     CollectionsService,
-    CategoriesService,
-    GlossaryService,
     ShareButtonService
   ],
   bootstrap: [AppComponent]
