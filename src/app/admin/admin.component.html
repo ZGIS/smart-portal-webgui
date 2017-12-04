@@ -62,9 +62,9 @@
                 <th>Status</th>
               </tr>
               <tr *ngFor="let user of userlist">
-                <td><a href="{{ user.email }}">{{ user.email }}</a></td>
+                <td><a tooltip="Last status update was {{ user.laststatuschange }}" href="mailto:{{ user.email }}">{{ user.email }}</a></td>
                 <td>{{ user.firstname ? user.firstname : '*' }} {{ user.lastname ? user.lastname : '*' }}</td>
-                <td *ngIf="user.laststatuschange" [ngClass]="userStatusIsActive(user.laststatustoken) ? 'userIsActive' : 'userIsNotActive'" tooltip="Last status update was {{ user.laststatuschange }}">
+                <td *ngIf="user.laststatuschange" [ngClass]="userStatusIsActive(user.laststatustoken) ? 'userIsActive' : 'userIsNotActive'">
                   {{ user.laststatustoken ? user.laststatustoken : 'unknown' }}
                   <button type="button" class="btn btn-warning" *ngIf="userCanBeBlocked(user.laststatustoken)"
                           tooltip="Prevent user from logging in with this email account." (click)="blockUnblockUsers('BLOCK', user.email)">Block user
