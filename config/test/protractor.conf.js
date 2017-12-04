@@ -21,7 +21,7 @@ exports.config = {
 
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'firefox'
   },
 
   // Protractor will run tests in parallel against each set of capabilities.
