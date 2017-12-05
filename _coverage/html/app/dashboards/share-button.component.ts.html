@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">61.54% </span>
+        <span class="strong">52.38% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/13</span>
+        <span class='fraction'>11/21</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">20% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/4</span>
+        <span class='fraction'>1/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">54.55% </span>
+        <span class="strong">47.37% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/11</span>
+        <span class='fraction'>9/19</span>
       </div>
     </div>
   </div>
@@ -82,23 +82,21 @@
 37
 38
 39
-40</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -106,8 +104,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,8 +152,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
   Component,
   AfterViewInit,
+  OnInit,
   ViewChild,
-  ElementRef
+  ElementRef, Input
 } from '@angular/core';
 import { ShareButtonService } from './share-button.service';
 &nbsp;
@@ -134,7 +163,8 @@ import { ShareButtonService } from './share-button.service';
  */
 @Component({
   selector: 'app-share-buttons',
-  template: '&lt;div #shareThis class="a2a_kit a2a_kit_size_32 a2a_default_style"&gt;' +
+  template: '&lt;div #shareThis class="a2a_kit a2a_kit_size_32 a2a_default_style"' +
+  ' [attr.data-a2a-url]="dataA2aUrlExt" [attr.data-a2a-title]="dataA2aTitle"&gt;' +
   '  &lt;a class="a2a_dd" href="https://www.addtoany.com/share"&gt;&lt;/a&gt;' +
   '  &lt;a class="a2a_button_facebook"&gt;&lt;/a&gt;' +
   '  &lt;a class="a2a_button_twitter"&gt;&lt;/a&gt;' +
@@ -144,15 +174,27 @@ import { ShareButtonService } from './share-button.service';
   '&lt;/div&gt;'
 })
 &nbsp;
-export class ShareButtonComponent implements AfterViewInit {
+export class ShareButtonComponent implements AfterViewInit, OnInit {
   @ViewChild('shareThis') targetRef: ElementRef;
+  // data-a2a-url="http://www.example.com/page.html" data-a2a-title="Example Page Title"
+  @Input() dataA2aTitle: string;
+  @Input() dataA2aUrl: string;
+<span class="cstat-no" title="statement not covered" >  dataA2aUrlExt = 'https://dev.smart-portal.info/#/context/resource/';</span>
 &nbsp;
-  constructor(private <span class="cstat-no" title="statement not covered" >shareButtonService: ShareButtonService<span class="fstat-no" title="function not covered" >)</span> {</span>
+  constructor( private <span class="cstat-no" title="statement not covered" >shareButtonService: ShareButtonService<span class="fstat-no" title="function not covered" > </span>) {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.dataA2aUrl) {</span>
+<span class="cstat-no" title="statement not covered" >      this.dataA2aUrlExt = this.dataA2aUrlExt + this.dataA2aUrl;</span>
+    }
   }
 &nbsp;
+<span class="fstat-no" title="function not covered" >  ngOnInit(): void {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.dataA2aUrl) {</span>
+<span class="cstat-no" title="statement not covered" >      this.dataA2aUrlExt = this.dataA2aUrlExt + this.dataA2aUrl;</span>
+    }
+  }
 <span class="fstat-no" title="function not covered" >  ngAfterViewInit() {</span>
 <span class="cstat-no" title="statement not covered" >    this.shareButtonService.getReady().subscribe(</span>
-      (ready<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+      ( ready<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        if (!ready) {</span>
 <span class="cstat-no" title="statement not covered" >          return;</span>
         }
@@ -166,7 +208,7 @@ export class ShareButtonComponent implements AfterViewInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Dec 01 2017 14:45:18 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 05 2017 19:40:24 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
