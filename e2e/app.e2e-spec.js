@@ -22,8 +22,7 @@ describe('E2E Test Dashboard Maps Category', function () {
   const expectedMsg = 'Understand our groundwater systems';
 
   beforeEach(function () {
-    browser.driver.sleep(1000);
-    browser.waitForAngular();
+    browser.waitForAngularEnabled(true);
     browser.get('/#/dashboard/1-understanding?categoryId=1');
   });
 
@@ -31,8 +30,9 @@ describe('E2E Test Dashboard Maps Category', function () {
   it('should display: ' + expectedMsg, function () {
     //SR the category description has more content than just the description
     //SR changed toEqual -> toContain
-    console.log(browser.getCurrentUrl);
-    browser.sleep(5000);
+    browser.wait(function() {
+      return element(by.id('dashboard-category')).isPresent();
+    }, 5000);
     expect(element(by.id('dashboard-category')).getText()).toContain(expectedMsg);
   });
 

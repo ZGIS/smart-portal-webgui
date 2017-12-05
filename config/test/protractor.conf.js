@@ -20,13 +20,14 @@ const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 exports.config = {
 
   // Capabilities to be passed to the webdriver instance.
-  capabilities: {
-    browserName: 'chrome'
-  },
+  multiCapabilities: [
+    {
+      browserName: 'chrome'
+    }
+  ],
 
   // Protractor will run tests in parallel against each set of capabilities.
   // Please note that if multiCapabilities is defined, the runner will ignore the capabilities configuration.
-  //
 
   // Framework to use. Jasmine is recommended.
   framework: 'jasmine2',
@@ -36,8 +37,9 @@ exports.config = {
   specs: ['**/*e2e-spec.js' ],
 
   // timeout stuff
-  allScriptsTimeout: 120000,
   getPageTimeout: 120000,
+  allScriptsTimeout: 120000,
+
 
   // Base URL for application server .. http-serve
   baseUrl: 'http://localhost:8080',
@@ -46,9 +48,11 @@ exports.config = {
   // directConnect: true,
   seleniumAddress: 'http://localhost:4444/wd/hub',
 
+  // ng12Hybrid: true,
+  // rootElement: 'app-sac-gwh',
+  // rootElement: 'app-sac-gwh',
   // For angular2 tests
   useAllAngular2AppRoots: true,
-  // rootElement: 'app-sac-gwh',
 
   onPrepare: function() {
     //// SpecReporter
@@ -62,7 +66,7 @@ exports.config = {
     // }));
 
     // debugging
-    console.log('browser.params:' + JSON.stringify(browser.params));
+    // console.log('browser.params:' + JSON.stringify(browser.params));
 
     global.sendKeys = sendKeys;
 
