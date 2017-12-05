@@ -21,15 +21,18 @@ describe('E2E Test Dashboard Maps Category', function () {
   // const expectedMsg = 'Maps Maps and two-dimensional (map) datasets that are used in groundwater' + ' resource assessments';
   const expectedMsg = 'Understand our groundwater systems';
 
-
   beforeEach(function () {
+    browser.driver.sleep(1000);
+    browser.waitForAngular();
     browser.get('/#/dashboard/1-understanding?categoryId=1');
   });
 
-
+  // FIXME fails now consistently for no reason (on Travis, but successful locally)
   it('should display: ' + expectedMsg, function () {
     //SR the category description has more content than just the description
     //SR changed toEqual -> toContain
+    console.log(browser.getCurrentUrl);
+    browser.sleep(5000);
     expect(element(by.id('dashboard-category')).getText()).toContain(expectedMsg);
   });
 
@@ -47,6 +50,7 @@ describe('E2E Test Dashboard Maps Category Query Aquifer has cards', function ()
     expect(element(by.id('no-cards-found')).isPresent()).toBeFalsy();
   });
 
+  // FIXME fails now consistently for no reason (on Travis, but successful locally)
   it('should have cards', function () {
     expect(element.all(by.tagName('app-sac-card')).count()).toBeGreaterThan(3);
   });
