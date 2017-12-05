@@ -62,3 +62,6 @@ sphinx-build
 
 /_coverage/
 /package-lock.json
+/cypress/videos/
+/cypress/screenshots/
+/cypress/images/

@@ -33,9 +33,9 @@ describe('E2E Test Dashboard Category', function () {
     //SR changed toEqual -> toContain
     // browser.refresh();
     // browser.waitForAngular();
-    browser.wait(function() {
-      return element(by.id('dashboard-category')).isPresent();
-    }, 30000);
+    // browser.wait(function() {
+    //   return element(by.id('dashboard-category')).isPresent();
+    // }, 30000);
     expect(element(by.id('dashboard-category')).getText()).toContain(expectedMsg);
   });
 
@@ -70,10 +70,10 @@ describe('E2E Test Dashboard Category has more cards', function () {
 
   // FIXME fails consistently for no reason (on Travis, but successful locally)
   it('should have cards', function () {
-    browser.refresh();
-    browser.wait(function() {
-      return element(by.id('dashboard-category')).isPresent();
-    }, 30000);
+    // browser.refresh();
+    // browser.wait(function() {
+    //   return element(by.id('dashboard-category')).isPresent();
+    // }, 30000);
     expect(element.all(by.tagName('app-sac-card')).count()).toBeGreaterThan(3);
   });
 
