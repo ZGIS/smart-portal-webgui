@@ -43,7 +43,7 @@
     "test:watch": "karma start",
     "e2e": "protractor",
     "cypress": "cypress",
-    "cypress:test": "npm run cypress run",
+    "cypress:test": "npm run cypress run --config chromeWebSecurity=false --spec cypress/integration/gwhub_cy_spec.js",
     "e2e:watch": "npm run e2e -- --elementExplorer",
     "e2e:ci": "npm run build && concurrently --kill-others --success first \"http-server -p 8080 ./dist\" \"npm run e2e\"",
     "cypress:ci": "npm run build && concurrently --kill-others --success first \"http-server -p 8080 ./dist\" \"npm run cypress:test\"",
