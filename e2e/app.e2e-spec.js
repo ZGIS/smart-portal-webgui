@@ -24,6 +24,7 @@ describe('E2E Test Dashboard Category', function () {
   beforeEach(function () {
     // browser.ignoreSynchronization = true;
     browser.get('/#/dashboard/1-understanding?categoryId=1');
+    browser.waitForAngular();
   });
 
   // FIXME fails now consistently for no reason (on Travis, but successful locally)
@@ -31,6 +32,7 @@ describe('E2E Test Dashboard Category', function () {
     //SR the category description has more content than just the description
     //SR changed toEqual -> toContain
     browser.refresh();
+    browser.waitForAngular();
     browser.wait(function() {
       return element(by.id('dashboard-category')).isPresent();
     }, 10000);
@@ -38,7 +40,7 @@ describe('E2E Test Dashboard Category', function () {
   });
 
   afterEach(function () {
-    browser.ignoreSynchronization = false;
+    // browser.ignoreSynchronization = false;
   });
 
 });
