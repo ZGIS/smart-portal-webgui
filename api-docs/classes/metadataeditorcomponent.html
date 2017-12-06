@@ -94,6 +94,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="metadataeditorcomponent.html#date_format" class="tsd-kind-icon">DATE_<wbr>FORMAT</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metadataeditorcomponent.html#_distributioncidate" class="tsd-kind-icon">_distribution<wbr>CiDate</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metadataeditorcomponent.html#basicprofile" class="tsd-kind-icon">basic<wbr>Profile</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="metadataeditorcomponent.html#categoriesservice" class="tsd-kind-icon">categories<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="metadataeditorcomponent.html#collectionsservice" class="tsd-kind-icon">collections<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metadataeditorcomponent.html#currenttab" class="tsd-kind-icon">current<wbr>Tab</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metadataeditorcomponent.html#error" class="tsd-kind-icon">error</a></li>
@@ -104,6 +105,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metadataeditorcomponent.html#onlineresourcelinkagetypeahead" class="tsd-kind-icon">online<wbr>Resource<wbr>Linkage<wbr>Typeahead</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="metadataeditorcomponent.html#portalapiurl" class="tsd-kind-icon">portal<wbr>Api<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="metadataeditorcomponent.html#router" class="tsd-kind-icon">router</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metadataeditorcomponent.html#saccategories" class="tsd-kind-icon">sac<wbr>Categories</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metadataeditorcomponent.html#tabs" class="tsd-kind-icon">tabs</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metadataeditorcomponent.html#typeaheadloading" class="tsd-kind-icon">typeahead<wbr>Loading</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metadataeditorcomponent.html#typeaheadnoresults" class="tsd-kind-icon">typeahead<wbr>NoResults</a></li>
@@ -123,6 +125,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metadataeditorcomponent.html#oncitationdateselectiondone" class="tsd-kind-icon">on<wbr>Citation<wbr>Date<wbr>Selection<wbr>Done</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metadataeditorcomponent.html#opennexttab" class="tsd-kind-icon">open<wbr>Next<wbr>Tab</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metadataeditorcomponent.html#openprevioustab" class="tsd-kind-icon">open<wbr>Previous<wbr>Tab</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metadataeditorcomponent.html#saccategoriescheckboxclicked" class="tsd-kind-icon">sac<wbr>Categories<wbr>Checkbox<wbr>Clicked</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metadataeditorcomponent.html#submitform" class="tsd-kind-icon">submit<wbr>Form</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metadataeditorcomponent.html#typeaheadonselect" class="tsd-kind-icon">typeahead<wbr>OnSelect</a></li>
 							</ul>
@@ -142,13 +145,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Metadata<wbr>Editor<wbr>Component<span class="tsd-signature-symbol">(</span>portalApiUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, notificationService<span class="tsd-signature-symbol">: </span><a href="notificationservice.html" class="tsd-signature-type">NotificationService</a>, collectionsService<span class="tsd-signature-symbol">: </span><a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a>, workbenchService<span class="tsd-signature-symbol">: </span><a href="workbenchservice.html" class="tsd-signature-type">WorkbenchService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metadataeditorcomponent.html" class="tsd-signature-type">MetadataEditorComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Metadata<wbr>Editor<wbr>Component<span class="tsd-signature-symbol">(</span>portalApiUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, notificationService<span class="tsd-signature-symbol">: </span><a href="notificationservice.html" class="tsd-signature-type">NotificationService</a>, collectionsService<span class="tsd-signature-symbol">: </span><a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a>, categoriesService<span class="tsd-signature-symbol">: </span><a href="categoriesservice.html" class="tsd-signature-type">CategoriesService</a>, workbenchService<span class="tsd-signature-symbol">: </span><a href="workbenchservice.html" class="tsd-signature-type">WorkbenchService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metadataeditorcomponent.html" class="tsd-signature-type">MetadataEditorComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L63">app/workbench/metadata-editor.component.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L65">app/workbench/metadata-editor.component.ts:65</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -161,6 +164,9 @@
 								</li>
 								<li>
 									<h5>collectionsService: <a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a></h5>
+								</li>
+								<li>
+									<h5>categoriesService: <a href="categoriesservice.html" class="tsd-signature-type">CategoriesService</a></h5>
 								</li>
 								<li>
 									<h5>workbenchService: <a href="workbenchservice.html" class="tsd-signature-type">WorkbenchService</a></h5>
@@ -182,7 +188,7 @@
 					<div class="tsd-signature tsd-kind-icon">DATE_<wbr>FORMAT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;YYYY-MM-DD&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L63">app/workbench/metadata-editor.component.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L65">app/workbench/metadata-editor.component.ts:65</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -192,7 +198,7 @@
 					<div class="tsd-signature tsd-kind-icon">_distribution<wbr>CiDate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> =&nbsp;new Date()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L40">app/workbench/metadata-editor.component.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L40">app/workbench/metadata-editor.component.ts:40</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -202,7 +208,17 @@
 					<div class="tsd-signature tsd-kind-icon">basic<wbr>Profile<span class="tsd-signature-symbol">:</span> <a href="../interfaces/profilejs.html" class="tsd-signature-type">ProfileJs</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L37">app/workbench/metadata-editor.component.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L37">app/workbench/metadata-editor.component.ts:37</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="categoriesservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> categories<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">categories<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="categoriesservice.html" class="tsd-signature-type">CategoriesService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L70">app/workbench/metadata-editor.component.ts:70</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -212,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">collections<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L67">app/workbench/metadata-editor.component.ts:67</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L69">app/workbench/metadata-editor.component.ts:69</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -222,7 +238,7 @@
 					<div class="tsd-signature tsd-kind-icon">current<wbr>Tab<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L61">app/workbench/metadata-editor.component.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L63">app/workbench/metadata-editor.component.ts:63</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -232,7 +248,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L55">app/workbench/metadata-editor.component.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L57">app/workbench/metadata-editor.component.ts:57</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -242,7 +258,7 @@
 					<div class="tsd-signature tsd-kind-icon">loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L54">app/workbench/metadata-editor.component.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L56">app/workbench/metadata-editor.component.ts:56</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -252,7 +268,7 @@
 					<div class="tsd-signature tsd-kind-icon">metadata<span class="tsd-signature-symbol">:</span> <a href="geometadata.html" class="tsd-signature-type">GeoMetadata</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L39">app/workbench/metadata-editor.component.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L39">app/workbench/metadata-editor.component.ts:39</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -262,7 +278,7 @@
 					<div class="tsd-signature tsd-kind-icon">metadata<wbr>Keyword<wbr>String<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">String</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L35">app/workbench/metadata-editor.component.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L35">app/workbench/metadata-editor.component.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -272,7 +288,7 @@
 					<div class="tsd-signature tsd-kind-icon">notification<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L66">app/workbench/metadata-editor.component.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L68">app/workbench/metadata-editor.component.ts:68</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -282,7 +298,7 @@
 					<div class="tsd-signature tsd-kind-icon">online<wbr>Resource<wbr>Linkage<wbr>Typeahead<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/owclink.html" class="tsd-signature-type">OwcLink</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L57">app/workbench/metadata-editor.component.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L59">app/workbench/metadata-editor.component.ts:59</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -292,7 +308,7 @@
 					<div class="tsd-signature tsd-kind-icon">portal<wbr>Api<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L65">app/workbench/metadata-editor.component.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L67">app/workbench/metadata-editor.component.ts:67</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -302,17 +318,27 @@
 					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L69">app/workbench/metadata-editor.component.ts:69</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L72">app/workbench/metadata-editor.component.ts:72</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="saccategories" class="tsd-anchor"></a>
+					<h3>sac<wbr>Categories</h3>
+					<div class="tsd-signature tsd-kind-icon">sac<wbr>Categories<span class="tsd-signature-symbol">:</span> <a href="../interfaces/idashboardcategory.html" class="tsd-signature-type">IDashboardCategory</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L54">app/workbench/metadata-editor.component.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="tabs" class="tsd-anchor"></a>
 					<h3>tabs</h3>
-					<div class="tsd-signature tsd-kind-icon">tabs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[{ title: &#x27;What?&#x27;, active: true },{ title: &#x27;SAC Category&#x27;, active: false },{ title: &#x27;Where?&#x27;, active: false },{ title: &#x27;When?&#x27;, active: false },{ title: &#x27;Who?&#x27;, active: false },{ title: &#x27;Upload files?&#x27;, active: false },{ title: &#x27;Distribution&#x27;, active: false }]</span></div>
+					<div class="tsd-signature tsd-kind-icon">tabs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[{ title: &#x27;What?&#x27;, active: true },{ title: &#x27;SAC Category&#x27;, active: false },{ title: &#x27;Where?&#x27;, active: false },{ title: &#x27;When?&#x27;, active: false },{ title: &#x27;Who?&#x27;, active: false },{ title: &#x27;Distribution&#x27;, active: false }]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L24">app/workbench/metadata-editor.component.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L25">app/workbench/metadata-editor.component.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -322,7 +348,7 @@
 					<div class="tsd-signature tsd-kind-icon">typeahead<wbr>Loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L58">app/workbench/metadata-editor.component.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L60">app/workbench/metadata-editor.component.ts:60</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -332,7 +358,7 @@
 					<div class="tsd-signature tsd-kind-icon">typeahead<wbr>NoResults<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L59">app/workbench/metadata-editor.component.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L61">app/workbench/metadata-editor.component.ts:61</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -342,7 +368,7 @@
 					<div class="tsd-signature tsd-kind-icon">workbench<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="workbenchservice.html" class="tsd-signature-type">WorkbenchService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L68">app/workbench/metadata-editor.component.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L71">app/workbench/metadata-editor.component.ts:71</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -359,7 +385,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L182">app/workbench/metadata-editor.component.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L196">app/workbench/metadata-editor.component.ts:196</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -382,7 +408,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L192">app/workbench/metadata-editor.component.ts:192</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L221">app/workbench/metadata-editor.component.ts:221</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -405,7 +431,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L196">app/workbench/metadata-editor.component.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L225">app/workbench/metadata-editor.component.ts:225</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -428,7 +454,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L187">app/workbench/metadata-editor.component.ts:187</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L201">app/workbench/metadata-editor.component.ts:201</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -451,7 +477,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L212">app/workbench/metadata-editor.component.ts:212</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L241">app/workbench/metadata-editor.component.ts:241</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -474,7 +500,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L216">app/workbench/metadata-editor.component.ts:216</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L245">app/workbench/metadata-editor.component.ts:245</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -497,7 +523,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L87">app/workbench/metadata-editor.component.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L90">app/workbench/metadata-editor.component.ts:90</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -514,7 +540,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L206">app/workbench/metadata-editor.component.ts:206</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L235">app/workbench/metadata-editor.component.ts:235</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -537,7 +563,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L149">app/workbench/metadata-editor.component.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L163">app/workbench/metadata-editor.component.ts:163</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -554,9 +580,38 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L142">app/workbench/metadata-editor.component.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L156">app/workbench/metadata-editor.component.ts:156</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="saccategoriescheckboxclicked" class="tsd-anchor"></a>
+					<h3>sac<wbr>Categories<wbr>Checkbox<wbr>Clicked</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">sac<wbr>Categories<wbr>Checkbox<wbr>Clicked<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, indexParent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, indexChild<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L206">app/workbench/metadata-editor.component.ts:206</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>event: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>indexParent: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>indexChild: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -571,7 +626,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L156">app/workbench/metadata-editor.component.ts:156</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L170">app/workbench/metadata-editor.component.ts:170</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -588,7 +643,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L200">app/workbench/metadata-editor.component.ts:200</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L229">app/workbench/metadata-editor.component.ts:229</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -610,7 +665,7 @@
 					<div class="tsd-signature tsd-kind-icon">valid<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L42">app/workbench/metadata-editor.component.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L42">app/workbench/metadata-editor.component.ts:42</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -619,7 +674,7 @@
 						<div class="tsd-signature tsd-kind-icon">ci<wbr>Date<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L47">app/workbench/metadata-editor.component.ts:47</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L47">app/workbench/metadata-editor.component.ts:47</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -629,7 +684,7 @@
 						<div class="tsd-signature tsd-kind-icon">format<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L50">app/workbench/metadata-editor.component.ts:50</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L50">app/workbench/metadata-editor.component.ts:50</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -639,7 +694,7 @@
 						<div class="tsd-signature tsd-kind-icon">hierarchy<wbr>Level<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L44">app/workbench/metadata-editor.component.ts:44</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L44">app/workbench/metadata-editor.component.ts:44</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -649,7 +704,7 @@
 						<div class="tsd-signature tsd-kind-icon">point<wbr>OfContact<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L48">app/workbench/metadata-editor.component.ts:48</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L48">app/workbench/metadata-editor.component.ts:48</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -659,7 +714,7 @@
 						<div class="tsd-signature tsd-kind-icon">reference<wbr>System<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L46">app/workbench/metadata-editor.component.ts:46</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L46">app/workbench/metadata-editor.component.ts:46</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -669,7 +724,7 @@
 						<div class="tsd-signature tsd-kind-icon">scale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L45">app/workbench/metadata-editor.component.ts:45</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L45">app/workbench/metadata-editor.component.ts:45</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -679,7 +734,7 @@
 						<div class="tsd-signature tsd-kind-icon">smart<wbr>Category<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L51">app/workbench/metadata-editor.component.ts:51</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L51">app/workbench/metadata-editor.component.ts:51</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -689,7 +744,7 @@
 						<div class="tsd-signature tsd-kind-icon">topic<wbr>Category<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L43">app/workbench/metadata-editor.component.ts:43</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L43">app/workbench/metadata-editor.component.ts:43</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -699,7 +754,7 @@
 						<div class="tsd-signature tsd-kind-icon">use<wbr>Limitation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/b0f90b6/src/app/workbench/metadata-editor.component.ts#L49">app/workbench/metadata-editor.component.ts:49</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/da88d28/src/app/workbench/metadata-editor.component.ts#L49">app/workbench/metadata-editor.component.ts:49</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -734,6 +789,9 @@
 								<a href="metadataeditorcomponent.html#basicprofile" class="tsd-kind-icon">basic<wbr>Profile</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="metadataeditorcomponent.html#categoriesservice" class="tsd-kind-icon">categories<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="metadataeditorcomponent.html#collectionsservice" class="tsd-kind-icon">collections<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -762,6 +820,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="metadataeditorcomponent.html#router" class="tsd-kind-icon">router</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="metadataeditorcomponent.html#saccategories" class="tsd-kind-icon">sac<wbr>Categories</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="metadataeditorcomponent.html#tabs" class="tsd-kind-icon">tabs</a>
@@ -804,6 +865,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="metadataeditorcomponent.html#openprevioustab" class="tsd-kind-icon">open<wbr>Previous<wbr>Tab</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="metadataeditorcomponent.html#saccategoriescheckboxclicked" class="tsd-kind-icon">sac<wbr>Categories<wbr>Checkbox<wbr>Clicked</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="metadataeditorcomponent.html#submitform" class="tsd-kind-icon">submit<wbr>Form</a>
