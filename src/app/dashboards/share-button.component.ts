@@ -28,7 +28,7 @@ export class ShareButtonComponent implements AfterViewInit, OnInit {
   // data-a2a-url="http://www.example.com/page.html" data-a2a-title="Example Page Title"
   @Input() dataA2aTitle: string;
   @Input() dataA2aUrl: string;
-  dataA2aUrlExt = 'https://dev.smart-portal.info/#/context/resource/';
+  dataA2aUrlExt = 'https://dev.smart-project.info/#/context/resource/';
 
   constructor( private shareButtonService: ShareButtonService ) {
     if (this.dataA2aUrl) {
