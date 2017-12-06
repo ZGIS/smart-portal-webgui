@@ -198,10 +198,10 @@ export class MetadataEditorComponent implements OnInit {
     this.metadata.extent.mapExtentCoordinates = (<Ol3MapExtent>$event).bbox;
   }
 
-  checkboxClicked( index: number ) {
-    console.log(this.validValues.smartCategory);
-    this.validValues.smartCategory[ index ].selected = !this.validValues.smartCategory[ index ].selected;
-  }
+  // checkboxClicked( index: number ) {
+  //   console.log(this.validValues.smartCategory);
+  //   this.validValues.smartCategory[ index ].selected = !this.validValues.smartCategory[ index ].selected;
+  // }
 
   sacCategoriesCheckboxClicked( event: any, indexParent: number, indexChild: number ) {
     let active = event.target.checked;
@@ -213,7 +213,9 @@ export class MetadataEditorComponent implements OnInit {
       selectDelectSacKeywords.forEach(( keyword: string ) => {
         this.metadata.smartCategory.push(keyword);
       });
+      // TODO filter unique keywords, so no doubles
     } else {
+      // TODO filter remove all keywords from the deactivated selection
       console.log('remove');
     }
   }

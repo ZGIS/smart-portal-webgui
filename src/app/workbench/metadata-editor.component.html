@@ -149,6 +149,12 @@
                     one)*:</label>
                   <div class="controls" id="smartCategory">
 
+                    <!--
+                      TODO SR this needs a custom validator!
+                      http://stackoverflow.com/questions/42038099/validation-on-a-list-of-checkboxes-angular-2
+                      https://stackoverflow.com/questions/39277283/angular2-group-of-checkboxes-with-required-attribute#
+                   -->
+
                     <div class="button-group" *ngFor="let catParent of sacCategories; let i = index">
                       <button type="button" class="btn btn-default btn-sm dropdown-toggle"
                               data-toggle="dropdown" tooltip="{{ catParent.description }}">
@@ -169,31 +175,6 @@
                   {{ this.metadata.smartCategory.join(', ') }}
                 </div>
 
-                <!--
-                <div class="control-group list-group-item">
-                                TODO SR this needs a custom validator!
-                    http://stackoverflow.com/questions/42038099/validation-on-a-list-of-checkboxes-angular-2
-                    https://stackoverflow.com/questions/39277283/angular2-group-of-checkboxes-with-required-attribute#
-                                    <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !smartCategory.valid }">
-
-                    <label class="control-label" for="smartCategory"
-                           tooltip="Select at least one of the following categories.">SMART Categories (select at least
-                      one)*:</label>
-                    <div class="controls" id="smartCategory">
-
-                      <div class="checkbox" *ngFor="let cat of validValues.smartCategory; let i = index">
-                        <label><input type="checkbox" [checked]="validValues.smartCategory[i].selected"
-                                      (click)="checkboxClicked(i)"/>
-                          {{cat['description']}}
-                        </label>
-                      </div>
-                    </div>
-
-                                      <div *ngIf="f.submitted && !smartCategory.valid"
-                                           class="help-block">Please select at least one category.</div>
-
-                </div>
-                 -->
               </div>
             </tab>
 
