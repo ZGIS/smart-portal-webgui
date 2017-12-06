@@ -19,6 +19,12 @@ export class DashboardCategoryComponent implements OnInit {
   childrenImg: string[] = [];
   placeHolderImg = '/images/dashboard/0-placeholder-water-icon.jpg';
 
+  constructor( private route: ActivatedRoute,
+               private categoriesService: CategoriesService,
+               private notificationService: NotificationService ) {
+    this.bgImage.imgUrl = '/images/dashboard/0.0_main_background_empty.png';
+  }
+
   ngOnInit(): void {
 
     this.route.params.forEach(( params: Params ) => {
@@ -54,11 +60,6 @@ export class DashboardCategoryComponent implements OnInit {
           });
 
     });
-  }
-
-  constructor( private route: ActivatedRoute, private categoriesService: CategoriesService,
-               private notificationService: NotificationService ) {
-    this.bgImage.imgUrl = '/images/dashboard/0.0_main_background_empty.png';
   }
 
 }

@@ -3,7 +3,7 @@ import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { IErrorResult } from '../search/result';
+import { IErrorResult } from '../search';
 import { IDashboardCategory } from './categories';
 
 const categoriesSparqlGraph = 'https://vocab.smart-project.info/spq-categories/get';

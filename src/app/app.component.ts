@@ -1,5 +1,6 @@
 import { Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
-import { AccountService } from './account/account.service';
+import { AccountService } from './account';
+import { CategoriesService } from './dashboards';
 
 @Component({
   selector: 'app-sac-gwh',
@@ -13,6 +14,7 @@ export class AppComponent {
   private viewContainerRef: ViewContainerRef;
 
   constructor(private accountService: AccountService,
+              private categoriesService: CategoriesService,
               viewContainerRef: ViewContainerRef) {
     // small hack for ngx-bootstrap model. See https://valor-software.com/ngx-bootstrap/#/modals
     this.viewContainerRef = viewContainerRef;

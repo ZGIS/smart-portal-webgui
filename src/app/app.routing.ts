@@ -6,7 +6,7 @@ import {
   ResultCardsComponent
 } from './dashboards';
 import { SearchComponent } from './search';
-import { CollectionsComponent, CollectionsDeskComponent } from './owc';
+import { CollectionsDeskComponent } from './owc';
 import {
   LoginComponent,
   RegisterComponent,
@@ -22,9 +22,8 @@ import { NotFoundComponent } from './navigation';
 import { ResearchProgrammesComponent } from './research-pg';
 import { GlossaryComponent } from './glossary-edu';
 import { AdminComponent } from './admin';
-import { ContextRetrieveComponent } from './context/context.component';
-import { TimeseriesComponent } from './timeseries/timeseries.component';
-import { FileLoaderComponent } from './context/fileloader.component';
+import { ContextRetrieveComponent, FileLoaderComponent } from './context';
+import { TimeseriesComponent } from './timeseries';
 
 const appRoutes: Routes = [
   {
