@@ -144,30 +144,56 @@
               <div class="list-group">
 
                 <div class="control-group list-group-item">
-                  <div class="control-group list-group-item">
-                    <!--             TODO SR this needs a custom validator!
+                  <label class="control-label" for="smartCategory"
+                         tooltip="Select at least one of the following categories.">SMART keyword categories (select at least
+                    one)*:</label>
+                  <div class="controls" id="smartCategory">
+
+                    <div class="button-group" *ngFor="let catParent of sacCategories; let i = index">
+                      <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                              data-toggle="dropdown" tooltip="{{ catParent.description }}">
+                        <span class="glyphicon glyphicon-cog"></span> {{ catParent.item_name }} <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li *ngFor="let catChild of catParent.children; let j = index">
+                          <input type="checkbox" (click)="sacCategoriesCheckboxClicked($event, i, j)" value="{{catChild.keyword_content}}"/>
+                            {{ catChild.item_name }} - {{ catChild.description }}
+
+                        </li>
+                      </ul>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="list-group-item" *ngIf="this.metadata.smartCategory.length > 0">
+                  {{ this.metadata.smartCategory.join(', ') }}
+                </div>
+
+                <!--
+                <div class="control-group list-group-item">
+                                TODO SR this needs a custom validator!
                     http://stackoverflow.com/questions/42038099/validation-on-a-list-of-checkboxes-angular-2
                     https://stackoverflow.com/questions/39277283/angular2-group-of-checkboxes-with-required-attribute#
                                     <div class="control-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !smartCategory.valid }">
-                    -->
+
                     <label class="control-label" for="smartCategory"
                            tooltip="Select at least one of the following categories.">SMART Categories (select at least
                       one)*:</label>
                     <div class="controls" id="smartCategory">
-                      <div class="checkbox"
-                           *ngFor="let cat of validValues.smartCategory; let i = index">
+
+                      <div class="checkbox" *ngFor="let cat of validValues.smartCategory; let i = index">
                         <label><input type="checkbox" [checked]="validValues.smartCategory[i].selected"
                                       (click)="checkboxClicked(i)"/>
                           {{cat['description']}}
                         </label>
                       </div>
                     </div>
-                    <!--
+
                                       <div *ngIf="f.submitted && !smartCategory.valid"
                                            class="help-block">Please select at least one category.</div>
-                    -->
-                  </div>
+
                 </div>
+                 -->
               </div>
             </tab>
 
@@ -450,19 +476,8 @@
             </tab>
 
             <tab [heading]="tabs[5].title" [active]="tabs[5].active"
-                 (select)="tabs[5].active = true; this.currentTab = 5"
+                 (select)="tabs[5].active = true; this.currentTab = 6"
                  (deselect)="tabs[5].active = false">
-              <div class="list-group">
-
-                <div class="control-group list-group-item">
-                  <app-sac-gwh-upload-basic [showOpenCollectionBtn]="false"></app-sac-gwh-upload-basic>
-                </div>
-              </div>
-            </tab>
-
-            <tab [heading]="tabs[6].title" [active]="tabs[6].active"
-                 (select)="tabs[6].active = true; this.currentTab = 6"
-                 (deselect)="tabs[6].active = false">
               <div class="list-group">
 
                 <div class="control-group list-group-item"

@@ -58,7 +58,7 @@ script:
 # jit build
 # - npm run e2e:ci:jit
 # AK 05/12/2017
-- npm run cypress:ci:jit
+# - npm run cypress:ci:jit
 # aot build
 # AK 13/07/2017
 # - npm run e2e:ci

@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap';
 import { PORTAL_API_URL } from '../in-app-config';
 import { GeoCitation, GeoContact, GeoDistribution, GeoExtent, GeoMetadata, SelectEntry, ValidValues } from '.';
-import { NotificationService } from '../notifications/notification.service';
+import { NotificationService } from '../notifications';
 import { WorkbenchService } from '../workbench';
-import { CollectionsService } from '../owc';
+import { CategoriesService } from '../dashboards';
+import { CollectionsService, OwcLink } from '../owc';
 import * as moment from 'moment';
-import { Ol3MapExtent } from '../ol3-map/ol3-map.component';
-import { ProfileJs } from '../account/account.types';
-import { OwcLink } from '../owc/collections';
+import { Ol3MapExtent } from '../ol3-map';
+import { ProfileJs } from '../account';
+import { IDashboardCategory } from '../dashboards/categories';
 
 @Component({
   selector: 'app-sac-gwh-metadata',
@@ -27,7 +28,6 @@ export class MetadataEditorComponent implements OnInit {
     { title: 'Where?', active: false },
     { title: 'When?', active: false },
     { title: 'Who?', active: false },
-    { title: 'Upload files?', active: false },
     { title: 'Distribution', active: false }
 
   ];
@@ -51,6 +51,8 @@ export class MetadataEditorComponent implements OnInit {
     smartCategory: []
   };
 
+  sacCategories: IDashboardCategory[] = [];
+
   loading = false;
   error = '';
 
@@ -65,6 +67,7 @@ export class MetadataEditorComponent implements OnInit {
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
                private notificationService: NotificationService,
                private collectionsService: CollectionsService,
+               private categoriesService: CategoriesService,
                private workbenchService: WorkbenchService,
                private router: Router ) {
 
@@ -87,6 +90,17 @@ export class MetadataEditorComponent implements OnInit {
   ngOnInit() {
     const uuid = this.collectionsService.getNewUuid();
     console.log(uuid);
+
+    this.categoriesService.getAllCategories()
+      .subscribe(
+        result => {
+          result.forEach(( catObj: IDashboardCategory ) => {
+            this.sacCategories.push(catObj);
+          });
+        },
+        error => {
+          this.notificationService.addErrorResultNotification(error);
+        });
 
     this.metadata = <GeoMetadata>{
       'fileIdentifier': uuid,
@@ -187,6 +201,21 @@ export class MetadataEditorComponent implements OnInit {
   checkboxClicked( index: number ) {
     console.log(this.validValues.smartCategory);
     this.validValues.smartCategory[ index ].selected = !this.validValues.smartCategory[ index ].selected;
+  }
+
+  sacCategoriesCheckboxClicked( event: any, indexParent: number, indexChild: number ) {
+    let active = event.target.checked;
+    let values = event.target.defaultValue;
+    let selectDelectSacKeywords: string[] = this.sacCategories[indexParent].children[indexChild].keyword_content;
+    console.log(active);
+    console.log(values);
+    if (active) {
+      selectDelectSacKeywords.forEach(( keyword: string ) => {
+        this.metadata.smartCategory.push(keyword);
+      });
+    } else {
+      console.log('remove');
+    }
   }
 
   public changeTypeaheadLoading( e: boolean ): void {
