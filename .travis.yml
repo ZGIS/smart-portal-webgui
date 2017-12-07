@@ -56,14 +56,9 @@ script:
 - npm test -- --ci
 - cp -r coverage _coverage || true
 # jit build
-# - npm run e2e:ci:jit
-# AK 05/12/2017
-# - npm run cypress:ci:jit
+- npm run e2e:ci:jit
 # aot build
-# AK 13/07/2017
-# - npm run e2e:ci
-# AK 05/12/2017
-- npm run cypress:ci
+- npm run e2e:ci
 # shpinx docs build
 - sphinx-build --version
 - sphinx-build -b html src/docs/source sphinx-build
