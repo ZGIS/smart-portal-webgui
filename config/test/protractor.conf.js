@@ -1,3 +1,4 @@
+// only as reference, keep for a while AK 07/12/2017
 // FIRST TIME ONLY- run:
 //   ./node_modules/.bin/webdriver-manager update
 //
