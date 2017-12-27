@@ -42,7 +42,7 @@ export class RegisterComponent {
 
   onSubmit() {
     this.loading = true;
-    console.log(this.model);
+    // console.log(this.model);
 
     const regProfile: RegisterJs = {
       email: this.model.email,
@@ -95,7 +95,7 @@ export class RegisterComponent {
     this.recaptchaValid = true;
     this.accountService.testReCaptcha(captchaChallenge).subscribe(
       result => {
-        console.log(result);
+        // console.log(result);
         // TODO SR this should never be false
         if (result === true) {
           this.recaptchaValid = true;

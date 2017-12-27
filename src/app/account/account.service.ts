@@ -56,10 +56,10 @@ export class AccountService {
       // logged in (maybe OnInit and not in constructor?)
       this.token = currentUser.token;
       if (currentUser.token === cookieToken) {
-        console.log('Trying to restore user from tokens...');
+        // console.log('Trying to restore user from tokens...');
 
         let profileUri = this.portalApiUrl + '/users/self';
-        console.log('token: ' + this.token);
+        // console.log('token: ' + this.token);
         let headers = new Headers({
           // 'Authorization': 'Bearer ' + this.token,
           'X-XSRF-TOKEN': this.token
@@ -70,11 +70,11 @@ export class AccountService {
           .map(
             ( response: Response ) => {
               // if (response.status === 200) {
-              console.log('succesfully verified current session');
+              // console.log('succesfully verified current session');
               let userProfileJson = response.json();
               if (<ProfileJs>userProfileJson) {
                 const userProfile: ProfileJs = userProfileJson;
-                console.log(userProfile);
+                // console.log(userProfile);
                 localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
               }
               this.loggedInState.next(true);
@@ -108,7 +108,7 @@ export class AccountService {
   getProfile(): Observable<ProfileJs> {
     // add authorization header with jwt token
     let profileUri = this.portalApiUrl + '/users/self';
-    console.log('token: ' + this.token);
+    // console.log('token: ' + this.token);
     let headers = new Headers({
       // 'Authorization': 'Bearer ' + this.token,
       'X-XSRF-TOKEN': this.token
@@ -122,7 +122,7 @@ export class AccountService {
           let userProfileJson = response.json();
           if (<ProfileJs>userProfileJson) {
             const userProfile: ProfileJs = userProfileJson;
-            console.log(userProfile);
+            // console.log(userProfile);
             this.loggedInState.next(true);
             localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
           }
@@ -211,7 +211,7 @@ export class AccountService {
         if (token) {
           // set token property
           this.token = token;
-          console.log('login received token: ' + token);
+          // console.log('login received token: ' + token);
           this.loggedInState.next(true);
 
           // store accountSubject and xsrf token in local storage to keep user logged in between page
@@ -222,7 +222,7 @@ export class AccountService {
           let userProfileJson = response.json().userprofile;
           if (<ProfileJs>userProfileJson) {
             const userProfile: ProfileJs = userProfileJson;
-            console.log(userProfile);
+            // console.log(userProfile);
             localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
           }
           // return true to indicate successful login
@@ -253,7 +253,7 @@ export class AccountService {
         let userProfileJson = response.json() && response.json().userprofile;
         if (<ProfileJs>userProfileJson) {
           const userProfile: ProfileJs = userProfileJson;
-          console.log(userProfile);
+          // console.log(userProfile);
           localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
         }
         return true;
@@ -458,7 +458,7 @@ export class AccountService {
    * @returns {Observable<R>}
    */
   gconnectHandle( gAuthCredential: GAuthCredentials ) {
-    console.log(gAuthCredential.accesstype);
+    // console.log(gAuthCredential.accesstype);
     if (gAuthCredential.accesstype === 'REGISTER') {
       // return this.gconnectHandleRegistration(gAuthCredential);
       return this.gconnectHandleLogin(gAuthCredential);
@@ -477,7 +477,7 @@ export class AccountService {
     let data = JSON.stringify(gAuthCredential);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers, withCredentials: true});
-    console.log(data);
+    // console.log(data);
 
     return this.http.post(gconnectPortalUri, data, options)
       .map(( response: Response ) => {
@@ -486,7 +486,7 @@ export class AccountService {
         if (token) {
           // set token property
           this.token = token;
-          console.log('login received token: ' + token);
+          // console.log('login received token: ' + token);
           this.loggedInState.next(true);
 
           // store accountSubject and xsrf token in local storage to keep user logged in between page refreshes
@@ -496,7 +496,7 @@ export class AccountService {
           let userProfileJson = response.json().userprofile;
           if (<ProfileJs>userProfileJson) {
             const userProfile: ProfileJs = userProfileJson;
-            console.log(userProfile);
+            // console.log(userProfile);
             localStorage.setItem('currentUserProfile', JSON.stringify(userProfile));
           }
           // return true to indicate successful login

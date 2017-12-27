@@ -30,6 +30,7 @@ export interface IGeoFeatureProperties {
   license?: string;
   lineageStmt?: string;
   linkage: ILinkageType[];
+  hierarchyLevel?: string;
   origin: string;
   originUrl?: string;
   searchScore?: number;

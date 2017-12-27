@@ -36,7 +36,7 @@ export class AdminService {
     // add authorization header with jwt token
     this.token = this.cookieService.get('XSRF-TOKEN');
     let adminUri = this.portalApiUrl + '/admin/ami';
-    console.log('token: ' + this.token);
+    // console.log('token: ' + this.token);
     let headers = new Headers({
       // 'Authorization': 'Bearer ' + this.token,
       'X-XSRF-TOKEN': this.token
@@ -72,7 +72,7 @@ export class AdminService {
         ( response: Response ) => {
           let datajson = response.json() && response.json().users;
           if (<ProfileJs[]>datajson) {
-            console.log(response.json());
+            // console.log(response.json());
           }
           return datajson;
         }
@@ -97,7 +97,7 @@ export class AdminService {
       .map(
         ( response: Response ) => {
           let datajson = response.json();
-          console.log(response.json());
+          // console.log(response.json());
           return datajson;
         }
       )
@@ -120,7 +120,7 @@ export class AdminService {
         ( response: Response ) => {
           let datajson = response.json() && response.json().sessions;
           if (<UserSession[]>datajson) {
-            console.log(response.json());
+            // console.log(response.json());
           }
           return datajson;
         }
@@ -149,7 +149,7 @@ export class AdminService {
       .map(
         ( response: Response ) => {
           let datajson = response.json();
-          console.log(response.json());
+          // console.log(response.json());
           return datajson;
         }
       )
@@ -176,7 +176,7 @@ export class AdminService {
         ( response: Response ) => {
           let datajson = response.json() && response.json().userfiles;
           if (<UserFile[]>datajson) {
-            console.log(response.json());
+            // console.log(response.json());
           }
           return datajson;
         }
@@ -200,7 +200,7 @@ export class AdminService {
         ( response: Response ) => {
           let datajson = response.json() && response.json().metarecords;
           if (<UserMetaRecord[]>datajson) {
-            console.log(response.json());
+            // console.log(response.json());
           }
           return datajson;
         }
@@ -224,7 +224,7 @@ export class AdminService {
         ( response: Response ) => {
           let datajson = response.json() && response.json().loglist;
           if (<UserLinkLogging[]>datajson) {
-            console.log(response.json());
+            // console.log(response.json());
           }
           return datajson;
         }
@@ -254,7 +254,7 @@ export class AdminService {
         ( response: Response ) => {
           let datajson = response.json() && response.json().usergroups;
           if (<UserGroup[]>datajson) {
-            console.log(response.json());
+            // console.log(response.json());
           }
           return datajson;
         }

@@ -45,7 +45,7 @@ export class DashboardCategoryComponent implements OnInit {
 
               catObj.children.forEach(( childObj: IDashboardCategory ) => {
 
-                let newChild = this.categoriesService.updateQueryStringforChildCategory(childObj);
+                // let newChild = this.categoriesService.updateQueryStringforChildCategory(childObj);
                 // console.log(newChild.query_string);
 
                 this.children.push(childObj);

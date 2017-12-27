@@ -36,7 +36,7 @@ export class CollectionsService {
     // add authorization header with jwt token
     let defaultCollectionsUri = this.portalApiUrl + '/collections/default';
     let token = this.accountService.token;
-    console.log('token: ' + token);
+    // console.log('token: ' + token);
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
     let options = new RequestOptions({ headers: headers, withCredentials: true });
 
@@ -46,7 +46,7 @@ export class CollectionsService {
         ( response: Response ) => {
           let userCollectionJson = response.json();
           if (<OwcContext>userCollectionJson) {
-            console.log(userCollectionJson);
+            // console.log(userCollectionJson);
           }
           return response.json();
         }
@@ -76,7 +76,7 @@ export class CollectionsService {
           let userCollectionJson: OwcContext[] = response.json().collections;
           let count = response.json().count;
           if (count === 1 && userCollectionJson.length === 1) {
-            console.log(userCollectionJson[ 0 ]);
+            // console.log(userCollectionJson[ 0 ]);
             return userCollectionJson[ 0 ];
           } else {
             throw new ReferenceError('Not found, or more than one found, or you dont have rights');
@@ -90,7 +90,7 @@ export class CollectionsService {
     // add authorization header with jwt token
     let collectionsUri = this.portalApiUrl + '/collections';
     let token = this.accountService.token;
-    console.log('token: ' + token);
+    // console.log('token: ' + token);
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
     let options = new RequestOptions({ headers: headers, withCredentials: true });
 
@@ -100,7 +100,7 @@ export class CollectionsService {
         ( response: Response ) => {
           let userCollectionJson = response.json() && response.json().collections;
           if (<OwcContext[]>userCollectionJson) {
-            console.log(response.json().count);
+            // console.log(response.json().count);
           }
           return response.json().collections;
         }
@@ -121,9 +121,9 @@ export class CollectionsService {
 
     return this.http.get(defaultCollectionFilesUri, options)
       .map(( response: Response ) => {
-        console.log('Files in DefaultCollection loaded');
+        // console.log('Files in DefaultCollection loaded');
         let datalinks = response.json().datalinks as OwcLink[];
-        console.log(datalinks);
+        // console.log(datalinks);
         if (<OwcLink[]>datalinks) {
           return datalinks.filter(( o: OwcLink ) => o.title.match(filtertoken));
         } else {
@@ -153,7 +153,7 @@ export class CollectionsService {
         ( response: Response ) => {
           let insertedCollection = response.json().document;
           if (<OwcContext>insertedCollection) {
-            console.log(insertedCollection);
+            // console.log(insertedCollection);
           }
           return insertedCollection;
         }
@@ -181,7 +181,7 @@ export class CollectionsService {
         ( response: Response ) => {
           let insertedCollection = response.json().document;
           if (<OwcContext>insertedCollection) {
-            console.log(insertedCollection);
+            // console.log(insertedCollection);
           }
           return insertedCollection;
         }
@@ -204,7 +204,7 @@ export class CollectionsService {
         ( response: Response ) => {
           let theCollection = response.json();
           if (<OwcContext>theCollection) {
-            console.log(theCollection);
+            // console.log(theCollection);
           }
           return response.json();
         }
@@ -226,7 +226,7 @@ export class CollectionsService {
   updateCollection( owcContext: OwcContext ): Observable<OwcContext> {
     let defaultCollectionsUri = this.portalApiUrl + '/collections/update';
     let token = this.accountService.token;
-    console.log('token: ' + token);
+    // console.log('token: ' + token);
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
     let options = new RequestOptions({ headers: headers, withCredentials: true });
     return this.http.post(defaultCollectionsUri, owcContext, options)
@@ -234,7 +234,7 @@ export class CollectionsService {
         ( response: Response ) => {
           let insertedCollection = response.json().document;
           if (<OwcContext>insertedCollection) {
-            console.log(insertedCollection);
+            // console.log(insertedCollection);
           }
           return insertedCollection;
         }
@@ -258,7 +258,7 @@ export class CollectionsService {
     let params: URLSearchParams = new URLSearchParams();
     params.set('id', collectionid);
     let token = this.accountService.token;
-    console.log('token: ' + token);
+    // console.log('token: ' + token);
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
     let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
     return this.http.get(defaultCollectionsUri, options)
@@ -266,7 +266,7 @@ export class CollectionsService {
         ( response: Response ) => {
           let checkedId = response.json().document;
           if (checkedId) {
-            console.log(checkedId);
+            // console.log(checkedId);
             if (checkedId === collectionid) {
               return true;
             } else {
@@ -299,7 +299,7 @@ export class CollectionsService {
     let token = this.accountService.token;
     let params: URLSearchParams = new URLSearchParams();
     params.set('collectionid', collectionid);
-    console.log('token: ' + token);
+    // console.log('token: ' + token);
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
     let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
     return this.http.post(defaultCollectionsUri, owcResource, options)
@@ -307,7 +307,7 @@ export class CollectionsService {
         ( response: Response ) => {
           let updatedCollection = response.json().document;
           if (<OwcContext>updatedCollection) {
-            console.log(updatedCollection);
+            // console.log(updatedCollection);
           }
           return <OwcContext>updatedCollection;
         }
@@ -333,7 +333,7 @@ export class CollectionsService {
     let token = this.accountService.token;
     let params: URLSearchParams = new URLSearchParams();
     params.set('collectionid', collectionid);
-    console.log('token: ' + token);
+    // console.log('token: ' + token);
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
     let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
     return this.http.post(defaultCollectionsUri, owcResource, options)
@@ -341,7 +341,7 @@ export class CollectionsService {
         ( response: Response ) => {
           let updatedCollection = response.json().document;
           if (<OwcContext>updatedCollection) {
-            console.log(updatedCollection);
+            // console.log(updatedCollection);
           }
           return <OwcContext>updatedCollection;
         }
@@ -367,7 +367,7 @@ export class CollectionsService {
     let token = this.accountService.token;
     let params: URLSearchParams = new URLSearchParams();
     params.set('collectionid', collectionid);
-    console.log('token: ' + token);
+    // console.log('token: ' + token);
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
     let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
     return this.http.post(defaultCollectionsUri, owcResource, options)
@@ -375,7 +375,7 @@ export class CollectionsService {
         ( response: Response ) => {
           let updatedCollection = response.json().document;
           if (<OwcContext>updatedCollection) {
-            console.log(updatedCollection);
+            // console.log(updatedCollection);
           }
           return response.json();
         }
@@ -401,7 +401,7 @@ export class CollectionsService {
     params.set('collectionid', collectionid);
     params.set('resourceid', resourceid);
     let token = this.accountService.token;
-    console.log('token: ' + token);
+    // console.log('token: ' + token);
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
     let options = new RequestOptions({ headers: headers, params: params, withCredentials: true });
     return this.http.get(defaultCollectionsUri, options)
@@ -409,7 +409,7 @@ export class CollectionsService {
         ( response: Response ) => {
           let updatedCollection = response.json().document;
           if (<OwcContext>updatedCollection) {
-            console.log(updatedCollection);
+            // console.log(updatedCollection);
           }
           return response.json();
         }

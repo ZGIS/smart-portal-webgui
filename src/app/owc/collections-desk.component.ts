@@ -46,7 +46,7 @@ export class CollectionsDeskComponent implements OnInit {
           this.myCollections = [];
           owcDocs.forEach(( owcDoc: OwcContext ) => {
             this.myCollections.push(owcDoc);
-            console.log(owcDoc.id);
+            // console.log(owcDoc.id);
           });
           this.notificationService.addNotification({
             id: NotificationService.DEFAULT_DISMISS,
@@ -83,7 +83,7 @@ export class CollectionsDeskComponent implements OnInit {
   createCollection( title: string, subtitle: string ): void {
     const templateUuid = this.collectionsService.getNewUuid();
     const id = 'https://portal.smart-project.info/context/user/' + templateUuid;
-    console.log('we create a new collection: ' + id);
+    // console.log('we create a new collection: ' + id);
     this.collectionsService.createNewCustomCollection()
       .subscribe(
         owcDoc => {
@@ -91,7 +91,7 @@ export class CollectionsDeskComponent implements OnInit {
           let newDoc = owcDoc;
           newDoc.properties.title = title;
           newDoc.properties.subtitle = subtitle;
-          console.log(owcDoc);
+          // console.log(owcDoc);
           this.collectionsService.updateCollection(newDoc)
             .subscribe(
               updatedDoc => {
@@ -121,7 +121,7 @@ export class CollectionsDeskComponent implements OnInit {
    */
   testImportJsonFile( event: Event ): void {
     let files = event.target['files'];
-    console.log(files);
+    // console.log(files);
     try {
       let reader = new FileReader();
       reader.readAsText(files[0]);
@@ -155,7 +155,7 @@ export class CollectionsDeskComponent implements OnInit {
    * @param owcdoc
    */
   importCollectionFromFile( owcdoc: OwcContext ): void {
-    console.log(owcdoc);
+    // console.log(owcdoc);
     this.collectionsService.insertCopyOfCollection(owcdoc)
       .subscribe(
         insertedDoc => {
@@ -193,7 +193,7 @@ export class CollectionsDeskComponent implements OnInit {
         owcDocs => {
           owcDocs.forEach(( owcDoc: OwcContext ) => {
             this.myCollections.push(owcDoc);
-            console.log(owcDoc.id);
+            // console.log(owcDoc.id);
           });
         },
         error => {

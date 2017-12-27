@@ -15,6 +15,7 @@ import { WorkbenchService } from './workbench/workbench.service';
 import { NotificationComponent } from './notifications/notification.component';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
 import { UsplashImageCreditComponent } from './navigation/usplash-credit-btn.component';
+import { ChildCategoriesResolve } from './_guards';
 
 
 /**
@@ -37,6 +38,7 @@ describe('App Component', () => {
         GlossaryService,
         WorkbenchService,
         CategoriesService,
+        ChildCategoriesResolve,
         API_URL_PROVIDERS,
         APP_VERSION_PROVIDERS,
         MockBackend,

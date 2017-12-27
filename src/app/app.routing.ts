@@ -16,14 +16,15 @@ import {
 } from './account';
 import {
   MetadataEditorComponent,
-  BasicFileUploadComponent } from './workbench';
-import { AdminGuard, AuthGuard, RegisteredGuard } from './_guards';
+  BasicFileUploadComponent
+} from './workbench';
 import { NotFoundComponent } from './navigation';
 import { ResearchProgrammesComponent } from './research-pg';
 import { GlossaryComponent } from './glossary-edu';
 import { AdminComponent } from './admin';
 import { ContextRetrieveComponent, FileLoaderComponent } from './context';
 import { TimeseriesComponent } from './timeseries';
+import { AdminGuard, AuthGuard, RegisteredGuard } from './_guards';
 
 const appRoutes: Routes = [
   {
@@ -74,12 +75,12 @@ const appRoutes: Routes = [
   {
     path: 'account',
     component: AccountComponent,
-    canActivate: [AuthGuard]
+    canActivate: [ AuthGuard ]
   },
   {
     path: 'x-admin',
     component: AdminComponent,
-    canActivate: [AdminGuard]
+    canActivate: [ AdminGuard ]
   },
 
   // to access content directly
@@ -96,17 +97,17 @@ const appRoutes: Routes = [
   {
     path: 'workbench/add-data',
     component: MetadataEditorComponent,
-    canActivate: [AuthGuard, RegisteredGuard]
+    canActivate: [ AuthGuard, RegisteredGuard ]
   },
   {
     path: 'workbench/upload-file',
     component: BasicFileUploadComponent,
-    canActivate: [AuthGuard, RegisteredGuard]
+    canActivate: [ AuthGuard, RegisteredGuard ]
   },
   {
     path: 'workbench/my-data',
     component: CollectionsDeskComponent,
-    canActivate: [AuthGuard, RegisteredGuard]
+    canActivate: [ AuthGuard, RegisteredGuard ]
   },
   {
     path: 'timeseries',
@@ -114,8 +115,8 @@ const appRoutes: Routes = [
   },
 
 
-  {path: '404', component: NotFoundComponent},
-  {path: '**', redirectTo: '/404'}
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '/404' }
   // otherwise redirect to home
   // { path: '**', redirectTo: '/dashboard' }
 ];

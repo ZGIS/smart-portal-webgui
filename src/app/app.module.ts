@@ -81,7 +81,7 @@ import {
 } from './owc';
 import { X3dViewComponent } from './x3d-view';
 import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
-import { AdminGuard, AuthGuard, RegisteredGuard } from './_guards';
+import { AdminGuard, AuthGuard, ChildCategoriesResolve, RegisteredGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ContextRetrieveComponent, FileLoaderComponent, LicensedlinkComponent } from './context';
@@ -173,6 +173,7 @@ import { UsplashImageCreditComponent } from './navigation';
     AdminService,
     AuthGuard,
     RegisteredGuard,
+    ChildCategoriesResolve,
     AdminGuard,
     NotificationService,
     GlossaryService,

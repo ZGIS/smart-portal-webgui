@@ -91,8 +91,8 @@ export class TimeseriesConfiguratorModalComponent {
       this.timeseries.toDate = ts.toDate;
     }
 
-    console.log(this._fromDate);
-    console.log(this._toDate);
+    // console.log(this._fromDate);
+    // console.log(this._toDate);
     this._fromDate = this.timeseries.fromDate;
     this._toDate = this.timeseries.toDate;
     this.buildForm();
@@ -119,15 +119,15 @@ export class TimeseriesConfiguratorModalComponent {
     let sosUrl = this.configurationForm.get('sosUrl');
     let observable;
 
-    console.log(sosUrl);
+    // console.log(sosUrl);
     if (isNullOrUndefined(sosUrl.value) ||
       sosUrl.value.trim() === '') {
       observable = Observable.of(new SosCapabilities());
     } else {
       observable = this.http.get(`${this.portalApiUrl}/sos/getCapabilities?sosUrl=${sosUrl.value}`)
         .map((response) => {
-          console.log(response.toString());
-          console.log(response.json());
+          // console.log(response.toString());
+          // console.log(response.json());
           return <SosCapabilities>(response.json() || {type: '', message: ''});
         })
         .catch((errorResponse: Response) => this.handleError(errorResponse));
@@ -138,7 +138,7 @@ export class TimeseriesConfiguratorModalComponent {
         this.loading = false;
         this.sosCapabilities = response;
 
-        console.log(this.sosCapabilities);
+        // console.log(this.sosCapabilities);
         // again... REALLY?! ARE YOU FUCKING KIDDING ME??!?!?!
         // see https://stackoverflow.com/questions/39681674/use-disable-with-model-driven-form
         if (this.sosCapabilities.featuresOfInterest && this.sosCapabilities.featuresOfInterest.length > 0) {

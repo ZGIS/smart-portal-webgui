@@ -69,7 +69,7 @@ export class TimeseriesComponent implements OnInit {
    * OnInit is called on component initialization
    */
   ngOnInit() {
-    console.log('ngOnInit TimeseriesComponent');
+    // console.log('ngOnInit TimeseriesComponent');
 
     if (isNullOrUndefined(this.timeseries)) {
       this.timeseries = [];
@@ -105,7 +105,7 @@ export class TimeseriesComponent implements OnInit {
                Plotly.newPlot('plotly', this.timeseries.map((ts)=> ts.data), this.layout);
                */
             } else {
-              console.log('updating timeseries');
+              // console.log('updating timeseries');
               this.timeseries[index] = timeseries;
               Plotly.purge('plotly');
               Plotly.newPlot('plotly', this.timeseries.map((t) => t.data), this.layout);
@@ -130,7 +130,7 @@ export class TimeseriesComponent implements OnInit {
    * @param index
    */
   deleteTimeseries(index: number) {
-    console.log(`deleting ${index}`);
+    // console.log(`deleting ${index}`);
     this.timeseries.splice(index, 1);
     Plotly.deleteTraces('plotly', index);
   }
@@ -144,7 +144,7 @@ export class TimeseriesComponent implements OnInit {
       let requestTs = this.timeseries[index];
       requestTs.responseFormat = responseFormat;
       requestTs.data.data = {};
-      console.log(`exporting ${JSON.stringify(requestTs)}`);
+      // console.log(`exporting ${JSON.stringify(requestTs)}`);
       this.exportTimeseriesData(requestTs).subscribe(
         response => {
           const contentType: string = response.headers.get('content-type');
@@ -180,7 +180,7 @@ export class TimeseriesComponent implements OnInit {
       .map((v) => 'y' + v.substring(5))[0];
 
     if (!yAxisName) {
-      console.log(`Creating new axis for ${uom}`);
+      // console.log(`Creating new axis for ${uom}`);
       // just in case there is no yaxis so far we need the key "yaxis" without any number.
       let yAxisNumber = yAxisKeys.length + 1;
 
@@ -197,8 +197,8 @@ export class TimeseriesComponent implements OnInit {
 
       yAxisName = 'y' + ((yAxisNumber > 1) ? yAxisNumber : '');
       this.layout['yaxis' + ((yAxisNumber > 1) ? yAxisNumber : '')] = Object.assign(yAxisBase, yAxisExtras);
-      console.log(yAxisName);
-      console.log(this.layout);
+      // console.log(yAxisName);
+      // console.log(this.layout);
     }
     return yAxisName;
   }
@@ -213,8 +213,8 @@ export class TimeseriesComponent implements OnInit {
     // we get that from sos observations!
     let tsObservable = this.http.post(`${this.portalApiUrl}/sos/timeseries`, ts)
       .map((response) => {
-        console.log(response.toString());
-        console.log(response.json());
+        // console.log(response.toString());
+        // console.log(response.json());
         ts = <Timeseries>response.json();
         ts.fromDate = moment(ts.fromDate).toDate();
         ts.toDate = moment(ts.toDate).toDate();
@@ -229,7 +229,7 @@ export class TimeseriesComponent implements OnInit {
     // we get that from sos observations!
     let tsObservable = this.http.post(`${this.portalApiUrl}/sos/timeseries/export`, ts, { responseType: ResponseContentType.Blob })
       .map((response) => {
-        console.log(response.headers.toJSON());
+        // console.log(response.headers.toJSON());
         // return new Blob([response.blob()], { type: 'application/octet-stream' });
         return response;
       })

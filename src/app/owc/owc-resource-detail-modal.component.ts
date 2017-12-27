@@ -36,7 +36,7 @@ export class OwcResourceDetailModalComponent {
   }
 
   reloadResource(): void {
-    console.log('we reload this resource entry');
+    // console.log('we reload this resource entry');
     this.notificationService.addNotification({
       id: NotificationService.DEFAULT_DISMISS,
       type: 'info',
@@ -45,7 +45,7 @@ export class OwcResourceDetailModalComponent {
   }
 
   editProperties(): void {
-    console.log('we edit the properties');
+    // console.log('we edit the properties');
     this.notificationService.addNotification({
       id: NotificationService.DEFAULT_DISMISS,
       type: 'info',
@@ -54,16 +54,16 @@ export class OwcResourceDetailModalComponent {
   }
 
   deleteResource(): void {
-    console.log('we delete this resource entry');
+    // console.log('we delete this resource entry');
     this.collectionsService.deleteResourceFromCollection(this.collectionid, this.owcResource.id).subscribe(
       deleted => {
-        console.log('deleted ' + deleted);
+        // console.log('deleted ' + deleted);
         this.notificationService.addNotification({
           id: NotificationService.DEFAULT_DISMISS,
           type: 'info',
           message: `This resource entry has been deleted. Please reload your collections to reflect the update!`
         });
-        console.log('We need to reload the collection!');
+        // console.log('We need to reload the collection!');
         this.hideOwcResourceModal();
       },
       error => {

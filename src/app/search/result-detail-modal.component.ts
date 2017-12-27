@@ -31,7 +31,7 @@ export class ResultDetailModalComponent {
           this.myCollections = [];
           owcDocs.forEach(( owcDoc: OwcContext ) => {
             this.myCollections.push(owcDoc);
-            console.log(owcDoc.id);
+            // console.log(owcDoc.id);
           });
         },
         error => {
@@ -77,7 +77,7 @@ export class ResultDetailModalComponent {
             message: `Document was successfully added to ${results.properties.title}.`,
             type: NotificationService.NOTIFICATION_TYPE_SUCCESS
           });
-          console.log('We need to reload the collection!');
+          // console.log('We need to reload the collection!');
         }, ( error: IErrorResult ) => {
           this.notificationService.addErrorResultNotification(error);
         });

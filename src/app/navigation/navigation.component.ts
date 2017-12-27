@@ -47,7 +47,7 @@ export class NavigationComponent implements OnInit {
 
     if (<ProfileJs>currentUserProfile) {
       this.userProfile = currentUserProfile;
-      console.log(this.userProfile);
+      // console.log(this.userProfile);
     } else {
       this.userProfile = this.accountService.guestProfile;
     }

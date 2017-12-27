@@ -137,7 +137,7 @@ export class AdminComponent implements OnInit {
         resultlist => {
           resultlist.forEach(( elem: ProfileJs ) => {
             this.userlist.push(elem);
-            console.log(elem.email);
+            // console.log(elem.email);
           });
         },
         error => {
@@ -151,7 +151,7 @@ export class AdminComponent implements OnInit {
         resultlist => {
           resultlist.forEach(( elem: UserGroup ) => {
             this.userGroups.push(elem);
-            console.log(elem.name);
+            // console.log(elem.name);
           });
         },
         error => {
@@ -165,7 +165,7 @@ export class AdminComponent implements OnInit {
         resultlist => {
           resultlist.forEach(( elem: UserSession ) => {
             this.usersessions.push(elem);
-            console.log(elem.email);
+            // console.log(elem.email);
           });
         },
         error => {
@@ -179,7 +179,7 @@ export class AdminComponent implements OnInit {
         resultlist => {
           resultlist.forEach(( elem: UserLinkLogging ) => {
             this.userLinkLogs.push(elem);
-            console.log(elem.referer);
+            // console.log(elem.referer);
           });
         },
         error => {
@@ -193,7 +193,7 @@ export class AdminComponent implements OnInit {
         resultlist => {
           resultlist.forEach(( elem: UserFile ) => {
             this.userFiles.push(elem);
-            console.log(elem.originalfilename);
+            // console.log(elem.originalfilename);
           });
         },
         error => {
@@ -207,7 +207,7 @@ export class AdminComponent implements OnInit {
         resultlist => {
           resultlist.forEach(( elem: UserMetaRecord ) => {
             this.userMetaRecords.push(elem);
-            console.log(elem.originaluuid);
+            // console.log(elem.originaluuid);
           });
         },
         error => {
@@ -293,7 +293,7 @@ export class AdminComponent implements OnInit {
                 this.userlist = [];
                 resultlist.forEach(( elem: ProfileJs ) => {
                   this.userlist.push(elem);
-                  console.log(elem.email);
+                  // console.log(elem.email);
                 });
               },
               error => {
@@ -323,7 +323,7 @@ export class AdminComponent implements OnInit {
                 this.usersessions = [];
                 resultlist.forEach(( elem: UserSession ) => {
                   this.usersessions.push(elem);
-                  console.log(elem.email);
+                  // console.log(elem.email);
                 });
               },
               error => {

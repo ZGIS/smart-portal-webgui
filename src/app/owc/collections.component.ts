@@ -23,7 +23,7 @@ export class CollectionsComponent {
   }
 
   editProperties(): void {
-    console.log('we edit the properties');
+    // console.log('we edit the properties');
     this.reloadOnChangedCollection.emit(true);
     this.notificationService.addNotification({
       id: NotificationService.DEFAULT_DISMISS,
@@ -39,7 +39,7 @@ export class CollectionsComponent {
     console.log('we delete the Collection');
     this.collectionsService.deleteCollectionById(this.myCollection.id).subscribe(
       deleted => {
-        console.log('deleted ' + deleted);
+        // console.log('deleted ' + deleted);
         this.notificationService.addNotification({
           id: NotificationService.DEFAULT_DISMISS,
           type: 'info',

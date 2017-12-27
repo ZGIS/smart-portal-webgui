@@ -62,12 +62,12 @@ export class GApiAuthComponent implements AfterViewInit {
         googleUser.grantOfflineAccess();
         let profile = googleUser.getBasicProfile();
         let token = googleUser.getAuthResponse().id_token;
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
+        // console.log('ID: ' + profile.getId());
+        // console.log('Name: ' + profile.getName());
+        // console.log('Image URL: ' + profile.getImageUrl());
+        // console.log('Email: ' + profile.getEmail());
         // YOUR CODE HERE
-        console.log('attachClickHandler signinResponse');
+        // console.log('attachClickHandler signinResponse');
         that.signinResponse.emit(token);
 
       }, function (error: any) {
@@ -82,7 +82,7 @@ export class GApiAuthComponent implements AfterViewInit {
         .then(function (authResult: any) {
           if (authResult.code) {
             let token: string = authResult.code;
-            console.log('attachSigninOfflineAccess: ' + token);
+            // console.log('attachSigninOfflineAccess: ' + token);
             that.signinResponse.emit(token);
           } else {
             console.log('there was an error with google sign in at signInCallback');
@@ -97,7 +97,7 @@ export class GApiAuthComponent implements AfterViewInit {
       .then(function (authResult: any) {
         if (authResult.code) {
           let token: string = authResult.code;
-          console.log('attachSigninOfflineAccess: ' + token);
+          // console.log('attachSigninOfflineAccess: ' + token);
           that.signinResponse.emit(token);
         } else {
           console.log('there was an error with google sign in at signInCallback');

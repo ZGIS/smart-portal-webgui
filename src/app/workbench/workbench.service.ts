@@ -29,8 +29,8 @@ export class WorkbenchService {
 
     return this.http.post(this.portalApiUrl + '/csw/insert', { metadata: metadata }, options)
       .map(( response ) => {
-        console.log(response.toString());
-        console.log(response.json());
+        // console.log(response.toString());
+        // console.log(response.json());
         return <CswTransactionResponse>(response.json() || { type: '', message: '' });
       })
       .catch(( errorResponse: Response ) => this.handleError(errorResponse));
@@ -50,8 +50,8 @@ export class WorkbenchService {
 
     return this.http.post(this.portalApiUrl + '/csw/update', { metadata: metadata }, options)
       .map(( response ) => {
-        console.log(response.toString());
-        console.log(response.json());
+        // console.log(response.toString());
+        // console.log(response.json());
         return <CswTransactionResponse>(response.json() || { type: '', message: '' });
       })
       .catch(( errorResponse: Response ) => this.handleError(errorResponse));
@@ -71,8 +71,8 @@ export class WorkbenchService {
 
     return this.http.get(this.portalApiUrl + '/csw/delete/' + originaluuid, options)
       .map(( response ) => {
-        console.log(response.toString());
-        console.log(response.json());
+        // console.log(response.toString());
+        // console.log(response.json());
         return <CswTransactionResponse>(response.json() || { type: '', message: '' });
       })
       .catch(( errorResponse: Response ) => this.handleError(errorResponse));
@@ -91,11 +91,11 @@ export class WorkbenchService {
 
     return this.http.get(this.portalApiUrl + '/csw/usermetarecords', options)
       .map(( response ) => {
-        console.log(response.toString());
-        console.log(response.json());
+        // console.log(response.toString());
+        // console.log(response.json());
         let datajson = response.json() && response.json().metarecords;
         if (<UserMetaRecord[]>datajson) {
-          console.log(response.json());
+          // console.log(response.json());
         }
         return datajson;
       })
@@ -114,7 +114,7 @@ export class WorkbenchService {
       .map(( response: Response ) => {
         console.log(`response for ${topic}`);
         if (<ValueEntry>response.json()) {
-          console.log(response.json());
+          // console.log(response.json());
         }
         let tmpValidValues = <ValueEntry>response.json();
         if (!tmpValidValues.descriptions || tmpValidValues.descriptions.length === 0) {
@@ -142,7 +142,7 @@ export class WorkbenchService {
     let options = new RequestOptions({ withCredentials: true });
     let tsObservable = this.http.get(`${this.portalApiUrl}/files/getDownloadLink/${uuid}`, options)
       .map(( response ) => {
-        console.log(response.json());
+        // console.log(response.json());
         return <UserFileResponse>response.json();
       })
       .catch(( errorResponse: Response ) => this.handleError(errorResponse));
@@ -160,7 +160,7 @@ export class WorkbenchService {
     let options = new RequestOptions({ withCredentials: true, responseType: ResponseContentType.Blob });
     return this.http.get(userFile.linkreference, options)
       .map(( response ) => {
-        console.log(response.headers.toJSON());
+        // console.log(response.headers.toJSON());
         // return new Blob([response.blob()], { type: 'application/octet-stream' });
         return response;
       })
@@ -180,10 +180,10 @@ export class WorkbenchService {
     let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
     let tsObservable = this.http.get(`${this.portalApiUrl}/files/getRemoteFileInfo/${uuid}`, options)
       .map(( response ) => {
-        console.log(response.json());
+        // console.log(response.json());
         let datajson = response.json() && response.json().blobinfo;
         if (<LocalBlobInfo>datajson) {
-          console.log(JSON.stringify(datajson));
+          // console.log(JSON.stringify(datajson));
         }
         return datajson;
       })
@@ -205,7 +205,7 @@ export class WorkbenchService {
     let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
     let tsObservable = this.http.get(`${this.portalApiUrl}/files/deleteRemoteFile/${uuid}`, options)
       .map(( response ) => {
-        console.log(response.json());
+        // console.log(response.json());
         return <UserFileResponse>response.json();
       })
       .catch(( errorResponse: Response ) => this.handleError(errorResponse));
@@ -226,11 +226,11 @@ export class WorkbenchService {
 
     return this.http.get(this.portalApiUrl + '/files/userfiles', options)
       .map(( response ) => {
-        console.log(response.toString());
-        console.log(response.json());
+        // console.log(response.toString());
+        // console.log(response.json());
         let datajson = response.json() && response.json().userfiles;
         if (<UserFile[]>datajson) {
-          console.log(response.json());
+          // console.log(response.json());
         }
         return datajson;
       })

@@ -47,7 +47,7 @@ export class ShareButtonComponent implements AfterViewInit, OnInit {
         if (!ready) {
           return;
         }
-        console.log('share script loaded');
+        // console.log('share script loaded');
       });
   }
 }

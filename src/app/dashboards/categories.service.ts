@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { IErrorResult } from '../search';
 import { IDashboardCategory } from './categories';
+import { isNullOrUndefined } from 'util';
 
 const categoriesSparqlGraph = 'https://vocab.smart-project.info/spq-categories/get';
 
