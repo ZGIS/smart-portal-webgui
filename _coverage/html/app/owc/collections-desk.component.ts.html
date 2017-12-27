@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">17.39% </span>
+        <span class="strong">18.6% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>16/92</span>
+        <span class='fraction'>16/86</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/27</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.47% </span>
+        <span class="strong">17.72% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>14/85</span>
+        <span class='fraction'>14/79</span>
       </div>
     </div>
   </div>
@@ -306,7 +306,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -343,7 +343,7 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -351,7 +351,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -381,7 +381,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -415,7 +415,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -453,7 +453,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -521,7 +521,7 @@ export class CollectionsDeskComponent implements OnInit {
 <span class="cstat-no" title="statement not covered" >          this.myCollections = [];</span>
 <span class="cstat-no" title="statement not covered" >          owcDocs.forEach(( owcDoc: OwcContext<span class="fstat-no" title="function not covered" > ) =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" >            this.myCollections.push(owcDoc);</span>
-<span class="cstat-no" title="statement not covered" >            console.log(owcDoc.id);</span>
+            // console.log(owcDoc.id);
           });
 <span class="cstat-no" title="statement not covered" >          this.notificationService.addNotification({</span>
             id: NotificationService.DEFAULT_DISMISS,
@@ -558,7 +558,7 @@ export class CollectionsDeskComponent implements OnInit {
 <span class="cstat-no" title="statement not covered" >  createCollection( title: string, subtitle: string<span class="fstat-no" title="function not covered" > ): void {</span></span>
     const templateUuid = <span class="cstat-no" title="statement not covered" >this.collectionsService.getNewUuid();</span>
     const id = <span class="cstat-no" title="statement not covered" >'https://portal.smart-project.info/context/user/' + templateUuid;</span>
-<span class="cstat-no" title="statement not covered" >    console.log('we create a new collection: ' + id);</span>
+    // console.log('we create a new collection: ' + id);
 <span class="cstat-no" title="statement not covered" >    this.collectionsService.createNewCustomCollection()</span>
       .subscribe(
         owcDoc<span class="fstat-no" title="function not covered" > =&gt; {</span>
@@ -566,7 +566,7 @@ export class CollectionsDeskComponent implements OnInit {
           let newDoc = <span class="cstat-no" title="statement not covered" >owcDoc;</span>
 <span class="cstat-no" title="statement not covered" >          newDoc.properties.title = title;</span>
 <span class="cstat-no" title="statement not covered" >          newDoc.properties.subtitle = subtitle;</span>
-<span class="cstat-no" title="statement not covered" >          console.log(owcDoc);</span>
+          // console.log(owcDoc);
 <span class="cstat-no" title="statement not covered" >          this.collectionsService.updateCollection(newDoc)</span>
             .subscribe(
               updatedDoc<span class="fstat-no" title="function not covered" > =&gt; {</span>
@@ -596,7 +596,7 @@ export class CollectionsDeskComponent implements OnInit {
    */
 <span class="cstat-no" title="statement not covered" >  testImportJsonFile( event: Event<span class="fstat-no" title="function not covered" > ): void {</span></span>
     let files = <span class="cstat-no" title="statement not covered" >event.target['files'];</span>
-<span class="cstat-no" title="statement not covered" >    console.log(files);</span>
+    // console.log(files);
 <span class="cstat-no" title="statement not covered" >    try {</span>
       let reader = <span class="cstat-no" title="statement not covered" >new FileReader();</span>
 <span class="cstat-no" title="statement not covered" >      reader.readAsText(files[0]);</span>
@@ -630,7 +630,7 @@ export class CollectionsDeskComponent implements OnInit {
    * @param owcdoc
    */
 <span class="cstat-no" title="statement not covered" >  importCollectionFromFile( owcdoc: OwcContext<span class="fstat-no" title="function not covered" > ): void {</span></span>
-<span class="cstat-no" title="statement not covered" >    console.log(owcdoc);</span>
+    // console.log(owcdoc);
 <span class="cstat-no" title="statement not covered" >    this.collectionsService.insertCopyOfCollection(owcdoc)</span>
       .subscribe(
         insertedDoc<span class="fstat-no" title="function not covered" > =&gt; {</span>
@@ -668,7 +668,7 @@ export class CollectionsDeskComponent implements OnInit {
         owcDocs<span class="fstat-no" title="function not covered" > =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >          owcDocs.forEach(( owcDoc: OwcContext<span class="fstat-no" title="function not covered" > ) =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" >            this.myCollections.push(owcDoc);</span>
-<span class="cstat-no" title="statement not covered" >            console.log(owcDoc.id);</span>
+            // console.log(owcDoc.id);
           });
         },
         error<span class="fstat-no" title="function not covered" > =&gt; {</span>
@@ -694,7 +694,7 @@ export class CollectionsDeskComponent implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 06 2017 16:31:25 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 27 2017 19:40:40 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

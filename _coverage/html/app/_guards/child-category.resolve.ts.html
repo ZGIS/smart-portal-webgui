@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for app/_guards/admin.guard.ts</title>
+    <title>Code coverage report for app/_guards/child-category.resolve.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">app/_guards/</a> admin.guard.ts
+      <a href="../../index.html">all files</a> / <a href="index.html">app/_guards/</a> child-category.resolve.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">45.45% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/22</span>
+        <span class='fraction'>12/24</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/5</span>
+        <span class='fraction'>1/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.11% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/19</span>
+        <span class='fraction'>10/20</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -78,74 +78,77 @@
 33
 34
 35
-36</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+36
+37</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import {
+  Router,
+  Resolve,
+  ActivatedRouteSnapshot, RouterStateSnapshot
+} from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-import { NotificationService } from '../notifications';
-import { ProfileJs } from '../account/account.types';
-import { AdminService } from '../admin';
-&nbsp;
+import 'rxjs/add/operator/first';
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { CategoriesService }  from '../dashboards';
+import { IDashboardCategory } from '../dashboards';
 &nbsp;
 @Injectable()
-export class AdminGuard implements CanActivate {
+export class ChildCategoriesResolve implements Resolve&lt;any&gt; {
 &nbsp;
-  constructor( private <span class="cstat-no" title="statement not covered" >router: Router,</span>
-               private <span class="cstat-no" title="statement not covered" >adminService: AdminService,</span>
-               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" > </span>) {</span>
+  constructor(private <span class="cstat-no" title="statement not covered" >categoriesService: CategoriesService,</span> private <span class="cstat-no" title="statement not covered" >router: Router<span class="fstat-no" title="function not covered" >)</span> {</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  canActivate(): Observable&lt;boolean&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >    return this.adminService.amiAdmin().map(resp<span class="fstat-no" title="function not covered" > =&gt; {</span></span>
-      let currentUserProfile: ProfileJs = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem('currentUserProfile'));</span>
-<span class="cstat-no" title="statement not covered" >      if (currentUserProfile.email === &lt;any&gt;resp.email) {</span>
-<span class="cstat-no" title="statement not covered" >        return true;</span>
+<span class="cstat-no" title="statement not covered" >  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot<span class="fstat-no" title="function not covered" >): Observable&lt;IDashboardCategory&gt; | boolean {</span></span>
+    let categoryIdAsString = <span class="cstat-no" title="statement not covered" >route.params.categoryId;</span>
+    let categoryIdAsNumber = <span class="cstat-no" title="statement not covered" >Number(categoryIdAsString).valueOf();</span>
+<span class="cstat-no" title="statement not covered" >    console.log(`actual resolver doing sth wiht ${categoryIdAsNumber}`);</span>
+<span class="cstat-no" title="statement not covered" >    return this.categoriesService.getCildCategoryById(categoryIdAsNumber).map (cat<span class="fstat-no" title="function not covered" > =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (cat) {</span>
+<span class="cstat-no" title="statement not covered" >        return cat;</span>
+      } else { // id not found
+<span class="cstat-no" title="statement not covered" >        console.log('error in resolve');</span>
+<span class="cstat-no" title="statement not covered" >        this.router.navigate([ '/dashboard' ]);</span>
+<span class="cstat-no" title="statement not covered" >        return false;</span>
       }
-      // here maybe more default admins for now :-)
-<span class="cstat-no" title="statement not covered" >      return false;</span>
+    }).first();
 &nbsp;
-    }).catch(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      this.router.navigate([ '/' ]);</span>
-<span class="cstat-no" title="statement not covered" >      this.notificationService.addNotification({</span>
-        type: 'warning',
-        message: 'You are not an admin, sorry.'
-      });
-<span class="cstat-no" title="statement not covered" >      return Observable.of(false);</span>
-    });
   }
 }
 &nbsp;</pre></td></tr>

@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20.33% </span>
+        <span class="strong">21.37% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>25/123</span>
+        <span class='fraction'>25/117</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">19.33% </span>
+        <span class="strong">20.35% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>23/119</span>
+        <span class='fraction'>23/113</span>
       </div>
     </div>
   </div>
@@ -396,8 +396,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -424,26 +424,26 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -656,8 +656,8 @@ export class TimeseriesConfiguratorModalComponent {
 <span class="cstat-no" title="statement not covered" >      this.timeseries.toDate = ts.toDate;</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    console.log(this._fromDate);</span>
-<span class="cstat-no" title="statement not covered" >    console.log(this._toDate);</span>
+    // console.log(this._fromDate);
+    // console.log(this._toDate);
 <span class="cstat-no" title="statement not covered" >    this._fromDate = this.timeseries.fromDate;</span>
 <span class="cstat-no" title="statement not covered" >    this._toDate = this.timeseries.toDate;</span>
 <span class="cstat-no" title="statement not covered" >    this.buildForm();</span>
@@ -684,15 +684,15 @@ export class TimeseriesConfiguratorModalComponent {
     let sosUrl = <span class="cstat-no" title="statement not covered" >this.configurationForm.get('sosUrl');</span>
     let observable;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    console.log(sosUrl);</span>
+    // console.log(sosUrl);
 <span class="cstat-no" title="statement not covered" >    if (isNullOrUndefined(sosUrl.value) ||</span>
       sosUrl.value.trim() === '') {
 <span class="cstat-no" title="statement not covered" >      observable = Observable.of(new SosCapabilities());</span>
     } else {
 <span class="cstat-no" title="statement not covered" >      observable = this.http.get(`${this.portalApiUrl}/sos/getCapabilities?sosUrl=${sosUrl.value}`)</span>
         .map((response<span class="fstat-no" title="function not covered" >) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          console.log(response.toString());</span>
-<span class="cstat-no" title="statement not covered" >          console.log(response.json());</span>
+          // console.log(response.toString());
+          // console.log(response.json());
 <span class="cstat-no" title="statement not covered" >          return &lt;SosCapabilities&gt;(response.json() || {type: '', message: ''});</span>
         })
         .catch((errorResponse: Response<span class="fstat-no" title="function not covered" >) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
@@ -703,7 +703,7 @@ export class TimeseriesConfiguratorModalComponent {
 <span class="cstat-no" title="statement not covered" >        this.loading = false;</span>
 <span class="cstat-no" title="statement not covered" >        this.sosCapabilities = response;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        console.log(this.sosCapabilities);</span>
+        // console.log(this.sosCapabilities);
         // again... REALLY?! ARE YOU FUCKING KIDDING ME??!?!?!
         // see https://stackoverflow.com/questions/39681674/use-disable-with-model-driven-form
 <span class="cstat-no" title="statement not covered" >        if (this.sosCapabilities.featuresOfInterest &amp;&amp; this.sosCapabilities.featuresOfInterest.length &gt; 0) {</span>
@@ -829,7 +829,7 @@ export class TimeseriesConfiguratorModalComponent {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 06 2017 16:31:25 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 27 2017 19:40:40 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

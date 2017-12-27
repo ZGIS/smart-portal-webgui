@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">41.18% </span>
+        <span class="strong">48.28% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>14/34</span>
+        <span class='fraction'>14/29</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">38.71% </span>
+        <span class="strong">46.15% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>12/31</span>
+        <span class='fraction'>12/26</span>
       </div>
     </div>
   </div>
@@ -156,7 +156,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,7 +165,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -174,16 +174,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -231,7 +231,7 @@ export class OwcResourceDetailModalComponent {
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  reloadResource(): void {</span>
-<span class="cstat-no" title="statement not covered" >    console.log('we reload this resource entry');</span>
+    // console.log('we reload this resource entry');
 <span class="cstat-no" title="statement not covered" >    this.notificationService.addNotification({</span>
       id: NotificationService.DEFAULT_DISMISS,
       type: 'info',
@@ -240,7 +240,7 @@ export class OwcResourceDetailModalComponent {
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  editProperties(): void {</span>
-<span class="cstat-no" title="statement not covered" >    console.log('we edit the properties');</span>
+    // console.log('we edit the properties');
 <span class="cstat-no" title="statement not covered" >    this.notificationService.addNotification({</span>
       id: NotificationService.DEFAULT_DISMISS,
       type: 'info',
@@ -249,16 +249,16 @@ export class OwcResourceDetailModalComponent {
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  deleteResource(): void {</span></span>
-<span class="cstat-no" title="statement not covered" >    console.log('we delete this resource entry');</span>
+    // console.log('we delete this resource entry');
 <span class="cstat-no" title="statement not covered" >    this.collectionsService.deleteResourceFromCollection(this.collectionid, this.owcResource.id).subscribe(</span>
       deleted<span class="fstat-no" title="function not covered" > =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        console.log('deleted ' + deleted);</span>
+        // console.log('deleted ' + deleted);
 <span class="cstat-no" title="statement not covered" >        this.notificationService.addNotification({</span>
           id: NotificationService.DEFAULT_DISMISS,
           type: 'info',
           message: `This resource entry has been deleted. Please reload your collections to reflect the update!`
         });
-<span class="cstat-no" title="statement not covered" >        console.log('We need to reload the collection!');</span>
+        // console.log('We need to reload the collection!');
 <span class="cstat-no" title="statement not covered" >        this.hideOwcResourceModal();</span>
       },
       error<span class="fstat-no" title="function not covered" > =&gt; {</span>
@@ -274,7 +274,7 @@ export class OwcResourceDetailModalComponent {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 06 2017 16:31:25 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 27 2017 19:40:40 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

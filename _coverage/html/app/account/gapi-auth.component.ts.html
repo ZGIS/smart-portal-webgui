@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">26% </span>
+        <span class="strong">30.23% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/50</span>
+        <span class='fraction'>13/43</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">23.4% </span>
+        <span class="strong">27.5% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>11/47</span>
+        <span class='fraction'>11/40</span>
       </div>
     </div>
   </div>
@@ -214,42 +214,42 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -321,12 +321,12 @@ export class GApiAuthComponent implements AfterViewInit {
 <span class="cstat-no" title="statement not covered" >        googleUser.grantOfflineAccess();</span>
         let profile = <span class="cstat-no" title="statement not covered" >googleUser.getBasicProfile();</span>
         let token = <span class="cstat-no" title="statement not covered" >googleUser.getAuthResponse().id_token;</span>
-<span class="cstat-no" title="statement not covered" >        console.log('ID: ' + profile.getId());</span>
-<span class="cstat-no" title="statement not covered" >        console.log('Name: ' + profile.getName());</span>
-<span class="cstat-no" title="statement not covered" >        console.log('Image URL: ' + profile.getImageUrl());</span>
-<span class="cstat-no" title="statement not covered" >        console.log('Email: ' + profile.getEmail());</span>
+        // console.log('ID: ' + profile.getId());
+        // console.log('Name: ' + profile.getName());
+        // console.log('Image URL: ' + profile.getImageUrl());
+        // console.log('Email: ' + profile.getEmail());
         // YOUR CODE HERE
-<span class="cstat-no" title="statement not covered" >        console.log('attachClickHandler signinResponse');</span>
+        // console.log('attachClickHandler signinResponse');
 <span class="cstat-no" title="statement not covered" >        that.signinResponse.emit(token);</span>
 &nbsp;
       }, function (error: any<span class="fstat-no" title="function not covered" >) {</span>
@@ -341,7 +341,7 @@ export class GApiAuthComponent implements AfterViewInit {
         .then(function (authResult: any<span class="fstat-no" title="function not covered" >) {</span>
 <span class="cstat-no" title="statement not covered" >          if (authResult.code) {</span>
             let token: string = <span class="cstat-no" title="statement not covered" >authResult.code;</span>
-<span class="cstat-no" title="statement not covered" >            console.log('attachSigninOfflineAccess: ' + token);</span>
+            // console.log('attachSigninOfflineAccess: ' + token);
 <span class="cstat-no" title="statement not covered" >            that.signinResponse.emit(token);</span>
           } else {
 <span class="cstat-no" title="statement not covered" >            console.log('there was an error with google sign in at signInCallback');</span>
@@ -356,7 +356,7 @@ export class GApiAuthComponent implements AfterViewInit {
       .then(function (authResult: any<span class="fstat-no" title="function not covered" >) {</span>
 <span class="cstat-no" title="statement not covered" >        if (authResult.code) {</span>
           let token: string = <span class="cstat-no" title="statement not covered" >authResult.code;</span>
-<span class="cstat-no" title="statement not covered" >          console.log('attachSigninOfflineAccess: ' + token);</span>
+          // console.log('attachSigninOfflineAccess: ' + token);
 <span class="cstat-no" title="statement not covered" >          that.signinResponse.emit(token);</span>
         } else {
 <span class="cstat-no" title="statement not covered" >          console.log('there was an error with google sign in at signInCallback');</span>
@@ -370,7 +370,7 @@ export class GApiAuthComponent implements AfterViewInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 06 2017 16:31:25 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 27 2017 19:40:40 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
