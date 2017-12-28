@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IGeoFeature, IGeoFeatureCollection, ResultService } from '../search';
@@ -35,12 +36,16 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
 
   textFilter = '';
   initialKeywordsFilter: string[] = [];
+  initialKeywordsFilterChecked: boolean[] = [];
   keywordsFilter: string[] = [];
   initialOriginsFilter: string[] = [];
+  initialOriginsFilterChecked: boolean[] = [];
   originsFilter: string[] = [];
-  initialHierarchyLevelFilter: string[] = [ 'dataset', 'service', 'model', 'sensor', 'series', 'nonGeographicDataset' ];
+  initialHierarchyLevelFilter: string[] = [];
+  initialHierarchyLevelFilterChecked: boolean[] = [];
   hierarchyLevelFilter: string[] = [];
   initialTopicCategoryFilter: string[] = [];
+  initialTopicCategoryFilterChecked: boolean[] = [];
   topicCategoryFilter: string[] = [];
 
   // 'ENVELOPE(147.7369328125,201.7896671875,-23.1815078125,-50.5154921875)'
@@ -58,12 +63,14 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
    * @param activatedRoute      - injected ActivatedRoute
    * @param categoriesService   - injected CategoriesService
    * @param notificationService - injected NotificationService
+   * @param _location - injected Location
    * @param router              - injected Router
    */
   constructor( private resultService: ResultService,
                private activatedRoute: ActivatedRoute,
                private categoriesService: CategoriesService,
                private notificationService: NotificationService,
+               private _location: Location,
                private router: Router ) {
   }
 
@@ -103,43 +110,50 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
                 catObj.keyword_content.forEach(k => {
                   keywords = k.concat(', ', keywords);
                   this.initialKeywordsFilter.push(k);
+                  this.initialKeywordsFilterChecked.push(true);
                   this.keywordsFilter.push(k);
                 });
                 this.description = catObj.description;
                 this.concatKeywords = keywords;
 
-                if (!isNullOrUndefined(params[ 'query' ]) || params[ 'query' ] === '' || catObj.query_string === params[ 'query' ]) {
+                // if (!isNullOrUndefined(params[ 'query' ]) || params[ 'query' ] === '' || catObj.query_string ===
+                // params[ 'query' ]) {
 
-                  let customQueryString = this.buildCustomQuery(this.keywordsFilter,
-                    this.hierarchyLevelFilter,
-                    this.originsFilter,
-                    this.topicCategoryFilter);
-                  console.log(customQueryString);
+                let customQueryString = this.buildCustomQuery(this.keywordsFilter,
+                  this.hierarchyLevelFilter,
+                  this.originsFilter,
+                  this.topicCategoryFilter);
+                // console.log(customQueryString);
+                this.query = customQueryString;
 
-                  this.resultService.getResults(
-                    customQueryString,
-                    this.defaultFromDate,
-                    this.defaultToDate,
-                    this.defaultEnvelopeFilter
-                  ).subscribe(
-                    ( results: IGeoFeatureCollection ) => {
-                      this.loading = false;
-                      this.results = results;
-                      this.initialOriginsFilter = this.getCataloguesOfResults();
-                      this.originsFilter = this.initialOriginsFilter;
-                      this.hierarchyLevelFilter = this.getHierarchyLevelsOfResults();
-                      this.initialTopicCategoryFilter = this.getTopicCategoriesOfResults();
-                      this.topicCategoryFilter = this.initialTopicCategoryFilter;
-                      this.resultsGroups = [ 'Best results', 'Journal Articles', 'Other results' ];
-                    },
-                    ( error: any ) => {
-                      this.loading = false;
-                      this.notificationService.addErrorResultNotification(error);
-                    }
-                  );
-                }
-
+                this.resultService.getResults(
+                  customQueryString,
+                  this.defaultFromDate,
+                  this.defaultToDate,
+                  this.defaultEnvelopeFilter
+                ).subscribe(
+                  ( results: IGeoFeatureCollection ) => {
+                    this.loading = false;
+                    this.results = results;
+                    this.initialOriginsFilter = this.getCataloguesOfResults();
+                    this.initialOriginsFilter.forEach(e => this.initialOriginsFilterChecked.push(true));
+                    this.originsFilter = this.initialOriginsFilter;
+                    this.initialHierarchyLevelFilter = this.getHierarchyLevelsOfResults();
+                    this.initialHierarchyLevelFilter.forEach(e => this.initialHierarchyLevelFilterChecked.push(true));
+                    this.hierarchyLevelFilter = this.initialHierarchyLevelFilter;
+                    this.initialTopicCategoryFilter = this.getTopicCategoriesOfResults();
+                    this.initialTopicCategoryFilter.forEach(e => this.initialTopicCategoryFilterChecked.push(true));
+                    this.topicCategoryFilter = this.initialTopicCategoryFilter;
+                    this.resultsGroups = [ 'Best results', 'Journal Articles', 'Other results' ];
+                  },
+                  ( error: any ) => {
+                    this.loading = false;
+                    this.notificationService.addErrorResultNotification(error);
+                  }
+                );
               }
+
+              // }
               // else {
               //   console.log('no child category taken, error');
               //   this.notificationService.addNotification({
@@ -154,27 +168,27 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
               this.notificationService.addErrorResultNotification(error);
             });
 
-        if (params[ 'query' ] !== this.query) {
-          this.query = params[ 'query' ] || '*:*';
-
-          this.resultService.getResults(
-            this.query,
-            this.defaultFromDate,
-            this.defaultToDate,
-            this.defaultEnvelopeFilter
-          ).subscribe(
-            ( results: IGeoFeatureCollection ) => {
-              this.loading = false;
-              this.results = results;
-              this.originsFilter = this.getCataloguesOfResults();
-              this.resultsGroups = [ 'Best results', 'Journal Articles', 'Other results' ];
-            },
-            ( error: any ) => {
-              this.loading = false;
-              this.notificationService.addErrorResultNotification(error);
-            }
-          );
-        }
+        // if (params[ 'query' ] !== this.query) {
+        //   this.query = params[ 'query' ] || '*:*';
+        //
+        //   this.resultService.getResults(
+        //     this.query,
+        //     this.defaultFromDate,
+        //     this.defaultToDate,
+        //     this.defaultEnvelopeFilter
+        //   ).subscribe(
+        //     ( results: IGeoFeatureCollection ) => {
+        //       this.loading = false;
+        //       this.results = results;
+        //       this.originsFilter = this.getCataloguesOfResults();
+        //       this.resultsGroups = [ 'Best results', 'Journal Articles', 'Other results' ];
+        //     },
+        //     ( error: any ) => {
+        //       this.loading = false;
+        //       this.notificationService.addErrorResultNotification(error);
+        //     }
+        //   );
+        // }
 
         if (!isNullOrUndefined(params[ 'showModal' ])) {
           this.showModal = params[ 'showModal' ];
@@ -201,6 +215,10 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
       });
   }
 
+  backClicked() {
+    this._location.back();
+  }
+
   /**
    * OnDestroy
    */
@@ -210,12 +228,16 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  refreshQuery() {
-    let customQueryString = this.buildCustomQuery(this.keywordsFilter,
-      this.hierarchyLevelFilter,
-      this.originsFilter,
-      this.topicCategoryFilter);
-    console.log(customQueryString);
+  refreshQuery( keywordsFilterT: string[],
+                hierarchyLevelFilterT: string[],
+                originsFilterT: string[],
+                topicCategoryFilterT: string[] ) {
+    let customQueryString = this.buildCustomQuery(keywordsFilterT,
+      hierarchyLevelFilterT,
+      originsFilterT,
+      topicCategoryFilterT);
+    // console.log(customQueryString);
+    this.query = customQueryString;
 
     this.resultService.getResults(
       customQueryString,
@@ -229,6 +251,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
         this.originsFilter = this.getCataloguesOfResults();
         this.hierarchyLevelFilter = this.getHierarchyLevelsOfResults();
         this.topicCategoryFilter = this.getTopicCategoriesOfResults();
+        this.updateCheckboxesFromResults();
         this.resultsGroups = [ 'Best results', 'Journal Articles', 'Other results' ];
       },
       ( error: any ) => {
@@ -273,12 +296,17 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     } else {
       tempFilters = this.hierarchyLevelFilter.filter(kw => kw !== selectDelect);
     }
+
     let uniqueTemp = tempFilters.filter(function ( item, pos, self ) {
       return self.indexOf(item) === pos;
     });
     this.hierarchyLevelFilter = uniqueTemp;
     // console.log(uniqueTemp);
-    this.refreshQuery();
+    let customQueryString = this.buildCustomQuery(this.keywordsFilter,
+      this.hierarchyLevelFilter,
+      this.originsFilter,
+      this.topicCategoryFilter);
+    this.query = customQueryString;
   }
 
   addRemoveOriginFilter( event: any, index: number ) {
@@ -299,7 +327,11 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     });
     this.originsFilter = uniqueTemp;
     // console.log(uniqueTemp);
-    this.refreshQuery();
+    let customQueryString = this.buildCustomQuery(this.keywordsFilter,
+      this.hierarchyLevelFilter,
+      this.originsFilter,
+      this.topicCategoryFilter);
+    this.query = customQueryString;
   }
 
   addRemoveKeywordsFilter( event: any, index: number ) {
@@ -320,7 +352,11 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     });
     this.keywordsFilter = uniqueTemp;
     // console.log(uniqueTemp);
-    this.refreshQuery();
+    let customQueryString = this.buildCustomQuery(this.keywordsFilter,
+      this.hierarchyLevelFilter,
+      this.originsFilter,
+      this.topicCategoryFilter);
+    this.query = customQueryString;
   }
 
   addRemoveTopicCategoryFilter( event: any, index: number ) {
@@ -341,7 +377,53 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     });
     this.topicCategoryFilter = uniqueTemp;
     // console.log(uniqueTemp);
-    this.refreshQuery();
+    let customQueryString = this.buildCustomQuery(this.keywordsFilter,
+      this.hierarchyLevelFilter,
+      this.originsFilter,
+      this.topicCategoryFilter);
+    this.query = customQueryString;
+  }
+
+  onClickRefreshQuery() {
+    this.refreshQuery(this.keywordsFilter,
+      this.hierarchyLevelFilter,
+      this.originsFilter,
+      this.topicCategoryFilter);
+  }
+
+  updateCheckboxesFromResults() {
+    this.initialOriginsFilter.forEach(( w: string, index ) => {
+      this.initialOriginsFilterChecked[ index ] = (this.originsFilter.indexOf(w) > -1);
+    });
+    this.initialTopicCategoryFilter.forEach(( w: string, index ) => {
+      this.initialTopicCategoryFilterChecked[ index ] = (this.topicCategoryFilter.indexOf(w) > -1);
+    });
+    this.initialHierarchyLevelFilter.forEach(( w: string, index ) => {
+      this.initialHierarchyLevelFilterChecked[ index ] = (this.hierarchyLevelFilter.indexOf(w) > -1);
+    });
+    this.initialKeywordsFilter.forEach(( w: string, index ) => {
+      this.initialKeywordsFilterChecked[ index ] = (this.initialKeywordsFilter.indexOf(w) > -1);
+    });
+  }
+
+  onClickResetParameters() {
+    this.hierarchyLevelFilter = [];
+    this.initialHierarchyLevelFilter.forEach(e => this.initialHierarchyLevelFilterChecked.push(true));
+    this.initialHierarchyLevelFilter.forEach(w => this.hierarchyLevelFilter.push(w));
+    this.originsFilter = [];
+    this.initialOriginsFilter.forEach(e => this.initialOriginsFilterChecked.push(true));
+    this.initialOriginsFilter.forEach(w => this.originsFilter.push(w));
+    this.topicCategoryFilter = [];
+    this.initialTopicCategoryFilter.forEach(e => this.initialTopicCategoryFilterChecked.push(true));
+    this.initialTopicCategoryFilter.forEach(w => this.topicCategoryFilter.push(w));
+    this.keywordsFilter = [];
+    this.initialKeywordsFilter.forEach(e => this.initialKeywordsFilterChecked.push(true));
+    this.initialKeywordsFilter.forEach(w => this.keywordsFilter.push(w));
+
+    this.refreshQuery(this.keywordsFilter,
+      this.hierarchyLevelFilter,
+      this.originsFilter,
+      this.topicCategoryFilter);
   }
 
   showFeatureModal( feature: IGeoFeature ) {
@@ -349,7 +431,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     // console.log(this.activatedRoute.snapshot);
     this.router.navigate([ this.activatedRoute.snapshot.url.join('/') ], {
       queryParams: {
-        query: this.query,
+        // query: this.query,
         categoryId: this.categoryId,
         showModal: this.showModal
       }
@@ -360,7 +442,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     this.showModal = undefined;
     this.router.navigate([ this.activatedRoute.snapshot.url.join('/') ], {
       queryParams: {
-        query: this.query,
+        // query: this.query,
         categoryId: this.categoryId,
         showModal: this.showModal
       }
@@ -475,12 +557,12 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     );
     topicsFilterQuery.filter(w => !isNullOrUndefined(w) && w !== '' && w.trim().length > 0)
       .forEach(( q: string ) => {
-      if (topicQueryString === '') {
-        topicQueryString = q;
-      } else {
-        topicQueryString = q.concat(' OR ', topicQueryString);
-      }
-    });
+        if (topicQueryString === '') {
+          topicQueryString = q;
+        } else {
+          topicQueryString = q.concat(' OR ', topicQueryString);
+        }
+      });
     let finalQuery = '';
     if (keywordsQueryString.length > 0) {
       finalQuery = this.setOrAppendWithAnd(finalQuery, keywordsQueryString);
@@ -494,12 +576,11 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     if (topicQueryString.length > 0) {
       finalQuery = this.setOrAppendWithAnd(finalQuery, topicQueryString);
     }
-    console.log(finalQuery);
-    if (finalQuery.length > 0) {
-      return finalQuery;
-    } else {
-      return '*:*';
+    console.log('finalQuery:' + finalQuery);
+    if (finalQuery.length <= 0) {
+      console.log('query undefined this should not happen');
     }
+    return finalQuery;
   }
 
   private setOrAppendWithAnd( s1: string, s2: string ): string {

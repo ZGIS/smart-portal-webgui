@@ -2,7 +2,7 @@
      class="dashboard-button">
 
   <a [routerLink]="category.parent !== 'main' ? ['./cards'] : ['/dashboard/' + category.query_string ]"
-     [queryParams]="category.parent !== 'main' ? {'query': category ? category.query_string : 'title:groundwater', 'categoryId' : category ? category.id : 0 }:{ 'categoryId' : category ? category.id : 0 }"
+     [queryParams]="{'categoryId' : category ? category.id : 0 }"
      class="thumbnail"
      [ngClass]="{'smallBtn': smallBtn}"
      tooltip="{{ category ? category.item_name : '' }}{{ category ? ' -  ' + category.description : '' }}">

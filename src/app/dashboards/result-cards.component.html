@@ -8,14 +8,12 @@
     <div *ngIf="!loading">
       <p id="no-cards-found">There are currently no documents for this query / category <i class="fa fa-frown-o"></i></p>
     </div>
-    <a routerLink="/dashboard" tooltip="back to main dashboard">
-      <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;back</a>
+    <a (click)="backClicked()"><i class="fa fa-backward"></i> Go back...</a>
   </div>
   <div class="col-md-12" *ngIf="results.features.length > 0">
     <div class="panel panel-default">
       <div class="panel-heading" id="dashboard-category">
-        Category: {{ categoryName }} <a routerLink="/dashboard" tooltip="back to main dashboard">
-        <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;back</a>
+        Category: {{ categoryName }} <a (click)="backClicked()"><i class="fa fa-backward"></i> Go back...</a>
       </div>
       <div class="panel-body">
         <alert type="info">The shown relevance value is relative to the top document. The best fitting document
@@ -48,7 +46,7 @@
                         <div class="controls" id="keywordsFilter">
                           <ul>
                             <li *ngFor="let kw of initialKeywordsFilter; let i = index">
-                              <input type="checkbox" (click)="addRemoveKeywordsFilter($event, i)" value="{{kw}}" checked="true"/>
+                              <input type="checkbox" (click)="addRemoveKeywordsFilter($event, i)" value="{{kw}}" [(ngModel)]="initialKeywordsFilterChecked[i]"/>
                               {{ kw }}
                             </li>
                           </ul>
@@ -65,7 +63,7 @@
                         <div class="controls" id="hierarchyLevel">
                           <ul>
                             <li *ngFor="let hl of initialHierarchyLevelFilter; let i = index">
-                              <input type="checkbox" (click)="addRemoveHierarchyLevelFilter($event, i)" value="{{hl}}" checked="true"/>
+                              <input type="checkbox" (click)="addRemoveHierarchyLevelFilter($event, i)" value="{{hl}}" [(ngModel)]="initialHierarchyLevelFilterChecked[i]"/>
                               {{ hl }}
                             </li>
                           </ul>
@@ -82,7 +80,7 @@
                         <div class="controls" id="originsFilter">
                           <ul>
                             <li *ngFor="let org of initialOriginsFilter; let i = index">
-                              <input type="checkbox" (click)="addRemoveOriginFilter($event, i)" value="{{org}}" checked="true"/>
+                              <input type="checkbox" (click)="addRemoveOriginFilter($event, i)" value="{{org}}" [(ngModel)]="initialOriginsFilterChecked[i]"/>
                               {{ org }}
                             </li>
                           </ul>
@@ -99,13 +97,28 @@
                         <div class="controls" id="topicCategory">
                           <ul>
                             <li *ngFor="let tc of initialTopicCategoryFilter; let i = index">
-                              <input type="checkbox" (click)="addRemoveTopicCategoryFilter($event, i)" value="{{tc}}" checked="true"/>
+                              <input type="checkbox" (click)="addRemoveTopicCategoryFilter($event, i)" value="{{tc}}" [(ngModel)]="initialTopicCategoryFilterChecked[i]"/>
                               {{ tc }}
                             </li>
                           </ul>
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                <div class="list-group-item">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-th-list" tooltip="The resulting query."></i></span>
+                    <textarea class="form-control">{{ query }}</textarea>
+                  </div>
+                  <div class="input-group">
+                    <button type="button" class="btn btn-primary"
+                            tooltip="Refresh the query." (click)="onClickRefreshQuery()">Refresh query
+                    </button>
+                    <button type="button" class="btn btn-default"
+                            tooltip="Reset parameters." (click)="onClickResetParameters()">Reset parameters
+                    </button>
                   </div>
                 </div>
               </accordion-group>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { IDashboardCategory } from './categories';
 import { CategoriesService } from './categories.service';
@@ -20,6 +21,7 @@ export class DashboardCategoryComponent implements OnInit {
   placeHolderImg = '/images/dashboard/0-placeholder-water-icon.jpg';
 
   constructor( private route: ActivatedRoute,
+               private _location: Location,
                private categoriesService: CategoriesService,
                private notificationService: NotificationService ) {
     this.bgImage.imgUrl = '/images/dashboard/0.0_main_background_empty.png';
@@ -45,10 +47,14 @@ export class DashboardCategoryComponent implements OnInit {
 
               catObj.children.forEach(( childObj: IDashboardCategory ) => {
 
-                // let newChild = this.categoriesService.updateQueryStringforChildCategory(childObj);
-                // console.log(newChild.query_string);
-
-                this.children.push(childObj);
+                let newChild = childObj;
+                // FIXME AK this is a short-term hack, we don't use actual query from the spreadsheet,
+                // only to indicate nested category
+                if (childObj.query_string) {
+                  newChild.parent = 'main';
+                  // console.log(newChild.query_string);
+                }
+                this.children.push(newChild);
 
                 let subImgUrl = '/images/dashboard/' + childObj.icon;
                 this.childrenImg.push(subImgUrl);
@@ -60,6 +66,10 @@ export class DashboardCategoryComponent implements OnInit {
           });
 
     });
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
 }

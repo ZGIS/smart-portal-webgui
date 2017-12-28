@@ -12,7 +12,7 @@
       <div class="row" *ngIf="categoryObjs[0]">
 
         <a [routerLink]="categoryObjs[0].parent !== 'main' ? ['./cards'] : ['/dashboard/' + categoryObjs[0].query_string ]"
-           [queryParams]="categoryObjs[0].parent !== 'main' ? {'query': categoryObjs[0] ? categoryObjs[0].query_string : 'title:groundwater', 'categoryId' : categoryObjs[0] ? categoryObjs[0].id : 0 }:{ 'categoryId' : categoryObjs[0] ? categoryObjs[0].id : 0 }"
+           [queryParams]="{'categoryId' : categoryObjs[0] ? categoryObjs[0].id : 1 }"
            tooltip="{{ categoryObjs[0] ? categoryObjs[0].item_name : '' }}{{ categoryObjs[0] ? ' -  ' + categoryObjs[0].description : '' }}">
           <h1>understanding</h1>
           <h3>our groundwater systems</h3>
@@ -42,7 +42,7 @@
     <div class="col-md-5 managing">
       <div class="row">
         <a [routerLink]="categoryObjs[1].parent !== 'main' ? ['./cards'] : ['/dashboard/' + categoryObjs[1].query_string ]"
-           [queryParams]="categoryObjs[1].parent !== 'main' ? {'query': categoryObjs[1] ? categoryObjs[1].query_string : 'title:groundwater', 'categoryId' : categoryObjs[1] ? categoryObjs[1].id : 1 }:{ 'categoryId' : categoryObjs[1] ? categoryObjs[1].id : 1 }"
+           [queryParams]="{'categoryId' : categoryObjs[1] ? categoryObjs[1].id : 2 }"
            tooltip="{{ categoryObjs[1] ? categoryObjs[1].item_name : '' }}{{ categoryObjs[1] ? ' -  ' + categoryObjs[1].description : '' }}">
           <h1>managing</h1>
           <h3>impacts on our groundwater systems</h3>
