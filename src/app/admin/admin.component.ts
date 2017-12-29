@@ -1,11 +1,15 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ProfileJs } from '../account';
 import { UserGroup, UserLinkLogging, UserSession } from './admin.types';
 import { AdminService } from './';
 import { UserFile, UserMetaRecord } from '../workbench';
-import { NotificationService } from '../notifications/notification.service';
+import { PORTAL_API_URL } from '../in-app-config';
+import { CookieService } from 'ngx-cookie';
+import { Headers, RequestOptions } from '@angular/http';
+import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
+import { NotificationService } from '../notifications';
 
 const activatedTokens: string[] = [ 'ACTIVE', 'PASSWORDRESET', 'EMAILVALIDATION' ];
 
@@ -30,16 +34,77 @@ export class AdminComponent implements OnInit {
   userMetaRecords: UserMetaRecord[] = [];
   userLinkLogs: UserLinkLogging[] = [];
 
+  uploader: FileUploader;
+  hasBaseDropZoneOver = false;
+
   @ViewChild('userlistModalRef') public userlistModal: ModalDirective;
   @ViewChild('userGroupsModalRef') public userGroupsModal: ModalDirective;
   @ViewChild('usersessionsModalRef') public usersessionsModal: ModalDirective;
   @ViewChild('linkloggingModalRef') public linkloggingModal: ModalDirective;
   @ViewChild('userFilesModalRef') public userFilesModal: ModalDirective;
   @ViewChild('userMetaRecordsModalRef') public userMetaRecordsModal: ModalDirective;
+  @ViewChild('uploadTermsModalRef') public uploadTermsModal: ModalDirective;
 
   constructor( private _location: Location,
                private adminService: AdminService,
+               @Inject(PORTAL_API_URL) private portalApiUrl: string,
+               private cookieService: CookieService,
                private notificationService: NotificationService ) {
+    let cookieToken = this.cookieService.get('XSRF-TOKEN');
+    let headers = new Headers({
+      // 'Authorization': 'Bearer ' + this.token,
+      'X-XSRF-TOKEN': cookieToken
+    });
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let fileUploader = new FileUploader({
+      url: this.portalApiUrl + '/admin/sparql/update',
+      authToken: cookieToken,
+      authTokenHeader: 'X-XSRF-TOKEN',
+
+    });
+    this.uploader = fileUploader;
+
+    this.uploader.onCompleteAll = () => {
+      this.notificationService.addNotification({
+        id: NotificationService.MSG_ID_FILE_UPLOADER,
+        type: 'info',
+        message: 'File uploaded, awaiting overall service update.'
+      });
+
+      let toRemove = this.uploader.queue.filter((item) => item.isSuccess);
+
+      toRemove.forEach(item => this.uploader.removeFromQueue(item));
+    };
+
+    this.uploader.onSuccessItem = (item: FileItem, response: string, status: number, responseHeaders: ParsedResponseHeaders) => {
+      this.notificationService.addNotification({
+        id: NotificationService.MSG_ID_FILE_UPLOADER,
+        type: 'success',
+        message: `File ${item.file.name}, awaiting overall service update.`
+      });
+
+      item.isSuccess = true;
+
+      return {item, response, status, responseHeaders};
+    };
+
+    this.uploader.onErrorItem = (item: FileItem, response: string, status: number, responseHeaders: ParsedResponseHeaders) => {
+      this.notificationService.addNotification({
+        id: NotificationService.MSG_ID_ERROR,
+        type: 'danger',
+        message: `Error on uploading file ${item.file.name}.`,
+        details: response,
+        dismissAfter: -1
+      });
+
+      item.isError = true;
+
+      return {item, response, status, responseHeaders};
+    };
+  }
+
+  public fileOverBase( e: any ): void {
+    this.hasBaseDropZoneOver = e;
   }
 
   /**
@@ -124,6 +189,20 @@ export class AdminComponent implements OnInit {
    */
   hideUserMetaRecordsModalModal() {
     this.userMetaRecordsModal.hide();
+  }
+
+  /**
+   * shows the uploadTermsModal modal
+   */
+  showUploadTermsModal() {
+    this.uploadTermsModal.show();
+  }
+
+  /**
+   * hides the uploadTermsModal modal
+   */
+  hideUploadTermsModal() {
+    this.uploadTermsModal.hide();
   }
 
   backClicked() {
@@ -330,6 +409,31 @@ export class AdminComponent implements OnInit {
                 console.log(<any>error);
                 this.notificationService.addErrorResultNotification(error);
               });
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
+  }
+
+  /**
+   * get Extended File Info
+   * @param {string} uuid
+   */
+  getExtendedFileInfo( uuid: string ): void {
+    this.adminService.getBlobInfoForMappedLink(uuid)
+      .subscribe(
+        blobinfo => {
+          console.log(blobinfo);
+          this.notificationService.addNotification(
+            {
+              type: 'info',
+              message:
+              `BlobInfo: <br>file name: ${blobinfo.name};<br>ext. cloud link: ${blobinfo.mediaLink};` +
+              `<br>file size: ${blobinfo.size}(kb);`,
+              details: JSON.stringify(blobinfo),
+              dismissAfter: 0
+            });
         },
         error => {
           console.log(<any>error);

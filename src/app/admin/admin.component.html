@@ -8,29 +8,31 @@
       <!-- List group -->
       <ul class="list-group">
         <li class="list-group-item">
-          <button type="button" class="btn btn-info" (click)="userlistModalRef.show()">See users</button>
-          ... and block or unblock them: WIP
+          <button type="button" class="btn btn-info" (click)="userlistModalRef.show()">List users</button>
+          ... and block or unblock their account.
         </li>
         <li class="list-group-item">
-          <button type="button" class="btn btn-info" (click)="usersessionsModalRef.show()">See active user sessions
+          <button type="button" class="btn btn-info" (click)="usersessionsModalRef.show()">List active user sessions
           </button>
-          ... and remove them to make users login again: WIP
+          ... and remove them to make users login again.
         </li>
         <li class="list-group-item">
-          <button type="button" class="btn btn-info" (click)="userFilesModalRef.show()">See which files</button>
-          ... users have uploaded: WIP</li>
+          <button type="button" class="btn btn-info" (click)="userFilesModalRef.show()">List files</button>
+          ... users have uploaded.</li>
         <li class="list-group-item">
-          <button type="button" class="btn btn-info" (click)="userMetaRecordsModal.show()">See which metadata records</button>
-          ... users have uploaded: WIP</li>
+          <button type="button" class="btn btn-info" (click)="userMetaRecordsModal.show()">List metadata records</button>
+          ... users have created.</li>
         <li class="list-group-item">
-          <button type="button" class="btn btn-info" (click)="linkloggingModalRef.show()">See download requests</button>
-          of what files and sos/waterml2 exports that users have downloaded: WIP
+          <button type="button" class="btn btn-info" (click)="linkloggingModalRef.show()">List download requests</button>
+          of files and sos/waterml2 exports that have been downloaded.
         </li>
         <li class="list-group-item">
-          <button type="button" class="btn btn-info" (click)="userGroupsModalRef.show()">See user groups</button>
-          ... and edit user rights in thee groups: WIP
+          <button type="button" class="btn btn-info" (click)="userGroupsModalRef.show()">List user groups</button>
+          ... and edit user rights in these groups.
         </li>
-        <li class="list-group-item">Upload new Terms/Glossary/Research Program Infos/Groundwater Categories via
+        <li class="list-group-item">
+          <button type="button" class="btn btn-info" (click)="uploadTermsModalRef.show()">Upload new Categories</button>
+          Upload new Terms/Glossary/Research Program Infos/Groundwater Categories via
           especially prepared XLS spreadsheet: TODO
         </li>
       </ul>
@@ -216,14 +218,15 @@
                 <th>entryID</th>
                 <th>userID</th>
                 <th>filename</th>
-                <th>ext. link</th>
+                <th>ext. info</th>
                 <th>timestamp</th>
               </tr>
               <tr *ngFor="let links of userFiles">
                 <td><div *ngIf="links.uuid" tooltip="{{ links.uuid }}">{{ links.uuid.slice(0, 10) }}</div></td>
                 <td><div *ngIf="links.users_accountsubject">{{ links.users_accountsubject }}</div></td>
                 <td><div *ngIf="links.originalfilename" tooltip="{{ links.originalfilename }}">{{ links.originalfilename.slice(0, 20) }}</div></td>
-                <td><div *ngIf="links.linkreference" tooltip="{{links.linkreference}}">{{ links.linkreference.slice(0,20) }}</div></td>
+                <td><button type="button" class="btn btn-info" *ngIf="links.uuid" (click)="getExtendedFileInfo(links.uuid)" tooltip="Get extended file info.">Cloud File Details</button></td>
+                <!-- <td><div *ngIf="links.linkreference" tooltip="{{links.linkreference}}">{{ links.linkreference.slice(0,20) }}</div></td> -->
                 <td><div *ngIf="links.laststatuschange">{{ links.laststatuschange }}</div></td>
               </tr>
             </table>
@@ -264,6 +267,117 @@
                 <td><div *ngIf="metaRec.laststatuschange">{{ metaRec.laststatuschange }}</div></td>
               </tr>
             </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #uploadTermsModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
+     aria-labelledby="about" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideUploadTermsModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title pull-left">Search Categories, Terms, Research Program infos</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h2>Select a file with the appropriate filename and upload it with the green button. Hope for the best.</h2>
+            <p>
+              Groundwater Search Categories Update: file name must be <b>PortalCategories.xlsx</b>
+            </p>
+            <p>
+              Research Program Update: file name must be <b>ResearchPrgrm.xlsx</b>
+            </p>
+          </div>
+          <div class="panel-body">
+            <p>Queue length: {{ uploader?.queue?.length }}</p>
+
+            <table class="table file-queue">
+              <thead>
+              <th width="50%">Name</th>
+              <th>Size</th>
+              <th>Progress</th>
+              <th>Status</th>
+              <th>Actions</th>
+              </thead>
+              <tbody>
+
+              <tr *ngFor="let item of uploader.queue">
+                <td><strong>{{ item?.file?.name }}</strong></td>
+                <td>
+                  <span *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</span>
+                  &nbsp;
+                </td>
+                <td>
+                  <div *ngIf="uploader.isHTML5" class="progress" style="margin-bottom: 0;">
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                  </div>
+                  &nbsp;
+                </td>
+                <td class="text-center">
+                  <span *ngIf="item.isSuccess"><i class="fa fa-ok"></i></span>
+                  <span *ngIf="item.isCancel"><i class="fa fa-ban"></i></span>
+                  <span *ngIf="item.isError"><i class="fa fa-remove"></i></span>
+                </td>
+                <td nowrap>
+                  <button type="button" class="btn btn-success btn-xs" tooltip="Upload"
+                          (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                    <span class="fa fa-upload"></span>
+                  </button>
+                  <!--
+                  <button type="button" class="btn btn-warning btn-xs" tooltip="Cancel"
+                          (click)="item.cancel()" [disabled]="!item.isUploading">
+                    <span class="fa fa-ban"></span>
+                  </button>
+                  -->
+                  <button type="button" class="btn btn-danger btn-xs" tooltip="Remove"
+                          (click)="item.remove()">
+                    <span class="fa fa-trash"></span>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+            <div *ngIf="!uploader.isUploading" class="row">
+              <div class="col-md-12">
+                <!--
+                <div ng2FileDrop
+                     [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                     (fileOver)="fileOverBase($event)"
+                     [uploader]="uploader"
+                     class="well my-drop-zone">
+                  To add file(s) to the queue drop them over this area
+                  </div>
+                 -->
+                <input id="file-chooser" type="file" ng2FileSelect [uploader]="uploader" />
+                <span class="pull-right" style="margin-top:-6px"></span>
+
+                <label for="file-chooser" class="btn btn-default">
+                  <i class="fa fa-folder-open"></i> select file
+                </label>
+                <button type="button" class="btn btn-danger btn-s"
+                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                  <span class="fa fa-trash"></span> Remove all
+                </button>
+
+              </div>
+            </div>
+
+            <div *ngIf="uploader.isUploading" class="row">
+              <div class="col-md-12">
+                <progressbar class="progress-striped" [value]="uploader.progress">
+                  <span>{{uploader.progress}}%</span>
+                </progressbar>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

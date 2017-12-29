@@ -1,4 +1,4 @@
-import { Inject, Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notifications';
 import { UserFile } from '.';
 import { WorkbenchService } from './workbench.service';
@@ -56,22 +56,23 @@ export class UserFilesComponent implements OnInit {
   }
 
   /**
+   * FIXME moved to admin, not for normal users
    * get Extended File Info
    * @param {string} uuid
    */
-  getExtendedFileInfo( uuid: string ): void {
-    this.workbenchService.getBlobInfoForMappedLink(uuid)
-      .subscribe(
-        blobinfo => {
-          console.log(blobinfo);
-          this.notificationService.addNotification(
-            { type: 'info', message: 'BlobInfo, please expand.', details: JSON.stringify(blobinfo), dismissAfter: 0 });
-        },
-        error => {
-          console.log(<any>error);
-          this.notificationService.addErrorResultNotification(error);
-        });
-  }
+  // getExtendedFileInfo( uuid: string ): void {
+  //   this.workbenchService.getBlobInfoForMappedLink(uuid)
+  //     .subscribe(
+  //       blobinfo => {
+  //         console.log(blobinfo);
+  //         this.notificationService.addNotification(
+  //           { type: 'info', message: 'BlobInfo, please expand.', details: JSON.stringify(blobinfo), dismissAfter: 0 });
+  //       },
+  //       error => {
+  //         console.log(<any>error);
+  //         this.notificationService.addErrorResultNotification(error);
+  //       });
+  // }
 
   /**
    * delete File From Portal Storage

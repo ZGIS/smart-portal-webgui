@@ -65,3 +65,4 @@ sphinx-build
 /cypress/videos/
 /cypress/screenshots/
 /cypress/images/
+/PortalCategories.xlsx

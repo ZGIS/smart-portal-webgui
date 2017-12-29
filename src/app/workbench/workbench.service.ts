@@ -168,31 +168,6 @@ export class WorkbenchService {
   }
 
   /**
-   * GET -> /api/v1/files/getRemoteFileInfo/:uuid -> controllers.FilesController.getBlobInfoForMappedLink(uuid: String)
-   *
-   * @param {string} uuid
-   * @returns {Observable<LocalBlobInfo>}
-   */
-  getBlobInfoForMappedLink( uuid: string ): Observable<LocalBlobInfo> {
-    let params: URLSearchParams = new URLSearchParams();
-    let token = this.accountService.token;
-    let headers = new Headers({ 'X-XSRF-TOKEN': token });
-    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
-    let tsObservable = this.http.get(`${this.portalApiUrl}/files/getRemoteFileInfo/${uuid}`, options)
-      .map(( response ) => {
-        // console.log(response.json());
-        let datajson = response.json() && response.json().blobinfo;
-        if (<LocalBlobInfo>datajson) {
-          // console.log(JSON.stringify(datajson));
-        }
-        return datajson;
-      })
-      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
-
-    return tsObservable;
-  }
-
-  /**
    * GET -> /api/v1/files/deleteRemoteFile/:uuid -> controllers.FilesController.deleteBlobForMappedLink(uuid: String)
    *
    * @param {string} uuid

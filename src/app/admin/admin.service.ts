@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions, Response } from '@angular/http';
+import { Headers, Http, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { PORTAL_API_URL } from '../in-app-config';
 import { ProfileJs } from '../account/account.types';
-import { UserFile, UserMetaRecord } from '../workbench';
+import { LocalBlobInfo, UserFile, UserMetaRecord } from '../workbench';
 import { UserGroup, UserLinkLogging, UserSession } from './';
 import { IErrorResult } from '../search/result';
 import { CookieService } from 'ngx-cookie';
@@ -182,6 +182,31 @@ export class AdminService {
         }
       )
       .catch(this.handleHttpFailure);
+  }
+
+  /**
+   * GET -> /api/v1/files/getRemoteFileInfo/:uuid -> controllers.FilesController.getBlobInfoForMappedLink(uuid: String)
+   *
+   * @param {string} uuid
+   * @returns {Observable<LocalBlobInfo>}
+   */
+  getBlobInfoForMappedLink( uuid: string ): Observable<LocalBlobInfo> {
+    let params: URLSearchParams = new URLSearchParams();
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+    let tsObservable = this.http.get(`${this.portalApiUrl}/files/getRemoteFileInfo/${uuid}`, options)
+      .map(( response ) => {
+        // console.log(response.json());
+        let datajson = response.json() && response.json().blobinfo;
+        if (<LocalBlobInfo>datajson) {
+          // console.log(JSON.stringify(datajson));
+        }
+        return datajson;
+      })
+      .catch(this.handleHttpFailure);
+
+    return tsObservable;
   }
 
   /**

@@ -42,7 +42,7 @@ export class LoginComponent {
           // if (result === true) {
             // login successful
             this.loading = false;
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/workbench/my-data');
         },
         error => {
           this.loading = false;
@@ -65,7 +65,7 @@ export class LoginComponent {
           // if (result === true) {
             // login successful
             this.loading = false;
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/workbench/my-data');
         },
         error => {
           this.loading = false;

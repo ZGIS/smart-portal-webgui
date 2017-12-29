@@ -91,7 +91,12 @@ export class NavigationComponent implements OnInit {
         result => {
           this.checkLoggedIn = false;
           this.userProfile = this.accountService.guestProfile;
-          this.router.navigateByUrl('/login');
+          this.notificationService.addNotification({
+            id: NotificationService.DEFAULT_DISMISS,
+            type: 'info',
+            message: 'You successfully logged out.'
+          });
+          this.router.navigateByUrl('/dashboard');
         },
         error => {
           console.log(<any>error);

@@ -11,12 +11,12 @@
       <div class="list-group-item" *ngIf="userFiles.length <= 0">No files have been uploaded.</div>
       <div class="list-group-item" *ngFor="let files of userFiles">
         <table class="table table-bordered table-hover table-striped table-condensed">
-          <tr><td>name:</td><td *ngIf="files.originalfilename" tooltip="{{ files.originalfilename }}">{{ files.originalfilename.slice(0, 60) }}...</td></tr>
-          <tr><td>www:</td><td *ngIf="files.linkreference" tooltip="{{files.linkreference}}"><small>{{ files.linkreference.slice(0,60) }}</small></td></tr>
+          <tr><td>name:</td><td *ngIf="files.originalfilename" tooltip="{{ files.originalfilename }}">{{ files.originalfilename.slice(0, 50) }}...</td></tr>
+          <!-- <tr><td>www:</td><td *ngIf="files.linkreference" tooltip="{{files.linkreference}}"><small>{{ files.linkreference.slice(0,50) }}</small></td></tr> -->
           <tr><td>time:</td><td *ngIf="files.laststatuschange"><small>{{ files.laststatuschange }}</small></td></tr>
           <tr><td>actions:</td>
             <td>
-              <button type="button" class="btn btn-info" *ngIf="files.uuid" (click)="getExtendedFileInfo(files.uuid)" tooltip="Get extended file info.">Cloud File Details</button>
+              <!-- <button type="button" class="btn btn-info" *ngIf="files.uuid" (click)="getExtendedFileInfo(files.uuid)" tooltip="Get extended file info.">Cloud File Details</button> -->
               <button type="button" class="btn btn-danger" *ngIf="files.uuid" (click)="deleteFileFromPortalStorage(files.uuid)" tooltip="Delete this file. Attention, click and done!">Delete file!</button>
             </td>
           </tr>

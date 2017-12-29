@@ -11,8 +11,8 @@
       <div class="list-group-item" *ngIf="userMetaRecords.length <= 0">No metadata records have been created.</div>
       <div class="list-group-item" *ngFor="let metaRec of userMetaRecords">
         <table class="table table-bordered table-hover table-striped table-condensed">
-          <tr><td>meta-id:</td><td *ngIf="metaRec.originaluuid" tooltip="{{ metaRec.originaluuid }}">{{ metaRec.originaluuid.slice(0, 60) }}...</td></tr>
-          <tr><td>csw:</td><td *ngIf="metaRec.cswreference" tooltip="{{metaRec.cswreference}}"><small>{{ metaRec.cswreference.slice(0,60) }}</small></td></tr>
+          <tr><td>meta-id:</td><td *ngIf="metaRec.originaluuid" tooltip="{{ metaRec.originaluuid }}">{{ metaRec.originaluuid.slice(0, 50) }}...</td></tr>
+          <!-- <tr><td>csw:</td><td *ngIf="metaRec.cswreference" tooltip="{{metaRec.cswreference}}"><small>{{ metaRec.cswreference.slice(0,50) }}</small></td></tr> -->
           <tr><td>time:</td><td *ngIf="metaRec.laststatuschange"><small>{{ metaRec.laststatuschange }}</small></td></tr>
           <tr><td>actions:</td>
             <td>
