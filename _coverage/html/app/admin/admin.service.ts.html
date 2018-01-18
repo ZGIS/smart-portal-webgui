@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20% </span>
+        <span class="strong">19.17% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>22/110</span>
+        <span class='fraction'>23/120</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/32</span>
+        <span class='fraction'>0/36</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.55% </span>
+        <span class="strong">4.17% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/22</span>
+        <span class='fraction'>1/24</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">18.69% </span>
+        <span class="strong">17.95% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>20/107</span>
+        <span class='fraction'>21/117</span>
       </div>
     </div>
   </div>
@@ -332,7 +332,32 @@
 287
 288
 289
-290</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -516,6 +541,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -622,13 +672,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Inject, Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions, Response } from '@angular/http';
+import { Headers, Http, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { PORTAL_API_URL } from '../in-app-config';
 import { ProfileJs } from '../account/account.types';
-import { UserFile, UserMetaRecord } from '../workbench';
+import { LocalBlobInfo, UserFile, UserMetaRecord } from '../workbench';
 import { UserGroup, UserLinkLogging, UserSession } from './';
 import { IErrorResult } from '../search/result';
 import { CookieService } from 'ngx-cookie';
@@ -808,6 +858,31 @@ export class AdminService {
   }
 &nbsp;
   /**
+   * GET -&gt; /api/v1/files/getRemoteFileInfo/:uuid -&gt; controllers.FilesController.getBlobInfoForMappedLink(uuid: String)
+   *
+   * @param {string} uuid
+   * @returns {Observable&lt;LocalBlobInfo&gt;}
+   */
+  getBlobInfoForMappedLink( uuid: string<span class="fstat-no" title="function not covered" > ): Observable&lt;LocalBlobInfo&gt; {</span>
+    let params: URLSearchParams = <span class="cstat-no" title="statement not covered" >new URLSearchParams();</span>
+    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'X-XSRF-TOKEN': token });</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true, params: params });</span>
+    let tsObservable = <span class="cstat-no" title="statement not covered" >this.http.get(`${this.portalApiUrl}/files/getRemoteFileInfo/${uuid}`, options)</span>
+      .map(( response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
+        // console.log(response.json());
+        let datajson = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().blobinfo;</span>
+<span class="cstat-no" title="statement not covered" >        if (&lt;LocalBlobInfo&gt;datajson) {</span>
+          // console.log(JSON.stringify(datajson));
+        }
+<span class="cstat-no" title="statement not covered" >        return datajson;</span>
+      })
+      .catch(this.handleHttpFailure);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return tsObservable;</span>
+  }
+&nbsp;
+  /**
    * GET  /api/v1/admin/usermetarecords        -&gt; controllers.AdminController.getallUserMetaRecords
    *
    * @returns {Observable&lt;UserMetaRecord[]&gt;}
@@ -916,7 +991,7 @@ export class AdminService {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Dec 28 2017 14:11:46 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jan 18 2018 14:50:03 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

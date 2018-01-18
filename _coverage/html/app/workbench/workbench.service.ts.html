@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">17.65% </span>
+        <span class="strong">18.69% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>21/119</span>
+        <span class='fraction'>20/107</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/30</span>
+        <span class='fraction'>0/26</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.03% </span>
+        <span class="strong">3.33% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/33</span>
+        <span class='fraction'>1/30</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">17.92% </span>
+        <span class="strong">18.95% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>19/106</span>
+        <span class='fraction'>18/95</span>
       </div>
     </div>
   </div>
@@ -278,32 +278,7 @@
 233
 234
 235
-236
-237
-238
-239
-240
-241
-242
-243
-244
-245
-246
-247
-248
-249
-250
-251
-252
-253
-254
-255
-256
-257
-258
-259
-260
-261</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+236</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -466,31 +441,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -733,31 +683,6 @@ export class WorkbenchService {
   }
 &nbsp;
   /**
-   * GET -&gt; /api/v1/files/getRemoteFileInfo/:uuid -&gt; controllers.FilesController.getBlobInfoForMappedLink(uuid: String)
-   *
-   * @param {string} uuid
-   * @returns {Observable&lt;LocalBlobInfo&gt;}
-   */
-<span class="cstat-no" title="statement not covered" >  getBlobInfoForMappedLink( uuid: string<span class="fstat-no" title="function not covered" > ): Observable&lt;LocalBlobInfo&gt; {</span></span>
-    let params: URLSearchParams = <span class="cstat-no" title="statement not covered" >new URLSearchParams();</span>
-    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
-    let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'X-XSRF-TOKEN': token });</span>
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true, params: params });</span>
-    let tsObservable = <span class="cstat-no" title="statement not covered" >this.http.get(`${this.portalApiUrl}/files/getRemoteFileInfo/${uuid}`, options)</span>
-      .map(( response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
-        // console.log(response.json());
-        let datajson = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().blobinfo;</span>
-<span class="cstat-no" title="statement not covered" >        if (&lt;LocalBlobInfo&gt;datajson) {</span>
-          // console.log(JSON.stringify(datajson));
-        }
-<span class="cstat-no" title="statement not covered" >        return datajson;</span>
-      })
-      .catch(( errorResponse: Response<span class="fstat-no" title="function not covered" > ) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    return tsObservable;</span>
-  }
-&nbsp;
-  /**
    * GET -&gt; /api/v1/files/deleteRemoteFile/:uuid -&gt; controllers.FilesController.deleteBlobForMappedLink(uuid: String)
    *
    * @param {string} uuid
@@ -829,7 +754,7 @@ export class WorkbenchService {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Dec 28 2017 14:11:46 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jan 18 2018 14:50:03 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

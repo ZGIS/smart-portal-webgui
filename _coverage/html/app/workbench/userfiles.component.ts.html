@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25.58% </span>
+        <span class="strong">27.78% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>11/43</span>
+        <span class='fraction'>10/36</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.25% </span>
+        <span class="strong">7.69% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/16</span>
+        <span class='fraction'>1/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">24.32% </span>
+        <span class="strong">25.81% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/37</span>
+        <span class='fraction'>8/31</span>
       </div>
     </div>
   </div>
@@ -140,7 +140,8 @@
 95
 96
 97
-98</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+98
+99</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -201,6 +202,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -210,24 +230,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -237,7 +239,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Inject, Component, Input, OnInit } from '@angular/core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notifications';
 import { UserFile } from '.';
 import { WorkbenchService } from './workbench.service';
@@ -295,22 +297,23 @@ export class UserFilesComponent implements OnInit {
   }
 &nbsp;
   /**
+   * FIXME moved to admin, not for normal users
    * get Extended File Info
    * @param {string} uuid
    */
-<span class="cstat-no" title="statement not covered" >  getExtendedFileInfo( uuid: string<span class="fstat-no" title="function not covered" > ): void {</span></span>
-<span class="cstat-no" title="statement not covered" >    this.workbenchService.getBlobInfoForMappedLink(uuid)</span>
-      .subscribe(
-        blobinfo<span class="fstat-no" title="function not covered" > =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          console.log(blobinfo);</span>
-<span class="cstat-no" title="statement not covered" >          this.notificationService.addNotification(</span>
-            { type: 'info', message: 'BlobInfo, please expand.', details: JSON.stringify(blobinfo), dismissAfter: 0 });
-        },
-        error<span class="fstat-no" title="function not covered" > =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          console.log(&lt;any&gt;error);</span>
-<span class="cstat-no" title="statement not covered" >          this.notificationService.addErrorResultNotification(error);</span>
-        });
-  }
+  // getExtendedFileInfo( uuid: string ): void {
+  //   this.workbenchService.getBlobInfoForMappedLink(uuid)
+  //     .subscribe(
+  //       blobinfo =&gt; {
+  //         console.log(blobinfo);
+  //         this.notificationService.addNotification(
+  //           { type: 'info', message: 'BlobInfo, please expand.', details: JSON.stringify(blobinfo), dismissAfter: 0 });
+  //       },
+  //       error =&gt; {
+  //         console.log(&lt;any&gt;error);
+  //         this.notificationService.addErrorResultNotification(error);
+  //       });
+  // }
 &nbsp;
   /**
    * delete File From Portal Storage
@@ -340,7 +343,7 @@ export class UserFilesComponent implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Dec 28 2017 14:11:46 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jan 18 2018 14:50:03 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
