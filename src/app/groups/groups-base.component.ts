@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AccountService, ProfileJs } from '../account';
 import { WorkbenchService } from '../workbench';
 import { UserGroup, UserGroupUsersLevel } from '../admin';
 import { NotificationService } from '../notifications';
-import { Observable } from 'rxjs/Rx';
-import { CollectionsService, OwcContext } from '../owc';
+import { CollectionsService } from '../owc';
 import { ModalDirective } from 'ngx-bootstrap';
 import * as moment from 'moment';
 
