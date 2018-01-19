@@ -18,6 +18,7 @@ export interface RegisterJs {
 
 export interface ProfileJs {
   email: string;
+  accountSubject?: string;
   firstname: string;
   lastname: string;
   password?: string;

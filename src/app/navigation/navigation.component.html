@@ -49,6 +49,10 @@
           </li>
 
           <li role="menuitem" *ngIf="checkLoggedIn">
+            <a routerLink="/workbench/my-groups">My groups <i class="fa fa-group"></i></a>
+          </li>
+
+          <li role="menuitem" *ngIf="checkLoggedIn">
             <a routerLink="/workbench/upload-file">Upload a file <i class="fa fa-upload"></i></a>
           </li>
           <li role="menuitem" *ngIf="checkLoggedIn">

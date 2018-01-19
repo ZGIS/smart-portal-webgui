@@ -27,7 +27,11 @@ import {
   ResultService,
   SearchComponent
 } from './search';
-import { NavigationComponent, NotFoundComponent } from './navigation';
+import { NavigationComponent,
+  NotFoundComponent,
+  UsplashImageCreditComponent,
+  CentralUsernavComponent
+} from './navigation';
 import { GlossaryService, GlossaryComponent } from './glossary-edu';
 import { ResearchProgrammesSkosdefComponent, ResearchProgrammesComponent } from './research-pg';
 import {
@@ -85,9 +89,8 @@ import { AdminGuard, AuthGuard, ChildCategoriesResolve, RegisteredGuard } from '
 import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ContextRetrieveComponent, FileLoaderComponent, LicensedlinkComponent } from './context';
-import { TimeseriesComponent } from './timeseries';
-import { TimeseriesConfiguratorModalComponent } from './timeseries';
-import { UsplashImageCreditComponent } from './navigation';
+import { TimeseriesComponent, TimeseriesConfiguratorModalComponent } from './timeseries';
+import { GroupsBaseComponent } from './groups';
 
 @NgModule({
   imports: [BrowserModule,
@@ -163,7 +166,9 @@ import { UsplashImageCreditComponent } from './navigation';
     LicensedlinkComponent,
     TimeseriesComponent,
     TimeseriesConfiguratorModalComponent,
-    UsplashImageCreditComponent
+    UsplashImageCreditComponent,
+    CentralUsernavComponent,
+    GroupsBaseComponent
   ],
   providers: [
     API_URL_PROVIDERS,

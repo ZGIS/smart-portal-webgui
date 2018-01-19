@@ -32,8 +32,8 @@
         </li>
         <li class="list-group-item">
           <button type="button" class="btn btn-info" (click)="uploadTermsModalRef.show()">Upload new Categories</button>
-          Upload new Terms/Glossary/Research Program Infos/Groundwater Categories via
-          especially prepared XLS spreadsheet: TODO
+          Upload updated versions of Terms/Glossary/Research Program Infos/Groundwater Categories via
+          especially prepared XLS spreadsheets
         </li>
       </ul>
     </div>
@@ -287,13 +287,15 @@
       <div class="modal-body">
         <div class="panel panel-default">
           <div class="panel-body">
-            <h2>Select a file with the appropriate filename and upload it with the green button. Hope for the best.</h2>
+            <p>Select a file with the appropriate filename and upload it with the <mark><strong>green</strong></mark> button. Hope for the best.</p>
             <p>
-              Groundwater Search Categories Update: file name must be <b>PortalCategories.xlsx</b>
+              Groundwater Search Categories Update: file name must be <mark><strong>PortalCategories.xlsx</strong></mark>
             </p>
             <p>
-              Research Program Update: file name must be <b>ResearchPrgrm.xlsx</b>
+              Research Program Update: file name must be <mark><strong>ResearchPrgrm.xlsx</strong></mark>
             </p>
+            <p>Other glossaries will be added in an on-going basis based on actual requirement ... i.e. Awahou Terms, NGMP parameters
+              Freshwater Terms Glossary, and Te Reo Maori Geoscience Lexicon</p>
           </div>
           <div class="panel-body">
             <p>Queue length: {{ uploader?.queue?.length }}</p>

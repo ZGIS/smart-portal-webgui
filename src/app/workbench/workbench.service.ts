@@ -7,6 +7,7 @@ import { AccountService } from '../account';
 import { IErrorResult } from '../search/result';
 import { LocalBlobInfo, UserFile, UserFileResponse, UserMetaRecord, ValueEntry } from '.';
 import { CswTransactionResponse, GeoMetadata } from './.';
+import { UserGroup } from '../admin';
 
 @Injectable()
 export class WorkbenchService {
@@ -127,11 +128,55 @@ export class WorkbenchService {
 
 
   // TODO the GROUPS stuff
-  // TODO GET  /api/v1/admin/groups   -> controllers.AdminController.getAllUserGroupAsAdmin
-  // TODO POST /api/v1/admin/groups/create   -> controllers.AdminController.createUserGroupAsAdmin
-  // TODO POST /api/v1/admin/groups/update   -> controllers.AdminController.updateUserGroupAsAdmin
-  // TODO POST /api/v1/admin/groups/delete   -> controllers.AdminController.deleteUserGroupAsAdmin
+  // TODO # user gorups api
+  // TODO GET    /api/v1/usergroups/query        controllers.UserGroupController.findUsersOwnUserGroupsById(id: String)
+  // TODO POST    /api/v1/usergroups/update         controllers.UserGroupController.updateUsersOwnUserGroup
+  // TODO GET   /api/v1/usergroups/delete         controllers.UserGroupController.deleteUsersOwnUserGroup(id: String)
 
+  /**
+   * get users own particpating usergroups
+   * GET    /api/v1/usergroups       controllers.UserGroupController.getUsersOwnUserGroups
+   * @returns {Observable<UserGroup[]>}
+   */
+  getUserGroups(): Observable<UserGroup[]> {
+    let params: URLSearchParams = new URLSearchParams();
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+
+    return this.http.get(this.portalApiUrl + '/usergroups', options)
+      .map(( response ) => {
+        let datajson = response.json() && response.json().usergroups;
+        if (<UserGroup[]>datajson) {
+          console.log(response.json());
+        }
+        return datajson;
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+  }
+
+  /**
+   * Create a usergroup as post
+   * POST  /api/v1/usergroups    controllers.UserGroupController.createUsersOwnUserGroup
+   * @param {UserGroup} userGroup
+   * @returns {Observable<UserGroup>}
+   */
+  createUsersOwnUserGroup( userGroup: UserGroup ): Observable<UserGroup> {
+    let params: URLSearchParams = new URLSearchParams();
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+
+    return this.http.post(this.portalApiUrl + '/usergroups', userGroup, options)
+      .map(( response ) => {
+        let datajson = response.json() && response.json().usergroup;
+        if (<UserGroup[]>datajson) {
+          console.log(response.json());
+        }
+        return datajson;
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+  }
 
   /**
    * GET -> /api/v1/files/getDownloadLink/:uuid -> controllers.FilesController.mappedFileLinkFor(uuid: String)

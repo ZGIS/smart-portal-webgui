@@ -25,6 +25,7 @@ import { AdminComponent } from './admin';
 import { ContextRetrieveComponent, FileLoaderComponent } from './context';
 import { TimeseriesComponent } from './timeseries';
 import { AdminGuard, AuthGuard, RegisteredGuard } from './_guards';
+import { GroupsBaseComponent } from './groups';
 
 const appRoutes: Routes = [
   {
@@ -107,6 +108,11 @@ const appRoutes: Routes = [
   {
     path: 'workbench/my-data',
     component: CollectionsDeskComponent,
+    canActivate: [ AuthGuard, RegisteredGuard ]
+  },
+  {
+    path: 'workbench/my-groups',
+    component: GroupsBaseComponent,
     canActivate: [ AuthGuard, RegisteredGuard ]
   },
   {
