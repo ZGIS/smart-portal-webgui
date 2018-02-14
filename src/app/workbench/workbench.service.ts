@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions, Response, ResponseContentType, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, URLSearchParams, ResponseContentType } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { PORTAL_API_URL } from '../in-app-config';
-import { AccountService } from '../account';
+import { AccountService, ProfileJs } from '../account';
 import { IErrorResult } from '../search/result';
 import { LocalBlobInfo, UserFile, UserFileResponse, UserMetaRecord, ValueEntry } from '.';
 import { CswTransactionResponse, GeoMetadata } from './.';
@@ -12,7 +12,8 @@ import { UserGroup } from '../admin';
 @Injectable()
 export class WorkbenchService {
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
-               private http: Http, private router: Router,
+               private http: Http,
+               private router: Router,
                private accountService: AccountService ) {
   }
 
@@ -23,10 +24,9 @@ export class WorkbenchService {
    * @returns {Observable<CswTransactionResponse>}
    */
   insertMetadataRecord( metadata: GeoMetadata ): Observable<CswTransactionResponse> {
-    let params: URLSearchParams = new URLSearchParams();
     let token = this.accountService.token;
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
-    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.http.post(this.portalApiUrl + '/csw/insert', { metadata: metadata }, options)
       .map(( response ) => {
@@ -44,10 +44,9 @@ export class WorkbenchService {
    * @returns {Observable<CswTransactionResponse>}
    */
   updateMetadataRecord( metadata: GeoMetadata ): Observable<CswTransactionResponse> {
-    let params: URLSearchParams = new URLSearchParams();
     let token = this.accountService.token;
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
-    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.http.post(this.portalApiUrl + '/csw/update', { metadata: metadata }, options)
       .map(( response ) => {
@@ -65,10 +64,9 @@ export class WorkbenchService {
    * @returns {Observable<CswTransactionResponse>}
    */
   deleteMetadatarecord( originaluuid: string ): Observable<CswTransactionResponse> {
-    let params: URLSearchParams = new URLSearchParams();
     let token = this.accountService.token;
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
-    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.http.get(this.portalApiUrl + '/csw/delete/' + originaluuid, options)
       .map(( response ) => {
@@ -85,10 +83,9 @@ export class WorkbenchService {
    * @returns {Observable<UserMetaRecord[]>}
    */
   getUserMetaRecords(): Observable<UserMetaRecord[]> {
-    let params: URLSearchParams = new URLSearchParams();
     let token = this.accountService.token;
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
-    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.http.get(this.portalApiUrl + '/csw/usermetarecords', options)
       .map(( response ) => {
@@ -126,12 +123,69 @@ export class WorkbenchService {
       .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
 
+  // # user GROUPS stuff api
+  /**
+   * GET    /api/v1/usergroups/query        controllers.UserGroupController.findUsersOwnUserGroupsById(id: String)
+   * @param {string} id
+   * @returns {Observable<UserGroup[]>}
+   */
+  findUsersOwnUserGroupsById(id: string): Observable<UserGroup[]> {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('id', id);
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, params: params, withCredentials: true });
 
-  // TODO the GROUPS stuff
-  // TODO # user gorups api
-  // TODO GET    /api/v1/usergroups/query        controllers.UserGroupController.findUsersOwnUserGroupsById(id: String)
-  // TODO POST    /api/v1/usergroups/update         controllers.UserGroupController.updateUsersOwnUserGroup
-  // TODO GET   /api/v1/usergroups/delete         controllers.UserGroupController.deleteUsersOwnUserGroup(id: String)
+    return this.http.get(this.portalApiUrl + '/usergroups/query', options)
+      .map(( response ) => {
+        let datajson = response.json() && response.json().usergroup;
+        if (<UserGroup[]>datajson) {
+          console.log(response.json());
+        }
+        return datajson;
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+  }
+
+  /**
+   * POST    /api/v1/usergroups/update         controllers.UserGroupController.updateUsersOwnUserGroup
+   * @param {UserGroup} userGroup
+   * @returns {Observable<UserGroup>}
+   */
+  updateUsersOwnUserGroup( userGroup: UserGroup ): Observable<UserGroup> {
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
+
+    return this.http.post(this.portalApiUrl + '/usergroups/update', userGroup, options)
+      .map(( response ) => {
+        let datajson = response.json() && response.json().usergroup;
+        if (<UserGroup>datajson) {
+          console.log(response.json());
+        }
+        return datajson;
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+  }
+
+  /**
+   * GET   /api/v1/usergroups/delete         controllers.UserGroupController.deleteUsersOwnUserGroup(id: String)
+   * @param {string} id
+   * @returns {Observable<UserGroup[]>}
+   */
+  deleteUsersOwnUserGroup(id: string): Observable<any> {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('id', id);
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, params: params, withCredentials: true });
+
+    return this.http.get(this.portalApiUrl + '/usergroups/delete', options)
+      .map(( response ) => {
+        return response.json() && response.json();
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+  }
 
   /**
    * get users own particpating usergroups
@@ -139,10 +193,9 @@ export class WorkbenchService {
    * @returns {Observable<UserGroup[]>}
    */
   getUserGroups(): Observable<UserGroup[]> {
-    let params: URLSearchParams = new URLSearchParams();
     let token = this.accountService.token;
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
-    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.http.get(this.portalApiUrl + '/usergroups', options)
       .map(( response ) => {
@@ -162,10 +215,9 @@ export class WorkbenchService {
    * @returns {Observable<UserGroup>}
    */
   createUsersOwnUserGroup( userGroup: UserGroup ): Observable<UserGroup> {
-    let params: URLSearchParams = new URLSearchParams();
     let token = this.accountService.token;
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
-    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.http.post(this.portalApiUrl + '/usergroups', userGroup, options)
       .map(( response ) => {
@@ -196,6 +248,53 @@ export class WorkbenchService {
   }
 
   /**
+   * GET  /api/v1/usergroups/users    controllers.UserGroupController.resolveUserInfo
+   * @param {string} accountSubject
+   * @returns {Observable<ProfileJs>}
+   */
+  findUserForAccountSubject( accountSubject: string ): Observable<ProfileJs> {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('accountSubject', accountSubject);
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let url = this.portalApiUrl + '/usergroups/users' + '?accountSubject=' + accountSubject;
+    let options = new RequestOptions({ headers: headers, withCredentials: true, search: params });
+
+    return this.http.get(url, options)
+      .map(( response ) => {
+        let datajson = response.json() && response.json().user;
+        if (<ProfileJs>datajson) {
+          console.log(response.json());
+        }
+        return datajson;
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+  }
+
+  /**
+   * GET  /api/v1/usergroups/users    controllers.UserGroupController.resolveUserInfo
+   * @param {string} email
+   * @returns {Observable<ProfileJs>}
+   */
+  findUserForEmail( email: string ): Observable<ProfileJs> {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('email', email);
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, params: params, withCredentials: true });
+
+    return this.http.get(this.portalApiUrl + '/usergroups/users', options)
+      .map(( response ) => {
+        let datajson = response.json() && response.json().user;
+        if (<ProfileJs>datajson) {
+          console.log(response.json());
+        }
+        return datajson;
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+  }
+
+  /**
    * does the actual http download request to the remote url
    *
    * @param {string} userFile
@@ -219,10 +318,9 @@ export class WorkbenchService {
    * @returns {Observable<UserFileResponse>}
    */
   deleteBlobForMappedLink( uuid: string ): Observable<UserFileResponse> {
-    let params: URLSearchParams = new URLSearchParams();
     let token = this.accountService.token;
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
-    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
     let tsObservable = this.http.get(`${this.portalApiUrl}/files/deleteRemoteFile/${uuid}`, options)
       .map(( response ) => {
         // console.log(response.json());
@@ -239,10 +337,9 @@ export class WorkbenchService {
    * @returns {Observable<UserFile[]>}
    */
   getUserFiles(): Observable<UserFile[]> {
-    let params: URLSearchParams = new URLSearchParams();
     let token = this.accountService.token;
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
-    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.http.get(this.portalApiUrl + '/files/userfiles', options)
       .map(( response ) => {

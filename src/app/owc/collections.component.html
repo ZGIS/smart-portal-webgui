@@ -28,7 +28,7 @@
       <div *ngIf="myCollection.bbox">
         Here should be a map roughly outlining the bbox of : {{ myCollection.bbox | json }}
       </div>
-      <app-sac-gwh-owccontext-props [owcContextProperties]=" myCollection.properties"></app-sac-gwh-owccontext-props>
+      <app-sac-gwh-owccontext-props [owcContextProperties]="myCollection.properties"></app-sac-gwh-owccontext-props>
 
       <p><span class="badge pull-left">Collection ID:</span>&nbsp;<small><i>{{ myCollection.id }}</i></small>
       </p>

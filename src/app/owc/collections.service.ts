@@ -63,11 +63,9 @@ export class CollectionsService {
   getCollectionById( id: string ): Observable<OwcContext> {
     // add authorization header with jwt token
     let defaultCollectionsUri = this.portalApiUrl + '/collections?id=' + id;
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('id', id);
     let token = this.accountService.token;
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
-    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     // get default collection from api (should be exactly one OwcContext)
     return this.http.get(defaultCollectionsUri, options)

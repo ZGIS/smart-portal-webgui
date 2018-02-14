@@ -90,7 +90,7 @@ import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ContextRetrieveComponent, FileLoaderComponent, LicensedlinkComponent } from './context';
 import { TimeseriesComponent, TimeseriesConfiguratorModalComponent } from './timeseries';
-import { GroupsBaseComponent } from './groups';
+import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayComponent } from './groups';
 
 @NgModule({
   imports: [BrowserModule,
@@ -168,7 +168,9 @@ import { GroupsBaseComponent } from './groups';
     TimeseriesConfiguratorModalComponent,
     UsplashImageCreditComponent,
     CentralUsernavComponent,
-    GroupsBaseComponent
+    GroupsBaseComponent,
+    GroupsUserContextComponent,
+    GroupsUserDisplayComponent
   ],
   providers: [
     API_URL_PROVIDERS,

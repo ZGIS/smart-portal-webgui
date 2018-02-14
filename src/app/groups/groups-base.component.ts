@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 import { AccountService, ProfileJs } from '../account';
 import { WorkbenchService } from '../workbench';
 import { UserGroup, UserGroupUsersLevel } from '../admin';
@@ -15,7 +16,10 @@ import * as moment from 'moment';
 export class GroupsBaseComponent implements OnInit {
 
   @ViewChild('createGroupModalRef') public createGroupModal: ModalDirective;
+  @ViewChild('editGroupModalRef') public editGroupModal: ModalDirective;
+
   userGroups: UserGroup[] = [];
+  editUserGroup: UserGroup;
   userProfile: ProfileJs;
   loading = false;
   newgroup: any = {};
@@ -100,11 +104,23 @@ export class GroupsBaseComponent implements OnInit {
     this.createGroupModal.show();
   }
 
+  showEditGroupModal( userGroup: UserGroup ) {
+    console.log(JSON.stringify(userGroup));
+    this.editUserGroup = userGroup;
+    if (this.editUserGroup && userGroup) {
+      this.editGroupModal.show();
+    }
+  }
+
   /**
    * hides the modal
    */
   hideCreateGroupModal() {
     this.createGroupModal.hide();
+  }
+
+  hideEditGroupModal() {
+    this.editGroupModal.hide();
   }
 
   reloadGroups(): void {

@@ -138,8 +138,8 @@ export class AdminService {
    */
   removeActiveSessions(usersesiontoken: string, email: string): Observable<any> {
     let params: URLSearchParams = new URLSearchParams();
-    params.append('token', usersesiontoken);
-    params.append('email', email);
+    params.set('token', usersesiontoken);
+    params.set('email', email);
     let url = this.portalApiUrl + `/admin/removesessions?token=${usersesiontoken}&email=${email}`;
     let token = this.accountService.token;
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
@@ -191,10 +191,9 @@ export class AdminService {
    * @returns {Observable<LocalBlobInfo>}
    */
   getBlobInfoForMappedLink( uuid: string ): Observable<LocalBlobInfo> {
-    let params: URLSearchParams = new URLSearchParams();
     let token = this.accountService.token;
     let headers = new Headers({ 'X-XSRF-TOKEN': token });
-    let options = new RequestOptions({ headers: headers, withCredentials: true, params: params });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
     let tsObservable = this.http.get(`${this.portalApiUrl}/files/getRemoteFileInfo/${uuid}`, options)
       .map(( response ) => {
         // console.log(response.json());
