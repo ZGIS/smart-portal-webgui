@@ -8,6 +8,7 @@ import { IErrorResult } from '../search/result';
 import { LocalBlobInfo, UserFile, UserFileResponse, UserMetaRecord, ValueEntry } from '.';
 import { CswTransactionResponse, GeoMetadata } from './.';
 import { UserGroup } from '../admin';
+import { ContextVisibility, UserRightsLevel } from './workbench.types';
 
 @Injectable()
 export class WorkbenchService {
@@ -352,6 +353,34 @@ export class WorkbenchService {
         return datajson;
       })
       .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+  }
+
+  /**
+   * userlevel 0 = read-only group member, 1 = participating context editing user, 2 = power-user/group-admin
+   *
+   * @param {number} level
+   * @returns {string}
+   */
+  nameForUserRightsLevelNumber(level: number): string {
+    if (UserRightsLevel[level]) {
+      return UserRightsLevel[level];
+    } else {
+      return UserRightsLevel[0];
+    }
+  }
+
+  /**
+   * visibility 0: user-owned/private, 1: organisation/group-shared, 2: public
+   *
+   * @param {number} level
+   * @returns {string}
+   */
+  nameForContextVisibilityNumber(level: number): string {
+    if (ContextVisibility[level]) {
+      return ContextVisibility[level];
+    } else {
+      return ContextVisibility[0];
+    }
   }
 
   /**

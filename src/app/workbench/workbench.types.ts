@@ -40,3 +40,16 @@ export class CswTransactionResponse implements SacGwhNotification {
   type: string;
   message: string;
 }
+
+export const UserRightsLevel = {
+  0 : 'ReadOnly',
+  1 : 'Editing',
+  2 : 'PowerUser',
+  3 : 'OverLordAdminDeprecated'
+};
+
+export const ContextVisibility = {
+  0 : 'private',
+  1 : 'group-sharing',
+  2 : 'public'
+};

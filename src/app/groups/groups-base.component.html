@@ -11,7 +11,8 @@
       <div class="panel-body">
         <div class="list-group">
           <div class="list-group-item">
-            <a role="button" class="btn btn-info" (click)="showCreateGroupModal()" tooltip="Create a new group, e.g. a working group, project team or organisation">Create new group
+            <a role="button" class="btn btn-info" (click)="showCreateGroupModal()"
+               tooltip="Create a new group, e.g. a working group, project team or organisation">Create new group
               <i class="fa fa-plus-circle" aria-hidden="true"></i>
             </a>
           </div>
@@ -21,9 +22,12 @@
             <p *ngIf="usergroup.shortinfo"><i>{{ usergroup.shortinfo }}</i></p>
             <ul>
               <li *ngIf="usergroup?.hasUsersLevel">user members: {{ usergroup?.hasUsersLevel.length }}</li>
-              <li *ngIf="usergroup?.hasOwcContextsVisibility">shared collections: {{ usergroup?.hasOwcContextsVisibility.length }}</li>
+              <li *ngIf="usergroup?.hasOwcContextsVisibility">shared collections: {{
+                usergroup?.hasOwcContextsVisibility.length }}
+              </li>
             </ul>
-            <button type="button" class="btn btn-default" (click)="showEditGroupModal(usergroup)" tooltip="Group details for {{ usergroup.name }}.">Group details
+            <button type="button" class="btn btn-default" (click)="showEditGroupModal(usergroup)"
+                    tooltip="Group details for {{ usergroup.name }}.">Group details
             </button>
           </div>
         </div>
@@ -49,26 +53,32 @@
         <div class="panel panel-default">
           <div class="panel-body">
             <h3>Create a new group</h3>
-            <form name="form" (ngSubmit)="f.form.valid && createGroup(newgroup.title, newgroup.subtitle)" #f="ngForm" novalidate>
+            <form name="form" (ngSubmit)="f.form.valid && createGroup(newgroup.title, newgroup.subtitle)" #f="ngForm"
+                  novalidate>
 
               <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid }">
-                <label for="title" tooltip="The title of the new collection" placement="right">Title <small>(the title of the new group)</small></label>
+                <label for="title" tooltip="The title of the new collection" placement="right">Title
+                  <small>(the title of the new group)</small>
+                </label>
                 <input type="text" class="form-control" name="title" id="title"
                        #title="ngModel" [(ngModel)]="newgroup.title"
-                       required maxlength="255" />
+                       required maxlength="255"/>
                 <div *ngIf="f.submitted && !title.valid" class="help-block">a title is required</div>
               </div>
               <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !subtitle.valid }">
-                <label tooltip="The abstract of the new collection" for="subtitle">Abstract/subtitle <small>(a short abstract or subtitle for the new collection, max 255 characters)</small></label>
+                <label tooltip="The abstract of the new collection" for="subtitle">Abstract/subtitle
+                  <small>(a short abstract or subtitle for the new collection, max 255 characters)</small>
+                </label>
                 <input id="subtitle" type="text" class="form-control" name="subtitle"
                        #subtitle="ngModel" [(ngModel)]="newgroup.subtitle"
-                       required maxlength="255" />
+                       required maxlength="255"/>
                 <div *ngIf="f.submitted && !subtitle.valid" class="help-block">Abstract/subtitle is required</div>
               </div>
               <div class="form-group">
                 <button [disabled]="loading" class="btn btn-info" tooltip="Create a new collection">Submit
                   <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                <img *ngIf="loading"
+                     src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
               </div>
             </form>
 
@@ -94,33 +104,102 @@
         <div class="panel panel-default">
           <div class="panel-body">
             <p><strong>{{ editUserGroup.name }}</strong></p>
-            <p *ngIf="editUserGroup.shortinfo"><i>{{ editUserGroup.shortinfo }}</i> <i class="fa fa-plus-circle" aria-hidden="true">add user</i></p>
-            <div class="list-group-item" *ngIf="editUserGroup.hasUsersLevel">user members: {{ editUserGroup.hasUsersLevel.length }}
-            <ul>
-              <li *ngFor="let userV of editUserGroup.hasUsersLevel">
-                <span>
-                  <app-sac-gwh-groupsuserdisplay [usersAccountid]="userV.users_accountsubject"></app-sac-gwh-groupsuserdisplay>
-
-                  <i class="fa fa-minus-circle" tooltip="remove user" aria-hidden="true"></i>
-                  <select tooltip="change rights">
-                    <option [selected]="userV.userlevel === 0" value="0">read-only</option>
-                    <option [selected]="userV.userlevel === 1" value="1">editing</option>
-                    <option [selected]="userV.userlevel === 2" value="2">power-user</option>
-                    <option [selected]="userV.userlevel === 3" value="3">group admin (should be only power-user)</option>
-                  </select>
+            <p *ngIf="editUserGroup.shortinfo">
+              <i>{{ editUserGroup.shortinfo }}</i>
+              <a
+                *ngIf="!iamGroupAdmin(userProfile.accountSubject, editUserGroup)"
+                (click)="nativeWindow.alert('leave the group, can only leave if you are not admin(power-user')"
+                tooltip="leave the group, can only leave if you are not admin(power-user">
+                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+              </a>
+            </p>
+            <div class="list-group-item" *ngIf="editUserGroup.hasUsersLevel">user members: {{
+              editUserGroup.hasUsersLevel.length }}
+              <a *ngIf="iamGroupAdmin(userProfile.accountSubject, editUserGroup)"
+                 (click)="readyForAddingUser = !readyForAddingUser"
+                 tooltip="add a new user">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+              </a>
+              <div class="input-group" *ngIf="readyForAddingUser">
+                <input type="text" class="form-control" placeholder="enter user's email" [ngModel]="emailUserToAdd">
+                <span class="input-group-btn" tooltip="enter user's email">
+                  <button class="btn btn-default" [disabled]="emailUserToAdd.trim().length > 0" type="button" (click)="nativeWindow.alert('trying to find user for adding' + emailUserToAdd)">Add!</button>
                 </span>
-              </li>
-            </ul>
-            </div>
-            <div class="list-group-item" *ngIf="editUserGroup.hasOwcContextsVisibility">shared collections: {{ editUserGroup.hasOwcContextsVisibility.length }}
+              </div><!-- /input-group -->
               <ul>
-                <li *ngFor="let collectionV of editUserGroup.hasOwcContextsVisibility"><app-sac-gwh-groupscontextdisplay [context_id]="collectionV.owc_context_id"></app-sac-gwh-groupscontextdisplay></li>
+                <li *ngFor="let userV of editUserGroup.hasUsersLevel">
+                <span>
+                  <app-sac-gwh-groupsuserdisplay
+                    [usersAccountid]="userV.users_accountsubject"></app-sac-gwh-groupsuserdisplay>
+                  <a
+                    *ngIf="(!userProfile.accountSubject === userV.users_accountsubject) && iamGroupAdmin(userProfile.accountSubject, editUserGroup)"
+                    (click)="nativeWindow.alert('remove this user')" tooltip="remove user">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                  </a>
+
+                  <div class="btn-group">
+                    <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                      level (R* {{ getUserRightsNameForNumber(userV.userlevel) }}) <i class="fa fa-shield"
+                                                                                      aria-hidden="true"></i> <span
+                      class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" *ngIf="iamGroupAdmin(userProfile.accountSubject, editUserGroup)">
+                      <li *ngFor="let idx of [0,1,2,3]" tooltip="change user rights level"
+                          [ngClass]="{'disabled': idx === userV.userlevel}">
+                        <a
+                          (click)="nativeWindow.alert('change user ' + userV.users_accountsubject + ' rights level to ' + getUserRightsNameForNumber(idx) + ' ' + idx)">
+                          {{ getUserRightsNameForNumber(idx) }}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </span>
+                </li>
               </ul>
             </div>
-            <button type="button" class="btn btn-danger" tooltip="." disabled>Delete group</button>
+            <div class="list-group-item" *ngIf="editUserGroup.hasOwcContextsVisibility">shared collections: {{
+              editUserGroup.hasOwcContextsVisibility.length }} <a
+                (click)="readyForAddingConllection = !readyForAddingConllection"
+                tooltip="add a collection of yourself to the group">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+              </a>
+              <div class="btn-group" *ngIf="readyForAddingConllection">
+                <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                  Add my collection <i class="fa fa-shield"
+                                                                                  aria-hidden="true"></i> <span
+                  class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" *ngIf="myGroupLevel(userProfile.accountSubject, editUserGroup) >=1">
+                  <li *ngFor="let collectionsid of myCollections" tooltip="add this colelction to the group"
+                      [ngClass]="{'disabled': collectionIsAlreadyInGroup( collectionsid.id, editUserGroup) }">
+                    <a
+                      (click)="nativeWindow.alert('add collection ' + collectionsid.properties.title + ' to group ' + editUserGroup.name)">
+                      {{ collectionsid.properties.title }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <ul>
+                <li *ngFor="let collectionV of editUserGroup.hasOwcContextsVisibility">
+                  <span>
+                    <app-sac-gwh-groupscontextdisplay
+                      [context_id]="collectionV.owc_context_id"></app-sac-gwh-groupscontextdisplay>
+                    <a *ngIf="iamGroupAdmin(userProfile.accountSubject, editUserGroup)"
+                       (click)="nativeWindow.alert('remove this collection')" tooltip="remove collection">
+                      <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </a>
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="list-group-item">
+              <button type="button" class="btn btn-danger" tooltip="delete the group" (click)="deleteGroup(editUserGroup.uuid)">Delete group</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

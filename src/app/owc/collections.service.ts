@@ -54,6 +54,33 @@ export class CollectionsService {
       .catch(this.handleHttpFailure);
   }
 
+  queryCollectionForViewing( id?: string ): Observable<OwcContext> {
+    // add authorization header with jwt token
+    let defaultCollectionsUri = this.portalApiUrl + '/collections';
+    if (id) {
+      defaultCollectionsUri = defaultCollectionsUri + '?id=' + id;
+    }
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
+
+    // get default collection from api (should be exactly one OwcContext)
+    return this.http.get(defaultCollectionsUri, options)
+      .map(
+        ( response: Response ) => {
+          let userCollectionJson: OwcContext[] = response.json().collections;
+          let count = response.json().count;
+          if (count === 1 && userCollectionJson.length === 1) {
+            // console.log(userCollectionJson[ 0 ]);
+            return userCollectionJson[ 0 ];
+          } else {
+            throw new ReferenceError('Not found, or more than one found, or you dont have rights');
+          }
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
+
   /**
    * get specific collection (that you have access to, server will filter reliably)
    *
