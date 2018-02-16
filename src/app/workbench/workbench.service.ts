@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams, ResponseContentType } from '@angular/http';
+import { Headers, Http, RequestOptions, Response, ResponseContentType, URLSearchParams } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { PORTAL_API_URL } from '../in-app-config';
@@ -8,7 +8,7 @@ import { IErrorResult } from '../search/result';
 import { LocalBlobInfo, UserFile, UserFileResponse, UserMetaRecord, ValueEntry } from '.';
 import { CswTransactionResponse, GeoMetadata } from './.';
 import { UserGroup } from '../admin';
-import { ContextVisibility, UserRightsLevel } from './workbench.types';
+import { ContextVisibility, OwcContextsRightsMatrix, UserRightsLevel } from './workbench.types';
 
 @Injectable()
 export class WorkbenchService {
@@ -130,7 +130,7 @@ export class WorkbenchService {
    * @param {string} id
    * @returns {Observable<UserGroup[]>}
    */
-  findUsersOwnUserGroupsById(id: string): Observable<UserGroup[]> {
+  findUsersOwnUserGroupsById( id: string ): Observable<UserGroup[]> {
     let params: URLSearchParams = new URLSearchParams();
     params.set('id', id);
     let token = this.accountService.token;
@@ -174,7 +174,7 @@ export class WorkbenchService {
    * @param {string} id
    * @returns {Observable<UserGroup[]>}
    */
-  deleteUsersOwnUserGroup(id: string): Observable<any> {
+  deleteUsersOwnUserGroup( id: string ): Observable<any> {
     let params: URLSearchParams = new URLSearchParams();
     params.set('id', id);
     let token = this.accountService.token;
@@ -361,11 +361,11 @@ export class WorkbenchService {
    * @param {number} level
    * @returns {string}
    */
-  nameForUserRightsLevelNumber(level: number): string {
-    if (UserRightsLevel[level]) {
-      return UserRightsLevel[level];
+  nameForUserRightsLevelNumber( level: number ): string {
+    if (UserRightsLevel[ level ]) {
+      return UserRightsLevel[ level ];
     } else {
-      return UserRightsLevel[0];
+      return UserRightsLevel[ 0 ];
     }
   }
 
@@ -375,11 +375,11 @@ export class WorkbenchService {
    * @param {number} level
    * @returns {string}
    */
-  nameForContextVisibilityNumber(level: number): string {
-    if (ContextVisibility[level]) {
-      return ContextVisibility[level];
+  nameForContextVisibilityNumber( level: number ): string {
+    if (ContextVisibility[ level ]) {
+      return ContextVisibility[ level ];
     } else {
-      return ContextVisibility[0];
+      return ContextVisibility[ 0 ];
     }
   }
 

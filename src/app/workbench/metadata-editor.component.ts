@@ -3,15 +3,14 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap';
 import { PORTAL_API_URL } from '../in-app-config';
+import { CategoriesService, IDashboardCategory } from '../dashboards';
+import { CollectionsService, OwcLink } from '../owc';
+import { WorkbenchService } from '../workbench';
 import { GeoCitation, GeoContact, GeoDistribution, GeoExtent, GeoMetadata, SelectEntry, ValidValues } from '.';
 import { NotificationService } from '../notifications';
-import { WorkbenchService } from '../workbench';
-import { CategoriesService } from '../dashboards';
-import { CollectionsService, OwcLink } from '../owc';
 import * as moment from 'moment';
 import { Ol3MapExtent } from '../ol3-map';
 import { ProfileJs } from '../account';
-import { IDashboardCategory } from '../dashboards/categories';
 
 @Component({
   selector: 'app-sac-gwh-metadata',
@@ -65,11 +64,11 @@ export class MetadataEditorComponent implements OnInit {
   private DATE_FORMAT = 'YYYY-MM-DD';
 
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
-               private notificationService: NotificationService,
-               private collectionsService: CollectionsService,
+               private router: Router,
                private categoriesService: CategoriesService,
                private workbenchService: WorkbenchService,
-               private router: Router ) {
+               private collectionsService: CollectionsService,
+               private notificationService: NotificationService ) {
 
     this.onlineResourceLinkageTypeahead = Observable
       .create(( observer: any ) => {

@@ -32,19 +32,6 @@ import { NavigationComponent,
   UsplashImageCreditComponent,
   CentralUsernavComponent
 } from './navigation';
-import { GlossaryService, GlossaryComponent } from './glossary-edu';
-import { ResearchProgrammesSkosdefComponent, ResearchProgrammesComponent } from './research-pg';
-import {
-  CardComponent,
-  CategoriesService,
-  DashboardButtonComponent,
-  DashboardCategoryComponent,
-  DashboardHomeComponent,
-  ResultCardsComponent,
-  ShareButtonComponent,
-  ShareButtonService
-} from './dashboards';
-import { Ol3MapComponent } from './ol3-map';
 import {
   AccountService,
   AccountComponent,
@@ -61,11 +48,19 @@ import {
   ResetPassRedeemComponent
 } from './account';
 import { AdminComponent, AdminService } from './admin';
-import { WorkbenchService,
-  BasicFileUploadComponent,
-  MetadataEditorComponent,
-  UserFilesComponent,
-  UsermetarecordsComponent } from './workbench';
+import { GlossaryService, GlossaryComponent } from './glossary-edu';
+import { ResearchProgrammesSkosdefComponent, ResearchProgrammesComponent } from './research-pg';
+import {
+  CardComponent,
+  CategoriesService,
+  DashboardButtonComponent,
+  DashboardCategoryComponent,
+  DashboardHomeComponent,
+  ResultCardsComponent,
+  ShareButtonComponent,
+  ShareButtonService
+} from './dashboards';
+import { Ol3MapComponent } from './ol3-map';
 import {
   CollectionsService,
   CollectionsComponent,
@@ -83,6 +78,12 @@ import {
   OwcStyleSetComponent,
   OwcOfferingComponent
 } from './owc';
+import { WorkbenchService,
+  BasicFileUploadComponent,
+  MetadataEditorComponent,
+  UserFilesComponent,
+  UsermetarecordsComponent } from './workbench';
+
 import { X3dViewComponent } from './x3d-view';
 import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
 import { AdminGuard, AuthGuard, ChildCategoriesResolve, RegisteredGuard } from './_guards';
@@ -176,19 +177,19 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
     API_URL_PROVIDERS,
     APP_VERSION_PROVIDERS,
     AccountService,
-    CategoriesService,
     AdminService,
     AuthGuard,
+    CategoriesService,
     RegisteredGuard,
     ChildCategoriesResolve,
     AdminGuard,
     NotificationService,
     GlossaryService,
     ResultService,
+    CollectionsService,
     WorkbenchService,
     ReCaptchaService,
     GApiAuthService,
-    CollectionsService,
     ShareButtonService
   ],
   bootstrap: [AppComponent]

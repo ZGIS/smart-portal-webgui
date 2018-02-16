@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
 import { AccountService, ProfileJs } from '../account';
 import { WorkbenchService } from '../workbench';
 import { UserGroup, UserGroupUsersLevel } from '../admin';
@@ -36,8 +35,8 @@ export class GroupsBaseComponent implements OnInit {
   readyForAddingConllection = false;
 
   constructor( private accountService: AccountService,
-               private workbenchService: WorkbenchService,
                private collectionsService: CollectionsService,
+               private workbenchService: WorkbenchService,
                private notificationService: NotificationService ) {
   }
 
@@ -47,7 +46,7 @@ export class GroupsBaseComponent implements OnInit {
         groups => {
           groups.forEach(( g: UserGroup ) => {
             this.userGroups.push(g);
-            console.log(g.uuid);
+            // console.log(g.uuid);
           });
         },
         error => {
@@ -165,7 +164,7 @@ export class GroupsBaseComponent implements OnInit {
           this.userGroups = [];
           groups.forEach(( g: UserGroup ) => {
             this.userGroups.push(g);
-            console.log(g.uuid);
+            // console.log(g.uuid);
           });
         },
         error => {

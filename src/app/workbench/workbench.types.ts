@@ -41,6 +41,15 @@ export class CswTransactionResponse implements SacGwhNotification {
   message: string;
 }
 
+export interface OwcContextsRightsMatrix {
+  owcContextId: string;
+  queryingUserAccountSubject: string;
+  origOwnerAccountSubject: string;
+  viaGroups?: string[];
+  contextIntrinsicVisibility?: number;
+  queryingUserAccessLevel?: number;
+}
+
 export const UserRightsLevel = {
   0 : 'ReadOnly',
   1 : 'Editing',

@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NotificationService } from '../notifications';
 import { CollectionsService, OwcContext } from './';
-import { UserFile, UserMetaRecord } from '../workbench';
+import { UserFile, UserMetaRecord, WorkbenchService } from '../workbench';
 import { ModalDirective } from 'ngx-bootstrap';
+import { OwcContextsRightsMatrix } from '../workbench/workbench.types';
 
 @Component({
   selector: 'app-sac-gwh-collections-desk',
@@ -23,6 +24,7 @@ export class CollectionsDeskComponent implements OnInit {
   userMetaRecords: UserMetaRecord[] = [];
 
   myCollections: OwcContext[] = [];
+  myRightsMatrix: OwcContextsRightsMatrix[] = [];
   private _myDefaultCollection: OwcContext;
 
   /**
@@ -63,10 +65,24 @@ export class CollectionsDeskComponent implements OnInit {
       .subscribe(
         owcDoc => {
           this._myDefaultCollection = owcDoc;
-          this.notificationService.addNotification({
-            id: NotificationService.DEFAULT_DISMISS,
-            type: 'info',
-            message: 'The default collections has been reloaded.'
+          // this.notificationService.addNotification({
+          //   id: NotificationService.DEFAULT_DISMISS,
+          //   type: 'info',
+          //   message: 'The default collections has been reloaded.'
+          // });
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
+
+    this.collectionsService.getOwcContextsRightsMatrixForUser()
+      .subscribe(
+        rights => {
+          this.myRightsMatrix = [];
+          rights.forEach(( matrix: OwcContextsRightsMatrix ) => {
+            this.myRightsMatrix.push(matrix);
+            console.log(matrix);
           });
         },
         error => {
@@ -176,11 +192,11 @@ export class CollectionsDeskComponent implements OnInit {
 
   /**
    * Constructor
-   * @param collectionsService  - injected CollectionsService
-   * @param notificationService - injected NotificationService
+   * @param {CollectionsService} collectionsService
+   * @param {NotificationService} notificationService
    */
   constructor( private collectionsService: CollectionsService,
-               private notificationService: NotificationService ) {
+               private notificationService: NotificationService) {
   }
 
   /**
@@ -205,6 +221,19 @@ export class CollectionsDeskComponent implements OnInit {
       .subscribe(
         owcDoc => {
           this._myDefaultCollection = owcDoc;
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
+
+    this.collectionsService.getOwcContextsRightsMatrixForUser()
+      .subscribe(
+        rights => {
+          rights.forEach(( matrix: OwcContextsRightsMatrix ) => {
+            this.myRightsMatrix.push(matrix);
+            console.log(matrix);
+          });
         },
         error => {
           console.log(<any>error);

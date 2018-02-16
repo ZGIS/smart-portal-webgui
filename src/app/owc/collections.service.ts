@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { PORTAL_API_URL } from '../in-app-config';
 import { AccountService } from '../account';
-import { OwcContext } from './';
+import { OwcContext, OwcLink, OwcResource } from './';
 import { IErrorResult } from '../search/result';
-import { OwcLink, OwcResource } from './collections';
+import { OwcContextsRightsMatrix } from '../workbench/workbench.types';
 
 let UUID = require('uuid/uuid.js');
 
@@ -14,7 +14,8 @@ let UUID = require('uuid/uuid.js');
 export class CollectionsService {
 
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
-               private http: Http, private router: Router,
+               private http: Http,
+               private router: Router,
                private accountService: AccountService ) {
   }
 
@@ -440,6 +441,27 @@ export class CollectionsService {
         }
       )
       .catch(this.handleHttpFailure);
+  }
+
+  /**
+   * get users own particpating usergroups
+   * GET    /api/v1/usergroups/view-rights     controllers.UserGroupController.getOwcContextsRightsMatrixForUser
+   * @returns {Observable<UserGroup[]>}
+   */
+  getOwcContextsRightsMatrixForUser(): Observable<OwcContextsRightsMatrix[]> {
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
+
+    return this.http.get(this.portalApiUrl + '/usergroups/view-rights', options)
+      .map(( response ) => {
+        let datajson = response.json() && response.json().rights;
+        if (<OwcContextsRightsMatrix[]>datajson) {
+          console.log(response.json());
+        }
+        return datajson;
+      })
+      .catch(( errorResponse: Response ) => this.handleHttpFailure(errorResponse));
   }
 
   /**
