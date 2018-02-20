@@ -17,7 +17,7 @@
             </a>
           </div>
           <div class="list-group-item" *ngIf="userGroups.length <= 0">No groups have been created.</div>
-          <div class="list-group-item" *ngFor="let usergroup of userGroups">
+          <div class="list-group-item" *ngFor="let usergroup of userGroups; let i = index" [attr.data-index]="i">
             <p><strong>{{ usergroup.name }}</strong></p>
             <p *ngIf="usergroup.shortinfo"><i>{{ usergroup.shortinfo }}</i></p>
             <ul>
@@ -26,7 +26,7 @@
                 usergroup?.hasOwcContextsVisibility.length }}
               </li>
             </ul>
-            <button type="button" class="btn btn-default" (click)="showEditGroupModal(usergroup)"
+            <button type="button" class="btn btn-default" (click)="showEditGroupModal(userGroups[i])"
                     tooltip="Group details for {{ usergroup.name }}.">Group details
             </button>
           </div>
@@ -120,19 +120,28 @@
                  tooltip="add a new user">
                 <i class="fa fa-user-plus" aria-hidden="true"></i>
               </a>
-              <div class="input-group" *ngIf="readyForAddingUser">
-                <input type="text" class="form-control" placeholder="enter user's email" [ngModel]="emailUserToAdd">
-                <span class="input-group-btn" tooltip="enter user's email">
-                  <button class="btn btn-default" [disabled]="emailUserToAdd.trim().length > 0" type="button" (click)="nativeWindow.alert('trying to find user for adding' + emailUserToAdd)">Add!</button>
+              <form *ngIf="readyForAddingUser" name="form"
+                    (ngSubmit)="f.form.valid && addUserByEmail(userProfile.accountSubject)" #f="ngForm"
+                    novalidate>
+
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                  <label for="email">First name</label>
+                  <input id="email" [(ngModel)]="emailUserToAdd" type="email" #email="ngModel" name="email" class="form-control" required>
+                  <span class="input-group-btn" tooltip="enter user's email">
+                    <button [disabled]="loading" class="btn btn-info">Add!</button>
+                    <img *ngIf="loading"
+                     src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
                 </span>
-              </div><!-- /input-group -->
+                  <div *ngIf="f.submitted && !email.valid" class="help-block">email is required</div>
+                </div>
+              </form>
               <ul>
-                <li *ngFor="let userV of editUserGroup.hasUsersLevel">
+                <li *ngFor="let userV of editUserGroup.hasUsersLevel; let j = index" [attr.data-index]="j">
                 <span>
                   <app-sac-gwh-groupsuserdisplay
                     [usersAccountid]="userV.users_accountsubject"></app-sac-gwh-groupsuserdisplay>
                   <a
-                    *ngIf="(!userProfile.accountSubject === userV.users_accountsubject) && iamGroupAdmin(userProfile.accountSubject, editUserGroup)"
+                    *ngIf="(userProfile.accountSubject !== userV.users_accountsubject) && iamGroupAdmin(userProfile.accountSubject, editUserGroup)"
                     (click)="nativeWindow.alert('remove this user')" tooltip="remove user">
                     <i class="fa fa-minus-circle" aria-hidden="true"></i>
                   </a>
@@ -149,7 +158,8 @@
                           [ngClass]="{'disabled': idx === userV.userlevel}">
                         <a
                           (click)="nativeWindow.alert('change user ' + userV.users_accountsubject + ' rights level to ' + getUserRightsNameForNumber(idx) + ' ' + idx)">
-                          {{ getUserRightsNameForNumber(idx) }} <i [ngClass]="iconClassForUserRightsLevelNumber(idx)" aria-hidden="true"></i>
+                          {{ getUserRightsNameForNumber(idx) }} <i [ngClass]="iconClassForUserRightsLevelNumber(idx)"
+                                                                   aria-hidden="true"></i>
                         </a>
                       </li>
                     </ul>
@@ -168,7 +178,7 @@
                 <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                   Add my collection <i class="fa fa-shield"
-                                                                                  aria-hidden="true"></i> <span
+                                       aria-hidden="true"></i> <span
                   class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" *ngIf="myGroupLevel(userProfile.accountSubject, editUserGroup) >=1">
@@ -196,7 +206,9 @@
               </ul>
             </div>
             <div class="list-group-item">
-              <button type="button" class="btn btn-danger" tooltip="delete the group" (click)="deleteGroup(editUserGroup.uuid)">Delete group</button>
+              <button type="button" class="btn btn-danger" tooltip="delete the group"
+                      (click)="deleteGroup(editUserGroup.uuid)">Delete group
+              </button>
             </div>
           </div>
         </div>
