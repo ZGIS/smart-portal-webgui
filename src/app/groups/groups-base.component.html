@@ -118,7 +118,7 @@
               <a *ngIf="iamGroupAdmin(userProfile.accountSubject, editUserGroup)"
                  (click)="readyForAddingUser = !readyForAddingUser"
                  tooltip="add a new user">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
               </a>
               <div class="input-group" *ngIf="readyForAddingUser">
                 <input type="text" class="form-control" placeholder="enter user's email" [ngModel]="emailUserToAdd">
@@ -149,7 +149,7 @@
                           [ngClass]="{'disabled': idx === userV.userlevel}">
                         <a
                           (click)="nativeWindow.alert('change user ' + userV.users_accountsubject + ' rights level to ' + getUserRightsNameForNumber(idx) + ' ' + idx)">
-                          {{ getUserRightsNameForNumber(idx) }}
+                          {{ getUserRightsNameForNumber(idx) }} <i [ngClass]="iconClassForUserRightsLevelNumber(idx)" aria-hidden="true"></i>
                         </a>
                       </li>
                     </ul>
@@ -176,7 +176,7 @@
                       [ngClass]="{'disabled': collectionIsAlreadyInGroup( collectionsid.id, editUserGroup) }">
                     <a
                       (click)="nativeWindow.alert('add collection ' + collectionsid.properties.title + ' to group ' + editUserGroup.name)">
-                      {{ collectionsid.properties.title }}
+                      <i class="fa fa-plus" aria-hidden="true"></i> {{ collectionsid.properties.title }}
                     </a>
                   </li>
                 </ul>

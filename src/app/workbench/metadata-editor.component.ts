@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, Inject, Injectable, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { PORTAL_API_URL } from '../in-app-config';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap';
-import { PORTAL_API_URL } from '../in-app-config';
 import { CategoriesService, IDashboardCategory } from '../dashboards';
 import { CollectionsService, OwcLink } from '../owc';
 import { WorkbenchService } from '../workbench';
@@ -18,7 +18,6 @@ import { ProfileJs } from '../account';
   templateUrl: './metadata-editor.component.html'
 })
 
-@Injectable()
 export class MetadataEditorComponent implements OnInit {
 
   public tabs: any[] = [
@@ -64,11 +63,11 @@ export class MetadataEditorComponent implements OnInit {
   private DATE_FORMAT = 'YYYY-MM-DD';
 
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
-               private router: Router,
+               private notificationService: NotificationService,
                private categoriesService: CategoriesService,
+               private router: Router,
                private workbenchService: WorkbenchService,
-               private collectionsService: CollectionsService,
-               private notificationService: NotificationService ) {
+               private collectionsService: CollectionsService ) {
 
     this.onlineResourceLinkageTypeahead = Observable
       .create(( observer: any ) => {

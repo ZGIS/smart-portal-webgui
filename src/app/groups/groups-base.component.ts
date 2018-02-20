@@ -85,9 +85,6 @@ export class GroupsBaseComponent implements OnInit {
     return _window();
   }
 
-  getUserRightsNameForNumber( level: number ): string {
-    return this.workbenchService.nameForUserRightsLevelNumber(level);
-  }
 
   /**
    * create a new group with yourself as first admin member
@@ -212,5 +209,21 @@ export class GroupsBaseComponent implements OnInit {
         console.log(<any>error);
         this.notificationService.addErrorResultNotification(error);
       });
+  }
+
+  getContextVisibilityForNumber( level: number ): string {
+    return this.workbenchService.nameForContextVisibilityNumber(level);
+  }
+
+  iconClassForContextVisibilityNumber( level: number ): string {
+    return this.workbenchService.iconClassForContextVisibilityNumber(level);
+  }
+
+  getUserRightsNameForNumber( level: number ): string {
+    return this.workbenchService.nameForUserRightsLevelNumber(level);
+  }
+
+  iconClassForUserRightsLevelNumber( level: number ): string {
+    return this.workbenchService.iconClassForUserRightsLevelNumber(level);
   }
 }

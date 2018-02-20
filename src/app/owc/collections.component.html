@@ -14,6 +14,23 @@
       <button *ngIf="!myCollection.id.toLowerCase().includes('context\/user')" (click)="exportCollectionToJson(myCollection.id)" type="button" class="btn btn-warning" tooltip="export this collection as external file.">
         Export <i class="fa fa-save" aria-hidden="true"></i>
       </button>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" tooltip="Change visibilitiy the Collection" *ngIf="!myCollection.id.toLowerCase().includes('context\/user') && visibility" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+          {{ getContextVisibilityForNumber(visibility.contextIntrinsicVisibility) }} <i [ngClass]="iconClassForContextVisibilityNumber(visibility.contextIntrinsicVisibility)" aria-hidden="true"></i> <span
+          class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li *ngFor="let idx of [0,1,2]" tooltip="Change visibilitiy the Collection"
+              [ngClass]="{'disabled': idx === visibility.contextIntrinsicVisibility}">
+            <a
+              (click)="changeVisibility(myCollection.id, idx)">
+              {{ getContextVisibilityForNumber(idx) }} <i [ngClass]="iconClassForContextVisibilityNumber(idx)" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
       <button (click)="deleteCollection()" type="button" class="btn btn-danger pull-right" tooltip="Delete the Collection" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
         Delete <i class="fa fa-trash" aria-hidden="true"></i>
       </button>

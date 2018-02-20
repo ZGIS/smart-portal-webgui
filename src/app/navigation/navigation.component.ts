@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { AccountService, ProfileJs } from '../account';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
+import { WEBGUI_APP_VERSION } from '../in-app-config';
 
 @Component({
   selector: 'app-sac-gwh-navigation',
@@ -32,16 +33,17 @@ export class NavigationComponent implements OnInit {
 
   /**
    * Constructor
+   * @param webguiAppVersion      - injected WEBGUI_APP_VERSION
    * @param accountService      - injected AccountService
-   * @param activatedRoute      - injected ActivatedRoute
    * @param router              - injected Router
    * @param notificationService - injected NotificationService
    */
-  constructor(private accountService: AccountService,
+  constructor(@Inject(WEBGUI_APP_VERSION) private webguiAppVersion: string,
+              private accountService: AccountService,
               private router: Router,
               private notificationService: NotificationService) {
 
-    this.PORTAL_WEBGUI_VERSION = this.accountService.webguiAppVersion;
+    this.PORTAL_WEBGUI_VERSION = this.webguiAppVersion;
 
     let currentUserProfile: ProfileJs = JSON.parse(localStorage.getItem('currentUserProfile'));
 

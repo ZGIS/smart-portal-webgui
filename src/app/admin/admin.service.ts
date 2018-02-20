@@ -21,8 +21,8 @@ export class AdminService {
 
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
                private http: Http,
-               private accountService: AccountService,
-               private cookieService: CookieService ) {
+               private cookieService: CookieService,
+               private accountService: AccountService ) {
 
     this.token = this.cookieService.get('XSRF-TOKEN');
   }

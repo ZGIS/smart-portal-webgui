@@ -35,14 +35,11 @@ export class AccountService {
    *
    * @param portalApiUrl
    * @param cswiApiUrl
-   * @param webguiAppVersion
    * @param http
-   * @param router
    * @param cookieService
    */
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
                @Inject(CSWI_API_URL) private cswiApiUrl: string,
-               @Inject(WEBGUI_APP_VERSION) public webguiAppVersion: string,
                private http: Http,
                private cookieService: CookieService ) {
 

@@ -25,7 +25,7 @@ export class CollectionsDeskComponent implements OnInit {
 
   myCollections: OwcContext[] = [];
   myRightsMatrix: OwcContextsRightsMatrix[] = [];
-  private _myDefaultCollection: OwcContext;
+  // private _myDefaultCollection: OwcContext;
 
   /**
    * shows the modal
@@ -61,22 +61,7 @@ export class CollectionsDeskComponent implements OnInit {
           this.notificationService.addErrorResultNotification(error);
         });
 
-    this.collectionsService.getDefaultCollection()
-      .subscribe(
-        owcDoc => {
-          this._myDefaultCollection = owcDoc;
-          // this.notificationService.addNotification({
-          //   id: NotificationService.DEFAULT_DISMISS,
-          //   type: 'info',
-          //   message: 'The default collections has been reloaded.'
-          // });
-        },
-        error => {
-          console.log(<any>error);
-          this.notificationService.addErrorResultNotification(error);
-        });
-
-    this.collectionsService.getOwcContextsRightsMatrixForUser()
+    this.workbenchService.getOwcContextsRightsMatrixForUser()
       .subscribe(
         rights => {
           this.myRightsMatrix = [];
@@ -89,12 +74,27 @@ export class CollectionsDeskComponent implements OnInit {
           console.log(<any>error);
           this.notificationService.addErrorResultNotification(error);
         });
+
+    // this.collectionsService.getDefaultCollection()
+    //   .subscribe(
+    //     owcDoc => {
+    //       this._myDefaultCollection = owcDoc;
+    //       // this.notificationService.addNotification({
+    //       //   id: NotificationService.DEFAULT_DISMISS,
+    //       //   type: 'info',
+    //       //   message: 'The default collections has been reloaded.'
+    //       // });
+    //     },
+    //     error => {
+    //       console.log(<any>error);
+    //       this.notificationService.addErrorResultNotification(error);
+    //     });
   }
 
   /**
    * shouldn't trust the client I guess, request fresh empty custom collection and adds initial edits
    * @param {string} title
-   * @param {string} abstract
+   * @param {string} subtitle
    */
   createCollection( title: string, subtitle: string ): void {
     const templateUuid = this.collectionsService.getNewUuid();
@@ -190,13 +190,19 @@ export class CollectionsDeskComponent implements OnInit {
         });
   }
 
+  findVisibilityForCollection(collectionid: string): OwcContextsRightsMatrix|void {
+    return this.myRightsMatrix.find(r => r.owcContextId === collectionid);
+  }
+
   /**
    * Constructor
    * @param {CollectionsService} collectionsService
+   * @param {WorkbenchService} workbenchService
    * @param {NotificationService} notificationService
    */
   constructor( private collectionsService: CollectionsService,
-               private notificationService: NotificationService) {
+               private workbenchService: WorkbenchService,
+               private notificationService: NotificationService ) {
   }
 
   /**
@@ -204,12 +210,22 @@ export class CollectionsDeskComponent implements OnInit {
    */
   ngOnInit(): void {
     // get owcDoc from secure api end point
-    this.collectionsService.getCollections()
+    // this.collectionsService.getDefaultCollection()
+    //   .subscribe(
+    //     owcDoc => {
+    //       this._myDefaultCollection = owcDoc;
+    //     },
+    //     error => {
+    //       console.log(<any>error);
+    //       this.notificationService.addErrorResultNotification(error);
+    //     });
+
+    this.workbenchService.getOwcContextsRightsMatrixForUser()
       .subscribe(
-        owcDocs => {
-          owcDocs.forEach(( owcDoc: OwcContext ) => {
-            this.myCollections.push(owcDoc);
-            // console.log(owcDoc.id);
+        rights => {
+          rights.forEach(( matrix: OwcContextsRightsMatrix ) => {
+            this.myRightsMatrix.push(matrix);
+            console.log(matrix);
           });
         },
         error => {
@@ -217,22 +233,12 @@ export class CollectionsDeskComponent implements OnInit {
           this.notificationService.addErrorResultNotification(error);
         });
 
-    this.collectionsService.getDefaultCollection()
+    this.collectionsService.getCollections()
       .subscribe(
-        owcDoc => {
-          this._myDefaultCollection = owcDoc;
-        },
-        error => {
-          console.log(<any>error);
-          this.notificationService.addErrorResultNotification(error);
-        });
-
-    this.collectionsService.getOwcContextsRightsMatrixForUser()
-      .subscribe(
-        rights => {
-          rights.forEach(( matrix: OwcContextsRightsMatrix ) => {
-            this.myRightsMatrix.push(matrix);
-            console.log(matrix);
+        owcDocs => {
+          owcDocs.forEach(( owcDoc: OwcContext ) => {
+            this.myCollections.push(owcDoc);
+            // console.log(owcDoc.id);
           });
         },
         error => {

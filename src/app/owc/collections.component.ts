@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NotificationService } from '../notifications';
 import { CollectionsService, OwcContext } from './';
 import { Router } from '@angular/router';
+import { OwcContextsRightsMatrix, WorkbenchService } from '../workbench';
 
 let FileSaver = require('file-saver/FileSaver.js');
 
@@ -16,20 +17,33 @@ let FileSaver = require('file-saver/FileSaver.js');
  */
 export class CollectionsComponent {
   @Input() myCollection: OwcContext;
+  @Input() visibility: OwcContextsRightsMatrix;
   @Output() reloadOnChangedCollection: EventEmitter<any> = new EventEmitter<any>();
 
   reloadCollection(): void {
     console.log('we reload this collection');
+    this.reloadOnChangedCollection.emit(true);
   }
 
   editProperties(): void {
     // console.log('we edit the properties');
-    this.reloadOnChangedCollection.emit(true);
     this.notificationService.addNotification({
       id: NotificationService.DEFAULT_DISMISS,
       type: 'info',
       message: `Editing of this collection, not yet implemented.`
     });
+    this.reloadOnChangedCollection.emit(true);
+  }
+
+  changeVisibility( collectionid: string, visibility: number ): void {
+    // console.log('we edit the properties');
+    this.notificationService.addNotification({
+      id: NotificationService.DEFAULT_DISMISS,
+      type: 'info',
+      message: `Changing visibility of this collection, not yet implemented.` +
+      `${collectionid} visibility level to ${this.getContextVisibilityForNumber(visibility)}`
+    });
+    this.reloadOnChangedCollection.emit(true);
   }
 
   /**
@@ -69,14 +83,24 @@ export class CollectionsComponent {
       });
   }
 
+  getContextVisibilityForNumber( level: number ): string {
+    return this.workbenchService.nameForContextVisibilityNumber(level);
+  }
+
+  iconClassForContextVisibilityNumber( level: number ): string {
+    return this.workbenchService.iconClassForContextVisibilityNumber(level);
+  }
+
   /**
    * Constructor
    *
    * @param {CollectionsService} collectionsService
+   * @param {WorkbenchService} workbenchService
    * @param {NotificationService} notificationService
    * @param {Router} router
    */
   constructor( private collectionsService: CollectionsService,
+               private workbenchService: WorkbenchService,
                private notificationService: NotificationService,
                private router: Router ) {
   }

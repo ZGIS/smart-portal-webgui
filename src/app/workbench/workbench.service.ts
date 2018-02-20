@@ -1,20 +1,21 @@
 import { Inject, Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, Response, ResponseContentType, URLSearchParams } from '@angular/http';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { PORTAL_API_URL } from '../in-app-config';
 import { AccountService, ProfileJs } from '../account';
-import { IErrorResult } from '../search/result';
+import { IErrorResult } from '../search';
 import { LocalBlobInfo, UserFile, UserFileResponse, UserMetaRecord, ValueEntry } from '.';
 import { CswTransactionResponse, GeoMetadata } from './.';
 import { UserGroup } from '../admin';
-import { ContextVisibility, OwcContextsRightsMatrix, UserRightsLevel } from './workbench.types';
+import {
+  ContextVisibility, ContextVisibilityIcon, OwcContextsRightsMatrix, UserRightsLevel,
+  UserRightsLevelIcon
+} from './workbench.types';
 
 @Injectable()
 export class WorkbenchService {
   constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
                private http: Http,
-               private router: Router,
                private accountService: AccountService ) {
   }
 
@@ -296,6 +297,27 @@ export class WorkbenchService {
   }
 
   /**
+   * get users own particpating usergroups
+   * GET    /api/v1/usergroups/view-rights     controllers.UserGroupController.getOwcContextsRightsMatrixForUser
+   * @returns {Observable<UserGroup[]>}
+   */
+  getOwcContextsRightsMatrixForUser(): Observable<OwcContextsRightsMatrix[]> {
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
+
+    return this.http.get(this.portalApiUrl + '/usergroups/view-rights', options)
+      .map(( response ) => {
+        let datajson = response.json() && response.json().rights;
+        if (<OwcContextsRightsMatrix[]>datajson) {
+          console.log(response.json());
+        }
+        return datajson;
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+  }
+
+  /**
    * does the actual http download request to the remote url
    *
    * @param {string} userFile
@@ -369,6 +391,14 @@ export class WorkbenchService {
     }
   }
 
+  iconClassForUserRightsLevelNumber( level: number ): string {
+    if (UserRightsLevelIcon[ level ]) {
+      return UserRightsLevelIcon[ level ];
+    } else {
+      return UserRightsLevelIcon[ 0 ];
+    }
+  }
+
   /**
    * visibility 0: user-owned/private, 1: organisation/group-shared, 2: public
    *
@@ -380,6 +410,14 @@ export class WorkbenchService {
       return ContextVisibility[ level ];
     } else {
       return ContextVisibility[ 0 ];
+    }
+  }
+
+  iconClassForContextVisibilityNumber( level: number ): string {
+    if (ContextVisibilityIcon[ level ]) {
+      return ContextVisibilityIcon[ level ];
+    } else {
+      return ContextVisibilityIcon[ 0 ];
     }
   }
 

@@ -57,8 +57,21 @@ export const UserRightsLevel = {
   3 : 'OverLordAdminDeprecated'
 };
 
+export const UserRightsLevelIcon = {
+  0 : 'fa fa-eye',
+  1 : 'fa fa-edit',
+  2 : 'fa fa-shield',
+  3 : 'fa fa-lock'
+};
+
 export const ContextVisibility = {
   0 : 'private',
   1 : 'group-sharing',
   2 : 'public'
+};
+
+export const ContextVisibilityIcon = {
+  0 : 'fa fa-street-view',
+  1 : 'fa fa-group',
+  2 : 'fa fa-globe'
 };
