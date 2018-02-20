@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">27.78% </span>
+        <span class="strong">17.78% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>25/90</span>
+        <span class='fraction'>16/90</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/33</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">11.54% </span>
+        <span class="strong">3.85% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/26</span>
+        <span class='fraction'>1/26</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25.3% </span>
+        <span class="strong">16.87% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>21/83</span>
+        <span class='fraction'>14/83</span>
       </div>
     </div>
   </div>
@@ -255,13 +255,11 @@
 210
 211
 212
-213
-214</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+213</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -273,16 +271,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -391,12 +389,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -476,7 +474,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { IErrorResult } from '../search';
 import { IDashboardCategory } from './categories';
-import { isNullOrUndefined } from 'util';
 &nbsp;
 const categoriesSparqlGraph = 'https://vocab.smart-project.info/spq-categories/get';
 &nbsp;
@@ -486,16 +483,16 @@ const categoriesSparqlGraph = 'https://vocab.smart-project.info/spq-categories/g
 @Injectable()
 export class CategoriesService {
 &nbsp;
-  private mainCategoriesQueryStrings: string[] = [];
+  private <span class="cstat-no" title="statement not covered" >mainCategoriesQueryStrings: string[] = [];</span>
 &nbsp;
-  private categoriesSparqlCacheSubject: BehaviorSubject&lt;IDashboardCategory[]&gt; = new BehaviorSubject([]);
+  private <span class="cstat-no" title="statement not covered" >categoriesSparqlCacheSubject: BehaviorSubject&lt;IDashboardCategory[]&gt; = new BehaviorSubject([]);</span>
 &nbsp;
   /**
    *
    */
-  constructor( private http: Http ) {
+<span class="cstat-no" title="statement not covered" >  constructor( private <span class="cstat-no" title="statement not covered" >http: Http<span class="fstat-no" title="function not covered" > </span>) {</span></span>
 &nbsp;
-    this.loadInitialCategories()
+<span class="cstat-no" title="statement not covered" >    this.loadInitialCategories()</span>
       .subscribe(
         jsonLdGraphCategories<span class="fstat-no" title="function not covered" > =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >          console.log(jsonLdGraphCategories);</span>
@@ -603,13 +600,13 @@ export class CategoriesService {
    *
    * @returns {Observable&lt;IDashboardCategory[]&gt;}
    */
-  private loadInitialCategories(): Observable&lt;IDashboardCategory[]&gt; {
-    let headers = new Headers({
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  private loadInitialCategories(): Observable&lt;IDashboardCategory[]&gt; {</span></span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({</span>
       'Accept': 'application/ld+json'
     });
-    let options = new RequestOptions({ headers: headers, withCredentials: false });
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: false });</span>
 &nbsp;
-    return this.http.get(categoriesSparqlGraph, options)
+<span class="cstat-no" title="statement not covered" >    return this.http.get(categoriesSparqlGraph, options)</span>
       .map(
         ( response: Response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
           const jsonLdGraph = <span class="cstat-no" title="statement not covered" >response.json()[ '@graph' ];</span>
@@ -688,7 +685,7 @@ export class CategoriesService {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jan 18 2018 14:50:03 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 20 2018 20:11:08 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

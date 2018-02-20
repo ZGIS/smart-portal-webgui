@@ -90,14 +90,19 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="collectionscomponent.html#notificationservice" class="tsd-kind-icon">notification<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="collectionscomponent.html#reloadonchangedcollection" class="tsd-kind-icon">reload<wbr>OnChanged<wbr>Collection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="collectionscomponent.html#router" class="tsd-kind-icon">router</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="collectionscomponent.html#visibility" class="tsd-kind-icon">visibility</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="collectionscomponent.html#workbenchservice" class="tsd-kind-icon">workbench<wbr>Service</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionscomponent.html#changevisibility" class="tsd-kind-icon">change<wbr>Visibility</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionscomponent.html#deletecollection" class="tsd-kind-icon">delete<wbr>Collection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionscomponent.html#editproperties" class="tsd-kind-icon">edit<wbr>Properties</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionscomponent.html#exportcollectiontojson" class="tsd-kind-icon">export<wbr>Collection<wbr>ToJson</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionscomponent.html#getcontextvisibilityfornumber" class="tsd-kind-icon">get<wbr>Context<wbr>Visibility<wbr>For<wbr>Number</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionscomponent.html#iconclassforcontextvisibilitynumber" class="tsd-kind-icon">icon<wbr>Class<wbr>For<wbr>Context<wbr>Visibility<wbr>Number</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionscomponent.html#reloadcollection" class="tsd-kind-icon">reload<wbr>Collection</a></li>
 							</ul>
 						</section>
@@ -110,13 +115,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Collections<wbr>Component<span class="tsd-signature-symbol">(</span>collectionsService<span class="tsd-signature-symbol">: </span><a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a>, notificationService<span class="tsd-signature-symbol">: </span><a href="notificationservice.html" class="tsd-signature-type">NotificationService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="collectionscomponent.html" class="tsd-signature-type">CollectionsComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Collections<wbr>Component<span class="tsd-signature-symbol">(</span>collectionsService<span class="tsd-signature-symbol">: </span><a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a>, workbenchService<span class="tsd-signature-symbol">: </span><a href="workbenchservice.html" class="tsd-signature-type">WorkbenchService</a>, notificationService<span class="tsd-signature-symbol">: </span><a href="notificationservice.html" class="tsd-signature-type">NotificationService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="collectionscomponent.html" class="tsd-signature-type">CollectionsComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5b7cb16/src/app/owc/collections.component.ts#L70">app/owc/collections.component.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L92">app/owc/collections.component.ts:92</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -128,6 +133,9 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>collectionsService: <a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a></h5>
+								</li>
+								<li>
+									<h5>workbenchService: <a href="workbenchservice.html" class="tsd-signature-type">WorkbenchService</a></h5>
 								</li>
 								<li>
 									<h5>notificationService: <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></h5>
@@ -153,7 +161,7 @@
 					<div class="tsd-signature tsd-kind-icon">collections<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5b7cb16/src/app/owc/collections.component.ts#L79">app/owc/collections.component.ts:79</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L102">app/owc/collections.component.ts:102</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -163,7 +171,7 @@
 					<div class="tsd-signature tsd-kind-icon">my<wbr>Collection<span class="tsd-signature-symbol">:</span> <a href="../interfaces/owccontext.html" class="tsd-signature-type">OwcContext</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5b7cb16/src/app/owc/collections.component.ts#L18">app/owc/collections.component.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L19">app/owc/collections.component.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -173,7 +181,7 @@
 					<div class="tsd-signature tsd-kind-icon">notification<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5b7cb16/src/app/owc/collections.component.ts#L80">app/owc/collections.component.ts:80</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L104">app/owc/collections.component.ts:104</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -183,7 +191,7 @@
 					<div class="tsd-signature tsd-kind-icon">reload<wbr>OnChanged<wbr>Collection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;any&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5b7cb16/src/app/owc/collections.component.ts#L19">app/owc/collections.component.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L21">app/owc/collections.component.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -193,7 +201,7 @@
 					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5b7cb16/src/app/owc/collections.component.ts#L81">app/owc/collections.component.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L105">app/owc/collections.component.ts:105</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -201,9 +209,55 @@
 						</div>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="visibility" class="tsd-anchor"></a>
+					<h3>visibility</h3>
+					<div class="tsd-signature tsd-kind-icon">visibility<span class="tsd-signature-symbol">:</span> <a href="../interfaces/owccontextsrightsmatrix.html" class="tsd-signature-type">OwcContextsRightsMatrix</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L20">app/owc/collections.component.ts:20</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="workbenchservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> workbench<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">workbench<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="workbenchservice.html" class="tsd-signature-type">WorkbenchService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L103">app/owc/collections.component.ts:103</a></li>
+						</ul>
+					</aside>
+				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="changevisibility" class="tsd-anchor"></a>
+					<h3>change<wbr>Visibility</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">change<wbr>Visibility<span class="tsd-signature-symbol">(</span>collectionid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, visibility<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L38">app/owc/collections.component.ts:38</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>collectionid: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>visibility: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="deletecollection" class="tsd-anchor"></a>
 					<h3>delete<wbr>Collection</h3>
@@ -214,7 +268,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5b7cb16/src/app/owc/collections.component.ts#L38">app/owc/collections.component.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L52">app/owc/collections.component.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -236,7 +290,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5b7cb16/src/app/owc/collections.component.ts#L25">app/owc/collections.component.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L28">app/owc/collections.component.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -253,7 +307,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5b7cb16/src/app/owc/collections.component.ts#L60">app/owc/collections.component.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L74">app/owc/collections.component.ts:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -272,6 +326,52 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getcontextvisibilityfornumber" class="tsd-anchor"></a>
+					<h3>get<wbr>Context<wbr>Visibility<wbr>For<wbr>Number</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Context<wbr>Visibility<wbr>For<wbr>Number<span class="tsd-signature-symbol">(</span>level<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L86">app/owc/collections.component.ts:86</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>level: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="iconclassforcontextvisibilitynumber" class="tsd-anchor"></a>
+					<h3>icon<wbr>Class<wbr>For<wbr>Context<wbr>Visibility<wbr>Number</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">icon<wbr>Class<wbr>For<wbr>Context<wbr>Visibility<wbr>Number<span class="tsd-signature-symbol">(</span>level<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L90">app/owc/collections.component.ts:90</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>level: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="reloadcollection" class="tsd-anchor"></a>
 					<h3>reload<wbr>Collection</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -281,7 +381,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5b7cb16/src/app/owc/collections.component.ts#L21">app/owc/collections.component.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/5c186fa/src/app/owc/collections.component.ts#L23">app/owc/collections.component.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -323,6 +423,15 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="collectionscomponent.html#router" class="tsd-kind-icon">router</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="collectionscomponent.html#visibility" class="tsd-kind-icon">visibility</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="collectionscomponent.html#workbenchservice" class="tsd-kind-icon">workbench<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="collectionscomponent.html#changevisibility" class="tsd-kind-icon">change<wbr>Visibility</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="collectionscomponent.html#deletecollection" class="tsd-kind-icon">delete<wbr>Collection</a>
 							</li>
@@ -331,6 +440,12 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="collectionscomponent.html#exportcollectiontojson" class="tsd-kind-icon">export<wbr>Collection<wbr>ToJson</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="collectionscomponent.html#getcontextvisibilityfornumber" class="tsd-kind-icon">get<wbr>Context<wbr>Visibility<wbr>For<wbr>Number</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="collectionscomponent.html#iconclassforcontextvisibilitynumber" class="tsd-kind-icon">icon<wbr>Class<wbr>For<wbr>Context<wbr>Visibility<wbr>Number</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="collectionscomponent.html#reloadcollection" class="tsd-kind-icon">reload<wbr>Collection</a>
