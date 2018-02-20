@@ -15,7 +15,7 @@
         Export <i class="fa fa-save" aria-hidden="true"></i>
       </button>
 
-      <div class="btn-group" *ngIf="visibility?.contextIntrinsicVisibility">
+      <div class="btn-group" *ngIf="visibility">
         <button type="button" class="btn btn-default dropdown-toggle" tooltip="Change visibilitiy the Collection" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
           {{ getContextVisibilityForNumber(visibility.contextIntrinsicVisibility) }} <i [ngClass]="iconClassForContextVisibilityNumber(visibility.contextIntrinsicVisibility)" aria-hidden="true"></i> <span

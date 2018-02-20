@@ -16,7 +16,7 @@ import {
 } from './account';
 import {
   MetadataEditorComponent,
-  BasicFileUploadComponent
+  BasicFileUploadComponent, UsermetarecordsComponent, UserFilesComponent
 } from './workbench';
 import { NotFoundComponent } from './navigation';
 import { ResearchProgrammesComponent } from './research-pg';
@@ -113,6 +113,16 @@ const appRoutes: Routes = [
   {
     path: 'workbench/my-groups',
     component: GroupsBaseComponent,
+    canActivate: [ AuthGuard, RegisteredGuard ]
+  },
+  {
+    path: 'workbench/my-files',
+    component: UserFilesComponent,
+    canActivate: [ AuthGuard, RegisteredGuard ]
+  },
+  {
+    path: 'workbench/my-metadata',
+    component: UsermetarecordsComponent,
     canActivate: [ AuthGuard, RegisteredGuard ]
   },
   {

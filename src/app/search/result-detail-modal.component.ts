@@ -1,20 +1,22 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { IErrorResult, IGeoFeature } from './result';
 import { OwcContext, OwcResource, CollectionsService } from '../owc';
 import { ResultService } from './result.service';
 import { NotificationService } from '../notifications/notification.service';
 import { logger } from 'codelyzer/util/logger';
+import { AccountService } from '../account';
 
 @Component({
   selector: 'app-sac-gwh-result-detail-modal',
   templateUrl: 'result-detail-modal.component.html'
 })
 
-export class ResultDetailModalComponent {
+export class ResultDetailModalComponent implements OnInit {
   feature: IGeoFeature;
   owcFeature: OwcResource;
-  myCollections: OwcContext[];
+  myCollections: OwcContext[] = [];
+  loggedIn = false;
   activeCollectionId = '';
 
   @Output() onHide = new EventEmitter();
@@ -23,21 +25,36 @@ export class ResultDetailModalComponent {
 
   constructor( private resultService: ResultService,
                private notificationService: NotificationService,
+               private accountService: AccountService,
                private collectionsService: CollectionsService ) {
+  }
 
-    this.collectionsService.getCollections()
-      .subscribe(
-        owcDocs => {
-          this.myCollections = [];
-          owcDocs.forEach(( owcDoc: OwcContext ) => {
-            this.myCollections.push(owcDoc);
-            // console.log(owcDoc.id);
-          });
-        },
-        error => {
-          console.log(<any>error);
-          this.notificationService.addErrorResultNotification(error);
-        });
+  ngOnInit(): void {
+    this.accountService.isLoggedIn().subscribe(
+      loggedInResult => {
+        if (loggedInResult === true) {
+          this.loggedIn = true;
+          this.collectionsService.getCollections()
+            .subscribe(
+              owcDocs => {
+                this.myCollections = [];
+                owcDocs.forEach(( owcDoc: OwcContext ) => {
+                  this.myCollections.push(owcDoc);
+                  // console.log(owcDoc.id);
+                });
+              },
+              error => {
+                console.log(<any>error);
+                this.notificationService.addErrorResultNotification(error);
+              });
+        } else {
+          console.log('logged in? ' + loggedInResult);
+        }
+      },
+      error => {
+        console.log(<any>error);
+        console.log('not logged in');
+      });
   }
 
   showFeatureModal( geoFeature: IGeoFeature ) {
