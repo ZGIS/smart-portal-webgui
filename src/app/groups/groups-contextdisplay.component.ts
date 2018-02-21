@@ -7,7 +7,8 @@ import { ProfileJs } from '../account';
   selector: 'app-sac-gwh-groupscontextdisplay',
   template: `
     <div *ngIf="theCollection" class="contextdisplayshort">
-      <b>{{ theCollection.properties.title }}</b>
+      <b>{{ theCollection.properties.title }}</b><i class="fa fa-search" aria-hidden="true"
+                                                    popover="{{ theCollection.properties.subtitle }}"></i>
     </div>`,
 })
 

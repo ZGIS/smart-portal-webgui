@@ -48,6 +48,11 @@ export class GroupsBaseComponent implements OnInit {
             this.userGroups.push(g);
             // console.log(g.uuid);
           });
+          this.userGroups.sort((leftside, rightside) => {
+            if (leftside.name.toLowerCase() < rightside.name.toLowerCase()) { return -1; }
+            if (leftside.name.toLowerCase() > rightside.name.toLowerCase()) { return 1; }
+            return 0;
+          });
         },
         error => {
           console.log(<any>error);
@@ -73,6 +78,11 @@ export class GroupsBaseComponent implements OnInit {
               this.myCollections.push(owcDoc);
               // console.log(owcDoc.id);
             }
+          });
+          this.myCollections.sort((leftside, rightside) => {
+            if (leftside.properties.title.toLowerCase() < rightside.properties.title.toLowerCase()) { return -1; }
+            if (leftside.properties.title.toLowerCase() > rightside.properties.title.toLowerCase()) { return 1; }
+            return 0;
           });
         },
         error => {
@@ -162,6 +172,11 @@ export class GroupsBaseComponent implements OnInit {
           groups.forEach(( g: UserGroup ) => {
             this.userGroups.push(g);
             // console.log(g.uuid);
+          });
+          this.userGroups.sort((leftside, rightside) => {
+            if (leftside.name.toLowerCase() < rightside.name.toLowerCase()) { return -1; }
+            if (leftside.name.toLowerCase() > rightside.name.toLowerCase()) { return 1; }
+            return 0;
           });
         },
         error => {
@@ -278,6 +293,31 @@ export class GroupsBaseComponent implements OnInit {
         message: `Not a valid user email to add.`
       });
     }
+  }
+
+  removeUserFromGroup( users_accountsub: string ): void {
+    // the editUserGroup is given, can only be successful on server if calling user has rights
+    let fitered = this.editUserGroup.hasUsersLevel.filter(p => p.users_accountsubject !== users_accountsub);
+    this.editUserGroup.hasUsersLevel = fitered;
+    this.loading = true;
+    this.workbenchService.updateUsersOwnUserGroup(this.editUserGroup).subscribe(
+      success => {
+        this.notificationService.addNotification({
+          id: NotificationService.DEFAULT_DISMISS,
+          type: 'info',
+          message: `The user has been removed, reloading.`
+        });
+        this.readyForAddingConllection = false;
+        this.emailUserToAdd = '';
+        this.loading = false;
+        this.hideEditGroupModal();
+        this.reloadGroups();
+      },
+      error => {
+        this.loading = false;
+        console.log(<any>error);
+        this.notificationService.addErrorResultNotification(error);
+      });
   }
 
   getContextVisibilityForNumber( level: number ): string {

@@ -182,7 +182,7 @@ export class MetadataEditorComponent implements OnInit {
         (response => {
           this.loading = false;
           this.notificationService.addNotification(response);
-          this.router.navigateByUrl('/workbench/my-data');
+          this.router.navigateByUrl('/workbench/my-metadata');
         }),
         (error => {
           this.loading = false;

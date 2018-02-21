@@ -142,7 +142,7 @@
                     [usersAccountid]="userV.users_accountsubject"></app-sac-gwh-groupsuserdisplay>
                   <a
                     *ngIf="(userProfile.accountSubject !== userV.users_accountsubject) && iamGroupAdmin(userProfile.accountSubject, editUserGroup)"
-                    (click)="nativeWindow.alert('remove this user')" tooltip="remove user">
+                    (click)="removeUserFromGroup(editUserGroup.hasUsersLevel[j].users_accountsubject)" tooltip="remove user">
                     <i class="fa fa-minus-circle" aria-hidden="true"></i>
                   </a>
 
@@ -182,12 +182,11 @@
                   class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" *ngIf="myGroupLevel(userProfile.accountSubject, editUserGroup) >=1">
-                  <li *ngFor="let collectionsid of myCollections" tooltip="add this colelction to the group"
+                  <li *ngFor="let collectionsid of myCollections"
                       [ngClass]="{'disabled': collectionIsAlreadyInGroup( collectionsid.id, editUserGroup) }">
-                    <a
+                    <a tooltip="add this collection to the group. Info: {{ collectionsid.properties.subtitle }}"
                       (click)="nativeWindow.alert('add collection ' + collectionsid.properties.title + ' to group ' + editUserGroup.name)">
-                      <i class="fa fa-plus" aria-hidden="true"></i> {{ collectionsid.properties.title }}
-                    </a>
+                      <i class="fa fa-plus" aria-hidden="true"></i> {{ collectionsid.properties.title }}</a>
                   </li>
                 </ul>
               </div>

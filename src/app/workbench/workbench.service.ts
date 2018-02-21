@@ -318,6 +318,32 @@ export class WorkbenchService {
   }
 
   /**
+   * GET   /api/v1/usergroups/change-visibility
+   * controllers.UserGroupController.updateOwcContextVisibility(owcContextId: String, userAccountSub: String, visibility: Int)
+   *
+   * @param {string} owcContextId
+   * @param {string} userAccountSub
+   * @param {number} visibility
+   * @returns {Observable<boolean>}
+   */
+  updateOwcContextVisibility( owcContextId: string, visibility: number ): Observable<boolean> {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('owcContextId', owcContextId);
+    params.set('visibility', `${visibility}`);
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let options = new RequestOptions({ headers: headers, params: params, withCredentials: true });
+
+    return this.http.get(this.portalApiUrl + '/usergroups/change-visibility', options)
+      .map(( response ) => {
+        let datajson = response.json() && response.json().status === 'OK' && response.json();
+        console.log(response.json());
+        return true;
+      })
+      .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+  }
+
+  /**
    * does the actual http download request to the remote url
    *
    * @param {string} userFile

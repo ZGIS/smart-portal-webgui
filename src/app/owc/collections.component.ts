@@ -37,13 +37,20 @@ export class CollectionsComponent {
 
   changeVisibility( collectionid: string, visibility: number ): void {
     // console.log('we edit the properties');
-    this.notificationService.addNotification({
-      id: NotificationService.DEFAULT_DISMISS,
-      type: 'info',
-      message: `Changing visibility of this collection, not yet implemented.` +
-      `${collectionid} visibility level to ${this.getContextVisibilityForNumber(visibility)}`
-    });
-    this.reloadOnChangedCollection.emit(true);
+    this.workbenchService.updateOwcContextVisibility(collectionid, visibility).subscribe(
+      result => {
+        this.notificationService.addNotification({
+          id: NotificationService.DEFAULT_DISMISS,
+          type: 'info',
+          message: `Changing visibility of this collection.` +
+          `${collectionid} visibility level to ${this.getContextVisibilityForNumber(visibility)}`
+        });
+        this.reloadOnChangedCollection.emit(true);
+      },
+      error => {
+        console.log(<any>error);
+        this.notificationService.addErrorResultNotification(error);
+      });
   }
 
   /**

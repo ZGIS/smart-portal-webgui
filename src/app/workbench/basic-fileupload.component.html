@@ -1,4 +1,7 @@
 <div class="row">
+  <app-sac-gwh-central-usernav></app-sac-gwh-central-usernav>
+</div>
+<div class="row">
   <div class="col-md-12" style="margin-bottom: 40px">
     <div class="panel panel-default">
 
@@ -91,7 +94,7 @@
                   (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
             <span class="fa fa-trash"></span> Remove all
           </button>
-          <a *ngIf="showOpenCollectionBtn" routerLink="/workbench/my-data" class="btn btn-info pull-right" type="submit" id="back-btn">Show in My
+          <a *ngIf="showOpenCollectionBtn" routerLink="/workbench/my-files" class="btn btn-info pull-right" type="submit" id="back-btn">Show in My
             Data</a>
         </div>
       </div>
