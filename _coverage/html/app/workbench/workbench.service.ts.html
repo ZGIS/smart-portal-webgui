@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">15.24% </span>
+        <span class="strong">14.8% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>32/210</span>
+        <span class='fraction'>33/223</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/64</span>
+        <span class='fraction'>0/67</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">1.72% </span>
+        <span class="strong">1.64% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/58</span>
+        <span class='fraction'>1/61</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">15.71% </span>
+        <span class="strong">15.27% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>30/191</span>
+        <span class='fraction'>31/203</span>
       </div>
     </div>
   </div>
@@ -487,7 +487,33 @@
 442
 443
 444
-445</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -801,6 +827,32 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1251,6 +1303,32 @@ export class WorkbenchService {
   }
 &nbsp;
   /**
+   * GET   /api/v1/usergroups/change-visibility
+   * controllers.UserGroupController.updateOwcContextVisibility(owcContextId: String, userAccountSub: String, visibility: Int)
+   *
+   * @param {string} owcContextId
+   * @param {string} userAccountSub
+   * @param {number} visibility
+   * @returns {Observable&lt;boolean&gt;}
+   */
+<span class="cstat-no" title="statement not covered" >  updateOwcContextVisibility( owcContextId: string, visibility: number<span class="fstat-no" title="function not covered" > ): Observable&lt;boolean&gt; {</span></span>
+    let params: URLSearchParams = <span class="cstat-no" title="statement not covered" >new URLSearchParams();</span>
+<span class="cstat-no" title="statement not covered" >    params.set('owcContextId', owcContextId);</span>
+<span class="cstat-no" title="statement not covered" >    params.set('visibility', `${visibility}`);</span>
+    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'X-XSRF-TOKEN': token });</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, params: params, withCredentials: true });</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this.http.get(this.portalApiUrl + '/usergroups/change-visibility', options)</span>
+      .map(( response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
+        let datajson = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().status === 'OK' &amp;&amp; response.json();</span>
+<span class="cstat-no" title="statement not covered" >        console.log(response.json());</span>
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+      })
+      .catch(( errorResponse: Response<span class="fstat-no" title="function not covered" > ) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
+  }
+&nbsp;
+  /**
    * does the actual http download request to the remote url
    *
    * @param {string} userFile
@@ -1381,7 +1459,7 @@ export class WorkbenchService {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 20 2018 20:11:08 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 21 2018 13:27:06 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
