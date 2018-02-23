@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AccountService, ProfileJs } from '../account';
 import { WorkbenchService } from '../workbench';
-import { UserGroup, UserGroupUsersLevel } from '../admin';
+import { UserGroup, UserGroupContextsVisibility, UserGroupUsersLevel } from '../admin';
 import { NotificationService } from '../notifications';
 import { CollectionsService, OwcContext } from '../owc';
 import { ModalDirective } from 'ngx-bootstrap';
 import * as moment from 'moment';
+import { OwcContextsRightsMatrix } from '../workbench/workbench.types';
 
 function _window(): any {
   // return the global native browser window object
@@ -29,6 +30,8 @@ export class GroupsBaseComponent implements OnInit {
   newgroup: any = {};
 
   myCollections: OwcContext[];
+  myRightsMatrix: OwcContextsRightsMatrix[] = [];
+
   activeCollectionId = '';
   emailUserToAdd = '';
   readyForAddingUser = false;
@@ -73,6 +76,20 @@ export class GroupsBaseComponent implements OnInit {
           this.notificationService.addErrorResultNotification(error);
         });
 
+    this.workbenchService.getOwcContextsRightsMatrixForUser()
+      .subscribe(
+        rights => {
+          this.myRightsMatrix = [];
+          rights.forEach(( matrix: OwcContextsRightsMatrix ) => {
+            this.myRightsMatrix.push(matrix);
+            console.log(matrix);
+          });
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
+
     this.collectionsService.getCollections()
       .subscribe(
         owcDocs => {
@@ -102,7 +119,6 @@ export class GroupsBaseComponent implements OnInit {
   get nativeWindow(): any {
     return _window();
   }
-
 
   /**
    * create a new group with yourself as first admin member
@@ -138,6 +154,7 @@ export class GroupsBaseComponent implements OnInit {
             details: `Created a new group, ${group.name}`
           });
           this.hideCreateGroupModal();
+          this.newgroup = {};
           this.reloadGroups();
         },
         error => {
@@ -195,6 +212,20 @@ export class GroupsBaseComponent implements OnInit {
           console.log(<any>error);
           this.notificationService.addErrorResultNotification(error);
         });
+
+    this.workbenchService.getOwcContextsRightsMatrixForUser()
+      .subscribe(
+        rights => {
+          this.myRightsMatrix = [];
+          rights.forEach(( matrix: OwcContextsRightsMatrix ) => {
+            this.myRightsMatrix.push(matrix);
+            console.log(matrix);
+          });
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
   }
 
   myGroupLevel( editUserAccSub: string, editUserGroupHandle: UserGroup ): number {
@@ -204,6 +235,13 @@ export class GroupsBaseComponent implements OnInit {
     } else {
       return 0;
     }
+  }
+
+  isMyOwnNativeCoollection( editUserAccSub: string, collectionHandle: UserGroupContextsVisibility ): boolean {
+    return this.myRightsMatrix.filter(m => {
+      return m.owcContextId === collectionHandle.owc_context_id &&
+        m.origOwnerAccountSubject === editUserAccSub;
+    }).length > 0;
   }
 
   iamGroupAdmin( editUserAccSub: string, editUserGroupHandle: UserGroup ): boolean {
@@ -223,6 +261,12 @@ export class GroupsBaseComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  myCollectionsGroupLevelPrivate( collectionid: string ): boolean {
+    return this.myRightsMatrix.filter(m => {
+      return m.owcContextId === collectionid && m.contextIntrinsicVisibility <= 0;
+    }).length > 0;
   }
 
   deleteGroup( groupId: string ): void {
@@ -350,7 +394,6 @@ export class GroupsBaseComponent implements OnInit {
   }
 
   updateUsersRightInGroup( users_accountsub: string, new_level: number ): void {
-
     let changed = this.editUserGroup.hasUsersLevel.map(lvl => {
       if (lvl.users_accountsubject === users_accountsub) {
         lvl.userlevel = new_level;
@@ -366,6 +409,71 @@ export class GroupsBaseComponent implements OnInit {
           type: 'info',
           message: `The user level has been updated, reloading.`
         });
+        this.loading = false;
+        this.hideEditGroupModal();
+        this.reloadGroups();
+      },
+      error => {
+        this.loading = false;
+        console.log(<any>error);
+        this.notificationService.addErrorResultNotification(error);
+      });
+  }
+
+  addCollectionToGroup( collectionHandle: string ): void {
+    const isReallyMy = this.myRightsMatrix.filter(m => {
+      return m.owcContextId === collectionHandle &&
+        m.origOwnerAccountSubject === this.userProfile.accountSubject;
+    }).length > 0;
+    const nativeVis = this.myRightsMatrix.find(p => p.owcContextId === collectionHandle && p.contextIntrinsicVisibility > 0);
+    if (this.editUserGroup.hasOwcContextsVisibility.findIndex(p => p.owc_context_id === collectionHandle) < 0 &&
+      isReallyMy && nativeVis) {
+      let newGroupContextsVisibility: UserGroupContextsVisibility = <UserGroupContextsVisibility>{
+        usergroups_uuid: this.editUserGroup.uuid,
+        owc_context_id: collectionHandle,
+        visibility: nativeVis.contextIntrinsicVisibility
+      };
+      this.editUserGroup.hasOwcContextsVisibility.push(newGroupContextsVisibility);
+      this.workbenchService.updateUsersOwnUserGroup(this.editUserGroup).subscribe(
+        success => {
+          this.notificationService.addNotification({
+            id: NotificationService.DEFAULT_DISMISS,
+            type: 'info',
+            message: `The collection has been added, reloading.`
+          });
+          this.readyForAddingConllection = false;
+          this.loading = false;
+          this.hideEditGroupModal();
+          this.reloadGroups();
+        },
+        error => {
+          this.loading = false;
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
+        });
+    } else {
+      this.loading = false;
+      this.notificationService.addNotification({
+        id: NotificationService.DEFAULT_DISMISS,
+        type: 'warning',
+        message: `Collection to add is already a member,or not enabled to group-share.`
+      });
+    }
+  }
+
+  removeCollectionFromGroup( collectionHandle: UserGroupContextsVisibility ): void {
+    // the editUserGroup is given, can only be successful on server if calling user has rights
+    let fitered = this.editUserGroup.hasOwcContextsVisibility.filter(v => v.owc_context_id !== collectionHandle.owc_context_id);
+    this.editUserGroup.hasOwcContextsVisibility = fitered;
+    this.loading = true;
+    this.workbenchService.updateUsersOwnUserGroup(this.editUserGroup).subscribe(
+      success => {
+        this.notificationService.addNotification({
+          id: NotificationService.DEFAULT_DISMISS,
+          type: 'info',
+          message: `The collection has been removed, reloading.`
+        });
+        this.readyForAddingConllection = false;
         this.loading = false;
         this.hideEditGroupModal();
         this.reloadGroups();

@@ -184,10 +184,11 @@
                 </button>
                 <ul class="dropdown-menu" *ngIf="myGroupLevel(userProfile.accountSubject, editUserGroup) >=1">
                   <li *ngFor="let collectionsid of myCollections"
-                      [ngClass]="{'disabled': collectionIsAlreadyInGroup( collectionsid.id, editUserGroup) }">
+                      [ngClass]="{'disabled': collectionIsAlreadyInGroup( collectionsid.id, editUserGroup) || myCollectionsGroupLevelPrivate(collectionsid.id)}">
                     <a tooltip="add this collection to the group. Info: {{ collectionsid.properties.subtitle }}"
-                      (click)="nativeWindow.alert('add collection ' + collectionsid.properties.title + ' to group ' + editUserGroup.name)">
-                      <i class="fa fa-plus" aria-hidden="true"></i> {{ collectionsid.properties.title }}</a>
+                        (click)="addCollectionToGroup(collectionsid.id)">
+                      <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="myCollectionsGroupLevelPrivate(collectionsid.id)"></i>
+                      <i class="fa fa-plus" aria-hidden="true" *ngIf="!myCollectionsGroupLevelPrivate(collectionsid.id)"></i> {{ collectionsid.properties.title }}</a>
                   </li>
                 </ul>
               </div>
@@ -197,8 +198,8 @@
                   <span>
                     <app-sac-gwh-groupscontextdisplay
                       [context_id]="collectionV.owc_context_id"></app-sac-gwh-groupscontextdisplay>
-                    <a *ngIf="iamGroupAdmin(userProfile.accountSubject, editUserGroup)"
-                       (click)="nativeWindow.alert('remove this collection')" tooltip="remove collection">
+                    <a *ngIf="iamGroupAdmin(userProfile.accountSubject, editUserGroup) || isMyOwnNativeCoollection(userProfile.accountSubject, collectionV)"
+                       (click)="removeCollectionFromGroup(collectionV)" tooltip="remove collection">
                       <i class="fa fa-minus-circle" aria-hidden="true"></i>
                     </a>
                   </span>
