@@ -250,6 +250,34 @@ export class WorkbenchService {
   }
 
   /**
+   * GET  /api/v1/files/linkLogging     controllers.FilesController.logLinkInfo(link: String)
+   * @param {string} link
+   * @returns void
+   */
+  logLinkInfo( link: string, loggedIn ): Observable<any> {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('link', link);
+    let token = this.accountService.token;
+    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    if (loggedIn === true) {
+      let options = new RequestOptions({ headers: headers, params: params, withCredentials: true });
+      return this.http.get(`${this.portalApiUrl}/files/linkLogging`, options)
+        .map(( response ) => {
+          console.log(response.json());
+        })
+        .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+    } else {
+      console.log('not logged in');
+      let options = new RequestOptions({ params: params, withCredentials: true });
+      return this.http.get(`${this.portalApiUrl}/files/linkLogging`, options)
+        .map(( response ) => {
+          console.log(response.json());
+        })
+        .catch(( errorResponse: Response ) => this.handleError(errorResponse));
+    }
+  }
+
+  /**
    * GET  /api/v1/usergroups/users    controllers.UserGroupController.resolveUserInfo
    * @param {string} accountSubject
    * @returns {Observable<ProfileJs>}
@@ -319,7 +347,8 @@ export class WorkbenchService {
 
   /**
    * GET   /api/v1/usergroups/change-visibility
-   * controllers.UserGroupController.updateOwcContextVisibility(owcContextId: String, userAccountSub: String, visibility: Int)
+   * controllers.UserGroupController.updateOwcContextVisibility(owcContextId: String, userAccountSub: String,
+   * visibility: Int)
    *
    * @param {string} owcContextId
    * @param {string} userAccountSub

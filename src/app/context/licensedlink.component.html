@@ -7,6 +7,6 @@
   <p>This link will open a new window with a file download or another website.
     By clicking this link you confirm that you have read and agree to the terms and conditions.</p>
   <p *ngIf="licenseComment">{{ licenseComment }}</p>
-  <a [href]="theLink" role="button" class="btn btn-info" target="_blank">Ok, I agree.</a>
+  <a [href]="theLink" role="button" target="_blank" class="btn btn-info" (click)="okAgreeLink(theLink)">Ok, I agree.</a>
   <button class="btn btn-warning" (click)="pophide()">Cancel!</button>
 </ng-template>
