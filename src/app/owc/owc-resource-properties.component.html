@@ -12,12 +12,6 @@
         <p *ngIf="owcResourceProperties.updated"><small><i>{{ 'Last updated: ' + owcResourceProperties.updated }}</i></small></p>
         <p *ngIf="owcResourceProperties.date"><small><i>{{ 'Temporal extent: ' + owcResourceProperties.date }}</i></small></p>
       </li>
-      <li class="list-group-item"  *ngIf="owcResourceProperties.geometry">
-        <span class="badge pull-left">Geospatial extent:</span>&nbsp;
-        <div>
-          Here should be a map roughly outlining the geometry of: {{ owcResourceProperties.geometry | json }}
-        </div>
-      </li>
       <li class="list-group-item"  *ngIf="owcResourceProperties.active || owcResourceProperties.minscaledenominator || owcResourceProperties.maxscaledenominator">
         <p *ngIf="owcResourceProperties.active"><small><i>{{ 'layer should be active: ' + owcResourceProperties.active }}</i></small></p>
         <p *ngIf="owcResourceProperties.minscaledenominator"><small><i>{{ 'minimal scale visible: ' + owcResourceProperties.minscaledenominator }}</i></small></p>
@@ -36,7 +30,7 @@
           <p *ngIf="owcResourceProperties.publisher"><small><i>{{ 'Published by: ' + owcResourceProperties.publisher }}</i></small></p>
         </div>
       </li>
-      <li class="list-group-item"  *ngIf="owcResourceProperties.categories && owcResourceProperties.categories > 0">
+      <li class="list-group-item"  *ngIf="owcResourceProperties.categories">
         <span class="badge  pull-left">Tagged Categories and keywords:</span>&nbsp;
         <div class="list-group-item" *ngFor="let owcCategory of owcResourceProperties.categories">
           <app-sac-gwh-owccategory [owcCategory]="owcCategory"></app-sac-gwh-owccategory>

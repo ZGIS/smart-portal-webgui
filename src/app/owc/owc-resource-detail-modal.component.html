@@ -10,6 +10,12 @@
         <h4 class="modal-title pull-left">Resource Info</h4>
       </div>
       <div class="modal-body">
+        <div *ngIf="owcResource.geometry">
+          <span class="badge pull-left">Geospatial extent:</span>&nbsp;
+          <div>
+            Here should be a map roughly outlining the geometry of: {{ owcResource.geometry | json }}
+          </div>
+        </div>
 
         <app-sac-gwh-owcresource-props [owcResourceProperties]="owcResource.properties"></app-sac-gwh-owcresource-props>
 

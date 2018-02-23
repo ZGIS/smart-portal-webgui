@@ -1,4 +1,5 @@
 export interface OwcContext {
+  type: string;
   id: string;
   bbox: any;
   properties: OwcContextProperties;
@@ -26,7 +27,9 @@ export interface OwcContextLinks {
 }
 
 export interface OwcResource {
+  type: string;
   id: string;
+  geometry?: any;
   properties: OwcResourceProperties;
   searchScore?: number;
 }
@@ -38,7 +41,6 @@ export interface OwcResourceProperties {
   authors?: OwcAuthor[];
   publisher?: string;
   rights?: string;
-  geometry?: any;
   date?: string;
   links?: OwcResourceLinks;
   offerings?: OwcOffering[];
