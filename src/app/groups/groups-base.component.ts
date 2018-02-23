@@ -48,9 +48,13 @@ export class GroupsBaseComponent implements OnInit {
             this.userGroups.push(g);
             // console.log(g.uuid);
           });
-          this.userGroups.sort((leftside, rightside) => {
-            if (leftside.name.toLowerCase() < rightside.name.toLowerCase()) { return -1; }
-            if (leftside.name.toLowerCase() > rightside.name.toLowerCase()) { return 1; }
+          this.userGroups.sort(( leftside, rightside ) => {
+            if (leftside.name.toLowerCase() < rightside.name.toLowerCase()) {
+              return -1;
+            }
+            if (leftside.name.toLowerCase() > rightside.name.toLowerCase()) {
+              return 1;
+            }
             return 0;
           });
         },
@@ -79,9 +83,13 @@ export class GroupsBaseComponent implements OnInit {
               // console.log(owcDoc.id);
             }
           });
-          this.myCollections.sort((leftside, rightside) => {
-            if (leftside.properties.title.toLowerCase() < rightside.properties.title.toLowerCase()) { return -1; }
-            if (leftside.properties.title.toLowerCase() > rightside.properties.title.toLowerCase()) { return 1; }
+          this.myCollections.sort(( leftside, rightside ) => {
+            if (leftside.properties.title.toLowerCase() < rightside.properties.title.toLowerCase()) {
+              return -1;
+            }
+            if (leftside.properties.title.toLowerCase() > rightside.properties.title.toLowerCase()) {
+              return 1;
+            }
             return 0;
           });
         },
@@ -173,9 +181,13 @@ export class GroupsBaseComponent implements OnInit {
             this.userGroups.push(g);
             // console.log(g.uuid);
           });
-          this.userGroups.sort((leftside, rightside) => {
-            if (leftside.name.toLowerCase() < rightside.name.toLowerCase()) { return -1; }
-            if (leftside.name.toLowerCase() > rightside.name.toLowerCase()) { return 1; }
+          this.userGroups.sort(( leftside, rightside ) => {
+            if (leftside.name.toLowerCase() < rightside.name.toLowerCase()) {
+              return -1;
+            }
+            if (leftside.name.toLowerCase() > rightside.name.toLowerCase()) {
+              return 1;
+            }
             return 0;
           });
         },
@@ -198,6 +210,12 @@ export class GroupsBaseComponent implements OnInit {
     return this.myGroupLevel(editUserAccSub, editUserGroupHandle) >= 2;
   }
 
+  amiLastGroupAdmin( editUserAccSub: string, editUserGroupHandle: UserGroup ): boolean {
+    let admin = this.myGroupLevel(editUserAccSub, editUserGroupHandle) >= 2;
+    let howManyAdmins = editUserGroupHandle.hasUsersLevel.filter(ul => ul.userlevel >= 2).length;
+    return admin && howManyAdmins === 1;
+  }
+
   collectionIsAlreadyInGroup( collectionid: string, editUserGroupHandle: UserGroup ): boolean {
     let collectionIsIn = editUserGroupHandle.hasOwcContextsVisibility.find(owg => owg.owc_context_id === collectionid);
     if (collectionIsIn) {
@@ -208,22 +226,30 @@ export class GroupsBaseComponent implements OnInit {
   }
 
   deleteGroup( groupId: string ): void {
-    console.log('we delete the group');
-    this.workbenchService.deleteUsersOwnUserGroup(groupId).subscribe(
-      deleted => {
-        // console.log('deleted ' + deleted);
-        this.notificationService.addNotification({
-          id: NotificationService.DEFAULT_DISMISS,
-          type: 'info',
-          message: `This group has been deleted, reloading.`
+    if (this.iamGroupAdmin(this.userProfile.accountSubject, this.editUserGroup)) {
+      console.log('we delete the group');
+      this.workbenchService.deleteUsersOwnUserGroup(groupId).subscribe(
+        deleted => {
+          // console.log('deleted ' + deleted);
+          this.notificationService.addNotification({
+            id: NotificationService.DEFAULT_DISMISS,
+            type: 'info',
+            message: `This group has been deleted, reloading.`
+          });
+          this.hideEditGroupModal();
+          this.reloadGroups();
+        },
+        error => {
+          console.log(<any>error);
+          this.notificationService.addErrorResultNotification(error);
         });
-        this.hideEditGroupModal();
-        this.reloadGroups();
-      },
-      error => {
-        console.log(<any>error);
-        this.notificationService.addErrorResultNotification(error);
+    } else {
+      this.notificationService.addNotification({
+        id: NotificationService.DEFAULT_DISMISS,
+        type: 'warning',
+        message: `You are not a group admin.`
       });
+    }
   }
 
   isValidEmail( email: string ): boolean {
@@ -256,7 +282,7 @@ export class GroupsBaseComponent implements OnInit {
                   type: 'info',
                   message: `The user has been added, reloading.`
                 });
-                this.readyForAddingConllection = false;
+                this.readyForAddingUser = false;
                 this.emailUserToAdd = '';
                 this.loading = false;
                 this.hideEditGroupModal();
@@ -293,6 +319,9 @@ export class GroupsBaseComponent implements OnInit {
         message: `Not a valid user email to add.`
       });
     }
+    this.readyForAddingUser = false;
+    this.emailUserToAdd = '';
+    this.loading = false;
   }
 
   removeUserFromGroup( users_accountsub: string ): void {
@@ -309,6 +338,34 @@ export class GroupsBaseComponent implements OnInit {
         });
         this.readyForAddingConllection = false;
         this.emailUserToAdd = '';
+        this.loading = false;
+        this.hideEditGroupModal();
+        this.reloadGroups();
+      },
+      error => {
+        this.loading = false;
+        console.log(<any>error);
+        this.notificationService.addErrorResultNotification(error);
+      });
+  }
+
+  updateUsersRightInGroup( users_accountsub: string, new_level: number ): void {
+
+    let changed = this.editUserGroup.hasUsersLevel.map(lvl => {
+      if (lvl.users_accountsubject === users_accountsub) {
+        lvl.userlevel = new_level;
+      }
+      return lvl;
+    });
+    this.editUserGroup.hasUsersLevel = changed;
+    this.loading = true;
+    this.workbenchService.updateUsersOwnUserGroup(this.editUserGroup).subscribe(
+      success => {
+        this.notificationService.addNotification({
+          id: NotificationService.DEFAULT_DISMISS,
+          type: 'info',
+          message: `The user level has been updated, reloading.`
+        });
         this.loading = false;
         this.hideEditGroupModal();
         this.reloadGroups();

@@ -107,8 +107,8 @@
             <p *ngIf="editUserGroup.shortinfo">
               <i>{{ editUserGroup.shortinfo }}</i>
               <a
-                *ngIf="!iamGroupAdmin(userProfile.accountSubject, editUserGroup)"
-                (click)="nativeWindow.alert('leave the group, can only leave if you are not admin(power-user')"
+                *ngIf="!amiLastGroupAdmin(userProfile.accountSubject, editUserGroup)"
+                (click)="removeUserFromGroup(userProfile.accountSubject)"
                 tooltip="leave the group, can only leave if you are not admin(power-user">
                 <i class="fa fa-minus-circle" aria-hidden="true"></i>
               </a>
@@ -155,12 +155,13 @@
                     </button>
                     <ul class="dropdown-menu" *ngIf="iamGroupAdmin(userProfile.accountSubject, editUserGroup)">
                       <li *ngFor="let idx of [0,1,2,3]" tooltip="change user rights level"
-                          [ngClass]="{'disabled': idx === userV.userlevel}">
+                          [ngClass]="{'disabled': idx === userV.userlevel || idx > 2 }">
                         <a
-                          (click)="nativeWindow.alert('change user ' + userV.users_accountsubject + ' rights level to ' + getUserRightsNameForNumber(idx) + ' ' + idx)">
+                          (click)="updateUsersRightInGroup(userV.users_accountsubject, idx)">
                           {{ getUserRightsNameForNumber(idx) }} <i [ngClass]="iconClassForUserRightsLevelNumber(idx)"
                                                                    aria-hidden="true"></i>
                         </a>
+                        <span class="bg-warning" *ngIf="amiLastGroupAdmin(userProfile.accountSubject, editUserGroup)">You are the last admin</span>
                       </li>
                     </ul>
                   </div>
@@ -204,7 +205,7 @@
                 </li>
               </ul>
             </div>
-            <div class="list-group-item">
+            <div class="list-group-item" *ngIf="iamGroupAdmin(userProfile.accountSubject, editUserGroup)">
               <button type="button" class="btn btn-danger" tooltip="delete the group"
                       (click)="deleteGroup(editUserGroup.uuid)">Delete group
               </button>

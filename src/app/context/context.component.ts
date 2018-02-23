@@ -59,6 +59,12 @@ export class ContextRetrieveComponent implements OnInit {
             this.ngZone.runOutsideAngular(() => {
               setTimeout(() => {
                 this.ngZone.run(() => {
+                  this.notificationService.addNotification({
+                    id: NotificationService.DEFAULT_DISMISS,
+                    type: 'info',
+                    message: 'Should look if you can access this colelction (e.g. is public, your group or private collction).',
+                    details: `via identifier context / ${params[ 'uuid' ]}, not yet implemented`
+                  });
                   this.router.navigate([ 'workbench/my-data' ]);
                 });
               }, 2500);
