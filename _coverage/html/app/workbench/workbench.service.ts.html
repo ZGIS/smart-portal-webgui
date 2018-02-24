@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">14.8% </span>
+        <span class="strong">14.23% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>33/223</span>
+        <span class='fraction'>34/239</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/67</span>
+        <span class='fraction'>0/69</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">1.64% </span>
+        <span class="strong">1.52% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/61</span>
+        <span class='fraction'>1/66</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">15.27% </span>
+        <span class="strong">14.68% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>31/203</span>
+        <span class='fraction'>32/218</span>
       </div>
     </div>
   </div>
@@ -513,7 +513,36 @@
 468
 469
 470
-471</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -776,6 +805,34 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -830,6 +887,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1235,6 +1293,34 @@ export class WorkbenchService {
   }
 &nbsp;
   /**
+   * GET  /api/v1/files/linkLogging     controllers.FilesController.logLinkInfo(link: String)
+   * @param {string} link
+   * @returns void
+   */
+<span class="cstat-no" title="statement not covered" >  logLinkInfo( link: string, loggedIn: boolean<span class="fstat-no" title="function not covered" > ): Observable&lt;any&gt; {</span></span>
+    let params: URLSearchParams = <span class="cstat-no" title="statement not covered" >new URLSearchParams();</span>
+<span class="cstat-no" title="statement not covered" >    params.set('link', link);</span>
+    let token = <span class="cstat-no" title="statement not covered" >this.accountService.token;</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'X-XSRF-TOKEN': token });</span>
+<span class="cstat-no" title="statement not covered" >    if (loggedIn === true) {</span>
+      let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, params: params, withCredentials: true });</span>
+<span class="cstat-no" title="statement not covered" >      return this.http.get(`${this.portalApiUrl}/files/linkLogging`, options)</span>
+        .map(( response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          console.log(response.json());</span>
+        })
+        .catch(( errorResponse: Response<span class="fstat-no" title="function not covered" > ) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
+    } else {
+<span class="cstat-no" title="statement not covered" >      console.log('not logged in');</span>
+      let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ params: params, withCredentials: true });</span>
+<span class="cstat-no" title="statement not covered" >      return this.http.get(`${this.portalApiUrl}/files/linkLogging`, options)</span>
+        .map(( response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          console.log(response.json());</span>
+        })
+        .catch(( errorResponse: Response<span class="fstat-no" title="function not covered" > ) =&gt; <span class="cstat-no" title="statement not covered" >this.handleError(errorResponse))</span></span>;
+    }
+  }
+&nbsp;
+  /**
    * GET  /api/v1/usergroups/users    controllers.UserGroupController.resolveUserInfo
    * @param {string} accountSubject
    * @returns {Observable&lt;ProfileJs&gt;}
@@ -1304,7 +1390,8 @@ export class WorkbenchService {
 &nbsp;
   /**
    * GET   /api/v1/usergroups/change-visibility
-   * controllers.UserGroupController.updateOwcContextVisibility(owcContextId: String, userAccountSub: String, visibility: Int)
+   * controllers.UserGroupController.updateOwcContextVisibility(owcContextId: String, userAccountSub: String,
+   * visibility: Int)
    *
    * @param {string} owcContextId
    * @param {string} userAccountSub
@@ -1459,7 +1546,7 @@ export class WorkbenchService {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Feb 23 2018 11:02:56 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Feb 24 2018 08:17:30 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

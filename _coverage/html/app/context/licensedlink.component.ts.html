@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">76.47% </span>
+        <span class="strong">55.56% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/17</span>
+        <span class='fraction'>15/27</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">11.11% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/4</span>
+        <span class='fraction'>1/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">73.33% </span>
+        <span class="strong">54.17% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>11/15</span>
+        <span class='fraction'>13/24</span>
       </div>
     </div>
   </div>
@@ -70,9 +70,33 @@
 25
 26
 27
-28</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -87,7 +111,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -101,6 +143,9 @@
 import { Location } from '@angular/common';
 import { PopoverDirective } from 'ngx-bootstrap/popover';
 import { NotificationService } from '../notifications';
+import { WorkbenchService } from '../workbench';
+import { OwcContext } from '../owc';
+import { AccountService } from '../account';
 &nbsp;
 @Component({
   selector: 'app-sac-gwh-licensedexitlink',
@@ -113,9 +158,27 @@ export class LicensedlinkComponent {
   @ViewChild('pop') pop: PopoverDirective;
 &nbsp;
   constructor( private <span class="cstat-no" title="statement not covered" >_location: Location,</span>
-               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" > </span>) {</span>
+               private <span class="cstat-no" title="statement not covered" >accountService: AccountService,</span>
+               private <span class="cstat-no" title="statement not covered" >workbenchService: WorkbenchService<span class="fstat-no" title="function not covered" > </span>) {</span>
   }
 &nbsp;
+<span class="cstat-no" title="statement not covered" >  okAgreeLink(link: string<span class="fstat-no" title="function not covered" >): void {</span></span>
+<span class="cstat-no" title="statement not covered" >    this.accountService.isLoggedIn().subscribe(</span>
+      loggedInResult<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          this.workbenchService.logLinkInfo(link, loggedInResult)</span>
+            .subscribe(
+              response<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                console.log(response);</span>
+              },
+              error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                console.log(&lt;any&gt;error);</span>
+              });
+      },
+      error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(&lt;any&gt;error);</span>
+      });
+<span class="cstat-no" title="statement not covered" >    this.pophide();</span>
+  }
 <span class="fstat-no" title="function not covered" >  pophide() {</span>
 <span class="cstat-no" title="statement not covered" >    this.pop.hide();</span>
   }
@@ -130,7 +193,7 @@ export class LicensedlinkComponent {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Feb 23 2018 11:02:56 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Feb 24 2018 08:17:30 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

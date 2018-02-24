@@ -86,16 +86,18 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="licensedlinkcomponent.html#_location" class="tsd-kind-icon">_location</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="licensedlinkcomponent.html#accountservice" class="tsd-kind-icon">account<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="licensedlinkcomponent.html#licensecomment" class="tsd-kind-icon">license<wbr>Comment</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="licensedlinkcomponent.html#notificationservice" class="tsd-kind-icon">notification<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="licensedlinkcomponent.html#pop" class="tsd-kind-icon">pop</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="licensedlinkcomponent.html#thelink" class="tsd-kind-icon">the<wbr>Link</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="licensedlinkcomponent.html#workbenchservice" class="tsd-kind-icon">workbench<wbr>Service</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="licensedlinkcomponent.html#backclicked" class="tsd-kind-icon">back<wbr>Clicked</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="licensedlinkcomponent.html#okagreelink" class="tsd-kind-icon">ok<wbr>Agree<wbr>Link</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="licensedlinkcomponent.html#pophide" class="tsd-kind-icon">pophide</a></li>
 							</ul>
 						</section>
@@ -108,13 +110,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Licensedlink<wbr>Component<span class="tsd-signature-symbol">(</span>_location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span>, notificationService<span class="tsd-signature-symbol">: </span><a href="notificationservice.html" class="tsd-signature-type">NotificationService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="licensedlinkcomponent.html" class="tsd-signature-type">LicensedlinkComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Licensedlink<wbr>Component<span class="tsd-signature-symbol">(</span>_location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span>, accountService<span class="tsd-signature-symbol">: </span><a href="accountservice.html" class="tsd-signature-type">AccountService</a>, workbenchService<span class="tsd-signature-symbol">: </span><a href="workbenchservice.html" class="tsd-signature-type">WorkbenchService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="licensedlinkcomponent.html" class="tsd-signature-type">LicensedlinkComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/ef0801d/src/app/context/licensedlink.component.ts#L14">app/context/licensedlink.component.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8b7e5dc/src/app/context/licensedlink.component.ts#L17">app/context/licensedlink.component.ts:17</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -123,7 +125,10 @@
 									<h5>_location: <span class="tsd-signature-type">Location</span></h5>
 								</li>
 								<li>
-									<h5>notificationService: <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></h5>
+									<h5>accountService: <a href="accountservice.html" class="tsd-signature-type">AccountService</a></h5>
+								</li>
+								<li>
+									<h5>workbenchService: <a href="workbenchservice.html" class="tsd-signature-type">WorkbenchService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="licensedlinkcomponent.html" class="tsd-signature-type">LicensedlinkComponent</a></h4>
@@ -139,7 +144,17 @@
 					<div class="tsd-signature tsd-kind-icon">_location<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Location</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/ef0801d/src/app/context/licensedlink.component.ts#L16">app/context/licensedlink.component.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8b7e5dc/src/app/context/licensedlink.component.ts#L19">app/context/licensedlink.component.ts:19</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="accountservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> account<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">account<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="accountservice.html" class="tsd-signature-type">AccountService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8b7e5dc/src/app/context/licensedlink.component.ts#L20">app/context/licensedlink.component.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -149,17 +164,7 @@
 					<div class="tsd-signature tsd-kind-icon">license<wbr>Comment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/ef0801d/src/app/context/licensedlink.component.ts#L13">app/context/licensedlink.component.ts:13</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="notificationservice" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> notification<wbr>Service</h3>
-					<div class="tsd-signature tsd-kind-icon">notification<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/ef0801d/src/app/context/licensedlink.component.ts#L17">app/context/licensedlink.component.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8b7e5dc/src/app/context/licensedlink.component.ts#L16">app/context/licensedlink.component.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -169,7 +174,7 @@
 					<div class="tsd-signature tsd-kind-icon">pop<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PopoverDirective</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/ef0801d/src/app/context/licensedlink.component.ts#L14">app/context/licensedlink.component.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8b7e5dc/src/app/context/licensedlink.component.ts#L17">app/context/licensedlink.component.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -179,7 +184,17 @@
 					<div class="tsd-signature tsd-kind-icon">the<wbr>Link<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/ef0801d/src/app/context/licensedlink.component.ts#L12">app/context/licensedlink.component.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8b7e5dc/src/app/context/licensedlink.component.ts#L15">app/context/licensedlink.component.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="workbenchservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> workbench<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">workbench<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="workbenchservice.html" class="tsd-signature-type">WorkbenchService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8b7e5dc/src/app/context/licensedlink.component.ts#L21">app/context/licensedlink.component.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -196,9 +211,32 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/ef0801d/src/app/context/licensedlink.component.ts#L24">app/context/licensedlink.component.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8b7e5dc/src/app/context/licensedlink.component.ts#L45">app/context/licensedlink.component.ts:45</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="okagreelink" class="tsd-anchor"></a>
+					<h3>ok<wbr>Agree<wbr>Link</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">ok<wbr>Agree<wbr>Link<span class="tsd-signature-symbol">(</span>link<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8b7e5dc/src/app/context/licensedlink.component.ts#L24">app/context/licensedlink.component.ts:24</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>link: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -213,7 +251,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/ef0801d/src/app/context/licensedlink.component.ts#L20">app/context/licensedlink.component.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/8b7e5dc/src/app/context/licensedlink.component.ts#L41">app/context/licensedlink.component.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -243,11 +281,11 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="licensedlinkcomponent.html#_location" class="tsd-kind-icon">_location</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="licensedlinkcomponent.html#accountservice" class="tsd-kind-icon">account<wbr>Service</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="licensedlinkcomponent.html#licensecomment" class="tsd-kind-icon">license<wbr>Comment</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="licensedlinkcomponent.html#notificationservice" class="tsd-kind-icon">notification<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="licensedlinkcomponent.html#pop" class="tsd-kind-icon">pop</a>
@@ -255,8 +293,14 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="licensedlinkcomponent.html#thelink" class="tsd-kind-icon">the<wbr>Link</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="licensedlinkcomponent.html#workbenchservice" class="tsd-kind-icon">workbench<wbr>Service</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="licensedlinkcomponent.html#backclicked" class="tsd-kind-icon">back<wbr>Clicked</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="licensedlinkcomponent.html#okagreelink" class="tsd-kind-icon">ok<wbr>Agree<wbr>Link</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="licensedlinkcomponent.html#pophide" class="tsd-kind-icon">pophide</a>
