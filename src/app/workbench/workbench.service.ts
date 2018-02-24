@@ -254,7 +254,7 @@ export class WorkbenchService {
    * @param {string} link
    * @returns void
    */
-  logLinkInfo( link: string, loggedIn ): Observable<any> {
+  logLinkInfo( link: string, loggedIn: boolean ): Observable<any> {
     let params: URLSearchParams = new URLSearchParams();
     params.set('link', link);
     let token = this.accountService.token;
