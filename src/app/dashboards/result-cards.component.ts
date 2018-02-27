@@ -172,52 +172,32 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
                           collections.forEach(owc => {
                             this.caseStudySearchResult.push(owc);
                           });
+                          this.caseStudySearchResult.sort(( leftside, rightside ) => {
+                            if (!(leftside.searchScore && rightside.searchScore)) {
+                              return 0;
+                            }
+                            if (leftside.searchScore < rightside.searchScore) {
+                              return -1;
+                            }
+                            if (leftside.searchScore > rightside.searchScore) {
+                              return 1;
+                            }
+                            return 0;
+                          });
                         },
-                        error => {
-                          console.log(<any>error);
+                        ( error: any ) => {
+                          this.loading = false;
+                          this.notificationService.addErrorResultNotification(error);
                         });
                   },
                   error => {
                     console.log(<any>error);
                   });
               }
-
-              // }
-              // else {
-              //   console.log('no child category taken, error');
-              //   this.notificationService.addNotification({
-              //     id: NotificationService.MSG_ID_ERROR,
-              //     message: 'Category search parameters could not be reolved.',
-              //     type: NotificationService.NOTIFICATION_TYPE_WARNING
-              //   });
-              //   this.router.navigate([ '/dashboard' ]);
-              // }
             },
             error => {
               this.notificationService.addErrorResultNotification(error);
             });
-
-        // if (params[ 'query' ] !== this.query) {
-        //   this.query = params[ 'query' ] || '*:*';
-        //
-        //   this.resultService.getResults(
-        //     this.query,
-        //     this.defaultFromDate,
-        //     this.defaultToDate,
-        //     this.defaultEnvelopeFilter
-        //   ).subscribe(
-        //     ( results: IGeoFeatureCollection ) => {
-        //       this.loading = false;
-        //       this.results = results;
-        //       this.originsFilter = this.getCataloguesOfResults();
-        //       this.resultsGroups = [ 'Best results', 'Journal Articles', 'Other results' ];
-        //     },
-        //     ( error: any ) => {
-        //       this.loading = false;
-        //       this.notificationService.addErrorResultNotification(error);
-        //     }
-        //   );
-        // }
 
         if (!isNullOrUndefined(params[ 'showModal' ])) {
           this.showModal = params[ 'showModal' ];
@@ -288,6 +268,39 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
         this.notificationService.addErrorResultNotification(error);
       }
     );
+
+    // caseStudyResult
+    this.accountService.isLoggedIn().subscribe(
+      loggedInResult => {
+        this.collectionService.queryCollectionsForViewing(loggedInResult, null, keywordsFilterT)
+          .subscribe(
+            collections => {
+              // this.caseStudySearchResult = [];
+              // console.log(response);
+              collections.forEach(owc => {
+                this.caseStudySearchResult.push(owc);
+              });
+              this.caseStudySearchResult.sort(( leftside, rightside ) => {
+                if (!(leftside.searchScore && rightside.searchScore)) {
+                  return 0;
+                }
+                if (leftside.searchScore < rightside.searchScore) {
+                  return -1;
+                }
+                if (leftside.searchScore > rightside.searchScore) {
+                  return 1;
+                }
+                return 0;
+              });
+            },
+            ( error: any ) => {
+              this.loading = false;
+              this.notificationService.addErrorResultNotification(error);
+            });
+      },
+      error => {
+        console.log(<any>error);
+      });
   }
 
   /**
@@ -490,7 +503,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
         return (f.properties.links && f.properties.links.previews && f.properties.links.previews.length > 0);
       }).map(f => f.properties.links.previews);
       const flattenedArray = ([] as OwcLink[]).concat(...previewLinks);
-      console.log(flattenedArray);
+      // console.log(flattenedArray);
       if (flattenedArray && flattenedArray.length > 0) {
         const firstLink = flattenedArray.find(ol => ol.href ? ol.href.includes('http') : false);
         if (firstLink) {

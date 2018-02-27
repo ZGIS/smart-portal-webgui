@@ -138,7 +138,7 @@
                   [cardImage]="hasPreviewIcon(owc, '/images/stylish-folder.jpg')"
                   [bodyText]="owc.properties.subtitle"
                   [title]="owc.properties.title"
-                  [tempRating]="1"
+                  [tempRating]="owc.searchScore ? owc.searchScore : 1"
                   [origin]="owc.properties.publisher"
                   [originUrl]="owc.id"
     ></app-sac-card>

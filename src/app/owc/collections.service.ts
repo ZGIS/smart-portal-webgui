@@ -7,6 +7,8 @@ import { AccountService } from '../account';
 import { OwcContext, OwcLink, OwcResource } from './';
 import { IErrorResult } from '../search';
 import { OwcContextsRightsMatrix } from '../workbench';
+import * as _ from 'lodash';
+import { IGeoFeature } from '../search/result';
 
 let UUID = require('uuid/uuid.js');
 
@@ -158,7 +160,18 @@ export class CollectionsService {
         ( response: Response ) => {
           let foundCollectionsJson = response.json() && response.json().collections;
           if (<OwcContext[]>foundCollectionsJson) {
-            // console.log(response.json().count);
+            let col = <OwcContext[]>foundCollectionsJson;
+            const scores = col.map(f => f.searchScore);
+            const maxValue = _.max(scores);
+            const minValue = _.min(scores);
+            // const minValue = 0;
+            const normalised: OwcContext[] = col.map(f => {
+              const normalScore: number = (f.searchScore - minValue) / (maxValue - minValue);
+              let owc = f;
+              owc.searchScore = normalScore;
+              return owc;
+            });
+            return normalised;
           }
           return response.json().collections;
         }

@@ -4,6 +4,7 @@ export interface OwcContext {
   bbox: any;
   properties: OwcContextProperties;
   features?: OwcResource[];
+  searchScore?: number;
 }
 
 export interface OwcContextProperties {
