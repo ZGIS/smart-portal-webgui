@@ -30,7 +30,7 @@ describe('E2E Cypress Gw Hub Local Tests that timeout on Travis', function () {
       // body > app-sac-gwh > div > app-sac-gwh-result-cards > div:nth-child(2) > div:nth-child(2) > app-sac-card
       // cy.get('.row').find('app-sac-card').should('have.length', 'above', 3);
       // cy.get('app-sac-card').should('have.length', 'above', 3);
-      cy.get('app-sac-gwh-result-cards > div.row > div.col-md-4').find('app-sac-card').its('length').should('be.gt', 3);
+      cy.get('app-sac-gwh-result-cards > div#mdsearchresults > div.col-md-4').find('app-sac-card').its('length').should('be.gt', 3);
     });
 
   });
