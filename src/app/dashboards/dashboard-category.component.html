@@ -5,58 +5,76 @@
 </div>
 
 <div class="container-fluid">
-  <div class="row dashboard-bg" *ngIf="children.length >= 3 && childrenImg.length >= 3">
-        <div class="col-md-3" id="category-0">
+  <div class="row dashboard-bg" *ngIf="children.length >= 1 && childrenImg.length >= 1">
+        <div class="col-md-3" id="category-0" *ngIf="children[0] && childrenImg[0]">
           <app-sac-gwh-dashboard-button [category]="children[0]"
                                         [categoryImg]="childrenImg[0]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-3" id="category-1">
+        <div class="col-md-3" id="category-1" *ngIf="children[1] && childrenImg[1]">
           <app-sac-gwh-dashboard-button [category]="children[1]"
                                         [categoryImg]="childrenImg[1]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-3" id="category-2">
+        <div class="col-md-3" id="category-2" *ngIf="children[2] && childrenImg[2]">
           <app-sac-gwh-dashboard-button [category]="children[2]"
                                         [categoryImg]="childrenImg[2]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-3" id="category-3">
+        <div class="col-md-3" id="category-3" *ngIf="children[3] && childrenImg[3]">
           <app-sac-gwh-dashboard-button [category]="children[3]"
                                         [categoryImg]="childrenImg[3]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
   </div>
-  <div class="row dashboard-bg">
-        <div class="col-md-3" id="category-4" *ngIf="children.length >= 7 && childrenImg.length >= 7">
+  <div class="row dashboard-bg" *ngIf="children.length >= 5 && childrenImg.length >= 5">
+        <div class="col-md-3" id="category-4" *ngIf="children[4] && childrenImg[4]">
           <app-sac-gwh-dashboard-button [category]="children[4]"
                                         [categoryImg]="childrenImg[4]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-3" id="category-5">
+        <div class="col-md-3" id="category-5" *ngIf="children[5] && childrenImg[5]">
           <app-sac-gwh-dashboard-button [category]="children[5]"
                                         [categoryImg]="childrenImg[5]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-3" id="category-6">
+        <div class="col-md-3" id="category-6" *ngIf="children[6] && childrenImg[6]">
           <app-sac-gwh-dashboard-button [category]="children[6]"
                                         [categoryImg]="childrenImg[6]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-3" id="category-7">
+        <div class="col-md-3" id="category-7" *ngIf="children[7] && childrenImg[7]">
           <app-sac-gwh-dashboard-button [category]="children[7]"
                                         [categoryImg]="childrenImg[7]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
   </div>
-  <div class="row dashboard-bg">
-        <div class="col-md-3" id="category-8" *ngIf="children.length >= 11 && childrenImg.length >= 11">
+  <div class="row dashboard-bg" *ngIf="children.length >= 9 && childrenImg.length >= 9">
+        <div class="col-md-3" id="category-8" *ngIf="children[8] && childrenImg[8]">
           <app-sac-gwh-dashboard-button [category]="children[8]"
                                         [categoryImg]="childrenImg[8]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-3" id="category-9">
+        <div class="col-md-3" id="category-9" *ngIf="children[9] && childrenImg[9]">
           <app-sac-gwh-dashboard-button [category]="children[9]"
                                         [categoryImg]="childrenImg[9]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-3" id="category-10">
+        <div class="col-md-3" id="category-10" *ngIf="children[10] && childrenImg[10]">
           <app-sac-gwh-dashboard-button [category]="children[10]"
                                         [categoryImg]="childrenImg[10]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
-        <div class="col-md-3" id="category-11">
+        <div class="col-md-3" id="category-11" *ngIf="children[11] && childrenImg[11]">
           <app-sac-gwh-dashboard-button [category]="children[11]"
                                         [categoryImg]="childrenImg[11]" smallBtn="true"></app-sac-gwh-dashboard-button>
         </div>
+  </div>
+  <div class="row dashboard-bg" *ngIf="children.length >= 13 && childrenImg.length >= 13">
+    <div class="col-md-3" id="category-12" *ngIf="children[12] && childrenImg[12]">
+      <app-sac-gwh-dashboard-button [category]="children[12]"
+                                    [categoryImg]="childrenImg[12]" smallBtn="true"></app-sac-gwh-dashboard-button>
+    </div>
+    <div class="col-md-3" id="category-13" *ngIf="children[13] && childrenImg[13]">
+      <app-sac-gwh-dashboard-button [category]="children[13]"
+                                    [categoryImg]="childrenImg[13]" smallBtn="true"></app-sac-gwh-dashboard-button>
+    </div>
+    <div class="col-md-3" id="category-14" *ngIf="children[14] && childrenImg[14]">
+      <app-sac-gwh-dashboard-button [category]="children[14]"
+                                    [categoryImg]="childrenImg[14]" smallBtn="true"></app-sac-gwh-dashboard-button>
+    </div>
+    <div class="col-md-3" id="category-15" *ngIf="children[15] && childrenImg[15]">
+      <app-sac-gwh-dashboard-button [category]="children[15]"
+                                    [categoryImg]="childrenImg[15]" smallBtn="true"></app-sac-gwh-dashboard-button>
+    </div>
   </div>
 </div>
