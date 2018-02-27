@@ -134,6 +134,39 @@ export class CollectionsService {
   }
 
   /**
+   * GET  /api/v1/collections/view-query ->
+   *   controllers.CollectionsController.queryCollectionsForViewing(id: Option[String], keywords: Seq[String] ?= Seq())
+   *
+   * @returns {Observable<OwcContext[]>}
+   */
+  queryCollectionsForViewing(loggedInResult: boolean, id?: string, keywords?: string[]): Observable<OwcContext[]> {
+    // if loggedIn add authorization header with jwt token
+    let collectionsUri = this.portalApiUrl + '/collections/view-query';
+    let options = new RequestOptions({ withCredentials: true });
+    if (loggedInResult) {
+      let token = this.accountService.token;
+      options.headers = new Headers({ 'X-XSRF-TOKEN': token });
+    }
+    if (keywords && keywords.length > 0) {
+      let params: URLSearchParams = new URLSearchParams();
+      keywords.forEach(k => params.append('keywords', k));
+      options.params = params;
+    }
+    // get visible collections from api
+    return this.http.get(collectionsUri, options)
+      .map(
+        ( response: Response ) => {
+          let foundCollectionsJson = response.json() && response.json().collections;
+          if (<OwcContext[]>foundCollectionsJson) {
+            // console.log(response.json().count);
+          }
+          return response.json().collections;
+        }
+      )
+      .catch(this.handleHttpFailure);
+  }
+
+  /**
    * get all uploaded files in user's default collection
    * getPersonalFilesFromDefaultCollection returns owc Data Links
    * @returns {Observable<R>}

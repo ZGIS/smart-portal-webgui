@@ -10,6 +10,10 @@ import { ResultDetailModalComponent } from '../search/result-detail-modal.compon
 import { isNullOrUndefined } from 'util';
 import { IErrorResult } from '../search/result';
 import { IDashboardCategory } from './categories';
+import { OwcContext, OwcLink } from '../owc';
+import { AccountService } from '../account';
+import { CollectionsService } from '../owc/collections.service';
+import { OwcResourceLinks } from '../owc/collections';
 
 @Component({
   selector: 'app-sac-gwh-result-cards',
@@ -26,6 +30,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
   results: IGeoFeatureCollection;
   resultsGroups: string[] = [];
 
+  caseStudySearchResult: OwcContext[] = [];
   currentCategory: IDashboardCategory;
   categoryName = '';
   categoryId = '';
@@ -62,6 +67,8 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
    * @param resultService       - injected ResultService
    * @param activatedRoute      - injected ActivatedRoute
    * @param categoriesService   - injected CategoriesService
+   * @param accountService       - injected AccountService
+   * @param collectionService       - injected CollectionsService
    * @param notificationService - injected NotificationService
    * @param _location - injected Location
    * @param router              - injected Router
@@ -69,6 +76,8 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
   constructor( private resultService: ResultService,
                private activatedRoute: ActivatedRoute,
                private categoriesService: CategoriesService,
+               private accountService: AccountService,
+               private collectionService: CollectionsService,
                private notificationService: NotificationService,
                private _location: Location,
                private router: Router ) {
@@ -151,6 +160,26 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
                     this.notificationService.addErrorResultNotification(error);
                   }
                 );
+
+                // caseStudyResult
+                this.accountService.isLoggedIn().subscribe(
+                  loggedInResult => {
+                    this.collectionService.queryCollectionsForViewing(loggedInResult, null, catObj.keyword_content)
+                      .subscribe(
+                        collections => {
+                          // this.caseStudySearchResult = [];
+                          // console.log(response);
+                          collections.forEach(owc => {
+                            this.caseStudySearchResult.push(owc);
+                          });
+                        },
+                        error => {
+                          console.log(<any>error);
+                        });
+                  },
+                  error => {
+                    console.log(<any>error);
+                  });
               }
 
               // }
@@ -447,6 +476,34 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
         showModal: this.showModal
       }
     });
+  }
+
+  /**
+   * tries to find a preview icon from the embedded features, OwcContext does not have a preview itself
+   * @param {OwcContext} owc
+   * @param {string} defaultImage
+   * @returns {string}
+   */
+  hasPreviewIcon( owc: OwcContext, defaultImage: string ): string {
+    if (owc.features && owc.features.length > 0) {
+      const previewLinks: OwcLink[][] = owc.features.filter(f => {
+        return (f.properties.links && f.properties.links.previews && f.properties.links.previews.length > 0);
+      }).map(f => f.properties.links.previews);
+      const flattenedArray = ([] as OwcLink[]).concat(...previewLinks);
+      console.log(flattenedArray);
+      if (flattenedArray && flattenedArray.length > 0) {
+        const firstLink = flattenedArray.find(ol => ol.href ? ol.href.includes('http') : false);
+        if (firstLink) {
+          return firstLink.href;
+        } else {
+          return defaultImage;
+        }
+      } else {
+        return defaultImage;
+      }
+    } else {
+      return defaultImage;
+    }
   }
 
   /**

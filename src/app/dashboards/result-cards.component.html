@@ -130,6 +130,20 @@
   </div>
 </div>
 
+<div *ngIf="caseStudySearchResult.length > 0" class="row">
+  <div class="col-md-12"><h3>{{ caseStudySearchResult.length }} featured sase studies</h3></div>
+
+  <div *ngFor="let owc of caseStudySearchResult" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <app-sac-card
+                  [cardImage]="hasPreviewIcon(owc, '/images/stylish-folder.jpg')"
+                  [bodyText]="owc.properties.subtitle"
+                  [title]="owc.properties.title"
+                  [tempRating]="1"
+                  [origin]="owc.properties.publisher"
+                  [originUrl]="owc.id"
+    ></app-sac-card>
+  </div>
+</div>
 <div *ngFor="let origin of resultsGroups" class="row">
   <div class="col-md-12"><h3>{{origin}}</h3></div>
 
