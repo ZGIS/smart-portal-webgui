@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IGeoFeature, IGeoFeatureCollection, ResultService } from '../search';
+import { IGeoFeature, IGeoFeatureCollection, ResultCollectionsViewModalComponent, ResultService } from '../search';
 import * as moment from 'moment';
 import { NotificationService } from '../notifications/notification.service';
 import { CategoriesService } from './categories.service';
@@ -26,6 +26,8 @@ import { OwcResourceLinks } from '../owc/collections';
  */
 export class ResultCardsComponent implements OnInit, OnDestroy {
   @ViewChild(ResultDetailModalComponent) resultDetailModalComponentRef: ResultDetailModalComponent;
+
+  @ViewChild(ResultCollectionsViewModalComponent) resultCollectionsModalComponentRef: ResultCollectionsViewModalComponent;
 
   results: IGeoFeatureCollection;
   resultsGroups: string[] = [];
@@ -167,7 +169,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
                     this.collectionService.queryCollectionsForViewing(loggedInResult, null, catObj.keyword_content)
                       .subscribe(
                         collections => {
-                          // this.caseStudySearchResult = [];
+                          this.caseStudySearchResult = [];
                           // console.log(response);
                           collections.forEach(owc => {
                             this.caseStudySearchResult.push(owc);
@@ -275,7 +277,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
         this.collectionService.queryCollectionsForViewing(loggedInResult, null, keywordsFilterT)
           .subscribe(
             collections => {
-              // this.caseStudySearchResult = [];
+              this.caseStudySearchResult = [];
               // console.log(response);
               collections.forEach(owc => {
                 this.caseStudySearchResult.push(owc);
@@ -489,6 +491,16 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
         showModal: this.showModal
       }
     });
+  }
+
+  showCollectionsModal( owc: OwcContext ): void {
+    console.log('owc modal clicked');
+    this.resultCollectionsModalComponentRef.showFeatureModal(owc);
+  }
+
+  onHideCollectionsModal(): void {
+    console.log('owc modal close');
+    this.resultCollectionsModalComponentRef.hideCollectionsModal();
   }
 
   /**

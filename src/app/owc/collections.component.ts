@@ -18,6 +18,7 @@ let FileSaver = require('file-saver/FileSaver.js');
 export class CollectionsComponent {
   @Input() myCollection: OwcContext;
   @Input() visibility: OwcContextsRightsMatrix;
+  @Input() viewOnly = true;
   @Output() reloadOnChangedCollection: EventEmitter<any> = new EventEmitter<any>();
 
   reloadCollection(): void {

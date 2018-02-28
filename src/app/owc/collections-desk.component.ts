@@ -73,7 +73,7 @@ export class CollectionsDeskComponent implements OnInit {
           this.myRightsMatrix = [];
           rights.forEach(( matrix: OwcContextsRightsMatrix ) => {
             this.myRightsMatrix.push(matrix);
-            console.log(matrix);
+            // console.log(matrix);
           });
         },
         error => {
@@ -231,7 +231,7 @@ export class CollectionsDeskComponent implements OnInit {
         rights => {
           rights.forEach(( matrix: OwcContextsRightsMatrix ) => {
             this.myRightsMatrix.push(matrix);
-            console.log(matrix);
+            // console.log(matrix);
           });
         },
         error => {

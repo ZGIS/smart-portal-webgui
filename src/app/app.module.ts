@@ -25,7 +25,8 @@ import {
   ResultDetailComponent,
   ResultDetailModalComponent,
   ResultService,
-  SearchComponent
+  SearchComponent,
+  ResultCollectionsViewModalComponent
 } from './search';
 import { NavigationComponent,
   NotFoundComponent,
@@ -171,7 +172,8 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
     CentralUsernavComponent,
     GroupsBaseComponent,
     GroupsUserContextComponent,
-    GroupsUserDisplayComponent
+    GroupsUserDisplayComponent,
+    ResultCollectionsViewModalComponent
   ],
   providers: [
     API_URL_PROVIDERS,

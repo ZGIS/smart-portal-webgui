@@ -1,76 +1,70 @@
-<accordion *ngIf="myCollection">
-  <accordion-group #defaultGroup [isOpen]="false" [ngClass]="!myCollection.id.toLowerCase().includes('context\/user') ? 'isCustomCollection' : 'isUserDefaultCollection'">
+<!-- here should be begin of collections component, depend different header? -->
+<div id="editbutton" *ngIf="!viewOnly">
+
+  <button (click)="editProperties()" type="button" class="btn btn-info disabled" tooltip="Edit the properties" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
+    Edit <i class="fa fa-edit" aria-hidden="true"></i>
+  </button>
+  <button *ngIf="!myCollection.id.toLowerCase().includes('context\/user')" (click)="exportCollectionToJson(myCollection.id)" type="button" class="btn btn-warning" tooltip="export this collection as external file.">
+    Export <i class="fa fa-save" aria-hidden="true"></i>
+  </button>
+
+  <div class="btn-group" *ngIf="visibility">
+    <button type="button" class="btn btn-default dropdown-toggle" tooltip="Change visibilitiy the Collection" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+      {{ getContextVisibilityForNumber(visibility.contextIntrinsicVisibility) }} <i [ngClass]="iconClassForContextVisibilityNumber(visibility.contextIntrinsicVisibility)" aria-hidden="true"></i> <span
+      class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li *ngFor="let idx of [0,1,2]" tooltip="Change visibilitiy the Collection"
+          [ngClass]="{'disabled': idx === visibility.contextIntrinsicVisibility}">
+        <a
+          (click)="changeVisibility(myCollection.id, idx)">
+          {{ getContextVisibilityForNumber(idx) }} <i [ngClass]="iconClassForContextVisibilityNumber(idx)" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <button (click)="deleteCollection()" type="button" class="btn btn-danger pull-right" tooltip="Delete the Collection" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
+    Delete <i class="fa fa-trash" aria-hidden="true"></i>
+  </button>
+</div>
+<accordion>
+  <accordion-group #propertiesGroup>
     <div accordion-heading>
-      {{ myCollection.properties.title }}
+      <span><i class="fa fa-search-plus"></i></span> Properties
       <i class="pull-right float-xs-right glyphicon"
-         [ngClass]="{'glyphicon-chevron-down': defaultGroup?.isOpen, 'glyphicon-chevron-right': !defaultGroup?.isOpen}"></i>
+         [ngClass]="{'glyphicon-chevron-down': propertiesGroup?.isOpen, 'glyphicon-chevron-right': !propertiesGroup?.isOpen}"></i>
     </div>
 
-    <div>
-
-      <button (click)="editProperties()" type="button" class="btn btn-info disabled" tooltip="Edit the properties" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
-        Edit <i class="fa fa-edit" aria-hidden="true"></i>
-      </button>
-      <button *ngIf="!myCollection.id.toLowerCase().includes('context\/user')" (click)="exportCollectionToJson(myCollection.id)" type="button" class="btn btn-warning" tooltip="export this collection as external file.">
-        Export <i class="fa fa-save" aria-hidden="true"></i>
-      </button>
-
-      <div class="btn-group" *ngIf="visibility">
-        <button type="button" class="btn btn-default dropdown-toggle" tooltip="Change visibilitiy the Collection" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-          {{ getContextVisibilityForNumber(visibility.contextIntrinsicVisibility) }} <i [ngClass]="iconClassForContextVisibilityNumber(visibility.contextIntrinsicVisibility)" aria-hidden="true"></i> <span
-          class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li *ngFor="let idx of [0,1,2]" tooltip="Change visibilitiy the Collection"
-              [ngClass]="{'disabled': idx === visibility.contextIntrinsicVisibility}">
-            <a
-              (click)="changeVisibility(myCollection.id, idx)">
-              {{ getContextVisibilityForNumber(idx) }} <i [ngClass]="iconClassForContextVisibilityNumber(idx)" aria-hidden="true"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <button (click)="deleteCollection()" type="button" class="btn btn-danger pull-right" tooltip="Delete the Collection" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
-        Delete <i class="fa fa-trash" aria-hidden="true"></i>
-      </button>
+    <div *ngIf="myCollection.bbox">
+      Here should be a map roughly outlining the bbox of : {{ myCollection.bbox | json }}
     </div>
-    <accordion-group #propertiesGroup>
-      <div accordion-heading>
-        <span><i class="fa fa-search-plus"></i></span> Properties
-        <i class="pull-right float-xs-right glyphicon"
-           [ngClass]="{'glyphicon-chevron-down': propertiesGroup?.isOpen, 'glyphicon-chevron-right': !propertiesGroup?.isOpen}"></i>
-      </div>
+    <app-sac-gwh-owccontext-props [owcContextProperties]="myCollection.properties"></app-sac-gwh-owccontext-props>
 
-      <div *ngIf="myCollection.bbox">
-        Here should be a map roughly outlining the bbox of : {{ myCollection.bbox | json }}
-      </div>
-      <app-sac-gwh-owccontext-props [owcContextProperties]="myCollection.properties"></app-sac-gwh-owccontext-props>
+    <p><span class="badge pull-left">Collection ID:</span>&nbsp;<small><i>{{ myCollection.id }}</i></small>
+    </p>
 
-      <p><span class="badge pull-left">Collection ID:</span>&nbsp;<small><i>{{ myCollection.id }}</i></small>
-      </p>
+  </accordion-group>
 
-    </accordion-group>
+  <accordion-group #featuresGroup [isOpen]="true">
+    <div accordion-heading>
+      <span class="badge">{{ myCollection.features.length }}</span>
+      Entries
+      <i class="pull-right float-xs-right glyphicon"
+         [ngClass]="{'glyphicon-chevron-down': featuresGroup?.isOpen, 'glyphicon-chevron-right': !featuresGroup?.isOpen}"></i>
+    </div>
 
-    <accordion-group #featuresGroup [isOpen]="true">
-      <div accordion-heading>
-        <span class="badge">{{ myCollection.features.length }}</span>
-        Entries
-        <i class="pull-right float-xs-right glyphicon"
-           [ngClass]="{'glyphicon-chevron-down': featuresGroup?.isOpen, 'glyphicon-chevron-right': !featuresGroup?.isOpen}"></i>
-      </div>
+    <div class="list-group" *ngIf="myCollection.features.length > 0">
+      <li class="list-group-item" *ngFor="let owcResource of myCollection.features">
+        <a (click)="owcResourceDetailModalRef.showOwcResourceModal(owcResource, myCollection.id)">
+          {{ owcResource.properties.title }} </a>
+      </li>
+    </div>
 
-      <div class="list-group" *ngIf="myCollection.features.length > 0">
-        <li class="list-group-item" *ngFor="let owcResource of myCollection.features">
-          <a (click)="owcResourceDetailModalRef.showOwcResourceModal(owcResource, myCollection.id)">
-            {{ owcResource.properties.title }} </a>
-        </li>
-      </div>
-
-    </accordion-group>
   </accordion-group>
 </accordion>
+<!-- here should be end of collections component -->
 
-<app-sac-gwh-owcresource-detail-modal #owcResourceDetailModalRef>
+<app-sac-gwh-owcresource-detail-modal #owcResourceDetailModalRef [viewOnly]="viewOnly">
 
 </app-sac-gwh-owcresource-detail-modal>

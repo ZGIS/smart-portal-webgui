@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { NotificationService } from '../notifications';
 import { OwcContext, CollectionsService, OwcResource } from './';
@@ -9,8 +9,9 @@ import { OwcContext, CollectionsService, OwcResource } from './';
 })
 
 export class OwcResourceDetailModalComponent {
-  owcResource: OwcResource;
-  collectionid: string;
+  @Input() owcResource: OwcResource;
+  @Input() collectionid: string;
+  @Input() viewOnly = true;
 
   @ViewChild('owcResourceDetailModalRef') public modal: ModalDirective;
 

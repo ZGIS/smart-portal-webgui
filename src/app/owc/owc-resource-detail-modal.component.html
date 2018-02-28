@@ -20,7 +20,8 @@
         <app-sac-gwh-owcresource-props [owcResourceProperties]="owcResource.properties"></app-sac-gwh-owcresource-props>
 
         <p><span class="badge pull-left">Resource ID:</span> <small><i> {{ owcResource.id }}</i></small></p>
-        <div>
+
+        <div *ngIf="!viewOnly">
 
           <button (click)="editProperties()" type="button" class="btn btn-info disabled" tooltip="Edit the entry" disabled>
             Edit <i class="fa fa-edit" aria-hidden="true"></i>

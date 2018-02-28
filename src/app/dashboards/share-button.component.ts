@@ -32,15 +32,24 @@ export class ShareButtonComponent implements AfterViewInit, OnInit {
 
   constructor( private shareButtonService: ShareButtonService ) {
     if (this.dataA2aUrl) {
-      this.dataA2aUrlExt = this.dataA2aUrlExt + this.dataA2aUrl;
+      if (this.checkIfUrl(this.dataA2aUrl)) {
+        this.dataA2aUrlExt = this.dataA2aUrl;
+      } else {
+        this.dataA2aUrlExt = this.dataA2aUrlExt + this.dataA2aUrl;
+      }
     }
   }
 
   ngOnInit(): void {
     if (this.dataA2aUrl) {
-      this.dataA2aUrlExt = this.dataA2aUrlExt + this.dataA2aUrl;
+      if (this.checkIfUrl(this.dataA2aUrl)) {
+        this.dataA2aUrlExt = this.dataA2aUrl;
+      } else {
+        this.dataA2aUrlExt = this.dataA2aUrlExt + this.dataA2aUrl;
+      }
     }
   }
+
   ngAfterViewInit() {
     this.shareButtonService.getReady().subscribe(
       ( ready ) => {
@@ -49,5 +58,9 @@ export class ShareButtonComponent implements AfterViewInit, OnInit {
         }
         // console.log('share script loaded');
       });
+  }
+
+  private checkIfUrl( testUrl: string ): boolean {
+    return new RegExp('[a-zA-Z\d]+://(\w+:\w+@)?([a-zA-Z\d.-]+\.[A-Za-z]{2,4})(:\d+)?(/.*)?').test(testUrl);
   }
 }

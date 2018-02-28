@@ -20,7 +20,18 @@
         </div>
       </div>
       <div class="panel-body" *ngFor="let myCollection of myCollections">
-        <app-sac-gwh-collection [myCollection]="myCollection" [visibility]="findVisibilityForCollection(myCollection.id)" (reloadOnChangedCollection)="reloadCollections()"></app-sac-gwh-collection>
+        <accordion *ngIf="myCollection">
+          <accordion-group #defaultGroup [isOpen]="false" [ngClass]="!myCollection.id.toLowerCase().includes('context\/user') ? 'isCustomCollection' : 'isUserDefaultCollection'">
+            <div accordion-heading>
+              {{ myCollection.properties.title }}
+              <i class="pull-right float-xs-right glyphicon"
+                 [ngClass]="{'glyphicon-chevron-down': defaultGroup?.isOpen, 'glyphicon-chevron-right': !defaultGroup?.isOpen}"></i>
+            </div>
+
+            <app-sac-gwh-collection [myCollection]="myCollection" [visibility]="findVisibilityForCollection(myCollection.id)"
+                                    (reloadOnChangedCollection)="reloadCollections()" [viewOnly]="false"></app-sac-gwh-collection>
+          </accordion-group>
+        </accordion>
       </div>
       <div class="panel-footer">
         {{ myCollections.length }} collection{{ myCollections.length !== 1 ? 's' : '' }}
