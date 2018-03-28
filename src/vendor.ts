@@ -24,6 +24,7 @@ import 'bootstrap/dist/js/bootstrap';
 import 'moment';
 import 'moment-timezone';
 import 'openlayers';
+import 'leaflet';
 import 'plotly.js/dist/plotly.js';
 import 'x3dom';
 import 'file-saver';

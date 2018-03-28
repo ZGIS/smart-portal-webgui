@@ -3,6 +3,7 @@
 import 'font-awesome/css/font-awesome.css';
 
 import 'openlayers/dist/ol.css';
+import 'leaflet/dist/leaflet.css';
 import 'x3dom/x3dom.css';
 
 

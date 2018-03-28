@@ -17,6 +17,7 @@ import {
   TypeaheadModule,
   RatingModule
 } from 'ngx-bootstrap';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -112,6 +113,7 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
     TypeaheadModule.forRoot(),
     RatingModule.forRoot(),
     ProgressbarModule.forRoot(),
+    LeafletModule.forRoot(),
     FileUploadModule,
     ClipboardModule,
     routing],

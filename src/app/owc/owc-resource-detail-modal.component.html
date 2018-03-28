@@ -14,6 +14,9 @@
           <span class="badge pull-left">Geospatial extent:</span>&nbsp;
           <div>
             Here should be a map roughly outlining the geometry of: {{ owcResource.geometry | json }}
+            <div style="border:1px solid red; width:640px; height:360px" class="resourcewMap">
+              <app-sac-gwh-ol3-map [mapExtent]="[ 162, -50, 180, -25 ]"></app-sac-gwh-ol3-map>
+            </div>
           </div>
         </div>
 

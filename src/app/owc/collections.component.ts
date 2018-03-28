@@ -3,6 +3,11 @@ import { NotificationService } from '../notifications';
 import { CollectionsService, OwcContext } from './';
 import { Router } from '@angular/router';
 import { OwcContextsRightsMatrix, WorkbenchService } from '../workbench';
+import { Extent } from 'openlayers';
+import { worldExtent } from '../ol3-map';
+import { OwcResource } from './collections';
+import { IGeoFeature, IGeoFeatureProperties } from '../search';
+import { IGeoFeatureCollection } from '../search/result';
 
 let FileSaver = require('file-saver/FileSaver.js');
 
@@ -20,6 +25,8 @@ export class CollectionsComponent {
   @Input() visibility: OwcContextsRightsMatrix;
   @Input() viewOnly = true;
   @Output() reloadOnChangedCollection: EventEmitter<any> = new EventEmitter<any>();
+
+  worldExtent = worldExtent;
 
   reloadCollection(): void {
     console.log('we reload this collection');
@@ -97,6 +104,40 @@ export class CollectionsComponent {
 
   iconClassForContextVisibilityNumber( level: number ): string {
     return this.workbenchService.iconClassForContextVisibilityNumber(level);
+  }
+
+  getAsGeoFeatureCollection( owcList: OwcResource[] ): IGeoFeatureCollection {
+    if (!owcList) {
+      return <IGeoFeatureCollection> {
+        type: 'FeatureCollection',
+        crs: '',
+        count: 0,
+        countMatched: 0,
+        features: []
+      };
+    }
+    const features = <IGeoFeature[]>owcList.filter(( owc: OwcResource ) => {
+        return owc.geometry;
+      })
+      .map(( owc: OwcResource ) => {
+        return <IGeoFeature>{
+          type: 'Feature',
+          geometry: owc.geometry,
+          properties: <IGeoFeatureProperties> {
+            fileIdentifier: owc.id,
+            title: owc.properties.title,
+            linkage: [],
+            origin: owc.properties.publisher
+          }
+        };
+      });
+    return <IGeoFeatureCollection> {
+      type: 'FeatureCollection',
+      crs: '',
+      count: features.length,
+      countMatched: features.length,
+      features: features
+    };
   }
 
   /**

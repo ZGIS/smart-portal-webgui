@@ -1,7 +1,10 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { NotificationService } from '../notifications';
-import { OwcContext, CollectionsService, OwcResource } from './';
+import { CollectionsService, OwcResource } from './';
+import { IGeoFeature, IGeoFeatureProperties } from '../search';
+import { worldExtent } from '../ol3-map';
+import { IGeoFeatureCollection } from '../search/result';
 
 @Component({
   selector: 'app-sac-gwh-owcresource-detail-modal',
@@ -15,16 +18,18 @@ export class OwcResourceDetailModalComponent {
 
   @ViewChild('owcResourceDetailModalRef') public modal: ModalDirective;
 
+  worldExtent = worldExtent;
+
   /**
    * Constructor
    * @param collectionsService  - injected CollectionsService
    * @param notificationService - injected NotificationService
    */
-  constructor(private collectionsService: CollectionsService,
-              private notificationService: NotificationService) {
+  constructor( private collectionsService: CollectionsService,
+               private notificationService: NotificationService ) {
   }
 
-  showOwcResourceModal(owcFeature: OwcResource, owccontextid: string) {
+  showOwcResourceModal( owcFeature: OwcResource, owccontextid: string ) {
     if (owcFeature !== undefined && owccontextid !== undefined) {
       this.owcResource = owcFeature;
       this.collectionid = owccontextid;
@@ -52,6 +57,35 @@ export class OwcResourceDetailModalComponent {
       type: 'info',
       message: `Editing of this resource entry, not yet implemented.`
     });
+  }
+
+  getAsGeoFeatureCollection( owc: OwcResource ): IGeoFeatureCollection {
+    if (!owc.geometry) {
+      return <IGeoFeatureCollection> {
+        type: 'FeatureCollection',
+        crs: '',
+        count: 0,
+        countMatched: 0,
+        features: []
+      };
+    }
+    const feature = <IGeoFeature>{
+      type: 'Feature',
+      geometry: owc.geometry,
+      properties: <IGeoFeatureProperties> {
+        fileIdentifier: owc.id,
+        title: owc.properties.title,
+        linkage: [],
+        origin: owc.properties.publisher
+      }
+    };
+    return <IGeoFeatureCollection> {
+      type: 'FeatureCollection',
+      crs: '',
+      count: 1,
+      countMatched: 1,
+      features: [feature]
+    };
   }
 
   deleteResource(): void {

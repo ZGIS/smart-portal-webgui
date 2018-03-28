@@ -18,19 +18,19 @@ export class ChildCategoriesResolve implements Resolve<any> {
   constructor(private categoriesService: CategoriesService, private router: Router) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IDashboardCategory> | boolean {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IDashboardCategory> {
     let categoryIdAsString = route.params.categoryId;
     let categoryIdAsNumber = Number(categoryIdAsString).valueOf();
     console.log(`actual resolver doing sth wiht ${categoryIdAsNumber}`);
-    return this.categoriesService.getCildCategoryById(categoryIdAsNumber).map (cat => {
-      if (cat) {
-        return cat;
-      } else { // id not found
-        console.log('error in resolve');
-        this.router.navigate([ '/dashboard' ]);
-        return false;
-      }
-    }).first();
-
+    return this.categoriesService.getCildCategoryById(categoryIdAsNumber).filter(cat => !!cat).first();
+    // return this.categoriesService.getCildCategoryById(categoryIdAsNumber).map (cat => {
+    //   if (cat) {
+    //     return cat;
+    //   } else { // id not found
+    //     console.log('error in resolve');
+    //     this.router.navigate([ '/dashboard' ]);
+    //     return false;
+    //   }
+    // }).first();
   }
 }
