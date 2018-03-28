@@ -17,6 +17,7 @@ import 'rxjs';
 
 import 'ngx-cookie';
 import 'ngx-bootstrap';
+import '@asymmetrik/ngx-leaflet';
 import 'ng2-file-upload';
 import 'ngx-clipboard';
 

@@ -42,6 +42,10 @@
       <div style="border:1px solid red; width:640px; height:360px" class="collectionOverviewMap">
         <app-sac-gwh-ol3-map [mapExtent]="[ 162, -50, 180, -25 ]"></app-sac-gwh-ol3-map>
       </div>
+      <div style="height: 360px;"
+           leaflet
+           [leafletOptions]="leafletOptions">
+      </div>
     </div>
     <app-sac-gwh-owccontext-props [owcContextProperties]="myCollection.properties"></app-sac-gwh-owccontext-props>
 

@@ -3,13 +3,12 @@ import { NotificationService } from '../notifications';
 import { CollectionsService, OwcContext } from './';
 import { Router } from '@angular/router';
 import { OwcContextsRightsMatrix, WorkbenchService } from '../workbench';
-import { Extent } from 'openlayers';
 import { worldExtent } from '../ol3-map';
 import { OwcResource } from './collections';
-import { IGeoFeature, IGeoFeatureProperties } from '../search';
-import { IGeoFeatureCollection } from '../search/result';
+import { IGeoFeature, IGeoFeatureCollection, IGeoFeatureProperties } from '../search';
 
 let FileSaver = require('file-saver/FileSaver.js');
+let L = require('leaflet/dist/leaflet.js');
 
 @Component({
   selector: 'app-sac-gwh-collection',
@@ -27,6 +26,14 @@ export class CollectionsComponent {
   @Output() reloadOnChangedCollection: EventEmitter<any> = new EventEmitter<any>();
 
   worldExtent = worldExtent;
+
+  leafletOptions: any = {
+    layers: [
+      L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+    ],
+    zoom: 5,
+    center: L.latLng(46.879966, -121.726909)
+  };
 
   reloadCollection(): void {
     console.log('we reload this collection');
