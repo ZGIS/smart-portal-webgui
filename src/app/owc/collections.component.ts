@@ -29,11 +29,19 @@ export class CollectionsComponent {
 
   leafletOptions: any = {
     layers: [
-      L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
-    ],
-    zoom: 5,
-    center: L.latLng(46.879966, -121.726909)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      })
+    ]
   };
+
+  getLeafletCentre(bbox: number[]): any {
+    let corner1 = L.latLng({lat: bbox[1], lng: bbox[0]});
+    let corner2 = L.latLng({lat: bbox[3], lng: bbox[2]});
+    let bounds = L.latLngBounds([corner2, corner1]);
+    return bounds.getCenter();
+  }
 
   reloadCollection(): void {
     console.log('we reload this collection');

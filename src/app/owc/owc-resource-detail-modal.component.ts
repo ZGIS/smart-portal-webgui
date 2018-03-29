@@ -3,8 +3,10 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { NotificationService } from '../notifications';
 import { CollectionsService, OwcResource } from './';
 import { IGeoFeature, IGeoFeatureProperties } from '../search';
-import { worldExtent } from '../ol3-map';
+import { defaultNzExtent } from '../ol3-map';
 import { IGeoFeatureCollection } from '../search/result';
+
+let L = require('leaflet/dist/leaflet.js');
 
 @Component({
   selector: 'app-sac-gwh-owcresource-detail-modal',
@@ -18,7 +20,33 @@ export class OwcResourceDetailModalComponent {
 
   @ViewChild('owcResourceDetailModalRef') public modal: ModalDirective;
 
-  worldExtent = worldExtent;
+  defaultNzExtent = defaultNzExtent;
+
+  leafletOptions: any = {
+    layers: [
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      })
+    ]
+  };
+
+  getLeafletCentre(geojson: any): any {
+    // let layer = L.geoJSON(geojson);
+    // , {
+    //   onEachFeature: this.leafletOnEachFeature
+    // });
+    // console.log(`layer = ${layer}`);
+    let polygon = L.polygon(geojson.coordinates, {color: 'red'});
+    // console.log(polygon);
+    // console.log(polygon.getBounds());
+    // console.log(`polygon.getBounds().getCenter() = ${polygon.getBounds().getCenter()}`);
+    let reverseBounds = L.latLng({
+      lat: polygon.getBounds().getCenter().lng,
+      lng: polygon.getBounds().getCenter().lat
+    });
+    return reverseBounds;
+  }
 
   /**
    * Constructor
@@ -107,4 +135,9 @@ export class OwcResourceDetailModalComponent {
       });
 
   }
+
+  // private leafletOnEachFeature(feature: any, layer: any): void {
+  //   // does this feature have a property named popupContent?
+  //   console.log(feature);
+  // }
 }
