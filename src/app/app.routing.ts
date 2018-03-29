@@ -24,8 +24,9 @@ import { GlossaryComponent } from './glossary-edu';
 import { AdminComponent } from './admin';
 import { ContextRetrieveComponent, FileLoaderComponent } from './context';
 import { TimeseriesComponent } from './timeseries';
-import { AdminGuard, AuthGuard, RegisteredGuard } from './_guards';
+import { AdminGuard, AuthGuard, OwcContextIdResolve, RegisteredGuard } from './_guards';
 import { GroupsBaseComponent } from './groups';
+import { OwcLeafletViewerComponent } from './owc/owc-leaflet-viewer.component';
 
 const appRoutes: Routes = [
   {
@@ -128,6 +129,13 @@ const appRoutes: Routes = [
   {
     path: 'timeseries',
     component: TimeseriesComponent
+  },
+  {
+    path: 'mapviewer',
+    component: OwcLeafletViewerComponent,
+    resolve: {
+      owc: OwcContextIdResolve
+    }
   },
 
 

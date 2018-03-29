@@ -1,6 +1,6 @@
 
 <div bsModal #owcResourceDetailModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
-     aria-labelledby="result-details" aria-hidden="true">
+     aria-labelledby="result-details" aria-hidden="true" (onShown)="handleOnShown()">
   <div class="modal-dialog modal-lg">
     <div *ngIf="owcResource" class="modal-content">
       <div class="modal-header">
@@ -18,7 +18,8 @@
           <div>
             <div style="height: 240px;"
                  leaflet
-                 [leafletOptions]="leafletOptions"
+                 (leafletMapReady)="onMapReady($event, owcResource)"
+                 [leafletOptions]="getLeafletOptions(owcResource)"
                  [leafletZoom]="5"
                  [leafletCenter]="getLeafletCentre(owcResource.geometry)">
             </div>

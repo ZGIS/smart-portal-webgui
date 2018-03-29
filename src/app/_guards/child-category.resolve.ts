@@ -13,7 +13,7 @@ import { CategoriesService }  from '../dashboards';
 import { IDashboardCategory } from '../dashboards';
 
 @Injectable()
-export class ChildCategoriesResolve implements Resolve<any> {
+export class ChildCategoriesResolve implements Resolve<IDashboardCategory> {
 
   constructor(private categoriesService: CategoriesService, private router: Router) {
   }

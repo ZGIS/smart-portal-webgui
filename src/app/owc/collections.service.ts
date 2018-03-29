@@ -145,14 +145,17 @@ export class CollectionsService {
     // if loggedIn add authorization header with jwt token
     let collectionsUri = this.portalApiUrl + '/collections/view-query';
     let options = new RequestOptions({ withCredentials: true });
+    let params: URLSearchParams = new URLSearchParams();
+    options.params = params;
     if (loggedInResult) {
       let token = this.accountService.token;
       options.headers = new Headers({ 'X-XSRF-TOKEN': token });
     }
     if (keywords && keywords.length > 0) {
-      let params: URLSearchParams = new URLSearchParams();
-      keywords.forEach(k => params.append('keywords', k));
-      options.params = params;
+      keywords.forEach(k => options.params.append('keywords', k));
+    }
+    if (id) {
+      options.params.append('id', id);
     }
     // get visible collections from api
     return this.http.get(collectionsUri, options)

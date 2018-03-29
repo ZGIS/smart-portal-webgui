@@ -7,8 +7,8 @@ import { worldExtent } from '../ol3-map';
 import { OwcResource } from './collections';
 import { IGeoFeature, IGeoFeatureCollection, IGeoFeatureProperties } from '../search';
 
-let FileSaver = require('file-saver/FileSaver.js');
 let L = require('leaflet/dist/leaflet.js');
+let FileSaver = require('file-saver/FileSaver.js');
 
 @Component({
   selector: 'app-sac-gwh-collection',
@@ -25,16 +25,51 @@ export class CollectionsComponent {
   @Input() viewOnly = true;
   @Output() reloadOnChangedCollection: EventEmitter<any> = new EventEmitter<any>();
 
-  worldExtent = worldExtent;
+  map: any;
 
-  leafletOptions: any = {
-    layers: [
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      })
-    ]
-  };
+  getLeafletOptions( owcContext: OwcContext ): any {
+    let geojsonLayer: any = L.geoJSON(owcContext, {
+      style: function ( feature: any ) {
+        return { color: 'blue' };
+      }
+    });
+
+    return {
+      layers: [
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }),
+        geojsonLayer
+      ]
+    };
+  }
+
+  onMapReady(map: any, owcContext: OwcContext) {
+    this.map = map;
+    // if (owcContext.features && owcContext.features.length > 0) {
+    //   let foiArr: any[] = [];
+    //   owcContext.features.forEach(owcResource => {
+    //     let jsonPolygon = L.polygon(owcResource.geometry.coordinates);
+    //     let bounds = jsonPolygon.getBounds();
+    //     let corner1 = bounds.getSouthWest();
+    //     let corner2 = bounds.getNorthEast();
+    //     console.log(corner1);
+    //     console.log(corner2);
+    //     foiArr.push([corner1.lng, corner1.lat]);
+    //     foiArr.push([corner2.lng, corner2.lng]);
+    //   });
+    //
+    //   this.map.fitBounds(foiArr, {
+    //     animate: true
+    //   });
+    // }
+  }
+
+  handleOnShown(event: any) {
+    console.log(event);
+    this.map.invalidateSize();
+  }
 
   getLeafletCentre(bbox: number[]): any {
     let corner1 = L.latLng({lat: bbox[1], lng: bbox[0]});

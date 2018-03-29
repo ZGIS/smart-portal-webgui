@@ -1,0 +1,40 @@
+.full-width {
+  width: 100%;
+}
+
+.panel-fixed-height {
+  height: 750px;
+}
+
+.panel-fixed-height > .panel-body {
+  position: relative;
+  height: 707px;
+  width:100%;
+}
+
+.panel-fixed-height > .panel-body > .panel-body-inner-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: scroll;
+}
+.panel-fixed-height > .panel-body > .panel-body-inner-wrapper-margins {
+  top:10px;
+  left:10px;
+  right:10px;
+}
+
+a.list-group-item {
+  cursor:pointer;
+}
+
+.clickable {
+  cursor:pointer;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: lightgray;
+}

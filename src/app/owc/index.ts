@@ -14,3 +14,4 @@ export * from './owc-link.component';
 export * from './owc-offering.component';
 export * from './owc-context-properties.component';
 export * from './owc-resource-properties.component';
+export * from './owc-leaflet-viewer.component';

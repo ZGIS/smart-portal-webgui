@@ -2,9 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { NotificationService } from '../notifications';
 import { CollectionsService, OwcResource } from './';
-import { IGeoFeature, IGeoFeatureProperties } from '../search';
-import { defaultNzExtent } from '../ol3-map';
-import { IGeoFeatureCollection } from '../search/result';
+import { IGeoFeature, IGeoFeatureProperties, IGeoFeatureCollection } from '../search';
 
 let L = require('leaflet/dist/leaflet.js');
 
@@ -20,30 +18,31 @@ export class OwcResourceDetailModalComponent {
 
   @ViewChild('owcResourceDetailModalRef') public modal: ModalDirective;
 
-  defaultNzExtent = defaultNzExtent;
+  map: any;
 
-  leafletOptions: any = {
-    layers: [
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      })
-    ]
-  };
+  getLeafletOptions( owcResource: OwcResource ): any {
+    let geojsonLayer = L.geoJSON(owcResource, {
+      style: function ( feature: any ) {
+        return { color: 'blue' };
+      }
+    });
 
-  getLeafletCentre(geojson: any): any {
-    // let layer = L.geoJSON(geojson);
-    // , {
-    //   onEachFeature: this.leafletOnEachFeature
-    // });
-    // console.log(`layer = ${layer}`);
-    let polygon = L.polygon(geojson.coordinates, {color: 'red'});
-    // console.log(polygon);
-    // console.log(polygon.getBounds());
-    // console.log(`polygon.getBounds().getCenter() = ${polygon.getBounds().getCenter()}`);
+    return {
+      layers: [
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }),
+        geojsonLayer
+      ]
+    };
+  }
+
+  getLeafletCentre( geojson: any ): any {
+    let jsonPolygon = L.polygon(geojson.coordinates);
     let reverseBounds = L.latLng({
-      lat: polygon.getBounds().getCenter().lng,
-      lng: polygon.getBounds().getCenter().lat
+      lat: jsonPolygon.getBounds().getCenter().lng,
+      lng: jsonPolygon.getBounds().getCenter().lat
     });
     return reverseBounds;
   }
@@ -63,6 +62,25 @@ export class OwcResourceDetailModalComponent {
       this.collectionid = owccontextid;
       this.modal.show();
     }
+  }
+
+  onMapReady( map: any, owcResource: OwcResource ) {
+    this.map = map;
+    let jsonPolygon = L.polygon(owcResource.geometry.coordinates);
+    console.log(owcResource);
+    let bounds = jsonPolygon.getBounds();
+    let corner1 = bounds.getSouthWest();
+    let corner2 = bounds.getNorthEast();
+    console.log(corner1);
+    console.log(corner2);
+    this.map.fitBounds([[corner1.lng, corner1.lat], [corner2.lng, corner2.lng]], {
+      animate: true,
+      maxZoom: 17
+    });
+  }
+
+  handleOnShown() {
+    this.map.invalidateSize();
   }
 
   hideOwcResourceModal() {
@@ -112,7 +130,7 @@ export class OwcResourceDetailModalComponent {
       crs: '',
       count: 1,
       countMatched: 1,
-      features: [feature]
+      features: [ feature ]
     };
   }
 

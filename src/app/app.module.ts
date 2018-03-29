@@ -78,7 +78,8 @@ import {
   OwcCreatorDisplayComponent,
   OwcCreatorApplicationComponent,
   OwcStyleSetComponent,
-  OwcOfferingComponent
+  OwcOfferingComponent,
+  OwcLeafletViewerComponent
 } from './owc';
 import { WorkbenchService,
   BasicFileUploadComponent,
@@ -88,7 +89,7 @@ import { WorkbenchService,
 
 import { X3dViewComponent } from './x3d-view';
 import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
-import { AdminGuard, AuthGuard, ChildCategoriesResolve, RegisteredGuard } from './_guards';
+import { AdminGuard, AuthGuard, ChildCategoriesResolve, OwcContextIdResolve, RegisteredGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ContextRetrieveComponent, FileLoaderComponent, LicensedlinkComponent } from './context';
@@ -163,6 +164,7 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
     OwcCreatorApplicationComponent,
     OwcContextPropertiesComponent,
     OwcResourcePropertiesComponent,
+    OwcLeafletViewerComponent,
     BasicFileUploadComponent,
     CardComponent,
     ContextRetrieveComponent,
@@ -186,6 +188,7 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
     AuthGuard,
     RegisteredGuard,
     ChildCategoriesResolve,
+    OwcContextIdResolve,
     AdminGuard,
     NotificationService,
     GlossaryService,
