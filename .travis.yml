@@ -56,8 +56,7 @@ script:
 - npm test -- --ci
 - cp -r coverage _coverage || true
 # jit build
-# jit disable AK 20180329
-# - npm run e2e:ci:jit
+- npm run e2e:ci:jit
 # aot build
 - npm run e2e:ci
 # shpinx docs build

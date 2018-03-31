@@ -1,16 +1,15 @@
-import { Injectable, Inject } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { Inject, Injectable } from '@angular/core';
+import { Headers, Http, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { PORTAL_API_URL } from '../in-app-config';
 import { AccountService } from '../account';
 import { OwcContext, OwcLink, OwcResource } from './';
 import { IErrorResult } from '../search';
-import { OwcContextsRightsMatrix } from '../workbench';
 import * as _ from 'lodash';
-import { IGeoFeature } from '../search/result';
 
-let UUID = require('uuid/uuid.js');
+// let UUID = require('uuid/uuid.js');
+const uuidv4 = require('uuid/v4');
 
 @Injectable()
 export class CollectionsService {
@@ -27,7 +26,7 @@ export class CollectionsService {
    * @returns {string}
    */
   getNewUuid(): string {
-    return UUID(); // 'df7cca36-3d7a-40f4-8f06-ae03cc22f045'
+    return uuidv4(); // 'df7cca36-3d7a-40f4-8f06-ae03cc22f045'
   }
 
   /**
