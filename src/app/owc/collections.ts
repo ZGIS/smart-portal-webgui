@@ -1,5 +1,7 @@
+import { FeatureCollection, GeoJsonObject } from 'geojson';
+
 export interface OwcContext {
-  type: string;
+  type: 'FeatureCollection';
   id: string;
   bbox: any;
   properties: OwcContextProperties;
@@ -28,7 +30,7 @@ export interface OwcContextLinks {
 }
 
 export interface OwcResource {
-  type: string;
+  type: 'Feature';
   id: string;
   geometry?: any;
   properties: OwcResourceProperties;

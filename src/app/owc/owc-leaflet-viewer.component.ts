@@ -6,9 +6,9 @@ import { OwcResource } from './collections';
 import { IGeoFeature, IGeoFeatureCollection, IGeoFeatureProperties } from '../search';
 import { AccountService } from '../account';
 import { Location } from '@angular/common';
-import { MapOptions, latLng, LatLng, tileLayer, geoJSON, GeoJSON, latLngBounds, Map } from 'leaflet';
+import { Polygon, FeatureCollection } from 'geojson';
 
-// let L = require('leaflet/dist/leaflet.js');
+const L = require('leaflet/dist/leaflet.js');
 
 @Component({
   selector: 'app-sac-gwh-owc-viewer',
@@ -19,18 +19,18 @@ import { MapOptions, latLng, LatLng, tileLayer, geoJSON, GeoJSON, latLngBounds, 
 export class OwcLeafletViewerComponent implements OnInit {
   myCollection: OwcContext;
   loading = true;
-  map: Map;
+  map: L.Map;
 
-  getLeafletOptions( owcContext: OwcContext ): MapOptions {
-    let geojsonLayer: GeoJSON = geoJSON(owcContext, {
-      style: function ( feature: GeoJSONFeature<GeoJSONPolygon> ) {
+  getLeafletOptions( owcContext: OwcContext ): L.MapOptions {
+    let geojsonLayer: L.GeoJSON = L.geoJSON(<FeatureCollection<Polygon>>owcContext, {
+      style: function ( feature: GeoJSONFeature<Polygon> ) {
         return { color: 'blue' };
       }
     });
 
     return {
       layers: [
-        tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 19,
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }),
@@ -39,7 +39,7 @@ export class OwcLeafletViewerComponent implements OnInit {
     };
   }
 
-  onMapReady(map: Map, owcContext: OwcContext) {
+  onMapReady(map: L.Map, owcContext: OwcContext) {
     this.map = map;
     // if (owcContext.features && owcContext.features.length > 0) {
     //   let foiArr: any[] = [];
@@ -65,10 +65,10 @@ export class OwcLeafletViewerComponent implements OnInit {
     this.map.invalidateSize();
   }
 
-  getLeafletCentre(bbox: number[]): LatLng {
-    let corner1 = latLng({lat: bbox[1], lng: bbox[0]});
-    let corner2 = latLng({lat: bbox[3], lng: bbox[2]});
-    let bounds = latLngBounds([corner2, corner1]);
+  getLeafletCentre(bbox: number[]): L.LatLng {
+    let corner1 = L.latLng({lat: bbox[1], lng: bbox[0]});
+    let corner2 = L.latLng({lat: bbox[3], lng: bbox[2]});
+    let bounds = L.latLngBounds([corner2, corner1]);
     return bounds.getCenter();
   }
 
