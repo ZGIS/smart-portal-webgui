@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">55% </span>
+        <span class="strong">46.15% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>11/20</span>
+        <span class='fraction'>12/26</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>0/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20% </span>
+        <span class="strong">16.67% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/5</span>
+        <span class='fraction'>1/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">41.67% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/18</span>
+        <span class='fraction'>10/24</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -96,7 +96,20 @@
 51
 52
 53
-54</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -131,12 +144,21 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -147,6 +169,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
@@ -183,15 +209,24 @@ export class ShareButtonComponent implements AfterViewInit, OnInit {
 &nbsp;
   constructor( private <span class="cstat-no" title="statement not covered" >shareButtonService: ShareButtonService<span class="fstat-no" title="function not covered" > </span>) {</span>
 <span class="cstat-no" title="statement not covered" >    if (this.dataA2aUrl) {</span>
-<span class="cstat-no" title="statement not covered" >      this.dataA2aUrlExt = this.dataA2aUrlExt + this.dataA2aUrl;</span>
+<span class="cstat-no" title="statement not covered" >      if (this.checkIfUrl(this.dataA2aUrl)) {</span>
+<span class="cstat-no" title="statement not covered" >        this.dataA2aUrlExt = this.dataA2aUrl;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.dataA2aUrlExt = this.dataA2aUrlExt + this.dataA2aUrl;</span>
+      }
     }
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ngOnInit(): void {</span>
 <span class="cstat-no" title="statement not covered" >    if (this.dataA2aUrl) {</span>
-<span class="cstat-no" title="statement not covered" >      this.dataA2aUrlExt = this.dataA2aUrlExt + this.dataA2aUrl;</span>
+<span class="cstat-no" title="statement not covered" >      if (this.checkIfUrl(this.dataA2aUrl)) {</span>
+<span class="cstat-no" title="statement not covered" >        this.dataA2aUrlExt = this.dataA2aUrl;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.dataA2aUrlExt = this.dataA2aUrlExt + this.dataA2aUrl;</span>
+      }
     }
   }
+&nbsp;
 <span class="fstat-no" title="function not covered" >  ngAfterViewInit() {</span>
 <span class="cstat-no" title="statement not covered" >    this.shareButtonService.getReady().subscribe(</span>
       ( ready<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
@@ -201,6 +236,10 @@ export class ShareButtonComponent implements AfterViewInit, OnInit {
         // console.log('share script loaded');
       });
   }
+&nbsp;
+  private checkIfUrl( testUrl: string<span class="fstat-no" title="function not covered" > ): boolean {</span>
+<span class="cstat-no" title="statement not covered" >    return new RegExp('[a-zA-Z\d]+://(\w+:\w+@)?([a-zA-Z\d.-]+\.[A-Za-z]{2,4})(:\d+)?(/.*)?').test(testUrl);</span>
+  }
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -208,7 +247,7 @@ export class ShareButtonComponent implements AfterViewInit, OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 27 2018 20:29:07 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 01 2018 13:41:45 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/owc/owc-leaflet-viewer.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/owc/</a> owc-leaflet-viewer.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>18/54</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.56% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">32% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>16/50</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit } from '@angular/core';
+import { NotificationService } from '../notifications';
+import { CollectionsService, OwcContext } from './';
+import { ActivatedRoute, Params } from '@angular/router';
+import { OwcResource } from './collections';
+import { IGeoFeature, IGeoFeatureCollection, IGeoFeatureProperties } from '../search';
+import { AccountService } from '../account';
+import { Location } from '@angular/common';
+import { Polygon, FeatureCollection, Feature } from 'geojson';
+&nbsp;
+const L = require('leaflet/dist/leaflet.js');
+&nbsp;
+@Component({
+  selector: 'app-sac-gwh-owc-viewer',
+  templateUrl: 'owc-leaflet-viewer.component.html',
+  styleUrls: [ 'owc-leaflet-viewer.component.css' ],
+})
+&nbsp;
+export class OwcLeafletViewerComponent implements OnInit {
+  myCollection: OwcContext;
+<span class="cstat-no" title="statement not covered" >  loading = true;</span>
+  map: L.Map;
+&nbsp;
+  getLeafletOptions( owcContext: OwcContext<span class="fstat-no" title="function not covered" > ): L.MapOptions {</span>
+    let geojsonLayer: L.GeoJSON = <span class="cstat-no" title="statement not covered" >L.geoJSON(&lt;FeatureCollection&lt;Polygon&gt;&gt;owcContext, {</span>
+      style: function ( feature: Feature&lt;Polygon&gt;<span class="fstat-no" title="function not covered" > ) {</span>
+<span class="cstat-no" title="statement not covered" >        return { color: 'blue' };</span>
+      }
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      layers: [
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&amp;copy; &lt;a href="http://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt;'
+        }),
+        geojsonLayer
+      ]
+    };
+  }
+&nbsp;
+  onMapReady(map: L.Map, owcContext: OwcContext<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    this.map = map;</span>
+    // if (owcContext.features &amp;&amp; owcContext.features.length &gt; 0) {
+    //   let foiArr: any[] = [];
+    //   owcContext.features.forEach(owcResource =&gt; {
+    //     let jsonPolygon = L.polygon(owcResource.geometry.coordinates);
+    //     let bounds = jsonPolygon.getBounds();
+    //     let corner1 = bounds.getSouthWest();
+    //     let corner2 = bounds.getNorthEast();
+    //     console.log(corner1);
+    //     console.log(corner2);
+    //     foiArr.push([corner1.lng, corner1.lat]);
+    //     foiArr.push([corner2.lng, corner2.lng]);
+    //   });
+    //
+    //   this.map.fitBounds(foiArr, {
+    //     animate: true
+    //   });
+    // }
+  }
+&nbsp;
+  handleOnShown(event: any<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    console.log(event);</span>
+<span class="cstat-no" title="statement not covered" >    this.map.invalidateSize();</span>
+  }
+&nbsp;
+  getLeafletCentre(bbox: number[]<span class="fstat-no" title="function not covered" >): L.LatLng {</span>
+    let corner1 = <span class="cstat-no" title="statement not covered" >L.latLng({lat: bbox[1], lng: bbox[0]});</span>
+    let corner2 = <span class="cstat-no" title="statement not covered" >L.latLng({lat: bbox[3], lng: bbox[2]});</span>
+    let bounds = <span class="cstat-no" title="statement not covered" >L.latLngBounds([corner2, corner1]);</span>
+<span class="cstat-no" title="statement not covered" >    return bounds.getCenter();</span>
+  }
+&nbsp;
+  getAsGeoFeatureCollection( owcList: OwcResource[]<span class="fstat-no" title="function not covered" > ): IGeoFeatureCollection {</span>
+<span class="cstat-no" title="statement not covered" >    if (!owcList) {</span>
+<span class="cstat-no" title="statement not covered" >      return &lt;IGeoFeatureCollection&gt; {</span>
+        type: 'FeatureCollection',
+        crs: '',
+        count: 0,
+        countMatched: 0,
+        features: []
+      };
+    }
+    const features = &lt;IGeoFeature[]&gt;<span class="cstat-no" title="statement not covered" >owcList.filter(( owc: OwcResource<span class="fstat-no" title="function not covered" > ) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      return owc.geometry;</span>
+    })
+      .map(( owc: OwcResource<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        return &lt;IGeoFeature&gt;{</span>
+          type: 'Feature',
+          geometry: owc.geometry,
+          properties: &lt;IGeoFeatureProperties&gt; {
+            fileIdentifier: owc.id,
+            title: owc.properties.title,
+            linkage: [],
+            origin: owc.properties.publisher
+          }
+        };
+      });
+<span class="cstat-no" title="statement not covered" >    return &lt;IGeoFeatureCollection&gt; {</span>
+      type: 'FeatureCollection',
+      crs: '',
+      count: features.length,
+      countMatched: features.length,
+      features: features
+    };
+  }
+&nbsp;
+  constructor( private <span class="cstat-no" title="statement not covered" >route: ActivatedRoute,</span>
+               private <span class="cstat-no" title="statement not covered" >_location: Location,</span>
+               private <span class="cstat-no" title="statement not covered" >accountService: AccountService,</span>
+               private <span class="cstat-no" title="statement not covered" >collectionsService: CollectionsService,</span>
+               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" > </span>) {</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  ngOnInit(): void {</span></span>
+<span class="cstat-no" title="statement not covered" >    this.route.data.subscribe(({ <span class="cstat-no" title="statement not covered" >owc </span>}<span class="fstat-no" title="function not covered" >) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      this.myCollection = owc;</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.route.params.forEach(( params: Params<span class="fstat-no" title="function not covered" > ) =&gt; {</span></span>
+&nbsp;
+      let owcId = <span class="cstat-no" title="statement not covered" >params[ 'id' ];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.accountService.isLoggedIn().subscribe(</span>
+        loggedInResult<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          this.collectionsService.queryCollectionsForViewing(loggedInResult, owcId, [])</span>
+            .subscribe(
+              collections<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                if (collections.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                  this.myCollection = collections[0];</span>
+                }
+              },
+              ( error: any<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                this.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >                this.notificationService.addErrorResultNotification(error);</span>
+              });
+        },
+        error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          console.log(&lt;any&gt;error);</span>
+        });
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  backClicked() {</span>
+<span class="cstat-no" title="statement not covered" >    this._location.back();</span>
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 01 2018 13:41:45 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

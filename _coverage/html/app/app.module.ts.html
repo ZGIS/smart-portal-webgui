@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>31/31</span>
+        <span class='fraction'>32/32</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>29/29</span>
+        <span class='fraction'>30/30</span>
       </div>
     </div>
   </div>
@@ -241,7 +241,14 @@
 196
 197
 198
-199</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+199
+200
+201
+202
+203
+204
+205
+206</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -264,6 +271,8 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -321,6 +330,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -335,6 +345,10 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -458,6 +472,7 @@ import {
   TypeaheadModule,
   RatingModule
 } from 'ngx-bootstrap';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -466,7 +481,8 @@ import {
   ResultDetailComponent,
   ResultDetailModalComponent,
   ResultService,
-  SearchComponent
+  SearchComponent,
+  ResultCollectionsViewModalComponent
 } from './search';
 import { NavigationComponent,
   NotFoundComponent,
@@ -517,7 +533,8 @@ import {
   OwcCreatorDisplayComponent,
   OwcCreatorApplicationComponent,
   OwcStyleSetComponent,
-  OwcOfferingComponent
+  OwcOfferingComponent,
+  OwcLeafletViewerComponent
 } from './owc';
 import { WorkbenchService,
   BasicFileUploadComponent,
@@ -527,7 +544,7 @@ import { WorkbenchService,
 &nbsp;
 import { X3dViewComponent } from './x3d-view';
 import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
-import { AdminGuard, AuthGuard, ChildCategoriesResolve, RegisteredGuard } from './_guards';
+import { AdminGuard, AuthGuard, ChildCategoriesResolve, OwcContextIdResolve, RegisteredGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ContextRetrieveComponent, FileLoaderComponent, LicensedlinkComponent } from './context';
@@ -552,6 +569,7 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
     TypeaheadModule.forRoot(),
     RatingModule.forRoot(),
     ProgressbarModule.forRoot(),
+    LeafletModule.forRoot(),
     FileUploadModule,
     ClipboardModule,
     routing],
@@ -601,6 +619,7 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
     OwcCreatorApplicationComponent,
     OwcContextPropertiesComponent,
     OwcResourcePropertiesComponent,
+    OwcLeafletViewerComponent,
     BasicFileUploadComponent,
     CardComponent,
     ContextRetrieveComponent,
@@ -612,7 +631,8 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
     CentralUsernavComponent,
     GroupsBaseComponent,
     GroupsUserContextComponent,
-    GroupsUserDisplayComponent
+    GroupsUserDisplayComponent,
+    ResultCollectionsViewModalComponent
   ],
   providers: [
     API_URL_PROVIDERS,
@@ -623,6 +643,7 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
     AuthGuard,
     RegisteredGuard,
     ChildCategoriesResolve,
+    OwcContextIdResolve,
     AdminGuard,
     NotificationService,
     GlossaryService,
@@ -643,7 +664,7 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 27 2018 20:29:07 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 01 2018 13:41:45 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../prettify.js"></script>
