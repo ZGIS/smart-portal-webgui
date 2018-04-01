@@ -6,7 +6,7 @@ import { OwcResource } from './collections';
 import { IGeoFeature, IGeoFeatureCollection, IGeoFeatureProperties } from '../search';
 import { AccountService } from '../account';
 import { Location } from '@angular/common';
-import { Polygon, FeatureCollection } from 'geojson';
+import { Polygon, FeatureCollection, Feature } from 'geojson';
 
 const L = require('leaflet/dist/leaflet.js');
 
@@ -23,7 +23,7 @@ export class OwcLeafletViewerComponent implements OnInit {
 
   getLeafletOptions( owcContext: OwcContext ): L.MapOptions {
     let geojsonLayer: L.GeoJSON = L.geoJSON(<FeatureCollection<Polygon>>owcContext, {
-      style: function ( feature: GeoJSONFeature<Polygon> ) {
+      style: function ( feature: Feature<Polygon> ) {
         return { color: 'blue' };
       }
     });
