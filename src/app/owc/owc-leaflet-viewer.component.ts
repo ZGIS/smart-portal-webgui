@@ -209,9 +209,7 @@ export class OwcLeafletViewerComponent implements OnInit {
       password: parsedUri.password,
       hostname: parsedUri.hostname,
       port: parsedUri.port,
-      path: parsedUri.path,
-      query: null,
-      fragment: null
+      path: parsedUri.path
     };
     const baseUrl = URI.build(parts);
     let builder: any = {};
