@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">54.55% </span>
+        <span class="strong">51.85% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>12/22</span>
+        <span class='fraction'>14/27</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.67% </span>
+        <span class="strong">20% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/6</span>
+        <span class='fraction'>1/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">52.63% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/19</span>
+        <span class='fraction'>12/24</span>
       </div>
     </div>
   </div>
@@ -73,8 +73,21 @@
 28
 29
 30
-31</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -82,25 +95,40 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from '@angular/core';
@@ -112,25 +140,39 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { CollectionsService, OwcContext } from '../owc';
 import { AccountService } from '../account';
+import { NotificationService } from '../notifications';
+import { IErrorResult } from '../search';
 &nbsp;
 @Injectable()
 export class OwcContextIdResolve implements Resolve&lt;OwcContext&gt; {
 &nbsp;
   constructor( private <span class="cstat-no" title="statement not covered" >accountService: AccountService,</span>
-               private <span class="cstat-no" title="statement not covered" >collectionsService: CollectionsService<span class="fstat-no" title="function not covered" > </span>) {</span>
+               private <span class="cstat-no" title="statement not covered" >collectionsService: CollectionsService,</span>
+               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" > </span>) {</span>
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  resolve( route: ActivatedRouteSnapshot, state: RouterStateSnapshot<span class="fstat-no" title="function not covered" > ): Observable&lt;OwcContext&gt; {</span></span>
     let owcId = <span class="cstat-no" title="statement not covered" >route.queryParams.id;</span>
-<span class="cstat-no" title="statement not covered" >    console.log(`resolve: ${owcId}`);</span>
-    let owc: Observable&lt;OwcContext&gt; = <span class="cstat-no" title="statement not covered" >this.accountService.isLoggedIn().flatMap(</span>
-      loggedInResult<span class="fstat-no" title="function not covered" > =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        return this.collectionsService.queryCollectionsForViewing(loggedInResult, owcId, []).filter(</span>
-          collections<span class="fstat-no" title="function not covered" > =&gt; <span class="cstat-no" title="statement not covered" >collections.length &gt; 0</span></span>
-        ).map(filteredCollections<span class="fstat-no" title="function not covered" > =&gt; <span class="cstat-no" title="statement not covered" >filteredCollections[ 0 ])</span></span>;
+    // console.log(`guard resolve: ${owcId}`);
+    const currentLoggedIn = <span class="cstat-no" title="statement not covered" >this.accountService.isLoggedInValue();</span>
+<span class="cstat-no" title="statement not covered" >    return this.collectionsService.queryCollectionsForViewing(currentLoggedIn, owcId, []).map(collections<span class="fstat-no" title="function not covered" > =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (collections.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >        return collections[ 0 ];</span>
+      } else { // id not found
+<span class="cstat-no" title="statement not covered" >        this.notificationService.addNotification({</span>
+          type: 'warning',
+          message: 'This id was not found, sorry.'
+        });
+<span class="cstat-no" title="statement not covered" >        throw &lt;IErrorResult&gt;{ message: 'This id was not found, sorry.' };</span>
       }
-    );
-<span class="cstat-no" title="statement not covered" >    return owc;</span>
+    }).catch(err<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.notificationService.addNotification({</span>
+        type: 'warning',
+        message: 'This id was not found, sorry.',
+        details: err
+      });
+<span class="cstat-no" title="statement not covered" >      return Observable.throw(&lt;IErrorResult&gt;{ message: 'This id was not found, sorry.', details: err });</span>
+    });
   }
 }
 &nbsp;</pre></td></tr>
@@ -139,7 +181,7 @@ export class OwcContextIdResolve implements Resolve&lt;OwcContext&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 01 2018 13:41:45 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Apr 02 2018 16:42:55 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

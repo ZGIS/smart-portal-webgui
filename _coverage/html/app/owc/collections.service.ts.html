@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">14.29% </span>
+        <span class="strong">14.01% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>29/203</span>
+        <span class='fraction'>29/207</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/52</span>
+        <span class='fraction'>0/54</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.63% </span>
+        <span class="strong">2.56% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/38</span>
+        <span class='fraction'>1/39</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">13.64% </span>
+        <span class="strong">13.43% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>27/198</span>
+        <span class='fraction'>27/201</span>
       </div>
     </div>
   </div>
@@ -553,7 +553,12 @@
 508
 509
 510
-511</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+511
+512
+513
+514
+515
+516</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -721,14 +726,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1228,17 +1238,22 @@ export class CollectionsService {
           let foundCollectionsJson = <span class="cstat-no" title="statement not covered" >response.json() &amp;&amp; response.json().collections;</span>
 <span class="cstat-no" title="statement not covered" >          if (&lt;OwcContext[]&gt;foundCollectionsJson) {</span>
             let col = &lt;OwcContext[]&gt;<span class="cstat-no" title="statement not covered" >foundCollectionsJson;</span>
-            const scores = <span class="cstat-no" title="statement not covered" >col.map(f<span class="fstat-no" title="function not covered" > =&gt; <span class="cstat-no" title="statement not covered" >f.searchScore)</span></span>;</span>
-            const maxValue = <span class="cstat-no" title="statement not covered" >_.max(scores);</span>
-            const minValue = <span class="cstat-no" title="statement not covered" >_.min(scores);</span>
-            // const minValue = 0;
-            const normalised: OwcContext[] = <span class="cstat-no" title="statement not covered" >col.map(f<span class="fstat-no" title="function not covered" > =&gt; {</span></span>
-              const normalScore: number = <span class="cstat-no" title="statement not covered" >(f.searchScore - minValue) / (maxValue - minValue);</span>
-              let owc = <span class="cstat-no" title="statement not covered" >f;</span>
-<span class="cstat-no" title="statement not covered" >              owc.searchScore = normalScore;</span>
-<span class="cstat-no" title="statement not covered" >              return owc;</span>
-            });
-<span class="cstat-no" title="statement not covered" >            return normalised;</span>
+            const hasScores = <span class="cstat-no" title="statement not covered" >col.findIndex(f<span class="fstat-no" title="function not covered" > =&gt; <span class="cstat-no" title="statement not covered" >!!f.searchScore)</span></span>;</span>
+<span class="cstat-no" title="statement not covered" >            if (hasScores) {</span>
+              const scores = <span class="cstat-no" title="statement not covered" >col.map(f<span class="fstat-no" title="function not covered" > =&gt; <span class="cstat-no" title="statement not covered" >f.searchScore)</span></span>;</span>
+              const maxValue = <span class="cstat-no" title="statement not covered" >_.max(scores);</span>
+              const minValue = <span class="cstat-no" title="statement not covered" >_.min(scores);</span>
+              // const minValue = 0;
+              const normalised: OwcContext[] = <span class="cstat-no" title="statement not covered" >col.map(f<span class="fstat-no" title="function not covered" > =&gt; {</span></span>
+                const normalScore: number = <span class="cstat-no" title="statement not covered" >(f.searchScore - minValue) / (maxValue - minValue);</span>
+                let owc = <span class="cstat-no" title="statement not covered" >f;</span>
+<span class="cstat-no" title="statement not covered" >                owc.searchScore = normalScore;</span>
+<span class="cstat-no" title="statement not covered" >                return owc;</span>
+              });
+<span class="cstat-no" title="statement not covered" >              return normalised;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              return col;</span>
+            }
           }
 <span class="cstat-no" title="statement not covered" >          return response.json().collections;</span>
         }
@@ -1579,7 +1594,7 @@ export class CollectionsService {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 01 2018 13:41:45 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Apr 02 2018 16:42:55 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

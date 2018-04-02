@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">63.16% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>12/19</span>
+        <span class='fraction'>15/30</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">16.67% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/4</span>
+        <span class='fraction'>1/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">48.15% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/15</span>
+        <span class='fraction'>13/27</span>
       </div>
     </div>
   </div>
@@ -79,39 +79,77 @@
 34
 35
 36
-37</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -126,29 +164,48 @@ import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { CategoriesService }  from '../dashboards';
+import { isNullOrUndefined } from 'util';
+import { CategoriesService } from '../dashboards';
 import { IDashboardCategory } from '../dashboards';
+import { IErrorResult } from '../search';
+import { NotificationService } from '../notifications';
 &nbsp;
 @Injectable()
 export class ChildCategoriesResolve implements Resolve&lt;IDashboardCategory&gt; {
 &nbsp;
-  constructor(private <span class="cstat-no" title="statement not covered" >categoriesService: CategoriesService,</span> private <span class="cstat-no" title="statement not covered" >router: Router<span class="fstat-no" title="function not covered" >)</span> {</span>
+  constructor( private <span class="cstat-no" title="statement not covered" >categoriesService: CategoriesService,</span>
+               private <span class="cstat-no" title="statement not covered" >router: Router,</span>
+               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" > </span>) {</span>
   }
 &nbsp;
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot<span class="fstat-no" title="function not covered" >): Observable&lt;IDashboardCategory&gt; {</span>
-    let categoryIdAsString = <span class="cstat-no" title="statement not covered" >route.params.categoryId;</span>
+<span class="cstat-no" title="statement not covered" >  resolve( route: ActivatedRouteSnapshot, state: RouterStateSnapshot<span class="fstat-no" title="function not covered" > ): Observable&lt;IDashboardCategory&gt; {</span></span>
+    let categoryIdAsString = <span class="cstat-no" title="statement not covered" >route.queryParams.categoryId;</span>
+    // console.log(`actual resolver categoryIdAsString with ${categoryIdAsString}`);
     let categoryIdAsNumber = <span class="cstat-no" title="statement not covered" >Number(categoryIdAsString).valueOf();</span>
-<span class="cstat-no" title="statement not covered" >    console.log(`actual resolver doing sth wiht ${categoryIdAsNumber}`);</span>
-<span class="cstat-no" title="statement not covered" >    return this.categoriesService.getCildCategoryById(categoryIdAsNumber).filter(cat<span class="fstat-no" title="function not covered" > =&gt; <span class="cstat-no" title="statement not covered" >!!cat)</span></span>.first();</span>
-    // return this.categoriesService.getCildCategoryById(categoryIdAsNumber).map (cat =&gt; {
-    //   if (cat) {
-    //     return cat;
-    //   } else { // id not found
-    //     console.log('error in resolve');
-    //     this.router.navigate([ '/dashboard' ]);
-    //     return false;
-    //   }
-    // }).first();
+    // console.log(`actual resolver categoryIdAsNumber with ${categoryIdAsNumber}`);
+    // return this.categoriesService.getCildCategoryById(categoryIdAsNumber).filter(cat =&gt; !!cat).first();
+<span class="cstat-no" title="statement not covered" >    return this.categoriesService.getCildCategoryById(categoryIdAsNumber).skipWhile&lt;IDashboardCategory&gt;(( data, idx<span class="fstat-no" title="function not covered" > ) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      console.log(`skipping ${idx}`);</span>
+<span class="cstat-no" title="statement not covered" >      return isNullOrUndefined(data);</span>
+    }).first().map(( category: IDashboardCategory<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (category) {</span>
+        // console.log(category);
+<span class="cstat-no" title="statement not covered" >        return category;</span>
+      } else { // id not found
+<span class="cstat-no" title="statement not covered" >        this.notificationService.addNotification({</span>
+          type: 'warning',
+          message: 'This category id was not found, sorry.'
+        });
+<span class="cstat-no" title="statement not covered" >        throw &lt;IErrorResult&gt;{ message: 'This id was not found, sorry.' };</span>
+      }
+    }).catch(err<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.notificationService.addNotification({</span>
+        type: 'warning',
+        message: 'This category id was not found, sorry.',
+        details: err
+      });
+<span class="cstat-no" title="statement not covered" >      return Observable.throw(&lt;IErrorResult&gt;{ message: 'This id was not found, sorry.', details: err });</span>
+    });
   }
 }
 &nbsp;</pre></td></tr>
@@ -157,7 +214,7 @@ export class ChildCategoriesResolve implements Resolve&lt;IDashboardCategory&gt;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 01 2018 13:41:45 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Apr 02 2018 16:42:55 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IGeoFeature | SMART WebGui</title>
+	<title>WmsGetMapQueryParams | SMART WebGui</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="igeofeature.html">IGeoFeature</a>
+					<a href="wmsgetmapqueryparams.html">WmsGetMapQueryParams</a>
 				</li>
 			</ul>
-			<h1>Interface IGeoFeature</h1>
+			<h1>Interface WmsGetMapQueryParams</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IGeoFeature</span>
+						<a href="owsgetqueryparameters.html" class="tsd-signature-type">OwsGetQueryParameters</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">WmsGetMapQueryParams</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -79,9 +84,15 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="igeofeature.html#geometry" class="tsd-kind-icon">geometry</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="igeofeature.html#properties" class="tsd-kind-icon">properties</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="igeofeature.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="wmsgetmapqueryparams.html#crs" class="tsd-kind-icon">crs</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="wmsgetmapqueryparams.html#format" class="tsd-kind-icon">format</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="wmsgetmapqueryparams.html#href" class="tsd-kind-icon">href</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="wmsgetmapqueryparams.html#layers" class="tsd-kind-icon">layers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="wmsgetmapqueryparams.html#request" class="tsd-kind-icon">request</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="wmsgetmapqueryparams.html#service" class="tsd-kind-icon">service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="wmsgetmapqueryparams.html#styles" class="tsd-kind-icon">styles</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="wmsgetmapqueryparams.html#transparent" class="tsd-kind-icon">transparent</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="wmsgetmapqueryparams.html#version" class="tsd-kind-icon">version</a></li>
 							</ul>
 						</section>
 					</div>
@@ -90,32 +101,96 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="geometry" class="tsd-anchor"></a>
-					<h3>geometry</h3>
-					<div class="tsd-signature tsd-kind-icon">geometry<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="crs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> crs</h3>
+					<div class="tsd-signature tsd-kind-icon">crs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cd143f5/src/app/search/result.ts#L15">app/search/result.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cd143f5/src/app/owc/owc-leaflet-viewer.component.ts#L38">app/owc/owc-leaflet-viewer.component.ts:38</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="properties" class="tsd-anchor"></a>
-					<h3>properties</h3>
-					<div class="tsd-signature tsd-kind-icon">properties<span class="tsd-signature-symbol">:</span> <a href="igeofeatureproperties.html" class="tsd-signature-type">IGeoFeatureProperties</a></div>
+					<a name="format" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> format</h3>
+					<div class="tsd-signature tsd-kind-icon">format<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cd143f5/src/app/search/result.ts#L16">app/search/result.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cd143f5/src/app/owc/owc-leaflet-viewer.component.ts#L36">app/owc/owc-leaflet-viewer.component.ts:36</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="href" class="tsd-anchor"></a>
+					<h3>href</h3>
+					<div class="tsd-signature tsd-kind-icon">href<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="owsgetqueryparameters.html">OwsGetQueryParameters</a>.<a href="owsgetqueryparameters.html#href">href</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cd143f5/src/app/owc/owc-leaflet-viewer.component.ts#L27">app/owc/owc-leaflet-viewer.component.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="layers" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> layers</h3>
+					<div class="tsd-signature tsd-kind-icon">layers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cd143f5/src/app/search/result.ts#L14">app/search/result.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cd143f5/src/app/owc/owc-leaflet-viewer.component.ts#L34">app/owc/owc-leaflet-viewer.component.ts:34</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="request" class="tsd-anchor"></a>
+					<h3>request</h3>
+					<div class="tsd-signature tsd-kind-icon">request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="owsgetqueryparameters.html">OwsGetQueryParameters</a>.<a href="owsgetqueryparameters.html#request">request</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cd143f5/src/app/owc/owc-leaflet-viewer.component.ts#L28">app/owc/owc-leaflet-viewer.component.ts:28</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
+					<a name="service" class="tsd-anchor"></a>
+					<h3>service</h3>
+					<div class="tsd-signature tsd-kind-icon">service<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"WMS"</span></div>
+					<aside class="tsd-sources">
+						<p>Overrides <a href="owsgetqueryparameters.html">OwsGetQueryParameters</a>.<a href="owsgetqueryparameters.html#service">service</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cd143f5/src/app/owc/owc-leaflet-viewer.component.ts#L39">app/owc/owc-leaflet-viewer.component.ts:39</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="styles" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> styles</h3>
+					<div class="tsd-signature tsd-kind-icon">styles<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cd143f5/src/app/owc/owc-leaflet-viewer.component.ts#L35">app/owc/owc-leaflet-viewer.component.ts:35</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="transparent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> transparent</h3>
+					<div class="tsd-signature tsd-kind-icon">transparent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cd143f5/src/app/owc/owc-leaflet-viewer.component.ts#L37">app/owc/owc-leaflet-viewer.component.ts:37</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="version" class="tsd-anchor"></a>
+					<h3>version</h3>
+					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="owsgetqueryparameters.html">OwsGetQueryParameters</a>.<a href="owsgetqueryparameters.html#version">version</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/cd143f5/src/app/owc/owc-leaflet-viewer.component.ts#L30">app/owc/owc-leaflet-viewer.component.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -134,16 +209,34 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="igeofeature.html" class="tsd-kind-icon">IGeo<wbr>Feature</a>
+						<a href="wmsgetmapqueryparams.html" class="tsd-kind-icon">Wms<wbr>Get<wbr>Map<wbr>Query<wbr>Params</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="igeofeature.html#geometry" class="tsd-kind-icon">geometry</a>
+								<a href="wmsgetmapqueryparams.html#crs" class="tsd-kind-icon">crs</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="igeofeature.html#properties" class="tsd-kind-icon">properties</a>
+								<a href="wmsgetmapqueryparams.html#format" class="tsd-kind-icon">format</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="wmsgetmapqueryparams.html#href" class="tsd-kind-icon">href</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="igeofeature.html#type" class="tsd-kind-icon">type</a>
+								<a href="wmsgetmapqueryparams.html#layers" class="tsd-kind-icon">layers</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="wmsgetmapqueryparams.html#request" class="tsd-kind-icon">request</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
+								<a href="wmsgetmapqueryparams.html#service" class="tsd-kind-icon">service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="wmsgetmapqueryparams.html#styles" class="tsd-kind-icon">styles</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="wmsgetmapqueryparams.html#transparent" class="tsd-kind-icon">transparent</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="wmsgetmapqueryparams.html#version" class="tsd-kind-icon">version</a>
 							</li>
 						</ul>
 					</li>

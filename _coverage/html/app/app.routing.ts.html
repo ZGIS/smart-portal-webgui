@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>16/16</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>16/16</span>
       </div>
     </div>
   </div>
@@ -192,37 +192,49 @@
 147
 148
 149
-150</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
+150
+151
+152
+153
+154
+155
+156</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -342,24 +354,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {
-  DashboardHomeComponent,
-  DashboardCategoryComponent,
-  ResultCardsComponent
-} from './dashboards';
+import { RouterModule, Routes } from '@angular/router';
+import { DashboardCategoryComponent, DashboardHomeComponent, ResultCardsComponent } from './dashboards';
 import { SearchComponent } from './search';
-import { CollectionsDeskComponent } from './owc';
+import { CollectionsDeskComponent, OwcLeafletViewerComponent } from './owc';
 import {
+  AccountComponent,
   LoginComponent,
   RegisterComponent,
-  AccountComponent,
   ResetPassComponent,
   ResetPassRedeemComponent
 } from './account';
 import {
+  BasicFileUploadComponent,
   MetadataEditorComponent,
-  BasicFileUploadComponent, UsermetarecordsComponent, UserFilesComponent
+  UserFilesComponent,
+  UsermetarecordsComponent
 } from './workbench';
 import { NotFoundComponent } from './navigation';
 import { ResearchProgrammesComponent } from './research-pg';
@@ -367,9 +377,14 @@ import { GlossaryComponent } from './glossary-edu';
 import { AdminComponent } from './admin';
 import { ContextRetrieveComponent, FileLoaderComponent } from './context';
 import { TimeseriesComponent } from './timeseries';
-import { AdminGuard, AuthGuard, OwcContextIdResolve, RegisteredGuard } from './_guards';
+import {
+  AdminGuard,
+  AuthGuard,
+  ChildCategoriesResolve,
+  OwcContextIdResolve,
+  RegisteredGuard
+} from './_guards';
 import { GroupsBaseComponent } from './groups';
-import { OwcLeafletViewerComponent } from './owc/owc-leaflet-viewer.component';
 &nbsp;
 const appRoutes: Routes = [
   {
@@ -387,7 +402,10 @@ const appRoutes: Routes = [
   },
   {
     path: 'dashboard/:category/cards',
-    component: ResultCardsComponent
+    component: ResultCardsComponent,
+    resolve: {
+      childCategoryObject: ChildCategoriesResolve
+    }
   },
   {
     path: 'search',
@@ -496,7 +514,7 @@ export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, { us
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 01 2018 13:41:45 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Apr 02 2018 16:42:55 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../prettify.js"></script>
