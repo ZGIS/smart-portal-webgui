@@ -24,7 +24,7 @@ export class LicensedlinkComponent {
   okAgreeLink(link: string): void {
     this.accountService.isLoggedIn().subscribe(
       loggedInResult => {
-          this.workbenchService.logLinkInfo(link, loggedInResult)
+          this.workbenchService.logLinkInfo(link)
             .subscribe(
               response => {
                 console.log(response);

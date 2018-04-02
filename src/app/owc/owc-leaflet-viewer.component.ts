@@ -9,6 +9,18 @@ import { Location } from '@angular/common';
 import { Polygon, FeatureCollection, Feature } from 'geojson';
 
 const L = require('leaflet/dist/leaflet.js');
+const URI = require('urijs/src/URI.min.js');
+
+export interface ParsedUri {
+  protocol?: string;
+  username?: string;
+  password?: string;
+  hostname?: string;
+  port?: string;
+  path?: string;
+  query?: any;
+  fragment?: string;
+}
 
 @Component({
   selector: 'app-sac-gwh-owc-viewer',
@@ -39,7 +51,7 @@ export class OwcLeafletViewerComponent implements OnInit {
     };
   }
 
-  onMapReady(map: L.Map, owcContext: OwcContext) {
+  onMapReady( map: L.Map, owcContext: OwcContext ) {
     this.map = map;
     // if (owcContext.features && owcContext.features.length > 0) {
     //   let foiArr: any[] = [];
@@ -60,15 +72,15 @@ export class OwcLeafletViewerComponent implements OnInit {
     // }
   }
 
-  handleOnShown(event: any) {
+  handleOnShown( event: any ) {
     console.log(event);
     this.map.invalidateSize();
   }
 
-  getLeafletCentre(bbox: number[]): L.LatLng {
-    let corner1 = L.latLng({lat: bbox[1], lng: bbox[0]});
-    let corner2 = L.latLng({lat: bbox[3], lng: bbox[2]});
-    let bounds = L.latLngBounds([corner2, corner1]);
+  getLeafletCentre( bbox: number[] ): L.LatLng {
+    let corner1 = L.latLng({ lat: bbox[ 1 ], lng: bbox[ 0 ] });
+    let corner2 = L.latLng({ lat: bbox[ 3 ], lng: bbox[ 2 ] });
+    let bounds = L.latLngBounds([ corner2, corner1 ]);
     return bounds.getCenter();
   }
 
@@ -111,35 +123,25 @@ export class OwcLeafletViewerComponent implements OnInit {
                private accountService: AccountService,
                private collectionsService: CollectionsService,
                private notificationService: NotificationService ) {
+
+    this.route.data.subscribe(( { owc } ) => {
+      console.log(`route resolved owc ${owc.id}`);
+      this.myCollection = owc;
+    });
   }
 
   ngOnInit(): void {
-    this.route.data.subscribe(({ owc }) => {
-      this.myCollection = owc;
+    console.log('need to do all layers and map setup');
+    this.notificationService.addNotification({
+      type: 'info',
+      message: 'need to do all layers and map setup'
     });
+  }
 
-    this.route.params.forEach(( params: Params ) => {
-
-      let owcId = params[ 'id' ];
-
-      this.accountService.isLoggedIn().subscribe(
-        loggedInResult => {
-          this.collectionsService.queryCollectionsForViewing(loggedInResult, owcId, [])
-            .subscribe(
-              collections => {
-                if (collections.length > 0) {
-                  this.myCollection = collections[0];
-                }
-              },
-              ( error: any ) => {
-                this.loading = false;
-                this.notificationService.addErrorResultNotification(error);
-              });
-        },
-        error => {
-          console.log(<any>error);
-        });
-    });
+  parseLayerUrl( urlFragments: string ): ParsedUri {
+    const parsed: ParsedUri = URI.parse(urlFragments);
+    console.log(parsed);
+    return parsed;
   }
 
   backClicked() {

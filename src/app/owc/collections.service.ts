@@ -163,17 +163,22 @@ export class CollectionsService {
           let foundCollectionsJson = response.json() && response.json().collections;
           if (<OwcContext[]>foundCollectionsJson) {
             let col = <OwcContext[]>foundCollectionsJson;
-            const scores = col.map(f => f.searchScore);
-            const maxValue = _.max(scores);
-            const minValue = _.min(scores);
-            // const minValue = 0;
-            const normalised: OwcContext[] = col.map(f => {
-              const normalScore: number = (f.searchScore - minValue) / (maxValue - minValue);
-              let owc = f;
-              owc.searchScore = normalScore;
-              return owc;
-            });
-            return normalised;
+            const hasScores = col.findIndex(f => !!f.searchScore);
+            if (hasScores) {
+              const scores = col.map(f => f.searchScore);
+              const maxValue = _.max(scores);
+              const minValue = _.min(scores);
+              // const minValue = 0;
+              const normalised: OwcContext[] = col.map(f => {
+                const normalScore: number = (f.searchScore - minValue) / (maxValue - minValue);
+                let owc = f;
+                owc.searchScore = normalScore;
+                return owc;
+              });
+              return normalised;
+            } else {
+              return col;
+            }
           }
           return response.json().collections;
         }

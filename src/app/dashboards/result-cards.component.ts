@@ -2,18 +2,21 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IGeoFeature, IGeoFeatureCollection, ResultCollectionsViewModalComponent, ResultService } from '../search';
+import {
+  IErrorResult,
+  IGeoFeature,
+  IGeoFeatureCollection,
+  ResultCollectionsViewModalComponent,
+  ResultDetailModalComponent,
+  ResultService
+} from '../search';
 import * as moment from 'moment';
-import { NotificationService } from '../notifications/notification.service';
+import { NotificationService } from '../notifications';
 import { CategoriesService } from './categories.service';
-import { ResultDetailModalComponent } from '../search/result-detail-modal.component';
 import { isNullOrUndefined } from 'util';
-import { IErrorResult } from '../search/result';
 import { IDashboardCategory } from './categories';
-import { OwcContext, OwcLink } from '../owc';
+import { CollectionsService, OwcContext, OwcLink } from '../owc';
 import { AccountService } from '../account';
-import { CollectionsService } from '../owc/collections.service';
-import { OwcResourceLinks } from '../owc/collections';
 
 @Component({
   selector: 'app-sac-gwh-result-cards',
@@ -83,6 +86,11 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
                private notificationService: NotificationService,
                private _location: Location,
                private router: Router ) {
+
+    this.activatedRoute.data.subscribe(( { childCategoryObject } ) => {
+      // console.log(`route resolved cat ${childCategoryObject.id}`);
+      this.currentCategory = childCategoryObject;
+    });
   }
 
   /**
@@ -100,107 +108,110 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     this.resultsGroups = [];
 
     // subscribe to router event
-    this.subscription = this.activatedRoute.queryParams.subscribe(
-      ( params: Params ) => {
-        let categoryIdAsString = params[ 'categoryId' ];
-        this.categoryId = categoryIdAsString;
-        let categoryIdAsNumber = Number(categoryIdAsString).valueOf();
-        let childsubscription = this.categoriesService.getCildCategoryById(categoryIdAsNumber)
-          .skipWhile<IDashboardCategory>(( data, idx ) => {
-            console.log(`skipping ${idx}`);
-            return isNullOrUndefined(data);
-          }).subscribe(
-            ( catObj: IDashboardCategory ) => {
-              if (catObj && catObj.id === categoryIdAsNumber) {
-                console.log(catObj);
-                this.categoryName = catObj.item_name;
-                let keywords = '';
-                // reset the array
-                this.initialKeywordsFilter = [];
-                this.keywordsFilter = [];
-                catObj.keyword_content.forEach(k => {
-                  keywords = k.concat(', ', keywords);
-                  this.initialKeywordsFilter.push(k);
-                  this.initialKeywordsFilterChecked.push(true);
-                  this.keywordsFilter.push(k);
-                });
-                this.description = catObj.description;
-                this.concatKeywords = keywords;
+    // this.subscription = this.activatedRoute.queryParams.subscribe(
+    //   ( params: Params ) => {
+    //     let categoryIdAsString = params[ 'categoryId' ];
+    //     this.categoryId = categoryIdAsString;
+    //     let categoryIdAsNumber = Number(categoryIdAsString).valueOf();
+    //     let childsubscription = this.categoriesService.getCildCategoryById(categoryIdAsNumber)
+    //       .skipWhile<IDashboardCategory>(( data, idx ) => {
+    //         console.log(`skipping ${idx}`);
+    //         return isNullOrUndefined(data);
+    //       }).subscribe(
+    //         ( catObj: IDashboardCategory ) => {
+    // if (catObj && catObj.id === categoryIdAsNumber) {
 
-                // if (!isNullOrUndefined(params[ 'query' ]) || params[ 'query' ] === '' || catObj.query_string ===
-                // params[ 'query' ]) {
+    console.log(this.currentCategory);
+    this.categoryName = this.currentCategory.item_name;
+    let keywords = '';
+    // reset the array
+    this.initialKeywordsFilter = [];
+    this.keywordsFilter = [];
+    this.currentCategory.keyword_content.forEach(k => {
+      keywords = k.concat(', ', keywords);
+      this.initialKeywordsFilter.push(k);
+      this.initialKeywordsFilterChecked.push(true);
+      this.keywordsFilter.push(k);
+    });
+    this.description = this.currentCategory.description;
+    this.concatKeywords = keywords;
 
-                let customQueryString = this.buildCustomQuery(this.keywordsFilter,
-                  this.hierarchyLevelFilter,
-                  this.originsFilter,
-                  this.topicCategoryFilter);
-                // console.log(customQueryString);
-                this.query = customQueryString;
+    // if (!isNullOrUndefined(params[ 'query' ]) || params[ 'query' ] === '' || this.currentCategory.query_string ===
+    // params[ 'query' ]) {
 
-                this.resultService.getResults(
-                  customQueryString,
-                  this.defaultFromDate,
-                  this.defaultToDate,
-                  this.defaultEnvelopeFilter
-                ).subscribe(
-                  ( results: IGeoFeatureCollection ) => {
-                    this.loading = false;
-                    this.results = results;
-                    this.initialOriginsFilter = this.getCataloguesOfResults();
-                    this.initialOriginsFilter.forEach(e => this.initialOriginsFilterChecked.push(true));
-                    this.originsFilter = this.initialOriginsFilter;
-                    this.initialHierarchyLevelFilter = this.getHierarchyLevelsOfResults();
-                    this.initialHierarchyLevelFilter.forEach(e => this.initialHierarchyLevelFilterChecked.push(true));
-                    this.hierarchyLevelFilter = this.initialHierarchyLevelFilter;
-                    this.initialTopicCategoryFilter = this.getTopicCategoriesOfResults();
-                    this.initialTopicCategoryFilter.forEach(e => this.initialTopicCategoryFilterChecked.push(true));
-                    this.topicCategoryFilter = this.initialTopicCategoryFilter;
-                    this.resultsGroups = [ 'Best results', 'Journal Articles', 'Other results' ];
-                  },
-                  ( error: any ) => {
-                    this.loading = false;
-                    this.notificationService.addErrorResultNotification(error);
-                  }
-                );
+    let customQueryString = this.buildCustomQuery(this.keywordsFilter,
+      this.hierarchyLevelFilter,
+      this.originsFilter,
+      this.topicCategoryFilter);
+    // console.log(customQueryString);
+    this.query = customQueryString;
 
-                // caseStudyResult
-                this.accountService.isLoggedIn().subscribe(
-                  loggedInResult => {
-                    this.collectionService.queryCollectionsForViewing(loggedInResult, null, catObj.keyword_content)
-                      .subscribe(
-                        collections => {
-                          this.caseStudySearchResult = [];
-                          // console.log(response);
-                          collections.forEach(owc => {
-                            this.caseStudySearchResult.push(owc);
-                          });
-                          this.caseStudySearchResult.sort(( leftside, rightside ) => {
-                            if (!(leftside.searchScore && rightside.searchScore)) {
-                              return 0;
-                            }
-                            if (leftside.searchScore < rightside.searchScore) {
-                              return -1;
-                            }
-                            if (leftside.searchScore > rightside.searchScore) {
-                              return 1;
-                            }
-                            return 0;
-                          });
-                        },
-                        ( error: any ) => {
-                          this.loading = false;
-                          this.notificationService.addErrorResultNotification(error);
-                        });
-                  },
-                  error => {
-                    console.log(<any>error);
-                  });
-              }
+    this.resultService.getResults(
+      customQueryString,
+      this.defaultFromDate,
+      this.defaultToDate,
+      this.defaultEnvelopeFilter
+    ).subscribe(
+      ( results: IGeoFeatureCollection ) => {
+        this.loading = false;
+        this.results = results;
+        this.initialOriginsFilter = this.getCataloguesOfResults();
+        this.initialOriginsFilter.forEach(e => this.initialOriginsFilterChecked.push(true));
+        this.originsFilter = this.initialOriginsFilter;
+        this.initialHierarchyLevelFilter = this.getHierarchyLevelsOfResults();
+        this.initialHierarchyLevelFilter.forEach(e => this.initialHierarchyLevelFilterChecked.push(true));
+        this.hierarchyLevelFilter = this.initialHierarchyLevelFilter;
+        this.initialTopicCategoryFilter = this.getTopicCategoriesOfResults();
+        this.initialTopicCategoryFilter.forEach(e => this.initialTopicCategoryFilterChecked.push(true));
+        this.topicCategoryFilter = this.initialTopicCategoryFilter;
+        this.resultsGroups = [ 'Best results', 'Journal Articles', 'Other results' ];
+      },
+      ( error: any ) => {
+        this.loading = false;
+        this.notificationService.addErrorResultNotification(error);
+      }
+    );
+
+    // caseStudyResult
+    this.accountService.isLoggedIn().subscribe(
+      loggedInResult => {
+        this.collectionService.queryCollectionsForViewing(loggedInResult, null, this.currentCategory.keyword_content)
+          .subscribe(
+            collections => {
+              this.caseStudySearchResult = [];
+              // console.log(response);
+              collections.forEach(owc => {
+                this.caseStudySearchResult.push(owc);
+              });
+              this.caseStudySearchResult.sort(( leftside, rightside ) => {
+                if (!(leftside.searchScore && rightside.searchScore)) {
+                  return 0;
+                }
+                if (leftside.searchScore < rightside.searchScore) {
+                  return -1;
+                }
+                if (leftside.searchScore > rightside.searchScore) {
+                  return 1;
+                }
+                return 0;
+              });
             },
-            error => {
+            ( error: any ) => {
+              this.loading = false;
               this.notificationService.addErrorResultNotification(error);
             });
+      },
+      error => {
+        console.log(<any>error);
+      });
+    // }
+    // },
+    // error => {
+    //   this.notificationService.addErrorResultNotification(error);
+    // });
 
+    this.subscription = this.activatedRoute.queryParams.subscribe(
+      ( params: Params ) => {
         if (!isNullOrUndefined(params[ 'showModal' ])) {
           this.showModal = params[ 'showModal' ];
           this.resultService.getResults(
@@ -494,12 +505,12 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
   }
 
   showCollectionsModal( owc: OwcContext ): void {
-    console.log('owc modal clicked');
+    // console.log('owc modal clicked');
     this.resultCollectionsModalComponentRef.showFeatureModal(owc);
   }
 
   onHideCollectionsModal(): void {
-    console.log('owc modal close');
+    // console.log('owc modal close');
     this.resultCollectionsModalComponentRef.hideCollectionsModal();
   }
 
@@ -584,7 +595,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     let uniqueCat = flattenedArray.filter(function ( item, pos, self ) {
       return self.indexOf(item) === pos;
     });
-    console.log('getTopicCategoriesOfResults' + uniqueCat);
+    // console.log('getTopicCategoriesOfResults' + uniqueCat);
     return uniqueCat;
   }
 
@@ -658,7 +669,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
     if (topicQueryString.length > 0) {
       finalQuery = this.setOrAppendWithAnd(finalQuery, topicQueryString);
     }
-    console.log('finalQuery:' + finalQuery);
+    // console.log('finalQuery:' + finalQuery);
     if (finalQuery.length <= 0) {
       console.log('query undefined this should not happen');
     }

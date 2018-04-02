@@ -1,22 +1,20 @@
 import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {
-  DashboardHomeComponent,
-  DashboardCategoryComponent,
-  ResultCardsComponent
-} from './dashboards';
+import { RouterModule, Routes } from '@angular/router';
+import { DashboardCategoryComponent, DashboardHomeComponent, ResultCardsComponent } from './dashboards';
 import { SearchComponent } from './search';
-import { CollectionsDeskComponent } from './owc';
+import { CollectionsDeskComponent, OwcLeafletViewerComponent } from './owc';
 import {
+  AccountComponent,
   LoginComponent,
   RegisterComponent,
-  AccountComponent,
   ResetPassComponent,
   ResetPassRedeemComponent
 } from './account';
 import {
+  BasicFileUploadComponent,
   MetadataEditorComponent,
-  BasicFileUploadComponent, UsermetarecordsComponent, UserFilesComponent
+  UserFilesComponent,
+  UsermetarecordsComponent
 } from './workbench';
 import { NotFoundComponent } from './navigation';
 import { ResearchProgrammesComponent } from './research-pg';
@@ -24,9 +22,14 @@ import { GlossaryComponent } from './glossary-edu';
 import { AdminComponent } from './admin';
 import { ContextRetrieveComponent, FileLoaderComponent } from './context';
 import { TimeseriesComponent } from './timeseries';
-import { AdminGuard, AuthGuard, OwcContextIdResolve, RegisteredGuard } from './_guards';
+import {
+  AdminGuard,
+  AuthGuard,
+  ChildCategoriesResolve,
+  OwcContextIdResolve,
+  RegisteredGuard
+} from './_guards';
 import { GroupsBaseComponent } from './groups';
-import { OwcLeafletViewerComponent } from './owc/owc-leaflet-viewer.component';
 
 const appRoutes: Routes = [
   {
@@ -44,7 +47,10 @@ const appRoutes: Routes = [
   },
   {
     path: 'dashboard/:category/cards',
-    component: ResultCardsComponent
+    component: ResultCardsComponent,
+    resolve: {
+      childCategoryObject: ChildCategoriesResolve
+    }
   },
   {
     path: 'search',

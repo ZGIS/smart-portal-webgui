@@ -135,7 +135,17 @@ export class AccountService {
    */
   isLoggedIn(): Observable<boolean> {
     // console.log(this.loggedInState);
+    let currentStateValue = this.loggedInState.getValue();
     return this.loggedInState.asObservable();
+  }
+
+  /**
+   *
+   * @returns {boolean}
+   */
+  isLoggedInValue(): boolean {
+    // console.log(this.loggedInState.value);
+    return this.loggedInState.value;
   }
 
   /**

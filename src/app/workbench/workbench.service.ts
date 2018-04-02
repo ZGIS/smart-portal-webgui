@@ -254,12 +254,13 @@ export class WorkbenchService {
    * @param {string} link
    * @returns void
    */
-  logLinkInfo( link: string, loggedIn: boolean ): Observable<any> {
+  logLinkInfo( link: string ): Observable<any> {
     let params: URLSearchParams = new URLSearchParams();
     params.set('link', link);
-    let token = this.accountService.token;
-    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    const loggedIn = this.accountService.isLoggedInValue();
     if (loggedIn === true) {
+      let token = this.accountService.token;
+      let headers = new Headers({ 'X-XSRF-TOKEN': token });
       let options = new RequestOptions({ headers: headers, params: params, withCredentials: true });
       return this.http.get(`${this.portalApiUrl}/files/linkLogging`, options)
         .map(( response ) => {

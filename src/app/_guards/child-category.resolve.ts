@@ -9,28 +9,47 @@ import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { CategoriesService }  from '../dashboards';
+import { isNullOrUndefined } from 'util';
+import { CategoriesService } from '../dashboards';
 import { IDashboardCategory } from '../dashboards';
+import { IErrorResult } from '../search';
+import { NotificationService } from '../notifications';
 
 @Injectable()
 export class ChildCategoriesResolve implements Resolve<IDashboardCategory> {
 
-  constructor(private categoriesService: CategoriesService, private router: Router) {
+  constructor( private categoriesService: CategoriesService,
+               private router: Router,
+               private notificationService: NotificationService ) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IDashboardCategory> {
-    let categoryIdAsString = route.params.categoryId;
+  resolve( route: ActivatedRouteSnapshot, state: RouterStateSnapshot ): Observable<IDashboardCategory> {
+    let categoryIdAsString = route.queryParams.categoryId;
+    // console.log(`actual resolver categoryIdAsString with ${categoryIdAsString}`);
     let categoryIdAsNumber = Number(categoryIdAsString).valueOf();
-    console.log(`actual resolver doing sth wiht ${categoryIdAsNumber}`);
-    return this.categoriesService.getCildCategoryById(categoryIdAsNumber).filter(cat => !!cat).first();
-    // return this.categoriesService.getCildCategoryById(categoryIdAsNumber).map (cat => {
-    //   if (cat) {
-    //     return cat;
-    //   } else { // id not found
-    //     console.log('error in resolve');
-    //     this.router.navigate([ '/dashboard' ]);
-    //     return false;
-    //   }
-    // }).first();
+    // console.log(`actual resolver categoryIdAsNumber with ${categoryIdAsNumber}`);
+    // return this.categoriesService.getCildCategoryById(categoryIdAsNumber).filter(cat => !!cat).first();
+    return this.categoriesService.getCildCategoryById(categoryIdAsNumber).skipWhile<IDashboardCategory>(( data, idx ) => {
+      console.log(`skipping ${idx}`);
+      return isNullOrUndefined(data);
+    }).first().map(( category: IDashboardCategory ) => {
+      if (category) {
+        // console.log(category);
+        return category;
+      } else { // id not found
+        this.notificationService.addNotification({
+          type: 'warning',
+          message: 'This category id was not found, sorry.'
+        });
+        throw <IErrorResult>{ message: 'This id was not found, sorry.' };
+      }
+    }).catch(err => {
+      this.notificationService.addNotification({
+        type: 'warning',
+        message: 'This category id was not found, sorry.',
+        details: err
+      });
+      return Observable.throw(<IErrorResult>{ message: 'This id was not found, sorry.', details: err });
+    });
   }
 }
