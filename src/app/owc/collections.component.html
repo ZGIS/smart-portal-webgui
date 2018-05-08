@@ -1,47 +1,15 @@
 <!-- here should be begin of collections component, depend different header? -->
-<div id="editbutton" *ngIf="!viewOnly">
 
-  <button (click)="editProperties()" type="button" class="btn btn-info disabled" tooltip="Edit the properties" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
-    Edit <i class="fa fa-edit" aria-hidden="true"></i>
-  </button>
-  <button *ngIf="!myCollection.id.toLowerCase().includes('context\/user')" (click)="exportCollectionToJson(myCollection.id)" type="button" class="btn btn-warning" tooltip="export this collection as external file.">
-    Export <i class="fa fa-save" aria-hidden="true"></i>
-  </button>
-
-  <div class="btn-group" *ngIf="visibility">
-    <button type="button" class="btn btn-default dropdown-toggle" tooltip="Change visibilitiy the Collection" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-      {{ getContextVisibilityForNumber(visibility.contextIntrinsicVisibility) }} <i [ngClass]="iconClassForContextVisibilityNumber(visibility.contextIntrinsicVisibility)" aria-hidden="true"></i> <span
-      class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li *ngFor="let idx of [0,1,2]" tooltip="Change visibilitiy the Collection"
-          [ngClass]="{'disabled': idx === visibility.contextIntrinsicVisibility}">
-        <a
-          (click)="changeVisibility(myCollection.id, idx)">
-          {{ getContextVisibilityForNumber(idx) }} <i [ngClass]="iconClassForContextVisibilityNumber(idx)" aria-hidden="true"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-  <button (click)="deleteCollection()" type="button" class="btn btn-danger pull-right" tooltip="Delete the Collection" *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
-    Delete <i class="fa fa-trash" aria-hidden="true"></i>
-  </button>
-</div>
-<accordion>
-  <accordion-group #propertiesGroup (isOpenChange)="handleOnShown($event)">
-    <div accordion-heading>
-      <span><i class="fa fa-search-plus"></i></span> Properties
-      <i class="pull-right float-xs-right glyphicon"
-         [ngClass]="{'glyphicon-chevron-down': propertiesGroup?.isOpen, 'glyphicon-chevron-right': !propertiesGroup?.isOpen}"></i>
-    </div>
+<tabset>
+  <tab heading="Properties" [active]="propertiesGroup"
+       (select)="handleOnShown($event)">
 
     <div *ngIf="myCollection.bbox">
-      <span><i class="fa fa-info"
-               tooltip="Here should be a map roughly outlining the bbox of : {{ myCollection.bbox | json }}">
-      </i> <a [routerLink]="['/mapviewer']" [queryParams]="{id: myCollection.id}"> <i class="fa fa-globe"
-                                                                                      tooltip="view on mapviewer (experimental)">
-      </i></a></span>
+    <span><i class="fa fa-info"
+             tooltip="Here should be a map roughly outlining the bbox of : {{ myCollection.bbox | json }}">
+    </i> <a [routerLink]="['/mapviewer']" [queryParams]="{id: myCollection.id}"> <i class="fa fa-globe"
+                                                                                    tooltip="view on mapviewer (experimental)">
+    </i></a></span>
       <div style="height: 240px;"
            leaflet
            (leafletMapReady)="onMapReady($event, myCollection)"
@@ -54,16 +22,12 @@
 
     <p><span class="badge pull-left">Collection ID:</span>&nbsp;<small><i>{{ myCollection.id }}</i></small>
     </p>
+  </tab>
 
-  </accordion-group>
-
-  <accordion-group #featuresGroup [isOpen]="true">
-    <div accordion-heading>
-      <span class="badge">{{ myCollection.features.length }}</span>
-      Entries
-      <i class="pull-right float-xs-right glyphicon"
-         [ngClass]="{'glyphicon-chevron-down': featuresGroup?.isOpen, 'glyphicon-chevron-right': !featuresGroup?.isOpen}"></i>
-    </div>
+  <tab [active]="featuresGroup">
+    <ng-template tabHeading>
+      <a><span class="badge">{{ myCollection.features.length }}</span> Entries</a>
+    </ng-template>
 
     <div class="list-group" *ngIf="myCollection.features.length > 0">
       <li class="list-group-item" *ngFor="let owcResource of myCollection.features">
@@ -72,8 +36,65 @@
       </li>
     </div>
 
-  </accordion-group>
-</accordion>
+  </tab>
+  <tab *ngIf="!viewOnly">
+    <ng-template tabHeading>
+      <a tooltip="Edit the properties"
+         *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
+        Edit <i class="fa fa-edit" aria-hidden="true"></i>
+      </a>
+    </ng-template>
+
+    <ul id="editbutton" class="list-group">
+      <li class="list-group-item">
+        <button (click)="editProperties()" type="button" class="btn btn-info disabled" tooltip="Edit the properties"
+                *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
+          Edit <i class="fa fa-edit" aria-hidden="true"></i>
+        </button>
+      </li>
+      <li class="list-group-item">
+        <div class="btn-group" *ngIf="visibility">
+          <button type="button" class="btn btn-default dropdown-toggle" tooltip="Change visibilitiy the Collection"
+                  *ngIf="!myCollection.id.toLowerCase().includes('context\/user')" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+            {{ getContextVisibilityForNumber(visibility.contextIntrinsicVisibility) }} <i
+            [ngClass]="iconClassForContextVisibilityNumber(visibility.contextIntrinsicVisibility)"
+            aria-hidden="true"></i>
+            <span
+              class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let idx of [0,1,2]" tooltip="Change visibilitiy the Collection"
+                [ngClass]="{'disabled': idx === visibility.contextIntrinsicVisibility}">
+              <a
+                (click)="changeVisibility(myCollection.id, idx)">
+                {{ getContextVisibilityForNumber(idx) }} <i [ngClass]="iconClassForContextVisibilityNumber(idx)"
+                                                            aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <button *ngIf="!myCollection.id.toLowerCase().includes('context\/user')"
+                (click)="exportCollectionToJson(myCollection.id)" type="button" class="btn btn-warning"
+                tooltip="export this collection as external file.">
+          Export <i class="fa fa-save" aria-hidden="true"></i>
+        </button>
+      </li>
+      <li class="list-group-item">
+        <button (click)="deleteCollection()" type="button" class="btn btn-danger" tooltip="Delete the Collection"
+                *ngIf="!myCollection.id.toLowerCase().includes('context\/user')">
+          Delete <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+      </li>
+    </ul>
+  </tab>
+
+
+</tabset>
+
+
 <!-- here should be end of collections component -->
 
 <app-sac-gwh-owcresource-detail-modal #owcResourceDetailModalRef [viewOnly]="viewOnly">

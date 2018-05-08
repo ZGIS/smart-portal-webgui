@@ -24,6 +24,8 @@ export class CollectionsComponent {
   @Input() visibility: OwcContextsRightsMatrix;
   @Input() viewOnly = true;
   @Output() reloadOnChangedCollection: EventEmitter<any> = new EventEmitter<any>();
+  propertiesGroup = false;
+  featuresGroup = true;
 
   map: any;
 
@@ -68,7 +70,9 @@ export class CollectionsComponent {
 
   handleOnShown(event: any) {
     console.log(event);
-    this.map.invalidateSize();
+    if (this.map) {
+      this.map.invalidateSize();
+    }
   }
 
   getLeafletCentre(bbox: number[]): any {

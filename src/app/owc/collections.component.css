@@ -1,23 +1,8 @@
-.panel-default > .panel-heading, .isUserDefaultCollection {
+.isUserDefaultCollection {
   background-color: lightyellow;
 }
 
-.isUserDefaultCollection > .panel-default > .panel-heading {
-  background-color: lightyellow;
-}
-
-accordion-group.isUserDefaultCollection > div.panel-heading.card-header, accordion-group.isUserDefaultCollection > div.panel.card.panel-default > div.panel-heading.card-header {
-  background-color: lightyellow;
-}
-
-.panel-default > .panel-heading, .isCustomCollection {
-  background-color: aliceblue;
-}
-
-.isCustomCollection > .panel-default > .panel-heading {
-  background-color: aliceblue;
-}
-accordion-group.isCustomCollection > div.panel-heading.card-header, accordion-group.isCustomCollection > div.panel.card.panel-default > div.panel-heading.card-header {
+.isCustomCollection {
   background-color: aliceblue;
 }
 

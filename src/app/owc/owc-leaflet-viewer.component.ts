@@ -8,6 +8,8 @@ import { AccountService } from '../account';
 import { Location } from '@angular/common';
 import { Feature, FeatureCollection, Polygon } from 'geojson';
 
+import * as $ from 'jquery';
+
 const L = require('leaflet/dist/leaflet.js');
 const URI = require('urijs/src/URI');
 const URITemplate = require('urijs/src/URITemplate');
@@ -49,6 +51,82 @@ export class OwcLeafletViewerComponent implements OnInit {
   myCollection: OwcContext;
   map: L.Map;
 
+  BetterWMS = L.TileLayer.WMS.extend({
+
+    onAdd: function ( map: L.Map ) {
+      // Triggered when the layer is added to a map.
+      //   Register a click listener, then do all the upstream WMS things
+      L.TileLayer.WMS.prototype.onAdd.call(this, map);
+      map.on('click', this.getFeatureInfo, this);
+    },
+
+    onRemove: function ( map: L.Map ) {
+      // Triggered when the layer is removed from a map.
+      //   Unregister a click listener, then do all the upstream WMS things
+      L.TileLayer.WMS.prototype.onRemove.call(this, map);
+      map.off('click', this.getFeatureInfo, this);
+    },
+
+    getFeatureInfo: function ( evt: any ) {
+      // Make an AJAX request to the server and hope for the best
+      let url = this.getFeatureInfoUrl(evt.latlng),
+        showResults = L.Util.bind(this.showGetFeatureInfo, this);
+      console.log(url);
+      $.ajax({
+        url: url,
+        success: function ( data: any, status: any, xhr: any ) {
+          let err = typeof data === 'string' ? null : data;
+          showResults(err, evt.latlng, data);
+        },
+        error: function ( xhr, status, error ) {
+          showResults(error);
+        }
+      });
+    },
+
+    getFeatureInfoUrl: function ( latlng: L.LatLng ) {
+      let point = this._map.latLngToContainerPoint(latlng),
+        size = this._map.getSize(),
+
+        params = {
+          request: 'GetFeatureInfo',
+          service: 'WMS',
+          srs: 'EPSG:4326',
+          styles: this.wmsParams.styles,
+          transparent: this.wmsParams.transparent,
+          version: this.wmsParams.version,
+          format: this.wmsParams.format,
+          bbox: this._map.getBounds().toBBoxString(),
+          height: size.y,
+          width: size.x,
+          layers: this.wmsParams.layers,
+          query_layers: this.wmsParams.layers,
+          info_format: 'text/html'
+        };
+      // params[ params.version === '1.3.0' ? 'i' : 'x' ] = point.x;
+      // params[ params.version === '1.3.0' ? 'j' : 'y' ] = point.y;
+      params[ 'x' ] = point.x;
+      params[ 'y' ] = point.y;
+      console.log(point);
+      return this._url + L.Util.getParamString(params, this._url, true);
+    },
+
+    showGetFeatureInfo: function ( err: any, latlng: L.LatLng, content: L.Content ) {
+      if (err) {
+        console.log(err);
+        return;
+      } // do nothing if there's an error
+
+      // const contentHigh = L.Content(content);
+      console.log(this._map);
+      // Otherwise show the content in a popup, or something.
+      L.popup({ maxWidth: 600 })
+        .setLatLng(latlng)
+        .setContent(content)
+        .openOn(this._map);
+    }
+  });
+
   getLeafletOptions( owcContext: OwcContext ): L.MapOptions {
     let prelim: L.TileLayer[] = [];
     this.myCollection.features.forEach(owcResource => {
@@ -60,7 +138,7 @@ export class OwcLeafletViewerComponent implements OnInit {
             let wmsParams = this.parseLayerUrlForWms(parsedUri);
             if (wmsParams && wmsParams.request === 'GetMap' && wmsParams.service === 'WMS') {
               const baseUrl = wmsParams.href;
-              const wmsLayer = L.tileLayer.wms(baseUrl, {
+              const wmsLayer = new this.BetterWMS(baseUrl, {
                 layers: wmsParams.layers,
                 // styles: wmsParams.styles ? wmsParams.styles : null,
                 format: wmsParams.format ? wmsParams.format : 'image/png',

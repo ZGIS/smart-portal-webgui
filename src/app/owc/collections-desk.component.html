@@ -19,6 +19,14 @@
           </div>
         </div>
       </div>
+      <div class="panel-body">
+        <div class="list-group" *ngIf="myCollections">
+          <div class="list-group-item" *ngFor="let col of myCollections">
+            <app-sac-gwh-collection [myCollection]="col" [visibility]="findVisibilityForCollection(col.id)"
+                                    (reloadOnChangedCollection)="reloadCollections()" [viewOnly]="false"></app-sac-gwh-collection>
+          </div>
+        </div>
+      </div>
       <div class="panel-body" *ngFor="let myCollection of myCollections">
         <accordion *ngIf="myCollection">
           <accordion-group #defaultGroup [isOpen]="false" [ngClass]="!myCollection.id.toLowerCase().includes('context\/user') ? 'isCustomCollection' : 'isUserDefaultCollection'">
