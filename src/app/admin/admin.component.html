@@ -274,8 +274,8 @@
   </div>
 </div>
 
-<div bsModal #uploadTermsModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
-     aria-labelledby="about" aria-hidden="true">
+<div bsModal #uploadTermsModalRef="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     [config]="{backdrop: 'static'}" aria-labelledby="about" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -294,8 +294,19 @@
             <p>
               Research Program Update: file name must be <mark><strong>ResearchPrgrm.xlsx</strong></mark>
             </p>
-            <p>Other glossaries will be added in an on-going basis based on actual requirement ... i.e. Awahou Terms, NGMP parameters
-              Freshwater Terms Glossary, and Te Reo Maori Geoscience Lexicon</p>
+            <p>
+              Awahou Glossary Update: file name must be <mark><strong>AwahouGlossary.xlsx</strong></mark>
+            </p>
+            <p>
+              NZHS Freshwater Lexicon Update: file name must be <mark><strong>FreshwaterGlossary.xlsx</strong></mark>
+            </p>
+            <p>
+              NGMP Paramters Description Update: file name must be <mark><strong>NgmpParams.xlsx</strong></mark>
+            </p>
+            <p>
+              Te Reo Maori Geoscience Papawai Glossary Update: file name must be <mark><strong>MaoriPapawaiLexicon.xlsx</strong></mark>
+            </p>
+
           </div>
           <div class="panel-body">
             <p>Queue length: {{ uploader?.queue?.length }}</p>

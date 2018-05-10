@@ -12,8 +12,6 @@ export class ResultCollectionsViewModalComponent {
   @Input() owcCollection: OwcContext;
   @Input() viewOnly = true;
 
-  @Output() onHideCollectionsModalEvent = new EventEmitter();
-
   @ViewChild('resultCollectionsModalRef') public modal: ModalDirective;
 
   showFeatureModal( owc: OwcContext ) {
@@ -25,10 +23,6 @@ export class ResultCollectionsViewModalComponent {
 
   hideCollectionsModal() {
     this.modal.hide();
-  }
-
-  onHideCollectionsModal() {
-    this.onHideCollectionsModalEvent.emit();
   }
 
 }

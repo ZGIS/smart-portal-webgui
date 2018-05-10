@@ -123,6 +123,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
 
     console.log(this.currentCategory);
     this.categoryName = this.currentCategory.item_name;
+    this.categoryId = '' + this.currentCategory.id;
     let keywords = '';
     // reset the array
     this.initialKeywordsFilter = [];
@@ -511,7 +512,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
 
   onHideCollectionsModal(): void {
     // console.log('owc modal close');
-    this.resultCollectionsModalComponentRef.hideCollectionsModal();
+    // dont need to call anything right now this.resultCollectionsModalComponentRef.hideCollectionsModal();
   }
 
   /**

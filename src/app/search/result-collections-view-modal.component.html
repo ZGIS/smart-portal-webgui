@@ -1,5 +1,5 @@
-<div bsModal #resultCollectionsModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
-     aria-labelledby="result-collection-details" aria-hidden="true" (onHide)="onHideCollectionsModal()">
+<div bsModal #resultCollectionsModalRef="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     [config]="{backdrop: false, ignoreBackdropClick: true, keyboard: false}" aria-labelledby="result-collection-details" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div *ngIf="owcCollection" class="modal-content">
       <div class="modal-header">

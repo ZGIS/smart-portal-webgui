@@ -39,8 +39,8 @@
   </div>
 </div>
 
-<div bsModal #createGroupModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
-     aria-labelledby="about" aria-hidden="true">
+<div bsModal #createGroupModalRef="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     [config]="{backdrop: 'static'}" aria-labelledby="about" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -90,8 +90,8 @@
 </div>
 
 
-<div bsModal #editGroupModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
-     aria-labelledby="about" aria-hidden="true">
+<div bsModal #editGroupModalRef="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     [config]="{backdrop: 'static'}" aria-labelledby="about" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content" *ngIf="editUserGroup">
       <div class="modal-header">
