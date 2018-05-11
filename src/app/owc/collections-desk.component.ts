@@ -22,9 +22,11 @@ export class CollectionsDeskComponent implements OnInit {
 
   @ViewChild('createCollectionModalRef') public createCollectionModal: ModalDirective;
   loading = false;
+  editorActive = false;
   fileparseerror = true;
   newdocintro: any = {};
   importOwcDoc: any = {};
+  editOwcDoc: OwcContext;
   userFiles: UserFile[] = [];
   userMetaRecords: UserMetaRecord[] = [];
 
@@ -95,6 +97,24 @@ export class CollectionsDeskComponent implements OnInit {
     //       console.log(<any>error);
     //       this.notificationService.addErrorResultNotification(error);
     //     });
+  }
+
+  onReturnCloseEditor(): void {
+    this.editorActive = false;
+  }
+
+  onEditCollectionRequest( $event: any ) {
+    // console.log($event.data);
+    if ($event.data && <OwcContext>$event.data) {
+      this.editOwcDoc = <OwcContext>$event.data;
+      this.editorActive = true;
+    } else {
+      this.notificationService.addNotification({
+        id: NotificationService.DEFAULT_DISMISS,
+        type: 'error',
+        message: `No data arrived error.`
+      });
+    }
   }
 
   /**
@@ -1341,7 +1361,7 @@ export class CollectionsDeskComponent implements OnInit {
                 method: 'POST',
                 type: 'application/xml',
                 href: `https://portal.smart-project.info/journalcsw/journalcsw?request=GetRecordById&version=2.0.2` +
-                  `&service=CSW&elementSetName=full&outputSchema=http%3A%2F%2Fwww.isotc211.org%2F2005%2Fgmd&Id=${overLay.catalog_uid}`
+                `&service=CSW&elementSetName=full&outputSchema=http%3A%2F%2Fwww.isotc211.org%2F2005%2Fgmd&Id=${overLay.catalog_uid}`
               }
             ],
             contents: []

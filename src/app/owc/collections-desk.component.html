@@ -1,7 +1,8 @@
 <div class="row">
   <app-sac-gwh-central-usernav></app-sac-gwh-central-usernav>
 </div>
-<div class="row">
+<!-- the standard workbench list of collections -->
+<div class="row" [hidden]="editorActive">
   <div class="col-md-6 col-sm-6">
     <div class="panel panel-default" *ngIf="myCollections.length > 0">
 
@@ -29,7 +30,7 @@
             </div>
 
             <app-sac-gwh-collection [myCollection]="myCollection" [visibility]="findVisibilityForCollection(myCollection.id)"
-                                    (reloadOnChangedCollection)="reloadCollections()" [viewOnly]="false"></app-sac-gwh-collection>
+                                    (reloadOnChangedCollection)="reloadCollections()" (editCollectionRequest)="onEditCollectionRequest($event)" [viewOnly]="false"></app-sac-gwh-collection>
           </accordion-group>
         </accordion>
       </div>
@@ -40,6 +41,16 @@
   </div>
 </div>
 
+<!-- the place holder for the collections editor -->
+<div class="row" [hidden]="!editorActive">
+  <div class="col-md-6 col-sm-6">
+    <div class="panel panel-default" *ngIf="editorActive">
+      <app-sac-gwh-owc-collection-editor-component (reloadOnSavedCollection)="reloadCollections()" [owcData]="editOwcDoc" (returnCloseEditor)="onReturnCloseEditor()"></app-sac-gwh-owc-collection-editor-component>
+    </div>
+  </div>
+</div>
+
+<!-- the modal to create a new collection -->
 <div bsModal #createCollectionModalRef="bs-modal" class="modal fade" tabindex="-1" role="dialog"
      [config]="{backdrop: 'static'}" aria-labelledby="about" aria-hidden="true">
   <div class="modal-dialog modal-lg">

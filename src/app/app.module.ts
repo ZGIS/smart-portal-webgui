@@ -81,6 +81,7 @@ import {
   OwcOfferingComponent,
   OwcLeafletViewerComponent
 } from './owc';
+import { OwcCollectionEditorComponent } from './owc/editor';
 import { WorkbenchService,
   BasicFileUploadComponent,
   MetadataEditorComponent,
@@ -165,6 +166,7 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
     OwcContextPropertiesComponent,
     OwcResourcePropertiesComponent,
     OwcLeafletViewerComponent,
+    OwcCollectionEditorComponent,
     BasicFileUploadComponent,
     CardComponent,
     ContextRetrieveComponent,

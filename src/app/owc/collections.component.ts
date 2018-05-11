@@ -24,6 +24,7 @@ export class CollectionsComponent {
   @Input() visibility: OwcContextsRightsMatrix;
   @Input() viewOnly = true;
   @Output() reloadOnChangedCollection: EventEmitter<any> = new EventEmitter<any>();
+  @Output() editCollectionRequest: EventEmitter<any> = new EventEmitter<any>();
   propertiesGroup = false;
   featuresGroup = true;
 
@@ -88,13 +89,8 @@ export class CollectionsComponent {
   }
 
   editProperties(): void {
-    // console.log('we edit the properties');
-    this.notificationService.addNotification({
-      id: NotificationService.DEFAULT_DISMISS,
-      type: 'info',
-      message: `Editing of this collection, not yet implemented.`
-    });
-    this.reloadOnChangedCollection.emit(true);
+    console.log('we edit the properties');
+    this.editCollectionRequest.emit({ event: event, data: this.myCollection });
   }
 
   changeVisibility( collectionid: string, visibility: number ): void {
