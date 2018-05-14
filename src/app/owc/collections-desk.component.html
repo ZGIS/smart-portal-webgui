@@ -43,10 +43,10 @@
 
 <!-- the place holder for the collections editor -->
 <div class="row" [hidden]="!editorActive">
-  <div class="col-md-6 col-sm-6">
-    <div class="panel panel-default" *ngIf="editorActive">
+  <div class="col-md-6 col-sm-6"  *ngIf="editorActive">
+
       <app-sac-gwh-owc-collection-editor-component (reloadOnSavedCollection)="reloadCollections()" [owcData]="editOwcDoc" (returnCloseEditor)="onReturnCloseEditor()"></app-sac-gwh-owc-collection-editor-component>
-    </div>
+
   </div>
 </div>
 

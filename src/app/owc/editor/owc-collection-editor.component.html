@@ -1,261 +1,627 @@
-<div class="panel-heading">
-  <a (click)="closeEditor()" tooltip="Closing editor and return">
-    <i class="fa fa-backward" aria-hidden="true"></i> </a> collections editor (caution)
-</div>
-<div class="panel-body">
-  <div class="list-group">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <a (click)="closeEditor()" tooltip="Closing editor and return">
+      <i class="fa fa-backward" aria-hidden="true"></i> </a> collections editor (caution)
+  </div>
+  <div class="panel-body" *ngIf="owcForm">
 
-    <form [formGroup]="owcForm" novalidate (ngSubmit)="saveEdits(owcForm)">
+    <form [formGroup]="owcForm" novalidate (ngSubmit)="saveEdits(owcForm)" class="form-horizontal">
 
-      <div class="form-group" *ngIf="owcForm.controls.type">
-        <label>Type</label>
-        <input type="text" formControlName="type">
+      <div class="list-group">
 
-        <label>Collection Identifier</label>
-        <input type="text" formControlName="id">
-        <!--display error message if not valid-->
-        <small *ngIf="!owcForm.controls.id.valid" class="text-danger">
-          is required ().
-        </small>
-      </div>
-
-      <div *ngIf="owcForm.controls.bbox">
-        <label tooltip="should separate into 4 number fields">bbox</label>
-        <input type="text" formControlName="bbox">
-      </div>
-
-      <div formGroupName="properties">
-        <div>
-          <label tooltip=" ">lang</label>
-          <input type="text" formControlName="lang">
+        <div class="form-group list-group-item">
+          <label>Type</label>
+          <input class="form-control" type="text" formControlName="type">
         </div>
 
-        <!-- links: OwcContextLinks; -->
-        <div *ngIf="owcForm.controls.properties.controls.links_profiles"
-             class="list-group" formArrayName="links_profiles">
-          <div class="list-group-item"
-               *ngFor="let link of owcForm.controls.properties.controls.links_profiles.controls; let i=index">
-            <div>
-              <pre>{{ link.value |json }}</pre>
-              <span>OWC Profiles {{i + 1}}</span>
-              <span *ngIf="owcForm.controls.properties.controls.links_profiles.controls.length > 1">
-                <small>remove button</small>
-              </span>
-            </div>
+        <div class="form-group list-group-item">
+          <label>Collection Identifier</label>
+          <input class="form-control" type="text" formControlName="id" id="id">
+          <!--display error message if not valid-->
+          <small *ngIf="!owcForm['controls'].id.valid" class="text-danger">
+            is required ().
+          </small>
+        </div>
 
-            <div [formGroupName]="i">
+        <div *ngIf="owcForm['controls'].bbox" class="form-group list-group-item">
+          <label tooltip="should separate into 4 number fields">bbox</label>
+          <input class="form-control" type="text" formControlName="bbox">
+        </div>
 
-              <div class="form-group">
-                <label>href</label>
-                <input type="text" formControlName="href">
+        <div formGroupName="properties" class="list-group">
+
+          <div class="form-group list-group-item">
+            <label tooltip=" ">lang</label>
+            <input class="form-control" type="text" formControlName="lang">
+          </div>
+
+          <!-- links: OwcContextLinks; -->
+          <div *ngIf="owcForm['controls'].properties['controls'].links_profiles"
+               class="list-group" formArrayName="links_profiles">
+            <div class="list-group-item"
+                 *ngFor="let link of owcForm['controls'].properties['controls'].links_profiles.controls; let i=index">
+              <div>
+                <!-- <pre>{{{ link.value |json }}</pre> -->
+                <span>OWC Profiles {{i + 1}}</span>
+                <span *ngIf="owcForm['controls'].properties['controls'].links_profiles['controls'].length > 1">
+                  <small>remove button</small>
+                </span>
               </div>
-              <div class="form-group">
-                <label>type</label>
-                <input type="text" formControlName="type">
-              </div>
-              <div class="form-group">
-                <label>lang</label>
-                <input type="text" formControlName="lang">
-              </div>
-              <div class="form-group">
-                <label>title</label>
-                <input type="text" formControlName="title">
-              </div>
-              <div class="form-group">
-                <label>length</label>
-                <input type="text" formControlName="length">
-              </div>
-              <div class="form-group">
-                <label>rel</label>
-                <input type="text" formControlName="rel">
+
+              <div [formGroupName]="i">
+
+                <div class="form-group">
+                  <label>href</label>
+                  <input class="form-control" type="text" formControlName="href">
+                </div>
+
+                <div class="form-group">
+                  <label>type</label>
+                  <input class="form-control" type="text" formControlName="type">
+                </div>
+
+                <div class="form-group">
+                  <label>lang</label>
+                  <input class="form-control" type="text" formControlName="lang">
+                </div>
+
+                <div class="form-group">
+                  <label>title</label>
+                  <input class="form-control" type="text" formControlName="title">
+                </div>
+
+                <div class="form-group">
+                  <label>length</label>
+                  <input class="form-control" type="text" formControlName="length">
+                </div>
+
+                <div class="form-group">
+                  <label>rel</label>
+                  <input class="form-control" type="text" formControlName="rel">
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div *ngIf="owcForm.controls.properties.controls.links_via"
-             class="list-group" formArrayName="links_via">
-          <div class="list-group-item"
-               *ngFor="let link of owcForm.controls.properties.controls.links_via.controls; let i=index">
-            <div>
-              <pre>{{ link.value |json }}</pre>
-              <span>Via Links context metadata {{i + 1}}</span>
-              <span *ngIf="owcForm.controls.properties.controls.links_via.controls.length > 1">
-                <small>remove button</small>
-              </span>
-            </div>
+          <div *ngIf="owcForm['controls'].properties['controls'].links_via"
+               class="list-group" formArrayName="links_via">
+            <div class="list-group-item"
+                 *ngFor="let link of owcForm['controls'].properties['controls'].links_via.controls; let i=index">
+              <div>
+                <!-- <pre>{{{ link.value |json }}</pre> -->
+                <span>Via Links context metadata {{i + 1}}</span>
+                <span *ngIf="owcForm['controls'].properties['controls'].links_via['controls'].length > 1">
+                  <small>remove button</small>
+                </span>
+              </div>
 
-            <div [formGroupName]="i">
+              <div [formGroupName]="i">
 
-              <div class="form-group">
-                <label>href</label>
-                <input type="text" formControlName="href">
-              </div>
-              <div class="form-group">
-                <label>type</label>
-                <input type="text" formControlName="type">
-              </div>
-              <div class="form-group">
-                <label>lang</label>
-                <input type="text" formControlName="lang">
-              </div>
-              <div class="form-group">
-                <label>title</label>
-                <input type="text" formControlName="title">
-              </div>
-              <div class="form-group">
-                <label>length</label>
-                <input type="text" formControlName="length">
-              </div>
-              <div class="form-group">
-                <label>rel</label>
-                <input type="text" formControlName="rel">
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--lang: string;-->
-        <div>
-          <label tooltip=" ">title</label>
-          <input type="text" formControlName="title">
-        </div>
-        <!--title: string;-->
-        <div>
-          <label tooltip=" ">subtitle</label>
-          <input type="text" formControlName="subtitle">
-        </div>
-        <!--subtitle?: string;-->
-        <div>
-          <label tooltip=" ">updated</label>
-          <input type="text" formControlName="updated">
-        </div>
-        <!--updated: string;-->
-        <!--authors?: OwcAuthor[];-->
-        <div *ngIf="owcForm.controls.properties.controls.authors"
-             class="list-group" formArrayName="authors">
-          <div class="list-group-item"
-               *ngFor="let author of owcForm.controls.properties.controls.authors.controls; let i=index">
-            <div>
-              <pre>{{ author.value |json }}</pre>
-              <span>Author {{i + 1}}</span>
-              <span *ngIf="owcForm.controls.properties.controls.authors.controls.length > 1">
-                <small>remove button</small>
-              </span>
-            </div>
-            <div [formGroupName]="i">
-
-              <div class="form-group">
-                <label>name</label>
-                <input type="text" formControlName="name">
-              </div>
-              <div class="form-group">
-                <label>email</label>
-                <input type="email" formControlName="email">
-              </div>
-              <div class="form-group">
-                <label>uri</label>
-                <input type="text" formControlName="uri">
+                <div class="form-group">
+                  <label>href</label>
+                  <input class="form-control" type="text" formControlName="href">
+                </div>
+                <div class="form-group">
+                  <label>type</label>
+                  <input class="form-control" type="text" formControlName="type">
+                </div>
+                <div class="form-group">
+                  <label>lang</label>
+                  <input class="form-control" type="text" formControlName="lang">
+                </div>
+                <div class="form-group">
+                  <label>title</label>
+                  <input class="form-control" type="text" formControlName="title">
+                </div>
+                <div class="form-group">
+                  <label>length</label>
+                  <input class="form-control" type="text" formControlName="length">
+                </div>
+                <div class="form-group">
+                  <label>rel</label>
+                  <input class="form-control" type="text" formControlName="rel">
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <!--publisher?: string;-->
-        <div>
-          <label tooltip=" ">publisher</label>
-          <input type="text" formControlName="publisher">
-        </div>
-        <!--generator?: OwcCreatorApplication;-->
-        <!--display?: OwcCreatorDisplay;-->
+          <!--lang: string;-->
+          <div class="form-group list-group-item">
+            <label tooltip=" ">language</label>
+            <input class="form-control" type="text" formControlName="lang">
+          </div>
+          <!--title: string;-->
+          <div class="form-group list-group-item">
+            <label tooltip=" ">title</label>
+            <input class="form-control" type="text" formControlName="title">
+          </div>
 
-        <!--rights?: string;-->
-        <div>
-          <label tooltip=" ">rights</label>
-          <input type="text" formControlName="rights">
-        </div>
-        <!--date?: string;-->
-        <div>
-          <label tooltip=" ">date</label>
-          <input type="text" formControlName="date">
-        </div>
-        <!--categories?: OwcCategory[];-->
-        <div *ngIf="owcForm.controls.properties.controls.categories"
-             class="list-group" formArrayName="categories">
-          <div class="list-group-item"
-               *ngFor="let category of owcForm.controls.properties.controls.categories.controls; let i=index">
-            <div>
-              <!-- <pre>{{ category.value |json }}</pre> -->
-              <span>Category / Keyword {{i + 1}}</span>
-              <span *ngIf="owcForm.controls.properties.controls.categories.controls.length > 1">
-                <small>remove button</small>
-              </span>
-            </div>
+          <!--subtitle?: string;-->
+          <div class="form-group list-group-item">
+            <label tooltip=" ">subtitle</label>
+            <input class="form-control" type="text" formControlName="subtitle">
+          </div>
 
-            <div [formGroupName]="i">
+          <!--updated: string;-->
+          <div class="form-group list-group-item">
+            <label tooltip=" ">updated</label>
+            <input class="form-control" type="text" formControlName="updated">
+          </div>
 
-              <div class="form-group">
-                <label>term</label>
-                <input type="text" formControlName="term">
+          <!--authors?: OwcAuthor[];-->
+          <div *ngIf="owcForm['controls'].properties['controls'].authors"
+               class="list-group" formArrayName="authors">
+            <div class="list-group-item"
+                 *ngFor="let author of owcForm['controls'].properties['controls'].authors.controls; let i=index">
+              <div>
+                <!-- <pre>{{{ author.value |json }}</pre>-->
+                <span>Author {{i + 1}}</span>
+                <span *ngIf="owcForm['controls'].properties['controls'].authors['controls'].length > 1">
+                  <small>remove button</small>
+                </span>
               </div>
-              <div class="form-group">
-                <label>scheme</label>
-                <input type="text" formControlName="scheme">
-              </div>
-              <div class="form-group">
-                <label>label</label>
-                <input type="text" formControlName="label">
+              <div [formGroupName]="i">
+
+                <div class="form-group">
+                  <label>name</label>
+                  <input class="form-control" type="text" formControlName="name">
+                </div>
+                <div class="form-group">
+                  <label>email</label>
+                  <input type="email" formControlName="email">
+                </div>
+                <div class="form-group">
+                  <label>uri</label>
+                  <input class="form-control" type="text" formControlName="uri">
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div *ngIf="owcForm.controls.features" class="list-group" formArrayName="features">
-        <div class="list-group-item" *ngFor="let feature of owcForm.controls.features.controls; let i=index">
-          <!-- remove button when more than one available -->
-          <pre>{{ feature.value |json }}</pre>
+          <!--publisher?: string;-->
           <div>
-            <span>Feature {{i + 1}}</span>
-            <span *ngIf="owcForm.controls.features.controls.length > 1">
-              <small>remove button</small>
-            </span>
+            <label tooltip=" ">publisher</label>
+            <input class="form-control" type="text" formControlName="publisher">
           </div>
 
-          <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
-          <div [formGroupName]="i">
-            <div class="form-group">
-              <label>Feature Identifier</label>
-              <input type="text" formControlName="id">
-              <!--display error message if not valid-->
-              <small [hidden]="owcForm.controls.features.controls[i].controls.id.valid">
-                id is required
-              </small>
-
-              <label>Type</label>
-              <input type="text" formControlName="type">
+          <!--generator?: OwcCreatorApplication;-->
+          <div formGroupName="generator" class="form-group list-group-item">
+            <div>
+              <label tooltip=" ">title</label>
+              <input class="form-control" type="text" formControlName="title">
             </div>
+            <pre>{{ owcForm['controls'].properties['controls'].generator.controls.value |json }}</pre>
+          </div>
 
-            <div *ngIf="owcForm.controls.features.controls[i].controls.geometry">
-              <label>geometry</label>
-              <input type="text" formControlName="geometry">
+          <!--display?: OwcCreatorDisplay;-->
+          <div formGroupName="display" class="form-group list-group-item">
+            <div>
+              <label tooltip=" ">pixelWidth</label>
+              <input class="form-control" type="text" formControlName="pixelWidth">
+            </div>
+            <pre>{{ owcForm['controls'].properties['controls'].display.controls.value |json }}</pre>
+          </div>
+
+          <!--rights?: string;-->
+          <div class="form-group list-group-item">
+            <label tooltip=" ">rights</label>
+            <input class="form-control" type="text" formControlName="rights">
+          </div>
+          <!--date?: string;-->
+          <div class="form-group list-group-item">
+            <label tooltip=" ">date</label>
+            <input class="form-control" type="text" formControlName="date">
+          </div>
+
+          <!--categories?: OwcCategory[];-->
+          <div *ngIf="owcForm['controls'].properties['controls'].categories"
+               class="list-group" formArrayName="categories">
+            <div class="list-group-item"
+                 *ngFor="let category of owcForm['controls'].properties['controls'].categories.controls; let i=index">
+              <div>
+                <!-- <pre>{{ category.value |json }}</pre> -->
+                <span>Category / Keyword {{i + 1}}</span>
+                <span *ngIf="owcForm['controls'].properties['controls'].categories['controls'].length > 1">
+                  <small>remove button</small>
+                </span>
+              </div>
+
+              <div [formGroupName]="i">
+
+                <div class="form-group">
+                  <label>term</label>
+                  <input class="form-control" type="text" formControlName="term">
+                </div>
+                <div class="form-group">
+                  <label>scheme</label>
+                  <input class="form-control" type="text" formControlName="scheme">
+                </div>
+                <div class="form-group">
+                  <label>label</label>
+                  <input class="form-control" type="text" formControlName="label">
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
 
+      <div *ngIf="owcForm['controls'].features" class="list-group" formArrayName="features">
 
-      <button (click)="saveEdits(owcForm.value)" class="btn btn-info" tooltip="Save edits" type="submit"
-              [disabled]="!owcForm.valid">
-        Save <i class="fa fa-floppy-o" aria-hidden="true"></i>
-      </button>
-      <button (click)="closeEditor()" type="button" class="btn btn-warning" tooltip="Closing editor and return">
-        Close and return <i class="fa fa-backward" aria-hidden="true"></i>
-      </button>
+        <tabset>
+
+          <tab heading="{{ i }}" *ngFor="let feature of owcForm['controls'].features.controls; let i=index">
+
+            <div class="list-group">
+              <!-- remove button when more than one available -->
+              <!-- <pre>{{ feature.value |json }}</pre> -->
+              <div class="list-group-item">
+                <span>Feature {{i + 1}}</span>
+                <span *ngIf="owcForm['controls'].features['controls'].length > 1">
+                  <small>remove button</small>
+                </span>
+              </div>
+
+              <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
+              <div [formGroupName]="i">
+                <div class="form-group list-group-item">
+                  <label>Feature Identifier</label>
+                  <input class="form-control" type="text" formControlName="id">
+                  <!--display error message if not valid-->
+                  <small [hidden]="owcForm['controls'].features.controls[i]['controls'].id.valid">
+                    id is required
+                  </small>
+                </div>
+
+                <div class="form-group list-group-item">
+                  <label>Type</label>
+                  <input class="form-control" type="text" formControlName="type">
+                </div>
+
+                <div *ngIf="owcForm['controls'].features.controls[i]['controls'].geometry"
+                     class="form-group list-group-item">
+                  <label>geometry</label>
+                  <input class="form-control" type="text" formControlName="geometry">
+                </div>
+
+                <div formGroupName="properties" class="list-group">
+
+                  <!--title: string;-->
+                  <div class="form-group list-group-item">
+                    <label tooltip=" ">title</label>
+                    <input class="form-control" type="text" formControlName="title">
+                  </div>
+
+                  <!--abstract?: string;-->
+                  <div class="form-group list-group-item">
+                    <label tooltip=" ">abstract</label>
+                    <input class="form-control" type="text" formControlName="abstract">
+                  </div>
+                  <!--updated: string;-->
+                  <div class="form-group list-group-item">
+                    <label tooltip=" ">updated</label>
+                    <input class="form-control" type="text" formControlName="updated">
+                  </div>
+
+                  <!--authors?: OwcAuthor[];-->
+                  <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].authors"
+                       class="list-group" formArrayName="authors">
+                    <div class="list-group-item"
+                         *ngFor="let author of owcForm['controls'].features.controls[i]['controls'].properties['controls'].authors.controls; let j=index">
+                      <div>
+                        <!-- <pre>{{{ author.value |json }}</pre>-->
+                        <span>Author {{j + 1}}</span>
+                        <span *ngIf="owcForm['controls'].features.controls[j]['controls'].properties['controls'].authors['controls'].length > 1">
+                          <small>remove button</small>
+                        </span>
+                      </div>
+                      <div [formGroupName]="j">
+
+                        <div class="form-group">
+                          <label>name</label>
+                          <input class="form-control" type="text" formControlName="name">
+                        </div>
+                        <div class="form-group">
+                          <label>email</label>
+                          <input type="email" formControlName="email">
+                        </div>
+                        <div class="form-group">
+                          <label>uri</label>
+                          <input class="form-control" type="text" formControlName="uri">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--publisher?: string;-->
+                  <div class="form-group list-group-item">
+                    <label tooltip=" ">publisher</label>
+                    <input class="form-control" type="text" formControlName="publisher">
+                  </div>
+
+                  <!--rights?: string;-->
+                  <div class="form-group list-group-item">
+                    <label tooltip=" ">rights</label>
+                    <input class="form-control" type="text" formControlName="rights">
+                  </div>
+                  <!--date?: string;-->
+                  <div class="form-group list-group-item">
+                    <label tooltip=" ">date</label>
+                    <input class="form-control" type="text" formControlName="date">
+                  </div>
+
+                  <!--links?: OwcResourceLinks;-->
+                  <!--alternates?: OwcLink[];-->
+                  <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_alternates"
+                       class="list-group" formArrayName="links_alternates">
+                    <div class="list-group-item"
+                         *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_alternates.controls; let j=index">
+                      <div>
+                        <!-- <pre>{{{ link.value |json }}</pre> -->
+                        <span>Alternate links {{j + 1}}</span>
+                        <span *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_alternates['controls'].length > 1">
+                          <small>remove button</small>
+                        </span>
+                      </div>
+
+                      <div [formGroupName]="j">
+
+                        <div class="form-group">
+                          <label>href</label>
+                          <input class="form-control" type="text" formControlName="href">
+                        </div>
+                        <div class="form-group">
+                          <label>type</label>
+                          <input class="form-control" type="text" formControlName="type">
+                        </div>
+                        <div class="form-group">
+                          <label>lang</label>
+                          <input class="form-control" type="text" formControlName="lang">
+                        </div>
+                        <div class="form-group">
+                          <label>title</label>
+                          <input class="form-control" type="text" formControlName="title">
+                        </div>
+                        <div class="form-group">
+                          <label>length</label>
+                          <input class="form-control" type="text" formControlName="length">
+                        </div>
+                        <div class="form-group">
+                          <label>rel</label>
+                          <input class="form-control" type="text" formControlName="rel">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--links?: OwcResourceLinks;-->
+                  <!--previews?: OwcLink[];-->
+                  <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_previews"
+                       class="list-group" formArrayName="links_previews">
+                    <div class="list-group-item"
+                         *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_previews.controls; let j=index">
+                      <div>
+                        <!-- <pre>{{{ link.value |json }}</pre> -->
+                        <span>Preview Links / Icons {{j + 1}}</span>
+                        <span *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_previews['controls'].length > 1">
+                          <small>remove button</small>
+                        </span>
+                      </div>
+
+                      <div [formGroupName]="j">
+
+                        <div class="form-group">
+                          <label>href</label>
+                          <input class="form-control" type="text" formControlName="href">
+                        </div>
+                        <div class="form-group">
+                          <label>type</label>
+                          <input class="form-control" type="text" formControlName="type">
+                        </div>
+                        <div class="form-group">
+                          <label>lang</label>
+                          <input class="form-control" type="text" formControlName="lang">
+                        </div>
+                        <div class="form-group">
+                          <label>title</label>
+                          <input class="form-control" type="text" formControlName="title">
+                        </div>
+                        <div class="form-group">
+                          <label>length</label>
+                          <input class="form-control" type="text" formControlName="length">
+                        </div>
+                        <div class="form-group">
+                          <label>rel</label>
+                          <input class="form-control" type="text" formControlName="rel">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--links?: OwcResourceLinks;-->
+                  <!--data?: OwcLink[];-->
+                  <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_data"
+                       class="list-group" formArrayName="links_data">
+                    <div class="list-group-item"
+                         *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_data.controls; let j=index">
+                      <div>
+                        <!-- <pre>{{{ link.value |json }}</pre> -->
+                        <span>Links to actual data {{j + 1}}</span>
+                        <span *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_data['controls'].length > 1">
+                          <small>remove button</small>
+                        </span>
+                      </div>
+
+                      <div [formGroupName]="j">
+
+                        <div class="form-group">
+                          <label>href</label>
+                          <input class="form-control" type="text" formControlName="href">
+                        </div>
+                        <div class="form-group">
+                          <label>type</label>
+                          <input class="form-control" type="text" formControlName="type">
+                        </div>
+                        <div class="form-group">
+                          <label>lang</label>
+                          <input class="form-control" type="text" formControlName="lang">
+                        </div>
+                        <div class="form-group">
+                          <label>title</label>
+                          <input class="form-control" type="text" formControlName="title">
+                        </div>
+                        <div class="form-group">
+                          <label>length</label>
+                          <input class="form-control" type="text" formControlName="length">
+                        </div>
+                        <div class="form-group">
+                          <label>rel</label>
+                          <input class="form-control" type="text" formControlName="rel">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--links?: OwcResourceLinks;-->
+                  <!--via?: OwcLink[];-->
+                  <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_via"
+                       class="list-group" formArrayName="links_via">
+                    <div class="list-group-item"
+                         *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_via.controls; let j=index">
+                      <div>
+                        <!-- <pre>{{{ link.value |json }}</pre> -->
+                        <span>Via links, resource metadata {{j + 1}}</span>
+                        <span *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_via['controls'].length > 1">
+                          <small>remove button</small>
+                        </span>
+                      </div>
+
+                      <div [formGroupName]="j">
+
+                        <div class="form-group">
+                          <label>href</label>
+                          <input class="form-control" type="text" formControlName="href">
+                        </div>
+                        <div class="form-group">
+                          <label>type</label>
+                          <input class="form-control" type="text" formControlName="type">
+                        </div>
+                        <div class="form-group">
+                          <label>lang</label>
+                          <input class="form-control" type="text" formControlName="lang">
+                        </div>
+                        <div class="form-group">
+                          <label>title</label>
+                          <input class="form-control" type="text" formControlName="title">
+                        </div>
+                        <div class="form-group">
+                          <label>length</label>
+                          <input class="form-control" type="text" formControlName="length">
+                        </div>
+                        <div class="form-group">
+                          <label>rel</label>
+                          <input class="form-control" type="text" formControlName="rel">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--offerings?: OwcOffering[];-->
+                  <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings"
+                       class="list-group" formArrayName="offerings">
+                    <div class="list-group-item"
+                         *ngFor="let offering of owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls; let j=index">
+                      <div>
+                        <span>Offerings {{j + 1}}</span>
+                        <span *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings['controls'].length > 1">
+                          <small>remove button</small>
+                        </span>
+                        <pre>{{ offering.value | json }}</pre>
+                      </div>
+
+                      <div [formGroupName]="j">
+                        <div class="form-group">
+                          <label>code</label>
+                          <input class="form-control" type="text" formControlName="code">
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--categories?: OwcCategory[];-->
+                  <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].categories"
+                       class="list-group" formArrayName="categories">
+                    <div class="list-group-item"
+                         *ngFor="let category of owcForm['controls'].features.controls[i]['controls'].properties['controls'].categories.controls; let j=index">
+                      <div>
+                        <!-- <pre>{{ category.value |json }}</pre> -->
+                        <span>Category / Keyword {{j + 1}}</span>
+                        <span *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].categories['controls'].length > 1">
+                          <small>remove button</small>
+                        </span>
+                      </div>
+
+                      <div [formGroupName]="j">
+
+                        <div class="form-group">
+                          <label>term</label>
+                          <input class="form-control" type="text" formControlName="term">
+                        </div>
+                        <div class="form-group">
+                          <label>scheme</label>
+                          <input class="form-control" type="text" formControlName="scheme">
+                        </div>
+                        <div class="form-group">
+                          <label>label</label>
+                          <input class="form-control" type="text" formControlName="label">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--active?: boolean;-->
+                  <div class="form-group list-group-item">
+                    <label tooltip=" ">active</label>
+                    <input class="form-control" type="text" formControlName="active">
+                  </div>
+                  <!--minscaledenominator?: number;-->
+                  <div class="form-group list-group-item">
+                    <label tooltip=" ">minscaledenominator</label>
+                    <input class="form-control" type="text" formControlName="minscaledenominator">
+                  </div>
+                  <!--maxscaledenominator?: number;-->
+                  <div class="form-group list-group-item">
+                    <label tooltip=" ">maxscaledenominator</label>
+                    <input class="form-control" type="text" formControlName="maxscaledenominator">
+                  </div>
+                  <!--folder?: string;-->
+                  <div class="form-group list-group-item">
+                    <label tooltip=" ">folder</label>
+                    <input class="form-control" type="text" formControlName="folder">
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+
+      <div class="list-group-item">
+        <button (click)="saveEdits(owcForm.value)" class="btn btn-info" tooltip="Save edits" type="submit"
+                [disabled]="!owcForm.valid">
+          Save <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        </button>
+        <button (click)="closeEditor()" type="button" class="btn btn-warning" tooltip="Closing editor and return">
+          Close and return <i class="fa fa-backward" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="list-group-item">
+        <pre>{{ owcForm.value |json }}</pre>
+      </div>
+
     </form>
 
   </div>
-
-  <div class="list-group">
-    <pre>{{ owcForm.value |json }}</pre>
-  </div>
-
 </div>

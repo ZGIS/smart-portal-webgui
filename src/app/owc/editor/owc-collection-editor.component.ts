@@ -42,9 +42,9 @@ export class OwcCollectionEditorComponent implements OnInit {
       type: [ { value: iOwc.type, disabled: false }, Validators.pattern('FeatureCollection') ],
       id: [ { value: iOwc.id, disabled: false }, [ Validators.required ] ],
       properties: this.fb.group({
-        lang: [ iOwc.properties.lang, [] ],
-        title: [ iOwc.properties.title, [ Validators.required, Validators.minLength(5) ] ],
-        subtitle: [ iOwc.properties.subtitle, [] ],
+        lang: [ this.initForStr(iOwc.properties.lang), [] ],
+        title: [ this.initForStr(iOwc.properties.title), [ Validators.required, Validators.minLength(5) ] ],
+        subtitle: [ this.initForStr(iOwc.properties.subtitle), [] ],
         links_profiles: this.fb.array(
           this.initLinks(iOwc.properties.links.profiles),
         ),
@@ -55,20 +55,16 @@ export class OwcCollectionEditorComponent implements OnInit {
         authors: this.fb.array(
           this.initAuthors(iOwc.properties.authors),
         ),
-        publisher: [ iOwc.properties.publisher, [] ],
-        // generator?: OwcCreatorApplication;
-        generator_title: [ iOwc.properties.generator.title, [] ],
-        generator_uri: [ iOwc.properties.generator.uri, [] ],
-        generator_version: [ iOwc.properties.generator.version, [] ],
-        generator_uuid: [ iOwc.properties.generator.uuid, [] ],
-        // display?: OwcCreatorDisplay;
-        rights: [ iOwc.properties.rights, [] ],
-        date: [ iOwc.properties.date, [] ],
+        publisher: [ this.initForStr(iOwc.properties.publisher), [] ],
+        generator: this.initGenerator(iOwc.properties.generator),
+        display: this.initDisplay(iOwc.properties.display),
+        rights: [ this.initForStr(iOwc.properties.rights), [] ],
+        date: [ this.initForStr(iOwc.properties.date), [] ],
         categories: this.fb.array(
           this.initCategories(iOwc.properties.categories),
         )
       }),
-      bbox: [ iOwc.bbox, [] ],
+      bbox: [ this.initForStr(iOwc.bbox), [] ],
       features: this.fb.array(
         this.initFeatures(iOwc.features),
       )
@@ -83,15 +79,17 @@ export class OwcCollectionEditorComponent implements OnInit {
       return this.fb.group({
         type: [ { value: iOwc.type, disabled: false }, Validators.pattern('Feature') ],
         id: [ { value: iOwc.id, disabled: false }, [ Validators.required ] ],
-        geometry: [ iOwc.geometry ],
+        geometry: [ this.initForStr(iOwc.geometry) ],
         properties: this.fb.group({
-          title: [ iOwc.properties.title, [ Validators.required ] ],
-          abstract: [ iOwc.properties.abstract, [] ],
-          updated: [ iOwc.properties.updated, [] ],
-          // authors?: OwcAuthor[];
-          publisher: [ iOwc.properties.publisher, [] ],
-          rights: [ iOwc.properties.rights, [] ],
-          date: [ iOwc.properties.date, [] ],
+          title: [ this.initForStr(iOwc.properties.title), [ Validators.required ] ],
+          abstract: [ this.initForStr(iOwc.properties.abstract), [] ],
+          updated: [ this.initForStr(iOwc.properties.updated), [] ],
+          authors: this.fb.array(
+            this.initAuthors(iOwc.properties.authors),
+          ),
+          publisher: [ this.initForStr(iOwc.properties.publisher), [] ],
+          rights: [ this.initForStr(iOwc.properties.rights), [] ],
+          date: [ this.initForStr(iOwc.properties.date), [] ],
           links_alternates: this.fb.array(
             this.initLinks(iOwc.properties.links.alternates),
           ),
@@ -110,14 +108,38 @@ export class OwcCollectionEditorComponent implements OnInit {
           categories: this.fb.array(
             this.initCategories(iOwc.properties.categories),
           ),
-          active: [ iOwc.properties.active, [] ],
-          minscaledenominator: [ iOwc.properties.minscaledenominator, [] ],
-          maxscaledenominator: [ iOwc.properties.maxscaledenominator, [] ],
-          folder: [ iOwc.properties.folder, [] ]
+          active: [ this.initForStr(iOwc.properties.active), [] ],
+          minscaledenominator: [ this.initForNum(iOwc.properties.minscaledenominator), [] ],
+          maxscaledenominator: [ this.initForNum(iOwc.properties.maxscaledenominator), [] ],
+          folder: [ this.initForStr(iOwc.properties.folder), [] ]
         })
       });
     });
     return owcFGs;
+  }
+
+  /**
+   * FIXME oohuuuhhh not really great, need magic sauce
+   *
+   * @param val
+   * @returns {string}
+   */
+  initForStr( val: any ): string {
+    if (val) {
+      return val;
+    } else {
+      // return '';
+      return null;
+    }
+  }
+
+  initForNum( val: any ): number {
+    if (val) {
+      return val;
+    } else {
+      // return 0;
+      return null;
+    }
   }
 
   initLinks( res: OwcLink[] ): FormGroup[] {
@@ -168,14 +190,50 @@ export class OwcCollectionEditorComponent implements OnInit {
     return owcFGs;
   }
 
+  initGenerator( res: OwcCreatorApplication ): FormGroup {
+    if (!res) {
+      res = {};
+    }
+    // generator?: OwcCreatorApplication;
+    return this.fb.group({
+      title: [ this.initForStr(res.title), [] ],
+      uri: [ this.initForStr(res.uri), [] ],
+      version: [ this.initForStr(res.version), [] ],
+      uuid: [ this.initForStr(res.uuid), [] ]
+    });
+  }
+
+  initDisplay( res: OwcCreatorDisplay ): FormGroup {
+    if (!res) {
+      res = {};
+    }
+    // display?: OwcCreatorDisplay;
+    return this.fb.group({
+      pixelWidth: [ this.initForNum(res.pixelWidth), [] ],
+      pixelHeight: [ this.initForNum(res.pixelHeight), [] ],
+      mmPerPixel: [ this.initForNum(res.mmPerPixel), [] ],
+      uuid: [ this.initForStr(res.uuid), [] ]
+    });
+  }
+
   initOfferings( res: OwcOffering[] ): FormGroup[] {
     if (!res) {
       return [];
     }
-    let owcFGs: FormGroup[] = [];
-    this.fb.group({
-      code: [ '', Validators.required ],
-      type: [ '' ]
+    let owcFGs: FormGroup[] = res.map(iOwc => {
+      return this.fb.group({
+        code: [ iOwc.code, Validators.required ],
+        operations: this.fb.array(
+          this.initOperations(iOwc.operations),
+        ),
+        contents: this.fb.array(
+          this.initContents(iOwc.contents),
+        ),
+        styles: this.fb.array(
+          this.initStyles(iOwc.styles),
+        ),
+        uuid: [ iOwc.uuid, [] ]
+      });
     });
     return owcFGs;
   }
@@ -184,10 +242,16 @@ export class OwcCollectionEditorComponent implements OnInit {
     if (!res) {
       return [];
     }
-    let owcFGs: FormGroup[] = [];
-    this.fb.group({
-      code: [ '', Validators.required ],
-      type: [ '' ]
+    let owcFGs: FormGroup[] = res.map(iOwc => {
+      return this.fb.group({
+        code: [ iOwc.code, Validators.required ],
+        method: [ iOwc.method, [] ],
+        type: [ iOwc.type ],
+        href: [ iOwc.href, [] ],
+        request: this.initSingleContent(iOwc.request),
+        result: this.initSingleContent(iOwc.result),
+        uuid: [ iOwc.uuid, [] ]
+      });
     });
     return owcFGs;
   }
@@ -196,10 +260,16 @@ export class OwcCollectionEditorComponent implements OnInit {
     if (!res) {
       return [];
     }
-    let owcFGs: FormGroup[] = [];
-    this.fb.group({
-      title: [ '', Validators.required ],
-      subtiltle: [ '' ]
+    let owcFGs: FormGroup[] = res.map(iOwc => {
+      return this.fb.group({
+        name: [ iOwc.name, Validators.required ],
+        title: [ iOwc.title, [] ],
+        abstract: [ iOwc.abstract ],
+        default: [ iOwc.default, [] ],
+        legendURL: [ iOwc.legendURL, [] ],
+        content: this.initSingleContent(iOwc.content),
+        uuid: [ iOwc.uuid, [] ]
+      });
     });
     return owcFGs;
   }
@@ -208,17 +278,28 @@ export class OwcCollectionEditorComponent implements OnInit {
     if (!res) {
       return [];
     }
-    let owcFGs: FormGroup[] = [];
-    this.fb.group({
-      content: [ '', Validators.required ],
-      href: [ '' ]
+    let owcFGs: FormGroup[] = res.map(iOwc => {
+      return this.initSingleContent(iOwc);
     });
     return owcFGs;
   }
 
-  saveEdits( formdata: OwcContext ): void {
+  initSingleContent( res: OwcContent ): FormGroup {
+    if (!res) {
+      res = { type: null};
+    }
+    return this.fb.group({
+      title: [ this.initForStr(res.title), [] ],
+      href: [ this.initForStr(res.href), [] ],
+      type: [ this.initForStr(res.type), [] ],
+      content: [ this.initForStr(res.content), [] ],
+      uuid: [ this.initForStr(res.uuid), [] ]
+    });
+  }
+
+  saveEdits( formdata: FormGroup ): void {
     console.log(JSON.stringify(this.owcForm.value));
-    console.log(JSON.stringify(formdata));
+    console.log(JSON.stringify(formdata.value));
     this.notificationService.addNotification({
       id: NotificationService.DEFAULT_DISMISS,
       type: 'info',
