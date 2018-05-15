@@ -160,6 +160,18 @@ export class OwcCollectionEditorComponent implements OnInit {
     return owcFGs;
   }
 
+  addLinkTo( rel: string, here: FormArray ): void {
+    let newOp = this.fb.group({
+      href: [ null, Validators.required ],
+      type: [ null ],
+      lang: [ null ],
+      title: [ null ],
+      length: [ null ],
+      rel: [ rel ]
+    });
+    here.push(newOp);
+  }
+
   initAuthors( res: OwcAuthor[] ): FormGroup[] {
     if (!res) {
       return [];
@@ -175,6 +187,15 @@ export class OwcCollectionEditorComponent implements OnInit {
     return owcFGs;
   }
 
+  addAuthorTo( here: FormArray ): void {
+    let newOp = this.fb.group({
+      name: [ null, Validators.required ],
+      email: [ null ],
+      uri: [ null ]
+    });
+    here.push(newOp);
+  }
+
   initCategories( res: OwcCategory[] ): FormGroup[] {
     if (!res) {
       return [];
@@ -188,6 +209,15 @@ export class OwcCollectionEditorComponent implements OnInit {
       });
     });
     return owcFGs;
+  }
+
+  addCategoryTo( here: FormArray ): void {
+    let newOp = this.fb.group({
+      term: [ null, Validators.required ],
+      scheme: [ null ],
+      label: [ null ]
+    });
+    here.push(newOp);
   }
 
   initGenerator( res: OwcCreatorApplication ): FormGroup {
@@ -246,6 +276,22 @@ export class OwcCollectionEditorComponent implements OnInit {
     return owcFGs;
   }
 
+  addOfferingTo( here: FormArray ): void {
+    let newOp = this.fb.group({
+      code: [ null, Validators.required ],
+      operations: this.fb.array(
+        this.initOperations([]),
+      ),
+      contents: this.fb.array(
+        this.initContents([]),
+      ),
+      styles: this.fb.array(
+        this.initStyles([]),
+      ),
+    });
+    here.push(newOp);
+  }
+
   initOperations( res: OwcOperation[] ): FormGroup[] {
     if (!res) {
       return [];
@@ -262,6 +308,18 @@ export class OwcCollectionEditorComponent implements OnInit {
       });
     });
     return owcFGs;
+  }
+
+  addOperationTo( here: FormArray ): void {
+    let newOp = this.fb.group({
+      code: [ null, Validators.required ],
+      method: [ null, [] ],
+      type: [ null ],
+      href: [ null, [] ],
+      request: this.initSingleContent(undefined),
+      result: this.initSingleContent(undefined)
+    });
+    here.push(newOp);
   }
 
   initStyles( res: OwcStyleSet[] ): FormGroup[] {
@@ -282,6 +340,18 @@ export class OwcCollectionEditorComponent implements OnInit {
     return owcFGs;
   }
 
+  addStyleTo( here: FormArray ): void {
+    let newOp = this.fb.group({
+      name: [ null, Validators.required ],
+      title: [ null, [] ],
+      abstract: [ null ],
+      default: [ null, [] ],
+      legendURL: [ null, [] ],
+      content: this.initSingleContent(undefined)
+    });
+    here.push(newOp);
+  }
+
   initContents( res: OwcContent[] ): FormGroup[] {
     if (!res) {
       return [];
@@ -290,6 +360,11 @@ export class OwcCollectionEditorComponent implements OnInit {
       return this.initSingleContent(iOwc);
     });
     return owcFGs;
+  }
+
+  addContentTo( here: FormArray ): void {
+    let newOp = this.initSingleContent(undefined);
+    here.push(newOp);
   }
 
   initSingleContent( res: OwcContent ): FormGroup {
