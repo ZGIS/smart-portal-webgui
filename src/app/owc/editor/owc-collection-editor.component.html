@@ -88,9 +88,9 @@
           <div formGroupName="generator" class="form-group list-group-item">
             <small>Details about the application that created this document</small>
             <div class="list-group">
-              <div>
+<!--              <div>
                 <pre>{{ owcForm['controls'].properties['controls'].generator.value |json }}</pre>
-              </div>
+              </div>-->
               <div class="form-group list-group-item">
                 <label class="col-sm-1 control-label" tooltip=" ">title:</label>
                 <div class="col-sm-10">
@@ -113,9 +113,9 @@
           <div formGroupName="display" class="form-group list-group-item">
             <small>Details about the resolution for an displaying application</small>
             <div class="list-group">
-              <div>
+<!--              <div>
                 <pre>{{ owcForm['controls'].properties['controls'].display.value |json }}</pre>
-              </div>
+              </div>-->
               <div class="form-group list-group-item">
                 <label class="col-sm-1 control-label" tooltip=" ">pixelWidth:</label>
                 <div class="col-sm-10">
@@ -221,131 +221,133 @@
             </div>
           </div>
 
-          <!-- links: OwcContextLinks; -->
-          <h3>OWC Profiles Links section for collection</h3>
-          <small>TODO: warning to not change this unless you know what you do</small>
-          <div>
-            <a (click)="addLinkTo('profile', owcForm['controls'].properties['controls'].links_profiles.controls)"
-               class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-          </div>
-          <div
-            *ngIf="!owcForm['controls'].properties['controls'].links_profiles || owcForm['controls'].properties['controls'].links_profiles.controls.length <= 0">
-            <small>currently no elements here</small>
-          </div>
-          <div *ngIf="owcForm['controls'].properties['controls'].links_profiles"
-               class="list-group" formArrayName="links_profiles">
+          <!-- LINKS section for OwcContext-->
+          <div formGroupName="links" class="list-group">
+            <!-- links: OwcContextLinks; -->
+            <h3>OWC Profiles Links section for collection</h3>
+            <small>TODO: warning to not change this unless you know what you do</small>
+            <div>
+              <a (click)="addLinkTo('profile', owcForm['controls'].properties['controls'].links['controls'].profiles.controls)"
+                 class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+            </div>
+            <div
+              *ngIf="!owcForm['controls'].properties['controls'].links['controls'].profiles || owcForm['controls'].properties['controls'].links['controls'].profiles.controls.length <= 0">
+              <small>currently no elements here</small>
+            </div>
+            <div *ngIf="owcForm['controls'].properties['controls'].links['controls'].profiles"
+                 class="list-group" formArrayName="profiles">
 
-            <div class="list-group-item"
-                 *ngFor="let link of owcForm['controls'].properties['controls'].links_profiles.controls; let i=index">
+              <div class="list-group-item"
+                   *ngFor="let link of owcForm['controls'].properties['controls'].links['controls'].profiles.controls; let i=index">
 
-              <div>
-                <!-- <pre>{{{ link.value |json }}</pre> -->
-                <a class="btn btn-sm btn-warning"
-                   (click)="owcForm['controls'].properties['controls'].links_profiles.removeAt(i)">No# {{i + 1}} (
-                  remove <i class="fa fa-minus-circle"></i> )</a>
-              </div>
-
-              <div [formGroupName]="i">
-
-                <div class="form-group">
-                  <label class="col-sm-1 control-label">href:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="href"></div>
+                <div>
+                  <!-- <pre>{{{ link.value |json }}</pre> -->
+                  <a class="btn btn-sm btn-warning"
+                     (click)="owcForm['controls'].properties['controls'].links['controls'].profiles.removeAt(i)">No# {{i + 1}} (
+                    remove <i class="fa fa-minus-circle"></i> )</a>
                 </div>
 
-                <div class="form-group">
-                  <label class="col-sm-1 control-label">type:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="type"></div>
-                </div>
+                <div [formGroupName]="i">
 
-                <div class="form-group">
-                  <label class="col-sm-1 control-label">lang:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="lang"></div>
-                </div>
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">href:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" formControlName="href"></div>
+                  </div>
 
-                <div class="form-group">
-                  <label class="col-sm-1 control-label">title:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="title"></div>
-                </div>
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">type:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" formControlName="type"></div>
+                  </div>
 
-                <div class="form-group">
-                  <label class="col-sm-1 control-label">length:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="number" formControlName="length"></div>
-                </div>
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">lang:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" formControlName="lang"></div>
+                  </div>
 
-                <div class="form-group">
-                  <label class="col-sm-1 control-label">rel:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="rel"></div>
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">title:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" formControlName="title"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">length:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="number" formControlName="length"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">rel:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" formControlName="rel"></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <h3>Via Links metadata section for collection</h3>
-          <small>INFO: add short info?</small>
-          <div>
-            <a (click)="addLinkTo('via', owcForm['controls'].properties['controls'].links_via.controls)"
-               class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-          </div>
-          <div
-            *ngIf="!owcForm['controls'].properties['controls'].links_via || owcForm['controls'].properties['controls'].links_via.controls.length <= 0">
-            <small>currently no elements here</small>
-          </div>
-          <div *ngIf="owcForm['controls'].properties['controls'].links_via"
-               class="list-group" formArrayName="links_via">
+            <h3>Via Links metadata section for collection</h3>
+            <small>INFO: add short info?</small>
+            <div>
+              <a (click)="addLinkTo('via', owcForm['controls'].properties['controls'].links['controls'].via.controls)"
+                 class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+            </div>
+            <div
+              *ngIf="!owcForm['controls'].properties['controls'].links['controls'].via || owcForm['controls'].properties['controls'].links['controls'].via.controls.length <= 0">
+              <small>currently no elements here</small>
+            </div>
+            <div *ngIf="owcForm['controls'].properties['controls'].links['controls'].via"
+                 class="list-group" formArrayName="via">
 
-            <div class="list-group-item"
-                 *ngFor="let link of owcForm['controls'].properties['controls'].links_via.controls; let i=index">
+              <div class="list-group-item"
+                   *ngFor="let link of owcForm['controls'].properties['controls'].links['controls'].via.controls; let i=index">
 
-              <div>
-                <a class="btn btn-sm btn-warning"
-                   (click)="owcForm['controls'].properties['controls'].links_via.removeAt(i)">No# {{i + 1}} ( remove <i
-                  class="fa fa-minus-circle"></i> )</a>
-              </div>
+                <div>
+                  <a class="btn btn-sm btn-warning"
+                     (click)="owcForm['controls'].properties['controls'].links['controls'].via.removeAt(i)">No# {{i + 1}} ( remove <i
+                    class="fa fa-minus-circle"></i> )</a>
+                </div>
 
-              <div [formGroupName]="i">
+                <div [formGroupName]="i">
 
-                <div class="form-group">
-                  <label class="col-sm-1 control-label">href:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="href"></div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-1 control-label">type:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="type"></div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-1 control-label">lang:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="lang"></div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-1 control-label">title:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="title"></div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-1 control-label">length:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="number" formControlName="length"></div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-1 control-label">rel:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="text" formControlName="rel"></div>
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">href:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" formControlName="href"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">type:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" formControlName="type"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">lang:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" formControlName="lang"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">title:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" formControlName="title"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">length:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="number" formControlName="length"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-1 control-label">rel:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" formControlName="rel"></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
-
       </div>
 
       <h3>Features ( aka Entries / Resources)</h3>
@@ -550,244 +552,247 @@
                   </div>
 
                   <!--links?: OwcResourceLinks;-->
-                  <!--alternates?: OwcLink[];-->
-                  <h3>Alternate links section for this feature</h3>
-                  <small>INFO: add short info?</small>
-                  <div>
-                    <a
-                      (click)="addLinkTo('alternate', owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_alternates.controls)"
-                      class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-                  </div>
-                  <div
-                    *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_alternates || owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_alternates.controls.length <= 0">
-                    <small>currently no elements here</small>
-                  </div>
-                  <div
-                    *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_alternates"
-                    class="list-group" formArrayName="links_alternates">
+                  <div formGroupName="links" class="list-group">
 
-                    <div class="list-group-item"
-                         *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_alternates.controls; let j=index">
+                    <!--alternates?: OwcLink[];-->
+                    <h3>Alternate links section for this feature</h3>
+                    <small>INFO: add short info?</small>
+                    <div>
+                      <a
+                        (click)="addLinkTo('alternate', owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].alternates.controls)"
+                        class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                    </div>
+                    <div
+                      *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].alternates || owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].alternates.controls.length <= 0">
+                      <small>currently no elements here</small>
+                    </div>
+                    <div
+                      *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].alternates"
+                      class="list-group" formArrayName="alternates">
 
-                      <div>
-                        <a class="btn btn-sm btn-warning"
-                        (click)="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_alternates.removeAt(j)">No# {{j + 1}} ( remove <i class="fa fa-minus-circle"></i>
-                          )</a>
-                      </div>
+                      <div class="list-group-item"
+                           *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].alternates.controls; let j=index">
 
-                      <div [formGroupName]="j">
+                        <div>
+                          <a class="btn btn-sm btn-warning"
+                          (click)="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].alternates.removeAt(j)">No# {{j + 1}} ( remove <i class="fa fa-minus-circle"></i>
+                            )</a>
+                        </div>
 
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">href:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="href"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">type:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="type"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">lang:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="lang"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">title:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="title"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">length:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="number" formControlName="length"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">rel:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="rel"></div>
+                        <div [formGroupName]="j">
+
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">href:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="href"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">type:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="type"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">lang:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="lang"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">title:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="title"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">length:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="number" formControlName="length"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">rel:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="rel"></div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <!--links?: OwcResourceLinks;-->
-                  <!--previews?: OwcLink[];-->
-                  <h3>Preview Links / Icons section for this feature</h3>
-                  <small>INFO: add short info?</small>
-                  <div>
-                    <a
-                      (click)="addLinkTo('icon', owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_previews.controls)"
-                      class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-                  </div>
-                  <div
-                    *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_previews || owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_previews.controls.length <= 0">
-                    <small>currently no elements here</small>
-                  </div>
-                  <div
-                    *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_previews"
-                    class="list-group" formArrayName="links_previews">
-                    <div class="list-group-item"
-                         *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_previews.controls; let j=index">
+                    <!--links?: OwcResourceLinks;-->
+                    <!--previews?: OwcLink[];-->
+                    <h3>Preview Links / Icons section for this feature</h3>
+                    <small>INFO: add short info?</small>
+                    <div>
+                      <a
+                        (click)="addLinkTo('icon', owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].previews.controls)"
+                        class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                    </div>
+                    <div
+                      *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].previews || owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].previews.controls.length <= 0">
+                      <small>currently no elements here</small>
+                    </div>
+                    <div
+                      *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].previews"
+                      class="list-group" formArrayName="previews">
+                      <div class="list-group-item"
+                           *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].previews.controls; let j=index">
 
-                      <div>
-                        <a class="btn btn-sm btn-warning"
-                           (click)="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_previews.removeAt(j)">No# {{j + 1}} ( remove <i class="fa fa-minus-circle"></i>
-                          )</a>
-                      </div>
+                        <div>
+                          <a class="btn btn-sm btn-warning"
+                             (click)="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].previews.removeAt(j)">No# {{j + 1}} ( remove <i class="fa fa-minus-circle"></i>
+                            )</a>
+                        </div>
 
-                      <div [formGroupName]="j">
+                        <div [formGroupName]="j">
 
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">href:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="href"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">type:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="type"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">lang:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="lang"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">title:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="title"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">length:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="number" formControlName="length"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">rel:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="rel"></div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">href:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="href"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">type:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="type"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">lang:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="lang"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">title:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="title"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">length:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="number" formControlName="length"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">rel:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="rel"></div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <!--links?: OwcResourceLinks;-->
-                  <!--data?: OwcLink[];-->
-                  <h3>Links to data files section for this feature</h3>
-                  <small>INFO: add short info?</small>
-                  <div>
-                    <a
-                      (click)="addLinkTo('enclosure', owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_data.controls)"
-                      class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-                  </div>
-                  <div
-                    *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_data || owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_data.controls.length <= 0">
-                    <small>currently no elements here</small>
-                  </div>
-                  <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_data"
-                       class="list-group" formArrayName="links_data">
+                    <!--links?: OwcResourceLinks;-->
+                    <!--data?: OwcLink[];-->
+                    <h3>Links to data files section for this feature</h3>
+                    <small>INFO: add short info?</small>
+                    <div>
+                      <a
+                        (click)="addLinkTo('enclosure', owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].data.controls)"
+                        class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                    </div>
+                    <div
+                      *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].data || owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].data.controls.length <= 0">
+                      <small>currently no elements here</small>
+                    </div>
+                    <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].data"
+                         class="list-group" formArrayName="data">
 
-                    <div class="list-group-item"
-                         *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_data.controls; let j=index">
+                      <div class="list-group-item"
+                           *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].data.controls; let j=index">
 
-                      <div>
-                        <a class="btn btn-sm btn-warning"
-                           (click)="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_data.removeAt(j)">No# {{j + 1}} ( remove <i class="fa fa-minus-circle"></i>
-                          )</a>
-                      </div>
+                        <div>
+                          <a class="btn btn-sm btn-warning"
+                             (click)="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].data.removeAt(j)">No# {{j + 1}} ( remove <i class="fa fa-minus-circle"></i>
+                            )</a>
+                        </div>
 
-                      <div [formGroupName]="j">
+                        <div [formGroupName]="j">
 
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">href:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="href"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">type:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="type"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">lang:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="lang"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">title:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="title"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">length:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="number" formControlName="length"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">rel:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="rel"></div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">href:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="href"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">type:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="type"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">lang:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="lang"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">title:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="title"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">length:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="number" formControlName="length"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">rel:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="rel"></div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <!--links?: OwcResourceLinks;-->
-                  <!--via?: OwcLink[];-->
-                  <h3>Via links, resource metadata section for this feature</h3>
-                  <small>INFO: add short info?</small>
-                  <div>
-                    <a
-                      (click)="addLinkTo('via', owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_via.controls)"
-                      class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-                  </div>
-                  <div
-                    *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_via || owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_via.controls.length <= 0">
-                    <small>currently no elements here</small>
-                  </div>
-                  <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_via"
-                       class="list-group" formArrayName="links_via">
-                    <div class="list-group-item"
-                         *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_via.controls; let j=index">
+                    <!--links?: OwcResourceLinks;-->
+                    <!--via?: OwcLink[];-->
+                    <h3>Via links, resource metadata section for this feature</h3>
+                    <small>INFO: add short info?</small>
+                    <div>
+                      <a
+                        (click)="addLinkTo('via', owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].via.controls)"
+                        class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                    </div>
+                    <div
+                      *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].via || owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].via.controls.length <= 0">
+                      <small>currently no elements here</small>
+                    </div>
+                    <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].via"
+                         class="list-group" formArrayName="via">
+                      <div class="list-group-item"
+                           *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].via.controls; let j=index">
 
-                      <div>
-                        <a class="btn btn-sm btn-warning"
-                           (click)="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links_via.removeAt(j)">No# {{j + 1}} ( remove <i class="fa fa-minus-circle"></i>
-                          )</a>
-                      </div>
+                        <div>
+                          <a class="btn btn-sm btn-warning"
+                             (click)="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].via.removeAt(j)">No# {{j + 1}} ( remove <i class="fa fa-minus-circle"></i>
+                            )</a>
+                        </div>
 
-                      <div [formGroupName]="j">
+                        <div [formGroupName]="j">
 
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">href:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="href"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">type:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="type"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">lang:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="lang"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">title:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="title"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">length:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="number" formControlName="length"></div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-1 control-label">rel:</label>
-                          <div class="col-sm-10">
-                            <input class="form-control" type="text" formControlName="rel"></div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">href:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="href"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">type:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="type"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">lang:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="lang"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">title:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="title"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">length:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="number" formControlName="length"></div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-1 control-label">rel:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" type="text" formControlName="rel"></div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -796,31 +801,363 @@
                   <!--offerings?: OwcOffering[];-->
                   <h3>Offerings section for this feature (OGC standards data access)</h3>
                   <small>INFO: add short info?</small>
+                  <div
+                    *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings || owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls.length <= 0">
+                    <small>currently no elements here</small>
+                  </div>
                   <div>
                     <a
                       (click)="addOfferingTo(owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls)"
                       class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
                   </div>
-                  <div
-                    *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings || owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls.length <= 0">
-                    <small>currently no elements here</small>
-                  </div>
+
                   <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings"
                        class="list-group" formArrayName="offerings">
                     <div class="list-group-item"
                          *ngFor="let offering of owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls; let j=index">
 
                       <div>
-                        <pre>{{ offering.value | json }}</pre>
+                        <!--<pre>{{ offering.value | json }}</pre>-->
                         <a class="btn btn-sm btn-warning"
                         (click)="owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.removeAt(j)">No# {{j + 1}} ( remove <i class="fa fa-minus-circle"></i> )</a>
                       </div>
 
-                      <div [formGroupName]="j">
-                        <div class="form-group">
+                      <div [formGroupName]="j" class="list-group">
+
+                        <div class="form-group list-group-item">
                           <label class="col-sm-1 control-label">code:</label>
                           <div class="col-sm-10">
                             <input class="form-control" type="text" formControlName="code"></div>
+                        </div>
+
+                        <!-- OPERATIONS -->
+                        <div class="list-group-item">
+                          <h4>Operations section for offering# {{j + 1}}</h4>
+                          <small>INFO: add short info?</small>
+
+                          <div
+                            *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].operations || owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].operations.controls.length <= 0">
+                            <small>currently no elements here</small>
+                          </div>
+                          <div>
+                            <a
+                              (click)="addOperationTo(owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].operations.controls)"
+                              class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                          </div>
+
+                          <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].operations"
+                               class="list-group" formArrayName="operations">
+                            <div class="list-group-item"
+                                 *ngFor="let operation of owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].operations.controls; let k=index">
+
+                              <div>
+                                <!--<pre>{{ operation.value | json }}</pre>-->
+                                <a class="btn btn-sm btn-warning"
+                                   (click)="owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].operations.removeAt(k)">No# {{k + 1}} ( remove <i class="fa fa-minus-circle"></i> )</a>
+                              </div>
+
+                              <div [formGroupName]="k">
+
+                                <!--code: string;-->
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">code:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="code">
+                                  </div>
+                                </div>
+
+                                <!--method: string;-->
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">method:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="method">
+                                  </div>
+                                </div>
+
+                                <!--type?: string;-->
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">type:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="type">
+                                  </div>
+                                </div>
+
+                                <!--href: string;-->
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">href:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="href">
+                                  </div>
+                                </div>
+
+                                <!--request?: OwcContent;-->
+                                <div formGroupName="request" class="form-group list-group-item">
+                                  <small>REQUEST section for operation# {{k + 1}} / Offering# {{j + 1}}: Details about an included POST request (if any)</small>
+                                  <div class="list-group">
+
+                                    <div class="form-group">
+                                      <label class="col-sm-1 control-label">type:</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" type="text" formControlName="type">
+                                      </div>
+                                    </div>
+
+                                    <!--href: string;-->
+                                    <div class="form-group">
+                                      <label class="col-sm-1 control-label">href:</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" type="text" formControlName="href">
+                                      </div>
+                                    </div>
+
+                                    <!--title?: string;-->
+                                    <div class="form-group">
+                                      <label class="col-sm-1 control-label">title:</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" type="text" formControlName="title">
+                                      </div>
+                                    </div>
+
+                                    <!--content: string;-->
+                                    <div class="form-group">
+                                      <label class="col-sm-1 control-label">data content:</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" type="text" formControlName="content">
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+
+                                <!--result?: OwcContent;-->
+                                <div formGroupName="result" class="form-group list-group-item">
+                                  <small>RESULT section for operation# {{k + 1}} / Offering# {{j + 1}}: Details about the received and stored result of a request (if any)</small>
+                                  <div class="list-group">
+
+                                    <div class="form-group">
+                                      <label class="col-sm-1 control-label">type:</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" type="text" formControlName="type">
+                                      </div>
+                                    </div>
+
+                                    <!--href: string;-->
+                                    <div class="form-group">
+                                      <label class="col-sm-1 control-label">href:</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" type="text" formControlName="href">
+                                      </div>
+                                    </div>
+
+                                    <!--title?: string;-->
+                                    <div class="form-group">
+                                      <label class="col-sm-1 control-label">title:</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" type="text" formControlName="title">
+                                      </div>
+                                    </div>
+
+                                    <!--content: string;-->
+                                    <div class="form-group">
+                                      <label class="col-sm-1 control-label">data content:</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" type="text" formControlName="content">
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+
+                                <!--uuid?: string;-->
+
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- STYLESETS -->
+                        <div class="list-group-item">
+                          <h4>StyleSets section for offering# {{j + 1}}</h4>
+                          <small>INFO: add short info?</small>
+
+                          <div
+                            *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].styles || owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].styles.controls.length <= 0">
+                            <small>currently no elements here</small>
+                          </div>
+                          <div>
+                            <a
+                              (click)="addStyleTo(owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].styles.controls)"
+                              class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                          </div>
+
+                          <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].styles"
+                               class="list-group" formArrayName="styles">
+                            <div class="list-group-item"
+                                 *ngFor="let styleset of owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].styles.controls; let k=index">
+
+                              <div>
+                                <!--<pre>{{ styleset.value | json }}</pre>-->
+                                <a class="btn btn-sm btn-warning"
+                                   (click)="owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].styles.removeAt(k)">No# {{k + 1}} ( remove <i class="fa fa-minus-circle"></i> )</a>
+                              </div>
+
+                              <div [formGroupName]="k">
+
+                                <!--name: string;-->
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">name:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="name">
+                                  </div>
+                                </div>
+
+                                <!--title: string;-->
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">title:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="title">
+                                  </div>
+                                </div>
+
+                                <!--abstract?: string;-->
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">abstract:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="abstract">
+                                  </div>
+                                </div>
+
+                                <!--default?: boolean;-->
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">default:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="default">
+                                  </div>
+                                </div>
+
+                                <!--legendURL?: string;-->
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">legendURL:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="legendURL">
+                                  </div>
+                                </div>
+
+                                <!--content?: OwcContent;-->
+                                <div formGroupName="content" class="form-group list-group-item">
+                                  <small>STYLE data section for style# {{k + 1}} / Offering# {{j + 1}}: Details about an included/stored style descriptor (if any)</small>
+                                  <div class="list-group">
+
+                                    <div class="form-group">
+                                      <label class="col-sm-1 control-label">type:</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" type="text" formControlName="type">
+                                      </div>
+                                    </div>
+
+                                    <!--href: string;-->
+                                    <div class="form-group">
+                                      <label class="col-sm-1 control-label">href:</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" type="text" formControlName="href">
+                                      </div>
+                                    </div>
+
+                                    <!--title?: string;-->
+                                    <div class="form-group">
+                                      <label class="col-sm-1 control-label">title:</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" type="text" formControlName="title">
+                                      </div>
+                                    </div>
+
+                                    <!--content: string;-->
+                                    <div class="form-group">
+                                      <label class="col-sm-1 control-label">data content:</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" type="text" formControlName="content">
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+
+                                <!--uuid?: string;-->
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- CONTENTS -->
+                        <div class="list-group-item">
+                          <h4>Contents array section for offering# {{j + 1}}</h4>
+                          <small>INFO: add short info?</small>
+
+                          <div
+                            *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].contents || owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].contents.controls.length <= 0">
+                            <small>currently no elements here</small>
+                          </div>
+                          <div>
+                            <a
+                              (click)="addContentTo(owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].contents.controls)"
+                              class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                          </div>
+
+                          <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].contents"
+                               class="list-group" formArrayName="contents">
+                            <div class="list-group-item"
+                                 *ngFor="let content of owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].contents.controls; let k=index">
+
+                              <div>
+                                <!--<pre>{{ content.value | json }}</pre>-->
+                                <a class="btn btn-sm btn-warning"
+                                   (click)="owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].contents.removeAt(k)">No# {{k + 1}} ( remove <i class="fa fa-minus-circle"></i> )</a>
+                              </div>
+
+                              <div [formGroupName]="k">
+
+                                <!--  type: string;
+                                   href?: string;
+                                   title?: string;
+                                   content?: string;
+                                   uuid?: string;-->
+
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">type:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="type">
+                                  </div>
+                                </div>
+
+                                <!--href: string;-->
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">href:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="href">
+                                  </div>
+                                </div>
+
+                                <!--title?: string;-->
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">title:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="title">
+                                  </div>
+                                </div>
+
+                                <!--content: string;-->
+                                <div class="form-group">
+                                  <label class="col-sm-1 control-label">data content:</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="text" formControlName="content">
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
                         </div>
 
                       </div>
@@ -839,8 +1176,12 @@
                 [disabled]="!owcForm.valid">
           Save <i class="fa fa-floppy-o" aria-hidden="true"></i>
         </button>
-        <button (click)="closeEditor()" type="button" class="btn btn-warning" tooltip="Closing editor and return">
-          Close and return <i class="fa fa-backward" aria-hidden="true"></i>
+        <button (click)="saveEditsAndReturn(owcForm.value)" class="btn btn-default" tooltip="Save edits and return" type="submit"
+                [disabled]="!owcForm.valid">
+          Save and return <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        </button>
+        <button (click)="closeEditor()" type="button" class="btn btn-warning" tooltip="Close editor and return (no saving)">
+          Abort and return <i class="fa fa-backward" aria-hidden="true"></i>
         </button>
       </div>
 

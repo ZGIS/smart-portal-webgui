@@ -45,12 +45,14 @@ export class OwcCollectionEditorComponent implements OnInit {
         lang: [ this.initForStr(iOwc.properties.lang), [] ],
         title: [ this.initForStr(iOwc.properties.title), [ Validators.required, Validators.minLength(5) ] ],
         subtitle: [ this.initForStr(iOwc.properties.subtitle), [] ],
-        links_profiles: this.fb.array(
-          this.initLinks(iOwc.properties.links.profiles),
-        ),
-        links_via: this.fb.array(
-          this.initLinks(iOwc.properties.links.via),
-        ),
+        links: this.fb.group({
+          profiles: this.fb.array(
+            this.initLinks(iOwc.properties.links.profiles),
+          ),
+          via: this.fb.array(
+            this.initLinks(iOwc.properties.links.via),
+          )
+        }),
         updated: [ iOwc.properties.updated, [] ],
         authors: this.fb.array(
           this.initAuthors(iOwc.properties.authors),
@@ -90,18 +92,20 @@ export class OwcCollectionEditorComponent implements OnInit {
           publisher: [ this.initForStr(iOwc.properties.publisher), [] ],
           rights: [ this.initForStr(iOwc.properties.rights), [] ],
           date: [ this.initForStr(iOwc.properties.date), [] ],
-          links_alternates: this.fb.array(
-            this.initLinks(iOwc.properties.links.alternates),
-          ),
-          links_previews: this.fb.array(
-            this.initLinks(iOwc.properties.links.previews),
-          ),
-          links_data: this.fb.array(
-            this.initLinks(iOwc.properties.links.data),
-          ),
-          links_via: this.fb.array(
-            this.initLinks(iOwc.properties.links.via),
-          ),
+          links: this.fb.group({
+            alternates: this.fb.array(
+              this.initLinks(iOwc.properties.links.alternates),
+            ),
+            previews: this.fb.array(
+              this.initLinks(iOwc.properties.links.previews),
+            ),
+            data: this.fb.array(
+              this.initLinks(iOwc.properties.links.data),
+            ),
+            via: this.fb.array(
+              this.initLinks(iOwc.properties.links.via),
+            )
+          }),
           offerings: this.fb.array(
             this.initOfferings(iOwc.properties.offerings),
           ),
@@ -385,15 +389,32 @@ export class OwcCollectionEditorComponent implements OnInit {
     });
   }
 
+  saveEditsAndReturn( formdata: FormGroup ): void {
+    this.saveEdits(formdata);
+    this.returnCloseEditor.emit(true);
+  }
+
   saveEdits( formdata: FormGroup ): void {
     // console.log(JSON.stringify(this.owcForm.value));
-    console.log(JSON.stringify(formdata.value));
-    this.notificationService.addNotification({
-      id: NotificationService.DEFAULT_DISMISS,
-      type: 'info',
-      message: `Saving edits for this collection, not yet implemented.`
-    });
-    this.reloadOnSavedCollection.emit(true);
+    // console.log(JSON.stringify(formdata.value));
+    let newOwc = formdata.value;
+    // FIXME: we need to update links_profiles and etc and also in the features
+    let fixedOwc = this.fixOwcLinksFromForm(formdata.value);
+
+    console.log('we save and update the Collection');
+    this.collectionsService.updateCollection(formdata.value).subscribe(
+      updated => {
+        this.notificationService.addNotification({
+          id: NotificationService.DEFAULT_DISMISS,
+          type: 'info',
+          message: `This collection has been updated/saved.`
+        });
+        this.reloadOnSavedCollection.emit(true);
+      },
+      error => {
+        console.log(<any>error);
+        this.notificationService.addErrorResultNotification(error);
+      });
   }
 
   closeEditor(): void {
@@ -404,5 +425,14 @@ export class OwcCollectionEditorComponent implements OnInit {
       message: `Closing editor and returning to list view.`
     });
     this.returnCloseEditor.emit(true);
+  }
+
+  /**
+   * cant be OWC because has the links props wrong
+   * @param formValue
+   * @returns {OwcContext}
+   */
+  private fixOwcLinksFromForm( formValue: any ): OwcContext {
+    return <OwcContext>formValue;
   }
 }
