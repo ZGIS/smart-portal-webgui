@@ -192,7 +192,11 @@ export class OwcCollectionEditorComponent implements OnInit {
 
   initGenerator( res: OwcCreatorApplication ): FormGroup {
     if (!res) {
-      res = {};
+      res = {
+        title: null,
+        uri: null,
+        version: null,
+      };
     }
     // generator?: OwcCreatorApplication;
     return this.fb.group({
@@ -205,7 +209,11 @@ export class OwcCollectionEditorComponent implements OnInit {
 
   initDisplay( res: OwcCreatorDisplay ): FormGroup {
     if (!res) {
-      res = {};
+      res = {
+        pixelWidth: null,
+        pixelHeight: null,
+        mmPerPixel: null,
+      };
     }
     // display?: OwcCreatorDisplay;
     return this.fb.group({
@@ -286,7 +294,12 @@ export class OwcCollectionEditorComponent implements OnInit {
 
   initSingleContent( res: OwcContent ): FormGroup {
     if (!res) {
-      res = { type: null};
+      res = {
+        type: null,
+        href: null,
+        title: null,
+        content: null
+      };
     }
     return this.fb.group({
       title: [ this.initForStr(res.title), [] ],
@@ -298,7 +311,7 @@ export class OwcCollectionEditorComponent implements OnInit {
   }
 
   saveEdits( formdata: FormGroup ): void {
-    console.log(JSON.stringify(this.owcForm.value));
+    // console.log(JSON.stringify(this.owcForm.value));
     console.log(JSON.stringify(formdata.value));
     this.notificationService.addNotification({
       id: NotificationService.DEFAULT_DISMISS,
