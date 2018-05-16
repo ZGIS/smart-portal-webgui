@@ -2,17 +2,20 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { WorkbenchService } from '../../workbench';
 import { CollectionsService } from '../index';
 import { NotificationService } from '../../notifications';
-import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   OwcAuthor,
-  OwcCategory, OwcContent,
-  OwcContext, OwcContextLinks,
-  OwcContextProperties, OwcCreatorApplication, OwcCreatorDisplay,
+  OwcCategory,
+  OwcContent,
+  OwcContext, OwcContextProperties,
+  OwcCreatorApplication,
+  OwcCreatorDisplay,
   OwcLink,
-  OwcOffering, OwcOperation,
-  OwcResource, OwcResourceLinks, OwcStyleSet
+  OwcOffering,
+  OwcOperation,
+  OwcResource,
+  OwcStyleSet
 } from '../collections';
-import { noop } from 'rxjs/util/noop';
 
 @Component({
   selector: 'app-sac-gwh-owc-collection-editor-component',
@@ -37,7 +40,8 @@ export class OwcCollectionEditorComponent implements OnInit {
 
   ngOnInit() {
     let iOwc = this.owcData;
-    console.log(iOwc);
+    // let iOwc = (JSON.parse(JSON.stringify(this.owcData)));
+    // console.log(iOwc);
     this.owcForm = this.fb.group({
       type: [ { value: iOwc.type, disabled: false }, Validators.pattern('FeatureCollection') ],
       id: [ { value: iOwc.id, disabled: false }, [ Validators.required ] ],
@@ -71,6 +75,7 @@ export class OwcCollectionEditorComponent implements OnInit {
         this.initFeatures(iOwc.features),
       )
     });
+    this.logChanges();
   }
 
   initFeatures( res: OwcResource[] ): FormGroup[] {
@@ -191,13 +196,25 @@ export class OwcCollectionEditorComponent implements OnInit {
     return owcFGs;
   }
 
-  addAuthorTo( here: FormArray ): void {
+  addAuthorToContext(): void {
+    let contr = this.owcForm.get('properties').get('authors') as FormArray;
+    contr.push(this.addAuthorTo());
+  }
+
+  addAuthorToFeature( index: number ): void {
+    console.log(index);
+    let feat = this.owcForm.get('features') as FormArray;
+    let contr = feat.at(index).get('properties').get('authors') as FormArray;
+    contr.push(this.addAuthorTo());
+  }
+
+  addAuthorTo(): FormGroup {
     let newOp = this.fb.group({
       name: [ null, Validators.required ],
       email: [ null ],
       uri: [ null ]
     });
-    here.push(newOp);
+    return newOp;
   }
 
   initCategories( res: OwcCategory[] ): FormGroup[] {
@@ -389,32 +406,44 @@ export class OwcCollectionEditorComponent implements OnInit {
     });
   }
 
-  saveEditsAndReturn( formdata: FormGroup ): void {
-    this.saveEdits(formdata);
+  saveEditsAndReturn(): void {
+    this.saveEdits();
     this.returnCloseEditor.emit(true);
   }
 
-  saveEdits( formdata: FormGroup ): void {
-    // console.log(JSON.stringify(this.owcForm.value));
-    // console.log(JSON.stringify(formdata.value));
-    let newOwc = formdata.value;
-    // FIXME: we need to update links_profiles and etc and also in the features
-    let fixedOwc = this.fixOwcLinksFromForm(formdata.value);
-
+  saveEdits(): void {
     console.log('we save and update the Collection');
-    this.collectionsService.updateCollection(formdata.value).subscribe(
-      updated => {
-        this.notificationService.addNotification({
-          id: NotificationService.DEFAULT_DISMISS,
-          type: 'info',
-          message: `This collection has been updated/saved.`
-        });
-        this.reloadOnSavedCollection.emit(true);
-      },
-      error => {
-        console.log(<any>error);
-        this.notificationService.addErrorResultNotification(error);
-      });
+    const owc = this.prepareForSave();
+    /*    this.collectionsService.updateCollection(owc).subscribe(
+          updated => {
+            this.notificationService.addNotification({
+              id: NotificationService.DEFAULT_DISMISS,
+              type: 'info',
+              message: `This collection has been updated/saved.`
+            });
+            this.reloadOnSavedCollection.emit(true);
+          },
+          error => {
+            console.log(<any>error);
+            this.notificationService.addErrorResultNotification(error);
+          });*/
+  }
+
+  prepareForSave(): OwcContext {
+    const formModel = this.owcForm.value;
+
+    const authors = formModel.properties.authors;
+    console.log(authors);
+
+    const saveOwc: OwcContext = {
+      type: 'FeatureCollection',
+      id: formModel.id,
+      bbox: formModel.bbox,
+      properties: formModel.properties,
+      features: formModel.features
+    };
+    console.log(saveOwc);
+    return saveOwc;
   }
 
   closeEditor(): void {
@@ -425,6 +454,17 @@ export class OwcCollectionEditorComponent implements OnInit {
       message: `Closing editor and returning to list view.`
     });
     this.returnCloseEditor.emit(true);
+  }
+
+  logChanges() {
+    const nameControl = this.owcForm.get('properties').get('authors');
+    nameControl.valueChanges.forEach(
+      ( value: OwcAuthor ) => console.log(value)
+    );
+  }
+
+  trackByFn( index: any, item: any ) {
+    return index;
   }
 
   /**

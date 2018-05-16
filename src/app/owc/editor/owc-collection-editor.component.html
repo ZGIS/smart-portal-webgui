@@ -5,7 +5,7 @@
   </div>
   <div class="panel-body" *ngIf="owcForm">
 
-    <form [formGroup]="owcForm" novalidate (ngSubmit)="saveEdits(owcForm)" class="form-horizontal">
+    <form [formGroup]="owcForm" novalidate (ngSubmit)="saveEdits()" class="form-horizontal">
 
       <div class="list-group">
 
@@ -137,10 +137,6 @@
           <!--authors?: OwcAuthor[];-->
           <h3>Authors section for collection</h3>
           <small>INFO: add short info?</small>
-          <div>
-            <a (click)="addAuthorTo(owcForm['controls'].properties['controls'].authors.controls)"
-               class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-          </div>
           <div
             *ngIf="!owcForm['controls'].properties['controls'].authors || owcForm['controls'].properties['controls'].authors.controls.length <= 0">
             <small>currently no elements here</small>
@@ -148,16 +144,19 @@
           <div *ngIf="owcForm['controls'].properties['controls'].authors"
                class="list-group" formArrayName="authors">
 
+            <div>
+              <a (click)="addAuthorToContext()"
+                 class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+            </div>
+
             <div class="list-group-item"
-                 *ngFor="let author of owcForm['controls'].properties['controls'].authors.controls; let i=index">
+                 *ngFor="let author of owcForm['controls'].properties['controls'].authors.controls; index as i; trackBy: trackByFn" [formGroupName]="i">
 
               <div>
                 <a class="btn btn-sm btn-warning"
                    (click)="owcForm['controls'].properties['controls'].authors.removeAt(i)">No#
                   {{i + 1}} ( remove <i class="fa fa-minus-circle"></i> )</a>
               </div>
-
-              <div [formGroupName]="i">
 
                 <div class="form-group">
                   <label class="col-sm-1 control-label">name:</label>
@@ -174,7 +173,6 @@
                   <div class="col-sm-10">
                     <input class="form-control" type="text" formControlName="uri"></div>
                 </div>
-              </div>
             </div>
           </div>
 
@@ -465,17 +463,20 @@
                   <!--authors?: OwcAuthor[];-->
                   <h3>Authors section for this feature</h3>
                   <small>INFO: add short info?</small>
-                  <div>
-                    <a
-                      (click)="addAuthorTo(owcForm['controls'].features.controls[i]['controls'].properties['controls'].authors.controls)"
-                      class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-                  </div>
+
                   <div
                     *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].authors || owcForm['controls'].features.controls[i]['controls'].properties['controls'].authors.controls.length <= 0">
                     <small>currently no elements here</small>
                   </div>
                   <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].authors"
                        class="list-group" formArrayName="authors">
+
+                    <div>
+                      <a
+                        (click)="addAuthorToFeature(i)"
+                        class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                    </div>
+
                     <div class="list-group-item"
                          *ngFor="let author of owcForm['controls'].features.controls[i]['controls'].properties['controls'].authors.controls; let j=index">
 

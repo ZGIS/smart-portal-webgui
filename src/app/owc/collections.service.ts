@@ -304,10 +304,11 @@ export class CollectionsService {
   updateCollection( owcContext: OwcContext ): Observable<OwcContext> {
     let defaultCollectionsUri = this.portalApiUrl + '/collections/update';
     let token = this.accountService.token;
+    let data = <OwcContext>owcContext;
     // console.log('token: ' + token);
-    let headers = new Headers({ 'X-XSRF-TOKEN': token });
+    let headers = new Headers({ 'X-XSRF-TOKEN': token, 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers, withCredentials: true });
-    return this.http.post(defaultCollectionsUri, owcContext, options)
+    return this.http.post(defaultCollectionsUri, data, options)
       .map(
         ( response: Response ) => {
           let insertedCollection = response.json().document;
