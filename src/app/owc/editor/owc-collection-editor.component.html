@@ -179,16 +179,19 @@
           <!--categories?: OwcCategory[];-->
           <h3>Category / Keyword section for collection</h3>
           <small>INFO: add short info?</small>
-          <div>
-            <a (click)="addCategoryTo(owcForm['controls'].properties['controls'].categories.controls)"
-               class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-          </div>
+
           <div
             *ngIf="!owcForm['controls'].properties['controls'].categories || owcForm['controls'].properties['controls'].categories.controls.length <= 0">
             <small>currently no elements here</small>
           </div>
           <div *ngIf="owcForm['controls'].properties['controls'].categories"
                class="list-group" formArrayName="categories">
+
+            <div>
+              <a (click)="addCategoryToContext()"
+                 class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+            </div>
+
             <div class="list-group-item"
                  *ngFor="let category of owcForm['controls'].properties['controls'].categories.controls; let i=index">
 
@@ -224,16 +227,18 @@
             <!-- links: OwcContextLinks; -->
             <h3>OWC Profiles Links section for collection</h3>
             <small>TODO: warning to not change this unless you know what you do</small>
-            <div>
-              <a (click)="addLinkTo('profile', owcForm['controls'].properties['controls'].links['controls'].profiles.controls)"
-                 class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-            </div>
+
             <div
               *ngIf="!owcForm['controls'].properties['controls'].links['controls'].profiles || owcForm['controls'].properties['controls'].links['controls'].profiles.controls.length <= 0">
               <small>currently no elements here</small>
             </div>
             <div *ngIf="owcForm['controls'].properties['controls'].links['controls'].profiles"
                  class="list-group" formArrayName="profiles">
+
+              <div>
+                <a (click)="addLinkToContext('profile', 'profiles')"
+                   class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+              </div>
 
               <div class="list-group-item"
                    *ngFor="let link of owcForm['controls'].properties['controls'].links['controls'].profiles.controls; let i=index">
@@ -288,16 +293,18 @@
 
             <h3>Via Links metadata section for collection</h3>
             <small>INFO: add short info?</small>
-            <div>
-              <a (click)="addLinkTo('via', owcForm['controls'].properties['controls'].links['controls'].via.controls)"
-                 class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-            </div>
+
             <div
               *ngIf="!owcForm['controls'].properties['controls'].links['controls'].via || owcForm['controls'].properties['controls'].links['controls'].via.controls.length <= 0">
               <small>currently no elements here</small>
             </div>
             <div *ngIf="owcForm['controls'].properties['controls'].links['controls'].via"
                  class="list-group" formArrayName="via">
+
+              <div>
+                <a (click)="addLinkToContext('via', 'via')"
+                   class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+              </div>
 
               <div class="list-group-item"
                    *ngFor="let link of owcForm['controls'].properties['controls'].links['controls'].via.controls; let i=index">
@@ -511,17 +518,20 @@
                   <!--categories?: OwcCategory[];-->
                   <h3>Category / Keyword section for this feature)</h3>
                   <small>INFO: add short info?</small>
-                  <div>
-                    <a
-                      (click)="addCategoryTo(owcForm['controls'].features.controls[i]['controls'].properties['controls'].categories.controls)"
-                      class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-                  </div>
+
                   <div
                     *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].categories || owcForm['controls'].features.controls[i]['controls'].properties['controls'].categories.controls.length <= 0">
                     <small>currently no elements here</small>
                   </div>
                   <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].categories"
                        class="list-group" formArrayName="categories">
+
+                    <div>
+                      <a
+                        (click)="addCategoryToFeature(i)"
+                        class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                    </div>
+
                     <div class="list-group-item"
                          *ngFor="let category of owcForm['controls'].features.controls[i]['controls'].properties['controls'].categories.controls; let j=index">
 
@@ -558,11 +568,7 @@
                     <!--alternates?: OwcLink[];-->
                     <h3>Alternate links section for this feature</h3>
                     <small>INFO: add short info?</small>
-                    <div>
-                      <a
-                        (click)="addLinkTo('alternate', owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].alternates.controls)"
-                        class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-                    </div>
+
                     <div
                       *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].alternates || owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].alternates.controls.length <= 0">
                       <small>currently no elements here</small>
@@ -570,6 +576,11 @@
                     <div
                       *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].alternates"
                       class="list-group" formArrayName="alternates">
+
+                      <div>
+                        <a (click)="addLinkToFeature(i, 'alternate', 'alternates')"
+                           class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                      </div>
 
                       <div class="list-group-item"
                            *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].alternates.controls; let j=index">
@@ -620,11 +631,7 @@
                     <!--previews?: OwcLink[];-->
                     <h3>Preview Links / Icons section for this feature</h3>
                     <small>INFO: add short info?</small>
-                    <div>
-                      <a
-                        (click)="addLinkTo('icon', owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].previews.controls)"
-                        class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-                    </div>
+
                     <div
                       *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].previews || owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].previews.controls.length <= 0">
                       <small>currently no elements here</small>
@@ -632,6 +639,12 @@
                     <div
                       *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].previews"
                       class="list-group" formArrayName="previews">
+
+                      <div>
+                        <a (click)="addLinkToFeature(i, 'icon', 'previews')"
+                           class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                      </div>
+
                       <div class="list-group-item"
                            *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].previews.controls; let j=index">
 
@@ -681,17 +694,18 @@
                     <!--data?: OwcLink[];-->
                     <h3>Links to data files section for this feature</h3>
                     <small>INFO: add short info?</small>
-                    <div>
-                      <a
-                        (click)="addLinkTo('enclosure', owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].data.controls)"
-                        class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-                    </div>
+
                     <div
                       *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].data || owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].data.controls.length <= 0">
                       <small>currently no elements here</small>
                     </div>
                     <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].data"
                          class="list-group" formArrayName="data">
+
+                      <div>
+                        <a (click)="addLinkToFeature(i, 'enclosure', 'data')"
+                           class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                      </div>
 
                       <div class="list-group-item"
                            *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].data.controls; let j=index">
@@ -742,17 +756,19 @@
                     <!--via?: OwcLink[];-->
                     <h3>Via links, resource metadata section for this feature</h3>
                     <small>INFO: add short info?</small>
-                    <div>
-                      <a
-                        (click)="addLinkTo('via', owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].via.controls)"
-                        class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-                    </div>
+
                     <div
                       *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].via || owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].via.controls.length <= 0">
                       <small>currently no elements here</small>
                     </div>
                     <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].via"
                          class="list-group" formArrayName="via">
+
+                      <div>
+                        <a (click)="addLinkToFeature(i, 'via', 'via')"
+                           class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                      </div>
+
                       <div class="list-group-item"
                            *ngFor="let link of owcForm['controls'].features.controls[i]['controls'].properties['controls'].links['controls'].via.controls; let j=index">
 
@@ -806,14 +822,16 @@
                     *ngIf="!owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings || owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls.length <= 0">
                     <small>currently no elements here</small>
                   </div>
-                  <div>
-                    <a
-                      (click)="addOfferingTo(owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls)"
-                      class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
-                  </div>
 
                   <div *ngIf="owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings"
                        class="list-group" formArrayName="offerings">
+
+                    <div>
+                      <a
+                        (click)="addOfferingToFeature(i)"
+                        class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
+                    </div>
+
                     <div class="list-group-item"
                          *ngFor="let offering of owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls; let j=index">
 
@@ -842,7 +860,7 @@
                           </div>
                           <div>
                             <a
-                              (click)="addOperationTo(owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].operations.controls)"
+                              (click)="addOperationToOffering(i, j)"
                               class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
                           </div>
 
@@ -988,7 +1006,7 @@
                           </div>
                           <div>
                             <a
-                              (click)="addStyleTo(owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].styles.controls)"
+                              (click)="addStyleToOffering(i, j)"
                               class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
                           </div>
 
@@ -1102,7 +1120,7 @@
                           </div>
                           <div>
                             <a
-                              (click)="addContentTo(owcForm['controls'].features.controls[i]['controls'].properties['controls'].offerings.controls[j]['controls'].contents.controls)"
+                              (click)="addContentToOffering(i, j)"
                               class="btn btn-sm btn-info">add additional <i class="fa fa-plus-circle"></i></a>
                           </div>
 

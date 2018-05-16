@@ -169,7 +169,7 @@ export class OwcCollectionEditorComponent implements OnInit {
     return owcFGs;
   }
 
-  addLinkTo( rel: string, here: FormArray ): void {
+  addLinkTo( rel: string ): FormGroup {
     let newOp = this.fb.group({
       href: [ null, Validators.required ],
       type: [ null ],
@@ -178,7 +178,18 @@ export class OwcCollectionEditorComponent implements OnInit {
       length: [ null ],
       rel: [ rel ]
     });
-    here.push(newOp);
+    return newOp;
+  }
+
+  addLinkToContext( rel: string, pos: string ): void {
+    let contr = this.owcForm.get('properties').get('links').get(pos) as FormArray;
+    contr.push(this.addLinkTo(rel));
+  }
+
+  addLinkToFeature( index: number, rel: string, pos: string ): void {
+    let feat = this.owcForm.get('features') as FormArray;
+    let contr = feat.at(index).get('properties').get('links').get(pos) as FormArray;
+    contr.push(this.addLinkTo(rel));
   }
 
   initAuthors( res: OwcAuthor[] ): FormGroup[] {
@@ -202,7 +213,6 @@ export class OwcCollectionEditorComponent implements OnInit {
   }
 
   addAuthorToFeature( index: number ): void {
-    console.log(index);
     let feat = this.owcForm.get('features') as FormArray;
     let contr = feat.at(index).get('properties').get('authors') as FormArray;
     contr.push(this.addAuthorTo());
@@ -232,13 +242,24 @@ export class OwcCollectionEditorComponent implements OnInit {
     return owcFGs;
   }
 
-  addCategoryTo( here: FormArray ): void {
+  addCategoryTo(): FormGroup {
     let newOp = this.fb.group({
       term: [ null, Validators.required ],
       scheme: [ null ],
       label: [ null ]
     });
-    here.push(newOp);
+    return newOp;
+  }
+
+  addCategoryToContext(): void {
+    let contr = this.owcForm.get('properties').get('categories') as FormArray;
+    contr.push(this.addCategoryTo());
+  }
+
+  addCategoryToFeature( index: number ): void {
+    let feat = this.owcForm.get('features') as FormArray;
+    let contr = feat.at(index).get('properties').get('categories') as FormArray;
+    contr.push(this.addCategoryTo());
   }
 
   initGenerator( res: OwcCreatorApplication ): FormGroup {
@@ -297,7 +318,7 @@ export class OwcCollectionEditorComponent implements OnInit {
     return owcFGs;
   }
 
-  addOfferingTo( here: FormArray ): void {
+  addOfferingTo(): FormGroup {
     let newOp = this.fb.group({
       code: [ null, Validators.required ],
       operations: this.fb.array(
@@ -310,7 +331,13 @@ export class OwcCollectionEditorComponent implements OnInit {
         this.initStyles([]),
       ),
     });
-    here.push(newOp);
+    return newOp;
+  }
+
+  addOfferingToFeature( index: number ): void {
+    let feat = this.owcForm.get('features') as FormArray;
+    let contr = feat.at(index).get('properties').get('offerings') as FormArray;
+    contr.push(this.addOfferingTo());
   }
 
   initOperations( res: OwcOperation[] ): FormGroup[] {
@@ -331,7 +358,7 @@ export class OwcCollectionEditorComponent implements OnInit {
     return owcFGs;
   }
 
-  addOperationTo( here: FormArray ): void {
+  addOperationTo(): FormGroup {
     let newOp = this.fb.group({
       code: [ null, Validators.required ],
       method: [ null, [] ],
@@ -340,7 +367,14 @@ export class OwcCollectionEditorComponent implements OnInit {
       request: this.initSingleContent(undefined),
       result: this.initSingleContent(undefined)
     });
-    here.push(newOp);
+    return newOp;
+  }
+
+  addOperationToOffering( feature_index: number, offering_index: number ): void {
+    let feat = this.owcForm.get('features') as FormArray;
+    let offs = feat.at(feature_index).get('properties').get('offerings') as FormArray;
+    let contr = offs.at(offering_index).get('operations') as FormArray;
+    contr.push(this.addOperationTo());
   }
 
   initStyles( res: OwcStyleSet[] ): FormGroup[] {
@@ -361,7 +395,7 @@ export class OwcCollectionEditorComponent implements OnInit {
     return owcFGs;
   }
 
-  addStyleTo( here: FormArray ): void {
+  addStyleTo(): FormGroup {
     let newOp = this.fb.group({
       name: [ null, Validators.required ],
       title: [ null, [] ],
@@ -370,7 +404,14 @@ export class OwcCollectionEditorComponent implements OnInit {
       legendURL: [ null, [] ],
       content: this.initSingleContent(undefined)
     });
-    here.push(newOp);
+    return newOp;
+  }
+
+  addStyleToOffering( feature_index: number, offering_index: number ): void {
+    let feat = this.owcForm.get('features') as FormArray;
+    let offs = feat.at(feature_index).get('properties').get('offerings') as FormArray;
+    let contr = offs.at(offering_index).get('styles') as FormArray;
+    contr.push(this.addStyleTo());
   }
 
   initContents( res: OwcContent[] ): FormGroup[] {
@@ -383,9 +424,9 @@ export class OwcCollectionEditorComponent implements OnInit {
     return owcFGs;
   }
 
-  addContentTo( here: FormArray ): void {
+  addContentTo(): FormGroup {
     let newOp = this.initSingleContent(undefined);
-    here.push(newOp);
+    return newOp;
   }
 
   initSingleContent( res: OwcContent ): FormGroup {
@@ -406,6 +447,13 @@ export class OwcCollectionEditorComponent implements OnInit {
     });
   }
 
+  addContentToOffering( feature_index: number, offering_index: number ): void {
+    let feat = this.owcForm.get('features') as FormArray;
+    let offs = feat.at(feature_index).get('properties').get('offerings') as FormArray;
+    let contr = offs.at(offering_index).get('contents') as FormArray;
+    contr.push(this.addContentTo());
+  }
+
   saveEditsAndReturn(): void {
     this.saveEdits();
     this.returnCloseEditor.emit(true);
@@ -414,19 +462,19 @@ export class OwcCollectionEditorComponent implements OnInit {
   saveEdits(): void {
     console.log('we save and update the Collection');
     const owc = this.prepareForSave();
-    /*    this.collectionsService.updateCollection(owc).subscribe(
-          updated => {
-            this.notificationService.addNotification({
-              id: NotificationService.DEFAULT_DISMISS,
-              type: 'info',
-              message: `This collection has been updated/saved.`
-            });
-            this.reloadOnSavedCollection.emit(true);
-          },
-          error => {
-            console.log(<any>error);
-            this.notificationService.addErrorResultNotification(error);
-          });*/
+    this.collectionsService.updateCollection(owc).subscribe(
+      updated => {
+        this.notificationService.addNotification({
+          id: NotificationService.DEFAULT_DISMISS,
+          type: 'info',
+          message: `This collection has been updated/saved.`
+        });
+        this.reloadOnSavedCollection.emit(true);
+      },
+      error => {
+        console.log(<any>error);
+        this.notificationService.addErrorResultNotification(error);
+      });
   }
 
   prepareForSave(): OwcContext {
