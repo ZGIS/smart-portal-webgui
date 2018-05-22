@@ -479,12 +479,12 @@ export class OwcCollectionEditorComponent implements OnInit {
     let formModel = this.owcForm.value;
     let props = formModel.properties;
 
-    props.authors = formModel.properties.authors.filter(o => !this.canDropEmpty(o));
-    props.categories = formModel.properties.categories.filter(o => !this.canDropEmpty(o));
+    props.authors = formModel.properties.authors.filter((o: OwcAuthor) => !this.canDropEmpty(o));
+    props.categories = formModel.properties.categories.filter((o: OwcCategory) => !this.canDropEmpty(o));
 
-    props.links.profiles = formModel.properties.links.profiles.filter(o => !this.canDropEmpty(o));
+    props.links.profiles = formModel.properties.links.profiles.filter((o: OwcLink) => !this.canDropEmpty(o));
     if (props.links.via) {
-      props.links.via = formModel.properties.links.via.filter(o => !this.canDropEmpty(o));
+      props.links.via = formModel.properties.links.via.filter((o: OwcLink) => !this.canDropEmpty(o));
     }
     if (props.display && this.canDropEmpty(formModel.properties.display)) {
       delete props.display;
@@ -498,19 +498,19 @@ export class OwcCollectionEditorComponent implements OnInit {
       let returnFeature = owcResource;
       let featureProps = owcResource.properties;
 
-      featureProps.authors = owcResource.properties.authors.filter(o => !this.canDropEmpty(o));
-      featureProps.categories = owcResource.properties.categories.filter(o => !this.canDropEmpty(o));
+      featureProps.authors = owcResource.properties.authors.filter((o: OwcAuthor) => !this.canDropEmpty(o));
+      featureProps.categories = owcResource.properties.categories.filter((o: OwcCategory) => !this.canDropEmpty(o));
       if (featureProps.links.alternates) {
-        featureProps.links.alternates = owcResource.properties.links.alternates.filter(o => !this.canDropEmpty(o));
+        featureProps.links.alternates = owcResource.properties.links.alternates.filter((o: OwcLink) => !this.canDropEmpty(o));
       }
       if (featureProps.links.previews) {
-        featureProps.links.previews = owcResource.properties.links.previews.filter(o => !this.canDropEmpty(o));
+        featureProps.links.previews = owcResource.properties.links.previews.filter((o: OwcLink) => !this.canDropEmpty(o));
       }
       if (featureProps.links.data) {
-        featureProps.links.data = owcResource.properties.links.data.filter(o => !this.canDropEmpty(o));
+        featureProps.links.data = owcResource.properties.links.data.filter((o: OwcLink) => !this.canDropEmpty(o));
       }
       if (featureProps.links.via) {
-        featureProps.links.via = owcResource.properties.links.via.filter(o => !this.canDropEmpty(o));
+        featureProps.links.via = owcResource.properties.links.via.filter((o: OwcLink) => !this.canDropEmpty(o));
       }
 
       featureProps.offerings = owcResource.properties.offerings.map(( offering: OwcOffering ) => {
