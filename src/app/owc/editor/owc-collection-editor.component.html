@@ -374,6 +374,7 @@
               <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
               <div [formGroupName]="i">
 
+                <h3>Feature (# {{i + 1}})</h3>
                 <div class="form-group list-group-item">
                   <label class="col-sm-1 control-label">Type:</label>
                   <div class="col-sm-10">
@@ -468,7 +469,7 @@
                   </div>
 
                   <!--authors?: OwcAuthor[];-->
-                  <h3>Authors section for this feature</h3>
+                  <h3>Authors section for this feature (# {{i + 1}})</h3>
                   <small>INFO: add short info?</small>
 
                   <div
@@ -516,7 +517,7 @@
                   </div>
 
                   <!--categories?: OwcCategory[];-->
-                  <h3>Category / Keyword section for this feature)</h3>
+                  <h3>Category / Keyword section for this feature (# {{i + 1}})</h3>
                   <small>INFO: add short info?</small>
 
                   <div
@@ -566,7 +567,7 @@
                   <div formGroupName="links" class="list-group">
 
                     <!--alternates?: OwcLink[];-->
-                    <h3>Alternate links section for this feature</h3>
+                    <h3>Alternate links section for this feature (# {{i + 1}})</h3>
                     <small>INFO: add short info?</small>
 
                     <div
@@ -629,7 +630,7 @@
 
                     <!--links?: OwcResourceLinks;-->
                     <!--previews?: OwcLink[];-->
-                    <h3>Preview Links / Icons section for this feature</h3>
+                    <h3>Preview Links / Icons section for this feature (# {{i + 1}})</h3>
                     <small>INFO: add short info?</small>
 
                     <div
@@ -692,7 +693,7 @@
 
                     <!--links?: OwcResourceLinks;-->
                     <!--data?: OwcLink[];-->
-                    <h3>Links to data files section for this feature</h3>
+                    <h3>Links to data files section for this feature (# {{i + 1}})</h3>
                     <small>INFO: add short info?</small>
 
                     <div
@@ -754,7 +755,7 @@
 
                     <!--links?: OwcResourceLinks;-->
                     <!--via?: OwcLink[];-->
-                    <h3>Via links, resource metadata section for this feature</h3>
+                    <h3>Via links, resource metadata section for this feature (# {{i + 1}})</h3>
                     <small>INFO: add short info?</small>
 
                     <div
@@ -1191,11 +1192,11 @@
       </div>
 
       <div class="list-group-item">
-        <button (click)="saveEdits(owcForm.value)" class="btn btn-info" tooltip="Save edits" type="submit"
+        <button (click)="saveEdits(false)" class="btn btn-info" tooltip="Save edits" type="submit"
                 [disabled]="!owcForm.valid">
           Save <i class="fa fa-floppy-o" aria-hidden="true"></i>
         </button>
-        <button (click)="saveEditsAndReturn(owcForm.value)" class="btn btn-default" tooltip="Save edits and return" type="submit"
+        <button (click)="saveEdits(true)" class="btn btn-default" tooltip="Save edits and return" type="submit"
                 [disabled]="!owcForm.valid">
           Save and return <i class="fa fa-floppy-o" aria-hidden="true"></i>
         </button>
@@ -1204,9 +1205,11 @@
         </button>
       </div>
 
+      <!--
       <div class="list-group-item">
         <pre>{{ owcForm.value |json }}</pre>
       </div>
+      -->
 
     </form>
 

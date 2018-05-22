@@ -454,12 +454,7 @@ export class OwcCollectionEditorComponent implements OnInit {
     contr.push(this.addContentTo());
   }
 
-  saveEditsAndReturn(): void {
-    this.saveEdits();
-    this.returnCloseEditor.emit(true);
-  }
-
-  saveEdits(): void {
+  saveEdits(withReturn: boolean): void {
     console.log('we save and update the Collection');
     const owc = this.prepareForSave();
     this.collectionsService.updateCollection(owc).subscribe(
@@ -470,6 +465,9 @@ export class OwcCollectionEditorComponent implements OnInit {
           message: `This collection has been updated/saved.`
         });
         this.reloadOnSavedCollection.emit(true);
+        if (withReturn && withReturn === true) {
+          this.returnCloseEditor.emit(true);
+        }
       },
       error => {
         console.log(<any>error);
@@ -478,17 +476,87 @@ export class OwcCollectionEditorComponent implements OnInit {
   }
 
   prepareForSave(): OwcContext {
-    const formModel = this.owcForm.value;
+    let formModel = this.owcForm.value;
+    let props = formModel.properties;
 
-    const authors = formModel.properties.authors;
-    console.log(authors);
+    props.authors = formModel.properties.authors.filter(o => !this.canDropEmpty(o));
+    props.categories = formModel.properties.categories.filter(o => !this.canDropEmpty(o));
+
+    props.links.profiles = formModel.properties.links.profiles.filter(o => !this.canDropEmpty(o));
+    if (props.links.via) {
+      props.links.via = formModel.properties.links.via.filter(o => !this.canDropEmpty(o));
+    }
+    if (props.display && this.canDropEmpty(formModel.properties.display)) {
+      delete props.display;
+    }
+    if (props.generator && this.canDropEmpty(formModel.properties.generator)) {
+      delete props.display;
+    }
+    // console.log(props);
+
+    let features = formModel.features.map(( owcResource: OwcResource ) => {
+      let returnFeature = owcResource;
+      let featureProps = owcResource.properties;
+
+      featureProps.authors = owcResource.properties.authors.filter(o => !this.canDropEmpty(o));
+      featureProps.categories = owcResource.properties.categories.filter(o => !this.canDropEmpty(o));
+      if (featureProps.links.alternates) {
+        featureProps.links.alternates = owcResource.properties.links.alternates.filter(o => !this.canDropEmpty(o));
+      }
+      if (featureProps.links.previews) {
+        featureProps.links.previews = owcResource.properties.links.previews.filter(o => !this.canDropEmpty(o));
+      }
+      if (featureProps.links.data) {
+        featureProps.links.data = owcResource.properties.links.data.filter(o => !this.canDropEmpty(o));
+      }
+      if (featureProps.links.via) {
+        featureProps.links.via = owcResource.properties.links.via.filter(o => !this.canDropEmpty(o));
+      }
+
+      featureProps.offerings = owcResource.properties.offerings.map(( offering: OwcOffering ) => {
+        let returnOffering = offering;
+        if (offering.operations) {
+          returnOffering.operations = offering.operations.filter(( o: OwcOperation ) => {
+            return !this.canDropEmpty(o);
+          }).map(( o: OwcOperation ) => {
+            let returnOperation = o;
+            if (this.canDropEmpty(o.request)) {
+              delete returnOperation.request;
+            }
+            if (this.canDropEmpty(o.result)) {
+              delete returnOperation.result;
+            }
+            return returnOperation;
+          });
+        }
+        if (offering.styles) {
+          returnOffering.styles = offering.styles.filter(( o: OwcStyleSet ) => {
+            return !this.canDropEmpty(o);
+          }).map(( o: OwcStyleSet ) => {
+            let returnStyleSet = o;
+            if (this.canDropEmpty(o.content)) {
+              delete returnStyleSet.content;
+            }
+            return returnStyleSet;
+          });
+        }
+        if (offering.contents) {
+          returnOffering.contents = offering.contents.filter(o => !this.canDropEmpty(o));
+        }
+        return returnOffering;
+      });
+
+      // console.log(featureProps);
+      returnFeature.properties = featureProps;
+      return returnFeature;
+    });
 
     const saveOwc: OwcContext = {
       type: 'FeatureCollection',
       id: formModel.id,
       bbox: formModel.bbox,
-      properties: formModel.properties,
-      features: formModel.features
+      properties: props,
+      features: features
     };
     console.log(saveOwc);
     return saveOwc;
@@ -513,6 +581,20 @@ export class OwcCollectionEditorComponent implements OnInit {
 
   trackByFn( index: any, item: any ) {
     return index;
+  }
+
+  /**
+   * return a true if the obj can be dropped (meaning all its keys have null values)
+   * @param obj
+   * @returns {boolean}
+   */
+  canDropEmpty( obj: any ): boolean {
+    for ( let key in obj ) {
+      if (obj.hasOwnProperty(key) && obj[ key ] !== null && obj[ key ] !== '') {
+        return false;
+      }
+    }
+    return true;
   }
 
   /**
