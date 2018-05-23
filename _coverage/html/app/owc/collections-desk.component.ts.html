@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">12.67% </span>
+        <span class="strong">13.29% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>19/150</span>
+        <span class='fraction'>21/158</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>0/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.56% </span>
+        <span class="strong">2.44% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/39</span>
+        <span class='fraction'>1/41</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">12.23% </span>
+        <span class="strong">12.93% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/139</span>
+        <span class='fraction'>19/147</span>
       </div>
     </div>
   </div>
@@ -1492,7 +1492,27 @@
 1447
 1448
 1449
-1450</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+1450
+1451
+1452
+1453
+1454
+1455
+1456
+1457
+1458
+1459
+1460
+1461
+1462
+1463
+1464
+1465
+1466
+1467
+1468
+1469
+1470</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -1520,6 +1540,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1584,6 +1606,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2965,9 +3005,11 @@ export class CollectionsDeskComponent implements OnInit {
 &nbsp;
   @ViewChild('createCollectionModalRef') public createCollectionModal: ModalDirective;
 <span class="cstat-no" title="statement not covered" >  loading = false;</span>
+<span class="cstat-no" title="statement not covered" >  editorActive = false;</span>
 <span class="cstat-no" title="statement not covered" >  fileparseerror = true;</span>
 <span class="cstat-no" title="statement not covered" >  newdocintro: any = {};</span>
 <span class="cstat-no" title="statement not covered" >  importOwcDoc: any = {};</span>
+  editOwcDoc: OwcContext;
 <span class="cstat-no" title="statement not covered" >  userFiles: UserFile[] = [];</span>
 <span class="cstat-no" title="statement not covered" >  userMetaRecords: UserMetaRecord[] = [];</span>
 &nbsp;
@@ -3038,6 +3080,24 @@ export class CollectionsDeskComponent implements OnInit {
     //       console.log(&lt;any&gt;error);
     //       this.notificationService.addErrorResultNotification(error);
     //     });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  onReturnCloseEditor(): void {</span>
+<span class="cstat-no" title="statement not covered" >    this.editorActive = false;</span>
+  }
+&nbsp;
+  onEditCollectionRequest( $event: any<span class="fstat-no" title="function not covered" > ) {</span>
+    // console.log($event.data);
+<span class="cstat-no" title="statement not covered" >    if ($event.data &amp;&amp; &lt;OwcContext&gt;$event.data) {</span>
+<span class="cstat-no" title="statement not covered" >      this.editOwcDoc = &lt;OwcContext&gt;$event.data;</span>
+<span class="cstat-no" title="statement not covered" >      this.editorActive = true;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.notificationService.addNotification({</span>
+        id: NotificationService.DEFAULT_DISMISS,
+        type: 'error',
+        message: `No data arrived error.`
+      });
+    }
   }
 &nbsp;
   /**
@@ -4284,7 +4344,7 @@ export class CollectionsDeskComponent implements OnInit {
                 method: 'POST',
                 type: 'application/xml',
                 href: `https://portal.smart-project.info/journalcsw/journalcsw?request=GetRecordById&amp;version=2.0.2` +
-                  `&amp;service=CSW&amp;elementSetName=full&amp;outputSchema=http%3A%2F%2Fwww.isotc211.org%2F2005%2Fgmd&amp;Id=${overLay.catalog_uid}`
+                `&amp;service=CSW&amp;elementSetName=full&amp;outputSchema=http%3A%2F%2Fwww.isotc211.org%2F2005%2Fgmd&amp;Id=${overLay.catalog_uid}`
               }
             ],
             contents: []
@@ -4396,7 +4456,7 @@ Protocol: OGC:WMS
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 10 2018 12:02:09 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 06:46:42 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
