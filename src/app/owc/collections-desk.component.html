@@ -30,7 +30,8 @@
             </div>
 
             <app-sac-gwh-collection [myCollection]="myCollection" [visibility]="findVisibilityForCollection(myCollection.id)"
-                                    (reloadOnChangedCollection)="reloadCollections()" (editCollectionRequest)="onEditCollectionRequest($event)" [viewOnly]="false"></app-sac-gwh-collection>
+                                    (reloadOnChangedCollection)="reloadCollections()" (editCollectionRequest)="onEditCollectionRequest($event)"
+                                    (showResourceDetails)="handleShowChildResourceModal($event)" [viewOnly]="false"></app-sac-gwh-collection>
           </accordion-group>
         </accordion>
       </div>
@@ -110,3 +111,6 @@
     </div>
   </div>
 </div>
+
+<app-sac-gwh-owcresource-detail-modal [viewOnly]="false"></app-sac-gwh-owcresource-detail-modal>
+

@@ -9,6 +9,8 @@ import {
   OwcResourceProperties
 } from './collections';
 import { IDashboardCategory } from '../dashboards/categories';
+import { ResultCollectionsViewModalComponent } from '../search';
+import { OwcResourceDetailModalComponent } from './owc-resource-detail-modal.component';
 
 @Component({
   selector: 'app-sac-gwh-collections-desk',
@@ -21,6 +23,9 @@ import { IDashboardCategory } from '../dashboards/categories';
 export class CollectionsDeskComponent implements OnInit {
 
   @ViewChild('createCollectionModalRef') public createCollectionModal: ModalDirective;
+  // @ViewChild('owcResourceDetailModalRef') public owcResourceDetailModal: ModalDirective;
+  @ViewChild(OwcResourceDetailModalComponent) owcResourceDetailModalComponentRef: OwcResourceDetailModalComponent;
+
   loading = false;
   editorActive = false;
   fileparseerror = true;
@@ -32,6 +37,10 @@ export class CollectionsDeskComponent implements OnInit {
 
   myCollections: OwcContext[] = [];
   myRightsMatrix: OwcContextsRightsMatrix[] = [];
+
+  canShow = false;
+  childResourceOwcData: OwcResource;
+  childResourceCollectionId = '';
 
   // private _myDefaultCollection: OwcContext;
 
@@ -101,6 +110,19 @@ export class CollectionsDeskComponent implements OnInit {
 
   onReturnCloseEditor(): void {
     this.editorActive = false;
+  }
+
+  handleShowChildResourceModal( $event: any ) {
+    console.log('handleShowChildResourceModal()');
+    if ($event.data.owcResource && $event.data.owcResource && $event.data.collectionId) {
+      console.log($event.data);
+      if (<OwcResource>$event.data.owcResource) {
+        // this.childResourceOwcData = $event.data.owcResource;
+        // this.childResourceCollectionId = $event.data.collectionId;
+        // this.owcResourceDetailModal.show();
+        this.owcResourceDetailModalComponentRef.showOwcResourceModal($event.data.owcResource, $event.data.collectionId);
+      }
+    }
   }
 
   onEditCollectionRequest( $event: any ) {

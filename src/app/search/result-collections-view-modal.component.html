@@ -15,7 +15,7 @@
 
           <div class="panel-body">
             <!-- here the collection component -->
-            <app-sac-gwh-collection [myCollection]="owcCollection" [viewOnly]="true"></app-sac-gwh-collection>
+            <app-sac-gwh-collection [myCollection]="owcCollection" [viewOnly]="true" (showResourceDetails)="handleShowChildResourceModal($event)"></app-sac-gwh-collection>
           </div>
 
           <div class="panel-footer">
@@ -32,3 +32,5 @@
     </div>
   </div>
 </div>
+
+<app-sac-gwh-owcresource-detail-modal [viewOnly]="viewOnly"></app-sac-gwh-owcresource-detail-modal>

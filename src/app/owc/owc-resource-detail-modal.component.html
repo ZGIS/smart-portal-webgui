@@ -28,13 +28,17 @@
 
         <app-sac-gwh-owcresource-props [owcResourceProperties]="owcResource.properties"></app-sac-gwh-owcresource-props>
 
-        <p><span class="badge pull-left">Resource ID:</span> <small><i> {{ owcResource.id }}</i></small></p>
+        <p tooltip="Edit the entry, please edit via the parent collection!">
+          <span class="badge pull-left">Resource ID:</span> <small><i> {{ owcResource.id }}</i></small>
+        </p>
 
         <div *ngIf="!viewOnly">
 
+          <!--
           <button (click)="editProperties()" type="button" class="btn btn-info disabled" tooltip="Edit the entry, please edit via the parent collection for now!" disabled>
             Edit <i class="fa fa-edit" aria-hidden="true"></i>
           </button>
+          -->
 
           <button (click)="deleteResource()" type="button" class="btn btn-danger pull-right" tooltip="Delete the resource entry">
             Delete <i class="fa fa-trash" aria-hidden="true"></i>

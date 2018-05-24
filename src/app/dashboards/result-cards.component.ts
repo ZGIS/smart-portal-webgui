@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -18,10 +18,13 @@ import { IDashboardCategory } from './categories';
 import { CollectionsService, OwcContext, OwcLink } from '../owc';
 import { AccountService } from '../account';
 
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+
 @Component({
   selector: 'app-sac-gwh-result-cards',
   templateUrl: 'result-cards.component.html',
-  styleUrls: [ 'result-cards.component.css' ],
+  styleUrls: [ 'result-cards.component.css' ]
 })
 
 /**
@@ -29,8 +32,10 @@ import { AccountService } from '../account';
  */
 export class ResultCardsComponent implements OnInit, OnDestroy {
   @ViewChild(ResultDetailModalComponent) resultDetailModalComponentRef: ResultDetailModalComponent;
-
   @ViewChild(ResultCollectionsViewModalComponent) resultCollectionsModalComponentRef: ResultCollectionsViewModalComponent;
+
+  // public resultCollectionsModalComponentRef: BsModalRef;
+  // public owcResourceDetailModalRef: BsModalRef;
 
   results: IGeoFeatureCollection;
   resultsGroups: string[] = [];
@@ -77,6 +82,7 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
    * @param notificationService - injected NotificationService
    * @param _location - injected Location
    * @param router              - injected Router
+   * @param modalService              - injected BsModalService
    */
   constructor( private resultService: ResultService,
                private activatedRoute: ActivatedRoute,
@@ -85,7 +91,8 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
                private collectionService: CollectionsService,
                private notificationService: NotificationService,
                private _location: Location,
-               private router: Router ) {
+               private router: Router,
+               private modalService: BsModalService) {
 
     this.activatedRoute.data.subscribe(( { childCategoryObject } ) => {
       // console.log(`route resolved cat ${childCategoryObject.id}`);
@@ -506,8 +513,11 @@ export class ResultCardsComponent implements OnInit, OnDestroy {
   }
 
   showCollectionsModal( owc: OwcContext ): void {
-    // console.log('owc modal clicked');
+    console.log('owc collections modal clicked');
     this.resultCollectionsModalComponentRef.showFeatureModal(owc);
+    //  this.resultCollectionsModalComponentRef = this.modalService.show(ResultCollectionsViewModalComponent);
+    //  this.resultCollectionsModalComponentRef.content.owcCollection = owc;
+    //  this.resultCollectionsModalComponentRef.content.viewOnly = true;
   }
 
   onHideCollectionsModal(): void {

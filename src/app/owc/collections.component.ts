@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NotificationService } from '../notifications';
 import { CollectionsService, OwcContext } from './';
 import { Router } from '@angular/router';
 import { OwcContextsRightsMatrix, WorkbenchService } from '../workbench';
-import { worldExtent } from '../ol3-map';
 import { OwcResource } from './collections';
 import { IGeoFeature, IGeoFeatureCollection, IGeoFeatureProperties } from '../search';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 let L = require('leaflet/dist/leaflet.js');
 let FileSaver = require('file-saver/FileSaver.js');
@@ -25,6 +25,8 @@ export class CollectionsComponent {
   @Input() viewOnly = true;
   @Output() reloadOnChangedCollection: EventEmitter<any> = new EventEmitter<any>();
   @Output() editCollectionRequest: EventEmitter<any> = new EventEmitter<any>();
+  @Output() showResourceDetails: EventEmitter<any> = new EventEmitter<any>();
+
   propertiesGroup = false;
   featuresGroup = true;
 
@@ -48,7 +50,7 @@ export class CollectionsComponent {
     };
   }
 
-  onMapReady(map: any, owcContext: OwcContext) {
+  onMapReady( map: any, owcContext: OwcContext ) {
     this.map = map;
     // if (owcContext.features && owcContext.features.length > 0) {
     //   let foiArr: any[] = [];
@@ -69,17 +71,17 @@ export class CollectionsComponent {
     // }
   }
 
-  handleOnShown(event: any) {
+  handleOnShown( event: any ) {
     console.log(event);
     if (this.map) {
       this.map.invalidateSize();
     }
   }
 
-  getLeafletCentre(bbox: number[]): any {
-    let corner1 = L.latLng({lat: bbox[1], lng: bbox[0]});
-    let corner2 = L.latLng({lat: bbox[3], lng: bbox[2]});
-    let bounds = L.latLngBounds([corner2, corner1]);
+  getLeafletCentre( bbox: number[] ): any {
+    let corner1 = L.latLng({ lat: bbox[ 1 ], lng: bbox[ 0 ] });
+    let corner2 = L.latLng({ lat: bbox[ 3 ], lng: bbox[ 2 ] });
+    let bounds = L.latLngBounds([ corner2, corner1 ]);
     return bounds.getCenter();
   }
 
@@ -167,8 +169,8 @@ export class CollectionsComponent {
       };
     }
     const features = <IGeoFeature[]>owcList.filter(( owc: OwcResource ) => {
-        return owc.geometry;
-      })
+      return owc.geometry;
+    })
       .map(( owc: OwcResource ) => {
         return <IGeoFeature>{
           type: 'Feature',
@@ -188,6 +190,13 @@ export class CollectionsComponent {
       countMatched: features.length,
       features: features
     };
+  }
+
+  emitShowResourceDetails( owcResource: OwcResource, collectionId: string ): void {
+    this.showResourceDetails.emit({
+      event: event,
+      data: { owcResource: owcResource, collectionId: collectionId }
+    });
   }
 
   /**

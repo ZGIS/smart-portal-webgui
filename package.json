@@ -73,7 +73,7 @@
     "moment": "^2.19.3",
     "moment-timezone": "^0.5.11",
     "ng2-file-upload": "~1.2.1",
-    "ngx-bootstrap": "~1.7.1",
+    "ngx-bootstrap": "~1.8.1",
     "ngx-clipboard": "~8.0.3",
     "ngx-cookie": "^1.0.0",
     "openlayers": "^3.20.1",

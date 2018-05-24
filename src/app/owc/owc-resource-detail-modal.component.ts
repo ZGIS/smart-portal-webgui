@@ -1,8 +1,9 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap/modal';
 import { NotificationService } from '../notifications';
 import { CollectionsService, OwcResource } from './';
 import { IGeoFeature, IGeoFeatureProperties, IGeoFeatureCollection } from '../search';
+
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 let L = require('leaflet/dist/leaflet.js');
 
@@ -16,6 +17,7 @@ export class OwcResourceDetailModalComponent {
   @Input() collectionid: string;
   @Input() viewOnly = true;
 
+  // this is the self modal
   @ViewChild('owcResourceDetailModalRef') public modal: ModalDirective;
 
   map: any;
@@ -51,9 +53,10 @@ export class OwcResourceDetailModalComponent {
    * Constructor
    * @param collectionsService  - injected CollectionsService
    * @param notificationService - injected NotificationService
+   * @param bsModalRef - injected BsModalRef
    */
   constructor( private collectionsService: CollectionsService,
-               private notificationService: NotificationService ) {
+               private notificationService: NotificationService) {
   }
 
   showOwcResourceModal( owcFeature: OwcResource, owccontextid: string ) {

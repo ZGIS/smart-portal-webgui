@@ -31,7 +31,7 @@
 
     <div class="list-group" *ngIf="myCollection.features.length > 0">
       <li class="list-group-item" *ngFor="let owcResource of myCollection.features">
-        <a (click)="owcResourceDetailModalRef.showOwcResourceModal(owcResource, myCollection.id)">
+        <a (click)="emitShowResourceDetails(owcResource, myCollection.id)">
           {{ owcResource.properties.title }} </a>
       </li>
     </div>
@@ -94,9 +94,5 @@
 
 </tabset>
 
-
 <!-- here should be end of collections component -->
 
-<app-sac-gwh-owcresource-detail-modal #owcResourceDetailModalRef [viewOnly]="viewOnly">
-
-</app-sac-gwh-owcresource-detail-modal>
