@@ -17,6 +17,7 @@
         <div class="panel-body-inner-wrapper">
           <div style="height: 640px;"
                leaflet
+
                (leafletMapReady)="onMapReady($event, myCollection)"
                [leafletOptions]="getLeafletOptions(myCollection)"
                [leafletZoom]="5"
@@ -34,7 +35,7 @@
           <div class="list-group" *ngIf="myCollection.features">
             <div *ngFor="let owcResource of myCollection.features" class="list-group-item">
               <form>
-                <input type="checkbox" [name]="owcResource.properties.title" checked (change)="eventChangeActive(owcResource)">
+                <input type="checkbox" [name]="owcResource.id" checked (change)="eventChangeActive($event, owcResource)">
                 <label>{{owcResource.properties.title}} </label>
                 <span class="pull-right" (click)="owcResourceDetailModalRef.showOwcResourceModal(owcResource, myCollection.id)"><i class="fa fa-info"></i> Meta</span>
 

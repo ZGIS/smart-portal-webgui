@@ -41,6 +41,12 @@ export interface WmsGetMapQueryParams extends OwsGetQueryParameters {
   service: 'WMS';
 }
 
+export interface MapActiveTracker {
+  id: string;
+  layer: any;
+  active: boolean;
+}
+
 @Component({
   selector: 'app-sac-gwh-owc-viewer',
   templateUrl: 'owc-leaflet-viewer.component.html',
@@ -50,6 +56,7 @@ export interface WmsGetMapQueryParams extends OwsGetQueryParameters {
 export class OwcLeafletViewerComponent implements OnInit {
   myCollection: OwcContext;
   map: L.Map;
+  activeLayers: MapActiveTracker[] = [];
 
   BetterWMS = L.TileLayer.WMS.extend({
 
@@ -120,10 +127,11 @@ export class OwcLeafletViewerComponent implements OnInit {
       // const contentHigh = L.Content(content);
       console.log(this._map);
       // Otherwise show the content in a popup, or something.
-      L.popup({ maxWidth: 600 })
-        .setLatLng(latlng)
-        .setContent(content)
-        .openOn(this._map);
+      // L.popup({ maxWidth: 600 })
+      //   .setLatLng(latlng)
+      //   .setContent(content)
+      //   .openOn(this._map);
+      console.log(content);
     }
   });
 
@@ -148,6 +156,7 @@ export class OwcLeafletViewerComponent implements OnInit {
               });
               // console.log(wmsLayer);
               prelim.push(wmsLayer);
+              this.activeLayers.push(<MapActiveTracker>{ id: owcResource.id, layer: wmsLayer, active: true});
             } else {
               console.log('not a WMS request ' + wmsParams);
             }
@@ -199,8 +208,8 @@ export class OwcLeafletViewerComponent implements OnInit {
     // }
   }
 
-  handleOnShown( event: any ) {
-    // console.log(event);
+  handleOnShown( $event: any ) {
+    // console.log($event);
     this.map.invalidateSize();
   }
 
@@ -344,7 +353,17 @@ export class OwcLeafletViewerComponent implements OnInit {
     this._location.back();
   }
 
-  eventChangeActive(owcResource: OwcResource): void {
-    console.log(owcResource);
+  eventChangeActive($event: any, owcResource: OwcResource): void {
+    // console.log($event.target.checked);
+    // console.log(owcResource.id);
+    let idx = this.activeLayers.findIndex(act => act.id === owcResource.id);
+    if (idx >= 0) {
+      if ($event.target.checked) {
+        this.map.addLayer(this.activeLayers[idx].layer);
+      } else {
+        this.map.removeLayer(this.activeLayers[idx].layer);
+      }
+      this.activeLayers[idx].active = !this.activeLayers[idx].active;
+    }
   }
 }
