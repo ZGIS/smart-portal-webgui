@@ -343,4 +343,8 @@ export class OwcLeafletViewerComponent implements OnInit {
   backClicked() {
     this._location.back();
   }
+
+  eventChangeActive(owcResource: OwcResource): void {
+    console.log(owcResource);
+  }
 }

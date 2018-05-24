@@ -32,11 +32,14 @@
       <div class="panel-body">
         <div class="panel-body-inner-wrapper panel-body-inner-wrapper-margins">
           <div class="list-group" *ngIf="myCollection.features">
-            <a *ngFor="let owcResource of myCollection.features"
-               class="list-group-item"
-               (click)="owcResourceDetailModalRef.showOwcResourceModal(owcResource, myCollection.id)">
-              {{owcResource.properties.title}}
-            </a>
+            <div *ngFor="let owcResource of myCollection.features" class="list-group-item">
+              <form>
+                <input type="checkbox" [name]="owcResource.properties.title" checked (change)="eventChangeActive(owcResource)">
+                <label>{{owcResource.properties.title}} </label>
+                <span class="pull-right" (click)="owcResourceDetailModalRef.showOwcResourceModal(owcResource, myCollection.id)"><i class="fa fa-info"></i> Meta</span>
+
+              </form>
+            </div>
           </div>
         </div>
       </div>
