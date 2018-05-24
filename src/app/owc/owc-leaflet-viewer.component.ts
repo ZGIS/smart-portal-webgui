@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NotificationService } from '../notifications';
 import { CollectionsService, OwcContext } from './';
 import { ActivatedRoute } from '@angular/router';
@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 import { Feature, FeatureCollection, Polygon } from 'geojson';
 
 import * as $ from 'jquery';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 const L = require('leaflet/dist/leaflet.js');
 const URI = require('urijs/src/URI');
@@ -53,12 +54,18 @@ export interface MapActiveTracker {
   styleUrls: [ 'owc-leaflet-viewer.component.css' ],
 })
 
-export class OwcLeafletViewerComponent implements OnInit {
+export class OwcLeafletViewerComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('featureInfoModalRef') public featureInfoModal: ModalDirective;
+  @ViewChild('spanRef') public spanRef: ElementRef;
   myCollection: OwcContext;
   map: L.Map;
   activeLayers: MapActiveTracker[] = [];
+  featureInfoNodes: any[] = [];
 
   BetterWMS = L.TileLayer.WMS.extend({
+
+    viewRef: ElementRef,
 
     onAdd: function ( map: L.Map ) {
       // Triggered when the layer is added to a map.
@@ -78,7 +85,7 @@ export class OwcLeafletViewerComponent implements OnInit {
       // Make an AJAX request to the server and hope for the best
       let url = this.getFeatureInfoUrl(evt.latlng),
         showResults = L.Util.bind(this.showGetFeatureInfo, this);
-      console.log(url);
+      // console.log(url);
       $.ajax({
         url: url,
         success: function ( data: any, status: any, xhr: any ) {
@@ -114,7 +121,7 @@ export class OwcLeafletViewerComponent implements OnInit {
       // params[ params.version === '1.3.0' ? 'j' : 'y' ] = point.y;
       params[ 'x' ] = point.x;
       params[ 'y' ] = point.y;
-      console.log(point);
+      // console.log(point);
       return this._url + L.Util.getParamString(params, this._url, true);
     },
 
@@ -125,13 +132,14 @@ export class OwcLeafletViewerComponent implements OnInit {
       } // do nothing if there's an error
 
       // const contentHigh = L.Content(content);
-      console.log(this._map);
+      let elementRef = this.viewRef.nativeElement;
+      console.log(elementRef.textContent);
+      console.log(content);
       // Otherwise show the content in a popup, or something.
       // L.popup({ maxWidth: 600 })
       //   .setLatLng(latlng)
       //   .setContent(content)
       //   .openOn(this._map);
-      console.log(content);
     }
   });
 
@@ -147,6 +155,7 @@ export class OwcLeafletViewerComponent implements OnInit {
             if (wmsParams && wmsParams.request === 'GetMap' && wmsParams.service === 'WMS') {
               const baseUrl = wmsParams.href;
               const wmsLayer = new this.BetterWMS(baseUrl, {
+                viewRef: this.spanRef,
                 layers: wmsParams.layers,
                 // styles: wmsParams.styles ? wmsParams.styles : null,
                 format: wmsParams.format ? wmsParams.format : 'image/png',
@@ -158,7 +167,7 @@ export class OwcLeafletViewerComponent implements OnInit {
               prelim.push(wmsLayer);
               this.activeLayers.push(<MapActiveTracker>{ id: owcResource.id, layer: wmsLayer, active: true});
             } else {
-              console.log('not a WMS request ' + wmsParams);
+              // console.log('not a WMS request ' + JSON.stringify(wmsParams));
             }
           }
         });
@@ -189,6 +198,7 @@ export class OwcLeafletViewerComponent implements OnInit {
 
   onMapReady( map: L.Map, owcContext: OwcContext ) {
     this.map = map;
+    console.log('map ready');
     // if (owcContext.features && owcContext.features.length > 0) {
     //   let foiArr: any[] = [];
     //   owcContext.features.forEach(owcResource => {
@@ -283,6 +293,12 @@ export class OwcLeafletViewerComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit() {
+    let elementRef = this.spanRef.nativeElement;
+    // outputs `template bindings={}`
+    console.log(elementRef.textContent);
+  }
+
   parseLayerUrl( urlFragments: string ): ParsedUri {
     const parsed: ParsedUri = URI.parse(urlFragments);
     // console.log(parsed);
@@ -339,13 +355,13 @@ export class OwcLeafletViewerComponent implements OnInit {
       return <WmsGetMapQueryParams>builder;
     } else {
       // console.log(builder);
-      console.log('builder not a WMS getmap');
+      // console.log('builder not a WMS getmap');
     }
     if (builder.service === 'WMS' && builder.request === 'GetCapabilities' && <WmsGetMapQueryParams>builder) {
       return <WmsGetMapQueryParams>builder;
     } else {
       // console.log(builder);
-      console.log('builder not a WMS GetCapabilities');
+      // console.log('builder not a WMS GetCapabilities');
     }
   }
 
