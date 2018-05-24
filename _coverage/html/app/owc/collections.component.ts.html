@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">36.36% </span>
+        <span class="strong">37.5% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>28/77</span>
+        <span class='fraction'>30/80</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.35% </span>
+        <span class="strong">4.17% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/23</span>
+        <span class='fraction'>1/24</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">36.11% </span>
+        <span class="strong">37.33% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>26/72</span>
+        <span class='fraction'>28/75</span>
       </div>
     </div>
   </div>
@@ -250,7 +250,16 @@
 205
 206
 207
-208</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -277,6 +286,8 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -442,6 +453,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -457,14 +475,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, EventEmitter, Input, Output } from '@angular/core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NotificationService } from '../notifications';
 import { CollectionsService, OwcContext } from './';
 import { Router } from '@angular/router';
 import { OwcContextsRightsMatrix, WorkbenchService } from '../workbench';
-import { worldExtent } from '../ol3-map';
 import { OwcResource } from './collections';
 import { IGeoFeature, IGeoFeatureCollection, IGeoFeatureProperties } from '../search';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 &nbsp;
 let L = require('leaflet/dist/leaflet.js');
 let FileSaver = require('file-saver/FileSaver.js');
@@ -484,6 +502,8 @@ export class CollectionsComponent {
   @Input() viewOnly = true;
   @Output() reloadOnChangedCollection: EventEmitter&lt;any&gt; = new EventEmitter&lt;any&gt;();
   @Output() editCollectionRequest: EventEmitter&lt;any&gt; = new EventEmitter&lt;any&gt;();
+  @Output() showResourceDetails: EventEmitter&lt;any&gt; = new EventEmitter&lt;any&gt;();
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  propertiesGroup = false;</span>
 <span class="cstat-no" title="statement not covered" >  featuresGroup = true;</span>
 &nbsp;
@@ -507,7 +527,7 @@ export class CollectionsComponent {
     };
   }
 &nbsp;
-  onMapReady(map: any, owcContext: OwcContext<span class="fstat-no" title="function not covered" >) {</span>
+  onMapReady( map: any, owcContext: OwcContext<span class="fstat-no" title="function not covered" > ) {</span>
 <span class="cstat-no" title="statement not covered" >    this.map = map;</span>
     // if (owcContext.features &amp;&amp; owcContext.features.length &gt; 0) {
     //   let foiArr: any[] = [];
@@ -528,17 +548,17 @@ export class CollectionsComponent {
     // }
   }
 &nbsp;
-  handleOnShown(event: any<span class="fstat-no" title="function not covered" >) {</span>
+  handleOnShown( event: any<span class="fstat-no" title="function not covered" > ) {</span>
 <span class="cstat-no" title="statement not covered" >    console.log(event);</span>
 <span class="cstat-no" title="statement not covered" >    if (this.map) {</span>
 <span class="cstat-no" title="statement not covered" >      this.map.invalidateSize();</span>
     }
   }
 &nbsp;
-  getLeafletCentre(bbox: number[]<span class="fstat-no" title="function not covered" >): any {</span>
-    let corner1 = <span class="cstat-no" title="statement not covered" >L.latLng({lat: bbox[1], lng: bbox[0]});</span>
-    let corner2 = <span class="cstat-no" title="statement not covered" >L.latLng({lat: bbox[3], lng: bbox[2]});</span>
-    let bounds = <span class="cstat-no" title="statement not covered" >L.latLngBounds([corner2, corner1]);</span>
+  getLeafletCentre( bbox: number[]<span class="fstat-no" title="function not covered" > ): any {</span>
+    let corner1 = <span class="cstat-no" title="statement not covered" >L.latLng({ lat: bbox[ 1 ], lng: bbox[ 0 ] });</span>
+    let corner2 = <span class="cstat-no" title="statement not covered" >L.latLng({ lat: bbox[ 3 ], lng: bbox[ 2 ] });</span>
+    let bounds = <span class="cstat-no" title="statement not covered" >L.latLngBounds([ corner2, corner1 ]);</span>
 <span class="cstat-no" title="statement not covered" >    return bounds.getCenter();</span>
   }
 &nbsp;
@@ -626,8 +646,8 @@ export class CollectionsComponent {
       };
     }
     const features = &lt;IGeoFeature[]&gt;<span class="cstat-no" title="statement not covered" >owcList.filter(( owc: OwcResource<span class="fstat-no" title="function not covered" > ) =&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >        return owc.geometry;</span>
-      })
+<span class="cstat-no" title="statement not covered" >      return owc.geometry;</span>
+    })
       .map(( owc: OwcResource<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        return &lt;IGeoFeature&gt;{</span>
           type: 'Feature',
@@ -647,6 +667,13 @@ export class CollectionsComponent {
       countMatched: features.length,
       features: features
     };
+  }
+&nbsp;
+  emitShowResourceDetails( owcResource: OwcResource, collectionId: string<span class="fstat-no" title="function not covered" > ): void {</span>
+<span class="cstat-no" title="statement not covered" >    this.showResourceDetails.emit({</span>
+      event: event,
+      data: { owcResource: owcResource, collectionId: collectionId }
+    });
   }
 &nbsp;
   /**
@@ -670,7 +697,7 @@ export class CollectionsComponent {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 06:46:42 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 24 2018 16:48:01 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

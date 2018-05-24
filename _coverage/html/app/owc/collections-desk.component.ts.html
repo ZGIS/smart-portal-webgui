@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">13.29% </span>
+        <span class="strong">14.29% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>21/158</span>
+        <span class='fraction'>24/168</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/12</span>
+        <span class='fraction'>0/19</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.44% </span>
+        <span class="strong">2.38% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/41</span>
+        <span class='fraction'>1/42</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">12.93% </span>
+        <span class="strong">14.01% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>19/147</span>
+        <span class='fraction'>22/157</span>
       </div>
     </div>
   </div>
@@ -1512,7 +1512,29 @@
 1467
 1468
 1469
-1470</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+1470
+1471
+1472
+1473
+1474
+1475
+1476
+1477
+1478
+1479
+1480
+1481
+1482
+1483
+1484
+1485
+1486
+1487
+1488
+1489
+1490
+1491
+1492</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -1524,6 +1546,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1535,6 +1559,9 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1545,6 +1572,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1615,6 +1646,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -2992,6 +3036,8 @@ import {
   OwcResourceProperties
 } from './collections';
 import { IDashboardCategory } from '../dashboards/categories';
+import { ResultCollectionsViewModalComponent } from '../search';
+import { OwcResourceDetailModalComponent } from './owc-resource-detail-modal.component';
 &nbsp;
 @Component({
   selector: 'app-sac-gwh-collections-desk',
@@ -3004,6 +3050,9 @@ import { IDashboardCategory } from '../dashboards/categories';
 export class CollectionsDeskComponent implements OnInit {
 &nbsp;
   @ViewChild('createCollectionModalRef') public createCollectionModal: ModalDirective;
+  // @ViewChild('owcResourceDetailModalRef') public owcResourceDetailModal: ModalDirective;
+  @ViewChild(OwcResourceDetailModalComponent) owcResourceDetailModalComponentRef: OwcResourceDetailModalComponent;
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  loading = false;</span>
 <span class="cstat-no" title="statement not covered" >  editorActive = false;</span>
 <span class="cstat-no" title="statement not covered" >  fileparseerror = true;</span>
@@ -3015,6 +3064,10 @@ export class CollectionsDeskComponent implements OnInit {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  myCollections: OwcContext[] = [];</span>
 <span class="cstat-no" title="statement not covered" >  myRightsMatrix: OwcContextsRightsMatrix[] = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  canShow = false;</span>
+  childResourceOwcData: OwcResource;
+<span class="cstat-no" title="statement not covered" >  childResourceCollectionId = '';</span>
 &nbsp;
   // private _myDefaultCollection: OwcContext;
 &nbsp;
@@ -3084,6 +3137,19 @@ export class CollectionsDeskComponent implements OnInit {
 &nbsp;
 <span class="fstat-no" title="function not covered" >  onReturnCloseEditor(): void {</span>
 <span class="cstat-no" title="statement not covered" >    this.editorActive = false;</span>
+  }
+&nbsp;
+  handleShowChildResourceModal( $event: any<span class="fstat-no" title="function not covered" > ) {</span>
+<span class="cstat-no" title="statement not covered" >    console.log('handleShowChildResourceModal()');</span>
+<span class="cstat-no" title="statement not covered" >    if ($event.data.owcResource &amp;&amp; $event.data.owcResource &amp;&amp; $event.data.collectionId) {</span>
+<span class="cstat-no" title="statement not covered" >      console.log($event.data);</span>
+<span class="cstat-no" title="statement not covered" >      if (&lt;OwcResource&gt;$event.data.owcResource) {</span>
+        // this.childResourceOwcData = $event.data.owcResource;
+        // this.childResourceCollectionId = $event.data.collectionId;
+        // this.owcResourceDetailModal.show();
+<span class="cstat-no" title="statement not covered" >        this.owcResourceDetailModalComponentRef.showOwcResourceModal($event.data.owcResource, $event.data.collectionId);</span>
+      }
+    }
   }
 &nbsp;
   onEditCollectionRequest( $event: any<span class="fstat-no" title="function not covered" > ) {</span>
@@ -4456,7 +4522,7 @@ Protocol: OGC:WMS
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 06:46:42 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 24 2018 16:48:01 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

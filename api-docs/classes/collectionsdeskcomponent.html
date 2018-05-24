@@ -91,6 +91,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#canshow" class="tsd-kind-icon">can<wbr>Show</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#childresourcecollectionid" class="tsd-kind-icon">child<wbr>Resource<wbr>Collection<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#childresourceowcdata" class="tsd-kind-icon">child<wbr>Resource<wbr>Owc<wbr>Data</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="collectionsdeskcomponent.html#collectionsservice" class="tsd-kind-icon">collections<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#createcollectionmodal" class="tsd-kind-icon">create<wbr>Collection<wbr>Modal</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#editowcdoc" class="tsd-kind-icon">edit<wbr>Owc<wbr>Doc</a></li>
@@ -102,6 +105,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#myrightsmatrix" class="tsd-kind-icon">my<wbr>Rights<wbr>Matrix</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#newdocintro" class="tsd-kind-icon">newdocintro</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="collectionsdeskcomponent.html#notificationservice" class="tsd-kind-icon">notification<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#owcresourcedetailmodalcomponentref" class="tsd-kind-icon">owc<wbr>Resource<wbr>Detail<wbr>Modal<wbr>Component<wbr>Ref</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#userfiles" class="tsd-kind-icon">user<wbr>Files</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#usermetarecords" class="tsd-kind-icon">user<wbr>Meta<wbr>Records</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="collectionsdeskcomponent.html#workbenchservice" class="tsd-kind-icon">workbench<wbr>Service</a></li>
@@ -113,6 +117,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#createcollection" class="tsd-kind-icon">create<wbr>Collection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#findvisibilityforcollection" class="tsd-kind-icon">find<wbr>Visibility<wbr>For<wbr>Collection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#generatenzmapcontexts" class="tsd-kind-icon">generateNZmapcontexts</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#handleshowchildresourcemodal" class="tsd-kind-icon">handle<wbr>Show<wbr>Child<wbr>Resource<wbr>Modal</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#hidecreatecollectionmodal" class="tsd-kind-icon">hide<wbr>Create<wbr>Collection<wbr>Modal</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#importcollectionfromfile" class="tsd-kind-icon">import<wbr>Collection<wbr>From<wbr>File</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="collectionsdeskcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
@@ -138,7 +143,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L221">app/owc/collections-desk.component.ts:221</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L243">app/owc/collections-desk.component.ts:243</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -169,13 +174,43 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="canshow" class="tsd-anchor"></a>
+					<h3>can<wbr>Show</h3>
+					<div class="tsd-signature tsd-kind-icon">can<wbr>Show<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L41">app/owc/collections-desk.component.ts:41</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="childresourcecollectionid" class="tsd-anchor"></a>
+					<h3>child<wbr>Resource<wbr>Collection<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">child<wbr>Resource<wbr>Collection<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L43">app/owc/collections-desk.component.ts:43</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="childresourceowcdata" class="tsd-anchor"></a>
+					<h3>child<wbr>Resource<wbr>Owc<wbr>Data</h3>
+					<div class="tsd-signature tsd-kind-icon">child<wbr>Resource<wbr>Owc<wbr>Data<span class="tsd-signature-symbol">:</span> <a href="../interfaces/owcresource.html" class="tsd-signature-type">OwcResource</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L42">app/owc/collections-desk.component.ts:42</a></li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="collectionsservice" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> collections<wbr>Service</h3>
 					<div class="tsd-signature tsd-kind-icon">collections<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L229">app/owc/collections-desk.component.ts:229</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L251">app/owc/collections-desk.component.ts:251</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -185,7 +220,7 @@
 					<div class="tsd-signature tsd-kind-icon">create<wbr>Collection<wbr>Modal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ModalDirective</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L23">app/owc/collections-desk.component.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L25">app/owc/collections-desk.component.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -195,7 +230,7 @@
 					<div class="tsd-signature tsd-kind-icon">edit<wbr>Owc<wbr>Doc<span class="tsd-signature-symbol">:</span> <a href="../interfaces/owccontext.html" class="tsd-signature-type">OwcContext</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L29">app/owc/collections-desk.component.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L34">app/owc/collections-desk.component.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -205,7 +240,7 @@
 					<div class="tsd-signature tsd-kind-icon">editor<wbr>Active<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L25">app/owc/collections-desk.component.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L30">app/owc/collections-desk.component.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,7 +250,7 @@
 					<div class="tsd-signature tsd-kind-icon">fileparseerror<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L26">app/owc/collections-desk.component.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L31">app/owc/collections-desk.component.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -225,7 +260,7 @@
 					<div class="tsd-signature tsd-kind-icon">import<wbr>Owc<wbr>Doc<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L28">app/owc/collections-desk.component.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L33">app/owc/collections-desk.component.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -235,7 +270,7 @@
 					<div class="tsd-signature tsd-kind-icon">loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L24">app/owc/collections-desk.component.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L29">app/owc/collections-desk.component.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -245,7 +280,7 @@
 					<div class="tsd-signature tsd-kind-icon">my<wbr>Collections<span class="tsd-signature-symbol">:</span> <a href="../interfaces/owccontext.html" class="tsd-signature-type">OwcContext</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L33">app/owc/collections-desk.component.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L38">app/owc/collections-desk.component.ts:38</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -255,7 +290,7 @@
 					<div class="tsd-signature tsd-kind-icon">my<wbr>Rights<wbr>Matrix<span class="tsd-signature-symbol">:</span> <a href="../interfaces/owccontextsrightsmatrix.html" class="tsd-signature-type">OwcContextsRightsMatrix</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L34">app/owc/collections-desk.component.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L39">app/owc/collections-desk.component.ts:39</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -265,7 +300,7 @@
 					<div class="tsd-signature tsd-kind-icon">newdocintro<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L27">app/owc/collections-desk.component.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L32">app/owc/collections-desk.component.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -275,7 +310,7 @@
 					<div class="tsd-signature tsd-kind-icon">notification<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L231">app/owc/collections-desk.component.ts:231</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L253">app/owc/collections-desk.component.ts:253</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -284,12 +319,22 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="owcresourcedetailmodalcomponentref" class="tsd-anchor"></a>
+					<h3>owc<wbr>Resource<wbr>Detail<wbr>Modal<wbr>Component<wbr>Ref</h3>
+					<div class="tsd-signature tsd-kind-icon">owc<wbr>Resource<wbr>Detail<wbr>Modal<wbr>Component<wbr>Ref<span class="tsd-signature-symbol">:</span> <a href="owcresourcedetailmodalcomponent.html" class="tsd-signature-type">OwcResourceDetailModalComponent</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L27">app/owc/collections-desk.component.ts:27</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="userfiles" class="tsd-anchor"></a>
 					<h3>user<wbr>Files</h3>
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Files<span class="tsd-signature-symbol">:</span> <a href="../interfaces/userfile.html" class="tsd-signature-type">UserFile</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L30">app/owc/collections-desk.component.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L35">app/owc/collections-desk.component.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -299,7 +344,7 @@
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Meta<wbr>Records<span class="tsd-signature-symbol">:</span> <a href="../interfaces/usermetarecord.html" class="tsd-signature-type">UserMetaRecord</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L31">app/owc/collections-desk.component.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L36">app/owc/collections-desk.component.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -309,7 +354,7 @@
 					<div class="tsd-signature tsd-kind-icon">workbench<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="workbenchservice.html" class="tsd-signature-type">WorkbenchService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L230">app/owc/collections-desk.component.ts:230</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L252">app/owc/collections-desk.component.ts:252</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -326,7 +371,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L125">app/owc/collections-desk.component.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L147">app/owc/collections-desk.component.ts:147</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -359,7 +404,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L219">app/owc/collections-desk.component.ts:219</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L241">app/owc/collections-desk.component.ts:241</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -385,10 +430,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L281">app/owc/collections-desk.component.ts:281</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L303">app/owc/collections-desk.component.ts:303</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/owccontext.html" class="tsd-signature-type">OwcContext</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="handleshowchildresourcemodal" class="tsd-anchor"></a>
+					<h3>handle<wbr>Show<wbr>Child<wbr>Resource<wbr>Modal</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Show<wbr>Child<wbr>Resource<wbr>Modal<span class="tsd-signature-symbol">(</span>$event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L115">app/owc/collections-desk.component.ts:115</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>$event: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -402,7 +470,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L48">app/owc/collections-desk.component.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L57">app/owc/collections-desk.component.ts:57</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -424,7 +492,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L199">app/owc/collections-desk.component.ts:199</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L221">app/owc/collections-desk.component.ts:221</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -454,7 +522,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L237">app/owc/collections-desk.component.ts:237</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L259">app/owc/collections-desk.component.ts:259</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -476,7 +544,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L106">app/owc/collections-desk.component.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L128">app/owc/collections-desk.component.ts:128</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -499,7 +567,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L102">app/owc/collections-desk.component.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L111">app/owc/collections-desk.component.ts:111</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -516,7 +584,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L52">app/owc/collections-desk.component.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L61">app/owc/collections-desk.component.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -533,7 +601,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L41">app/owc/collections-desk.component.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L50">app/owc/collections-desk.component.ts:50</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -555,7 +623,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/collections-desk.component.ts#L164">app/owc/collections-desk.component.ts:164</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/collections-desk.component.ts#L186">app/owc/collections-desk.component.ts:186</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -595,6 +663,15 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="collectionsdeskcomponent.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="collectionsdeskcomponent.html#canshow" class="tsd-kind-icon">can<wbr>Show</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="collectionsdeskcomponent.html#childresourcecollectionid" class="tsd-kind-icon">child<wbr>Resource<wbr>Collection<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="collectionsdeskcomponent.html#childresourceowcdata" class="tsd-kind-icon">child<wbr>Resource<wbr>Owc<wbr>Data</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="collectionsdeskcomponent.html#collectionsservice" class="tsd-kind-icon">collections<wbr>Service</a>
 							</li>
@@ -629,6 +706,9 @@
 								<a href="collectionsdeskcomponent.html#notificationservice" class="tsd-kind-icon">notification<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="collectionsdeskcomponent.html#owcresourcedetailmodalcomponentref" class="tsd-kind-icon">owc<wbr>Resource<wbr>Detail<wbr>Modal<wbr>Component<wbr>Ref</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="collectionsdeskcomponent.html#userfiles" class="tsd-kind-icon">user<wbr>Files</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -645,6 +725,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="collectionsdeskcomponent.html#generatenzmapcontexts" class="tsd-kind-icon">generateNZmapcontexts</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="collectionsdeskcomponent.html#handleshowchildresourcemodal" class="tsd-kind-icon">handle<wbr>Show<wbr>Child<wbr>Resource<wbr>Modal</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="collectionsdeskcomponent.html#hidecreatecollectionmodal" class="tsd-kind-icon">hide<wbr>Create<wbr>Collection<wbr>Modal</a>

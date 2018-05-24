@@ -94,6 +94,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="owcleafletviewercomponent.html#betterwms" class="tsd-kind-icon">BetterWMS</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="owcleafletviewercomponent.html#_location" class="tsd-kind-icon">_location</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="owcleafletviewercomponent.html#accountservice" class="tsd-kind-icon">account<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="owcleafletviewercomponent.html#activelayers" class="tsd-kind-icon">active<wbr>Layers</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="owcleafletviewercomponent.html#collectionsservice" class="tsd-kind-icon">collections<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="owcleafletviewercomponent.html#map" class="tsd-kind-icon">map</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="owcleafletviewercomponent.html#mycollection" class="tsd-kind-icon">my<wbr>Collection</a></li>
@@ -105,6 +106,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="owcleafletviewercomponent.html#backclicked" class="tsd-kind-icon">back<wbr>Clicked</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="owcleafletviewercomponent.html#eventchangeactive" class="tsd-kind-icon">event<wbr>Change<wbr>Active</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="owcleafletviewercomponent.html#getasgeofeaturecollection" class="tsd-kind-icon">get<wbr>AsGeo<wbr>Feature<wbr>Collection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="owcleafletviewercomponent.html#getleafletcentre" class="tsd-kind-icon">get<wbr>Leaflet<wbr>Centre</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="owcleafletviewercomponent.html#getleafletoptions" class="tsd-kind-icon">get<wbr>Leaflet<wbr>Options</a></li>
@@ -130,7 +132,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L246">app/owc/owc-leaflet-viewer.component.ts:246</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L255">app/owc/owc-leaflet-viewer.component.ts:255</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -161,10 +163,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="betterwms" class="tsd-anchor"></a>
 					<h3>BetterWMS</h3>
-					<div class="tsd-signature tsd-kind-icon">BetterWMS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;L.TileLayer.WMS.extend({onAdd: function ( map: L.Map ) {// Triggered when the layer is added to a map.//   Register a click listener, then do all the upstream WMS thingsL.TileLayer.WMS.prototype.onAdd.call(this, map);map.on(&#x27;click&#x27;, this.getFeatureInfo, this);},onRemove: function ( map: L.Map ) {// Triggered when the layer is removed from a map.//   Unregister a click listener, then do all the upstream WMS thingsL.TileLayer.WMS.prototype.onRemove.call(this, map);map.off(&#x27;click&#x27;, this.getFeatureInfo, this);},getFeatureInfo: function ( evt: any ) {// Make an AJAX request to the server and hope for the bestlet url &#x3D; this.getFeatureInfoUrl(evt.latlng),showResults &#x3D; L.Util.bind(this.showGetFeatureInfo, this);console.log(url);$.ajax({url: url,success: function ( data: any, status: any, xhr: any ) {let err &#x3D; typeof data &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? null : data;showResults(err, evt.latlng, data);},error: function ( xhr, status, error ) {showResults(error);}});},getFeatureInfoUrl: function ( latlng: L.LatLng ) {let point &#x3D; this._map.latLngToContainerPoint(latlng),size &#x3D; this._map.getSize(),params &#x3D; {request: &#x27;GetFeatureInfo&#x27;,service: &#x27;WMS&#x27;,srs: &#x27;EPSG:4326&#x27;,styles: this.wmsParams.styles,transparent: this.wmsParams.transparent,version: this.wmsParams.version,format: this.wmsParams.format,bbox: this._map.getBounds().toBBoxString(),height: size.y,width: size.x,layers: this.wmsParams.layers,query_layers: this.wmsParams.layers,info_format: &#x27;text/html&#x27;};// params[ params.version &#x3D;&#x3D;&#x3D; &#x27;1.3.0&#x27; ? &#x27;i&#x27; : &#x27;x&#x27; ] &#x3D; point.x;// params[ params.version &#x3D;&#x3D;&#x3D; &#x27;1.3.0&#x27; ? &#x27;j&#x27; : &#x27;y&#x27; ] &#x3D; point.y;params[ &#x27;x&#x27; ] &#x3D; point.x;params[ &#x27;y&#x27; ] &#x3D; point.y;console.log(point);return this._url + L.Util.getParamString(params, this._url, true);},showGetFeatureInfo: function ( err: any, latlng: L.LatLng, content: L.Content ) {if (err) {console.log(err);return;} // do nothing if there&#x27;s an error// const contentHigh &#x3D; L.Content(content);console.log(this._map);// Otherwise show the content in a popup, or something.L.popup({ maxWidth: 600 }).setLatLng(latlng).setContent(content).openOn(this._map);}})</span></div>
+					<div class="tsd-signature tsd-kind-icon">BetterWMS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;L.TileLayer.WMS.extend({onAdd: function ( map: L.Map ) {// Triggered when the layer is added to a map.//   Register a click listener, then do all the upstream WMS thingsL.TileLayer.WMS.prototype.onAdd.call(this, map);map.on(&#x27;click&#x27;, this.getFeatureInfo, this);},onRemove: function ( map: L.Map ) {// Triggered when the layer is removed from a map.//   Unregister a click listener, then do all the upstream WMS thingsL.TileLayer.WMS.prototype.onRemove.call(this, map);map.off(&#x27;click&#x27;, this.getFeatureInfo, this);},getFeatureInfo: function ( evt: any ) {// Make an AJAX request to the server and hope for the bestlet url &#x3D; this.getFeatureInfoUrl(evt.latlng),showResults &#x3D; L.Util.bind(this.showGetFeatureInfo, this);console.log(url);$.ajax({url: url,success: function ( data: any, status: any, xhr: any ) {let err &#x3D; typeof data &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? null : data;showResults(err, evt.latlng, data);},error: function ( xhr, status, error ) {showResults(error);}});},getFeatureInfoUrl: function ( latlng: L.LatLng ) {let point &#x3D; this._map.latLngToContainerPoint(latlng),size &#x3D; this._map.getSize(),params &#x3D; {request: &#x27;GetFeatureInfo&#x27;,service: &#x27;WMS&#x27;,srs: &#x27;EPSG:4326&#x27;,styles: this.wmsParams.styles,transparent: this.wmsParams.transparent,version: this.wmsParams.version,format: this.wmsParams.format,bbox: this._map.getBounds().toBBoxString(),height: size.y,width: size.x,layers: this.wmsParams.layers,query_layers: this.wmsParams.layers,info_format: &#x27;text/html&#x27;};// params[ params.version &#x3D;&#x3D;&#x3D; &#x27;1.3.0&#x27; ? &#x27;i&#x27; : &#x27;x&#x27; ] &#x3D; point.x;// params[ params.version &#x3D;&#x3D;&#x3D; &#x27;1.3.0&#x27; ? &#x27;j&#x27; : &#x27;y&#x27; ] &#x3D; point.y;params[ &#x27;x&#x27; ] &#x3D; point.x;params[ &#x27;y&#x27; ] &#x3D; point.y;console.log(point);return this._url + L.Util.getParamString(params, this._url, true);},showGetFeatureInfo: function ( err: any, latlng: L.LatLng, content: L.Content ) {if (err) {console.log(err);return;} // do nothing if there&#x27;s an error// const contentHigh &#x3D; L.Content(content);console.log(this._map);// Otherwise show the content in a popup, or something.// L.popup({ maxWidth: 600 })//   .setLatLng(latlng)//   .setContent(content)//   .openOn(this._map);console.log(content);}})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L54">app/owc/owc-leaflet-viewer.component.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L61">app/owc/owc-leaflet-viewer.component.ts:61</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -174,7 +176,7 @@
 					<div class="tsd-signature tsd-kind-icon">_location<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Location</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L249">app/owc/owc-leaflet-viewer.component.ts:249</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L258">app/owc/owc-leaflet-viewer.component.ts:258</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -184,7 +186,17 @@
 					<div class="tsd-signature tsd-kind-icon">account<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="accountservice.html" class="tsd-signature-type">AccountService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L250">app/owc/owc-leaflet-viewer.component.ts:250</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L259">app/owc/owc-leaflet-viewer.component.ts:259</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="activelayers" class="tsd-anchor"></a>
+					<h3>active<wbr>Layers</h3>
+					<div class="tsd-signature tsd-kind-icon">active<wbr>Layers<span class="tsd-signature-symbol">:</span> <a href="../interfaces/mapactivetracker.html" class="tsd-signature-type">MapActiveTracker</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L59">app/owc/owc-leaflet-viewer.component.ts:59</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -194,7 +206,7 @@
 					<div class="tsd-signature tsd-kind-icon">collections<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="collectionsservice.html" class="tsd-signature-type">CollectionsService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L251">app/owc/owc-leaflet-viewer.component.ts:251</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L260">app/owc/owc-leaflet-viewer.component.ts:260</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -204,7 +216,7 @@
 					<div class="tsd-signature tsd-kind-icon">map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L52">app/owc/owc-leaflet-viewer.component.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L58">app/owc/owc-leaflet-viewer.component.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -214,7 +226,7 @@
 					<div class="tsd-signature tsd-kind-icon">my<wbr>Collection<span class="tsd-signature-symbol">:</span> <a href="../interfaces/owccontext.html" class="tsd-signature-type">OwcContext</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L51">app/owc/owc-leaflet-viewer.component.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L57">app/owc/owc-leaflet-viewer.component.ts:57</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -224,7 +236,7 @@
 					<div class="tsd-signature tsd-kind-icon">notification<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L252">app/owc/owc-leaflet-viewer.component.ts:252</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L261">app/owc/owc-leaflet-viewer.component.ts:261</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -234,7 +246,7 @@
 					<div class="tsd-signature tsd-kind-icon">route<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ActivatedRoute</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L248">app/owc/owc-leaflet-viewer.component.ts:248</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L257">app/owc/owc-leaflet-viewer.component.ts:257</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -251,9 +263,35 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L343">app/owc/owc-leaflet-viewer.component.ts:343</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L352">app/owc/owc-leaflet-viewer.component.ts:352</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="eventchangeactive" class="tsd-anchor"></a>
+					<h3>event<wbr>Change<wbr>Active</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">event<wbr>Change<wbr>Active<span class="tsd-signature-symbol">(</span>$event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, owcResource<span class="tsd-signature-symbol">: </span><a href="../interfaces/owcresource.html" class="tsd-signature-type">OwcResource</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L356">app/owc/owc-leaflet-viewer.component.ts:356</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>$event: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>owcResource: <a href="../interfaces/owcresource.html" class="tsd-signature-type">OwcResource</a></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -268,7 +306,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L214">app/owc/owc-leaflet-viewer.component.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L223">app/owc/owc-leaflet-viewer.component.ts:223</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -291,7 +329,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L207">app/owc/owc-leaflet-viewer.component.ts:207</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L216">app/owc/owc-leaflet-viewer.component.ts:216</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -314,7 +352,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L130">app/owc/owc-leaflet-viewer.component.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L138">app/owc/owc-leaflet-viewer.component.ts:138</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -331,19 +369,19 @@
 					<a name="handleonshown" class="tsd-anchor"></a>
 					<h3>handle<wbr>OnShown</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">handle<wbr>OnShown<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>OnShown<span class="tsd-signature-symbol">(</span>$event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L202">app/owc/owc-leaflet-viewer.component.ts:202</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L211">app/owc/owc-leaflet-viewer.component.ts:211</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>event: <span class="tsd-signature-type">any</span></h5>
+									<h5>$event: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -360,7 +398,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L260">app/owc/owc-leaflet-viewer.component.ts:260</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L269">app/owc/owc-leaflet-viewer.component.ts:269</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -377,7 +415,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L181">app/owc/owc-leaflet-viewer.component.ts:181</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L190">app/owc/owc-leaflet-viewer.component.ts:190</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -403,7 +441,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L277">app/owc/owc-leaflet-viewer.component.ts:277</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L286">app/owc/owc-leaflet-viewer.component.ts:286</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -426,7 +464,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/9d54c33/src/app/owc/owc-leaflet-viewer.component.ts#L283">app/owc/owc-leaflet-viewer.component.ts:283</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/81fc10f/src/app/owc/owc-leaflet-viewer.component.ts#L292">app/owc/owc-leaflet-viewer.component.ts:292</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -468,6 +506,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="owcleafletviewercomponent.html#accountservice" class="tsd-kind-icon">account<wbr>Service</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="owcleafletviewercomponent.html#activelayers" class="tsd-kind-icon">active<wbr>Layers</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="owcleafletviewercomponent.html#collectionsservice" class="tsd-kind-icon">collections<wbr>Service</a>
 							</li>
@@ -485,6 +526,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="owcleafletviewercomponent.html#backclicked" class="tsd-kind-icon">back<wbr>Clicked</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="owcleafletviewercomponent.html#eventchangeactive" class="tsd-kind-icon">event<wbr>Change<wbr>Active</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="owcleafletviewercomponent.html#getasgeofeaturecollection" class="tsd-kind-icon">get<wbr>AsGeo<wbr>Feature<wbr>Collection</a>
