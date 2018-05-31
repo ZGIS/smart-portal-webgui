@@ -92,7 +92,7 @@ export class CollectionsComponent {
 
   editProperties(): void {
     console.log('we edit the properties');
-    this.editCollectionRequest.emit({ event: event, data: this.myCollection });
+    this.editCollectionRequest.emit({ data: this.myCollection });
   }
 
   changeVisibility( collectionid: string, visibility: number ): void {
