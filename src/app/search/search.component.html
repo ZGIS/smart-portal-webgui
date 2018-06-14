@@ -90,6 +90,28 @@
           </div>
 
           <div class="list-group">
+            <a *ngFor="let owc of caseStudySearchResult.slice(0, 10)"
+               class="list-group-item"
+               (click)="showCollectionsModal(owc)">
+              {{ owc.properties.title }}
+              <i *ngIf="owc.searchScore && owc.searchScore > 0.75"
+                 tooltip="Estimated  relative relevance: {{ (owc.searchScore * 100).toFixed(0) }}%">
+                <small style="color: #00A000">({{ (owc.searchScore * 100).toFixed(0) }}%)</small>
+              </i>
+              <i *ngIf="owc.searchScore && owc.searchScore < 0.75  && owc.searchScore > 0.5"
+                 tooltip="Estimated  relative relevance: {{ (owc.searchScore * 100).toFixed(0) }}%">
+                <small style="color: #0d87e9">({{ (owc.searchScore * 100).toFixed(0) }}%)</small>
+              </i>
+              <i *ngIf="owc.searchScore && owc.searchScore < 0.5  && owc.searchScore > 0.1"
+                 tooltip="Estimated  relative relevance: {{ (owc.searchScore * 100).toFixed(0) }}%">
+                <small style="color: #cc9900">({{ (owc.searchScore * 100).toFixed(0) }}%)</small>
+              </i>
+              <small>(<i class="fa fa-address-card"
+                         tooltip="Case Study / Collection"></i> {{owc.properties.publisher?.toLowerCase()}})</small>
+            </a>
+          </div>
+
+          <div class="list-group">
             <a *ngFor="let feature of getFilteredResults()"
                class="list-group-item"
                [class.active]="feature===selectedResult"
@@ -113,6 +135,7 @@
                             tooltip="{{ feature.properties.originUrl}}"></i> {{feature.properties.origin}})</small>
             </a>
           </div>
+
         </div>
       </div>
     </div>
@@ -121,5 +144,7 @@
 
 <app-sac-gwh-result-detail-modal (onHide)="onHideFeatureModal()"></app-sac-gwh-result-detail-modal>
 
+<app-sac-gwh-result-collections-modal [viewOnly]="true"></app-sac-gwh-result-collections-modal>
 
+<app-sac-gwh-owcresource-detail-modal [viewOnly]="true"></app-sac-gwh-owcresource-detail-modal>
 

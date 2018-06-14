@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -19,7 +19,6 @@ import { CollectionsService, OwcContext, OwcLink } from '../owc';
 import { AccountService } from '../account';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 @Component({
   selector: 'app-sac-gwh-result-cards',

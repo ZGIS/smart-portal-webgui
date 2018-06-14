@@ -8,6 +8,11 @@ import { isNullOrUndefined } from 'util';
 import { NotificationService } from '../notifications/notification.service';
 import { Extent } from 'openlayers';
 import { ResultDetailModalComponent } from './result-detail-modal.component';
+import { ResultCollectionsViewModalComponent } from './result-collections-view-modal.component';
+import { CollectionsService, OwcContext } from '../owc';
+import { AccountService } from '../account';
+
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 /**
  * Search Component
@@ -20,6 +25,7 @@ import { ResultDetailModalComponent } from './result-detail-modal.component';
 
 export class SearchComponent implements OnInit {
   @ViewChild(ResultDetailModalComponent) resultDetailModalComponentRef: ResultDetailModalComponent;
+  @ViewChild(ResultCollectionsViewModalComponent) resultCollectionsModalComponentRef: ResultCollectionsViewModalComponent;
 
   /** default date format */
   DATE_FORMAT = 'YYYY-MM-DD';
@@ -38,6 +44,7 @@ export class SearchComponent implements OnInit {
 
   /** Search results */
   results: IGeoFeatureCollection;
+  caseStudySearchResult: OwcContext[] = [];
 
   /** The selected search result */
   selectedResult: IGeoFeature;
@@ -55,14 +62,20 @@ export class SearchComponent implements OnInit {
   /**
    * Constructor
    * @param resultService       - injected ResultService
+   * @param collectionService       - injected CollectionsService
+   * @param accountService       - injected AccountService
    * @param router              - injected Router
    * @param activatedRoute      - injected ActivatedRoute
    * @param notificationService - injected NotificationService
+   * @param modalService              - injected BsModalService
    */
   constructor( private resultService: ResultService,
+               private collectionService: CollectionsService,
+               private accountService: AccountService,
                private router: Router,
                private activatedRoute: ActivatedRoute,
-               private notificationService: NotificationService ) {
+               private notificationService: NotificationService,
+               private modalService: BsModalService ) {
   }
 
 
@@ -202,6 +215,42 @@ export class SearchComponent implements OnInit {
           this.notificationService.addErrorResultNotification(error);
           this.isLoading = false;
         });
+
+    // caseStudyResult
+    this.accountService.isLoggedIn().subscribe(
+      loggedInResult => {
+        const keyword_query_nested = this.search.query.split(':').map( chr => chr.split('"'));
+        const keyword_query = ([] as string[]).concat(...keyword_query_nested);
+        this.collectionService.queryCollectionsForViewing(loggedInResult, null, keyword_query)
+          .subscribe(
+            collections => {
+              this.caseStudySearchResult = [];
+              // console.log(response);
+              collections.forEach(owc => {
+                this.caseStudySearchResult.push(owc);
+              });
+              this.caseStudySearchResult.sort(( leftside, rightside ) => {
+                if (!(leftside.searchScore && rightside.searchScore)) {
+                  return 0;
+                }
+                if (leftside.searchScore < rightside.searchScore) {
+                  return -1;
+                }
+                if (leftside.searchScore > rightside.searchScore) {
+                  return 1;
+                }
+                return 0;
+              });
+            },
+            ( error: any ) => {
+              this.notificationService.addErrorResultNotification(error);
+              this.isLoading = false;
+            });
+      },
+      error => {
+        console.log(<any>error);
+        this.isLoading = false;
+      });
   }
 
   /**
@@ -267,6 +316,10 @@ export class SearchComponent implements OnInit {
   onHideFeatureModal() {
     this.showModal = undefined;
     this.doSearch();
+  }
+
+  showCollectionsModal( owc: OwcContext ): void {
+    this.resultCollectionsModalComponentRef.showFeatureModal(owc);
   }
 }
 
