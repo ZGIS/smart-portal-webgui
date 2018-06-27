@@ -50,7 +50,8 @@ install:
 # Immune to logouts, but not VM deprovisions!
 #- nohup bash -c "webdriver-manager start 2>&1 &"
 script:
-- cp config/internal/.env.travis .env
+- test $TRAVIS_BRANCH != "master" && cp config/internal/.env.dev.travis .env
+- test $TRAVIS_BRANCH == "master" && cp config/internal/.env.nzgwhub.travis .env
 - npm run stat
 - npm run tslint
 - npm test -- --ci
@@ -62,7 +63,7 @@ script:
 # shpinx docs build
 - sphinx-build --version
 - sphinx-build -b html src/docs/source sphinx-build
-- sh -c $TRAVIS_BUILD_DIR/ghdash-preps.sh
+- test $TRAVIS_BRANCH == "master" && sh -c $TRAVIS_BUILD_DIR/ghdash-preps.sh
 
 after_success:
 - chmod 600 ghpages_ecdsa_sacgui && eval `ssh-agent -s` && ssh-add ghpages_ecdsa_sacgui
@@ -70,6 +71,8 @@ after_success:
 - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run gh-pages-push
 # AK 13/07/2017
 # - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run clean && npm run build:jit && sphinx-build -b html src/docs/source sphinx-build && sh -c $TRAVIS_BUILD_DIR/docker-preps.sh
+- test $TRAVIS_BRANCH == "dev" && npm run clean && npm run build && sphinx-build -b html src/docs/source sphinx-build && sh -c $TRAVIS_BUILD_DIR/docker-preps.sh
+
 - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run clean && npm run build && sphinx-build -b html src/docs/source sphinx-build && sh -c $TRAVIS_BUILD_DIR/docker-preps.sh
 
 deploy:
@@ -82,7 +85,20 @@ deploy:
   local-dir: config/docker/
   skip_cleanup: true
   on:
+    branch: dev
+
+deploy:
+  provider: gcs
+  access_key_id: GOOGZDYY4PCU7QXHJ5GS
+  secret_access_key:
+    secure: DuqJ8mkk+Hcc5H6OGf4Hb9EpehcA0MkawC9ENJPfH4hRdN0wVBr+3cCMY4WfzmZrmpcOUdv2lga+JltVfwLsBoFqxaiN0U3CGGg1N91Lzg3y/3nHfoaYFmZSK7lbOrAfqX7unKCpmzZ86hGFoAMCQhOvx/I3jcCaKZ4ZjWGuN93ragiZzbFQ/9x2s0aRAkUIdc/JVEpPZVCDIhAjd0WrHPZk8zryN6Iq/02xEdMSJFHrHPxSUPcdhPGvOGNG/jht6/HDRmGNzOz22vHLN8vYaTPSBdhv5H+V5NJ5ga23es3nemQu1uEn1b+U++CGfjkJrsN+bY6+XlVQ/Q1wtfh9QTwWAJOukrwQgJzZeLIIxupM+BaQ7VCQzBma/jmLHbxcU169/RBo+YlloNCBY/YcTVRqzIxXpN9tbK5SRhavSqq/t49AYpBL01tKyM+d8uNngz5my1BmF4+zaeZE7TZ/shTxd/8ngDso0L945NswSO+zXS/IJVTK7QuRSidPA9d274bkliWDke0sfSR6qimleru/TNTAO94LWBSP3sPBa9n2X9HFsD/kHC3pDg3ziRG52BMP283qK3EiJI3ucPsbYusEgVYEJniqcUdFmz218V4eufrN1norSTbLfuE6akVH1DOpthPJi1ARPpLMFNzhM0nG/9ET70a/eDuTXvhJ0j4=
+  bucket: smart-deploy-artefacts
+  upload-dir: "webnzgwhub/$TRAVIS_BUILD_NUMBER"
+  local-dir: config/docker/
+  skip_cleanup: true
+  on:
     branch: master
+
 notifications:
   email:
   - allixender@gmail.com
