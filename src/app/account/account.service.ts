@@ -43,6 +43,9 @@ export class AccountService {
                private http: Http,
                private cookieService: CookieService ) {
 
+    console.log('portalApiUrl: ', portalApiUrl);
+    console.log('cswiApiUrl: ', cswiApiUrl);
+
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let cookieToken = this.cookieService.get('XSRF-TOKEN');
     this.loggedInState = new BehaviorSubject(false);
@@ -61,7 +64,7 @@ export class AccountService {
           // 'Authorization': 'Bearer ' + this.token,
           'X-XSRF-TOKEN': this.token
         });
-        let options = new RequestOptions({headers: headers, withCredentials: true});
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
 
         this.http.get(profileUri, options)
           .map(
@@ -110,7 +113,7 @@ export class AccountService {
       // 'Authorization': 'Bearer ' + this.token,
       'X-XSRF-TOKEN': this.token
     });
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     // get users from api
     return this.http.get(profileUri, options)
@@ -158,7 +161,7 @@ export class AccountService {
       // 'Authorization': 'Bearer ' + this.token,
       'X-XSRF-TOKEN': this.token
     });
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
     return this.http.get(logoutUri, options)
       .map(( response: Response ) => {
         // logout
@@ -185,7 +188,7 @@ export class AccountService {
       // 'Authorization': 'Bearer ' + this.token,
       'X-XSRF-TOKEN': this.token
     });
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
     return this.http.get(deleteSelfUri, options)
       .map(( response: Response ) => {
         this.loggedInState.next(false);
@@ -208,8 +211,8 @@ export class AccountService {
   login( loginCredentials: LoginCredentials ): Observable<boolean> {
     let loginUri = this.portalApiUrl + '/login';
     let data = JSON.stringify(loginCredentials);
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
     return this.http.post(loginUri, data, options)
       .map(( response: Response ) => {
 
@@ -224,7 +227,7 @@ export class AccountService {
           // store accountSubject and xsrf token in local storage to keep user logged in between page
           // refreshes
           localStorage.setItem('currentUser',
-            JSON.stringify({email: loginCredentials.email, token: token}));
+            JSON.stringify({ email: loginCredentials.email, token: token }));
 
           let userProfileJson = response.json().userprofile;
           if (<ProfileJs>userProfileJson) {
@@ -288,7 +291,7 @@ export class AccountService {
       'X-XSRF-TOKEN': this.token,
       'Content-Type': 'application/json'
     });
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.http.post(updatePassUri, data, options)
       .map(( response: Response ) => {
@@ -302,7 +305,7 @@ export class AccountService {
 
           // store accountSubject and xsrf token in local storage to keep user logged in between page
           // refreshes
-          localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));
+          localStorage.setItem('currentUser', JSON.stringify({ email: email, token: token }));
 
           // return true to indicate successful login
           return true;
@@ -329,7 +332,7 @@ export class AccountService {
       'X-XSRF-TOKEN': this.token,
       'Content-Type': 'application/json'
     });
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.http.post(updateProfileUri, userprofile, options)
       .map(( response: Response ) => {
@@ -357,8 +360,8 @@ export class AccountService {
   requestPasswordReset( resetCredentials: LoginCredentials ): Observable<boolean> {
     let regUri = this.portalApiUrl + '/users/resetpass';
     let data = JSON.stringify(resetCredentials);
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
     return this.http.post(regUri, data, options)
       .map(( response: Response ) => {
         // TODO SR see above
@@ -384,8 +387,8 @@ export class AccountService {
     let regUri = this.portalApiUrl + '/users/resetpass/' + redeemlink;
 
     let data = JSON.stringify(resetCredentials);
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
     return this.http.post(regUri, data, options)
       .map(
         ( response: Response ) => {
@@ -410,7 +413,7 @@ export class AccountService {
   testReCaptcha( recaptchaChallenge: string ): Observable<boolean> {
     let paramUrl = this.portalApiUrl + '/recaptcha/validate' +
       '?recaptcaChallenge=' + recaptchaChallenge;
-    let options = new RequestOptions({withCredentials: true});
+    let options = new RequestOptions({ withCredentials: true });
 
     return this.http.get(paramUrl, options)
       .map(( response: Response ) => {
@@ -482,8 +485,8 @@ export class AccountService {
   private gconnectHandleLogin( gAuthCredential: GAuthCredentials ) {
     let gconnectPortalUri = this.portalApiUrl + '/login/gconnect';
     let data = JSON.stringify(gAuthCredential);
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers, withCredentials: true});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
     // console.log(data);
 
     return this.http.post(gconnectPortalUri, data, options)
@@ -498,7 +501,7 @@ export class AccountService {
 
           // store accountSubject and xsrf token in local storage to keep user logged in between page refreshes
           let email = response.json().email;
-          localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));
+          localStorage.setItem('currentUser', JSON.stringify({ email: email, token: token }));
 
           let userProfileJson = response.json().userprofile;
           if (<ProfileJs>userProfileJson) {
@@ -525,10 +528,10 @@ export class AccountService {
       errorResponse.headers.get('content-type').startsWith('application/json')) {
       let errorResult: IErrorResult = <IErrorResult>errorResponse.json();
       let message: String = `${errorResponse.statusText}: ${errorResult.message}`;
-      return Observable.throw(<IErrorResult>{message: message, details: errorResult.details});
+      return Observable.throw(<IErrorResult>{ message: message, details: errorResult.details });
     } else {
       let message: String = `${errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`;
-      return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()});
+      return Observable.throw(<IErrorResult>{ message: message, details: errorResponse.text() });
     }
   }
 

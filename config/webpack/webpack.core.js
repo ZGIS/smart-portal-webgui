@@ -20,11 +20,11 @@ if (envMap.APP_CSWI_API_URL && envMap.APP_PORTAL_API_URL) {
   console.log('APP_CSWI_API_URL is ' + chalk[color]('%s'), envMap.APP_CSWI_API_URL);
   console.log('APP_PORTAL_API_URL is ' + chalk[color]('%s'), envMap.APP_PORTAL_API_URL);
 } else {
-  console.log('No API URL Providers found in ENV, using defaults');
-  envMap.APP_CSWI_API_URL = '"https://dev.smart-project.info/cswi-api/v1"';
-  envMap.APP_PORTAL_API_URL = '"https://dev.smart-project.info/api/v1"';
-  console.log('APP_CSWI_API_URL is ' + chalk[color]('%s'), envMap.APP_CSWI_API_URL);
-  console.log('APP_PORTAL_API_URL is ' + chalk[color]('%s'), envMap.APP_PORTAL_API_URL);
+  throw 'No API URL Providers found in ENV, no defaults';
+  // envMap.APP_CSWI_API_URL = '"https://dev.smart-project.info/cswi-api/v1"';
+  // envMap.APP_PORTAL_API_URL = '"https://dev.smart-project.info/api/v1"';
+  // console.log('APP_CSWI_API_URL is ' + chalk[color]('%s'), envMap.APP_CSWI_API_URL);
+  // console.log('APP_PORTAL_API_URL is ' + chalk[color]('%s'), envMap.APP_PORTAL_API_URL);
 }
 
 if (!envMap.APP_VERSION) {
@@ -40,7 +40,7 @@ if (BUILD_NUMBER != null) {
   envMap.APP_BUILD_NUMBER = JSON.stringify(BUILD_NUMBER);
   console.log('APP_BUILD_NUMBER is ' + chalk[color]('%s'), envMap.APP_BUILD_NUMBER);
 } else {
-  envMap.APP_BUILD_NUMBER = JSON.stringify('' + Date.now());
+  envMap.APP_BUILD_NUMBER = JSON.stringify(Date.now().toString());
   console.log('APP_BUILD_NUMBER is ' + chalk[color]('%s'), envMap.APP_BUILD_NUMBER);
 }
 
