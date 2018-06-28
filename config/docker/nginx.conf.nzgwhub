@@ -1,0 +1,223 @@
+
+user  nginx;
+worker_processes  2;
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    # max upload size here
+    client_max_body_size 1000m;
+
+    #gzip  on;
+
+    upstream nzgwhub {
+        server nzgwhub:9000;
+    }
+
+    upstream jena {
+        server jena:8000;
+    }
+
+    upstream cswingester-dev {
+        server cswingester-dev:9000;
+    }
+
+    upstream pycsw {
+        server pycsw:8080;
+    }
+
+    upstream journalcsw {
+        server journalcsw:8080;
+    }
+
+    upstream geoappschema {
+        server geoappschema:12081;
+    }
+
+    upstream ngmpsos {
+        server ngmpsos:12081;
+    }
+
+    upstream geoserverbasic {
+        server geoserverbasic:12080;
+    }
+
+
+    server {
+        listen       80;
+        server_name nz-groundwater-hub.org *.nz-groundwater-hub.org;
+
+        #charset koi8-r;
+        #access_log  /var/log/nginx/log/host.access.log  main;
+
+        # Access /etc/nginx/secrets/htpasswd-smart
+
+        error_page  500 502 503 504  /50x.html;
+        error_page  404              /404.html;
+
+        location ~ \.(aspx|php|jsp|cgi)$ {
+            deny all;
+        }
+
+        location ^~ /api/v1/ {
+            proxy_pass http://nzgwhub/api/v1/;
+
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
+
+        location ^~ /fs/ {
+            proxy_pass http://nzgwhub/fs/;
+
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
+
+        location ^~ /pycsw {
+            proxy_pass http://pycsw;
+
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
+
+        location ^~ /journalcsw {
+            proxy_pass http://journalcsw;
+
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
+
+        location ^~ /gs-smart/ {
+            proxy_pass http://geoappschema/gs-smart/;
+
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
+
+        location ^~ /sos-smart/ {
+            proxy_pass http://ngmpsos/sos-smart/;
+
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
+
+        location ^~ /geoserver/ {
+            proxy_pass http://geoserverbasic/geoserver/;
+
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
+
+        location ^~ /cswi-api/ {
+            proxy_pass http://cswingester-dev/cswi-api/;
+
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
+
+        # which URLs do we support
+        location ^~ /context {
+            # default mapping of a resource (accessible through /search -> ingester -> metadata), identified by UUID
+            rewrite ^/context/entry/(.*)$ $scheme://$host/#/context/resource/$1 redirect;
+            rewrite ^/context/resource/(.*)$ $scheme://$host/#/context/resource/$1 redirect;
+            # a user's personal default collection, cannot be public, thus, if at all logged in user goes to workbench my data?
+            rewrite ^/context/user/(.*)$ $scheme://$host/#/context/user/$1 redirect;
+            # the custom collections style access, can be visible to public (e.g. case study style), or only go to my-data?
+            rewrite ^/context/document/(.*)$ $scheme://$host/#/context/document/$1 redirect;
+            # the consentable logged file mapping download access
+            rewrite ^/context/file/(.*)$ $scheme://$host/#/context/file/$1 redirect;
+            return 403;
+        }
+
+        # location ~ /context/user/*|/context/entry/*|/context/resource/*|/context/document/* {
+        #     rewrite ^ $scheme://dev.smart-project.info/#$uri permanent;
+        #     break;
+        # }
+
+        location / {
+            root   /usr/share/nginx/html;
+            index  index.html;
+            auth_basic           "Restricted site";
+            auth_basic_user_file /etc/nginx/secrets/htpasswd-smart;
+        }
+
+    }
+
+    # include /etc/nginx/conf.d/*.conf;
+
+    # some additional security considerations:
+    # don't send the nginx version number in error pages and Server header
+    server_tokens off;
+
+    # config to don't allow the browser to render the page inside an frame or iframe
+    # and avoid clickjacking http://en.wikipedia.org/wiki/Clickjacking
+    # if you need to allow [i]frames, you can use SAMEORIGIN or even set an uri with ALLOW-FROM uri
+    # https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options
+    add_header X-Frame-Options SAMEORIGIN;
+
+    # when serving user-supplied content, include a X-Content-Type-Options: nosniff header along with the Content-Type: header,
+    # to disable content-type sniffing on some browsers.
+    # https://www.owasp.org/index.php/List_of_useful_HTTP_headers
+    # currently suppported in IE > 8 http://blogs.msdn
+    # .com/b/ie/archive/2008/09/02/ie8-security-part-vi-beta-2-update.aspx
+    # http://msdn.microsoft.com/en-us/library/ie/gg622941(v=vs.85).aspx
+    # 'soon' on Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=471020
+    add_header X-Content-Type-Options nosniff;
+
+    # This header enables the Cross-site scripting (XSS) filter built into most recent web browsers.
+    # It's usually enabled by default anyway, so the role of this header is to re-enable the filter for
+    # this particular website if it was disabled by the user.
+    # https://www.owasp.org/index.php/List_of_useful_HTTP_headers
+    add_header X-XSS-Protection "1; mode=block";
+
+    # with Content Security Policy (CSP) enabled(and a browser that supports it(http://caniuse.com/#feat=contentsecuritypolicy),
+    # you can tell the browser that it can only download content from the domains you explicitly allow
+    # http://www.html5rocks.com/en/tutorials/security/content-security-policy/
+    # https://www.owasp.org/index.php/Content_Security_Policy
+    # I need to change our application code so we can increase security by disabling 'unsafe-inline' 'unsafe-eval'
+    # directives for css and js(if you have inline css or js, you will need to keep it too).
+    # more: http://www.html5rocks.com/en/tutorials/security/content-security-policy/#inline-code-considered-harmful
+
+    # add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'
+    # 'unsafe-eval' https://ssl.google-analytics.com https://www.google.com/recaptcha; style-src
+    # 'self' 'unsafe-inline' https://themes.googleusercontent.com; font-src 'self'
+    # https://fonts.gstatic.com https://fonts.googleapis.com; child-src 'self' https://youtube.com; object-src 'none'";
+
+}
