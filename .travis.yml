@@ -50,7 +50,7 @@ install:
 # Immune to logouts, but not VM deprovisions!
 #- nohup bash -c "webdriver-manager start 2>&1 &"
 script:
-- sh -c $TRAVIS_BUILD_DIR/copy_env.sh
+- chmod +x $TRAVIS_BUILD_DIR/copy_env.sh && sh -c $TRAVIS_BUILD_DIR/copy_env.sh
 - npm run stat
 - npm run tslint
 - npm test -- --ci
@@ -62,10 +62,11 @@ script:
 # shpinx docs build
 - sphinx-build --version
 - sphinx-build -b html src/docs/source sphinx-build
-- test $TRAVIS_BRANCH == "master" && sh -c $TRAVIS_BUILD_DIR/ghdash-preps.sh
 
 after_success:
+
 - chmod 600 ghpages_ecdsa_sacgui && eval `ssh-agent -s` && ssh-add ghpages_ecdsa_sacgui
+- test $TRAVIS_BRANCH == "master" && sh -c $TRAVIS_BUILD_DIR/ghdash-preps.sh
 
 - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && npm run gh-pages-push
 # AK 13/07/2017
