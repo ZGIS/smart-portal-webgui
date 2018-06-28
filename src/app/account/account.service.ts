@@ -43,9 +43,6 @@ export class AccountService {
                private http: Http,
                private cookieService: CookieService ) {
 
-    console.log('portalApiUrl: ', portalApiUrl);
-    console.log('cswiApiUrl: ', cswiApiUrl);
-
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let cookieToken = this.cookieService.get('XSRF-TOKEN');
     this.loggedInState = new BehaviorSubject(false);

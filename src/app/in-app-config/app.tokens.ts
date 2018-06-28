@@ -31,8 +31,6 @@ export const API_URL_PROVIDERS = [
   }
 ];
 
-console.log(CSWI_API_URL);
-
 export const APP_VERSION_PROVIDERS = [
   {
     provide: WEBGUI_APP_VERSION,
