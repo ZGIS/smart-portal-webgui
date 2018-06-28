@@ -22,12 +22,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>15/15</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/8</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>15/15</span>
       </div>
     </div>
   </div>
@@ -82,21 +82,10 @@
 37
 38
 39
-40
-41</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+40</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -104,7 +93,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -123,28 +121,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { OpaqueToken } from '@angular/core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { InjectionToken, OpaqueToken } from '@angular/core';
 &nbsp;
 // place an .env, copy example from config/internal/.env.travis
 // this works in dev test and prod jit, used to fail silently in prod aot, but seems to work now reliably
-const envCswiApiUrl: string = APP_CSWI_API_URL ? APP_CSWI_API_URL : <span class="branch-1 cbranch-no" title="branch not covered" >'https://dev.smart-project.info/cswi-api/v1';</span>
-const envPortalApiUrl: string = APP_PORTAL_API_URL ? APP_PORTAL_API_URL : <span class="branch-1 cbranch-no" title="branch not covered" >'https://dev.smart-project.info/api/v1';</span>
-let envAppVersion: string = APP_VERSION ? APP_VERSION : <span class="branch-1 cbranch-no" title="branch not covered" >'Snapshot';</span>
+export const envCswiApiUrl: string = APP_CSWI_API_URL;
+export const envPortalApiUrl: string = APP_PORTAL_API_URL;
 &nbsp;
-let currDate = new Date();
-let envAppBuildNumber: string = APP_BUILD_NUMBER ? APP_BUILD_NUMBER : <span class="branch-1 cbranch-no" title="branch not covered" >currDate.toString();</span>
-const fullAppVersionString: string = envAppVersion + '-' + envAppBuildNumber;
+export const envAppVersion: string = APP_VERSION;
+&nbsp;
+export const envAppBuildNumber: string = APP_BUILD_NUMBER;
+export const fullAppVersionString: string = envAppVersion + '-' + envAppBuildNumber;
 &nbsp;
 console.log('API providers:');
 console.log(envCswiApiUrl);
 console.log(envPortalApiUrl);
 console.log('APP version: ' + fullAppVersionString);
 &nbsp;
-console.log('test app token TRAVIS: ' + process.env.TRAVIS_BUILD_NUMBER);
+export const CSWI_API_URL = new InjectionToken&lt;string&gt;('cswiApiUrl');
+export const PORTAL_API_URL = new InjectionToken&lt;string&gt;('portalApiUrl');
+export const WEBGUI_APP_VERSION = new InjectionToken&lt;string&gt;('appVersion');
 &nbsp;
-export const CSWI_API_URL = new OpaqueToken('cswiApiUrl');
-export const PORTAL_API_URL = new OpaqueToken('portalApiUrl');
-export const WEBGUI_APP_VERSION = new OpaqueToken('appVersion');
 &nbsp;
 export const API_URL_PROVIDERS = [
   {
@@ -169,7 +166,7 @@ export const APP_VERSION_PROVIDERS = [
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 28 2018 14:00:21 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 28 2018 18:54:05 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

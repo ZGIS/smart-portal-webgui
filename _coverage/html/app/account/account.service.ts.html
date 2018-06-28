@@ -1214,7 +1214,7 @@ export class AccountService {
           // 'Authorization': 'Bearer ' + this.token,
           'X-XSRF-TOKEN': this.token
         });
-        let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+        let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true });</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        this.http.get(profileUri, options)</span>
           .map(
@@ -1263,7 +1263,7 @@ export class AccountService {
       // 'Authorization': 'Bearer ' + this.token,
       'X-XSRF-TOKEN': this.token
     });
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true });</span>
 &nbsp;
     // get users from api
 <span class="cstat-no" title="statement not covered" >    return this.http.get(profileUri, options)</span>
@@ -1311,7 +1311,7 @@ export class AccountService {
       // 'Authorization': 'Bearer ' + this.token,
       'X-XSRF-TOKEN': this.token
     });
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true });</span>
 <span class="cstat-no" title="statement not covered" >    return this.http.get(logoutUri, options)</span>
       .map(( response: Response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
         // logout
@@ -1338,7 +1338,7 @@ export class AccountService {
       // 'Authorization': 'Bearer ' + this.token,
       'X-XSRF-TOKEN': this.token
     });
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true });</span>
 <span class="cstat-no" title="statement not covered" >    return this.http.get(deleteSelfUri, options)</span>
       .map(( response: Response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        this.loggedInState.next(false);</span>
@@ -1361,8 +1361,8 @@ export class AccountService {
 <span class="cstat-no" title="statement not covered" >  login( loginCredentials: LoginCredentials<span class="fstat-no" title="function not covered" > ): Observable&lt;boolean&gt; {</span></span>
     let loginUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/login';</span>
     let data = <span class="cstat-no" title="statement not covered" >JSON.stringify(loginCredentials);</span>
-    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'Content-Type': 'application/json'});</span>
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'Content-Type': 'application/json' });</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true });</span>
 <span class="cstat-no" title="statement not covered" >    return this.http.post(loginUri, data, options)</span>
       .map(( response: Response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
 &nbsp;
@@ -1377,7 +1377,7 @@ export class AccountService {
           // store accountSubject and xsrf token in local storage to keep user logged in between page
           // refreshes
 <span class="cstat-no" title="statement not covered" >          localStorage.setItem('currentUser',</span>
-            JSON.stringify({email: loginCredentials.email, token: token}));
+            JSON.stringify({ email: loginCredentials.email, token: token }));
 &nbsp;
           let userProfileJson = <span class="cstat-no" title="statement not covered" >response.json().userprofile;</span>
 <span class="cstat-no" title="statement not covered" >          if (&lt;ProfileJs&gt;userProfileJson) {</span>
@@ -1441,7 +1441,7 @@ export class AccountService {
       'X-XSRF-TOKEN': this.token,
       'Content-Type': 'application/json'
     });
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true });</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return this.http.post(updatePassUri, data, options)</span>
       .map(( response: Response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
@@ -1455,7 +1455,7 @@ export class AccountService {
 &nbsp;
           // store accountSubject and xsrf token in local storage to keep user logged in between page
           // refreshes
-<span class="cstat-no" title="statement not covered" >          localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));</span>
+<span class="cstat-no" title="statement not covered" >          localStorage.setItem('currentUser', JSON.stringify({ email: email, token: token }));</span>
 &nbsp;
           // return true to indicate successful login
 <span class="cstat-no" title="statement not covered" >          return true;</span>
@@ -1482,7 +1482,7 @@ export class AccountService {
       'X-XSRF-TOKEN': this.token,
       'Content-Type': 'application/json'
     });
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true });</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return this.http.post(updateProfileUri, userprofile, options)</span>
       .map(( response: Response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
@@ -1510,8 +1510,8 @@ export class AccountService {
 <span class="cstat-no" title="statement not covered" >  requestPasswordReset( resetCredentials: LoginCredentials<span class="fstat-no" title="function not covered" > ): Observable&lt;boolean&gt; {</span></span>
     let regUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/users/resetpass';</span>
     let data = <span class="cstat-no" title="statement not covered" >JSON.stringify(resetCredentials);</span>
-    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'Content-Type': 'application/json'});</span>
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'Content-Type': 'application/json' });</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true });</span>
 <span class="cstat-no" title="statement not covered" >    return this.http.post(regUri, data, options)</span>
       .map(( response: Response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
         // TODO SR see above
@@ -1537,8 +1537,8 @@ export class AccountService {
     let regUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/users/resetpass/' + redeemlink;</span>
 &nbsp;
     let data = <span class="cstat-no" title="statement not covered" >JSON.stringify(resetCredentials);</span>
-    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'Content-Type': 'application/json'});</span>
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'Content-Type': 'application/json' });</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true });</span>
 <span class="cstat-no" title="statement not covered" >    return this.http.post(regUri, data, options)</span>
       .map(
         ( response: Response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
@@ -1563,7 +1563,7 @@ export class AccountService {
 <span class="cstat-no" title="statement not covered" >  testReCaptcha( recaptchaChallenge: string<span class="fstat-no" title="function not covered" > ): Observable&lt;boolean&gt; {</span></span>
     let paramUrl = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/recaptcha/validate' +</span>
       '?recaptcaChallenge=' + recaptchaChallenge;
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({withCredentials: true});</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ withCredentials: true });</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return this.http.get(paramUrl, options)</span>
       .map(( response: Response<span class="fstat-no" title="function not covered" > ) =&gt; {</span>
@@ -1635,8 +1635,8 @@ export class AccountService {
 <span class="cstat-no" title="statement not covered" >  private gconnectHandleLogin( gAuthCredential: GAuthCredentials<span class="fstat-no" title="function not covered" > ) {</span></span>
     let gconnectPortalUri = <span class="cstat-no" title="statement not covered" >this.portalApiUrl + '/login/gconnect';</span>
     let data = <span class="cstat-no" title="statement not covered" >JSON.stringify(gAuthCredential);</span>
-    let headers = <span class="cstat-no" title="statement not covered" >new Headers({'Content-Type': 'application/json'});</span>
-    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({headers: headers, withCredentials: true});</span>
+    let headers = <span class="cstat-no" title="statement not covered" >new Headers({ 'Content-Type': 'application/json' });</span>
+    let options = <span class="cstat-no" title="statement not covered" >new RequestOptions({ headers: headers, withCredentials: true });</span>
     // console.log(data);
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return this.http.post(gconnectPortalUri, data, options)</span>
@@ -1651,7 +1651,7 @@ export class AccountService {
 &nbsp;
           // store accountSubject and xsrf token in local storage to keep user logged in between page refreshes
           let email = <span class="cstat-no" title="statement not covered" >response.json().email;</span>
-<span class="cstat-no" title="statement not covered" >          localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));</span>
+<span class="cstat-no" title="statement not covered" >          localStorage.setItem('currentUser', JSON.stringify({ email: email, token: token }));</span>
 &nbsp;
           let userProfileJson = <span class="cstat-no" title="statement not covered" >response.json().userprofile;</span>
 <span class="cstat-no" title="statement not covered" >          if (&lt;ProfileJs&gt;userProfileJson) {</span>
@@ -1678,10 +1678,10 @@ export class AccountService {
       errorResponse.headers.get('content-type').startsWith('application/json')) {
       let errorResult: IErrorResult = &lt;IErrorResult&gt;<span class="cstat-no" title="statement not covered" >errorResponse.json();</span>
       let message: String = `${<span class="cstat-no" title="statement not covered" >errorResponse.statusText}: ${errorResult.message}`;</span>
-<span class="cstat-no" title="statement not covered" >      return Observable.throw(&lt;IErrorResult&gt;{message: message, details: errorResult.details});</span>
+<span class="cstat-no" title="statement not covered" >      return Observable.throw(&lt;IErrorResult&gt;{ message: message, details: errorResult.details });</span>
     } else {
       let message: String = `${<span class="cstat-no" title="statement not covered" >errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`;</span>
-<span class="cstat-no" title="statement not covered" >      return Observable.throw(&lt;IErrorResult&gt;{message: message, details: errorResponse.text()});</span>
+<span class="cstat-no" title="statement not covered" >      return Observable.throw(&lt;IErrorResult&gt;{ message: message, details: errorResponse.text() });</span>
     }
   }
 &nbsp;
@@ -1711,7 +1711,7 @@ export class AccountService {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 28 2018 14:00:21 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 28 2018 18:54:05 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
