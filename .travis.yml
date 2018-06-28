@@ -84,8 +84,17 @@ deploy:
     local-dir: config/docker/
     skip_cleanup: true
     on:
-      all_branches: true
-      condition: $TRAVIS_BRANCH =~ ^dev|master$
+      branch: dev
+  - provider: gcs
+    access_key_id: GOOGZDYY4PCU7QXHJ5GS
+    secret_access_key:
+      secure: DuqJ8mkk+Hcc5H6OGf4Hb9EpehcA0MkawC9ENJPfH4hRdN0wVBr+3cCMY4WfzmZrmpcOUdv2lga+JltVfwLsBoFqxaiN0U3CGGg1N91Lzg3y/3nHfoaYFmZSK7lbOrAfqX7unKCpmzZ86hGFoAMCQhOvx/I3jcCaKZ4ZjWGuN93ragiZzbFQ/9x2s0aRAkUIdc/JVEpPZVCDIhAjd0WrHPZk8zryN6Iq/02xEdMSJFHrHPxSUPcdhPGvOGNG/jht6/HDRmGNzOz22vHLN8vYaTPSBdhv5H+V5NJ5ga23es3nemQu1uEn1b+U++CGfjkJrsN+bY6+XlVQ/Q1wtfh9QTwWAJOukrwQgJzZeLIIxupM+BaQ7VCQzBma/jmLHbxcU169/RBo+YlloNCBY/YcTVRqzIxXpN9tbK5SRhavSqq/t49AYpBL01tKyM+d8uNngz5my1BmF4+zaeZE7TZ/shTxd/8ngDso0L945NswSO+zXS/IJVTK7QuRSidPA9d274bkliWDke0sfSR6qimleru/TNTAO94LWBSP3sPBa9n2X9HFsD/kHC3pDg3ziRG52BMP283qK3EiJI3ucPsbYusEgVYEJniqcUdFmz218V4eufrN1norSTbLfuE6akVH1DOpthPJi1ARPpLMFNzhM0nG/9ET70a/eDuTXvhJ0j4=
+    bucket: smart-deploy-artefacts
+    upload-dir: "ZGIS/webgwhubnz/$TRAVIS_BUILD_NUMBER"
+    local-dir: config/docker/
+    skip_cleanup: true
+    on:
+      branch: master
 
 notifications:
   email:
