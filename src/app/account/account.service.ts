@@ -389,14 +389,12 @@ export class AccountService {
     return this.http.post(regUri, data, options)
       .map(
         ( response: Response ) => {
-          // TODO SR see above
-          // if (response.status === 200) {
-          let info = response.json() && response.json().message;
-          console.log(info);
+          if (response.json()) {
+            let info = response.json();
+            console.log(info);
+            this.handleErrorWithLogout(info);
+          }
           return true;
-          // } else {
-          //   return false;
-          // }
         })
       .catch(( errorResponse: Response ) => this.handleErrorWithLogout(errorResponse));
   }
