@@ -1,5 +1,6 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Inject, Injectable, NgZone } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
+import { PORTAL_API_URL } from '../in-app-config';
 
 /**
  * Load script to make share button loader for Twitter and co easy
@@ -19,7 +20,8 @@ export class ShareButtonService {
   private scriptLoaded = false;
   private readySubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor(zone: NgZone) {
+  constructor(zone: NgZone,
+              @Inject(PORTAL_API_URL) private portalApiUrl: string ) {
     /* the callback needs to exist before the API is loaded */
     window[<any>'onloadCallback'] = <any>(() => zone.run(this.onloadCallback.bind(this)));
   }
@@ -36,7 +38,8 @@ export class ShareButtonService {
 
       let a2a_config = this.a2a_config || {};
       a2a_config.linkname = 'Groundwater Hub';
-      a2a_config.linkurl = 'https://dev.smart-portal.info';
+      // APP_PORTAL_API_URL=https://nz-groundwater-hub.org/api/v1
+      a2a_config.linkurl = this.portalApiUrl.replace('/api/v1', '');
 
       let shareScript = document.createElement('script');
       shareScript.innerHTML = '';

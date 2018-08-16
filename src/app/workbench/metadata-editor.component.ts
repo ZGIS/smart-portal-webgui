@@ -148,7 +148,9 @@ export class MetadataEditorComponent implements OnInit {
     this.basicProfile = JSON.parse(localStorage.getItem('currentUserProfile'));
     this.metadata.responsibleParty.individualName = `${this.basicProfile.firstname} ${this.basicProfile.lastname}`;
     this.metadata.responsibleParty.email = `${this.basicProfile.email}`;
-    this.metadata.responsibleParty.orgWebLinkage = 'https://portal.smart-project.info';
+
+    // APP_PORTAL_API_URL=https://nz-groundwater-hub.org/api/v1
+    this.metadata.responsibleParty.orgWebLinkage = this.portalApiUrl.replace('/api/v1', '');
   }
 
   public openPreviousTab() {

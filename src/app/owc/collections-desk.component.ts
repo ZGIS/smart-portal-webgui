@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { NotificationService } from '../notifications';
 import { CollectionsService, OwcContext } from './';
 import { UserFile, UserMetaRecord, WorkbenchService } from '../workbench';
@@ -11,6 +11,7 @@ import {
 import { IDashboardCategory } from '../dashboards/categories';
 import { ResultCollectionsViewModalComponent } from '../search';
 import { OwcResourceDetailModalComponent } from './owc-resource-detail-modal.component';
+import { PORTAL_API_URL } from '../in-app-config';
 
 @Component({
   selector: 'app-sac-gwh-collections-desk',
@@ -146,7 +147,9 @@ export class CollectionsDeskComponent implements OnInit {
    */
   createCollection( title: string, subtitle: string ): void {
     const templateUuid = this.collectionsService.getNewUuid();
-    const id = 'https://portal.smart-project.info/context/user/' + templateUuid;
+    // APP_PORTAL_API_URL=https://nz-groundwater-hub.org/api/v1
+    let baseurl = this.portalApiUrl.replace('/api/v1', '');
+    const id = baseurl + '/context/user/' + templateUuid;
     // console.log('we create a new collection: ' + id);
     this.collectionsService.createNewCustomCollection()
       .subscribe(
@@ -247,8 +250,10 @@ export class CollectionsDeskComponent implements OnInit {
    * @param {CollectionsService} collectionsService
    * @param {WorkbenchService} workbenchService
    * @param {NotificationService} notificationService
+   * @param portalApiUrl: PORTAL_API_URL,
    */
-  constructor( private collectionsService: CollectionsService,
+  constructor( @Inject(PORTAL_API_URL) private portalApiUrl: string,
+               private collectionsService: CollectionsService,
                private workbenchService: WorkbenchService,
                private notificationService: NotificationService ) {
   }
@@ -1289,10 +1294,13 @@ export class CollectionsDeskComponent implements OnInit {
       }
     });
 
+    // APP_PORTAL_API_URL=https://nz-groundwater-hub.org/api/v1
+    let baseurl = this.portalApiUrl.replace('/api/v1', '');
+
     const defaultauthor = <OwcAuthor>{
       'name': 'Alex Kmoch',
       'email': 'allixender@gmail.com',
-      'uri': 'https://portal.smart-project.info'
+      'uri': baseurl
     };
     const defaultProfileLink = <OwcLink>{
       'href': 'http://www.opengis.net/spec/owc-geojson/1.0/req/core',
@@ -1309,13 +1317,13 @@ export class CollectionsDeskComponent implements OnInit {
       let child_names: string = mapSpec.children.map(c => c.name).join(' ');
       let owcPrep = <OwcContext> {
         'type': 'FeatureCollection',
-        'id': 'https://portal.smart-project.info/context/document/' + uuid,
+        'id': baseurl + '/context/document/' + uuid,
         'bbox': mapSpec.bounds,
         'properties': {
           'links': {
             'profiles': [ defaultProfileLink ],
             'via': [ <OwcLink>{
-              'href': 'https://portal.smart-project.info/context/document/' + uuid,
+              'href': baseurl + '/context/document/' + uuid,
               'rel': 'via'
             } ]
           },
@@ -1355,13 +1363,13 @@ export class CollectionsDeskComponent implements OnInit {
                 code: 'GetCapabilities',
                 method: 'GET',
                 type: 'application/xml',
-                href: overLay.geoserverURL + '?VERSION=1.3.0&REQUEST=GetCapabilities'
+                href: overLay.geoserverURL + '?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities'
               },
               {
                 code: 'GetMap',
                 method: 'GET',
                 type: 'image/png',
-                href: overLay.geoserverURL + `?VERSION=1.3&REQUEST=GetMap&SRS=EPSG:4326` +
+                href: overLay.geoserverURL + `?SERVICE=WMS&VERSION=1.3&REQUEST=GetMap&SRS=EPSG:4326` +
                 `&BBOX=${minX},${minY},${maxX},${maxY}&WIDTH=800&HEIGHT=600&LAYERS=${fullLayer}&FORMAT=image/png` +
                 `&TRANSPARENT=TRUE&EXCEPTIONS=application/vnd.ogc.se_xml`
               }
@@ -1376,7 +1384,7 @@ export class CollectionsDeskComponent implements OnInit {
                 code: 'GetCapabilities',
                 method: 'GET',
                 type: 'application/xml',
-                href: 'https://portal.smart-project.info/pycsw/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetCapabilities'
+                href: baseurl + '/pycsw/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetCapabilities'
               },
               {
                 code: 'GetRecordById',
@@ -1393,7 +1401,7 @@ export class CollectionsDeskComponent implements OnInit {
 
           let myResource = <OwcResource> {
             type: 'Feature',
-            id: 'https://portal.smart-project.info/context/resource/' + res_uuid,
+            id: baseurl + '/context/resource/' + res_uuid,
             geometry: {
               'type': 'Polygon',
               'coordinates': [
@@ -1446,7 +1454,7 @@ export class CollectionsDeskComponent implements OnInit {
                   'title': overLay.title + ':' + fullLayer
                 } ],
                 via: [ <OwcLink>{
-                  'href': 'https://portal.smart-project.info/context/resource/' + res_uuid,
+                  'href': baseurl + '/context/resource/' + res_uuid,
                   'rel': 'via'
                 } ]
               },

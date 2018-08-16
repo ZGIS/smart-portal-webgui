@@ -3,9 +3,10 @@ import {
   AfterViewInit,
   OnInit,
   ViewChild,
-  ElementRef, Input
+  ElementRef, Input, Inject
 } from '@angular/core';
 import { ShareButtonService } from './share-button.service';
+import { PORTAL_API_URL } from '../in-app-config';
 
 /**
  *
@@ -28,9 +29,12 @@ export class ShareButtonComponent implements AfterViewInit, OnInit {
   // data-a2a-url="http://www.example.com/page.html" data-a2a-title="Example Page Title"
   @Input() dataA2aTitle: string;
   @Input() dataA2aUrl: string;
-  dataA2aUrlExt = 'https://dev.smart-project.info/#/context/resource/';
+  // APP_PORTAL_API_URL=https://nz-groundwater-hub.org/api/v1
+  // dataA2aUrlExt = 'https://dev.smart-project.info/#/context/resource/';
+  dataA2aUrlExt = this.portalApiUrl.replace('/api/v1', '/#/context/resource/');
 
-  constructor( private shareButtonService: ShareButtonService ) {
+  constructor( private shareButtonService: ShareButtonService,
+               @Inject(PORTAL_API_URL) private portalApiUrl: string ) {
     if (this.dataA2aUrl) {
       if (this.checkIfUrl(this.dataA2aUrl)) {
         this.dataA2aUrlExt = this.dataA2aUrl;

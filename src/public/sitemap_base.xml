@@ -1,73 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://dev.smart-project.info/</loc>
+    <loc>https://nz-groundwater-hub.org/</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard</loc>
+    <loc>https://nz-groundwater-hub.org/#/dashboard</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/3-location?categoryId=3</loc>
+    <loc>https://nz-groundwater-hub.org/#/dashboard/1-understanding?categoryId=1</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/4-techniques?categoryId=4</loc>
+    <loc>https://nz-groundwater-hub.org/#/dashboard/2-managing?categoryId=2</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/6-model?categoryId=6</loc>
+    <loc>https://nz-groundwater-hub.org/#/dashboard/3-location?categoryId=3</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/5-quality?categoryId=5</loc>
+    <loc>https://nz-groundwater-hub.org/#/dashboard/4-techniques?categoryId=4</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/7-protect?categoryId=7</loc>
+    <loc>https://nz-groundwater-hub.org/#/dashboard/6-model?categoryId=6</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/dashboard/8-ecosystems?categoryId=8</loc>
+    <loc>https://nz-groundwater-hub.org/#/dashboard/5-quality?categoryId=5</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/glossary-edu</loc>
+    <loc>https://nz-groundwater-hub.org/#/dashboard/7-protect?categoryId=7</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/research-pg</loc>
+    <loc>https://nz-groundwater-hub.org/#/dashboard/8-ecosystems?categoryId=8</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/#/search</loc>
+    <loc>https://nz-groundwater-hub.org/#/glossary-edu</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dev.smart-project.info/docs/</loc>
+    <loc>https://nz-groundwater-hub.org/#/research-pg</loc>
+    <lastmod>2017-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://nz-groundwater-hub.org/#/search</loc>
+    <lastmod>2017-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://nz-groundwater-hub.org/#/timeseries</loc>
+    <lastmod>2017-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://nz-groundwater-hub.org/docs/</loc>
     <lastmod>2017-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>

@@ -2,4 +2,4 @@
 
 User-agent: *
 
-Sitemap: https://dev.smart-project.info/sitemap.xml
+Sitemap: https://nz-groundwater-hub.org/sitemap.xml
