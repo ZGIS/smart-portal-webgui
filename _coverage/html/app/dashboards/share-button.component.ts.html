@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">46.15% </span>
+        <span class="strong">46.43% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>12/26</span>
+        <span class='fraction'>13/28</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">41.67% </span>
+        <span class="strong">42.31% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/24</span>
+        <span class='fraction'>11/26</span>
       </div>
     </div>
   </div>
@@ -109,25 +109,11 @@
 64
 65
 66
-67</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+67
+68
+69
+70
+71</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -137,10 +123,32 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -180,9 +188,10 @@
   AfterViewInit,
   OnInit,
   ViewChild,
-  ElementRef, Input
+  ElementRef, Input, Inject
 } from '@angular/core';
 import { ShareButtonService } from './share-button.service';
+import { PORTAL_API_URL } from '../in-app-config';
 &nbsp;
 /**
  *
@@ -205,9 +214,12 @@ export class ShareButtonComponent implements AfterViewInit, OnInit {
   // data-a2a-url="http://www.example.com/page.html" data-a2a-title="Example Page Title"
   @Input() dataA2aTitle: string;
   @Input() dataA2aUrl: string;
-<span class="cstat-no" title="statement not covered" >  dataA2aUrlExt = 'https://dev.smart-project.info/#/context/resource/';</span>
+  // APP_PORTAL_API_URL=https://nz-groundwater-hub.org/api/v1
+  // dataA2aUrlExt = 'https://dev.smart-project.info/#/context/resource/';
+<span class="cstat-no" title="statement not covered" >  dataA2aUrlExt = this.portalApiUrl.replace('/api/v1', '/#/context/resource/');</span>
 &nbsp;
-  constructor( private <span class="cstat-no" title="statement not covered" >shareButtonService: ShareButtonService<span class="fstat-no" title="function not covered" > </span>) {</span>
+  constructor( private <span class="cstat-no" title="statement not covered" >shareButtonService: ShareButtonService,</span>
+               @Inject(PORTAL_API_URL) private <span class="cstat-no" title="statement not covered" >portalApiUrl: string<span class="fstat-no" title="function not covered" > </span>) {</span>
 <span class="cstat-no" title="statement not covered" >    if (this.dataA2aUrl) {</span>
 <span class="cstat-no" title="statement not covered" >      if (this.checkIfUrl(this.dataA2aUrl)) {</span>
 <span class="cstat-no" title="statement not covered" >        this.dataA2aUrlExt = this.dataA2aUrl;</span>
@@ -247,7 +259,7 @@ export class ShareButtonComponent implements AfterViewInit, OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 28 2018 18:54:05 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 16 2018 10:24:19 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
