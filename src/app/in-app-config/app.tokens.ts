@@ -4,6 +4,7 @@ import { InjectionToken, OpaqueToken } from '@angular/core';
 // this works in dev test and prod jit, used to fail silently in prod aot, but seems to work now reliably
 export const envCswiApiUrl: string = APP_CSWI_API_URL;
 export const envPortalApiUrl: string = APP_PORTAL_API_URL;
+export const envVocabUrl: string = APP_VOCAB_URL;
 
 export const envAppVersion: string = APP_VERSION;
 
@@ -13,10 +14,12 @@ export const fullAppVersionString: string = envAppVersion + '-' + envAppBuildNum
 console.log('API providers:');
 console.log(envCswiApiUrl);
 console.log(envPortalApiUrl);
+console.log(envVocabUrl);
 console.log('APP version: ' + fullAppVersionString);
 
 export const CSWI_API_URL = new InjectionToken<string>('cswiApiUrl');
 export const PORTAL_API_URL = new InjectionToken<string>('portalApiUrl');
+export const VOCAB_URL = new InjectionToken<string>('vocabUrl');
 export const WEBGUI_APP_VERSION = new InjectionToken<string>('appVersion');
 
 
@@ -28,6 +31,10 @@ export const API_URL_PROVIDERS = [
   {
     provide: PORTAL_API_URL,
     useValue: envPortalApiUrl
+  },
+  {
+    provide: VOCAB_URL,
+    useValue: envVocabUrl
   }
 ];
 

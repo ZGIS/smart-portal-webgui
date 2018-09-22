@@ -1,10 +1,11 @@
-import { Component, OnInit, SecurityContext, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, SecurityContext, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AttributeLabelBinding, IriLabelBinding } from '../glossary-edu/glossary.types';
 import { ModalDirective } from 'ngx-bootstrap';
 import { NotificationService } from '../notifications/notification.service';
 import { GlossaryService } from '../glossary-edu/glossary.service';
+import { VOCAB_URL } from '../in-app-config';
 
 /*
 identifier - Abreviation
@@ -28,7 +29,7 @@ const visualMembers = ['identifier', 'title', 'type', 'description', 'contributo
  */
 export class ResearchProgrammesComponent implements OnInit {
 
-  public spqResearchPGQueryUrl = 'https://vocab.smart-project.info/spq-researchpg/query';
+  public spqResearchPGQueryUrl = this.vocabUrl + '/spq-researchpg/query';
   public uriResearchPGCollection = 'http://vocab.smart-project.info/collection/researchpg/terms';
 
   public researchPGCollectionBindings: IriLabelBinding[] = [];
@@ -44,7 +45,8 @@ export class ResearchProgrammesComponent implements OnInit {
   constructor( private location: Location,
                private glossaryService: GlossaryService,
                private notificationService: NotificationService,
-               private sanitizer: DomSanitizer) {
+               private sanitizer: DomSanitizer,
+               @Inject(VOCAB_URL) private vocabUrl: string ) {
   }
 
   /**

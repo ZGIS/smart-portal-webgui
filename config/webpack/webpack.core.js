@@ -16,11 +16,12 @@ if (!envMap.APP_ENV) {
   console.log('APP_ENV is ' + chalk[color]('%s'), envMap.APP_ENV);
 }
 
-if (envMap.APP_CSWI_API_URL && envMap.APP_PORTAL_API_URL) {
+if (envMap.APP_CSWI_API_URL && envMap.APP_PORTAL_API_URL && envMap.APP_VOCAB_URL) {
   console.log('APP_CSWI_API_URL is ' + chalk[color]('%s'), envMap.APP_CSWI_API_URL);
   console.log('APP_PORTAL_API_URL is ' + chalk[color]('%s'), envMap.APP_PORTAL_API_URL);
+  console.log('APP_VOCAB_URL is ' + chalk[color]('%s'), envMap.APP_VOCAB_URL);
 } else {
-  throw 'No API URL Providers found in ENV, no defaults';
+  throw 'No API or Vocab URL Providers found in ENV, no defaults';
   // envMap.APP_CSWI_API_URL = '"https://dev.smart-project.info/cswi-api/v1"';
   // envMap.APP_PORTAL_API_URL = '"https://dev.smart-project.info/api/v1"';
   // console.log('APP_CSWI_API_URL is ' + chalk[color]('%s'), envMap.APP_CSWI_API_URL);
@@ -58,7 +59,8 @@ module.exports = {
       APP_VERSION: envMap.APP_VERSION,
       APP_BUILD_NUMBER: envMap.APP_BUILD_NUMBER,
       APP_CSWI_API_URL: envMap.APP_CSWI_API_URL,
-      APP_PORTAL_API_URL: envMap.APP_PORTAL_API_URL
+      APP_PORTAL_API_URL: envMap.APP_PORTAL_API_URL,
+      APP_VOCAB_URL: envMap.APP_VOCAB_URL
     }),
     new webpack.ProvidePlugin({
         jQuery: 'jquery',

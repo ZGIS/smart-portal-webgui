@@ -30,7 +30,7 @@ export class GlossaryService {
       'Content-Type': 'application/sparql-query',
       'Accept': 'application/sparql-results+json,application/json'
     });
-    let options = new RequestOptions({headers: headers, withCredentials: false});
+    let options = new RequestOptions({ headers: headers, withCredentials: false });
 
     const rq = this.getQueryForCollection(conceptUri);
     // console.log(rq);
@@ -60,7 +60,7 @@ export class GlossaryService {
       'Content-Type': 'application/sparql-query',
       'Accept': 'application/sparql-results+json,application/json'
     });
-    let options = new RequestOptions({headers: headers, withCredentials: false});
+    let options = new RequestOptions({ headers: headers, withCredentials: false });
 
     const rq = this.getQueryForConcept(conceptUri);
     // console.log(rq);
@@ -128,10 +128,10 @@ SELECT ?att ?val WHERE {
       errorResponse.headers.get('content-type').startsWith('application/json')) {
       let errorResult: IErrorResult = <IErrorResult>errorResponse.json();
       let message: String = `${errorResponse.statusText}: ${errorResult.message}`;
-      return Observable.throw(<IErrorResult>{message: message, details: errorResult.details});
+      return Observable.throw(<IErrorResult>{ message: message, details: errorResult.details });
     } else {
       let message: String = `${errorResponse.statusText} (${errorResponse.status}) for ${errorResponse.url}`;
-      return Observable.throw(<IErrorResult>{message: message, details: errorResponse.text()});
+      return Observable.throw(<IErrorResult>{ message: message, details: errorResponse.text() });
     }
   }
 }

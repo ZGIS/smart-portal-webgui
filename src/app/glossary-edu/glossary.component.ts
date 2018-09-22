@@ -1,10 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
 import { Location } from '@angular/common';
 import { ModalDirective } from 'ngx-bootstrap';
 import { AttributeLabelBinding, IriLabelBinding } from './glossary.types';
 import { GlossaryService } from './glossary.service';
 import { NotificationService } from '../notifications/notification.service';
+import { VOCAB_URL } from '../in-app-config';
 
 @Component({
   selector: 'app-sac-gwh-glossary',
@@ -27,10 +28,10 @@ export class GlossaryComponent {
 
   @ViewChild('conceptDetailsModal') public modal: ModalDirective;
 
-  public spqGlossaryQueryUrl = 'https://vocab.smart-project.info/spq-glossary/query';
-  public spqNgmpQueryUrl = 'https://vocab.smart-project.info/spq-ngmp/query';
-  public spqPapawaiQueryUrl = 'https://vocab.smart-project.info/spq-papawai/query';
-  public spqAwahouQueryUrl = 'https://vocab.smart-project.info/spq-awahou/query';
+  public spqGlossaryQueryUrl = this.vocabUrl + '/spq-glossary/query';
+  public spqNgmpQueryUrl = this.vocabUrl + '/spq-ngmp/query';
+  public spqPapawaiQueryUrl = this.vocabUrl + '/spq-papawai/query';
+  public spqAwahouQueryUrl = this.vocabUrl + '/spq-awahou/query';
 
   public uriGlossaryCollection = 'http://vocab.smart-project.info/collection/glossary/terms';
   public uriNgmpCollection = 'http://vocab.smart-project.info/collection/ngmp/phenomena';
@@ -39,7 +40,8 @@ export class GlossaryComponent {
 
   constructor( private location: Location,
                private glossaryService: GlossaryService,
-               private notificationService: NotificationService ) {
+               private notificationService: NotificationService,
+               @Inject(VOCAB_URL) private vocabUrl: string ) {
   }
 
   getCollection( conceptUri: string, spqNgmpQueryUrl: string ) {
@@ -84,7 +86,7 @@ export class GlossaryComponent {
       this.loading = true;
       const cur = this.currentCollectionUri;
       const s = cur.replace('http://vocab.smart-project.info/collection/', '');
-      const queryUrl = `https://vocab.smart-project.info/spq-${s.split('/')[ 0 ]}/query`;
+      const queryUrl = `${this.vocabUrl}/spq-${s.split('/')[ 0 ]}/query`;
       // console.log(queryUrl);
       this.glossaryService.querySparqlConceptAttributes(conceptBinding.iri.value, queryUrl)
         .subscribe(

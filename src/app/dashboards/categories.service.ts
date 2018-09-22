@@ -1,18 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { IErrorResult } from '../search';
 import { IDashboardCategory } from './categories';
-
-const categoriesSparqlGraph = 'https://vocab.smart-project.info/spq-categories/get';
+import { PORTAL_API_URL, VOCAB_URL } from '../in-app-config';
 
 /**
  * service holder for the categories and provide some logic helpers
  */
 @Injectable()
 export class CategoriesService {
+
+  private categoriesSparqlGraph = this.vocabUrl + '/spq-categories/get';
 
   private mainCategoriesQueryStrings: string[] = [];
 
@@ -21,7 +22,8 @@ export class CategoriesService {
   /**
    *
    */
-  constructor( private http: Http ) {
+  constructor( private http: Http,
+               @Inject(VOCAB_URL) private vocabUrl: string ) {
 
     this.loadInitialCategories()
       .subscribe(
@@ -66,7 +68,7 @@ export class CategoriesService {
    */
   public getCildCategoryById( id: number ): Observable<IDashboardCategory> {
     // console.log('get child for ' + id);
-    return this.categoriesSparqlCacheSubject.map((categories: IDashboardCategory[]) => {
+    return this.categoriesSparqlCacheSubject.map(( categories: IDashboardCategory[] ) => {
       // console.log('observable map');
       const nested = categories.map(mainCategory => mainCategory.children);
       // console.log('in nested: ' + nested.length);
@@ -137,7 +139,7 @@ export class CategoriesService {
     });
     let options = new RequestOptions({ headers: headers, withCredentials: false });
 
-    return this.http.get(categoriesSparqlGraph, options)
+    return this.http.get(this.categoriesSparqlGraph, options)
       .map(
         ( response: Response ) => {
           const jsonLdGraph = response.json()[ '@graph' ];
@@ -145,7 +147,7 @@ export class CategoriesService {
           let mainCats: IDashboardCategory[] = [];
           let childCats: IDashboardCategory[] = [];
 
-          jsonLdGraph.forEach((jsonLdCategory: any) => {
+          jsonLdGraph.forEach(( jsonLdCategory: any ) => {
             let tmpKeywords = [];
             if (jsonLdCategory.keyword_content && jsonLdCategory.keyword_content !== '') {
               tmpKeywords = jsonLdCategory.keyword_content.split(',').map(( item: string ) => item.trim());

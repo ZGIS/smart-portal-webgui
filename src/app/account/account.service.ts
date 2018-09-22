@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { CookieService } from 'ngx-cookie';
-import { CSWI_API_URL, PORTAL_API_URL, WEBGUI_APP_VERSION } from '../in-app-config';
+import { CSWI_API_URL, PORTAL_API_URL } from '../in-app-config';
 import { IErrorResult } from '../search/result';
 import {
   GAuthCredentials,
