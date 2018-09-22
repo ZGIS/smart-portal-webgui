@@ -35,8 +35,8 @@ http {
         server nzgwhub:9000;
     }
 
-    upstream jena {
-        server jena:8000;
+    upstream jena-nzgwhub {
+        server jena-nzgwhub:8000;
     }
 
     upstream cswingester-dev {
