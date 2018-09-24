@@ -13,6 +13,7 @@ import {
   ProfileJs,
   RegisterJs
 } from './';
+import { tryCatch } from 'rxjs/util/tryCatch';
 
 /**
  *
@@ -441,6 +442,28 @@ export class AccountService {
       })
       .catch(( errorResponse: Response ) => this.handleError(errorResponse));
   }
+
+  setHasGdprCookieAccepted() {
+    try {
+      localStorage.setItem('privacy.cookie', 'true');
+    } catch (e) {
+      console.error('could not set privacy cookie');
+    }
+  }
+
+  hasGdprCookieAccepted(): Observable<boolean> {
+    try {
+      let acc = localStorage.getItem('privacy.cookie');
+      if (acc && acc === 'true') {
+        return Observable.of(true);
+      } else {
+        return Observable.of(false);
+      }
+    } catch (e) {
+      return Observable.of(false);
+    }
+  }
+
 
   /**
    *

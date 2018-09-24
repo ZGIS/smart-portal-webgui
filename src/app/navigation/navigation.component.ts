@@ -8,7 +8,7 @@ import { WEBGUI_APP_VERSION } from '../in-app-config';
 @Component({
   selector: 'app-sac-gwh-navigation',
   templateUrl: 'navigation.component.html',
-  styles: ['.fa-stack { margin-top: -5px; margin-bottom: -7px; }']
+  styles: [ '.fa-stack { margin-top: -5px; margin-bottom: -7px; }' ]
 })
 
 /**
@@ -38,10 +38,10 @@ export class NavigationComponent implements OnInit {
    * @param router              - injected Router
    * @param notificationService - injected NotificationService
    */
-  constructor(@Inject(WEBGUI_APP_VERSION) private webguiAppVersion: string,
-              private accountService: AccountService,
-              private router: Router,
-              private notificationService: NotificationService) {
+  constructor( @Inject(WEBGUI_APP_VERSION) private webguiAppVersion: string,
+               private accountService: AccountService,
+               private router: Router,
+               private notificationService: NotificationService ) {
 
     this.PORTAL_WEBGUI_VERSION = this.webguiAppVersion;
 
@@ -111,6 +111,25 @@ export class NavigationComponent implements OnInit {
    * OnInit - check login, get profile etc.
    */
   ngOnInit(): void {
+    this.accountService.hasGdprCookieAccepted()
+      .subscribe(
+        cookieExists => {
+          console.log(`cookie is accepted: ${cookieExists}`);
+        },
+        error => {
+          // console.log(<any>error);
+          this.notificationService.addNotification({
+            type: 'info',
+            message: 'We use cookies and similar technologies to recognize your repeat visits and preferences, ' +
+              'as well as to measure the science impact of the data shared on this platform.',
+            details: 'To learn more about cookies, including how to disable them, view our Cookie Policy. ' +
+              'By clicking "I Accept" or "X" on this banner, or using our site, ' +
+              'you consent to the use of cookies unless you have disabled them.',
+            dismissAfter: -1
+          });
+          this.accountService.setHasGdprCookieAccepted();
+        });
+
     this.accountService.getProfile()
       .subscribe(
         user => {
