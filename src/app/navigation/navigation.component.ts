@@ -98,6 +98,7 @@ export class NavigationComponent implements OnInit {
             type: 'info',
             message: 'You successfully logged out.'
           });
+          this.accountService.deleteHasGdprCookieAccepted();
           this.router.navigateByUrl('/dashboard');
         },
         error => {
@@ -115,6 +116,18 @@ export class NavigationComponent implements OnInit {
       .subscribe(
         cookieExists => {
           console.log(`cookie is accepted: ${cookieExists}`);
+          if (!cookieExists) {
+            this.notificationService.addNotification({
+              type: 'info',
+              message: 'We use cookies and similar technologies to recognize your repeat visits and preferences, ' +
+                'as well as to measure the science impact of the data shared on this platform.',
+              details: 'To learn more about cookies, including how to disable them, view our Cookie Policy. ' +
+                'By clicking "I Accept" or "X" on this banner, or using our site, ' +
+                'you consent to the use of cookies unless you have disabled them.',
+              dismissAfter: -1
+            });
+            this.accountService.setHasGdprCookieAccepted();
+          }
         },
         error => {
           // console.log(<any>error);

@@ -451,6 +451,14 @@ export class AccountService {
     }
   }
 
+  deleteHasGdprCookieAccepted() {
+    try {
+      localStorage.removeItem('privacy.cookie');
+    } catch (e) {
+      console.error('could not remove privacy cookie');
+    }
+  }
+
   hasGdprCookieAccepted(): Observable<boolean> {
     try {
       let acc = localStorage.getItem('privacy.cookie');
