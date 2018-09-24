@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">23.08% </span>
+        <span class="strong">23.88% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>15/65</span>
+        <span class='fraction'>16/67</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">21.67% </span>
+        <span class="strong">22.58% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>13/60</span>
+        <span class='fraction'>14/62</span>
       </div>
     </div>
   </div>
@@ -166,13 +166,16 @@
 121
 122
 123
-124</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+124
+125
+126</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -208,6 +211,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -235,15 +239,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -251,6 +246,15 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -289,13 +293,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, ViewChild } from '@angular/core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, Inject, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
 import { Location } from '@angular/common';
 import { ModalDirective } from 'ngx-bootstrap';
 import { AttributeLabelBinding, IriLabelBinding } from './glossary.types';
 import { GlossaryService } from './glossary.service';
 import { NotificationService } from '../notifications/notification.service';
+import { VOCAB_URL } from '../in-app-config';
 &nbsp;
 @Component({
   selector: 'app-sac-gwh-glossary',
@@ -318,10 +323,10 @@ export class GlossaryComponent {
 &nbsp;
   @ViewChild('conceptDetailsModal') public modal: ModalDirective;
 &nbsp;
-  public <span class="cstat-no" title="statement not covered" >spqGlossaryQueryUrl = 'https://vocab.smart-project.info/spq-glossary/query';</span>
-  public <span class="cstat-no" title="statement not covered" >spqNgmpQueryUrl = 'https://vocab.smart-project.info/spq-ngmp/query';</span>
-  public <span class="cstat-no" title="statement not covered" >spqPapawaiQueryUrl = 'https://vocab.smart-project.info/spq-papawai/query';</span>
-  public <span class="cstat-no" title="statement not covered" >spqAwahouQueryUrl = 'https://vocab.smart-project.info/spq-awahou/query';</span>
+  public <span class="cstat-no" title="statement not covered" >spqGlossaryQueryUrl = this.vocabUrl + '/spq-glossary/query';</span>
+  public <span class="cstat-no" title="statement not covered" >spqNgmpQueryUrl = this.vocabUrl + '/spq-ngmp/query';</span>
+  public <span class="cstat-no" title="statement not covered" >spqPapawaiQueryUrl = this.vocabUrl + '/spq-papawai/query';</span>
+  public <span class="cstat-no" title="statement not covered" >spqAwahouQueryUrl = this.vocabUrl + '/spq-awahou/query';</span>
 &nbsp;
   public <span class="cstat-no" title="statement not covered" >uriGlossaryCollection = 'http://vocab.smart-project.info/collection/glossary/terms';</span>
   public <span class="cstat-no" title="statement not covered" >uriNgmpCollection = 'http://vocab.smart-project.info/collection/ngmp/phenomena';</span>
@@ -330,7 +335,8 @@ export class GlossaryComponent {
 &nbsp;
   constructor( private <span class="cstat-no" title="statement not covered" >location: Location,</span>
                private <span class="cstat-no" title="statement not covered" >glossaryService: GlossaryService,</span>
-               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService<span class="fstat-no" title="function not covered" > </span>) {</span>
+               private <span class="cstat-no" title="statement not covered" >notificationService: NotificationService,</span>
+               @Inject(VOCAB_URL) private <span class="cstat-no" title="statement not covered" >vocabUrl: string<span class="fstat-no" title="function not covered" > </span>) {</span>
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  getCollection( conceptUri: string, spqNgmpQueryUrl: string<span class="fstat-no" title="function not covered" > ) {</span></span>
@@ -375,7 +381,7 @@ export class GlossaryComponent {
 <span class="cstat-no" title="statement not covered" >      this.loading = true;</span>
       const cur = <span class="cstat-no" title="statement not covered" >this.currentCollectionUri;</span>
       const s = <span class="cstat-no" title="statement not covered" >cur.replace('http://vocab.smart-project.info/collection/', '');</span>
-      const queryUrl = <span class="cstat-no" title="statement not covered" >`https://vocab.smart-project.info/spq-${s.split('/')[ 0 ]}/query`;</span>
+      const queryUrl = `${<span class="cstat-no" title="statement not covered" >this.vocabUrl}/spq-${s.split('/')[ 0 ]}/query`;</span>
       // console.log(queryUrl);
 <span class="cstat-no" title="statement not covered" >      this.glossaryService.querySparqlConceptAttributes(conceptBinding.iri.value, queryUrl)</span>
         .subscribe(
@@ -418,7 +424,7 @@ export class GlossaryComponent {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 16 2018 10:24:19 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Sep 24 2018 17:32:56 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -93,8 +93,10 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="categoriesservice.html#categoriessparqlcachesubject" class="tsd-kind-icon">categories<wbr>Sparql<wbr>Cache<wbr>Subject</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="categoriesservice.html#categoriessparqlgraph" class="tsd-kind-icon">categories<wbr>Sparql<wbr>Graph</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="categoriesservice.html#http" class="tsd-kind-icon">http</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="categoriesservice.html#maincategoriesquerystrings" class="tsd-kind-icon">main<wbr>Categories<wbr>Query<wbr>Strings</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="categoriesservice.html#vocaburl" class="tsd-kind-icon">vocab<wbr>Url</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -117,19 +119,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Categories<wbr>Service<span class="tsd-signature-symbol">(</span>http<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Http</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="categoriesservice.html" class="tsd-signature-type">CategoriesService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Categories<wbr>Service<span class="tsd-signature-symbol">(</span>http<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Http</span>, vocabUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="categoriesservice.html" class="tsd-signature-type">CategoriesService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/dashboards/categories.service.ts#L19">app/dashboards/categories.service.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/dashboards/categories.service.ts#L20">app/dashboards/categories.service.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>http: <span class="tsd-signature-type">Http</span></h5>
+								</li>
+								<li>
+									<h5>vocabUrl: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="categoriesservice.html" class="tsd-signature-type">CategoriesService</a></h4>
@@ -145,7 +150,17 @@
 					<div class="tsd-signature tsd-kind-icon">categories<wbr>Sparql<wbr>Cache<wbr>Subject<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BehaviorSubject</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/idashboardcategory.html" class="tsd-signature-type">IDashboardCategory</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new BehaviorSubject([])</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/dashboards/categories.service.ts#L19">app/dashboards/categories.service.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/dashboards/categories.service.ts#L20">app/dashboards/categories.service.ts:20</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="categoriessparqlgraph" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> categories<wbr>Sparql<wbr>Graph</h3>
+					<div class="tsd-signature tsd-kind-icon">categories<wbr>Sparql<wbr>Graph<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this.vocabUrl + &#x27;/spq-categories/get&#x27;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/dashboards/categories.service.ts#L16">app/dashboards/categories.service.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -155,7 +170,7 @@
 					<div class="tsd-signature tsd-kind-icon">http<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Http</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/dashboards/categories.service.ts#L24">app/dashboards/categories.service.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/dashboards/categories.service.ts#L25">app/dashboards/categories.service.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -165,7 +180,17 @@
 					<div class="tsd-signature tsd-kind-icon">main<wbr>Categories<wbr>Query<wbr>Strings<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/dashboards/categories.service.ts#L17">app/dashboards/categories.service.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/dashboards/categories.service.ts#L18">app/dashboards/categories.service.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="vocaburl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> vocab<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">vocab<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/dashboards/categories.service.ts#L26">app/dashboards/categories.service.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -182,7 +207,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/dashboards/categories.service.ts#L47">app/dashboards/categories.service.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/dashboards/categories.service.ts#L49">app/dashboards/categories.service.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -201,7 +226,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/dashboards/categories.service.ts#L67">app/dashboards/categories.service.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/dashboards/categories.service.ts#L69">app/dashboards/categories.service.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -226,7 +251,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/dashboards/categories.service.ts#L56">app/dashboards/categories.service.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/dashboards/categories.service.ts#L58">app/dashboards/categories.service.ts:58</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -251,7 +276,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/dashboards/categories.service.ts#L199">app/dashboards/categories.service.ts:199</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/dashboards/categories.service.ts#L201">app/dashboards/categories.service.ts:201</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -276,7 +301,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/dashboards/categories.service.ts#L134">app/dashboards/categories.service.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/dashboards/categories.service.ts#L136">app/dashboards/categories.service.ts:136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -298,7 +323,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/dashboards/categories.service.ts#L86">app/dashboards/categories.service.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/dashboards/categories.service.ts#L88">app/dashboards/categories.service.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -337,10 +362,16 @@
 								<a href="categoriesservice.html#categoriessparqlcachesubject" class="tsd-kind-icon">categories<wbr>Sparql<wbr>Cache<wbr>Subject</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="categoriesservice.html#categoriessparqlgraph" class="tsd-kind-icon">categories<wbr>Sparql<wbr>Graph</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="categoriesservice.html#http" class="tsd-kind-icon">http</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="categoriesservice.html#maincategoriesquerystrings" class="tsd-kind-icon">main<wbr>Categories<wbr>Query<wbr>Strings</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="categoriesservice.html#vocaburl" class="tsd-kind-icon">vocab<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="categoriesservice.html#getallcategories" class="tsd-kind-icon">get<wbr>All<wbr>Categories</a>

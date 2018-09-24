@@ -103,6 +103,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="glossarycomponent.html#uriglossarycollection" class="tsd-kind-icon">uri<wbr>Glossary<wbr>Collection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="glossarycomponent.html#uringmpcollection" class="tsd-kind-icon">uri<wbr>Ngmp<wbr>Collection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="glossarycomponent.html#uripapawaicollection" class="tsd-kind-icon">uri<wbr>Papawai<wbr>Collection</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="glossarycomponent.html#vocaburl" class="tsd-kind-icon">vocab<wbr>Url</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -124,13 +125,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Glossary<wbr>Component<span class="tsd-signature-symbol">(</span>location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span>, glossaryService<span class="tsd-signature-symbol">: </span><a href="glossaryservice.html" class="tsd-signature-type">GlossaryService</a>, notificationService<span class="tsd-signature-symbol">: </span><a href="notificationservice.html" class="tsd-signature-type">NotificationService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="glossarycomponent.html" class="tsd-signature-type">GlossaryComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Glossary<wbr>Component<span class="tsd-signature-symbol">(</span>location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span>, glossaryService<span class="tsd-signature-symbol">: </span><a href="glossaryservice.html" class="tsd-signature-type">GlossaryService</a>, notificationService<span class="tsd-signature-symbol">: </span><a href="notificationservice.html" class="tsd-signature-type">NotificationService</a>, vocabUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="glossarycomponent.html" class="tsd-signature-type">GlossaryComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L38">app/glossary-edu/glossary.component.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L39">app/glossary-edu/glossary.component.ts:39</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -143,6 +144,9 @@
 								</li>
 								<li>
 									<h5>notificationService: <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></h5>
+								</li>
+								<li>
+									<h5>vocabUrl: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="glossarycomponent.html" class="tsd-signature-type">GlossaryComponent</a></h4>
@@ -158,7 +162,7 @@
 					<div class="tsd-signature tsd-kind-icon">current<wbr>Collection<wbr>Bindings<span class="tsd-signature-symbol">:</span> <a href="../interfaces/irilabelbinding.html" class="tsd-signature-type">IriLabelBinding</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L20">app/glossary-edu/glossary.component.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L21">app/glossary-edu/glossary.component.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -168,7 +172,7 @@
 					<div class="tsd-signature tsd-kind-icon">current<wbr>Collection<wbr>Uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L19">app/glossary-edu/glossary.component.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L20">app/glossary-edu/glossary.component.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -178,7 +182,7 @@
 					<div class="tsd-signature tsd-kind-icon">current<wbr>Concept<wbr>Bindings<span class="tsd-signature-symbol">:</span> <a href="../interfaces/attributelabelbinding.html" class="tsd-signature-type">AttributeLabelBinding</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L23">app/glossary-edu/glossary.component.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L24">app/glossary-edu/glossary.component.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -188,7 +192,7 @@
 					<div class="tsd-signature tsd-kind-icon">current<wbr>Concept<wbr>Uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L22">app/glossary-edu/glossary.component.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L23">app/glossary-edu/glossary.component.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -198,7 +202,7 @@
 					<div class="tsd-signature tsd-kind-icon">glossary<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="glossaryservice.html" class="tsd-signature-type">GlossaryService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L41">app/glossary-edu/glossary.component.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L42">app/glossary-edu/glossary.component.ts:42</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -208,7 +212,7 @@
 					<div class="tsd-signature tsd-kind-icon">loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L25">app/glossary-edu/glossary.component.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L26">app/glossary-edu/glossary.component.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -218,7 +222,7 @@
 					<div class="tsd-signature tsd-kind-icon">location<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Location</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L40">app/glossary-edu/glossary.component.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L41">app/glossary-edu/glossary.component.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -228,7 +232,7 @@
 					<div class="tsd-signature tsd-kind-icon">modal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ModalDirective</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L28">app/glossary-edu/glossary.component.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L29">app/glossary-edu/glossary.component.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -238,47 +242,47 @@
 					<div class="tsd-signature tsd-kind-icon">notification<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L42">app/glossary-edu/glossary.component.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L43">app/glossary-edu/glossary.component.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="spqawahouqueryurl" class="tsd-anchor"></a>
 					<h3>spq<wbr>Awahou<wbr>Query<wbr>Url</h3>
-					<div class="tsd-signature tsd-kind-icon">spq<wbr>Awahou<wbr>Query<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;https://vocab.smart-project.info/spq-awahou/query&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">spq<wbr>Awahou<wbr>Query<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this.vocabUrl + &#x27;/spq-awahou/query&#x27;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L33">app/glossary-edu/glossary.component.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L34">app/glossary-edu/glossary.component.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="spqglossaryqueryurl" class="tsd-anchor"></a>
 					<h3>spq<wbr>Glossary<wbr>Query<wbr>Url</h3>
-					<div class="tsd-signature tsd-kind-icon">spq<wbr>Glossary<wbr>Query<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;https://vocab.smart-project.info/spq-glossary/query&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">spq<wbr>Glossary<wbr>Query<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this.vocabUrl + &#x27;/spq-glossary/query&#x27;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L30">app/glossary-edu/glossary.component.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L31">app/glossary-edu/glossary.component.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="spqngmpqueryurl" class="tsd-anchor"></a>
 					<h3>spq<wbr>Ngmp<wbr>Query<wbr>Url</h3>
-					<div class="tsd-signature tsd-kind-icon">spq<wbr>Ngmp<wbr>Query<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;https://vocab.smart-project.info/spq-ngmp/query&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">spq<wbr>Ngmp<wbr>Query<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this.vocabUrl + &#x27;/spq-ngmp/query&#x27;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L31">app/glossary-edu/glossary.component.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L32">app/glossary-edu/glossary.component.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="spqpapawaiqueryurl" class="tsd-anchor"></a>
 					<h3>spq<wbr>Papawai<wbr>Query<wbr>Url</h3>
-					<div class="tsd-signature tsd-kind-icon">spq<wbr>Papawai<wbr>Query<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;https://vocab.smart-project.info/spq-papawai/query&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">spq<wbr>Papawai<wbr>Query<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this.vocabUrl + &#x27;/spq-papawai/query&#x27;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L32">app/glossary-edu/glossary.component.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L33">app/glossary-edu/glossary.component.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -288,7 +292,7 @@
 					<div class="tsd-signature tsd-kind-icon">text<wbr>Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L26">app/glossary-edu/glossary.component.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L27">app/glossary-edu/glossary.component.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -298,7 +302,7 @@
 					<div class="tsd-signature tsd-kind-icon">uri<wbr>Awahou<wbr>Collection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;http://vocab.smart-project.info/collection/awahou/terms&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L38">app/glossary-edu/glossary.component.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L39">app/glossary-edu/glossary.component.ts:39</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -308,7 +312,7 @@
 					<div class="tsd-signature tsd-kind-icon">uri<wbr>Glossary<wbr>Collection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;http://vocab.smart-project.info/collection/glossary/terms&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L35">app/glossary-edu/glossary.component.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L36">app/glossary-edu/glossary.component.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -318,7 +322,7 @@
 					<div class="tsd-signature tsd-kind-icon">uri<wbr>Ngmp<wbr>Collection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;http://vocab.smart-project.info/collection/ngmp/phenomena&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L36">app/glossary-edu/glossary.component.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L37">app/glossary-edu/glossary.component.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -328,7 +332,17 @@
 					<div class="tsd-signature tsd-kind-icon">uri<wbr>Papawai<wbr>Collection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;http://vocab.smart-project.info/collection/papawai/terms&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L37">app/glossary-edu/glossary.component.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L38">app/glossary-edu/glossary.component.ts:38</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="vocaburl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> vocab<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">vocab<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L44">app/glossary-edu/glossary.component.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -345,7 +359,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L119">app/glossary-edu/glossary.component.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L121">app/glossary-edu/glossary.component.ts:121</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -362,7 +376,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L45">app/glossary-edu/glossary.component.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L47">app/glossary-edu/glossary.component.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -388,7 +402,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L73">app/glossary-edu/glossary.component.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L75">app/glossary-edu/glossary.component.ts:75</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/irilabelbinding.html" class="tsd-signature-type">IriLabelBinding</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -405,7 +419,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L115">app/glossary-edu/glossary.component.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L117">app/glossary-edu/glossary.component.ts:117</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -422,7 +436,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79f3d04/src/app/glossary-edu/glossary.component.ts#L82">app/glossary-edu/glossary.component.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/a39ec03/src/app/glossary-edu/glossary.component.ts#L84">app/glossary-edu/glossary.component.ts:84</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -508,6 +522,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="glossarycomponent.html#uripapawaicollection" class="tsd-kind-icon">uri<wbr>Papawai<wbr>Collection</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="glossarycomponent.html#vocaburl" class="tsd-kind-icon">vocab<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="glossarycomponent.html#backclicked" class="tsd-kind-icon">back<wbr>Clicked</a>
