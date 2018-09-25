@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.86% </span>
+        <span class="strong">38.82% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>33/77</span>
+        <span class='fraction'>33/85</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">12.5% </span>
+        <span class="strong">10% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/8</span>
+        <span class='fraction'>1/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">11.11% </span>
+        <span class="strong">10% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/18</span>
+        <span class='fraction'>2/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.47% </span>
+        <span class="strong">38.27% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>31/73</span>
+        <span class='fraction'>31/81</span>
       </div>
     </div>
   </div>
@@ -224,7 +224,39 @@
 179
 180
 181
-182</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -325,6 +357,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -337,6 +370,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -415,7 +479,7 @@ import { WEBGUI_APP_VERSION } from '../in-app-config';
 @Component({
   selector: 'app-sac-gwh-navigation',
   templateUrl: 'navigation.component.html',
-  styles: ['.fa-stack { margin-top: -5px; margin-bottom: -7px; }']
+  styles: [ '.fa-stack { margin-top: -5px; margin-bottom: -7px; }' ]
 })
 &nbsp;
 /**
@@ -445,10 +509,10 @@ export class NavigationComponent implements OnInit {
    * @param router              - injected Router
    * @param notificationService - injected NotificationService
    */
-  constructor(@Inject(WEBGUI_APP_VERSION) private webguiAppVersion: string,
-              private accountService: AccountService,
-              private router: Router,
-              private notificationService: NotificationService) {
+  constructor( @Inject(WEBGUI_APP_VERSION) private webguiAppVersion: string,
+               private accountService: AccountService,
+               private router: Router,
+               private notificationService: NotificationService ) {
 &nbsp;
     this.PORTAL_WEBGUI_VERSION = this.webguiAppVersion;
 &nbsp;
@@ -505,6 +569,7 @@ export class NavigationComponent implements OnInit {
             type: 'info',
             message: 'You successfully logged out.'
           });
+<span class="cstat-no" title="statement not covered" >          this.accountService.deleteHasGdprCookieAccepted();</span>
 <span class="cstat-no" title="statement not covered" >          this.router.navigateByUrl('/dashboard');</span>
         },
         error<span class="fstat-no" title="function not covered" > =&gt; {</span>
@@ -518,6 +583,37 @@ export class NavigationComponent implements OnInit {
    * OnInit - check login, get profile etc.
    */
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  ngOnInit(): void {</span></span>
+<span class="cstat-no" title="statement not covered" >    this.accountService.hasGdprCookieAccepted()</span>
+      .subscribe(
+        cookieExists<span class="fstat-no" title="function not covered" > =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          console.log(`cookie is accepted: ${cookieExists}`);</span>
+<span class="cstat-no" title="statement not covered" >          if (!cookieExists) {</span>
+<span class="cstat-no" title="statement not covered" >            this.notificationService.addNotification({</span>
+              type: 'info',
+              message: 'We use cookies and similar technologies to recognize your repeat visits and preferences, ' +
+                'as well as to measure the science impact of the data shared on this platform.',
+              details: 'To learn more about cookies, including how to disable them, view our Cookie Policy. ' +
+                'By clicking "I Accept" or "X" on this banner, or using our site, ' +
+                'you consent to the use of cookies unless you have disabled them.',
+              dismissAfter: -1
+            });
+<span class="cstat-no" title="statement not covered" >            this.accountService.setHasGdprCookieAccepted();</span>
+          }
+        },
+        error<span class="fstat-no" title="function not covered" > =&gt; {</span>
+          // console.log(&lt;any&gt;error);
+<span class="cstat-no" title="statement not covered" >          this.notificationService.addNotification({</span>
+            type: 'info',
+            message: 'We use cookies and similar technologies to recognize your repeat visits and preferences, ' +
+              'as well as to measure the science impact of the data shared on this platform.',
+            details: 'To learn more about cookies, including how to disable them, view our Cookie Policy. ' +
+              'By clicking "I Accept" or "X" on this banner, or using our site, ' +
+              'you consent to the use of cookies unless you have disabled them.',
+            dismissAfter: -1
+          });
+<span class="cstat-no" title="statement not covered" >          this.accountService.setHasGdprCookieAccepted();</span>
+        });
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    this.accountService.getProfile()</span>
       .subscribe(
         user<span class="fstat-no" title="function not covered" > =&gt; {</span>
@@ -592,7 +688,7 @@ export class NavigationComponent implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Sep 24 2018 17:32:56 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Sep 25 2018 06:41:36 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
