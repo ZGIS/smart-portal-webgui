@@ -16,7 +16,7 @@ import {
   UserFilesComponent,
   UsermetarecordsComponent
 } from './workbench';
-import { NotFoundComponent } from './navigation';
+import { DisclaimerViewComponent, NotFoundComponent } from './navigation';
 import { ResearchProgrammesComponent } from './research-pg';
 import { GlossaryComponent } from './glossary-edu';
 import { AdminComponent } from './admin';
@@ -25,7 +25,7 @@ import { TimeseriesComponent } from './timeseries';
 import {
   AdminGuard,
   AuthGuard,
-  ChildCategoriesResolve,
+  ChildCategoriesResolve, DisclaimerGuard,
   OwcContextIdResolve,
   RegisteredGuard
 } from './_guards';
@@ -33,44 +33,56 @@ import { GroupsBaseComponent } from './groups';
 
 const appRoutes: Routes = [
   {
+    path: 'disclaimer',
+    component: DisclaimerViewComponent,
+  },
+  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full'
   },
   {
     path: 'dashboard',
-    component: DashboardHomeComponent
+    component: DashboardHomeComponent,
+    canActivate: [ DisclaimerGuard ]
   },
   {
     path: 'dashboard/:category',
-    component: DashboardCategoryComponent
+    component: DashboardCategoryComponent,
+    canActivate: [ DisclaimerGuard ]
   },
   {
     path: 'dashboard/:category/cards',
     component: ResultCardsComponent,
+    canActivate: [ DisclaimerGuard ],
     resolve: {
       childCategoryObject: ChildCategoriesResolve
     }
   },
   {
     path: 'search',
-    component: SearchComponent
+    component: SearchComponent,
+    canActivate: [ DisclaimerGuard ]
   },
   {
     path: 'research-pg',
-    component: ResearchProgrammesComponent
+    component: ResearchProgrammesComponent,
+    canActivate: [ DisclaimerGuard ]
   },
   {
     path: 'glossary-edu',
-    component: GlossaryComponent
+    component: GlossaryComponent,
+    canActivate: [ DisclaimerGuard ]
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [ DisclaimerGuard ]
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [ DisclaimerGuard ]
   },
   {
     path: 'resetpass',
@@ -95,11 +107,13 @@ const appRoutes: Routes = [
 
   {
     path: 'context/file/:uuid',
-    component: FileLoaderComponent
+    component: FileLoaderComponent,
+    canActivate: [ DisclaimerGuard ]
   },
   {
     path: 'context/:type/:uuid',
-    component: ContextRetrieveComponent
+    component: ContextRetrieveComponent,
+    canActivate: [ DisclaimerGuard ]
   },
   // also think about CanActivateChild for the whole workbench thing
   {
@@ -134,11 +148,13 @@ const appRoutes: Routes = [
   },
   {
     path: 'timeseries',
-    component: TimeseriesComponent
+    component: TimeseriesComponent,
+    canActivate: [ DisclaimerGuard ]
   },
   {
     path: 'mapviewer',
     component: OwcLeafletViewerComponent,
+    canActivate: [ DisclaimerGuard ],
     resolve: {
       owc: OwcContextIdResolve
     }

@@ -16,15 +16,19 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
 
-      <li routerLinkActive="active"><a routerLink="/research-pg">Research Programmes <i class="fa fa-cubes "></i></a></li>
+      <li routerLinkActive="active"><a routerLink="/research-pg">Research Programmes <i class="fa fa-cubes "></i></a>
+      </li>
 
-      <li routerLinkActive="active"><a routerLink="/glossary-edu">Education/Glossary <i class="fa fa-lightbulb-o"></i></a></li>
+      <li routerLinkActive="active"><a routerLink="/glossary-edu">Education/Glossary <i
+        class="fa fa-lightbulb-o"></i></a></li>
 
       <li dropdown>
         <a role="button" dropdownToggle>Search Data and Tools <i class="fa fa-search"></i></a>
         <ul *dropdownMenu class="dropdown-menu" role="menu">
-          <li role="menuitem"><a class="dropdown-item" routerLink="/search"><i class="fa fa-search"></i> Search Documents</a></li>
-          <li role="menuitem"><a class="dropdown-item" routerLink="/timeseries"><i class="fa fa-line-chart"></i> View Timeseries </a></li>
+          <li role="menuitem"><a class="dropdown-item" routerLink="/search"><i class="fa fa-search"></i> Search
+            Documents</a></li>
+          <li role="menuitem"><a class="dropdown-item" routerLink="/timeseries"><i class="fa fa-line-chart"></i> View
+            Timeseries </a></li>
         </ul>
       </li>
 
@@ -36,7 +40,8 @@
               {{ userProfile.email }}</a>
           </li>
           <li role="menuitem" *ngIf="!checkLoggedIn">
-            <a class="dropdown-item" routerLink="/login"><i class="fa fa-sign-in"></i> Sign in to manage your own data collections</a>
+            <a class="dropdown-item" routerLink="/login"><i class="fa fa-sign-in"></i> Sign in to manage your own data
+              collections</a>
           </li>
           <li role="menuitem" *ngIf="checkLoggedIn">
             <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-sign-out"></i>
@@ -104,94 +109,89 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close pull-right" (click)="hideDisclaimerModal()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title pull-left">Disclaimer</h4>
+        <h4 class="modal-title">Disclaimer</h4>
       </div>
       <div class="modal-body">
         <div class="panel panel-default">
           <div class="panel-body">
+            <b>A. STATEMENT</b>
+            <p align="justify">
+              This website is being developed and maintained through the
+              <a href="http://www.smart-project.info" target="_blank">SMART Aquifer Characterisation programme (SAC)</a>
+              research aim "Data Synthesis and Visualisation".
+              If not stated otherwise, we assume data on this portal is licensed under the
+              <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+                Creative Commons Attribution 4.0 (CC BY SA 4.0)</a> license.
+              <img class="alignleft wp-image-164" style="margin-top: 0px;
+            margin-bottom: 10px;" title="by-sa" src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="" width="88"
+                   height="31">
+            </p>
 
-          <b>A. STATEMENT</b>
-          <p align="justify">
-            This website is being developed and maintained through the
-            <a href="http://www.smart-project.info" target="_blank">SMART Aquifer Characterisation programme (SAC)</a>
-            research aim "Data Synthesis and Visualisation".
-            If not stated otherwise, we assume data on this portal is licensed under the
-            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
-              Creative Commons Attribution 4.0 (CC BY SA 4.0)</a> license.
-            <img class="alignleft wp-image-164" style="margin-top: 0px;
-            margin-bottom: 10px;" title="by-sa" src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="" width="88" height="31">
-          </p>
+            <b>B. TERMS OF USE OF THE SMART Groundwater Portal</b>
+            <p align="justify">
+              We encourage you to use and share information from this website,
+              provided that:
+            </p>
+            <ul>
+              <li>the source in any copy you make is clearly acknowledged;</li>
+              <li>no modification to the material is made without the express permission of the copyright owner.</li>
+            </ul>
+            <p align="justify">
+              You may use the SMART Groundwater Portal for legal purposes only.
+              If a third party claims any material you have contributed or linked is unlawful,
+              you will bear the burden of establishing that the material complies with all applicable laws.
+              By adding content, you'll make sure to comply to the use constraints and license of such content and state
+              these in return.
+              This website must not be used to disseminate unsolicited advertising or promotional material of any kind.
+            </p>
 
-          <b>B. TERMS OF USE OF THE SMART Groundwater Portal</b>
-          <p align="justify">
-            We encourage you to use and share information from this website,
-            provided that:
-          </p>
-          <ul>
-            <li>the source in any copy you make is clearly acknowledged;</li>
-            <li>no modification to the material is made without the express permission of the copyright owner.</li>
-          </ul>
-          <p align="justify">
-          You may use the SMART Groundwater Portal for legal purposes only. If a third party claims any material you
-          have contributed or linked is unlawful, you will bear the burden of
-          establishing that the material complies with all applicable laws. By adding content,
-          you'll make sure to comply to the use constraints and license of such content and state these in return. This
-          website must not be used to disseminate unsolicited advertising or promotional
-          material of any kind.
-          </p>
+            <b>C. DISCLAIMER</b>
+            <p align="justify">
+              The SMART Groundwater Portal is provided "as is". We are not responsible for, and expressly disclaim all
+              liability for, damages of any kind arising out of use, reference to, or reliance on any information
+              contained within the site. While the information contained within the site is periodically updated, no
+              guarantee is given that the information provided in this website is correct, complete, and up-to-date. We
+              do not warrant, and hereby disclaim any warranties, either expressed or implied, including (without
+              limitation) warranties of accuracy, completeness, non-infringement, merchantability or fitness for a
+              particular purpose in relation to any information obtained from a another website or a link to it. We also
+              do not warrant that the SMART Groundwater Portal will operate in an uninterrupted or error-free manner or
+              that it is free of viruses or to other harmful components. Although the SMART Groundwater Portal may
+              include links providing direct access to other Internet resources, including websites and data services,
+              we are not responsible for the accuracy or content of information contained in these sites. Links from the
+              SMART Groundwater Portal to third-party sites do not constitute an endorsement of the parties or their
+              products and services.
+            </p>
 
-          <b>C. DISCLAIMER</b>
-          <p align="justify">
-            The SMART Groundwater Portal is provided "as is". We are not responsible for, and expressly disclaim all
-            liability for,
-            damages of any kind arising out of use, reference to, or reliance on any
-            information contained within the site. While the information contained within the
-            site is periodically updated, no guarantee is given that the information provided in
-            this Web site is correct, complete, and up-to-date. We do not warrant, and hereby disclaim any warranties,
-            either expressed or implied, including (without limitation) warranties of accuracy,
-            completeness, non-infringement, merchantability or fitness for a particular purpose
-            in relation to any information obtained from a another website or a link to it. We also do not warrant
-            that the SMART Groundwater Portal will operate in an uninterrupted or error-free manner or that it is free
-            of viruses or to other harmful components.
+            <p align="justify">
+              The user acknowledges that neither the Institute of Geological and Nuclear Sciences Limited (<i>GNS
+              Science</i>) nor any of its representatives has made or makes any representation or warranty, express or
+              implied, as to the accuracy or completeness of the Information. GNS Science accepts no responsibility for
+              any use or reliance on any contents of the Information and shall not be liable to any person, on any
+              ground, for any loss, damage or expense arising from such use or reliance. Any party using or relying on
+              the information in this portal (<i>User</i>) will be regarded as having accepted the terms of this
+              disclaimer. If the User employs the information in this portal for any purpose other than for internal
+              purposes, or makes the information available to any third party (either in full or in part) the recipient
+              indemnifies and holds harmless GNS Science for any event arising from such use or supply.
+            </p>
 
-            Although the SMART Groundwater Portal may include links providing direct access to other
-            Internet resources, including Web sites and Data services, we are not responsible for the accuracy or
-            content of information
-            contained in these sites. Links from the SMART Groundwater Portal to third-party sites do not
-            constitute an endorsement of the parties or their products and services.
-          </p>
+            <b>D. ENQUIRIES</b>
+            <p align="justify">
+              Other information relating to this website may be obtained by contacting us via the GNS Science <a
+              href="https://www.gns.cri.nz/Home/Contact-Us/General-inquiries">contact form</a>.
+            </p>
+            <p align="justify">
+              We will not use your personal information for the purpose of sending unsolicited email or mail, nor will
+              we ever pass your details on to third parties.
+            </p>
 
-          <p align="justify">
-            The user acknowledges that neither GNS Science nor any of its Representatives has made or makes any representation
-            or
-            warranty, express or implied, as to the accuracy or completeness of the Information. GNS Science accepts no
-            responsibility for
-            any use or reliance on any contents of the Information and shall not be liable to any person, on any ground,
-            for any
-            loss, damage or expense arising from such use or reliance. Any party using or relying on the Information
-            will be
-            regarded as having accepted the terms of this disclaimer.
-
-            If the user employes the information in this portal for any purpose other than for internal purposes,
-            or makes the information available to any third party (either in full or in part) and at any event without
-            the
-            disclaimer of liability to third parties the recipient indemnifies and
-            holds harmless GNS Science for any event arising from such use or supply.
-          </p>
-
-
-          <b>D. ENQUIRIES</b>
-          <p align="justify">
-            Other information relating to this website may be obtained by contacting us
-            via the GNS Science <a href="https://www.gns.cri.nz/Home/Contact-Us/General-inquiries">contact form</a>.
-          </p>
-          <p align="justify">
-            We will not use your personal information for the purpose of sending
-            unsolicited email or mail, nor will we ever pass your details on to third parties.
-          </p>
+            <b>E. COOKIES</b>
+            <p align="justify">
+              We use cookies and similar technologies to recognize your repeat visits and preferences,
+              as well as to measure the science impact of the data shared on this platform.
+              By clicking "Close" on this banner, and using our site
+              you consent to the use of cookies.
+            </p>
+            <button type="button" class="btn btn-default" (click)="hideDisclaimerModal()" aria-label="Close">Close</button>
           </div>
         </div>
       </div>
@@ -217,41 +217,54 @@
             <p>The SMART Aquifer Characterisation (<a
               href="http://www.gns.cri.nz/Home/Our-Science/Energy-Resources/Groundwater/Research/SMART-Aquifer-Characterisation"
               target="_blank">SAC</a>) research programme aims to develop a suite of innovative methods
-            for rapid and cost-effective characterisation of New Zealand’s groundwater systems. SMART is an acronym
-            for the driving ideals of the SAC programme:<br />
-            Save Money and Reduce Time, but be Specific, Measurable, Achievable, Realistic and Time-bound.</p>
+              for rapid and cost-effective characterisation of New Zealand’s groundwater systems. SMART is an acronym
+              for the driving ideals of the SAC programme:<br/>
+              Save Money and Reduce Time, but be Specific, Measurable, Achievable, Realistic and Time-bound.</p>
 
-            <p>Funded by the Ministry of Business, Innovation &amp; Employment -	Project Duration 2011-2017</p>
+            <p>Funded by the Ministry of Business, Innovation &amp; Employment - Project Duration 2011-2017</p>
 
             <p>Programme Leader: Dr Stewart Cameron</p>
 
             <p><i class="fa fa-phone-square" aria-hidden="true"></i> +64 7 1234567</p>
 
-            <p><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:s.cameron@gns.cri.nz?Subject=SAC%20programme" target="_top">s.cameron@gns.cri.nz</a></p>
+            <p><i class="fa fa-envelope" aria-hidden="true"></i> <a
+              href="mailto:s.cameron@gns.cri.nz?Subject=SAC%20programme" target="_top">s.cameron@gns.cri.nz</a></p>
 
             <p>Programme Manager: Zara Rawlinson</p>
 
-            <p><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:z.rawlinson@gns.cri.nz?Subject=SAC%20programme" target="_top">z.rawlinson@gns.cri.nz</a></p>
+            <p><i class="fa fa-envelope" aria-hidden="true"></i> <a
+              href="mailto:z.rawlinson@gns.cri.nz?Subject=SAC%20programme" target="_top">z.rawlinson@gns.cri.nz</a></p>
 
             <hr/>
             <b>Visual materials credit</b>
             <ul>
               <!-- TODO load this from image-credits-JSON or something? -->
-              <li>Background image by <app-usplash-img-credit-btn userDisplayName="Ant Rozetsky" userProfile="@rozetsky"></app-usplash-img-credit-btn></li>
+              <li>Background image by
+                <app-usplash-img-credit-btn userDisplayName="Ant Rozetsky"
+                                            userProfile="@rozetsky"></app-usplash-img-credit-btn>
+              </li>
               <li>Original photos used for icons by
-                <app-usplash-img-credit-btn userDisplayName="Jared Evans" userProfile="@chromogenic"></app-usplash-img-credit-btn>,
-                <app-usplash-img-credit-btn userDisplayName="Jean-Frederic Fortier" userProfile="@jffortier"></app-usplash-img-credit-btn>
-                <app-usplash-img-credit-btn userDisplayName="Drew Hays" userProfile="@drew_hays"></app-usplash-img-credit-btn>
+                <app-usplash-img-credit-btn userDisplayName="Jared Evans"
+                                            userProfile="@chromogenic"></app-usplash-img-credit-btn>
+                ,
+                <app-usplash-img-credit-btn userDisplayName="Jean-Frederic Fortier"
+                                            userProfile="@jffortier"></app-usplash-img-credit-btn>
+                <app-usplash-img-credit-btn userDisplayName="Drew Hays"
+                                            userProfile="@drew_hays"></app-usplash-img-credit-btn>
               </li>
               <li>Silver fern modified
-                under <a href="https://creativecommons.org/licenses/by/3.0/nz/deed.en" target="_blank">Creative Commons Attribution 3.0 New Zealand</a>.
-                Original by <a href="https://commons.wikimedia.org/wiki/File:NZ_flag_design_White_%26_Black_Fern_by_Alofi_Kanter.svg" target="_blank">Alofi Kanter</a></li>
+                under <a href="https://creativecommons.org/licenses/by/3.0/nz/deed.en" target="_blank">Creative Commons
+                  Attribution 3.0 New Zealand</a>.
+                Original by <a
+                  href="https://commons.wikimedia.org/wiki/File:NZ_flag_design_White_%26_Black_Fern_by_Alofi_Kanter.svg"
+                  target="_blank">Alofi Kanter</a></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <small>web: {{ PORTAL_WEBGUI_VERSION }} | papi: {{ PORTAL_BACKEND_VERSION }} | cswi: {{ CSW_INGESTER_VERSION }}</small>
+        <small>web: {{ PORTAL_WEBGUI_VERSION }} | papi: {{ PORTAL_BACKEND_VERSION }} |
+          cswi: {{ CSW_INGESTER_VERSION }}</small>
       </div>
     </div>
   </div>

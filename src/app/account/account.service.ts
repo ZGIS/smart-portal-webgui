@@ -3,7 +3,7 @@ import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { CookieService } from 'ngx-cookie';
+import { CookieOptions, CookieService } from 'ngx-cookie';
 import { CSWI_API_URL, PORTAL_API_URL } from '../in-app-config';
 import { IErrorResult } from '../search/result';
 import {
@@ -445,7 +445,11 @@ export class AccountService {
 
   setHasGdprCookieAccepted() {
     try {
-      localStorage.setItem('privacy.cookie', 'true');
+      // localStorage.setItem('privacy.cookie', 'true');
+      let dateNow = new Date();
+      dateNow.setDate( dateNow.getDate() + 30 );
+      let cookieOptions = { expires: dateNow };
+      this.cookieService.put('privacy.cookie', 'true', cookieOptions);
     } catch (e) {
       console.error('could not set privacy cookie');
     }
@@ -453,7 +457,8 @@ export class AccountService {
 
   deleteHasGdprCookieAccepted() {
     try {
-      localStorage.removeItem('privacy.cookie');
+      // localStorage.removeItem('privacy.cookie');
+      this.cookieService.remove('privacy.cookie');
     } catch (e) {
       console.error('could not remove privacy cookie');
     }
@@ -461,7 +466,8 @@ export class AccountService {
 
   hasGdprCookieAccepted(): Observable<boolean> {
     try {
-      let acc = localStorage.getItem('privacy.cookie');
+      // let acc = localStorage.getItem('privacy.cookie');
+      let acc = this.cookieService.get('privacy.cookie');
       if (acc && acc === 'true') {
         return Observable.of(true);
       } else {

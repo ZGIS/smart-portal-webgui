@@ -30,6 +30,7 @@ import {
   ResultCollectionsViewModalComponent
 } from './search';
 import { NavigationComponent,
+  DisclaimerViewComponent,
   NotFoundComponent,
   UsplashImageCreditComponent,
   CentralUsernavComponent
@@ -90,7 +91,7 @@ import { WorkbenchService,
 
 import { X3dViewComponent } from './x3d-view';
 import { API_URL_PROVIDERS, APP_VERSION_PROVIDERS } from './in-app-config';
-import { AdminGuard, AuthGuard, ChildCategoriesResolve, OwcContextIdResolve, RegisteredGuard } from './_guards';
+import { AdminGuard, AuthGuard, ChildCategoriesResolve, OwcContextIdResolve, RegisteredGuard, DisclaimerGuard } from './_guards';
 import { NotificationComponent, NotificationService } from './notifications';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ContextRetrieveComponent, FileLoaderComponent, LicensedlinkComponent } from './context';
@@ -124,6 +125,7 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
     DashboardHomeComponent,
     DashboardCategoryComponent,
     NavigationComponent,
+    DisclaimerViewComponent,
     NotFoundComponent,
     ResearchProgrammesSkosdefComponent,
     ResearchProgrammesComponent,
@@ -189,6 +191,7 @@ import { GroupsBaseComponent, GroupsUserContextComponent, GroupsUserDisplayCompo
     AccountService,
     AdminService,
     AuthGuard,
+    DisclaimerGuard,
     RegisteredGuard,
     ChildCategoriesResolve,
     AdminGuard,

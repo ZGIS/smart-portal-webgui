@@ -1,9 +1,10 @@
 import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ModalDirective, BsModalRef } from 'ngx-bootstrap/modal';
 import { AccountService, ProfileJs } from '../account';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notifications';
 import { WEBGUI_APP_VERSION } from '../in-app-config';
+import { DisclaimerViewComponent } from './disclaimer-view.component';
 
 @Component({
   selector: 'app-sac-gwh-navigation',
@@ -24,6 +25,8 @@ export class NavigationComponent implements OnInit {
 
   @ViewChild('disclaimerModalRef') public disclaimerModal: ModalDirective;
   @ViewChild('aboutModalRef') public aboutModal: ModalDirective;
+
+  bsModalRefDisclaimer: BsModalRef;
 
   category = 'main';
 
@@ -68,6 +71,7 @@ export class NavigationComponent implements OnInit {
    */
   hideDisclaimerModal() {
     this.disclaimerModal.hide();
+    this.accountService.setHasGdprCookieAccepted();
   }
 
   /**
@@ -112,36 +116,19 @@ export class NavigationComponent implements OnInit {
    * OnInit - check login, get profile etc.
    */
   ngOnInit(): void {
-    this.accountService.hasGdprCookieAccepted()
-      .subscribe(
-        cookieExists => {
-          console.log(`cookie is accepted: ${cookieExists}`);
-          if (!cookieExists) {
-            this.notificationService.addNotification({
-              type: 'info',
-              message: 'We use cookies and similar technologies to recognize your repeat visits and preferences, ' +
-                'as well as to measure the science impact of the data shared on this platform.',
-              details: 'To learn more about cookies, including how to disable them, view our Cookie Policy. ' +
-                'By clicking "I Accept" or "X" on this banner, or using our site, ' +
-                'you consent to the use of cookies unless you have disabled them.',
-              dismissAfter: -1
-            });
-            this.accountService.setHasGdprCookieAccepted();
-          }
-        },
-        error => {
-          // console.log(<any>error);
-          this.notificationService.addNotification({
-            type: 'info',
-            message: 'We use cookies and similar technologies to recognize your repeat visits and preferences, ' +
-              'as well as to measure the science impact of the data shared on this platform.',
-            details: 'To learn more about cookies, including how to disable them, view our Cookie Policy. ' +
-              'By clicking "I Accept" or "X" on this banner, or using our site, ' +
-              'you consent to the use of cookies unless you have disabled them.',
-            dismissAfter: -1
-          });
-          this.accountService.setHasGdprCookieAccepted();
-        });
+    // this.accountService.hasGdprCookieAccepted()
+    //   .subscribe(
+    //     cookieExists => {
+    //       console.log(`cookie is accepted: ${cookieExists}`);
+    //       if (!cookieExists) {
+    //         console.log(`cookie not accepted: ${cookieExists}`);
+    //         // this.showDisclaimerModal();
+    //       }
+    //     },
+    //     error => {
+    //       console.log(<any>error);
+    //       // this.showDisclaimerModal();
+    //     });
 
     this.accountService.getProfile()
       .subscribe(
