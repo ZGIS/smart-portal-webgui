@@ -53,11 +53,11 @@ script:
 - chmod +x $TRAVIS_BUILD_DIR/copy_env.sh && sh -c $TRAVIS_BUILD_DIR/copy_env.sh
 - npm run stat
 - npm run tslint
-# - npm test -- --ci
+- npm test -- --ci
 # - cp -r coverage _coverage || true
 # jit build
 # - npm run e2e:ci:jit
-- npm run build:jit
+# - npm run build:jit
 # aot build
 # - npm run e2e:ci
 - npm run build

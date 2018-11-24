@@ -28,16 +28,16 @@ module.exports = function (config) {
       noInfo: true
     },
 
-    coverageReporter: {
-      type: 'in-memory'
-    },
-
-    remapCoverageReporter: {
-      'text-summary': null,
-      'json': './coverage/coverage.json',
-      'html': './coverage/html',
-      'lcovonly': './coverage/lcov.info'
-    },
+    // coverageReporter: {
+    //   type: 'in-memory'
+    // },
+    //
+    // remapCoverageReporter: {
+    //   'text-summary': null,
+    //   'json': './coverage/coverage.json',
+    //   'html': './coverage/html',
+    //   'lcovonly': './coverage/lcov.info'
+    // },
 
     specReporter: {
       maxLogLines: 5, // limit number of lines logged per test
@@ -65,7 +65,8 @@ module.exports = function (config) {
       }
     },
 
-    reporters: ['remap-coverage', 'spec', 'mocha' ],
+    // 'remap-coverage',
+    reporters: ['spec', 'mocha' ],
 
     port: 9876,
     colors: true,
@@ -75,9 +76,9 @@ module.exports = function (config) {
     singleRun: config.ci
   };
 
+  // _config.reporters.push('coverage');
   if (config.ci) {
     _config.preprocessors['./config/test/karma-test-shim.js'].unshift('coverage');
-    _config.reporters.push('coverage');
   }
 
   config.set(_config);
