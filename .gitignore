@@ -61,8 +61,10 @@ sphinx-build
 
 
 /_coverage/
-/package-lock.json
 /cypress/videos/
 /cypress/screenshots/
 /cypress/images/
 /PortalCategories.xlsx
+
+# https://stackoverflow.com/questions/44343997/npm-notice-created-a-lockfile-as-package-lock-json-you-should-commit-this-file
+# /package-lock.json
