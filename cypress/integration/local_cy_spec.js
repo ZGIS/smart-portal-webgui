@@ -8,6 +8,8 @@ describe('E2E Cypress Gw Hub Local Tests that timeout on Travis', function () {
     const expectedMsg = 'Understand our groundwater systems';
 
     beforeEach(function () {
+      // accept disclaimer before each test
+      cy.setCookie('privacy.cookie', 'true');
       cy.visit('http://localhost:8080/#/dashboard/1-understanding?categoryId=1');
     });
 
@@ -21,6 +23,8 @@ describe('E2E Cypress Gw Hub Local Tests that timeout on Travis', function () {
     const notExpectedMsg = 'There are no documents for this query / category';
 
     beforeEach(function () {
+      // accept disclaimer before each test
+      cy.setCookie('privacy.cookie', 'true');
       cy.visit('http://localhost:8080/#/dashboard/7-protect/cards?query=(keywords%3A%22nz%20water%20quality%20maps%22)%5E1.5%20OR%20catch_all%3Anz%20water%20quality%20maps&categoryId=70');
     });
 
