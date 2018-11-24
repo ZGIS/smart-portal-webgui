@@ -22,6 +22,7 @@ export class NavigationComponent implements OnInit {
 
   @Input() public userProfile: ProfileJs;
   @Input() public checkLoggedIn: boolean;
+  checkAcceptedDisclaimerDisplayLink: boolean;
 
   @ViewChild('disclaimerModalRef') public disclaimerModal: ModalDirective;
   @ViewChild('aboutModalRef') public aboutModal: ModalDirective;
@@ -116,19 +117,18 @@ export class NavigationComponent implements OnInit {
    * OnInit - check login, get profile etc.
    */
   ngOnInit(): void {
-    // this.accountService.hasGdprCookieAccepted()
-    //   .subscribe(
-    //     cookieExists => {
-    //       console.log(`cookie is accepted: ${cookieExists}`);
-    //       if (!cookieExists) {
-    //         console.log(`cookie not accepted: ${cookieExists}`);
-    //         // this.showDisclaimerModal();
-    //       }
-    //     },
-    //     error => {
-    //       console.log(<any>error);
-    //       // this.showDisclaimerModal();
-    //     });
+    this.accountService.hasGdprCookieAccepted()
+      .subscribe(
+        cookieExists => {
+          if (!cookieExists) {
+            this.checkAcceptedDisclaimerDisplayLink = false;
+          }
+          this.checkAcceptedDisclaimerDisplayLink = true;
+        },
+        error => {
+          console.log(<any>error);
+          this.checkAcceptedDisclaimerDisplayLink = false;
+        });
 
     this.accountService.getProfile()
       .subscribe(

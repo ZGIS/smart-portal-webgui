@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AccountService } from '../account';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: 'disclaimer-view.component.html'
 })
 
-export class DisclaimerViewComponent implements OnInit {
+export class DisclaimerViewComponent {
 
   constructor( private accountService: AccountService,
                private router: Router ) {
@@ -18,21 +18,5 @@ export class DisclaimerViewComponent implements OnInit {
     this.router.navigateByUrl('/dashboard');
   }
 
-  ngOnInit(): void {
-    this.accountService.hasGdprCookieAccepted()
-      .subscribe(
-        cookieExists => {
-          console.log(`cookie is accepted: ${cookieExists}`);
-          this.router.navigateByUrl('/dashboard');
-          if (!cookieExists) {
-            console.log(`cookie not accepted: ${cookieExists}`);
-            // this.showDisclaimerModal();
-          }
-        },
-        error => {
-          console.log(<any>error);
-          // this.showDisclaimerModal();
-        });
-  }
 }
 

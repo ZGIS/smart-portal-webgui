@@ -91,7 +91,10 @@
         </a>
         <ul *dropdownMenu class="dropdown-menu" role="menu">
 
-          <li role="menuitem"><a role="button" class="dropdown-item" (click)="showDisclaimerModal()">Disclaimer</a></li>
+          <!--<li role="menuitem"><a role="button" class="dropdown-item" (click)="showDisclaimerModal()">Disclaimer</a></li>-->
+          <li role="menuitem" *ngIf="checkAcceptedDisclaimerDisplayLink">
+            <a routerLink="/disclaimer">Disclaimer</a>
+          </li>
           <li role="menuitem"><a role="button" class="dropdown-item" (click)="showAboutModal()">About</a></li>
           <li role="menuitem"><a role="button" class="dropdown-item"
                                  href="/docs" target="_blank">Help</a>
@@ -199,6 +202,7 @@
   </div>
 </div>
 
+
 <div bsModal #aboutModalRef="bs-modal" class="modal fade" tabindex="-1" role="article"
      aria-labelledby="about" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -212,28 +216,13 @@
       <div class="modal-body">
         <div class="panel panel-default">
           <div class="panel-body">
-            <b>SMART Aquifer Characterisation Programme (SAC)</b>
-
-            <p>The SMART Aquifer Characterisation (<a
+            <p>This portal was developed as part of the <a
               href="http://www.gns.cri.nz/Home/Our-Science/Energy-Resources/Groundwater/Research/SMART-Aquifer-Characterisation"
-              target="_blank">SAC</a>) research programme aims to develop a suite of innovative methods
-              for rapid and cost-effective characterisation of New Zealand’s groundwater systems. SMART is an acronym
-              for the driving ideals of the SAC programme:<br/>
-              Save Money and Reduce Time, but be Specific, Measurable, Achievable, Realistic and Time-bound.</p>
+              target="_blank">SMART Aquifer Characterisation Programme (SAC)</a>, which aimed to develop a suite of innovative methods for rapid and cost-effective characterisation of New Zealand’s groundwater systems.
+              The SAC programme was funded by the Ministry of Business, Innovation & Employment over the 2011-2017 period.
+            </p>
 
-            <p>Funded by the Ministry of Business, Innovation &amp; Employment - Project Duration 2011-2017</p>
-
-            <p>Programme Leader: Dr Stewart Cameron</p>
-
-            <p><i class="fa fa-phone-square" aria-hidden="true"></i> +64 7 1234567</p>
-
-            <p><i class="fa fa-envelope" aria-hidden="true"></i> <a
-              href="mailto:s.cameron@gns.cri.nz?Subject=SAC%20programme" target="_top">s.cameron@gns.cri.nz</a></p>
-
-            <p>Programme Manager: Zara Rawlinson</p>
-
-            <p><i class="fa fa-envelope" aria-hidden="true"></i> <a
-              href="mailto:z.rawlinson@gns.cri.nz?Subject=SAC%20programme" target="_top">z.rawlinson@gns.cri.nz</a></p>
+            <p>Developed by Alexander Kmoch and Steffen Reichel</p>
 
             <hr/>
             <b>Visual materials credit</b>
