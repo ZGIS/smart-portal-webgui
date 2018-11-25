@@ -1,9 +1,10 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NotificationService } from '../notifications';
-import { CollectionsService, OwcResource } from './';
-import { IGeoFeature, IGeoFeatureProperties, IGeoFeatureCollection } from '../search';
+import { CollectionsService, OwcContext, OwcResource } from './';
+import { IErrorResult, IGeoFeature, IGeoFeatureCollection, IGeoFeatureProperties } from '../search';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { AccountService } from '../account';
 
 let L = require('leaflet/dist/leaflet.js');
 
@@ -12,7 +13,7 @@ let L = require('leaflet/dist/leaflet.js');
   templateUrl: 'owc-resource-detail-modal.component.html'
 })
 
-export class OwcResourceDetailModalComponent {
+export class OwcResourceDetailModalComponent implements OnInit {
   @Input() owcResource: OwcResource;
   @Input() collectionid: string;
   @Input() viewOnly = true;
@@ -21,6 +22,38 @@ export class OwcResourceDetailModalComponent {
   @ViewChild('owcResourceDetailModalRef') public modal: ModalDirective;
 
   map: any;
+
+  myCollections: OwcContext[] = [];
+  loggedIn = false;
+  activeCollectionId = '';
+
+  ngOnInit(): void {
+    this.accountService.isLoggedIn().subscribe(
+      loggedInResult => {
+        if (loggedInResult === true) {
+          this.loggedIn = true;
+          this.collectionsService.getCollections()
+            .subscribe(
+              owcDocs => {
+                this.myCollections = [];
+                owcDocs.forEach(( owcDoc: OwcContext ) => {
+                  this.myCollections.push(owcDoc);
+                  // console.log(owcDoc.id);
+                });
+              },
+              error => {
+                console.log(<any>error);
+                this.notificationService.addErrorResultNotification(error);
+              });
+        } else {
+          console.log('logged in? ' + loggedInResult);
+        }
+      },
+      error => {
+        console.log(<any>error);
+        console.log('not logged in');
+      });
+  }
 
   getLeafletOptions( owcResource: OwcResource ): any {
     let geojsonLayer = L.geoJSON(owcResource, {
@@ -52,11 +85,12 @@ export class OwcResourceDetailModalComponent {
   /**
    * Constructor
    * @param collectionsService  - injected CollectionsService
+   * @param accountService - injected AccountService
    * @param notificationService - injected NotificationService
-   * @param bsModalRef - injected BsModalRef
    */
   constructor( private collectionsService: CollectionsService,
-               private notificationService: NotificationService) {
+               private accountService: AccountService,
+               private notificationService: NotificationService ) {
   }
 
   showOwcResourceModal( owcFeature: OwcResource, owccontextid: string ) {
@@ -76,7 +110,7 @@ export class OwcResourceDetailModalComponent {
     let corner2 = bounds.getNorthEast();
     console.log(corner1);
     console.log(corner2);
-    this.map.fitBounds([[corner1.lng, corner1.lat], [corner2.lng, corner2.lng]], {
+    this.map.fitBounds([ [ corner1.lng, corner1.lat ], [ corner2.lng, corner2.lng ] ], {
       animate: true,
       maxZoom: 17
     });
@@ -110,7 +144,7 @@ export class OwcResourceDetailModalComponent {
 
   getAsGeoFeatureCollection( owc: OwcResource ): IGeoFeatureCollection {
     if (!owc.geometry) {
-      return <IGeoFeatureCollection> {
+      return <IGeoFeatureCollection>{
         type: 'FeatureCollection',
         crs: '',
         count: 0,
@@ -121,14 +155,14 @@ export class OwcResourceDetailModalComponent {
     const feature = <IGeoFeature>{
       type: 'Feature',
       geometry: owc.geometry,
-      properties: <IGeoFeatureProperties> {
+      properties: <IGeoFeatureProperties>{
         fileIdentifier: owc.id,
         title: owc.properties.title,
         linkage: [],
         origin: owc.properties.publisher
       }
     };
-    return <IGeoFeatureCollection> {
+    return <IGeoFeatureCollection>{
       type: 'FeatureCollection',
       crs: '',
       count: 1,
@@ -161,4 +195,27 @@ export class OwcResourceDetailModalComponent {
   //   // does this feature have a property named popupContent?
   //   console.log(feature);
   // }
+
+  copyToMyCollection( owcResource: OwcResource ) {
+    if (this.activeCollectionId.length > 0) {
+      this.collectionsService.addCopyOfResourceResourceToCollection(this.activeCollectionId, owcResource).subscribe(
+        ( results: OwcContext ) => {
+          this.notificationService.addNotification({
+            id: NotificationService.DEFAULT_DISMISS,
+            message: `Entry was successfully added to ${results.properties.title}.`,
+            type: NotificationService.NOTIFICATION_TYPE_SUCCESS
+          });
+          // console.log('We need to reload the collection!');
+        }, ( error: IErrorResult ) => {
+          this.notificationService.addErrorResultNotification(error);
+        });
+    } else {
+      this.notificationService.addNotification({
+        id: NotificationService.DEFAULT_DISMISS,
+        message: `Please select a collection to which you would to add this to!`,
+        type: NotificationService.NOTIFICATION_TYPE_WARNING
+      });
+    }
+  }
+
 }
