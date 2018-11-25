@@ -194,7 +194,6 @@ export class CollectionsComponent {
 
   emitShowResourceDetails( owcResource: OwcResource, collectionId: string ): void {
     this.showResourceDetails.emit({
-      event: event,
       data: { owcResource: owcResource, collectionId: collectionId }
     });
   }
