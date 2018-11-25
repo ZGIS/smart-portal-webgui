@@ -34,7 +34,7 @@
 
         <div class="panel panel-default">
           <div class="panel-body">
-            <form class="form-horizontal" name="addToCollection" id="addToCollection" (ngSubmit)="copyToMyCollection(owcFeature)" #f="ngForm" novalidate>
+            <form class="form-horizontal" name="addToCollection" id="addToCollection" (ngSubmit)="copyToMyCollection(owcResource)" #f="ngForm" novalidate>
               <div class="form-group" *ngIf="!loggedIn">
                 <label class="col-sm-2 control-label"><a routerLink="/login">Log-in to bookmark this resource</a> </label>
               </div>
