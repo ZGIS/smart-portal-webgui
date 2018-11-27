@@ -1,11 +1,11 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { IErrorResult, IGeoFeature } from './result';
-import { OwcContext, OwcResource, CollectionsService } from '../owc';
+import { CollectionsService, OwcContext, OwcResource } from '../owc';
 import { ResultService } from './result.service';
 import { NotificationService } from '../notifications/notification.service';
-import { logger } from 'codelyzer/util/logger';
 import { AccountService } from '../account';
+import { PORTAL_API_URL } from '../in-app-config';
 
 @Component({
   selector: 'app-sac-gwh-result-detail-modal',
@@ -19,6 +19,9 @@ export class ResultDetailModalComponent implements OnInit {
   loggedIn = false;
   activeCollectionId = '';
 
+  dataA2aUrlExt_base = this.portalApiUrl.replace('/api/v1', '/#/context/resource/');
+  dataA2aUrlExt = this.dataA2aUrlExt_base;
+
   @Output() onHide = new EventEmitter();
 
   @ViewChild('resultModalRef') public modal: ModalDirective;
@@ -26,7 +29,8 @@ export class ResultDetailModalComponent implements OnInit {
   constructor( private resultService: ResultService,
                private notificationService: NotificationService,
                private accountService: AccountService,
-               private collectionsService: CollectionsService ) {
+               private collectionsService: CollectionsService,
+               @Inject(PORTAL_API_URL) private portalApiUrl: string ) {
   }
 
   ngOnInit(): void {
@@ -60,6 +64,13 @@ export class ResultDetailModalComponent implements OnInit {
   showFeatureModal( geoFeature: IGeoFeature ) {
     if (geoFeature !== undefined) {
       this.feature = geoFeature;
+
+      if (this.checkIfUrl(geoFeature.properties.fileIdentifier)) {
+        // will know if it's complete url identifier
+        this.dataA2aUrlExt = geoFeature.properties.fileIdentifier;
+      } else {
+        this.dataA2aUrlExt = this.dataA2aUrlExt_base + geoFeature.properties.fileIdentifier;
+      }
 
       this.resultService.getResultsAsOwcGeoJson(
         `fileIdentifier:"${geoFeature.properties.fileIdentifier}"`
@@ -113,5 +124,20 @@ export class ResultDetailModalComponent implements OnInit {
 
   onHideModal() {
     this.onHide.emit();
+  }
+
+  /**
+   * on URL sucessfully copied to clipboard
+   */
+  onClipboardSuccess() {
+    this.notificationService.addNotification({
+      id: NotificationService.MSG_ID_URL_COPIED_TO_CLIPBOARD,
+      message: 'URL successfully copied to clipboard', type: 'success',
+      dismissAfter: 1500
+    });
+  }
+
+  private checkIfUrl( testUrl: string ): boolean {
+    return new RegExp('[a-zA-Z\d]+://(\w+:\w+@)?([a-zA-Z\d.-]+\.[A-Za-z]{2,4})(:\d+)?(/.*)?').test(testUrl);
   }
 }

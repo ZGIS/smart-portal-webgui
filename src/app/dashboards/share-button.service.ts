@@ -20,10 +20,10 @@ export class ShareButtonService {
   private scriptLoaded = false;
   private readySubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor(zone: NgZone,
-              @Inject(PORTAL_API_URL) private portalApiUrl: string ) {
+  constructor( zone: NgZone,
+               @Inject(PORTAL_API_URL) private portalApiUrl: string ) {
     /* the callback needs to exist before the API is loaded */
-    window[<any>'onloadCallback'] = <any>(() => zone.run(this.onloadCallback.bind(this)));
+    window[ <any>'onloadCallback' ] = <any>(() => zone.run(this.onloadCallback.bind(this)));
   }
 
   /**
@@ -31,7 +31,7 @@ export class ShareButtonService {
    *
    * @returns {Observable<T>}
    */
-  public getReady(): Observable<boolean> {
+  public getReady(): boolean {
     if (!this.scriptLoaded) {
       this.scriptLoaded = true;
       let doc = <HTMLDivElement>document.body;
@@ -47,6 +47,12 @@ export class ShareButtonService {
       shareScript.async = true;
       doc.appendChild(shareScript);
     }
+    return this.scriptLoaded;
+  }
+
+  public isReady(): Observable<boolean> {
+    let loaded = this.getReady();
+    this.readySubject.next(loaded);
     return this.readySubject.asObservable();
   }
 
