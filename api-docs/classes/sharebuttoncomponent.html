@@ -94,6 +94,8 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sharebuttoncomponent.html#dataa2atitle" class="tsd-kind-icon">data<wbr>A2a<wbr>Title</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sharebuttoncomponent.html#dataa2aurl" class="tsd-kind-icon">data<wbr>A2a<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sharebuttoncomponent.html#dataa2aurlext" class="tsd-kind-icon">data<wbr>A2a<wbr>Url<wbr>Ext</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sharebuttoncomponent.html#dataa2aurlext_base" class="tsd-kind-icon">data<wbr>A2a<wbr>Url<wbr>Ext_<wbr>base</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sharebuttoncomponent.html#plain" class="tsd-kind-icon">plain</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="sharebuttoncomponent.html#portalapiurl" class="tsd-kind-icon">portal<wbr>Api<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="sharebuttoncomponent.html#sharebuttonservice" class="tsd-kind-icon">share<wbr>Button<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sharebuttoncomponent.html#targetref" class="tsd-kind-icon">target<wbr>Ref</a></li>
@@ -121,7 +123,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79a4713/src/app/dashboards/share-button.component.ts#L28">app/dashboards/share-button.component.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3dd180b/src/app/dashboards/share-button.component.ts#L31">app/dashboards/share-button.component.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -146,7 +148,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<wbr>A2a<wbr>Title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79a4713/src/app/dashboards/share-button.component.ts#L24">app/dashboards/share-button.component.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3dd180b/src/app/dashboards/share-button.component.ts#L25">app/dashboards/share-button.component.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -156,17 +158,37 @@
 					<div class="tsd-signature tsd-kind-icon">data<wbr>A2a<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79a4713/src/app/dashboards/share-button.component.ts#L25">app/dashboards/share-button.component.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3dd180b/src/app/dashboards/share-button.component.ts#L26">app/dashboards/share-button.component.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="dataa2aurlext" class="tsd-anchor"></a>
 					<h3>data<wbr>A2a<wbr>Url<wbr>Ext</h3>
-					<div class="tsd-signature tsd-kind-icon">data<wbr>A2a<wbr>Url<wbr>Ext<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this.portalApiUrl.replace(&#x27;/api/v1&#x27;, &#x27;/#/context/resource/&#x27;)</span></div>
+					<div class="tsd-signature tsd-kind-icon">data<wbr>A2a<wbr>Url<wbr>Ext<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this.dataA2aUrlExt_base</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79a4713/src/app/dashboards/share-button.component.ts#L28">app/dashboards/share-button.component.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3dd180b/src/app/dashboards/share-button.component.ts#L31">app/dashboards/share-button.component.ts:31</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="dataa2aurlext_base" class="tsd-anchor"></a>
+					<h3>data<wbr>A2a<wbr>Url<wbr>Ext_<wbr>base</h3>
+					<div class="tsd-signature tsd-kind-icon">data<wbr>A2a<wbr>Url<wbr>Ext_<wbr>base<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this.portalApiUrl.replace(&#x27;/api/v1&#x27;, &#x27;/#/context/resource/&#x27;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3dd180b/src/app/dashboards/share-button.component.ts#L30">app/dashboards/share-button.component.ts:30</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="plain" class="tsd-anchor"></a>
+					<h3>plain</h3>
+					<div class="tsd-signature tsd-kind-icon">plain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3dd180b/src/app/dashboards/share-button.component.ts#L27">app/dashboards/share-button.component.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -176,7 +198,7 @@
 					<div class="tsd-signature tsd-kind-icon">portal<wbr>Api<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79a4713/src/app/dashboards/share-button.component.ts#L31">app/dashboards/share-button.component.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3dd180b/src/app/dashboards/share-button.component.ts#L34">app/dashboards/share-button.component.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -186,7 +208,7 @@
 					<div class="tsd-signature tsd-kind-icon">share<wbr>Button<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="sharebuttonservice.html" class="tsd-signature-type">ShareButtonService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79a4713/src/app/dashboards/share-button.component.ts#L30">app/dashboards/share-button.component.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3dd180b/src/app/dashboards/share-button.component.ts#L33">app/dashboards/share-button.component.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -196,7 +218,7 @@
 					<div class="tsd-signature tsd-kind-icon">target<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79a4713/src/app/dashboards/share-button.component.ts#L22">app/dashboards/share-button.component.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3dd180b/src/app/dashboards/share-button.component.ts#L23">app/dashboards/share-button.component.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -213,7 +235,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79a4713/src/app/dashboards/share-button.component.ts#L58">app/dashboards/share-button.component.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3dd180b/src/app/dashboards/share-button.component.ts#L59">app/dashboards/share-button.component.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -236,7 +258,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/79a4713/src/app/dashboards/share-button.component.ts#L41">app/dashboards/share-button.component.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/3dd180b/src/app/dashboards/share-button.component.ts#L37">app/dashboards/share-button.component.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -271,6 +293,12 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="sharebuttoncomponent.html#dataa2aurlext" class="tsd-kind-icon">data<wbr>A2a<wbr>Url<wbr>Ext</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="sharebuttoncomponent.html#dataa2aurlext_base" class="tsd-kind-icon">data<wbr>A2a<wbr>Url<wbr>Ext_<wbr>base</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="sharebuttoncomponent.html#plain" class="tsd-kind-icon">plain</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="sharebuttoncomponent.html#portalapiurl" class="tsd-kind-icon">portal<wbr>Api<wbr>Url</a>
