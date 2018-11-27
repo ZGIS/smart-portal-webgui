@@ -174,8 +174,8 @@ http {
         location / {
             root   /usr/share/nginx/html;
             index  index.html;
-            auth_basic           "Restricted site";
-            auth_basic_user_file /etc/nginx/secrets/htpasswd-smart;
+            # auth_basic           "Restricted site";
+            # auth_basic_user_file /etc/nginx/secrets/htpasswd-smart;
         }
 
     }
