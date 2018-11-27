@@ -1,0 +1,40 @@
+<div bsModal #resultCollectionsModalRef="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     [config]="{backdrop: false, ignoreBackdropClick: true, keyboard: false}"
+     aria-labelledby="result-collection-details" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div *ngIf="owcCollection" class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideCollectionsModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4>{{owcCollection.properties.title}}</h4>
+          </div>
+
+          <div class="panel-body">
+            <!-- here the collection component -->
+            <app-sac-gwh-collection [myCollection]="owcCollection" [viewOnly]="true"
+                                    (showResourceDetails)="handleShowChildResourceModal($event)"></app-sac-gwh-collection>
+          </div>
+
+          <div class="panel-footer">
+            <div class="form-group" *ngIf="owcCollection">
+              <label class="col-sm-2 control-label clickable" tooltip="click to copy url to clipboard" ngxClipboard [cbContent]="dataA2aUrlExt"
+                     (cbOnSuccess)="onClipboardSuccess()">
+                Share this <i class="fa fa-clipboard "></i>:
+              </label>
+              <div class="col-sm-10">
+                <div><a target="_blank" [href]="dataA2aUrlExt">{{ owcCollection.properties.title }} <i class="fa fa-globe"></i></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-sac-gwh-owcresource-detail-modal [viewOnly]="viewOnly"></app-sac-gwh-owcresource-detail-modal>

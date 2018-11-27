@@ -1,0 +1,165 @@
+<div bsModal #resultModalRef="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="result-details" aria-hidden="true" (onHide)="onHideModal()">
+  <div class="modal-dialog modal-lg">
+    <div *ngIf="feature" class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="hideFeatureModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <!-- <h4 class="modal-title pull-left">{{feature.properties.title}}</h4> -->
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <!-- <div class="panel-heading">Details:</div> -->
+          <div class="panel-heading">
+            <h4>{{feature.properties.title}}</h4>
+          </div>
+
+          <div class="panel-body">
+
+            <tabset [vertical]="true" type="pills">
+              <tab heading="Details:">
+                <br>
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Abstract</label>
+                    <div class="col-sm-10">
+                      <p class="form-control-static">{{feature.properties.abstrakt}}</p>
+                    </div>
+                  </div>
+
+                  <div *ngIf="feature.properties.keywords.length > 0" class="form-group">
+                    <label class="col-sm-2 control-label">keywords</label>
+                    <div class="col-sm-10">
+                      <p class="form-control-static">{{feature.properties.keywords.join(', ')}}</p>
+                    </div>
+                  </div>
+
+                  <div *ngIf="feature.properties.smartCategory.length > 0" class="form-group">
+                    <label class="col-sm-2 control-label">Topic category (ISO/ANZLIC)</label>
+                    <div class="col-sm-10">
+                      <p class="form-control-static">{{feature.properties.smartCategory.join(', ')}}</p>
+                    </div>
+                  </div>
+
+                  <div *ngIf="feature.properties.topicCategories.length > 0" class="form-group">
+                    <label class="col-sm-2 control-label">Topic category (ISO/ANZLIC)</label>
+                    <div class="col-sm-10">
+                      <p class="form-control-static">{{feature.properties.topicCategories.join(', ')}}</p>
+                    </div>
+                  </div>
+
+                  <div *ngIf="feature.properties.dateStamp" class="form-group">
+                    <label class="col-sm-2 control-label">date</label>
+                    <div class="col-sm-10">
+                      <p class="form-control-static">{{feature.properties.dateStamp}}</p>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">contact information</label>
+                    <div class="col-sm-10">
+                      <p *ngIf="feature.properties.contactName" class="form-control-static">{{feature.properties.contactName}}</p>
+                      <p *ngIf="feature.properties.contactEmail">({{feature.properties.contactEmail}})</p>
+                      <p *ngIf="feature.properties.contactOrg" class="form-control-static">Organisation: {{feature.properties.contactOrg}}</p>
+                    </div>
+                  </div>
+
+                  <div  class="form-group">
+                    <label class="col-sm-2 control-label">contact organisation</label>
+                    <div class="col-sm-10">
+
+                    </div>
+                  </div>
+
+                  <div *ngIf="feature.properties.license" class="form-group">
+                    <label class="col-sm-2 control-label">license</label>
+                    <div class="col-sm-10">
+                      <p class="form-control-static">{{feature.properties.license}}</p>
+                    </div>
+                  </div>
+
+                  <div *ngIf="feature.properties.lineageStmt" class="form-group">
+                    <label class="col-sm-2 control-label">lineage statement</label>
+                    <div class="col-sm-10">
+                      <p class="form-control-static">{{feature.properties.lineageStmt}}</p>
+                    </div>
+                  </div>
+
+                  <div *ngIf="feature.properties.linkage.length > 0" class="form-group">
+                    <label class="col-sm-2 control-label">linkages</label>
+                    <div class="col-sm-10" *ngFor="let link of feature.properties.linkage">
+                      <p class="form-control-static">
+                        <i class="fa fa-globe"></i>&nbsp;{{ link.resourceType}}:
+                        (<small><i>
+                          <app-sac-gwh-licensedexitlink [theLink]="link.linkage" [licenseComment]=""></app-sac-gwh-licensedexitlink>
+                        </i></small>)
+                      </p>
+                      <p class="form-control-static" *ngIf="link.name"><small><i>Name: {{link.name}}</i></small></p>
+                      <p class="form-control-static" *ngIf="link.description"><small><i>Description: {{link.description}}</i></small></p>
+                      <p class="form-control-static" *ngIf="link.protocol"><small><i>Protocol: {{link.protocol}}</i></small></p>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Source:</label>
+                    <div class="col-sm-10">
+                      <p class="form-control-static">{{feature.properties.origin}}
+                        <i *ngIf="feature.properties.originUrl" class="fa fa-tags" tooltip="{{feature.properties.originUrl}}"></i>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">File Identifier</label>
+                    <div class="col-sm-10">
+                      <p class="form-control-static">
+                        <a href="/#/context/resource/{{feature.properties.fileIdentifier}}" target="_blank">{{feature.properties.fileIdentifier}}</a>
+                      </p>
+                    </div>
+                  </div>
+                </form>
+              </tab>
+              <tab heading="Extended details (beta):" *ngIf="owcFeature">
+                <app-sac-gwh-owcresource-props [owcResourceProperties]="owcFeature.properties"></app-sac-gwh-owcresource-props>
+
+                <p><span class="badge pull-left">Resource ID:</span> <small><i> {{ owcFeature.id }}</i></small></p>
+              </tab>
+            </tabset>
+          </div>
+          <div class="panel-footer">
+            <form class="form-horizontal" name="addToCollection" id="addToCollection" (ngSubmit)="copyToMyCollection(owcFeature)" #f="ngForm" novalidate>
+              <div class="form-group" *ngIf="feature">
+                <label class="col-sm-2 control-label clickable" tooltip="click to copy url to clipboard" ngxClipboard [cbContent]="dataA2aUrlExt"
+                       (cbOnSuccess)="onClipboardSuccess()">
+                  Share this <i class="fa fa-clipboard "></i>:
+                </label>
+                <div class="col-sm-10">
+                  <div><a target="_blank" [href]="dataA2aUrlExt">{{ feature.properties.title }} <i class="fa fa-globe"></i></a></div>
+                </div>
+              </div>
+              <div class="form-group" *ngIf="!loggedIn">
+                <label class="col-sm-2 control-label"><a routerLink="/login">Log-in to bookmark this resource</a> </label>
+              </div>
+              <div class="form-group" *ngIf="loggedIn">
+                <label class="col-sm-2 control-label" for="collectionsidentifier">Add to my collections</label>
+                <div class="col-sm-10">
+                  <select class="span2 form-control"
+                          name="collectionsidentifier"
+                          id="collectionsidentifier" #collectionsidentifier="ngModel" [(ngModel)]="activeCollectionId" required>
+
+                    <option *ngFor="let collectionsid of myCollections"
+                            [ngValue]="collectionsid.id">
+                      {{collectionsid.properties.title}}
+                    </option>
+                  </select>
+                  <button class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
