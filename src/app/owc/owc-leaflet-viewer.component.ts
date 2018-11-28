@@ -288,7 +288,7 @@ export class OwcLeafletViewerComponent implements OnInit, AfterViewInit {
       // console.log('need to do all layers and map setup');
       this.notificationService.addNotification({
         type: 'info',
-        message: 'need to do all layers and map setup'
+        message: '... layers and map setup (the map viewer feature is currently in development and currently has limited functionality)'
       });
     }
   }

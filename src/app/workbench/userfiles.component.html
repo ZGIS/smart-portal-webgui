@@ -11,6 +11,14 @@
       <div class="panel-body">
         <div class="list-group">
           <div class="list-group-item">
+            <p>Uploading a file automatically creates an entry into your Default Collection.
+              You are able to share this file with others users by adding it to another collection and sharing this
+              collection with the user(s).</p>
+            <p>To make your file publicly discoverable and accessible, you will need to create a metadata record within
+              "My Metadata" and link this metadata to your file by typing the filename in the "Distribution Link"
+              input field during metadata record creation.</p>
+          </div>
+          <div class="list-group-item">
             <a role="button" class="btn btn-info" routerLink="/workbench/upload-file" tooltip="Upload a file">Upload a file <i class="fa fa-upload" aria-hidden="true"></i></a>
           </div>
           <div class="list-group-item" *ngIf="userFiles.length <= 0">No files have been uploaded.</div>
