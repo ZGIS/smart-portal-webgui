@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# SMART Webgui documentation build configuration file, created by
+# Groundwater Hub documentation build configuration file, created by
 # sphinx-quickstart on Wed Apr  5 19:40:44 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -46,8 +46,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'SMART Webgui'
-copyright = u'2017, GNS Science (NZ) & Salzburg University (AT); CC BY SA 4.0'
+project = u'Groundwater Hub'
+copyright = u'2016-2018, GNS Science (NZ) & Salzburg University (AT); CC BY SA 4.0'
 author = u'A Kmoch'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -183,7 +183,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'SMARTWebguidoc'
+htmlhelp_basename = 'GWhubdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -210,7 +210,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'SMARTWebgui.tex', u'SMART Webgui Documentation',
+    (master_doc, 'GWhub.tex', u'Groundwater Hub Documentation',
      u'A Kmoch', 'manual'),
 ]
 
@@ -251,7 +251,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'smartwebgui', u'SMART Webgui Documentation',
+    (master_doc, 'GWhub', u'Groundwater Hub Documentation',
      [author], 1)
 ]
 
@@ -265,8 +265,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'SMARTWebgui', u'SMART Webgui Documentation',
-     author, 'SMARTWebgui', 'One line description of project.',
+    (master_doc, 'GWhub', u'Groundwater Hub Documentation',
+     author, 'GWhub', 'One line description of project.',
      'Miscellaneous'),
 ]
 
