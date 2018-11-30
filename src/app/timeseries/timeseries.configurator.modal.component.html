@@ -12,23 +12,13 @@
 
         <form class="form" [formGroup]="configurationForm">
 
-          <div class="form-group" [ngClass]="{'has-error':formErrors.timeseriesName}">
-            <label class="control-label" for="timeseriesName"
-                   tooltip="Enter a name for the time series">Timeseries name:</label>
-            <div class="label label-danger pull-right">{{formErrors.timeseriesName}}</div>
-            <div class="controls">
-              <input id="timeseriesName" name="timeseriesName" class="form-control"
-                     formControlName="timeseriesName"
-                     placeholder="timeseries name"
-              >
-            </div>
-          </div>
-
           <div class="form-group" [ngClass]="{'has-error':formErrors.sosUrl}">
             <label class="control-label" for="sosUrl"
                    tooltip="Enter the URL of the SOS.">Url of Sensor Observation Service:</label>
-            <div class="label label-danger pull-right">{{formErrors.sosUrl}}</div>
+            <div class="pull-right"><i tooltip="NGMP Example">NGMP Example: https://ggw.gns.cri.nz/sos/service</i></div>
+
             <div class="input-group">
+
               <input id="sosUrl" name="sosUrl" class="form-control"
                      formControlName="sosUrl"
                      placeholder="sensor observation service url"
@@ -37,6 +27,7 @@
                 <button class="btn btn-default" (click)="fetchSosCapabilities()" [disabled]="formErrors.sosUrl">get capabilities</button>
               </span>
             </div>
+            <div class="label label-danger">{{formErrors.sosUrl}}</div>
           </div>
 
           <div *ngIf="sosCapabilities.sosUrl" class="alert alert-success">
@@ -47,9 +38,24 @@
             You are not connected to any SOS server so far. Enter a SOS url above and click <b>Get Capabilites</b>
           </div>
 
+          <div class="form-group" [ngClass]="{'has-error':formErrors.timeseriesName}">
+            <label class="control-label" for="timeseriesName"
+                   tooltip="Enter a name for the time series">Timeseries name:</label>
+            <div class="pull-right"><i tooltip="NGMP Example">NGMP Example: electrical conductivity @ NGMP Feature 49</i></div>
+
+            <div class="controls">
+              <input id="timeseriesName" name="timeseriesName" class="form-control"
+                     formControlName="timeseriesName"
+                     placeholder="timeseries name"
+              >
+            </div>
+            <div class="label label-danger">{{formErrors.timeseriesName}}</div>
+          </div>
+
           <div class="form-group" [ngClass]="{'has-error':formErrors.offering}">
             <label class="control-label" for="offering"
                    tooltip="Select an offering">Offering:</label>
+            <div class="pull-right"><i tooltip="NGMP Example">NGMP Example: 1416</i></div>
             <div class="controls">
               <input id="offering" name="offering" class="form-control"
                      formControlName="offering"
@@ -64,6 +70,7 @@
           <div class="form-group" [ngClass]="{'has-error':formErrors.procedure}">
             <label class="control-label" for="procedure"
                    tooltip="Select an offering">Procedure:</label>
+            <div class="pull-right"><i tooltip="NGMP Example">NGMP Example: 1416</i></div>
             <div class="controls">
               <input id="procedure" name="procedure" class="form-control"
                      formControlName="procedure"
@@ -78,6 +85,7 @@
           <div class="form-group" [ngClass]="{'has-error':formErrors.featureOfInterest}">
             <label class="control-label" for="featureOfInterest"
                    tooltip="Select an offering">Feature of Interest:</label>
+            <div class="pull-right"><i tooltip="NGMP Example">NGMP Example: 49</i></div>
             <div class="controls">
               <input id="featureOfInterest" name="featureOfInterest" class="form-control"
                      formControlName="featureOfInterest"
@@ -92,6 +100,8 @@
           <div class="form-group" [ngClass]="{'has-error':formErrors.observedProperty}">
             <label class="control-label" for="observedProperty"
                    tooltip="Select an offering">Observed property: </label>
+            <div class="pull-right"><i tooltip="NGMP Example">NGMP Example: 1416</i></div>
+
             <div class="controls">
               <input id="observedProperty" name="observedProperty" class="form-control"
                      formControlName="observedProperty"
@@ -101,6 +111,7 @@
                      typeaheadMinLength="0"
               >
             </div>
+
           </div>
 
           <div class="row">
@@ -108,9 +119,11 @@
               <div class="form-group">
                 <label class="control-label">&nbsp;</label>
                 <div class="input-group">
+                  <!--
                   <button class="btn btn-default"
                           [disabled]="!configurationForm.valid">check data availability
                   </button>
+                  -->
                 </div>
               </div>
             </div>
@@ -138,6 +151,7 @@
                     </div>
                   </span>
                 </div>
+                <div class="pull-right"><i tooltip="NGMP Example">NGMP Example from: 01/01/1998</i></div>
               </div>
             </div>
 
@@ -166,6 +180,7 @@
                     </div>
                   </span>
                 </div>
+                <div class="pull-right"><i tooltip="NGMP Example">NGMP Example to: 09/10/2018</i></div>
               </div>
             </div>
           </div>

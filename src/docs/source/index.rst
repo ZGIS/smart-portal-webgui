@@ -1,10 +1,10 @@
-.. SMART Webgui documentation master file, created by
+.. Groundwater Hub Documentation documentation master file, created by
    sphinx-quickstart on Wed Apr  5 19:40:44 2017.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to SMART Webgui's documentation!
-========================================
+Welcome to the Groundwater Hub documentation!
+=============================================
 
 
 The Groundwater Hub is a web portal to enable science staff and stakeholders alike to discover, visualize, explore
@@ -21,7 +21,6 @@ It will become a gateway into 3D geological models and foster consistency in geo
 
    scenarios
    usecases
-   disclaimer
 
 Indices and tables
 ==================

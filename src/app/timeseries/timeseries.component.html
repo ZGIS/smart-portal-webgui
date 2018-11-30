@@ -66,6 +66,14 @@
         <button [disabled]="isLoading" class="btn btn-primary btn-group-justified" (click)="openTimeseriesConfigurator($event, -1)"><i
           class="fa fa-plus-circle"></i>&nbsp;add new time series
         </button>
+
+      </div>
+      <div class="panel-footer">
+        <div align="right">
+          <button [disabled]="isLoading" class="btn btn-default" (click)="onAddNgmpExample()"><i
+            class="fa fa-plus-circle"></i>&nbsp;add NGMP Example Configuration
+          </button>
+        </div>
       </div>
     </div>
   </div>
