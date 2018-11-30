@@ -92,12 +92,16 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="timeseriescomponent.html#capabilities" class="tsd-kind-icon">capabilities</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="timeseriescomponent.html#datefrom" class="tsd-kind-icon">date<wbr>From</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="timeseriescomponent.html#datenow" class="tsd-kind-icon">date<wbr>Now</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="timeseriescomponent.html#days" class="tsd-kind-icon">days</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="timeseriescomponent.html#http" class="tsd-kind-icon">http</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="timeseriescomponent.html#isloading" class="tsd-kind-icon">is<wbr>Loading</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="timeseriescomponent.html#modal" class="tsd-kind-icon">modal</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="timeseriescomponent.html#notificationservice" class="tsd-kind-icon">notification<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="timeseriescomponent.html#options" class="tsd-kind-icon">options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="timeseriescomponent.html#portalapiurl" class="tsd-kind-icon">portal<wbr>Api<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="timeseriescomponent.html#preconfiguredngmpts" class="tsd-kind-icon">preconfigured<wbr>Ngmp<wbr>Ts</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="timeseriescomponent.html#timeseries" class="tsd-kind-icon">timeseries</a></li>
 							</ul>
 						</section>
@@ -109,8 +113,10 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="timeseriescomponent.html#exporttimeseries" class="tsd-kind-icon">export<wbr>Timeseries</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="timeseriescomponent.html#exporttimeseriesdata" class="tsd-kind-icon">export<wbr>Timeseries<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="timeseriescomponent.html#handleerror" class="tsd-kind-icon">handle<wbr>Error</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="timeseriescomponent.html#loadconfiguretimeseries" class="tsd-kind-icon">load<wbr>Configure<wbr>Time<wbr>Series</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="timeseriescomponent.html#loadtimeseriesdata" class="tsd-kind-icon">load<wbr>Timeseries<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="timeseriescomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="timeseriescomponent.html#onaddngmpexample" class="tsd-kind-icon">on<wbr>Add<wbr>Ngmp<wbr>Example</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="timeseriescomponent.html#opentimeseriesconfigurator" class="tsd-kind-icon">open<wbr>Timeseries<wbr>Configurator</a></li>
 							</ul>
 						</section>
@@ -135,7 +141,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L54">app/timeseries/timeseries.component.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L68">app/timeseries/timeseries.component.ts:68</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -172,7 +178,37 @@
 					<div class="tsd-signature tsd-kind-icon">capabilities<span class="tsd-signature-symbol">:</span> <a href="soscapabilities.html" class="tsd-signature-type">SosCapabilities</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L31">app/timeseries/timeseries.component.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L30">app/timeseries/timeseries.component.ts:30</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="datefrom" class="tsd-anchor"></a>
+					<h3>date<wbr>From</h3>
+					<div class="tsd-signature tsd-kind-icon">date<wbr>From<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> =&nbsp;new Date(this.dateNow.getTime() - (this.days * 24 * 60 * 60 * 1000))</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L34">app/timeseries/timeseries.component.ts:34</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="datenow" class="tsd-anchor"></a>
+					<h3>date<wbr>Now</h3>
+					<div class="tsd-signature tsd-kind-icon">date<wbr>Now<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> =&nbsp;new Date()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L33">app/timeseries/timeseries.component.ts:33</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="days" class="tsd-anchor"></a>
+					<h3>days</h3>
+					<div class="tsd-signature tsd-kind-icon">days<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;20 * 365</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L32">app/timeseries/timeseries.component.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -182,7 +218,7 @@
 					<div class="tsd-signature tsd-kind-icon">http<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Http</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L65">app/timeseries/timeseries.component.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L79">app/timeseries/timeseries.component.ts:79</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -196,7 +232,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L33">app/timeseries/timeseries.component.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L47">app/timeseries/timeseries.component.ts:47</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -206,7 +242,7 @@
 					<div class="tsd-signature tsd-kind-icon">modal<span class="tsd-signature-symbol">:</span> <a href="timeseriesconfiguratormodalcomponent.html" class="tsd-signature-type">TimeseriesConfiguratorModalComponent</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L28">app/timeseries/timeseries.component.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L27">app/timeseries/timeseries.component.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -216,7 +252,7 @@
 					<div class="tsd-signature tsd-kind-icon">notification<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L64">app/timeseries/timeseries.component.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L78">app/timeseries/timeseries.component.ts:78</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -226,7 +262,7 @@
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L54">app/timeseries/timeseries.component.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L68">app/timeseries/timeseries.component.ts:68</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -236,7 +272,17 @@
 					<div class="tsd-signature tsd-kind-icon">portal<wbr>Api<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L63">app/timeseries/timeseries.component.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L77">app/timeseries/timeseries.component.ts:77</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="preconfiguredngmpts" class="tsd-anchor"></a>
+					<h3>preconfigured<wbr>Ngmp<wbr>Ts</h3>
+					<div class="tsd-signature tsd-kind-icon">preconfigured<wbr>Ngmp<wbr>Ts<span class="tsd-signature-symbol">:</span> <a href="timeseries.html" class="tsd-signature-type">Timeseries</a><span class="tsd-signature-symbol"> =&nbsp;&lt;Timeseries&gt;{sosUrl: &#x27;https://ggw.gns.cri.nz/sos/service&#x27;,offering: &#x27;1416&#x27;,procedure: &#x27;1416&#x27;,observedProperty: &#x27;1416&#x27;,featureOfInterest: &#x27;49&#x27;,fromDate: this.dateFrom,toDate: this.dateNow,timeseriesName: &#x27;electrical conductivity @ NGMP Feature 49&#x27;}</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L36">app/timeseries/timeseries.component.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -246,7 +292,7 @@
 					<div class="tsd-signature tsd-kind-icon">timeseries<span class="tsd-signature-symbol">:</span> <a href="timeseries.html" class="tsd-signature-type">Timeseries</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L30">app/timeseries/timeseries.component.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L29">app/timeseries/timeseries.component.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -263,7 +309,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L132">app/timeseries/timeseries.component.ts:132</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L155">app/timeseries/timeseries.component.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -293,7 +339,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L176">app/timeseries/timeseries.component.ts:176</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L199">app/timeseries/timeseries.component.ts:199</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -322,7 +368,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L138">app/timeseries/timeseries.component.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L161">app/timeseries/timeseries.component.ts:161</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -348,7 +394,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L228">app/timeseries/timeseries.component.ts:228</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L251">app/timeseries/timeseries.component.ts:251</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -371,7 +417,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L246">app/timeseries/timeseries.component.ts:246</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L269">app/timeseries/timeseries.component.ts:269</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -386,6 +432,32 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="loadconfiguretimeseries" class="tsd-anchor"></a>
+					<h3>load<wbr>Configure<wbr>Time<wbr>Series</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Configure<wbr>Time<wbr>Series<span class="tsd-signature-symbol">(</span>ts<span class="tsd-signature-symbol">: </span><a href="timeseries.html" class="tsd-signature-type">Timeseries</a>, idx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L115">app/timeseries/timeseries.component.ts:115</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ts: <a href="timeseries.html" class="tsd-signature-type">Timeseries</a></h5>
+								</li>
+								<li>
+									<h5>idx: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="loadtimeseriesdata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> load<wbr>Timeseries<wbr>Data</h3>
@@ -396,7 +468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L212">app/timeseries/timeseries.component.ts:212</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L235">app/timeseries/timeseries.component.ts:235</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -424,7 +496,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L71">app/timeseries/timeseries.component.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L85">app/timeseries/timeseries.component.ts:85</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -437,16 +509,33 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="opentimeseriesconfigurator" class="tsd-anchor"></a>
-					<h3>open<wbr>Timeseries<wbr>Configurator</h3>
+					<a name="onaddngmpexample" class="tsd-anchor"></a>
+					<h3>on<wbr>Add<wbr>Ngmp<wbr>Example</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">open<wbr>Timeseries<wbr>Configurator<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Add<wbr>Ngmp<wbr>Example<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L86">app/timeseries/timeseries.component.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L110">app/timeseries/timeseries.component.ts:110</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="opentimeseriesconfigurator" class="tsd-anchor"></a>
+					<h3>open<wbr>Timeseries<wbr>Configurator</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">open<wbr>Timeseries<wbr>Configurator<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, idx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L100">app/timeseries/timeseries.component.ts:100</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -460,7 +549,7 @@
 									<h5>event: <span class="tsd-signature-type">any</span></h5>
 								</li>
 								<li>
-									<h5>index: <span class="tsd-signature-type">number</span></h5>
+									<h5>idx: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
 								</li>
@@ -478,7 +567,7 @@
 					<div class="tsd-signature tsd-kind-icon">layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L35">app/timeseries/timeseries.component.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L49">app/timeseries/timeseries.component.ts:49</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -487,7 +576,7 @@
 						<div class="tsd-signature tsd-kind-icon">showlegend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L38">app/timeseries/timeseries.component.ts:38</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L52">app/timeseries/timeseries.component.ts:52</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -497,7 +586,7 @@
 						<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L37">app/timeseries/timeseries.component.ts:37</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L51">app/timeseries/timeseries.component.ts:51</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -507,7 +596,7 @@
 						<div class="tsd-signature tsd-kind-icon">margin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L45">app/timeseries/timeseries.component.ts:45</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L59">app/timeseries/timeseries.component.ts:59</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -516,7 +605,7 @@
 							<div class="tsd-signature tsd-kind-icon">b<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;50</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L48">app/timeseries/timeseries.component.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L62">app/timeseries/timeseries.component.ts:62</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -526,7 +615,7 @@
 							<div class="tsd-signature tsd-kind-icon">l<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;50</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L46">app/timeseries/timeseries.component.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L60">app/timeseries/timeseries.component.ts:60</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -536,7 +625,7 @@
 							<div class="tsd-signature tsd-kind-icon">pad<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;4</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L50">app/timeseries/timeseries.component.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L64">app/timeseries/timeseries.component.ts:64</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -546,7 +635,7 @@
 							<div class="tsd-signature tsd-kind-icon">r<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;50</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L47">app/timeseries/timeseries.component.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L61">app/timeseries/timeseries.component.ts:61</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -556,7 +645,7 @@
 							<div class="tsd-signature tsd-kind-icon">t<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;50</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L49">app/timeseries/timeseries.component.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L63">app/timeseries/timeseries.component.ts:63</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -567,16 +656,16 @@
 						<div class="tsd-signature tsd-kind-icon">xaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L39">app/timeseries/timeseries.component.ts:39</a></li>
+								<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L53">app/timeseries/timeseries.component.ts:53</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 							<a name="layout.xaxis.domain" class="tsd-anchor"></a>
 							<h3>domain</h3>
-							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0.9]</span></div>
+							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[ 0, 0.9 ]</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L43">app/timeseries/timeseries.component.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L57">app/timeseries/timeseries.component.ts:57</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -586,7 +675,7 @@
 							<div class="tsd-signature tsd-kind-icon">hoverformat<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;%Y-%m-%d %X&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L42">app/timeseries/timeseries.component.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L56">app/timeseries/timeseries.component.ts:56</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -596,7 +685,7 @@
 							<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;time of measurement&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L40">app/timeseries/timeseries.component.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L54">app/timeseries/timeseries.component.ts:54</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -606,7 +695,7 @@
 							<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;date&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/16e973b/src/app/timeseries/timeseries.component.ts#L41">app/timeseries/timeseries.component.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/ZGIS/smart-portal-webgui/blob/d3b7c88/src/app/timeseries/timeseries.component.ts#L55">app/timeseries/timeseries.component.ts:55</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -635,6 +724,15 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="timeseriescomponent.html#capabilities" class="tsd-kind-icon">capabilities</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="timeseriescomponent.html#datefrom" class="tsd-kind-icon">date<wbr>From</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="timeseriescomponent.html#datenow" class="tsd-kind-icon">date<wbr>Now</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="timeseriescomponent.html#days" class="tsd-kind-icon">days</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="timeseriescomponent.html#http" class="tsd-kind-icon">http</a>
 							</li>
@@ -654,6 +752,9 @@
 								<a href="timeseriescomponent.html#portalapiurl" class="tsd-kind-icon">portal<wbr>Api<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="timeseriescomponent.html#preconfiguredngmpts" class="tsd-kind-icon">preconfigured<wbr>Ngmp<wbr>Ts</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="timeseriescomponent.html#timeseries" class="tsd-kind-icon">timeseries</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -671,11 +772,17 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="timeseriescomponent.html#handleerror" class="tsd-kind-icon">handle<wbr>Error</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="timeseriescomponent.html#loadconfiguretimeseries" class="tsd-kind-icon">load<wbr>Configure<wbr>Time<wbr>Series</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="timeseriescomponent.html#loadtimeseriesdata" class="tsd-kind-icon">load<wbr>Timeseries<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="timeseriescomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="timeseriescomponent.html#onaddngmpexample" class="tsd-kind-icon">on<wbr>Add<wbr>Ngmp<wbr>Example</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="timeseriescomponent.html#opentimeseriesconfigurator" class="tsd-kind-icon">open<wbr>Timeseries<wbr>Configurator</a>
