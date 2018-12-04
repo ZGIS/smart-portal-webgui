@@ -152,7 +152,7 @@ export class CategoriesService {
             if (jsonLdCategory.keyword_content && jsonLdCategory.keyword_content !== '') {
               tmpKeywords = jsonLdCategory.keyword_content.split(',').map(( item: string ) => item.trim());
             }
-            if (jsonLdCategory[ '@type' ] === 'http://vocab.smart-project.info/categories.rdfs#MainCategory') {
+            if (jsonLdCategory[ '@type' ] === this.vocabUrl + '/categories.rdfs#MainCategory') {
               mainCats.push(<IDashboardCategory>{
                 id: Number(jsonLdCategory.id) || 0,
                 hierarchy_number: jsonLdCategory.hierarchy_number,
@@ -164,7 +164,7 @@ export class CategoriesService {
                 icon: jsonLdCategory.icon,
                 bg_icon: jsonLdCategory.bg_icon
               });
-            } else if (jsonLdCategory[ '@type' ] === 'http://vocab.smart-project.info/categories.rdfs#ChildCategory') {
+            } else if (jsonLdCategory[ '@type' ] === this.vocabUrl + '/categories.rdfs#ChildCategory') {
               childCats.push(<IDashboardCategory>{
                 id: Number(jsonLdCategory.id) || 0,
                 hierarchy_number: jsonLdCategory.hierarchy_number,
