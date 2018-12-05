@@ -2,10 +2,10 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://nz-groundwater-hub.org/sitemap_base.xml</loc>
-    <lastmod>2017-01-16</lastmod>
+    <lastmod>2018-011-16</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https:/nz-groundwater-hub.org/api/v1/sitemap/collections.xml</loc>
-    <lastmod>2017-01-16</lastmod>
+	  <loc>https://nz-groundwater-hub.org/api/v1/sitemap/collections.xml</loc>
+    <lastmod>2018-11-16</lastmod>
   </sitemap>
 </sitemapindex>
