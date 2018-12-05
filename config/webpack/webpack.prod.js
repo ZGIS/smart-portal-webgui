@@ -76,6 +76,11 @@ module.exports = webpackMerge(commonConfig, {
         to: './images'
       }
     ]),
+    new CopyWebpackPlugin([
+      { from: './src/public/robots.txt', to: './robots.txt' },
+      { from: './src/public/sitemap.xml', to: './sitemap.xml' },
+      { from: './src/public/sitemap_base.xml', to: './sitemap_base.xml' }
+    ]),
     new TypedocWebpackPlugin({
 
         name: 'SMART WebGui',
