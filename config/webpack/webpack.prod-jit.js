@@ -106,6 +106,11 @@ module.exports = webpackMerge(commonConfig, {
         from: './src/public/images',
         to: './images'
       }
+    ]),
+    new CopyWebpackPlugin([
+      { from: './src/public/robots.txt', to: './robots.txt' },
+      { from: './src/public/sitemap.xml', to: './sitemap.xml' },
+      { from: './src/public/sitemap-base.xml', to: './sitemap-base.xml' }
     ])
   ]
 });
