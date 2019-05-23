@@ -92,7 +92,6 @@ Scenario:
 Related Use Case Packages:
   - :ref:`#CSWIndexing`
   - :ref:`#AccessCheckTracking`
-  - :ref:`#FocusedDataPresi`
   - :ref:`#MapViewer`
 
 Plot a Single (or multiple related/comparable) presumably time-series datasets as graphs
@@ -103,21 +102,8 @@ Scenario:
 
 Related Use Case Packages:
   - :ref:`#CSWIndexing`
-  - :ref:`#AccessCheckTracking`
   - :ref:`#FocusedDataPresi`
   - :ref:`#GraphsViewer`
-
-View/visualise a 3D model/scene
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Scenario:
-  i.e. understand the data offering as a 3D scene and load it into an appropriate viewer (X3D -> x3dom)
-
-Related Use Case Packages:
-  - :ref:`#CSWIndexing`
-  - :ref:`#AccessCheckTracking`
-  - :ref:`#FocusedDataPresi`
-  - :ref:`#3DViewer`
 
 Researcher or science staff wants to publish research outputs (a "dataset")
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -220,7 +206,8 @@ Related Use Case Packages:
   - :ref:`#UserAuth`
   - :ref:`#OWCCollections`
   - :ref:`#DataUserAdmin`
-  - :ref:`#AccessCheckTracking`: When data is searched for, results presented/requested as cards or on map search,
+  
+  When data is searched for, results presented/requested as cards or on map search,
     and from those results download or visualisation or editing is requested from a (web) user then this info
     will be collected so the data/collection owner knows about impact, can be shown together with the s?
     (e.g. views/download). When data is requested for download a disclaimer/License agreement might be to be
