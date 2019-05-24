@@ -229,16 +229,6 @@ Reference: http://www.opengeospatial.org/standards/owc
 #22 - editing OWC doc collections in webgui (user collections, case studies) and store them with user info
   Summary: <short phrase/sentence>.
 
-.. _uc23:
-
-#23 - JavaScript/TypeScript parser for OWC GeoJSON documents webgui (user collections, case studies)
-  Summary: <short phrase/sentence>.
-
-.. _uc24:
-
-#24 - a java/scala parser OWC GeoJSON documents, for "framework" and API
-  Summary: <short phrase/sentence>.
-
 .. _uc25:
 
 #25 - Authenticated Users can edit/update their case studies
@@ -277,11 +267,6 @@ Reference: http://www.opengeospatial.org/standards/owc
 #32 - Authenticated Users can edit MD_Metadata record, only own (or member org)
   Summary: <short phrase/sentence>.
 
-.. _uc33:
-
-#33 - MD_Metadata records retrieve, add and update to CSW from backend
-  Summary: <short phrase/sentence>.
-
 .. _#ScienceDomainSearch:
 
 #ScienceDomainSearch
@@ -302,46 +287,6 @@ Reference: http://www.opengeospatial.org/standards/owc
 #42 - list of index fields to be defined, "category list" awareness (filter also based on keywords and related dictionary/list)
   Summary: <short phrase/sentence>.
 
-.. _uc43:
-
-#43 - support multiple keyword list and be able to filter distinctive if keywords from that particular list are documented in the metadata record
-  Summary: <short phrase/sentence>.
-
-.. _#FocusedDataPresi:
-
-#FocusedDataPresi
------------------
-
-.. _uc50:
-
-#50 - frontend Angular(2), JSON Api, should be easily usable from mobile, too, thus, ideally no server-side view rendering from Play
-  Summary: <short phrase/sentence>.
-
-.. _uc51:
-
-#51 - this single representation of datasets, models, reports, case studies, with contextual article text and images, like a blog/one-two pager thing
-  Summary: <short phrase/sentence>.
-
-.. _uc52:
-
-#52 - this single representation has link for download of datasets and metadata in their respective formats
-  Summary: <short phrase/sentence>.
-
-.. _uc53:
-
-#53 - single dataset, case study etc should be addressable with a permalink and have "nice and appropriate" html representation
-  Summary: <short phrase/sentence>.
-
-.. _uc54:
-
-#54 - the "addressable resource" should possibly always a OWC document, aka the collections (GeoJSON or ATOM or both with content negotiation)
-  Summary: <short phrase/sentence>.
-
-.. _uc55:
-
-#55 - single item by item or from OWC collections, like shopping carts delegating to mapviewer, graphs, 3D
-  Summary: <short phrase/sentence>.
-
 .. _#UploadHandleFile:
 
 #UploadHandleFile
@@ -353,45 +298,11 @@ Reference: http://www.opengeospatial.org/standards/owc
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/mZt1XWGusGk" frameborder="0" allowfullscreen></iframe>
 
-.. _uc60:
-
-#60 - Authenticated Users can upload files (datasets, reports ...) and keep reference in own collection
-  Summary: <short phrase/sentence>.
-
-.. _uc61:
-
-#61 - where do file uploads go: Google buckets, app keeps uuid and filename in DB
-  Summary: <short phrase/sentence>.
-
 .. _uc62:
 
 #62 - need upload wizard procedure that (small files) can derive supporting info to prefill the metadata editor
   Summary: <short phrase/sentence>.
 
-.. _uc63:
-
-#63 - Authenticated Users can edit/update their files
-  Summary: <short phrase/sentence>.
-
-.. _#AccessCheckTracking:
-
-#AccessCheckTracking
---------------------
-
-.. _uc70:
-
-#70 - download need to confirm a "license terms" dialog
-  Summary: <short phrase/sentence>.
-
-.. _uc71:
-
-#71 - records/datasets should be exposed to a sitemap so it can be found from google (open up data for "deep" search)
-  Summary: <short phrase/sentence>.
-
-.. _uc72:
-
-#72 - Analytics/download tracking to be able report popularity of datasets (report impact of science)
-  Summary: <short phrase/sentence>.
 
 .. _#MapViewer:
 
@@ -401,16 +312,6 @@ Reference: http://www.opengeospatial.org/standards/owc
 .. _uc80:
 
 #80 - Users can view data on maps, legends, attribute tables/featureinfo, sourced from OWC with link to MD_Metadata
-  Summary: <short phrase/sentence>.
-
-.. _uc81:
-
-#81 - Cross-Origin Resource Sharing (CORS)
-  Summary: CORS policy must work from mapviewer, from x3dviewer and from our sources from our servers
-
-.. _uc82:
-
-#82 - GetFeatureInfo Proxy for collecting FeatureInfo for multiple layers from multiple servers?
   Summary: <short phrase/sentence>.
 
 .. _uc83:
@@ -435,33 +336,21 @@ Reference: http://www.opengeospatial.org/standards/owc
 
 .. _uc91:
 
-#91 - SOS module - basic
-  Summary: <short phrase/sentence>.
-
-.. _uc92:
-
-#92 - SOS module - extended
-  Summary: <short phrase/sentence>.
-
-.. _#3DViewer:
-
-#3DViewer
----------
-
-.. _uc100:
-
-#100 - Users can view data as 3D, or as tables, sourced from OWC with link to MD_Metadata
-  Summary: <short phrase/sentence>.
-
-.. _uc101:
-
-#101 - this single representation provides 3D view, maybe inline and expandable to fullscreen or in new window
-  Summary: <short phrase/sentence>.
-
-.. _#DataUserAdmin:
+#91 - SOS module
+  Summary: OGC SOS 2.0 data access module to load time-series for graphing and export (Excel, CSV, WML2)
 
 #DataUserAdmin
 --------------
+
+.. _uc63:
+
+#63 - Authenticated Users can edit/update their files
+  Summary: <short phrase/sentence>.
+
+.. _uc70:
+
+#70 - download need to confirm a "license terms" dialog
+  Summary: <short phrase/sentence>.
 
 .. _uc110:
 
@@ -473,16 +362,4 @@ Reference: http://www.opengeospatial.org/standards/owc
 #111 - users can add case studies, thus own them and decide who can add data to them
   Summary: <short phrase/sentence>.
 
-.. _#TemplateUseCase:
 
-#Template Use Case
-------------------
-
-- Summary: <short phrase/sentence>.
-- Rationale: <max. paragraph context, explanation>.
-- <possibly sketch/dia/frame>
-- Users: <users>
-- Preconditions: <list of <short phrase/sentence>>.
-- Basic Course of Events: <enumerated list of <short phrase/sentence>>.
-- Alternative Paths: <enumerated list of <short phrase/sentence>>.
-- Postconditions: <itemised list of <short phrase/sentence>>.
